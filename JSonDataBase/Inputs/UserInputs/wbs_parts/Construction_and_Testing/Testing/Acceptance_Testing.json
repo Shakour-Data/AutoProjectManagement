@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Construction-3.4",
+  "name": "Acceptance Testing",
+  "description": "Conduct acceptance testing to validate system meets requirements.",
+  "level_0": "Software Project",
+  "level_1": "Construction and Testing",
+  "level_2": "Testing",
+  "level_3": "Acceptance Testing",
+  "subtasks": [
+    {
+      "id": "WBS-Construction-3.4.1",
+      "name": "Develop Acceptance Criteria",
+      "description": "Define criteria for system acceptance.",
+      "level_4": "Develop Acceptance Criteria",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-3.4.2",
+      "name": "Plan Acceptance Tests",
+      "description": "Create plans for acceptance testing.",
+      "level_4": "Plan Acceptance Tests",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-3.4.3",
+      "name": "Execute Acceptance Tests",
+      "description": "Perform acceptance tests with stakeholders.",
+      "level_4": "Execute Acceptance Tests",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-3.4.4",
+      "name": "Document Results",
+      "description": "Record outcomes of acceptance testing.",
+      "level_4": "Document Results",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-3.4.5",
+      "name": "Obtain Approval",
+      "description": "Get formal approval from stakeholders.",
+      "level_4": "Obtain Approval",
+      "subtasks": []
+    }
+  ]
+}

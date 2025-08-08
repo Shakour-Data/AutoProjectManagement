@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Construction-4.2",
+  "name": "Deployment Execution",
+  "description": "Execute deployment of the software system to production environment.",
+  "level_0": "Software Project",
+  "level_1": "Construction and Testing",
+  "level_2": "Deployment",
+  "level_3": "Deployment Execution",
+  "subtasks": [
+    {
+      "id": "WBS-Construction-4.2.1",
+      "name": "Prepare Deployment Environment",
+      "description": "Set up production environment for deployment.",
+      "level_4": "Prepare Deployment Environment",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.2.2",
+      "name": "Deploy Software",
+      "description": "Install and configure software in production.",
+      "level_4": "Deploy Software",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.2.3",
+      "name": "Perform Smoke Testing",
+      "description": "Conduct initial tests to verify deployment success.",
+      "level_4": "Perform Smoke Testing",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.2.4",
+      "name": "Monitor Deployment",
+      "description": "Monitor system performance post-deployment.",
+      "level_4": "Monitor Deployment",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.2.5",
+      "name": "Document Deployment",
+      "description": "Record deployment activities and issues.",
+      "level_4": "Document Deployment",
+      "subtasks": []
+    }
+  ]
+}

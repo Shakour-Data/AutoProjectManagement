@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-3.1",
+  "name": "Architectural Design",
+  "description": "Define the overall system architecture and components.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Design",
+  "level_3": "Architectural Design",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-3.1.1",
+      "name": "Define System Components",
+      "description": "Identify and define major system components.",
+      "level_4": "Define System Components",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.1.2",
+      "name": "Establish Component Interactions",
+      "description": "Define interactions and interfaces between components.",
+      "level_4": "Establish Component Interactions",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.1.3",
+      "name": "Select Architectural Patterns",
+      "description": "Choose appropriate architectural styles and patterns.",
+      "level_4": "Select Architectural Patterns",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.1.4",
+      "name": "Document Architecture",
+      "description": "Prepare architectural design documents.",
+      "level_4": "Document Architecture",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.1.5",
+      "name": "Review Architecture",
+      "description": "Conduct architecture review sessions.",
+      "level_4": "Review Architecture",
+      "subtasks": []
+    }
+  ]
+}

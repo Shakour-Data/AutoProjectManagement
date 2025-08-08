@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "title": "Task 1",
+    "subtasks": [],
+    "allocations": [
+      {
+        "resource_id": "R1",
+        "allocation_percent": 100,
+        "role_in_task": "Developer",
+        "start_date": "2025-06-01",
+        "end_date": "2025-06-10",
+        "notes": ""
+      }
+    ]
+  }
+]

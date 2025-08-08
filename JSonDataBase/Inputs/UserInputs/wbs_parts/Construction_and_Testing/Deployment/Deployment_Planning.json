@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Construction-4.1",
+  "name": "Deployment Planning",
+  "description": "Plan deployment activities and schedule.",
+  "level_0": "Software Project",
+  "level_1": "Construction and Testing",
+  "level_2": "Deployment",
+  "level_3": "Deployment Planning",
+  "subtasks": [
+    {
+      "id": "WBS-Construction-4.1.1",
+      "name": "Define Deployment Strategy",
+      "description": "Establish deployment approach and methods.",
+      "level_4": "Define Deployment Strategy",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.1.2",
+      "name": "Identify Deployment Resources",
+      "description": "Determine resources required for deployment.",
+      "level_4": "Identify Deployment Resources",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.1.3",
+      "name": "Develop Deployment Schedule",
+      "description": "Create timeline for deployment activities.",
+      "level_4": "Develop Deployment Schedule",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.1.4",
+      "name": "Risk Assessment",
+      "description": "Identify risks related to deployment.",
+      "level_4": "Risk Assessment",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.1.5",
+      "name": "Approval of Deployment Plan",
+      "description": "Obtain approval for deployment plan.",
+      "level_4": "Approval of Deployment Plan",
+      "subtasks": []
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-2.5",
+  "name": "System Specification Review",
+  "description": "Review and validate system specifications with stakeholders.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Analysis",
+  "level_3": "System Specification Review",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-2.5.1",
+      "name": "Prepare Review Materials",
+      "description": "Compile system specifications for review.",
+      "level_4": "Prepare Review Materials",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.5.2",
+      "name": "Conduct Review Meetings",
+      "description": "Organize meetings with stakeholders for review.",
+      "level_4": "Conduct Review Meetings",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.5.3",
+      "name": "Collect Feedback",
+      "description": "Gather feedback and comments from stakeholders.",
+      "level_4": "Collect Feedback",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.5.4",
+      "name": "Update Specifications",
+      "description": "Revise specifications based on feedback.",
+      "level_4": "Update Specifications",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.5.5",
+      "name": "Approve Specifications",
+      "description": "Obtain formal approval of system specifications.",
+      "level_4": "Approve Specifications",
+      "subtasks": []
+    }
+  ]
+}

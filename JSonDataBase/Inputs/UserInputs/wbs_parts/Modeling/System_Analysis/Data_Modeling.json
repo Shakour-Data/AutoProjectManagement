@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-2.3",
+  "name": "Data Modeling",
+  "description": "Create data models to represent system data structures.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Analysis",
+  "level_3": "Data Modeling",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-2.3.1",
+      "name": "Identify Data Entities",
+      "description": "Determine key data entities and attributes.",
+      "level_4": "Identify Data Entities",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.3.2",
+      "name": "Define Relationships",
+      "description": "Establish relationships between data entities.",
+      "level_4": "Define Relationships",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.3.3",
+      "name": "Create ER Diagrams",
+      "description": "Develop entity-relationship diagrams.",
+      "level_4": "Create ER Diagrams",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.3.4",
+      "name": "Validate Data Model",
+      "description": "Review data model with stakeholders.",
+      "level_4": "Validate Data Model",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.3.5",
+      "name": "Document Data Model",
+      "description": "Prepare documentation for the data model.",
+      "level_4": "Document Data Model",
+      "subtasks": []
+    }
+  ]
+}

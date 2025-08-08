@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-1.5",
+  "name": "Requirement Validation",
+  "description": "Validate requirements with stakeholders.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "Requirements Gathering",
+  "level_3": "Requirement Validation",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-1.5.1",
+      "name": "Prepare Validation Criteria",
+      "description": "Define criteria for validating requirements.",
+      "level_4": "Prepare Validation Criteria",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.5.2",
+      "name": "Conduct Validation Sessions",
+      "description": "Organize sessions with stakeholders to validate requirements.",
+      "level_4": "Conduct Validation Sessions",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.5.3",
+      "name": "Collect Feedback",
+      "description": "Gather feedback from validation sessions.",
+      "level_4": "Collect Feedback",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.5.4",
+      "name": "Update Requirements",
+      "description": "Revise requirements based on feedback.",
+      "level_4": "Update Requirements",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.5.5",
+      "name": "Approval of Requirements",
+      "description": "Obtain formal approval of requirements.",
+      "level_4": "Approval of Requirements",
+      "subtasks": []
+    }
+  ]
+}

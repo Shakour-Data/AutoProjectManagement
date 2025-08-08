@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-2.1",
+  "name": "Requirement Specification",
+  "description": "Define detailed system requirements and specifications.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Analysis",
+  "level_3": "Requirement Specification",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-2.1.1",
+      "name": "Gather Requirements",
+      "description": "Collect detailed requirements from stakeholders.",
+      "level_4": "Gather Requirements",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.1.2",
+      "name": "Document Requirements",
+      "description": "Document the collected requirements clearly.",
+      "level_4": "Document Requirements",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.1.3",
+      "name": "Review Requirements",
+      "description": "Review requirements for completeness and clarity.",
+      "level_4": "Review Requirements",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.1.4",
+      "name": "Approve Requirements",
+      "description": "Obtain approval from stakeholders.",
+      "level_4": "Approve Requirements",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.1.5",
+      "name": "Baseline Requirements",
+      "description": "Establish baseline for requirements management.",
+      "level_4": "Baseline Requirements",
+      "subtasks": []
+    }
+  ]
+}
