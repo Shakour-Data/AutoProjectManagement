@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Construction-3.3",
+  "name": "System Testing",
+  "description": "Test the complete integrated system for compliance with requirements.",
+  "level_0": "Software Project",
+  "level_1": "Construction and Testing",
+  "level_2": "Testing",
+  "level_3": "System Testing",
+  "subtasks": [
+    {
+      "id": "WBS-Construction-3.3.1",
+      "name": "Develop Test Plans",
+      "description": "Create test plans for system testing.",
+      "level_4": "Develop Test Plans",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-3.3.2",
+      "name": "Execute Tests",
+      "description": "Perform system tests on the integrated system.",
+      "level_4": "Execute Tests",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-3.3.3",
+      "name": "Log Defects",
+      "description": "Record defects found during system testing.",
+      "level_4": "Log Defects",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-3.3.4",
+      "name": "Retest Fixes",
+      "description": "Verify fixes for reported defects.",
+      "level_4": "Retest Fixes",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-3.3.5",
+      "name": "Report Test Results",
+      "description": "Document outcomes of system testing.",
+      "level_4": "Report Test Results",
+      "subtasks": []
+    }
+  ]
+}

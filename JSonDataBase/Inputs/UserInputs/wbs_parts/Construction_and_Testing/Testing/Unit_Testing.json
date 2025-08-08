@@ -1,0 +1,46 @@
+{
+    "id": "WBS-Construction-3.1",
+    "name": "Unit Testing",
+    "description": "Test individual software modules for correctness.",
+    "level_0": "Software Project",
+    "level_1": "Construction and Testing",
+    "level_2": "Testing",
+    "level_3": "Unit Testing",
+    "subtasks": [
+        {
+            "id": "WBS-Construction-3.1.1",
+            "name": "Develop Test Cases",
+            "description": "Create test cases for individual modules.",
+            "level_4": "Develop Test Cases",
+            "subtasks": []
+        },
+        {
+            "id": "WBS-Construction-3.1.2",
+            "name": "Execute Tests",
+            "description": "Run unit tests on modules.",
+            "level_4": "Execute Tests",
+            "subtasks": []
+        },
+        {
+            "id": "WBS-Construction-3.1.3",
+            "name": "Log Defects",
+            "description": "Record defects found during testing.",
+            "level_4": "Log Defects",
+            "subtasks": []
+        },
+        {
+            "id": "WBS-Construction-3.1.4",
+            "name": "Retest Fixes",
+            "description": "Verify fixes for reported defects.",
+            "level_4": "Retest Fixes",
+            "subtasks": []
+        },
+        {
+            "id": "WBS-Construction-3.1.5",
+            "name": "Report Test Results",
+            "description": "Document outcomes of unit testing.",
+            "level_4": "Report Test Results",
+            "subtasks": []
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-4.2",
+  "name": "Prototype Development",
+  "description": "Develop initial prototypes based on design specifications.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "Prototyping",
+  "level_3": "Prototype Development",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-4.2.1",
+      "name": "Set Up Development Environment",
+      "description": "Prepare tools and environment for prototype development.",
+      "level_4": "Set Up Development Environment",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-4.2.2",
+      "name": "Develop Prototype Features",
+      "description": "Implement key features in the prototype.",
+      "level_4": "Develop Prototype Features",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-4.2.3",
+      "name": "Integrate Components",
+      "description": "Combine prototype components into a working model.",
+      "level_4": "Integrate Components",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-4.2.4",
+      "name": "Internal Testing",
+      "description": "Test prototype internally for functionality.",
+      "level_4": "Internal Testing",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-4.2.5",
+      "name": "Document Prototype",
+      "description": "Prepare documentation for prototype development.",
+      "level_4": "Document Prototype",
+      "subtasks": []
+    }
+  ]
+}

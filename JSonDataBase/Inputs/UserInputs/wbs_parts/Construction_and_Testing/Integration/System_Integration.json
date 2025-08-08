@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Construction-2.2",
+  "name": "System Integration",
+  "description": "Integrate subsystems into the complete system.",
+  "level_0": "Software Project",
+  "level_1": "Construction and Testing",
+  "level_2": "Integration",
+  "level_3": "System Integration",
+  "subtasks": [
+    {
+      "id": "WBS-Construction-2.2.1",
+      "name": "Prepare Subsystems",
+      "description": "Ensure subsystems are ready for integration.",
+      "level_4": "Prepare Subsystems",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-2.2.2",
+      "name": "Integrate Subsystems",
+      "description": "Combine subsystems into the complete system.",
+      "level_4": "Integrate Subsystems",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-2.2.3",
+      "name": "Resolve Integration Issues",
+      "description": "Identify and fix integration problems.",
+      "level_4": "Resolve Integration Issues",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-2.2.4",
+      "name": "Test Integrated System",
+      "description": "Test the integrated system for functionality.",
+      "level_4": "Test Integrated System",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-2.2.5",
+      "name": "Document System Integration",
+      "description": "Document the system integration process and results.",
+      "level_4": "Document System Integration",
+      "subtasks": []
+    }
+  ]
+}

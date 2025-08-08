@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-3.3",
+  "name": "Database Design",
+  "description": "Design the database schema and data storage solutions.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Design",
+  "level_3": "Database Design",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-3.3.1",
+      "name": "Define Data Requirements",
+      "description": "Identify data storage needs and requirements.",
+      "level_4": "Define Data Requirements",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.3.2",
+      "name": "Design Schema",
+      "description": "Create database schema and tables.",
+      "level_4": "Design Schema",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.3.3",
+      "name": "Normalize Data",
+      "description": "Apply normalization rules to database design.",
+      "level_4": "Normalize Data",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.3.4",
+      "name": "Define Indexes",
+      "description": "Create indexes to optimize database performance.",
+      "level_4": "Define Indexes",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.3.5",
+      "name": "Document Database Design",
+      "description": "Prepare documentation for database schema.",
+      "level_4": "Document Database Design",
+      "subtasks": []
+    }
+  ]
+}

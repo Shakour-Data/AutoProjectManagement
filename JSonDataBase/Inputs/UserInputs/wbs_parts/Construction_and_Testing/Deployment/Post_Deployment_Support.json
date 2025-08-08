@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Construction-4.3",
+  "name": "Post Deployment Support",
+  "description": "Provide support and maintenance after deployment.",
+  "level_0": "Software Project",
+  "level_1": "Construction and Testing",
+  "level_2": "Deployment",
+  "level_3": "Post Deployment Support",
+  "subtasks": [
+    {
+      "id": "WBS-Construction-4.3.1",
+      "name": "Monitor System Performance",
+      "description": "Continuously monitor system performance and availability.",
+      "level_4": "Monitor System Performance",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.3.2",
+      "name": "Issue Resolution",
+      "description": "Identify and resolve post-deployment issues.",
+      "level_4": "Issue Resolution",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.3.3",
+      "name": "User Support",
+      "description": "Provide support to end-users and stakeholders.",
+      "level_4": "User Support",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.3.4",
+      "name": "System Updates",
+      "description": "Apply patches and updates as needed.",
+      "level_4": "System Updates",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-4.3.5",
+      "name": "Documentation Updates",
+      "description": "Update documentation to reflect changes and fixes.",
+      "level_4": "Documentation Updates",
+      "subtasks": []
+    }
+  ]
+}

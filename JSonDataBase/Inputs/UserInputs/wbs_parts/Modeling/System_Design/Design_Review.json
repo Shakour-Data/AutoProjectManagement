@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-3.5",
+  "name": "Design Review",
+  "description": "Review design documents and validate with stakeholders.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Design",
+  "level_3": "Design Review",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-3.5.1",
+      "name": "Prepare Review Materials",
+      "description": "Compile design documents for review.",
+      "level_4": "Prepare Review Materials",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.5.2",
+      "name": "Conduct Review Meetings",
+      "description": "Organize meetings with stakeholders for design review.",
+      "level_4": "Conduct Review Meetings",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.5.3",
+      "name": "Collect Feedback",
+      "description": "Gather feedback and comments from reviewers.",
+      "level_4": "Collect Feedback",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.5.4",
+      "name": "Update Design Documents",
+      "description": "Revise design documents based on feedback.",
+      "level_4": "Update Design Documents",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.5.5",
+      "name": "Approve Design",
+      "description": "Obtain formal approval of design documents.",
+      "level_4": "Approve Design",
+      "subtasks": []
+    }
+  ]
+}

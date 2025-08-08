@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-1.4",
+  "name": "Use Case Development",
+  "description": "Develop use cases to capture functional requirements.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "Requirements Gathering",
+  "level_3": "Use Case Development",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-1.4.1",
+      "name": "Identify Actors",
+      "description": "Identify users and systems interacting with the software.",
+      "level_4": "Identify Actors",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.4.2",
+      "name": "Define Use Cases",
+      "description": "Describe use cases and their scenarios.",
+      "level_4": "Define Use Cases",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.4.3",
+      "name": "Review Use Cases",
+      "description": "Validate use cases with stakeholders.",
+      "level_4": "Review Use Cases",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.4.4",
+      "name": "Refine Use Cases",
+      "description": "Update use cases based on feedback.",
+      "level_4": "Refine Use Cases",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.4.5",
+      "name": "Document Use Cases",
+      "description": "Prepare formal use case documentation.",
+      "level_4": "Document Use Cases",
+      "subtasks": []
+    }
+  ]
+}

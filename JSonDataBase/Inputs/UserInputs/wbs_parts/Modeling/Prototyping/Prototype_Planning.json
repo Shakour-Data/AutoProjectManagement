@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-4.1",
+  "name": "Prototype Planning",
+  "description": "Plan prototype objectives and scope.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "Prototyping",
+  "level_3": "Prototype Planning",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-4.1.1",
+      "name": "Define Objectives",
+      "description": "Set goals and objectives for the prototype.",
+      "level_4": "Define Objectives",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-4.1.2",
+      "name": "Identify Resources",
+      "description": "Determine resources needed for prototyping.",
+      "level_4": "Identify Resources",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-4.1.3",
+      "name": "Develop Schedule",
+      "description": "Create timeline for prototype development.",
+      "level_4": "Develop Schedule",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-4.1.4",
+      "name": "Risk Assessment",
+      "description": "Identify risks associated with prototyping.",
+      "level_4": "Risk Assessment",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-4.1.5",
+      "name": "Approval of Plan",
+      "description": "Obtain approval for prototype plan.",
+      "level_4": "Approval of Plan",
+      "subtasks": []
+    }
+  ]
+}
