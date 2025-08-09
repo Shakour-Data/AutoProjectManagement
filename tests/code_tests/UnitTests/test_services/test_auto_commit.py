@@ -1,319 +1,234 @@
-import unittest
-from project_management.modules.services import auto_commit
+"""
+Test suite for AutoCommit service
+"""
+import pytest
+import os
+import tempfile
+import shutil
+from unittest.mock import patch, MagicMock, mock_open
+import subprocess
+import json
+from datetime import datetime
 
-class TestAutoCommitService(unittest.TestCase):
-    def setUp(self):
-        # Setup any necessary test data or state
-        pass
+from autoprojectmanagement.services.auto_commit import (
+    format_commit_message,
+    AutoCommit
+)
 
-    # Test 1
-    def test_commit_message_format(self):
-        message = "Fix bug in module"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIsInstance(formatted, str)
-        self.assertIn("Fix bug", formatted)
 
-    # Test 2
-    def test_commit_message_empty(self):
-        message = ""
-        formatted = auto_commit.format_commit_message(message)
-        self.assertEqual(formatted, "")
+class TestFormatCommitMessage:
+    """Test cases for format_commit_message function"""
+    
+    def test_format_commit_message_valid_input(self):
+        """Test formatting valid commit messages"""
+        assert format_commit_message("Fix bug in module") == "Fix bug in module"
+        assert format_commit_message("  Fix bug  ") == "Fix bug"
+        assert format_commit_message("Fix\tbug\nin module") == "Fix bug in module"
+    
+    def test_format_commit_message_empty_string(self):
+        """Test handling empty strings"""
+        assert format_commit_message("") == ""
+    
+    def test_format_commit_message_none_raises_error(self):
+        """Test that None raises TypeError"""
+        with pytest.raises(TypeError, match="Commit message cannot be None"):
+            format_commit_message(None)
+    
+    def test_format_commit_message_non_string_raises_error(self):
+        """Test that non-string input raises TypeError"""
+        with pytest.raises(TypeError, match="Commit message must be a string"):
+            format_commit_message(123)
+    
+    def test_format_commit_message_length_limit(self):
+        """Test message length limiting"""
+        long_message = "a" * 300
+        result = format_commit_message(long_message)
+        assert len(result) <= 255
+        assert result.startswith("a" * 255)
+    
+    def test_format_commit_message_unicode_support(self):
+        """Test Unicode character support"""
+        assert format_commit_message("Fix bug in 模块") == "Fix bug in 模块"
+        assert format_commit_message("Fix bug 😊") == "Fix bug 😊"
+    
+    def test_format_commit_message_special_characters(self):
+        """Test handling special characters"""
+        assert format_commit_message("Fix issue #123! @user") == "Fix issue #123! @user"
+        assert format_commit_message("Fix bug <script>alert('xss')</script>") == "Fix bug <script>alert('xss')</script>"
 
-    # Test 3
-    def test_commit_message_strip(self):
-        message = "  Fix whitespace  "
-        formatted = auto_commit.format_commit_message(message)
-        self.assertEqual(formatted.strip(), formatted)
 
-    # Test 4
-    def test_commit_message_special_chars(self):
-        message = "Fix issue #123! @user"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("#123", formatted)
-        self.assertIn("@user", formatted)
-
-    # Test 5
-    def test_commit_message_length_limit(self):
-        message = "a" * 300
-        formatted = auto_commit.format_commit_message(message)
-        self.assertLessEqual(len(formatted), 255)
-
-    # Test 6
-    def test_commit_message_unicode(self):
-        message = "Fix bug in 模块"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("模块", formatted)
-
-    # Test 7
-    def test_commit_message_multiline(self):
-        message = "Fix bug\nin module"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\n", formatted)
-
-    # Test 8
-    def test_commit_message_none(self):
-        with self.assertRaises(TypeError):
-            auto_commit.format_commit_message(None)
-
-    # Test 9
-    def test_commit_message_with_tabs(self):
-        message = "Fix\tbug"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\t", formatted)
-
-    # Test 10
-    def test_commit_message_with_leading_trailing_spaces(self):
-        message = "  Fix bug  "
-        formatted = auto_commit.format_commit_message(message)
-        self.assertEqual(formatted, "Fix bug")
-
-    # Test 11
-    def test_commit_message_with_newlines_replaced(self):
-        message = "Fix bug\nFix issue"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\n", formatted)
-        self.assertIn("Fix bug Fix issue", formatted)
-
-    # Test 12
-    def test_commit_message_with_multiple_spaces(self):
-        message = "Fix    multiple    spaces"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("  ", formatted)
-
-    # Test 13
-    def test_commit_message_with_non_string_input(self):
-        with self.assertRaises(TypeError):
-            auto_commit.format_commit_message(123)
-
-    # Test 14
-    def test_commit_message_with_long_text(self):
-        message = "a" * 1000
-        formatted = auto_commit.format_commit_message(message)
-        self.assertLessEqual(len(formatted), 255)
-
-    # Test 15
-    def test_commit_message_with_only_spaces(self):
-        message = "     "
-        formatted = auto_commit.format_commit_message(message)
-        self.assertEqual(formatted, "")
-
-    # Test 16
-    def test_commit_message_with_special_unicode(self):
-        message = "Fix bug in emoji 😊"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("😊", formatted)
-
-    # Test 17
-    def test_commit_message_with_html_tags(self):
-        message = "<b>Fix bug</b>"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("Fix bug", formatted)
-
-    # Test 18
-    def test_commit_message_with_sql_injection(self):
-        message = "DROP TABLE users;"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("DROP TABLE users;", formatted)
-
-    # Test 19
-    def test_commit_message_with_script_tags(self):
-        message = "<script>alert('xss')</script>"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("alert('xss')", formatted)
-
-    # Test 20
-    def test_commit_message_with_escaped_characters(self):
-        message = "Fix bug \\n"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("Fix bug", formatted)
-
-    # Test 21
-    def test_commit_message_with_tabs_and_newlines(self):
-        message = "Fix\tbug\nFix issue"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\t", formatted)
-        self.assertNotIn("\n", formatted)
-
-    # Test 22
-    def test_commit_message_with_mixed_whitespace(self):
-        message = "Fix \t bug \n issue"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\t", formatted)
-        self.assertNotIn("\n", formatted)
-
-    # Test 23
-    def test_commit_message_with_leading_newlines(self):
-        message = "\n\nFix bug"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertTrue(formatted.startswith("Fix bug"))
-
-    # Test 24
-    def test_commit_message_with_trailing_newlines(self):
-        message = "Fix bug\n\n"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertTrue(formatted.endswith("Fix bug"))
-
-    # Test 25
-    def test_commit_message_with_internal_newlines(self):
-        message = "Fix\nbug\nissue"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\n", formatted)
-
-    # Test 26
-    def test_commit_message_with_unicode_emojis(self):
-        message = "Fix bug 😊"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("😊", formatted)
-
-    # Test 27
-    def test_commit_message_with_non_printable_chars(self):
-        message = "Fix bug \x00\x01"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\x00", formatted)
-        self.assertNotIn("\x01", formatted)
-
-    # Test 28
-    def test_commit_message_with_control_chars(self):
-        message = "Fix bug \r\n"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\r", formatted)
-        self.assertNotIn("\n", formatted)
-
-    # Test 29
-    def test_commit_message_with_multiple_lines_and_tabs(self):
-        message = "Fix\tbug\nFix\tissue"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\t", formatted)
-        self.assertNotIn("\n", formatted)
-
-    # Test 30
-    def test_commit_message_with_leading_and_trailing_whitespace(self):
-        message = "  Fix bug  "
-        formatted = auto_commit.format_commit_message(message)
-        self.assertEqual(formatted, "Fix bug")
-
-    # Test 31
-    def test_commit_message_with_only_tabs(self):
-        message = "\t\t\t"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertEqual(formatted, "")
-
-    # Test 32
-    def test_commit_message_with_only_newlines(self):
-        message = "\n\n\n"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertEqual(formatted, "")
-
-    # Test 33
-    def test_commit_message_with_mixed_whitespace_only(self):
-        message = " \t \n "
-        formatted = auto_commit.format_commit_message(message)
-        self.assertEqual(formatted, "")
-
-    # Test 34
-    def test_commit_message_with_html_entities(self):
-        message = "Fix &amp; bug"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("&amp;", formatted)
-
-    # Test 35
-    def test_commit_message_with_sql_keywords(self):
-        message = "SELECT * FROM users"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("SELECT * FROM users", formatted)
-
-    # Test 36
-    def test_commit_message_with_json_like_text(self):
-        message = '{"key": "value"}'
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn('"key": "value"', formatted)
-
-    # Test 37
-    def test_commit_message_with_xml_like_text(self):
-        message = "<note><to>User</to></note>"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("<note><to>User</to></note>", formatted)
-
-    # Test 38
-    def test_commit_message_with_markdown(self):
-        message = "**Fix bug**"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("**Fix bug**", formatted)
-
-    # Test 39
-    def test_commit_message_with_code_snippet(self):
-        message = "def func(): pass"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("def func(): pass", formatted)
-
-    # Test 40
-    def test_commit_message_with_url(self):
-        message = "Fix bug http://example.com"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("http://example.com", formatted)
-
-    # Test 41
-    def test_commit_message_with_email(self):
-        message = "Fix bug user@example.com"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("user@example.com", formatted)
-
-    # Test 42
-    def test_commit_message_with_multilingual_text(self):
-        message = "Fix bug in English و فارسی"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("و فارسی", formatted)
-
-    # Test 43
-    def test_commit_message_with_emoji_and_symbols(self):
-        message = "Fix bug 😊🚀✨"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("😊", formatted)
-        self.assertIn("🚀", formatted)
-        self.assertIn("✨", formatted)
-
-    # Test 44
-    def test_commit_message_with_long_repeated_text(self):
-        message = "Fix bug " * 100
-        formatted = auto_commit.format_commit_message(message)
-        self.assertLessEqual(len(formatted), 255)
-
-    # Test 45
-    def test_commit_message_with_non_ascii_characters(self):
-        message = "Fix bug ñáéíóú"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("ñáéíóú", formatted)
-
-    # Test 46
-    def test_commit_message_with_mixed_language_text(self):
-        message = "Fix bug English و فارسی و 中文"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("中文", formatted)
-
-    # Test 47
-    def test_commit_message_with_escape_sequences(self):
-        message = "Fix bug \\n \\t"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertNotIn("\\n", formatted)
-        self.assertNotIn("\\t", formatted)
-
-    # Test 48
-    def test_commit_message_with_backslashes(self):
-        message = "Fix bug \\path\\to\\file"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("\\path\\to\\file", formatted)
-
-    # Test 49
-    def test_commit_message_with_quotes(self):
-        message = 'Fix bug "quotes"'
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn('"quotes"', formatted)
-
-    # Test 50
-    def test_commit_message_with_single_quotes(self):
-        message = "Fix bug 'single quotes'"
-        formatted = auto_commit.format_commit_message(message)
-        self.assertIn("'single quotes'", formatted)
-
-if __name__ == "__main__":
-    unittest.main()
+class TestAutoCommit:
+    """Test cases for AutoCommit class"""
+    
+    @pytest.fixture
+    def temp_git_repo(self):
+        """Create a temporary git repository for testing"""
+        temp_dir = tempfile.mkdtemp()
+        original_cwd = os.getcwd()
+        
+        # Initialize git repo
+        subprocess.run(['git', 'init'], cwd=temp_dir, check=True)
+        subprocess.run(['git', 'config', 'user.email', 'test@example.com'], cwd=temp_dir, check=True)
+        subprocess.run(['git', 'config', 'user.name', 'Test User'], cwd=temp_dir, check=True)
+        
+        # Create initial commit
+        test_file = os.path.join(temp_dir, 'test.txt')
+        with open(test_file, 'w') as f:
+            f.write('initial content')
+        subprocess.run(['git', 'add', 'test.txt'], cwd=temp_dir, check=True)
+        subprocess.run(['git', 'commit', '-m', 'Initial commit'], cwd=temp_dir, check=True)
+        
+        yield temp_dir
+        
+        # Cleanup
+        os.chdir(original_cwd)
+        shutil.rmtree(temp_dir)
+    
+    @pytest.fixture
+    def auto_commit(self):
+        """Create AutoCommit instance"""
+        return AutoCommit()
+    
+    def test_auto_commit_initialization(self, auto_commit):
+        """Test AutoCommit class initialization"""
+        assert auto_commit is not None
+        assert hasattr(auto_commit, 'bm')
+    
+    def test_run_git_command_success(self, temp_git_repo, auto_commit):
+        """Test successful git command execution"""
+        os.chdir(temp_git_repo)
+        success, output = auto_commit.run_git_command(['status', '--porcelain'])
+        assert success is True
+        assert isinstance(output, str)
+    
+    def test_run_git_command_failure(self, auto_commit):
+        """Test git command failure handling"""
+        success, output = auto_commit.run_git_command(['invalid-command'])
+        assert success is False
+        assert isinstance(output, str)
+    
+    def test_get_git_changes_empty_repo(self, temp_git_repo, auto_commit):
+        """Test getting changes from empty repository"""
+        os.chdir(temp_git_repo)
+        changes = auto_commit.get_git_changes()
+        assert isinstance(changes, list)
+    
+    def test_get_git_changes_with_changes(self, temp_git_repo, auto_commit):
+        """Test getting changes with modified files"""
+        os.chdir(temp_git_repo)
+        
+        # Create a new file
+        new_file = os.path.join(temp_git_repo, 'new_file.txt')
+        with open(new_file, 'w') as f:
+            f.write('new content')
+        
+        changes = auto_commit.get_git_changes()
+        assert len(changes) > 0
+        assert any('new_file.txt' in change for change in changes)
+    
+    def test_group_related_files(self, auto_commit):
+        """Test file grouping functionality"""
+        changes = [
+            'M src/main.py',
+            'M src/utils.py',
+            'A tests/test_main.py',
+            '?? docs/README.md'
+        ]
+        
+        groups = auto_commit.group_related_files(changes)
+        assert 'src' in groups
+        assert 'tests' in groups
+        assert 'docs' in groups
+        
+        # Verify file categorization
+        src_files = groups['src']
+        assert len(src_files) == 2
+        assert any('main.py' in str(file_info) for file_info in src_files)
+    
+    def test_categorize_files(self, auto_commit):
+        """Test file categorization"""
+        files = [
+            ('A', 'new_file.py'),
+            ('M', 'modified_file.py'),
+            ('D', 'deleted_file.py'),
+            ('??', 'untracked_file.py')
+        ]
+        
+        categories = auto_commit.categorize_files(files)
+        assert 'Added' in categories
+        assert 'Modified' in categories
+        assert 'Deleted' in categories
+        assert 'Untracked' in categories
+        
+        assert 'new_file.py' in categories['Added']
+        assert 'modified_file.py' in categories['Modified']
+        assert 'deleted_file.py' in categories['Deleted']
+        assert 'untracked_file.py' in categories['Untracked']
+    
+    def test_generate_commit_message(self, auto_commit):
+        """Test commit message generation"""
+        message = auto_commit.generate_commit_message(
+            'src', 'Modified', ['main.py', 'utils.py']
+        )
+        
+        assert isinstance(message, str)
+        assert 'feat' in message or 'fix' in message
+        assert 'src' in message
+        assert 'Modified files updated' in message
+    
+    def test_load_linked_wbs_resources_file_not_found(self, auto_commit):
+        """Test loading WBS resources when file doesn't exist"""
+        with patch('os.path.exists', return_value=False):
+            result = auto_commit.load_linked_wbs_resources('nonexistent.json')
+            assert result == []
+    
+    def test_load_linked_wbs_resources_success(self, auto_commit):
+        """Test successful loading of WBS resources"""
+        mock_data = [{"id": "task1", "name": "Test Task"}]
+        
+        with patch('builtins.open', mock_open(read_data=json.dumps(mock_data))):
+            with patch('os.path.exists', return_value=True):
+                result = auto_commit.load_linked_wbs_resources()
+                assert result == mock_data
+    
+    def test_map_group_to_workflow_stage(self, auto_commit):
+        """Test workflow stage mapping"""
+        assert auto_commit.map_group_to_workflow_stage('requirements') == 'Requirements Gathering'
+        assert auto_commit.map_group_to_workflow_stage('design') == 'Design'
+        assert auto_commit.map_group_to_workflow_stage('unknown') == 'Implementation'
+    
+    def test_calculate_progress_change(self, auto_commit):
+        """Test progress change calculation"""
+        progress = auto_commit.calculate_progress_change('Implementation', 10)
+        assert 0 <= progress <= 0.05
+    
+    def test_calculate_importance(self, auto_commit):
+        """Test importance calculation"""
+        importance = auto_commit.calculate_importance(
+            'task1', 'Implementation', ['dep1', 'dep2'], 0.5, 2
+        )
+        assert 0 <= importance <= 1
+    
+    def test_calculate_urgency(self, auto_commit):
+        """Test urgency calculation"""
+        from datetime import datetime, timedelta
+        
+        deadline = datetime.now() + timedelta(days=5)
+        urgency = auto_commit.calculate_urgency(
+            deadline, datetime.now(), 1, 0.3
+        )
+        assert 0 <= urgency <= 1
+    
+    @patch('subprocess.run')
+    def test_backup_method(self, mock_run, auto_commit):
+        """Test backup functionality"""
+        mock_run.return_value = MagicMock(returncode=0)
+        
+        with patch.object(auto_commit.bm, 'create_backup', return_value='/tmp/backup'):
+            auto_commit.backup()
+    
+    def test_write_commit_progress_to_json(self, auto_commit):
+        """Test writing commit progress to JSON"""
+        with patch.object(auto_commit, 'collect_commit_progress', return_value={}):
+            with patch('builtins.open', mock_open()):
+                auto_commit.write_commit_progress_to_json()
