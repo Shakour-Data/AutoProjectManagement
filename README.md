@@ -150,11 +150,11 @@ flowchart TD
     style C1 fill:#e8f5e9
 ```
 
-## 📈 Data Flow Diagrams (DFD)
+## 📈 Data Flow Diagrams (Flowchart Style)
 
 ### Context Level DFD (Level 0)
 ```mermaid
-graph LR
+flowchart LR
     User[User/Developer]
     System[AutoProjectManagement System]
     GitHub[GitHub Platform]
@@ -174,7 +174,7 @@ graph LR
 
 ### Level 1 DFD - System Decomposition
 ```mermaid
-graph TD
+flowchart TD
     subgraph "AutoProjectManagement System"
         CLI[CLI Interface]
         Engine[Automation Engine]
@@ -199,7 +199,7 @@ graph TD
 
 ### Level 2 DFD - Data Processing Details
 ```mermaid
-graph TD
+flowchart TD
     subgraph "Input Processing"
         CLI[CLI Commands]
         Parser[Input Parser]
@@ -233,6 +233,45 @@ graph TD
     Cache --> Logger
     Engine --> GitHubAPI
     Actions --> Notifications
+```
+
+### Data Flow - Detailed View
+```mermaid
+flowchart TD
+    subgraph "Data Sources"
+        UserInput[User Input]
+        GitHubData[GitHub API Data]
+        JSONFiles[JSON Files]
+    end
+    
+    subgraph "Processing"
+        Parser[Data Parser]
+        Validator[Validator]
+        Processor[Data Processor]
+        Calculator[Metrics Calculator]
+    end
+    
+    subgraph "Storage"
+        JSONDB[(JSON Database)]
+        Cache[(Cache Layer)]
+        Logs[(Log Files)]
+    end
+    
+    subgraph "Outputs"
+        Reports[Generated Reports]
+        Notifications[Notifications]
+        Dashboard[Dashboard Updates]
+    end
+    
+    UserInput --> Parser
+    GitHubData --> Parser
+    JSONFiles --> Validator
+    Parser --> Processor
+    Processor --> Calculator
+    Calculator --> JSONDB
+    JSONDB --> Reports
+    Reports --> Dashboard
+    Dashboard --> Notifications
 ```
 
 ## 🏗️ UML Diagrams
