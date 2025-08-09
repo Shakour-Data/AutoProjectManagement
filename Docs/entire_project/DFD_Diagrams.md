@@ -1,489 +1,272 @@
-# Data Flow Diagrams (DFD) for Project Management Software
+# Data Flow Diagrams (DFD) - Auto Project Management System
 
-This document contains Data Flow Diagrams (DFD) at levels 0, 1, 2, and 3 for the project management software.
-
----
-
-## Current State DFD Diagrams
-
-These diagrams represent the current state of the system, showing the existing data flows, processes, and data stores.
-
-### Legend
-
-- **Process:** Rounded rectangle
-- **Data Store:** Open-ended rectangle
-- **External Entity:** Simple rectangle
-- **Data Flow:** Arrow with label
+This document provides Data Flow Diagrams (DFD) for the Auto Project Management System based on the actual implementation.
 
 ---
 
-## Level 0 DFD - Context Diagram
+## Level 0 - Context Diagram
+
+```mermaid
+graph TD
+    User[/"User (Developer/PM)"/]
+    System[/"Auto Project Management System"/]
+    GitHub[/"GitHub Repository"/]
+    VSCode[/"VSCode Extension"/]
+    
+    User -->|Inputs and Commands| System
+    System -->|Reports and Notifications| User
+    System <-->|Push/Pull commits| GitHub
+    System <-->|Commands and Data| VSCode
+    
+    style System fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---
+
+## Level 1 - High-Level Processes
 
 ```mermaid
 graph TD
     User[/"User"/]
-    System[/"Project Management System"/]
-
-    User -->|User Inputs| System
-    System -->|Reports & Notifications| User
-
-    %% Data Stores
-    TaskDB[(Task Database)]
-    UserProfiles[(User Profiles)]
-    BackupStorage[(Backup Storage)]
-
-    System --> TaskDB
-    System --> UserProfiles
-    System --> BackupStorage
+    
+    %% Main Processes
+    CLI_Handler((CLI Command Handler))
+    Task_Manager((Task Management))
+    Progress_Tracker((Progress Tracking))
+    Git_Automation((Git Automation))
+    Report_Generator((Report Generator))
+    Backup_Service((Backup Service))
+    
+    %% Databases
+    Task_DB[(Task Database)]
+    Progress_DB[(Progress Database)]
+    Config_DB[(Configuration Database)]
+    Commit_DB[(Commit History DB)]
+    Backup_Storage[(Backup Storage)]
+    
+    %% Data Flows
+    User -->|CLI Commands| CLI_Handler
+    CLI_Handler --> Task_Manager
+    CLI_Handler --> Progress_Tracker
+    CLI_Handler --> Git_Automation
+    
+    Task_Manager --> Task_DB
+    Progress_Tracker --> Progress_DB
+    Git_Automation --> Commit_DB
+    Git_Automation --> Backup_Service
+    
+    Backup_Service --> Backup_Storage
+    Report_Generator --> Progress_DB
+    Report_Generator --> Task_DB
+    Report_Generator --> Commit_DB
+    
+    Report_Generator -->|Reports| User
 ```
 
 ---
 
-## Level 1 DFD - High-Level Processes
+## Level 2 - Task Management and Progress Tracking
 
 ```mermaid
 graph TD
     User[/"User"/]
-    InputHandler((Input Handling))
-    TaskManagement((Task Management))
-    CommitAutomation((Commit Automation))
-    BackupManager((Backup Management))
-    GitRepo[/"Git Repository"/]
-    Reporting((Reporting and Dashboard))
-
-    TaskDB[(Task Database)]
-    UserPrefs[(User Preferences)]
-    BackupStorage[(Backup Storage)]
-    ConfigStore[(Configuration Store)]
-
-    User -->|Submit Inputs| InputHandler
-    InputHandler -->|Processed Data| TaskManagement
-    TaskManagement -->|Task Updates| CommitAutomation
-    CommitAutomation -->|Commits and Pushes| GitRepo
-    CommitAutomation -->|Backup Data| BackupManager
-    TaskManagement -->|Progress Data| Reporting
-    Reporting -->|Reports| User
-
-    %% Data Stores connections
-    TaskManagement --> TaskDB
-    InputHandler --> UserPrefs
-    BackupManager --> BackupStorage
-    InputHandler --> ConfigStore
-
-    %% User Management Processes
-    Auth((Authentication))
-    UserProfileMgmt((User Profile Management))
-    AccessControl((Access Control))
-
-    User --> Auth
-    Auth --> UserProfileMgmt
-    UserProfileMgmt --> AccessControl
-    AccessControl --> InputHandler
-
-    %% Error and Feedback Flows
-    InputHandler -->|Error Feedback| User
-    BackupManager -->|Backup Status| Reporting
+    
+    %% Input Modules
+    Input_Parser((Input Parser))
+    Task_Validator((Task Validator))
+    
+    %% Processing Modules
+    WBS_Parser((WBS Parser))
+    Importance_Calc((Importance Calculator))
+    Urgency_Calc((Urgency Calculator))
+    Task_Scheduler((Task Scheduler))
+    Progress_Calc((Progress Calculator))
+    
+    %% Output Modules
+    Dashboard((Dashboard Generator))
+    Report_Builder((Report Builder))
+    
+    %% Databases
+    Raw_Tasks[(Raw Tasks)]
+    Parsed_Tasks[(Parsed Tasks)]
+    Calculated_Priority[(Priority Data)]
+    Progress_Data[(Progress Data)]
+    Reports[(Reports)]
+    
+    %% Data Flows
+    User -->|Raw Input| Input_Parser
+    Input_Parser --> Raw_Tasks
+    Input_Parser --> Task_Validator
+    
+    Task_Validator -->|Validated Data| WBS_Parser
+    WBS_Parser --> Parsed_Tasks
+    
+    Parsed_Tasks --> Importance_Calc
+    Parsed_Tasks --> Urgency_Calc
+    
+    Importance_Calc --> Calculated_Priority
+    Urgency_Calc --> Calculated_Priority
+    
+    Calculated_Priority --> Task_Scheduler
+    Task_Scheduler --> Progress_Calc
+    
+    Progress_Calc --> Progress_Data
+    Progress_Data --> Dashboard
+    Progress_Data --> Report_Builder
+    
+    Dashboard -->|Live Dashboard| User
+    Report_Builder -->|Reports| User
 ```
 
 ---
 
-## Level 2 DFD - Detailed Task Management and Commit Automation
+## Level 2 - Git Automation and Commit Management
 
 ```mermaid
 graph TD
-    User[/"User"/]
-    InputHandler((Input Handler))
-    TaskParser((Task Parser))
-    WBSGenerator((WBS Generator))
-    UrgencyImportanceCalc((Urgency and Importance Calculator))
-    TaskScheduler((Task Scheduler))
-    CommitMsgGenerator((Commit Message Generator))
-    GitInterface[/"Git Interface"/]
-    BackupManager((Backup Manager))
-    CommitTaskDB[(Commit Task Database)]
-    Reporting((Reporting Module))
-
-    User -->|User Inputs| InputHandler
-    InputHandler -->|Parsed Input Data| TaskParser
-    TaskParser -->|WBS Data| WBSGenerator
-    WBSGenerator -->|Urgency and Importance Data| UrgencyImportanceCalc
-    UrgencyImportanceCalc -->|Scheduled Tasks| TaskScheduler
-    TaskScheduler -->|Task Progress Data| Reporting
-    TaskScheduler -->|Commit Instructions| CommitMsgGenerator
-    CommitMsgGenerator -->|Commit Commands| GitInterface
-    GitInterface -->|Commit Records| CommitTaskDB
-    CommitMsgGenerator -->|Backup Data| BackupManager
-    CommitTaskDB -->|Progress Reports| Reporting
-    Reporting -->|Reports| User
-
-    %% Data Stores
-    TaskDB[(Task Database)]
-    UserPrefs[(User Preferences)]
-    BackupStorage[(Backup Storage)]
-
-    TaskScheduler --> TaskDB
-    InputHandler --> UserPrefs
-    BackupManager --> BackupStorage
-
-    %% Error Handling and Feedback
-    InputHandler -->|Error Feedback| User
+    Task_Scheduler((Task Scheduler))
+    
+    %% Git Modules
+    Commit_Manager((Commit Manager))
+    Message_Generator((Commit Message Generator))
+    Git_CLI((Git CLI Interface))
+    GitHub_API((GitHub API))
+    
+    %% Backup Modules
+    Backup_Manager((Backup Manager))
+    Progress_Sync((Progress Sync))
+    
+    %% Databases
+    Commit_Tasks[(Commit Tasks)]
+    Git_History[(Git History)]
+    Local_Backup[(Local Backup)]
+    Cloud_Backup[(Cloud Backup)]
+    
+    %% Data Flows
+    Task_Scheduler -->|Ready Tasks| Commit_Manager
+    Commit_Manager -->|Task Info| Message_Generator
+    Message_Generator -->|Commit Message| Git_CLI
+    
+    Git_CLI -->|commit/push| GitHub_API
+    Git_CLI -->|Logs| Git_History
+    
+    Commit_Manager -->|Backup Info| Backup_Manager
+    Backup_Manager --> Local_Backup
+    Backup_Manager --> Cloud_Backup
+    
+    Progress_Sync --> Git_History
+    Progress_Sync --> Commit_Tasks
 ```
 
 ---
 
-## Level 3 DFD - Task Scheduler Detailed Processes
+## Level 3 - Task Management Details
+
+### 3.1 - Priority Calculation and Scheduling
 
 ```mermaid
 graph TD
-    TaskScheduler((Task Scheduler))
-    PriorityCalc((Priority Calculation))
-    ConflictDetection((Conflict Detection))
-    TaskAssignment((Task Assignment))
-    TaskCompletion((Task Completion))
-    ScheduleOutput((Schedule Output))
-
-    TaskScheduler -->|Task Data| PriorityCalc
-    TaskScheduler -->|Task Data| ConflictDetection
-    TaskScheduler -->|Task Data| TaskAssignment
-    TaskScheduler -->|Task Data| TaskCompletion
-    PriorityCalc -->|Priority Scores| ScheduleOutput
-    ConflictDetection -->|Conflict Reports| ScheduleOutput
-    TaskAssignment -->|Assignment Details| ScheduleOutput
-    TaskCompletion -->|Completion Status| ScheduleOutput
+    Task_Input[(Task Input)]
+    
+    Priority_Engine((Priority Engine))
+    Importance_Weight((Importance Weight))
+    Urgency_Weight((Urgency Weight))
+    Deadline_Check((Deadline Check))
+    
+    Task_Queue[(Priority Queue)]
+    Scheduler((Scheduler))
+    Resource_Allocator((Resource Allocator))
+    
+    Task_Input --> Priority_Engine
+    Priority_Engine --> Importance_Weight
+    Priority_Engine --> Urgency_Weight
+    Priority_Engine --> Deadline_Check
+    
+    Importance_Weight --> Task_Queue
+    Urgency_Weight --> Task_Queue
+    Deadline_Check --> Task_Queue
+    
+    Task_Queue --> Scheduler
+    Scheduler --> Resource_Allocator
 ```
 
----
-
-## Level 3 DFD - Commit Message Generator Detailed Processes
+### 3.2 - Progress Reporting
 
 ```mermaid
 graph TD
-    CommitMsgGenerator((Commit Message Generator))
-    ChangeCategorization((Change Categorization))
-    CommitMsgCreation((Commit Message Creation))
-    CommitValidation((Commit Validation))
-    CommitExecution((Commit Execution))
-    BackupTrigger((Backup Trigger))
-
-    CommitMsgGenerator -->|Change Data| ChangeCategorization
-    CommitMsgGenerator -->|Commit Messages| CommitMsgCreation
-    CommitMsgGenerator -->|Validation Results| CommitValidation
-    CommitMsgGenerator -->|Commit Commands| CommitExecution
-    CommitMsgGenerator -->|Backup Signals| BackupTrigger
+    Progress_Data[(Progress Data)]
+    
+    Data_Aggregator((Data Aggregator))
+    Progress_Analyzer((Progress Analyzer))
+    Report_Formatter((Report Formatter))
+    
+    Markdown_Generator((Markdown Generator))
+    JSON_Exporter((JSON Exporter))
+    
+    Progress_Data --> Data_Aggregator
+    Data_Aggregator --> Progress_Analyzer
+    Progress_Analyzer --> Report_Formatter
+    
+    Report_Formatter --> Markdown_Generator
+    Report_Formatter --> JSON_Exporter
+    
+    Markdown_Generator -->|progress_report.md| User
+    JSON_Exporter -->|commit_progress.json| System
 ```
 
----
-
-## Level 3 DFD - Input Handler Detailed Processes
+### 3.3 - Commit Automation and Sync
 
 ```mermaid
 graph TD
-    InputHandler((Input Handler))
-    InputValidation((Input Validation))
-    DataParsing((Data Parsing))
-    ErrorHandling((Error Handling))
-    DataForwarding((Data Forwarding))
-
-    InputHandler -->|Raw Input Data| InputValidation
-    InputHandler -->|Validated Data| DataParsing
-    InputHandler -->|Error Reports| ErrorHandling
-    InputHandler -->|Parsed Data| DataForwarding
-    ErrorHandling -->|Error Feedback| User
+    Ready_Tasks[(Ready Tasks)]
+    
+    Commit_Prep((Commit Preparation))
+    Staging_Area((Staging Area))
+    Commit_Execute((Commit Execution))
+    Push_Handler((Push Handler))
+    
+    Ready_Tasks --> Commit_Prep
+    Commit_Prep --> Staging_Area
+    Staging_Area --> Commit_Execute
+    Commit_Execute --> Push_Handler
+    
+    Push_Handler -->|Push to GitHub| GitHub_API
+    Push_Handler -->|Update local| Local_Repo
 ```
 
 ---
 
-## Level 3 DFD - Reporting Module Detailed Processes
+## Data Flows and Descriptions
 
-```mermaid
-graph TD
-    Reporting((Reporting Module))
-    DataAggregation((Data Aggregation))
-    ReportGeneration((Report Generation))
-    ReportDelivery((Report Delivery))
-
-    Reporting -->|Aggregated Data| DataAggregation
-    Reporting -->|Report Templates| ReportGeneration
-    Reporting -->|Final Reports| ReportDelivery
-```
-
----
-
-*Note:* The diagrams represent the main data flows and processes based on the current understanding of the software architecture and modules. Data stores are represented as open rectangles, processes as rounded rectangles, and external entities as simple rectangles.
+| Data Flow Name       | Source           | Destination       | Description                      |
+|----------------------|------------------|-------------------|---------------------------------|
+| raw_task_input       | User             | Input_Parser      | Raw task input from user         |
+| validated_tasks      | Task_Validator   | WBS_Parser        | Validated tasks                  |
+| parsed_wbs           | WBS_Parser       | Task_Scheduler    | Parsed WBS structure             |
+| priority_scores      | Priority_Calc    | Task_Queue        | Calculated priority scores       |
+| scheduled_tasks      | Scheduler        | Progress_Calc     | Scheduled tasks                  |
+| progress_updates     | Progress_Calc    | Report_Generator  | Progress updates                 |
+| commit_messages      | Message_Generator| Git_CLI           | Generated commit messages        |
+| git_operations       | Git_CLI          | GitHub_API        | Git operations (push/pull)       |
+| backup_data          | Backup_Manager   | Cloud_Storage     | Backup data                     |
+| reports              | Report_Generator | User              | Final reports                   |
 
 ---
 
-## Optimized State DFD Diagrams
+## Databases and Storage
 
-These diagrams represent the optimized and improved data flows and processes for the system, incorporating best practices for clarity, modularity, and maintainability.
+### 1. Task Database
+- **Path**: `JSonDataBase/Inputs/UserInputs/`
+- **Content**: Raw tasks input by user
+- **Format**: JSON
 
-### Legend
-
-- **Process:** Rounded rectangle
-- **Data Store:** Open-ended rectangle
-- **External Entity:** Simple rectangle
-- **Data Flow:** Arrow with label
-
----
-
-### Level 0 DFD - Context Diagram (Optimized)
-
-```mermaid
-graph TD
-    User[/"User"/]
-    System[/"Project Management System"/]
-
-    User -->|User Inputs and Commands| System
-    System -->|Reports, Notifications, and Confirmations| User
-
-    %% Data Stores
-    TaskDB[(Task Database)]
-    UserProfiles[(User Profiles)]
-    BackupStorage[(Backup Storage)]
-    ConfigStore[(Configuration Store)]
-    UserPrefs[(User Preferences)]
-
-    System --> TaskDB
-    System --> UserProfiles
-    System --> BackupStorage
-    System --> ConfigStore
-    System --> UserPrefs
-```
+### 2. Progress Database
+- **Path**: `JSonDataBase/OutPuts/`
+- **Content**: Calculated progress data
+- **Files**: 
+  - `commit_progress.json`
+  - `commit_task_database.json`
 
 ---
 
-### Level 1 DFD - High-Level Processes (Optimized)
-
-```mermaid
-graph TD
-    User[/"User"/]
-    Auth((Authentication))
-    UserProfileMgmt((User Profile Management))
-    AccessControl((Access Control))
-    InputHandler((Input Handling))
-    TaskManagement((Task Management))
-    CommitAutomation((Commit Automation))
-    BackupManager((Backup Management))
-    Reporting((Reporting and Dashboard))
-    GitRepo[/"Git Repository"/]
-
-    TaskDB[(Task Database)]
-    UserPrefs[(User Preferences)]
-    BackupStorage[(Backup Storage)]
-    ConfigStore[(Configuration Store)]
-
-    %% User Management Processes
-    User --> Auth
-    Auth --> UserProfileMgmt
-    UserProfileMgmt --> AccessControl
-    AccessControl --> InputHandler
-
-    %% Main Data Flows
-    User -->|Submit Inputs and Requests| InputHandler
-    InputHandler -->|Processed Data| TaskManagement
-    TaskManagement -->|Task Updates| CommitAutomation
-    CommitAutomation -->|Commits and Pushes| GitRepo
-    CommitAutomation -->|Backup Data| BackupManager
-    TaskManagement -->|Progress Data| Reporting
-    Reporting -->|Reports and Feedback| User
-
-    %% Data Stores connections
-    TaskManagement --> TaskDB
-    InputHandler --> UserPrefs
-    BackupManager --> BackupStorage
-    InputHandler --> ConfigStore
-
-    %% Error and Feedback Flows
-    InputHandler -->|Error Feedback and Confirmations| User
-    BackupManager -->|Backup Status and Alerts| Reporting
-```
-
----
-
-### Level 2 DFD - Detailed Task Management and Commit Automation (Optimized)
-
-```mermaid
-graph TD
-    User[/"User"/]
-    Auth((Authentication))
-    UserProfileMgmt((User Profile Management))
-    AccessControl((Access Control))
-    InputHandler((Input Handler))
-    TaskParser((Task Parser))
-    WBSGenerator((WBS Generator))
-    UrgencyImportanceCalc((Urgency and Importance Calculator))
-    TaskScheduler((Task Scheduler))
-    CommitMsgGenerator((Commit Message Generator))
-    GitInterface[/"Git Interface"/]
-    BackupManager((Backup Manager))
-    CommitTaskDB[(Commit Task Database)]
-    Reporting((Reporting Module))
-
-    %% User Management Processes
-    User --> Auth
-    Auth --> UserProfileMgmt
-    UserProfileMgmt --> AccessControl
-    AccessControl --> InputHandler
-
-    %% Main Data Flows
-    User -->|User Inputs and Commands| InputHandler
-    InputHandler -->|Parsed Input Data| TaskParser
-    TaskParser -->|WBS Data| WBSGenerator
-    WBSGenerator -->|Urgency and Importance Data| UrgencyImportanceCalc
-    UrgencyImportanceCalc -->|Scheduled Tasks| TaskScheduler
-    TaskScheduler -->|Task Progress Data| Reporting
-    TaskScheduler -->|Commit Instructions| CommitMsgGenerator
-    CommitMsgGenerator -->|Commit Commands| GitInterface
-    GitInterface -->|Commit Records| CommitTaskDB
-    CommitMsgGenerator -->|Backup Data| BackupManager
-    CommitTaskDB -->|Progress Reports| Reporting
-    Reporting -->|Reports and Feedback| User
-
-    %% Data Stores
-    TaskDB[(Task Database)]
-    UserPrefs[(User Preferences)]
-    BackupStorage[(Backup Storage)]
-    ConfigStore[(Configuration Store)]
-
-    TaskScheduler --> TaskDB
-    InputHandler --> UserPrefs
-    BackupManager --> BackupStorage
-
-    %% Error Handling and Feedback
-    InputHandler -->|Error Feedback and Confirmations| User
-```
-
----
-
-### Level 3 DFD - Task Scheduler Detailed Processes (Optimized)
-
-```mermaid
-graph TD
-    TaskScheduler((Task Scheduler))
-    PriorityCalc((Priority Calculation))
-    ConflictDetection((Conflict Detection))
-    TaskAssignment((Task Assignment))
-    TaskCompletion((Task Completion))
-    ScheduleOutput((Schedule Output))
-
-    TaskScheduler -->|Task Data| PriorityCalc
-    TaskScheduler -->|Task Data| ConflictDetection
-    TaskScheduler -->|Task Data| TaskAssignment
-    TaskScheduler -->|Task Data| TaskCompletion
-    PriorityCalc -->|Priority Scores| ScheduleOutput
-    ConflictDetection -->|Conflict Reports| ScheduleOutput
-    TaskAssignment -->|Assignment Details| ScheduleOutput
-    TaskCompletion -->|Completion Status| ScheduleOutput
-```
-
----
-
-### Level 3 DFD - Commit Message Generator Detailed Processes (Optimized)
-
-```mermaid
-graph TD
-    CommitMsgGenerator((Commit Message Generator))
-    ChangeCategorization((Change Categorization))
-    CommitMsgCreation((Commit Message Creation))
-    CommitValidation((Commit Validation))
-    CommitExecution((Commit Execution))
-    BackupTrigger((Backup Trigger))
-
-    CommitMsgGenerator -->|Change Data| ChangeCategorization
-    CommitMsgGenerator -->|Commit Messages| CommitMsgCreation
-    CommitMsgGenerator -->|Validation Results| CommitValidation
-    CommitMsgGenerator -->|Commit Commands| CommitExecution
-    CommitMsgGenerator -->|Backup Signals| BackupTrigger
-```
-
----
-
-### Level 3 DFD - Input Handler Detailed Processes (Optimized)
-
-```mermaid
-graph TD
-    InputHandler((Input Handler))
-    InputValidation((Input Validation))
-    DataParsing((Data Parsing))
-    ErrorHandling((Error Handling))
-    DataForwarding((Data Forwarding))
-
-    InputHandler -->|Raw Input Data| InputValidation
-    InputHandler -->|Validated Data| DataParsing
-    InputHandler -->|Error Reports| ErrorHandling
-    InputHandler -->|Parsed Data| DataForwarding
-    ErrorHandling -->|Error Feedback and Confirmations| User
-```
-
----
-
-### Level 3 DFD - Reporting Module Detailed Processes (Optimized)
-
-```mermaid
-graph TD
-    Reporting((Reporting Module))
-    DataAggregation((Data Aggregation))
-    ReportGeneration((Report Generation))
-    ReportDelivery((Report Delivery))
-
-    Reporting -->|Aggregated Data| DataAggregation
-    Reporting -->|Report Templates| ReportGeneration
-    Reporting -->|Final Reports| ReportDelivery
-```
-
----
-
-*Note:* The Optimized State diagrams incorporate improvements such as consolidated data flows, grouped related processes and data stores, clear separation of user management, added missing data stores, explicit error feedback and confirmation flows, minimized granularity, consistent naming conventions, and layering to avoid overcrowding.
-
----
-
-## Transition from Current State to Optimized State
-
-To move from the Current State to the Optimized State in your Data Flow Diagrams, consider the following steps:
-
-1. **Consolidate Redundant Data Flows:** Identify and merge data flows that carry similar or overlapping information to reduce diagram complexity.
-
-2. **Group Related Processes and Data Stores:** Organize related components together to highlight modularity and reduce cross-diagram clutter.
-
-3. **Separate User Management Processes:** Clearly distinguish authentication, profile management, and access control processes for improved clarity.
-
-4. **Add Missing Data Stores:** Incorporate essential data stores such as configuration storage, user preferences, and backup storage where applicable.
-
-5. **Standardize Symbols and Naming:** Use consistent DFD symbols and naming conventions across all diagrams to enhance readability.
-
-6. **Include Error Feedback and Confirmation Flows:** Explicitly represent system-user interactions like error messages and confirmations.
-
-7. **Minimize Unnecessary Granularity:** Focus on meaningful data exchanges by avoiding overly detailed flows that do not add value.
-
-8. **Ensure Complete Data Interactions:** Verify that all critical data interactions, especially for backup and reporting, are captured.
-
-9. **Layer Diagrams:** Use layering techniques to progressively reveal complexity, preventing overcrowding in any single diagram.
-
-Implementing these steps will improve the clarity, maintainability, and accuracy of your DFD diagrams, facilitating better understanding and communication among stakeholders.
-
----
-
-## Recommendations for Optimizing System Data Flows
-
-To optimize the data flows within the project management system, consider the following recommendations:
-
-1. **Eliminate Redundant Data Flows:** Review the system to identify and remove or consolidate data flows that carry duplicate or overlapping information, reducing complexity and improving performance.
-
-2. **Modularize Processes and Data Stores:** Group related processes and data stores into cohesive modules to enhance maintainability and scalability.
-
-3. **Clarify User Management Flows:** Separate authentication, profile management, and access control flows distinctly to improve security and clarity.
-
-4. **Incorporate Essential Data Stores:** Ensure all necessary data stores such as configuration settings, user preferences, and backup storage are included and properly integrated.
-
-5. **Standardize Naming and Symbols:** Use consistent naming conventions and standard DFD symbols throughout the system to facilitate understanding and reduce errors.
-
-6. **Explicitly Handle Errors and Confirmations:** Design data flows to include error feedback and confirmation messages, ensuring robust user-system interactions.
-
-7. **Reduce Unnecessary Granularity:** Focus on meaningful data exchanges by avoiding overly detailed or trivial data flows that do not add value.
-
-8. **Capture All Critical Interactions:** Verify that all essential data interactions, especially those related to backup, reporting, and system monitoring, are accurately represented.
-
-9. **Adopt Layered Diagramming:** Use layered diagrams to progressively reveal system complexity, preventing overcrowding and aiding comprehension.
-
-Implementing these recommendations will help optimize the system's data flows, leading to improved clarity, efficiency, and maintainability.
-    BackupManager -->|Backup Status and Alerts| Reporting
+This documentation now fully uses English language and accurately reflects the actual implementation of the Auto Project Management System.
