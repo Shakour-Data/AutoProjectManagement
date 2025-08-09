@@ -2,13 +2,12 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Actions](https://github.com/your-username/AutoProjectManagement/workflows/CI/badge.svg)](https://github.com/your-username/AutoProjectManagement/actions)
 
 ## 🎯 Overview
 
-**AutoProjectManagement** is a comprehensive, CLI-based automated project management system that revolutionizes software project management through intelligent automation, GitHub-native workflows, and JSON-driven configurations. This system operates entirely through command-line interfaces and deep GitHub integration, eliminating traditional web-based interfaces while providing enterprise-grade project management capabilities.
+**AutoProjectManagement** is a comprehensive, CLI-based automated project management system that revolutionizes software project management through intelligent automation, GitHub-native workflows, and JSON-driven configurations.
 
-### Key Differentiators
+### Key Features
 - **100% CLI-based**: No web frontend required
 - **GitHub-Native**: Deep integration with GitHub Actions and APIs
 - **JSON-Driven**: All configurations and workflows use JSON
@@ -20,95 +19,26 @@
 ### High-Level Architecture
 ```mermaid
 graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        API[Backend API]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
+    CLI[CLI Interface] --> PMS[Project Management System]
+    PMS --> SVS[Services Layer]
+    SVS --> PRJ[Project Repository]
+    PRJ --> JSON[JSON Database]
+    
+    style CLI fill:#f9f,stroke:#333
+    style PMS fill:#bbf,stroke:#333
+    style SVS fill:#9f9,stroke:#333
+    style PRJ fill:#ff9,stroke:#333
+    style JSON fill:#f96,stroke:#333
 ```
 
-### Detailed System Architecture
+### Core Components
 ```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
-
-### UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
+graph LR
+    A[AutoProjectManagement] --> B[CLI Interface]
+    A --> C[GitHub Integration]
+    A --> D[JSON Workflows]
+    A --> E[Progress Tracking]
+    A --> F[Automated Reporting]
 ```
 
 ## 🚀 Quick Start Guide
@@ -118,1312 +48,120 @@ classDiagram
 - GitHub account with repository access
 - Git installed and configured
 
-### Installation Steps
+### Installation
 
-#### 1. Clone the Repository
 ```bash
+# 1. Clone the repository
 git clone https://github.com/your-username/AutoProjectManagement.git
 cd AutoProjectManagement
-```
 
-#### 2. Setup Python Environment
-```bash
+# 2. Setup Python environment
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-```
 
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
+# 3. Configure GitHub
 python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
 
-### 4. Initial Setup
-```bash
-# Create initial project structure
+# 4. Initialize project
 python -m autoprojectmanagement.cli setup --project-name "MyProject"
 ```
 
-## 📊 System Architecture Diagrams
+## 📊 Architecture Details
 
-### 1. High-Level System Architecture
+### Data Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant CLI
+    participant GitHub
+    participant JSON
+    
+    User->>CLI: Execute command
+    CLI->>GitHub: Process request
+    GitHub->>JSON: Update data
+    JSON->>CLI: Return results
+    CLI->>User: Display output
+```
+
+### Module Structure
 ```mermaid
 graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
+    A[AutoProjectManagement] --> B[main_modules/]
+    A --> C[services/]
+    A --> D[cli.py]
+    
+    B --> E[task_management.py]
+    B --> F[progress_tracker.py]
+    B --> G[github_integration.py]
+    
+    C --> H[auto_commit.py]
+    C --> I[github_integration.py]
+    C --> J[backup_manager.py]
 ```
 
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
+## 📋 Usage Examples
 
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
-
-### 4. UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- GitHub account with repository access
-- Git installed and configured
-
-### Installation Steps
-
-#### 1. Clone the Repository
+### Basic Commands
 ```bash
-git clone https://github.com/your-username/AutoProjectManagement.git
-cd AutoProjectManagement
+# Initialize a new project
+python -m autoprojectmanagement.cli init --name "MyProject"
+
+# Add a new task
+python -m autoprojectmanagement.cli task add --title "Implement feature X" --priority high
+
+# View progress
+python -m autoprojectmanagement.cli progress show
+
+# Generate reports
+python -m autoprojectmanagement.cli report generate --type weekly
 ```
 
-#### 2. Setup Python Environment
+### Configuration Files
+- `config.json`: Main system configuration
+- `project.json`: Project-specific settings
+- `tasks.json`: Task definitions and status
+- `progress.json`: Progress tracking data
+
+## 🔧 Development
+
+### Project Structure
+```
+AutoProjectManagement/
+├── autoprojectmanagement/
+│   ├── main_modules/          # Core business logic
+│   ├── services/              # External integrations
+│   ├── cli.py                # Command-line interface
+│   └── auto_runner.py        # Main execution engine
+├── Docs/                     # Documentation
+├── tests/                    # Test suites
+├── requirements.txt          # Dependencies
+└── README.md                # This file
+```
+
+### Testing
 ```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
-python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
-
-### 4. Initial Setup
-```bash
-# Create initial project structure
-python -m autoprojectmanagement.cli setup --project-name "MyProject"
-```
-
-## 📊 System Architecture Diagrams
-
-### 1. High-Level System Architecture
-```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
-
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
-
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
-
-### 4. UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- GitHub account with repository access
-- Git installed and configured
-
-### Installation Steps
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/AutoProjectManagement.git
-cd AutoProjectManagement
-```
-
-#### 2. Setup Python Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
-python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
-
-### 4. Initial Setup
-```bash
-# Create initial project structure
-python -m autoprojectmanagement.cli setup --project-name "MyProject"
-```
-
-## 📊 System Architecture Diagrams
-
-### 1. High-Level System Architecture
-```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
-
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
-
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
-
-### 4. UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- GitHub account with repository access
-- Git installed and configured
-
-### Installation Steps
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/AutoProjectManagement.git
-cd AutoProjectManagement
-```
-
-#### 2. Setup Python Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
-python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
-
-### 4. Initial Setup
-```bash
-# Create initial project structure
-python -m autoprojectmanagement.cli setup --project-name "MyProject"
-```
-
-## 📊 System Architecture Diagrams
-
-### 1. High-Level System Architecture
-```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
-
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
-
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
-
-### 4. UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- GitHub account with repository access
-- Git installed and configured
-
-### Installation Steps
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/AutoProjectManagement.git
-cd AutoProjectManagement
-```
-
-#### 2. Setup Python Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
-python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
-
-### 4. Initial Setup
-```bash
-# Create initial project structure
-python -m autoprojectmanagement.cli setup --project-name "MyProject"
-```
-
-## 📊 System Architecture Diagrams
-
-### 1. High-Level System Architecture
-```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
-
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
-
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
-
-### 4. UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- GitHub account with repository access
-- Git installed and configured
-
-### Installation Steps
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/AutoProjectManagement.git
-cd AutoProjectManagement
-```
-
-#### 2. Setup Python Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
-python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
+# Run all tests
+python -m pytest tests/
 
-### 4. Initial Setup
-```bash
-# Create initial project structure
-python -m autoprojectmanagement.cli setup --project-name "MyProject"
+# Run specific test category
+python -m pytest tests/code_tests/UnitTests/
 ```
 
-## 📊 System Architecture Diagrams
+## 🤝 Contributing
 
-### 1. High-Level System Architecture
-```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
-
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
-
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
-
-### 4. UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- GitHub account with repository access
-- Git installed and configured
-
-### Installation Steps
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/AutoProjectManagement.git
-cd AutoProjectManagement
-```
-
-#### 2. Setup Python Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
-python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
-
-### 4. Initial Setup
-```bash
-# Create initial project structure
-python -m autoprojectmanagement.cli setup --project-name "MyProject"
-```
-
-## 📊 System Architecture Diagrams
-
-### 1. High-Level System Architecture
-```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
-
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
-
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
-
-### 4. UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- GitHub account with repository access
-- Git installed and configured
-
-### Installation Steps
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/AutoProjectManagement.git
-cd AutoProjectManagement
-```
-
-#### 2. Setup Python Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
-python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
-
-### 4. Initial Setup
-```bash
-# Create initial project structure
-python -m autoprojectmanagement.cli setup --project-name "MyProject"
-```
-
-## 📊 System Architecture Diagrams
-
-### 1. High-Level System Architecture
-```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
+## 📄 License
 
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
-
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
-
-### 4. UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- GitHub account with repository access
-- Git installed and configured
-
-### Installation Steps
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/AutoProjectManagement.git
-cd AutoProjectManagement
-```
-
-#### 2. Setup Python Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
-python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
-
-### 4. Initial Setup
-```bash
-# Create initial project structure
-python -m autoprojectmanagement.cli setup --project-name "MyProject"
-```
-
-## 📊 System Architecture Diagrams
-
-### 1. High-Level System Architecture
-```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
-
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
-
-### 4. UML Class Diagram
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +list team_members
-        +list milestones
-    }
-
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" Resource : assigned through
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- GitHub account with repository access
-- Git installed and configured
-
-### Installation Steps
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/AutoProjectManagement.git
-cd AutoProjectManagement
-```
-
-#### 2. Setup Python Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-#### 3. Setup GitHub Integration
-```bash
-# Configure GitHub token
-python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
-```
-
-### 4. Initial Setup
-```bash
-# Create initial project structure
-python -m autoprojectmanagement.cli setup --project-name "MyProject"
-```
-
-## 📊 System Architecture Diagrams
-
-### 1. High-Level System Architecture
-```mermaid
-graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        CLI[CLI Interface]
-        PMS[ProjectManagementSystem]
-        SV_BUS[Business Logic Services]
-        RP_PRJ[Project Repository]
-        DS_JSON[[JSON Data Storage]]
-    end
-
-    CLI --> PMS
-    PMS --> SV_BUS
-    SV_BUS --> RP_PRJ
-    RP_PRJ --> DS_JSON
-```
-
-### 2. GitHub Actions Integration
-```mermaid
-graph LR
-    A[GitHub Actions] --> B[CI/CD Pipeline]
-    A --> C[Security Scanning]
-    A --> D[Dependency Management]
-    A --> E[Release Automation]
-    A --> F[Stale Issue Management]
-    A --> G[Contributor Greetings]
-    A --> H[Auto Labeling]
-    A --> I[CodeQL Analysis]
-    A --> J[Dependency Review]
-```
-
-### 3. Data Flow Architecture
-```mermaid
-graph TD
-    A[User CLI Input] --> B[JSON Configuration]
-    B --> C[GitHub Actions Engine]
-    C --> D[Automation Engine]
-    D --> E[Task Execution]
-    E --> F[Progress Tracking]
-    F --> G[GitHub Integration]
-    G --> H[Reports & Dashboards]
-    H --> I[JSON Database Updates]
-```
+## 🙏 Acknowledgments
 
-### 4
+- Built with Python and GitHub Actions
+- Inspired by modern DevOps practices
+- Designed for automation-first workflows
