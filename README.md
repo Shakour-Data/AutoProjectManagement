@@ -71,59 +71,83 @@ graph TB
     Webhooks --> Engine
 ```
 
-## 📊 BPMN Diagrams
+## 📊 Business Process Diagrams (Flowchart Style)
 
 ### Project Initialization Process
 ```mermaid
-bpmn
-participant User
-participant CLI
-participant GitHub
-participant Database
-
-User->>CLI: Execute setup command
-CLI->>CLI: Validate inputs
-CLI->>GitHub: Create repository structure
-GitHub->>GitHub: Setup Actions workflows
-GitHub->>Database: Initialize JSON files
-Database->>CLI: Return success status
-CLI->>User: Display completion message
+flowchart TD
+    A[User Starts Setup] --> B{Validate Inputs}
+    B -->|Valid| C[Create Repository Structure]
+    B -->|Invalid| D[Show Error Message]
+    D --> B
+    C --> E[Setup GitHub Actions]
+    E --> F[Initialize JSON Files]
+    F --> G[Create Initial Configuration]
+    G --> H[Generate Welcome Report]
+    H --> I[Setup Complete]
+    I --> J[Send Notification]
 ```
 
 ### Task Management Workflow
 ```mermaid
-bpmn
-participant Developer
-participant CLI
-participant TaskManager
-participant GitHub
-participant Database
-
-Developer->>CLI: Add new task
-CLI->>TaskManager: Process task data
-TaskManager->>Database: Store task in JSON
-TaskManager->>GitHub: Create issue/PR
-GitHub->>Database: Update task status
-Database->>CLI: Return updated data
-CLI->>Developer: Show confirmation
+flowchart TD
+    A[Developer Adds Task] --> B[Parse Task Details]
+    B --> C{Validate Task}
+    C -->|Valid| D[Store in JSON Database]
+    C -->|Invalid| E[Show Validation Error]
+    E --> A
+    D --> F[Create GitHub Issue]
+    F --> G[Assign Resources]
+    G --> H[Update Task Status]
+    H --> I[Trigger Automation]
+    I --> J[Send Confirmation]
+    J --> K[Update Dashboard]
 ```
 
-### Progress Tracking Flow
+### Progress Tracking Process
 ```mermaid
-bpmn
-participant Git
-participant CLI
-participant Tracker
-participant Calculator
-participant Reporter
+flowchart TD
+    A[Git Commit Detected] --> B[Parse Commit Message]
+    B --> C{Valid Format?}
+    C -->|Yes| D[Extract Task Info]
+    C -->|No| E[Log Invalid Format]
+    E --> F[Skip Processing]
+    D --> G[Update Task Progress]
+    G --> H[Calculate New Metrics]
+    H --> I[Update JSON Database]
+    I --> J[Generate Progress Report]
+    J --> K[Update GitHub PR Status]
+    K --> L[Send Notifications]
+```
 
-Git->>CLI: Detect commit
-CLI->>Tracker: Parse commit data
-Tracker->>Calculator: Calculate progress
-Calculator->>Database: Update progress JSON
-Calculator->>Reporter: Generate report
-Reporter->>GitHub: Update PR status
-Reporter->>CLI: Display summary
+### Complete Workflow Sequence
+```mermaid
+flowchart TD
+    subgraph "Initialization Phase"
+        A1[Start] --> A2[Load Configuration]
+        A2 --> A3[Setup GitHub Integration]
+        A3 --> A4[Initialize Database]
+    end
+    
+    subgraph "Operation Phase"
+        B1[Receive Command] --> B2[Parse Arguments]
+        B2 --> B3[Execute Business Logic]
+        B3 --> B4[Update Database]
+        B4 --> B5[Trigger GitHub Actions]
+    end
+    
+    subgraph "Reporting Phase"
+        C1[Collect Metrics] --> C2[Generate Reports]
+        C2 --> C3[Update Dashboards]
+        C3 --> C4[Send Notifications]
+    end
+    
+    A4 --> B1
+    B5 --> C1
+    
+    style A1 fill:#e1f5fe
+    style B1 fill:#f3e5f5
+    style C1 fill:#e8f5e9
 ```
 
 ## 📈 Data Flow Diagrams (DFD)
@@ -141,6 +165,11 @@ graph LR
     System -->|Read/Write| Storage
     GitHub -->|Webhooks| System
     Storage -->|Reports| User
+    
+    style User fill:#e1f5fe
+    style System fill:#fff3e0
+    style GitHub fill:#f3e5f5
+    style Storage fill:#e8f5e9
 ```
 
 ### Level 1 DFD - System Decomposition
@@ -189,9 +218,9 @@ graph TD
         Logger[(Log Files)]
     end
     
-    subgraph "External Systems"
-        GitHubAPI[GitHub API]
-        Actions[GitHub Actions]
+    subgraph "External Services"
+        GitHubAPI[GitHub API Client]
+        Actions[Actions Runner]
         Notifications[Notification Service]
     end
     
@@ -202,7 +231,7 @@ graph TD
     Calculator --> JSONDB
     JSONDB --> Cache
     Cache --> Logger
-    Logger --> GitHubAPI
+    Engine --> GitHubAPI
     Actions --> Notifications
 ```
 
@@ -315,9 +344,9 @@ graph TB
         end
         
         subgraph "Data Access Layer"
-            JSONDB[JSON Database]
-            Cache[Cache Manager]
-            Logger[Logging Service]
+            JSONDB[(JSON Database)]
+            Cache[(Cache Layer)]
+            Logger[(Log Files)]
         end
         
         subgraph "External Services"
