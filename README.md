@@ -1,552 +1,442 @@
-# AutoProjectManagement 🚀
+# AutoProjectManagement System
 
-**The Ultimate Zero-Touch Project Management Solution**
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Actions](https://github.com/your-username/AutoProjectManagement/workflows/CI/badge.svg)](https://github.com/your-username/AutoProjectManagement/actions)
 
-AutoProjectManagement is a comprehensive Python package that revolutionizes project management through complete automation. It provides zero-touch project management, automatic task tracking, intelligent workflow optimization, and seamless team collaboration for software development teams.
+## 🎯 Overview
 
-## 🌟 Key Features
+**AutoProjectManagement** is a comprehensive, CLI-based automated project management system that revolutionizes software project management through intelligent automation, GitHub-native workflows, and JSON-driven configurations. This system operates entirely through command-line interfaces and deep GitHub integration, eliminating traditional web-based interfaces while providing enterprise-grade project management capabilities.
 
-### ✅ **Complete Zero-Touch Project Management**
-- **No terminal commands required** - All operations happen automatically
-- **Real-time progress tracking** - Progress updated without user interaction
-- **Automatic commits** - Changes tracked and committed automatically
-- **Risk assessment** - Proactive risk identification and mitigation
-- **Automatic reporting** - Reports generated without user intervention
-
-### ✅ **Intelligent Task Management**
-- **AI-powered task prioritization** using importance/urgency matrix
-- **Automatic resource allocation** based on team capacity and skills
-- **Smart scheduling** with resource leveling and conflict resolution
-- **Real-time progress calculation** and dashboard updates
-- **Automated WBS (Work Breakdown Structure) generation**
-
-### ✅ **Comprehensive Project Views**
-- **Interactive Gantt charts** with drag-and-drop functionality
-- **Resource allocation dashboards** with visual heat maps
-- **Risk management matrices** with automated mitigation strategies
-- **Progress tracking** with milestone achievements
-- **Team collaboration tools** with automated communication
-
-### ✅ **Advanced Automation Features**
-- **Git integration** with automatic progress tracking
-- **GitHub Actions automation** for CI/CD pipeline management
-- **VS Code extension** for seamless IDE integration
-- **JSON-based configuration** for flexible project setup
-- **Automated documentation generation**
+### Key Differentiators
+- **100% CLI-based**: No web frontend required
+- **GitHub-Native**: Deep integration with GitHub Actions and APIs
+- **JSON-Driven**: All configurations and workflows use JSON
+- **Automated Progress Tracking**: Real-time progress monitoring via Git commits
+- **Intelligent Task Management**: AI-powered task prioritization and scheduling
+- **Self-Managing**: Automatic project setup, monitoring, and reporting
 
 ## 🏗️ System Architecture
 
-### High-Level Architecture Overview
-
-```mermaid
-graph LR
-    linkStyle default stroke:#000,stroke-width:1.5px
-    
-    subgraph Frontend
-        style Frontend fill:#f9f,stroke:#333,stroke-width:2px,color:#800000
-        FE[Frontend React]
-        ST([State Management Context API])
-        IG([Installer GUI])
-        IS([Installer Scripts])
-    end
-
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        BE[Backend API]
-        SL([Services Layer])
-        RP([Repositories])
-        MD([Models])
-        LG([Logging Service])
-        AU([Authentication Service])
-        CF([Configuration Files])
-        JD[[JSON Files Data Storage]]
-    end
-
-    FE --> BE
-    BE --> SL
-    SL --> RP
-    RP --> JD
-    BE --> MD
-    FE --> IG
-    IG --> IS
-    SL --> LG
-    SL --> AU
-    RP --> CF
-    FE --> ST
+### High-Level Architecture
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    AutoProjectManagement                     │
+├─────────────────────────────────────────────────────────────┤
+│  CLI Interface        │  GitHub Actions    │  JSON Database  │
+│  ├─ auto_runner.py  │  ├─ 11 Workflows  │  ├─ Inputs      │
+│  ├─ cli.py           │  ├─ Automation     │  ├─ Outputs     │
+│  └─ Services         │  └─ Integration    │  └─ Configs     │
+├─────────────────────────────────────────────────────────────┤
+│              Core Modules & Automation Engine               │
+│  ├─ Task Management    ├─ Progress Tracking  ├─ Reporting │
+│  ├─ Resource Allocation ├─ Risk Management  ├─ Quality  │
+│  ├─ Time Management    ├─ Communication     ├─ Scheduling │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-### Detailed System Architecture
-
+### Data Flow Architecture
 ```mermaid
 graph TD
-    linkStyle default stroke:#000,stroke-width:1.5px
+    A[User CLI Input] --> B[JSON Configuration]
+    B --> C[GitHub Actions Engine]
+    C --> D[Automation Engine]
+    D --> E[Task Execution]
+    E --> F[Progress Tracking]
+    F --> G[GitHub Integration]
+    G --> H[Reports & Dashboards]
+    H --> I[JSON Database Updates]
+    I --> A
     
-    subgraph Frontend
-        style Frontend fill:#f9f,stroke:#333,stroke-width:2px,color:#800000
-        FE_UI(UI Components)
-        FE_CTX(Context Providers)
-        FE_STM(State Management)
-        FE_API(API Service Layer)
-    end
-
-    subgraph Backend
-        style Backend fill:#bbf,stroke:#333,stroke-width:2px,color:#004080
-        BE_API([Backend API])
-        SV_AUTH([Authentication Service])
-        SV_LOG([Logging Service])
-        SV_BUS([Business Logic Services])
-        RP_PRJ([Project Repository])
-        RP_USR([User Repository])
-        DS_JSON[[JSON Data Storage]]
-        FS([File System])
-    end
-
-    FE_UI --> FE_CTX
-    FE_CTX --> FE_STM
-    FE_STM --> FE_API
-    FE_API --> BE_API
-    BE_API --> SV_AUTH
-    BE_API --> SV_LOG
-    BE_API --> SV_BUS
-    SV_BUS --> RP_PRJ
-    SV_BUS --> RP_USR
-    RP_PRJ --> DS_JSON
-    RP_USR --> DS_JSON
-    DS_JSON --> FS
-    FS --> BE_API
+    style A fill:#f9f,stroke:#333
+    style C fill:#bbf,stroke:#333
+    style D fill:#9f9,stroke:#333
+    style H fill:#ff9,stroke:#333
 ```
 
-## 📊 Data Flow Diagrams
-
-### Level 0 DFD - System Overview
-
+### Module Architecture
 ```mermaid
 graph TD
-    User[User] --> Frontend[Frontend React App]
-    Frontend --> Backend[Backend API]
-    Backend --> Database[(JSON Database)]
-    Database --> Backend
-    Backend --> Reports[Reports & Dashboards]
-    Reports --> User
-    Backend --> GitHub[GitHub Integration]
-    GitHub --> Backend
-```
-
-### Level 1 DFD - Detailed Process Flow
-
-```mermaid
-graph TD
-    subgraph "Backend Processes"
-        TM[Task Management]
-        RA[Resource Allocation]
-        PT[Progress Tracking]
-        RP[Reporting]
-        RM[Risk Management]
+    subgraph Core System
+        AR[AutoRunner]
+        CLI[CLI Interface]
+        PMS[ProjectManagementSystem]
     end
     
-    subgraph "Data Stores"
-        PDB[(Project Database)]
-        TDB[(Task Database)]
-        RDB[(Resource Database)]
+    subgraph Automation Services
+        GA[GitHubActionsAutomation]
+        AC[AutoCommit]
+        GI[GitHubIntegration]
     end
     
-    TM --> TDB
-    RA --> RDB
-    PT --> TDB
-    RP --> PDB
-    RM --> PDB
-    TM --> RA
-    RA --> PT
-    PT --> RP
+    subgraph Management Modules
+        TM[TaskManagement]
+        PC[ProgressCalculator]
+        RM[RiskManagement]
+        QM[QualityManagement]
+    end
+    
+    subgraph Data Layer
+        JSON[JSON Database]
+        GIT[Git Repository]
+        CFG[Configuration Files]
+    end
+    
+    AR --> PMS
+    CLI --> PMS
+    PMS --> GA
+    PMS --> AC
+    PMS --> GI
+    PMS --> TM
+    PMS --> PC
+    PMS --> RM
+    PMS --> QM
+    TM --> JSON
+    PC --> GIT
+    RM --> CFG
 ```
 
-## 🔄 BPMN Workflow Diagrams
-
-### Complete Project Management Workflow
-
-```mermaid
-flowchart TD
-    A[Project Initiation] --> B[Task Planning]
-    B --> C[Resource Allocation]
-    C --> D[Task Execution]
-    D --> E[Progress Monitoring]
-    E --> F[Risk Management]
-    F --> G[Reporting]
-    G --> H[Project Closure]
-    
-    A --> A1[Identify Stakeholders]
-    A --> A2[Define Goals & Scope]
-    A --> A3[Obtain Approvals]
-    
-    B --> B1[Decompose Project]
-    B --> B2[Assign Resources & Deadlines]
-    B --> B3[Review & Approve Plan]
-    
-    C --> C1[Allocate Team Members]
-    C --> C2[Assign Equipment & Tools]
-    C --> C3[Set Budget Limits]
-    
-    D --> D1[Perform Tasks]
-    D --> D2[Update Status]
-    D --> D3[Communicate Progress]
-    
-    E --> E1[Track Progress]
-    E --> E2[Identify Deviations]
-    E --> E3[Take Corrective Actions]
-    
-    F --> F1[Identify Risks]
-    F --> F2[Assess Impact]
-    F --> F3[Implement Mitigation]
-    
-    G --> G1[Generate Reports]
-    G --> G2[Distribute to Stakeholders]
-    G --> G3[Collect Feedback]
-    
-    H --> H1[Complete Deliverables]
-    H --> H2[Obtain Acceptance]
-    H --> H3[Archive Documents]
-```
-
-## 🏛️ UML Class Diagrams
-
-### Core Domain Model
-
-```mermaid
-classDiagram
-    class Project {
-        +int id
-        +string name
-        +string description
-        +date start_date
-        +date end_date
-        +string status
-        +list tasks
-        +list resources
-    }
-    
-    class Task {
-        +int id
-        +string name
-        +string description
-        +string status
-        +int priority
-        +date due_date
-        +list subtasks
-        +list assigned_resources
-    }
-    
-    class SubTask {
-        +int id
-        +string name
-        +string status
-        +int estimated_hours
-    }
-    
-    class Resource {
-        +int id
-        +string name
-        +string role
-        +float availability_percentage
-        +list skills
-    }
-    
-    class Allocation {
-        +int id
-        +int resource_id
-        +int task_id
-        +int allocation_percentage
-        +date start_date
-        +date end_date
-    }
-    
-    class Risk {
-        +int id
-        +string description
-        +string impact
-        +string probability
-        +string mitigation_strategy
-        +string status
-    }
-    
-    Project "1" --> "*" Task : contains
-    Task "1" --> "*" SubTask : has
-    Task "*" --> "*" Resource : assigned through
-    Resource "1" --> "*" Allocation : has
-    Project "1" --> "*" Risk : manages
-```
-
-## 🚀 Quick Start Guide
+## 🚀 Quick Start
 
 ### Prerequisites
 - Python 3.8 or higher
-- Node.js 14 or higher
-- npm (Node Package Manager)
-- Git (optional, for version control)
+- GitHub account with repository access
+- Git installed and configured
+- GitHub Personal Access Token (PAT)
 
-### Installation Steps
+### Installation
 
-#### 1. Clone the Repository
 ```bash
-git clone https://github.com/autoprojectmanagement/autoprojectmanagement.git
-cd autoprojectmanagement
-```
+# Clone the repository
+git clone https://github.com/your-username/AutoProjectManagement.git
+cd AutoProjectManagement
 
-#### 2. Setup Python Environment
-```bash
-python3 -m venv venv
+# Create virtual environment
+python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Install development dependencies (optional)
+pip install -r requirements-dev.txt
+
+# Initialize the system
+python -m autoprojectmanagement.cli init
 ```
 
-#### 3. Install Frontend Dependencies
+### Initial Configuration
+
+1. **GitHub Setup**:
+   ```bash
+   # Configure GitHub token
+   python -m autoprojectmanagement.cli config --github-token YOUR_TOKEN
+   
+   # Set repository
+   python -m autoprojectmanagement.cli config --repo owner/repo-name
+   ```
+
+2. **JSON Configuration**:
+   ```bash
+   # Create initial project structure
+   python -m autoprojectmanagement.cli setup --project-name "MyProject"
+   
+   # Setup GitHub Actions
+   python -m autoprojectmanagement.cli setup-actions
+   ```
+
+## 📊 Core Features
+
+### 1. Automated Task Management
+- **Intelligent Task Creation**: Automatically generates tasks from requirements
+- **Priority Calculation**: Uses importance/urgency matrix for task prioritization
+- **Resource Allocation**: Smart resource distribution based on availability and skills
+- **Dependency Management**: Automatic task dependency resolution
+- **WBS Generation**: Automatic Work Breakdown Structure creation
+
+### 2. GitHub-Native Automation
+- **11 Automated Workflows**:
+  - CI/CD Pipeline
+  - Security Scanning
+  - Dependency Management
+  - Release Automation
+  - Stale Issue Management
+  - Contributor Greetings
+  - Auto-labeling
+  - CodeQL Analysis
+  - Size-based PR labeling
+  - Dependency Review
+  - Vulnerability Scanning
+
+### 3. Progress Tracking & Reporting
+- **Real-time Progress**: Tracks progress via Git commits and branch activities
+- **Automated Reports**: Generates markdown reports and dashboards
+- **GitHub Integration**: Updates project boards and issues automatically
+- **Performance Metrics**: Calculates velocity, burndown rates, and completion forecasts
+- **Gantt Charts**: Automatic Gantt chart generation
+
+### 4. Resource & Time Management
+- **Resource Leveling**: Balances workload across team members
+- **Time Tracking**: Monitors time spent on tasks
+- **Capacity Planning**: Forecasts resource needs
+- **Schedule Optimization**: Creates optimal project schedules
+- **Risk Assessment**: Identifies and prioritizes project risks
+
+### 5. Quality & Communication Management
+- **Quality Gates**: Automated quality checks and validations
+- **Communication Tracking**: Tracks stakeholder communications
+- **Documentation Automation**: Auto-generates project documentation
+- **Risk Management**: Continuous risk assessment and mitigation
+
+## 🛠️ CLI Commands
+
+### Basic Commands
 ```bash
-cd frontend
-npm install
-npm run build
-cd ..
+# Initialize new project
+python -m autoprojectmanagement.cli init
+
+# Create new project
+python -m autoprojectmanagement.cli create-project "ProjectName" --description "Description"
+
+# Show project status
+python -m autoprojectmanagement.cli status PROJECT_ID --format table
+
+# Add new task
+python -m autoprojectmanagement.cli add-task PROJECT_ID --task-name "Task Name" --priority high
+
+# Generate reports
+python -m autoprojectmanagement.cli report PROJECT_ID --report-type detailed --output report.md
 ```
 
-#### 4. Automated Setup (Recommended)
+### Advanced Commands
 ```bash
-./setup_env.sh
+# Start automatic project management
+python -m autoprojectmanagement.auto_runner --path /path/to/project --daemon
+
+# Setup GitHub Actions
+python -m autoprojectmanagement.cli setup-actions
+
+# Configure automation
+python -m autoprojectmanagement.cli config --auto-commit true --auto-report true
+
+# Generate Gantt charts
+python -m autoprojectmanagement.cli gantt --generate --project-id PROJECT_ID
+
+# Risk analysis
+python -m autoprojectmanagement.cli risk --assess --project-id PROJECT_ID
+
+# Resource allocation
+python -m autoprojectmanagement.cli resources --allocate --project-id PROJECT_ID
 ```
 
-This script will:
-- Create and activate Python virtual environment
-- Install all Python dependencies
-- Install Node.js dependencies
-- Build frontend assets
-- Start the application
-
-#### 5. Start the Application
+### Auto-Runner Commands
 ```bash
-# Start backend API server
-./backend_start.sh
+# Start automatic monitoring
+python -m autoprojectmanagement.auto_runner
 
-# Start frontend server
-./frontend_start.sh
+# Run in daemon mode
+python -m autoprojectmanagement.auto_runner --daemon
 
-# Or use unified startup
-./start_all.sh
+# Monitor specific path
+python -m autoprojectmanagement.auto_runner --path /custom/path
 ```
 
-## 📋 Usage Guide
+## 📁 Project Structure
 
-### 1. Initial Project Setup
-- Run the installer GUI: `./installer_gui.sh`
-- Select project type and configuration
-- Upload existing project files (optional)
-- Configure team members and resources
-
-### 2. Automatic Project Management
-- The system automatically:
-  - Creates WBS (Work Breakdown Structure)
-  - Assigns tasks based on team capacity
-  - Schedules work with resource leveling
-  - Tracks progress in real-time
-  - Generates reports automatically
-
-### 3. Monitoring Dashboard
-- Access the web dashboard at `http://localhost:3000`
-- View real-time project status
-- Monitor team performance metrics
-- Track risks and mitigation strategies
-
-### 4. Git Integration
-- Automatic commits for progress updates
-- GitHub Actions for CI/CD
-- Branch management for features
-- Pull request automation
-
-## 📊 JSON Configuration Files
-
-### Project Configuration (`project_config.json`)
-```json
-{
-  "project_name": "Sample Project",
-  "project_type": "software_development",
-  "start_date": "2024-01-01",
-  "end_date": "2024-12-31",
-  "team_members": [
-    {
-      "name": "John Doe",
-      "role": "developer",
-      "skills": ["Python", "JavaScript", "React"]
-    }
-  ],
-  "milestones": [
-    {
-      "name": "Phase 1 Complete",
-      "date": "2024-03-31",
-      "deliverables": ["UI Design", "API Development"]
-    }
-  ]
-}
+```
+AutoProjectManagement/
+├── autoprojectmanagement/          # Main package
+│   ├── main_modules/              # Core business logic (30+ modules)
+│   │   ├── project_management_system.py    # Main system controller
+│   │   ├── task_management.py             # Task management engine
+│   │   ├── progress_calculator_refactored.py  # Progress calculation
+│   │   ├── github_actions_automation.py   # GitHub Actions automation
+│   │   ├── risk_management.py            # Risk assessment
+│   │   ├── resource_management.py        # Resource allocation
+│   │   ├── time_management.py           # Time tracking
+│   │   ├── quality_management.py        # Quality gates
+│   │   └── [25+ additional modules]
+│   ├── services/                    # Service layer
+│   │   ├── auto_commit.py           # Automatic commit handling
+│   │   ├── github_integration.py    # GitHub API integration
+│   │   ├── backup_manager.py        # Backup automation
+│   │   └── [additional services]
+│   ├── auto_runner.py              # Automatic execution engine
+│   ├── cli.py                      # Command-line interface
+│   └── setup_auto_environment.py   # Environment setup
+├── JSonDataBase/                   # JSON database system
+│   ├── Inputs/
+│   │   ├── SystemGeneratorInputs/
+│   │   └── UserInputs/
+│   └── OutPuts/
+│       ├── commit_progress.json
+│       ├── commit_task_database.json
+│       └── progress_report.md
+├── Docs/                          # Comprehensive documentation
+│   ├── entire_project/
+│   ├── SystemDesign/
+│   ├── ModuleDocs/
+│   └── Diagrams/
+├── tests/                         # Test suite
+│   ├── code_tests/
+│   └── test_docs/
+├── .github/                       # GitHub Actions workflows
+│   └── workflows/
+├── requirements.txt               # Dependencies
+├── setup.py                      # Package setup
+└── README.md                    # This file
 ```
 
-### Task Configuration (`tasks.json`)
-```json
-{
-  "tasks": [
-    {
-      "id": 1,
-      "name": "Setup Development Environment",
-      "priority": "high",
-      "estimated_hours": 8,
-      "assigned_to": "John Doe",
-      "dependencies": []
-    }
-  ]
-}
-```
+## 🔧 Configuration
 
-## 🔧 Configuration Options
+### JSON Configuration Files
+The system uses JSON files for all configurations:
+
+- **Project Configuration**: `project_config.json`
+- **Task Definitions**: `task_definitions.json`
+- **Resource Allocation**: `resource_config.json`
+- **GitHub Settings**: `github_config.json`
+- **Automation Rules**: `automation_rules.json`
 
 ### Environment Variables
 ```bash
-# Database Configuration
-DATABASE_PATH=./data/
-BACKUP_INTERVAL=3600
+# GitHub Configuration
+GITHUB_TOKEN=your_github_token
+GITHUB_REPO=owner/repo-name
 
-# Git Configuration
-AUTO_COMMIT=true
-COMMIT_INTERVAL=300
-
-# Notification Settings
-EMAIL_NOTIFICATIONS=true
-SLACK_WEBHOOK_URL=https://hooks.slack.com/...
+# System Configuration
+AUTO_PROJECT_PATH=/path/to/project
+AUTO_COMMIT_ENABLED=true
+AUTO_REPORT_ENABLED=true
+LOG_LEVEL=INFO
 ```
 
-### Custom Scripts
-```bash
-# Custom automation scripts
-./scripts/custom_automation.sh
-./scripts/backup_manager.sh
-./scripts/report_generator.sh
-```
+## 🔄 GitHub Actions Integration
+
+### Automated Workflows
+The system automatically creates and manages 11 GitHub Actions workflows:
+
+1. **CI/CD Pipeline** (`ci.yml`)
+2. **CD Pipeline** (`cd.yml`)
+3. **Security Scanning** (`security.yml`)
+4. **Dependency Updates** (`dependencies.yml`)
+5. **Release Automation** (`release.yml`)
+6. **Stale Issue Management** (`stale.yml`)
+7. **Contributor Greetings** (`greetings.yml`)
+8. **Auto Labeling** (`labeler.yml`)
+9. **Size-based PR Labeling** (`size-labeler.yml`)
+10. **CodeQL Analysis** (`codeql.yml`)
+11. **Dependency Review** (`dependency-review.yml`)
+
+### Custom Actions
+- **Progress Update Action**: Automatically updates project progress
+- **Report Generation Action**: Creates automated reports
+- **Risk Assessment Action**: Performs continuous risk analysis
+
+## 📊 Monitoring & Reporting
+
+### Real-time Dashboards
+- **Project Progress Dashboard**: Live progress tracking
+- **Resource Utilization Dashboard**: Team capacity monitoring
+- **Risk Assessment Dashboard**: Risk identification and mitigation
+- **Quality Metrics Dashboard**: Code quality and testing metrics
+
+### Automated Reports
+- **Daily Progress Reports**: Generated automatically
+- **Weekly Summary Reports**: Comprehensive project status
+- **Risk Assessment Reports**: Current risk analysis
+- **Resource Allocation Reports**: Team utilization summary
 
 ## 🧪 Testing
 
-### Running Tests
+### Test Categories
 ```bash
 # Run all tests
-pytest tests/
+python -m pytest tests/
 
 # Run specific test categories
-pytest tests/unit/
-pytest tests/integration/
-pytest tests/acceptance/
-
-# Generate test coverage
-pytest --cov=autoprojectmanagement tests/
+python -m pytest tests/code_tests/UnitTests/
+python -m pytest tests/code_tests/IntegrationTests/
+python -m pytest tests/code_tests/SystemTests/
+python -m pytest tests/code_tests/SecurityTests/
 ```
 
-### Test Categories
+### Test Coverage
 - **Unit Tests**: Individual component testing
 - **Integration Tests**: Component interaction testing
-- **Acceptance Tests**: End-to-end workflow testing
+- **System Tests**: End-to-end workflow testing
+- **Security Tests**: Security vulnerability testing
 - **Performance Tests**: Load and stress testing
-- **Security Tests**: Vulnerability assessment
 
-## 📈 Monitoring and Logging
+## 🔐 Security Features
 
-### Log Levels
-- **INFO**: General operational information
-- **WARNING**: Potential issues that don't affect functionality
-- **ERROR**: Issues that affect functionality
-- **DEBUG**: Detailed debugging information
+### Built-in Security
+- **JWT Authentication**: Secure API access
+- **API Key Management**: Service-to-service authentication
+- **Input Validation**: JSON sanitization and validation
+- **Dependency Scanning**: Automated vulnerability detection
+- **Code Security Analysis**: Static code analysis
 
-### Monitoring Dashboard
-- Real-time system health
-- Performance metrics
-- Error rates and trends
-- Resource utilization
+### Security Workflows
+- **Trivy Vulnerability Scanner**: Container security
+- **CodeQL Analysis**: Code security analysis
+- **Dependency Review**: PR dependency checking
+- **Safety Checks**: Python package security
 
-## 🔒 Security Features
+## 📈 Performance Optimization
 
-### Authentication & Authorization
-- JWT token-based authentication
-- Role-based access control (RBAC)
-- API key management
-- Session timeout handling
+### Caching Strategies
+- **IndexedDB Caching**: Frontend data caching
+- **Git-based Caching**: Commit history caching
+- **JSON File Caching**: Configuration caching
 
-### Data Protection
-- Input validation and sanitization
-- SQL injection prevention
-- XSS protection
-- Data encryption at rest
-
-### Security Scanning
-- Automated vulnerability scanning
-- Dependency security checks
-- Code security analysis
-- Regular security updates
-
-## 📚 Documentation
-
-### Available Documentation
-- **User Guide**: `Docs/SystemDesign/Guides/User_Guide.md`
-- **Developer Guide**: `Docs/SystemDesign/Guides/Developer_Guidelines.md`
-- **API Reference**: `Docs/SystemDesign/Glossary/API_Reference.md`
-- **Architecture**: `Docs/entire_project/architecture.md`
-- **UML Diagrams**: `Docs/SystemDesign/Diagrams/UML_Diagrams.md`
-
-### API Documentation
-- Interactive API documentation at `http://localhost:8000/docs`
-- OpenAPI/Swagger specification
-- Postman collection available
+### Optimization Features
+- **Lazy Loading**: Component lazy loading
+- **Progressive Enhancement**: Gradual feature enhancement
+- **Resource Optimization**: Memory and CPU optimization
 
 ## 🤝 Contributing
 
 ### Development Setup
+```bash
+# Clone repository
+git clone https://github.com/your-username/AutoProjectManagement.git
+
+# Install development dependencies
+pip install -r requirements-dev.txt
+
+# Run tests
+python -m pytest tests/
+
+# Run linting
+flake8 autoprojectmanagement/
+black autoprojectmanagement/
+```
+
+### Contribution Guidelines
 1. Fork the repository
 2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Make changes and add tests
-4. Run test suite: `pytest tests/`
-5. Commit changes: `git commit -m 'Add amazing feature'`
-6. Push to branch: `git push origin feature/amazing-feature`
-7. Create Pull Request
-
-### Code Standards
-- Follow PEP 8 for Python code
-- Use ESLint for JavaScript/React
-- Maintain test coverage above 80%
-- Document all public APIs
-- Include type hints for Python
-
-## 📞 Support
-
-### Getting Help
-- **Documentation**: [https://autoprojectmanagement.readthedocs.io](https://autoprojectmanagement.readthedocs.io)
-- **Issues**: [GitHub Issues](https://github.com/autoprojectmanagement/autoprojectmanagement/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/autoprojectmanagement/autoprojectmanagement/discussions)
-- **Community**: [Discord Server](https://discord.gg/autoprojectmanagement)
-
-### Commercial Support
-- Enterprise support available
-- Custom development services
-- Training and workshops
-- Consulting services
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open pull request
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🏆 Acknowledgments
+## 🆘 Support
 
-- Built with ❤️ by the AutoProjectManagement team
-- Special thanks to all contributors
-- Powered by Python, React, and automation
+- **Documentation**: [Docs/](Docs/)
+- **Issues**: [GitHub Issues](https://github.com/your-username/AutoProjectManagement/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/your-username/AutoProjectManagement/discussions)
+
+## 🙏 Acknowledgments
+
+- Built with Python 3.8+
+- Powered by GitHub Actions
+- Inspired by modern DevOps practices
+- Designed for developer productivity
 
 ---
 
-<div align="center">
-  <p>
-    <strong>AutoProjectManagement</strong> - Making project management effortless through automation
-  </p>
-  <p>
-    <a href="https://autoprojectmanagement.readthedocs.io">Documentation</a> •
-    <a href="https://github.com/autoprojectmanagement/autoprojectmanagement">GitHub</a> •
-    <a href="https://discord.gg/autoprojectmanagement">Discord</a>
-  </p>
-</div>
+**Note**: This system is designed for developers who prefer CLI-based workflows and deep GitHub integration. No web frontend is required or provided.
