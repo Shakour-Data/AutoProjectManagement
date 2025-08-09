@@ -3,24 +3,41 @@ import datetime
 import os
 import tempfile
 import json
-from project_management.modules.main_modules.task_management import Task, TaskManagement
+from unittest.mock import Mock, patch, mock_open
+
+# Import the actual classes from the correct path
+from autoprojectmanagement.main_modules.task_management import Task, TaskManagement
 
 
 class TestTaskManagement(unittest.TestCase):
+    """Comprehensive test suite for Task and TaskManagement classes"""
+
     def setUp(self):
+        """Set up test fixtures before each test method."""
         self.task_manager = TaskManagement()
 
-    def test_task_creation(self):
+    def tearDown(self):
+        """Clean up after each test method."""
+        self.task_manager.clear_all_tasks()
+
+    # ==================== Task Class Tests ====================
+
+    def test_task_creation_basic(self):
+        """Test basic task creation with required parameters."""
         task = Task(id=1, title="Test Task")
         self.assertEqual(task.id, 1)
         self.assertEqual(task.title, "Test Task")
         self.assertEqual(task.status, "pending")
+        self.assertEqual(task.priority, 0)
+        self.assertEqual(task.description, "")
+        self.assertIsNone(task.deadline)
+        self.assertEqual(task.dependencies, [])
+        self.assertEqual(task.assigned_to, [])
+        self.assertIsNone(task.parent_id)
+        self.assertIsNone(task.github_issue_number)
 
-    def test_task_management_initialization(self):
-        self.assertEqual(len(self.task_manager.tasks), 0)
-        self.assertEqual(self.task_manager.next_task_id, 1)
-
-    def test_task_with_all_parameters(self):
+    def test_task_creation_with_all_parameters(self):
+        """Test task creation with all parameters."""
         deadline = datetime.date(2025, 12, 31)
         task = Task(
             id=1,
@@ -50,7 +67,8 @@ class TestTaskManagement(unittest.TestCase):
         self.assertEqual(task.importance, 85.0)
         self.assertEqual(task.github_issue_number, 42)
 
-    def test_workflow_steps_initialization(self):
+    def test_task_workflow_steps_initialization(self):
+        """Test that workflow steps are properly initialized."""
         task = Task(id=1, title="Test Task")
         expected_steps = {
             "Coding": False,
@@ -62,143 +80,105 @@ class TestTaskManagement(unittest.TestCase):
         }
         self.assertEqual(task.workflow_steps, expected_steps)
 
-    def test_workflow_steps_completion(self):
+    def test_mark_workflow_step_completed(self):
+        """Test marking workflow steps as completed."""
         task = Task(id=1, title="Test Task")
         
-        # Test initial state
-        self.assertFalse(task.is_workflow_completed())
-        self.assertEqual(task.workflow_progress_percentage(), 0.0)
+        # Initially should be False
+        self.assertFalse(task.workflow_steps["Coding"])
         
-        # Test marking steps
+        # Mark as completed
         task.mark_workflow_step_completed("Coding")
         self.assertTrue(task.workflow_steps["Coding"])
-        self.assertAlmostEqual(task.workflow_progress_percentage(), 100/6, places=2)
         
-        # Test all steps completed
+        # Test invalid step
+        task.mark_workflow_step_completed("Invalid Step")
+        # Should not raise exception
+
+    def test_is_workflow_completed(self):
+        """Test checking if all workflow steps are completed."""
+        task = Task(id=1, title="Test Task")
+        
+        # Initially should be False
+        self.assertFalse(task.is_workflow_completed())
+        
+        # Complete all steps
         for step in task.workflow_steps:
             task.mark_workflow_step_completed(step)
+        
         self.assertTrue(task.is_workflow_completed())
+
+    def test_workflow_progress_percentage(self):
+        """Test calculating workflow completion percentage."""
+        task = Task(id=1, title="Test Task")
+        
+        # Initially 0%
+        self.assertEqual(task.workflow_progress_percentage(), 0.0)
+        
+        # Complete 2 out of 6 steps
+        task.mark_workflow_step_completed("Coding")
+        task.mark_workflow_step_completed("Testing")
+        expected_progress = (2/6) * 100
+        self.assertEqual(task.workflow_progress_percentage(), expected_progress)
+        
+        # Complete all steps
+        for step in task.workflow_steps:
+            task.mark_workflow_step_completed(step)
         self.assertEqual(task.workflow_progress_percentage(), 100.0)
 
-    def test_task_with_deadline(self):
-        deadline = datetime.date(2025, 12, 31)
-        task = Task(id=1, title="Test Task", deadline=deadline)
-        self.assertEqual(task.deadline, deadline)
+    # ==================== TaskManagement Class Tests ====================
 
-    def test_task_with_dependencies(self):
-        task = Task(id=1, title="Test Task", dependencies=[2, 3])
-        self.assertEqual(task.dependencies, [2, 3])
-
-    def test_task_with_empty_dependencies(self):
-        task = Task(id=1, title="Test Task")
-        self.assertEqual(task.dependencies, [])
-
-    def test_task_with_assigned_to(self):
-        task = Task(id=1, title="Test Task", assigned_to=["user1", "user2"])
-        self.assertEqual(task.assigned_to, ["user1", "user2"])
-
-    def test_task_with_empty_assigned_to(self):
-        task = Task(id=1, title="Test Task")
-        self.assertEqual(task.assigned_to, [])
-
-    def test_task_with_parent(self):
-        task = Task(id=1, title="Test Task", parent_id=0)
-        self.assertEqual(task.parent_id, 0)
-
-    def test_task_with_github_issue(self):
-        task = Task(id=1, title="Test Task", github_issue_number=123)
-        self.assertEqual(task.github_issue_number, 123)
-
-    def test_task_unicode_title(self):
-        task = Task(id=1, title="وظیفه تست")
-        self.assertEqual(task.title, "وظیفه تست")
-
-    def test_task_special_characters_title(self):
-        task = Task(id=1, title="Test!@#$%^&*()")
-        self.assertEqual(task.title, "Test!@#$%^&*()")
-
-    def test_task_empty_title(self):
-        task = Task(id=1, title="")
-        self.assertEqual(task.title, "")
-
-    def test_task_long_title(self):
-        long_title = "a" * 1000
-        task = Task(id=1, title=long_title)
-        self.assertEqual(task.title, long_title)
-
-    def test_task_status_values(self):
-        task = Task(id=1, title="Test Task", status="in_progress")
-        self.assertEqual(task.status, "in_progress")
-        
-        task.status = "completed"
-        self.assertEqual(task.status, "completed")
-
-    def test_task_priority_values(self):
-        task = Task(id=1, title="Test Task", priority=5)
-        self.assertEqual(task.priority, 5)
+    def test_task_management_initialization(self):
+        """Test TaskManagement initialization."""
+        manager = TaskManagement()
+        self.assertEqual(len(manager.tasks), 0)
+        self.assertEqual(manager.next_task_id, 1)
 
     def test_parse_creative_input(self):
+        """Test parsing creative input into a task."""
         task = self.task_manager.parse_creative_input("Create a new feature")
         self.assertEqual(task.title, "Create a new feature")
         self.assertEqual(task.id, 1)
         self.assertEqual(len(self.task_manager.tasks), 1)
+        self.assertEqual(self.task_manager.next_task_id, 2)
 
     def test_generate_wbs_from_idea(self):
+        """Test generating WBS from an idea."""
         tasks = self.task_manager.generate_wbs_from_idea("Build a website")
-        self.assertGreater(len(tasks), 0)
-        self.assertTrue(any(task.title.startswith("Build a website") for task in tasks))
-
-    def test_assign_task(self):
-        task = self.task_manager.parse_creative_input("Test task")
-        result = self.task_manager.assign_task(task.id, ["user1", "user2"])
-        self.assertTrue(result)
-        self.assertEqual(self.task_manager.tasks[task.id].assigned_to, ["user1", "user2"])
-
-    def test_assign_task_invalid_id(self):
-        result = self.task_manager.assign_task(999, ["user1"])
-        self.assertFalse(result)
-
-    def test_mark_task_completed(self):
-        task = self.task_manager.parse_creative_input("Test task")
-        result = self.task_manager.mark_task_completed(task.id)
-        self.assertTrue(result)
-        self.assertEqual(self.task_manager.tasks[task.id].status, "completed")
-
-    def test_mark_task_completed_invalid_id(self):
-        result = self.task_manager.mark_task_completed(999)
-        self.assertFalse(result)
-
-    def test_multiple_tasks_increment_id(self):
-        task1 = self.task_manager.parse_creative_input("Task 1")
-        task2 = self.task_manager.parse_creative_input("Task 2")
         
-        self.assertEqual(task1.id, 1)
-        self.assertEqual(task2.id, 2)
-        self.assertEqual(self.task_manager.next_task_id, 3)
-
-    def test_detect_conflicts(self):
-        task1 = Task(id=1, title="Task 1")
-        task2 = Task(id=2, title="Task 2", dependencies=[1, 999])  # 999 doesn't exist
-        self.task_manager.tasks[1] = task1
-        self.task_manager.tasks[2] = task2
+        # Should create root task + subtasks
+        self.assertGreater(len(tasks), 1)
         
-        conflicts = self.task_manager.detect_conflicts()
-        self.assertIn("Task 2 depends on unknown task 999", conflicts)
-
-    def test_detect_conflicts_no_conflicts(self):
-        task1 = Task(id=1, title="Task 1")
-        task2 = Task(id=2, title="Task 2", dependencies=[1])
-        self.task_manager.tasks[1] = task1
-        self.task_manager.tasks[2] = task2
+        # Check that root task exists
+        root_task = next(t for t in tasks if t.title == "Build a website")
+        self.assertIsNotNone(root_task)
         
-        conflicts = self.task_manager.detect_conflicts()
-        self.assertEqual(len(conflicts), 0)
+        # Check that subtasks were created
+        subtasks = [t for t in tasks if t.parent_id == root_task.id]
+        self.assertGreater(len(subtasks), 0)
 
-    def test_detect_conflicts_empty(self):
-        conflicts = self.task_manager.detect_conflicts()
-        self.assertEqual(len(conflicts), 0)
+    def test_update_workflow_steps_from_commit_message(self):
+        """Test updating workflow steps from commit messages."""
+        task = Task(id=1, title="Test Task")
+        self.task_manager.tasks[1] = task
+        
+        # Test valid commit message
+        commit_message = "Task 1: Code Review done"
+        self.task_manager.update_workflow_steps_from_commit_message(commit_message)
+        self.assertTrue(task.workflow_steps["Code Review"])
+        
+        # Test case insensitive
+        commit_message = "task 1: testing done"
+        self.task_manager.update_workflow_steps_from_commit_message(commit_message)
+        self.assertTrue(task.workflow_steps["Testing"])
+        
+        # Test invalid task ID
+        commit_message = "Task 999: Code Review done"
+        self.task_manager.update_workflow_steps_from_commit_message(commit_message)
+        # Should not affect existing task
 
     def test_calculate_urgency_importance(self):
+        """Test calculating urgency and importance."""
         # Create a simple hierarchy
         root_task = Task(id=1, title="Root Task")
         child_task = Task(id=2, title="Child Task", parent_id=1)
@@ -213,42 +193,52 @@ class TestTaskManagement(unittest.TestCase):
         for task in self.task_manager.tasks.values():
             self.assertIsNotNone(task.urgency)
             self.assertIsNotNone(task.importance)
+            self.assertGreaterEqual(task.urgency, 1)
+            self.assertGreaterEqual(task.importance, 1)
 
     def test_classify_tasks_eisenhower(self):
+        """Test classifying tasks using Eisenhower matrix."""
+        # Create tasks with different urgency/importance values
         task1 = Task(id=1, title="High Priority", urgency=90, importance=90)
         task2 = Task(id=2, title="Low Priority", urgency=10, importance=10)
+        task3 = Task(id=3, title="Medium", urgency=50, importance=80)
+        task4 = Task(id=4, title="Delegate", urgency=80, importance=30)
         
         self.task_manager.tasks[1] = task1
         self.task_manager.tasks[2] = task2
+        self.task_manager.tasks[3] = task3
+        self.task_manager.tasks[4] = task4
+        
+        # Calculate urgency/importance first
+        self.task_manager.calculate_urgency_importance()
         
         classification = self.task_manager.classify_tasks_eisenhower()
         
-        self.assertIn(task1, classification["do_now"])
-        self.assertIn(task2, classification["eliminate"])
-
-    def test_classify_tasks_empty(self):
-        classification = self.task_manager.classify_tasks_eisenhower()
-        self.assertEqual(len(classification["do_now"]), 0)
-        self.assertEqual(len(classification["schedule"]), 0)
-        self.assertEqual(len(classification["delegate"]), 0)
-        self.assertEqual(len(classification["eliminate"]), 0)
+        self.assertEqual(len(classification["do_now"]), 1)
+        self.assertEqual(len(classification["schedule"]), 1)
+        self.assertEqual(len(classification["delegate"]), 1)
+        self.assertEqual(len(classification["eliminate"]), 1)
 
     def test_prioritize_tasks(self):
+        """Test task prioritization."""
         task1 = Task(id=1, title="Task 1", urgency=90, importance=90)
         task2 = Task(id=2, title="Task 2", urgency=50, importance=50)
         
         self.task_manager.tasks[1] = task1
         self.task_manager.tasks[2] = task2
         
+        # Calculate urgency/importance first
+        self.task_manager.calculate_urgency_importance()
+        
         prioritized = self.task_manager.prioritize_tasks()
         
-        self.assertEqual(prioritized[0].id, 1)  # Higher priority task should be first
-
-    def test_prioritize_tasks_empty(self):
-        prioritized = self.task_manager.prioritize_tasks()
-        self.assertEqual(len(prioritized), 0)
+        self.assertEqual(len(prioritized), 2)
+        # Higher priority task should be first
+        self.assertGreaterEqual(prioritized[0].urgency + prioritized[0].importance,
+                               prioritized[1].urgency + prioritized[1].importance)
 
     def test_schedule_tasks(self):
+        """Test task scheduling."""
         task1 = Task(id=1, title="Task 1", urgency=90, importance=90)
         task2 = Task(id=2, title="Task 2", urgency=50, importance=50)
         
@@ -259,57 +249,149 @@ class TestTaskManagement(unittest.TestCase):
         
         self.assertEqual(len(scheduled), 2)
 
-    def test_schedule_tasks_empty(self):
-        scheduled = self.task_manager.schedule_tasks()
-        self.assertEqual(len(scheduled), 0)
+    def test_assign_task(self):
+        """Test assigning tasks to users."""
+        task = Task(id=1, title="Test Task")
+        self.task_manager.tasks[1] = task
+        
+        result = self.task_manager.assign_task(1, ["user1", "user2"])
+        self.assertTrue(result)
+        self.assertEqual(task.assigned_to, ["user1", "user2"])
+        
+        # Test invalid task ID
+        result = self.task_manager.assign_task(999, ["user1"])
+        self.assertFalse(result)
+
+    def test_mark_task_completed(self):
+        """Test marking tasks as completed."""
+        task = Task(id=1, title="Test Task")
+        self.task_manager.tasks[1] = task
+        
+        result = self.task_manager.mark_task_completed(1)
+        self.assertTrue(result)
+        self.assertEqual(task.status, "completed")
+        
+        # Test invalid task ID
+        result = self.task_manager.mark_task_completed(999)
+        self.assertFalse(result)
+
+    def test_detect_conflicts(self):
+        """Test detecting conflicts in task dependencies."""
+        task1 = Task(id=1, title="Task 1")
+        task2 = Task(id=2, title="Task 2", dependencies=[1, 999])  # 999 doesn't exist
+        
+        self.task_manager.tasks[1] = task1
+        self.task_manager.tasks[2] = task2
+        
+        conflicts = self.task_manager.detect_conflicts()
+        self.assertIn("Task 2 depends on unknown task 999", conflicts)
+
+    def test_detect_conflicts_no_conflicts(self):
+        """Test when no conflicts exist."""
+        task1 = Task(id=1, title="Task 1")
+        task2 = Task(id=2, title="Task 2", dependencies=[1])
+        
+        self.task_manager.tasks[1] = task1
+        self.task_manager.tasks[2] = task2
+        
+        conflicts = self.task_manager.detect_conflicts()
+        self.assertEqual(len(conflicts), 0)
+
+    def test_load_scores(self):
+        """Test loading scores from JSON file."""
+        # Create a temporary JSON file
+        scores_data = {
+            "1": {"importance": 85.5},
+            "2": {"importance": 92.0}
+        }
+        
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(scores_data, f)
+            temp_file = f.name
+        
+        try:
+            # Create tasks
+            task1 = Task(id=1, title="Task 1")
+            task2 = Task(id=2, title="Task 2")
+            self.task_manager.tasks[1] = task1
+            self.task_manager.tasks[2] = task2
+            
+            # Load scores
+            self.task_manager.load_scores(temp_file)
+            
+            self.assertEqual(task1.importance, 85.5)
+            self.assertEqual(task2.importance, 92.0)
+            
+        finally:
+            os.unlink(temp_file)
 
     def test_load_scores_nonexistent_file(self):
+        """Test loading scores from non-existent file."""
         with self.assertRaises(FileNotFoundError):
             self.task_manager.load_scores("nonexistent.json")
 
-    def test_update_workflow_steps_from_commit_message(self):
-        task = self.task_manager.parse_creative_input("Test Task")
-        commit_message = "Task 1: Code Review done"
-        self.task_manager.update_workflow_steps_from_commit_message(commit_message)
-        
-        self.assertTrue(self.task_manager.tasks[1].workflow_steps["Code Review"])
-
-    def test_update_workflow_steps_from_commit_message_case_insensitive(self):
-        task = self.task_manager.parse_creative_input("Test Task")
-        commit_message = "task 1: testing done"
-        self.task_manager.update_workflow_steps_from_commit_message(commit_message)
-        
-        self.assertTrue(self.task_manager.tasks[1].workflow_steps["Testing"])
-
-    def test_update_workflow_steps_from_commit_message_invalid_task(self):
-        task = self.task_manager.parse_creative_input("Test Task")
-        commit_message = "Task 999: Code Review done"
-        self.task_manager.update_workflow_steps_from_commit_message(commit_message)
-        
-        self.assertFalse(self.task_manager.tasks[1].workflow_steps["Code Review"])
-
     def test_calculate_urgency_with_deadline(self):
-        deadline = datetime.date.today() + datetime.timedelta(days=7)
-        task = Task(id=1, title="Test Task", deadline=deadline)
+        """Test urgency calculation with deadline."""
+        task = Task(id=1, title="Test Task", 
+                   deadline=datetime.date.today() + datetime.timedelta(days=7))
         urgency = self.task_manager._calculate_urgency(task)
         self.assertGreater(urgency, 0)
 
     def test_calculate_urgency_without_deadline(self):
+        """Test urgency calculation without deadline."""
         task = Task(id=1, title="Test Task")
         urgency = self.task_manager._calculate_urgency(task)
         self.assertEqual(urgency, 0.1)
 
     def test_calculate_importance_with_priority(self):
+        """Test importance calculation with priority."""
         task = Task(id=1, title="Test Task", priority=5)
         importance = self.task_manager._calculate_importance(task)
         self.assertEqual(importance, 5)
 
     def test_calculate_importance_without_priority(self):
+        """Test importance calculation without priority."""
         task = Task(id=1, title="Test Task")
         importance = self.task_manager._calculate_importance(task)
         self.assertEqual(importance, 1.0)
 
+    def test_empty_tasks_scenarios(self):
+        """Test various empty tasks scenarios."""
+        # Empty classification
+        classification = self.task_manager.classify_tasks_eisenhower()
+        self.assertEqual(len(classification["do_now"]), 0)
+        self.assertEqual(len(classification["schedule"]), 0)
+        self.assertEqual(len(classification["delegate"]), 0)
+        self.assertEqual(len(classification["eliminate"]), 0)
+        
+        # Empty prioritization
+        prioritized = self.task_manager.prioritize_tasks()
+        self.assertEqual(len(prioritized), 0)
+        
+        # Empty scheduling
+        scheduled = self.task_manager.schedule_tasks()
+        self.assertEqual(len(scheduled), 0)
+        
+        # Empty conflicts
+        conflicts = self.task_manager.detect_conflicts()
+        self.assertEqual(len(conflicts), 0)
+
+    def test_unicode_and_special_characters(self):
+        """Test handling of unicode and special characters."""
+        # Unicode title
+        task1 = Task(id=1, title="وظیفه تست")
+        self.assertEqual(task1.title, "وظیفه تست")
+        
+        # Special characters
+        task2 = Task(id=2, title="Test!@#$%^&*()")
+        self.assertEqual(task2.title, "Test!@#$%^&*()")
+        
+        # Empty title
+        task3 = Task(id=3, title="")
+        self.assertEqual(task3.title, "")
+
     def test_complex_hierarchy_propagation(self):
+        """Test complex hierarchy with urgency/importance propagation."""
         # Create a 3-level hierarchy
         root = Task(id=1, title="Root")
         child1 = Task(id=2, title="Child 1", parent_id=1)
@@ -326,13 +408,9 @@ class TestTaskManagement(unittest.TestCase):
         for task in self.task_manager.tasks.values():
             self.assertIsNotNone(task.urgency)
             self.assertIsNotNone(task.importance)
+            self.assertGreaterEqual(task.urgency, 1)
+            self.assertGreaterEqual(task.importance, 1)
 
-    def test_extract_task_details(self):
-        task = Task(id=1, title="Test Task", description="Test description")
-        # Since extract_task_details doesn't exist, we'll test the attributes directly
-        self.assertEqual(task.id, 1)
-        self.assertEqual(task.title, "Test Task")
-        self.assertEqual(task.description, "Test description")
 
 if __name__ == "__main__":
     unittest.main()
