@@ -1,25 +1,28 @@
 # AutoProjectManagement Test Suite
 
 ## Overview
-This directory contains comprehensive tests for the AutoProjectManagement package, covering all aspects from unit tests to system integration tests.
+This directory contains comprehensive tests for the AutoProjectManagement package, covering all aspects from unit tests to system integration tests, including the new automated test generation workflow.
 
 ## Test Structure
 ```
 tests/
-├── unit_tests/           # Unit tests for individual modules
-├── integration_tests/    # Integration tests for module interactions
-├── system_tests/         # End-to-end system tests
-├── acceptance_tests/     # User acceptance tests
-├── regression_tests/     # Regression tests
-├── performance_tests/    # Performance and load tests
-├── security_tests/       # Security vulnerability tests
-├── documentation_tests/  # Documentation accuracy tests
-├── shell_integration_tests/ # Shell and terminal tests
-├── test_docs/           # Test documentation and plans
-├── conftest.py          # Pytest configuration and fixtures
-├── pytest.ini          # Pytest configuration
-├── run_tests.py        # Test runner script
-└── README.md           # This file
+├── code_tests/           # Automated and manual code tests
+│   ├── 01_UnitTests/    # Unit tests for individual modules (auto-generated supported)
+│   ├── 02_IntegrationTests/    # Integration tests for module interactions
+│   ├── 03_SystemTests/         # End-to-end system tests
+│   ├── 04_PerformanceTests/    # Performance and load tests
+│   ├── 05_SecurityTests/       # Security vulnerability tests
+│   ├── 06_RegressionTests/     # Regression tests
+│   ├── 07_AcceptanceTests/     # User acceptance tests
+│   ├── 09_ShellIntegrationTerminalTests/ # Shell and terminal tests
+│   └── 10_DocumentationUsabilityTests/  # Documentation accuracy tests
+├── api/                  # API endpoint tests
+├── automation/           # Automated test generator and related scripts
+├── test_docs/            # Test documentation and plans
+├── conftest.py           # Pytest configuration and fixtures
+├── pytest.ini            # Pytest configuration
+├── run_tests.py          # Test runner script
+└── README.md             # This file
 ```
 
 ## Running Tests
@@ -30,9 +33,9 @@ tests/
 python tests/run_tests.py
 
 # Run specific test types
-pytest tests/unit_tests/
-pytest tests/integration_tests/
-pytest tests/system_tests/
+pytest tests/code_tests/01_UnitTests/
+pytest tests/code_tests/02_IntegrationTests/
+pytest tests/code_tests/03_SystemTests/
 
 # Run with coverage
 pytest --cov=autoprojectmanagement tests/
@@ -44,40 +47,54 @@ pytest -v tests/
 ### Test Categories
 
 #### 1. Unit Tests
-- **Location**: `tests/unit_tests/`
-- **Purpose**: Test individual functions and classes
+- **Location**: `tests/code_tests/01_UnitTests/`
+- **Purpose**: Test individual functions and classes, including auto-generated tests
 - **Coverage**: All main modules and services
-- **Command**: `pytest tests/unit_tests/`
+- **Command**: `pytest tests/code_tests/01_UnitTests/`
 
 #### 2. Integration Tests
-- **Location**: `tests/integration_tests/`
+- **Location**: `tests/code_tests/02_IntegrationTests/`
 - **Purpose**: Test module interactions
 - **Coverage**: API integrations, data flow, module communication
-- **Command**: `pytest tests/integration_tests/`
+- **Command**: `pytest tests/code_tests/02_IntegrationTests/`
 
 #### 3. System Tests
-- **Location**: `tests/system_tests/`
+- **Location**: `tests/code_tests/03_SystemTests/`
 - **Purpose**: End-to-end testing
 - **Coverage**: Complete workflows, user scenarios
-- **Command**: `pytest tests/system_tests/`
+- **Command**: `pytest tests/code_tests/03_SystemTests/`
 
-#### 4. Acceptance Tests
-- **Location**: `tests/acceptance_tests/`
-- **Purpose**: Business requirement validation
-- **Coverage**: User stories, business rules
-- **Command**: `pytest tests/acceptance_tests/`
-
-#### 5. Performance Tests
-- **Location**: `tests/performance_tests/`
+#### 4. Performance Tests
+- **Location**: `tests/code_tests/04_PerformanceTests/`
 - **Purpose**: Performance and load testing
 - **Coverage**: Response times, resource usage
-- **Command**: `pytest tests/performance_tests/`
+- **Command**: `pytest tests/code_tests/04_PerformanceTests/`
 
-#### 6. Security Tests
-- **Location**: `tests/security_tests/`
+#### 5. Security Tests
+- **Location**: `tests/code_tests/05_SecurityTests/`
 - **Purpose**: Security vulnerability testing
 - **Coverage**: Authentication, authorization, data protection
-- **Command**: `pytest tests/security_tests/`
+- **Command**: `pytest tests/code_tests/05_SecurityTests/`
+
+#### 6. Regression Tests
+- **Location**: `tests/code_tests/06_RegressionTests/`
+- **Purpose**: Regression testing to prevent bugs
+- **Command**: `pytest tests/code_tests/06_RegressionTests/`
+
+#### 7. Acceptance Tests
+- **Location**: `tests/code_tests/07_AcceptanceTests/`
+- **Purpose**: User acceptance and business validation
+- **Command**: `pytest tests/code_tests/07_AcceptanceTests/`
+
+#### 8. Shell Integration Tests
+- **Location**: `tests/code_tests/09_ShellIntegrationTerminalTests/`
+- **Purpose**: Shell and terminal integration tests
+- **Command**: `pytest tests/code_tests/09_ShellIntegrationTerminalTests/`
+
+#### 9. Documentation Usability Tests
+- **Location**: `tests/code_tests/10_DocumentationUsabilityTests/`
+- **Purpose**: Documentation accuracy and usability tests
+- **Command**: `pytest tests/code_tests/10_DocumentationUsabilityTests/`
 
 ## Test Data
 - **Location**: `tests/test_data/`
@@ -99,18 +116,18 @@ pytest -v tests/
 ### 2. Running Tests During Development
 ```bash
 # Run specific test file
-pytest tests/unit_tests/test_progress_calculator.py
+pytest tests/code_tests/01_UnitTests/test_progress_calculator.py
 
 # Run specific test function
-pytest tests/unit_tests/test_progress_calculator.py::TestProgressCalculator::test_calculate_from_json
+pytest tests/code_tests/01_UnitTests/test_progress_calculator.py::TestProgressCalculator::test_calculate_from_json
 
 # Run with debugging
-pytest --pdb tests/unit_tests/test_progress_calculator.py
+pytest --pdb tests/code_tests/01_UnitTests/test_progress_calculator.py
 ```
 
 ### 3. Continuous Integration
 The test suite is configured for CI/CD with:
-- GitHub Actions workflow
+- GitHub Actions workflow including automated test generation
 - Coverage reporting
 - Multiple Python versions
 - Automated test execution
