@@ -35,10 +35,10 @@ graph TB
     CLI[CLI Commands] --> Engine[Automation Engine]
     Config[Config Files] --> Parser[JSON Parser]
     Engine --> Scheduler[Task Scheduler]
-    Scheduler --> Tracker
+    Scheduler --> Tracker[Tracker]
     Tracker --> JSONDB[(JSON Database)]
-    JSONDB --> Reports
-    Actions --> Webhooks
+    JSONDB --> Reports[Reports]
+    Actions[GitHub Actions] --> Webhooks[Webhooks]
     Webhooks --> Engine
     Engine --> WikiSync[Wiki Sync Service]
     WikiSync --> WikiGit[Wiki Git Operations]
