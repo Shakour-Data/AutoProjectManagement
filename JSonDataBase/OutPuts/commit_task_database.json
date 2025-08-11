@@ -30716,5 +30716,1110 @@
         "parent_commits": [
             "da3a615d32dbf4245fc4237752e26cce65d8b73c"
         ]
+    },
+    "b86c34cd5177b6b1d9c4c2ecd240b3c9c37749e8": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/auto_runner.py",
+        "commit_message": "🐛 fix: Modified files updated\\n\\nChanges included (as of 2025-08-11 08:37:50):\\n- autoprojectmanagement/auto_runner.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/auto_runner.py b/autoprojectmanagement/auto_runner.py\\n    index 6636b3a..fe101f9 100644\\n    --- a/autoprojectmanagement/auto_runner.py\\n    +++ b/autoprojectmanagement/auto_runner.py\\n    @@ -15,7 +15,7 @@ from watchdog.events import FileSystemEventHandler\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 05:07:51",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:37:50 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "7ddbcf786ab16d35048bab1c66d0317c93777b5b"
+        ]
+    },
+    "6c61691154fdeb3d28b71ece6a69f43c00a4ddad": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/dashboards_reports.py",
+        "commit_message": "🐛 fix: Modified files updated\\n\\nChanges included (as of 2025-08-11 08:37:57):\\n- autoprojectmanagement/main_modules/dashboards_reports.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/dashboards_reports.py b/autoprojectmanagement/main_modules/dashboards_reports.py\\n    index 8d09c48..e1c96df 100644\\n    --- a/autoprojectmanagement/main_modules/dashboards_reports.py\\n    +++ b/autoprojectmanagement/main_modules/dashboards_reports.py\\n    @@ -1,6 +1,6 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 05:07:59",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:37:57 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "b86c34cd5177b6b1d9c4c2ecd240b3c9c37749e8"
+        ]
+    },
+    "8cd4ceff08e7090892b33269417d98e89c451067": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/importance_urgency_calculator_refactored.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:38:04):\\n- autoprojectmanagement/main_modules/importance_urgency_calculator_refactored.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/importance_urgency_calculator_refactored.py b/autoprojectmanagement/main_modules/importance_urgency_calculator_refactored.py\\n    deleted file mode 100644\\n    index f76a531..0000000\\n    --- a/autoprojectmanagement/main_modules/importance_urgency_calculator_refactored.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 05:08:06",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:38:05 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "6c61691154fdeb3d28b71ece6a69f43c00a4ddad"
+        ]
+    },
+    "4a962bcd01b37ea26ddf0e119157e15360eacc9a": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/progress_calculator_refactored.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:38:12):\\n- autoprojectmanagement/main_modules/progress_calculator_refactored.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_calculator_refactored.py b/autoprojectmanagement/main_modules/progress_calculator_refactored.py\\n    deleted file mode 100644\\n    index 2ab74e2..0000000\\n    --- a/autoprojectmanagement/main_modules/progress_calculator_refactored.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 05:08:13",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:38:12 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8cd4ceff08e7090892b33269417d98e89c451067"
+        ]
+    },
+    "de17d1fea6e00c72ea4a73cf6b25a1cb815b30d6": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/progress_data_generator_refactored.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:38:19):\\n- autoprojectmanagement/main_modules/progress_data_generator_refactored.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_data_generator_refactored.py b/autoprojectmanagement/main_modules/progress_data_generator_refactored.py\\n    deleted file mode 100644\\n    index c5d374f..0000000\\n    --- a/autoprojectmanagement/main_modules/progress_data_generator_refactored.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 05:08:23",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:38:21 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "4a962bcd01b37ea26ddf0e119157e15360eacc9a"
+        ]
+    },
+    "0df4d45d5e58580379c0a76414924855dee496f6": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:38:28):\\n- tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE.py b/tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE.py\\n    deleted file mode 100644\\n    index 8ff3383..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:08:30",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:38:29 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "de17d1fea6e00c72ea4a73cf6b25a1cb815b30d6"
+        ]
+    },
+    "f270d22621e4349ce593aebd0d61455e6022f414": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE_FIXED.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:38:36):\\n- tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE_FIXED.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE_FIXED.py b/tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE_FIXED.py\\n    deleted file mode 100644\\n    index f06de06..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/TESTING_TEMPLATE_FIXED.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:08:38",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:38:36 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "0df4d45d5e58580379c0a76414924855dee496f6"
+        ]
+    },
+    "1293c4f69bda35197811c2e059d865ce94bcc459": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_check_progress_dashboard_update.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:38:43):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_check_progress_dashboard_update.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_check_progress_dashboard_update.py b/tests/code_tests/01_UnitTests/test_main_modules/test_check_progress_dashboard_update.py\\n    deleted file mode 100644\\n    index dd22554..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_check_progress_dashboard_update.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:08:47",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:38:44 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f270d22621e4349ce593aebd0d61455e6022f414"
+        ]
+    },
+    "f176340f2158b8470c738d90030089a744f992cb": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_commit_progress_manager.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:38:51):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_commit_progress_manager.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:08:54",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:38:52 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "1293c4f69bda35197811c2e059d865ce94bcc459"
+        ]
+    },
+    "9e4d33c7b3f9940c6154fcdee766994b4335d823": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_communication_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:39:00):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_communication_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_communication_management.py b/tests/code_tests/01_UnitTests/test_main_modules/test_communication_management.py\\n    deleted file mode 100644\\n    index 7bffb00..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_communication_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:09:03",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:39:01 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f176340f2158b8470c738d90030089a744f992cb"
+        ]
+    },
+    "987e8f93c5f13e612eb9ba5098eb0e7384f0deb9": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_extended.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:39:08):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_extended.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:09:11",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:39:09 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9e4d33c7b3f9940c6154fcdee766994b4335d823"
+        ]
+    },
+    "868f88972210f72f01bca139864cf64e55a9c032": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_main.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:39:16):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_main.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_main.py b/tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_main.py\\n    deleted file mode 100644\\n    index 0086759..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_main.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:09:19",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:39:17 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "987e8f93c5f13e612eb9ba5098eb0e7384f0deb9"
+        ]
+    },
+    "72bd563e972a32cb6f4655288a7635c3d0b5ddf7": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_script.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:39:24):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_script.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_script.py b/tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_script.py\\n    deleted file mode 100644\\n    index 47294ac..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_communication_management_script.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:09:26",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:39:24 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "868f88972210f72f01bca139864cf64e55a9c032"
+        ]
+    },
+    "d3e63d0624e86f802bca70c5894760b22537d8fb": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_communication_risk_doc_integration.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:39:31):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_communication_risk_doc_integration.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_communication_risk_doc_integration.py b/tests/code_tests/01_UnitTests/test_main_modules/test_communication_risk_doc_integration.py\\n    deleted file mode 100644\\n    index dedb759..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_communication_risk_doc_integration.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:09:34",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:39:32 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "72bd563e972a32cb6f4655288a7635c3d0b5ddf7"
+        ]
+    },
+    "4455a098d2a13179d5ca2776e57fe944b6c49e3e": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_dashboards_reports.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:39:39):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_dashboards_reports.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:09:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:39:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "d3e63d0624e86f802bca70c5894760b22537d8fb"
+        ]
+    },
+    "9ef08df029c0a363567e1e1628fca91f8197818b": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_db_data_collector.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:39:46):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_db_data_collector.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_db_data_collector.py b/tests/code_tests/01_UnitTests/test_main_modules/test_db_data_collector.py\\n    deleted file mode 100644\\n    index 47413f8..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_db_data_collector.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:09:48",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:39:47 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "4455a098d2a13179d5ca2776e57fe944b6c49e3e"
+        ]
+    },
+    "b52fdd34dc6f2c29f44d6c6c61139837172e59fd": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:39:54):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:09:56",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:39:54 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9ef08df029c0a363567e1e1628fca91f8197818b"
+        ]
+    },
+    "ddcbe6b2b7dd8d000a9b9813a8d680d952cbd781": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:40:01):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main.py b/tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main.py\\n    deleted file mode 100644\\n    index 532c849..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:10:03",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:40:01 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "b52fdd34dc6f2c29f44d6c6c61139837172e59fd"
+        ]
+    },
+    "7861b65bb4bcf5ef595ee1c5c96145c2346bf57b": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main_fixed.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:40:08):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main_fixed.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main_fixed.py b/tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main_fixed.py\\n    deleted file mode 100644\\n    index 43ca834..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_main_fixed.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:10:12",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:40:09 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ddcbe6b2b7dd8d000a9b9813a8d680d952cbd781"
+        ]
+    },
+    "3cfec9a5ee98c7d41254a67bb16d55f56a673e68": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_script.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:40:17):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_script.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_script.py b/tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_script.py\\n    deleted file mode 100644\\n    index 2ed7e8a..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_do_important_tasks_script.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:10:18",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:40:17 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "7861b65bb4bcf5ef595ee1c5c96145c2346bf57b"
+        ]
+    },
+    "7c09a277571b9033dfdc8ccdc56afd74eb853f3c": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_do_urgent_tasks.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:40:24):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_do_urgent_tasks.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_do_urgent_tasks.py b/tests/code_tests/01_UnitTests/test_main_modules/test_do_urgent_tasks.py\\n    deleted file mode 100644\\n    index 168bb72..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_do_urgent_tasks.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:10:26",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:40:25 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "3cfec9a5ee98c7d41254a67bb16d55f56a673e68"
+        ]
+    },
+    "04f24ee94507716ecbef5d5361d11d06bacf8a5f": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:40:32):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management.py b/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management.py\\n    deleted file mode 100644\\n    index a0716a0..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:10:35",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:40:32 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "7c09a277571b9033dfdc8ccdc56afd74eb853f3c"
+        ]
+    },
+    "7f80cdb276b8e02977bc6dca892309a47e9872d2": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_extended.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:40:40):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_extended.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_extended.py b/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_extended.py\\n    deleted file mode 100644\\n    index 52b964d..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_extended.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:10:42",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:40:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "04f24ee94507716ecbef5d5361d11d06bacf8a5f"
+        ]
+    },
+    "bae15d89ed3f3c25d4a49953e28e519ed3fdd30b": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_main.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:40:47):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_main.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_main.py b/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_main.py\\n    deleted file mode 100644\\n    index 6ebd9a0..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_main.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:10:49",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:40:47 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "7f80cdb276b8e02977bc6dca892309a47e9872d2"
+        ]
+    },
+    "77b8425ef8399ad86c7965fc551302dc2ff539ca": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_script.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:40:55):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_script.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_script.py b/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_script.py\\n    deleted file mode 100644\\n    index 5b07213..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_estimation_management_script.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:10:56",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:40:55 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "bae15d89ed3f3c25d4a49953e28e519ed3fdd30b"
+        ]
+    },
+    "a17f787842af87b8bd15674cbd5a942a18d0192c": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_feature_weights.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:41:02):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_feature_weights.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_feature_weights.py b/tests/code_tests/01_UnitTests/test_main_modules/test_feature_weights.py\\n    deleted file mode 100644\\n    index b652849..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_feature_weights.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:11:05",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:41:02 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "77b8425ef8399ad86c7965fc551302dc2ff539ca"
+        ]
+    },
+    "f59ddf08bb685c620be919cdf32534426e270604": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_gantt_chart_data.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:41:09):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_gantt_chart_data.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:11:12",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:41:10 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "a17f787842af87b8bd15674cbd5a942a18d0192c"
+        ]
+    },
+    "9aef5595f60c4109342b6f644a90701e4e9c2d5d": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_git_progress_updater.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:41:17):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_git_progress_updater.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_git_progress_updater.py b/tests/code_tests/01_UnitTests/test_main_modules/test_git_progress_updater.py\\n    deleted file mode 100644\\n    index d7f2661..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_git_progress_updater.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:11:20",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:41:18 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f59ddf08bb685c620be919cdf32534426e270604"
+        ]
+    },
+    "5c9984ba7e188f6baebd22a9235e5bdf958920c9": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_github_actions_automation.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:41:26):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_github_actions_automation.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_github_actions_automation.py b/tests/code_tests/01_UnitTests/test_main_modules/test_github_actions_automation.py\\n    deleted file mode 100644\\n    index 3cf3bca..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_github_actions_automation.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:11:28",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:41:26 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9aef5595f60c4109342b6f644a90701e4e9c2d5d"
+        ]
+    },
+    "ebbb6886e3cf8f6ce17fff22b670ca5300799dbb": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_importance_urgency_calculator_refactored.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:41:33):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_importance_urgency_calculator_refactored.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_importance_urgency_calculator_refactored.py b/tests/code_tests/01_UnitTests/test_main_modules/test_importance_urgency_calculator_refactored.py\\n    deleted file mode 100644\\n    index 6590398..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_importance_urgency_calculator_refactored.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:11:35",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:41:34 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "5c9984ba7e188f6baebd22a9235e5bdf958920c9"
+        ]
+    },
+    "8d1e674ae3a34335d70f3cb6057b53cd596dc5b9": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_input_handler.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:41:40):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_input_handler.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_input_handler.py b/tests/code_tests/01_UnitTests/test_main_modules/test_input_handler.py\\n    deleted file mode 100644\\n    index adfc4c8..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_input_handler.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:11:42",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:41:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ebbb6886e3cf8f6ce17fff22b670ca5300799dbb"
+        ]
+    },
+    "60c9cf8e7e2b8d7bde048658963e72c409967f74": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:41:47):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator.py b/tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator.py\\n    deleted file mode 100644\\n    index 6ca4ed5..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:11:49",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:41:47 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8d1e674ae3a34335d70f3cb6057b53cd596dc5b9"
+        ]
+    },
+    "0a20c232e2240873a7aec1caaeea95f69caf36c9": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator_refactored.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:41:54):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator_refactored.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator_refactored.py b/tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator_refactored.py\\n    deleted file mode 100644\\n    index 061afb4..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_calculator_refactored.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:11:55",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:41:54 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "60c9cf8e7e2b8d7bde048658963e72c409967f74"
+        ]
+    },
+    "8cfd82b0ebbe3efca44e4bc09e3bfcc762082c1f": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_progress_data_generator_refactored.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:42:01):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_progress_data_generator_refactored.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_data_generator_refactored.py b/tests/code_tests/01_UnitTests/test_main_modules/test_progress_data_generator_refactored.py\\n    deleted file mode 100644\\n    index 4662660..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_data_generator_refactored.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:12:03",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:42:01 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "0a20c232e2240873a7aec1caaeea95f69caf36c9"
+        ]
+    },
+    "c137139e8554e0bea2d0153effab0f159afbf52f": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_progress_report.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:42:08):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_progress_report.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_report.py b/tests/code_tests/01_UnitTests/test_main_modules/test_progress_report.py\\n    deleted file mode 100644\\n    index ae61890..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_report.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:12:10",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:42:08 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8cfd82b0ebbe3efca44e4bc09e3bfcc762082c1f"
+        ]
+    },
+    "20c1886fee5f9645e2665ad0377bcf1a9ded33c3": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_progress_report_corrected.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:42:15):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_progress_report_corrected.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_report_corrected.py b/tests/code_tests/01_UnitTests/test_main_modules/test_progress_report_corrected.py\\n    deleted file mode 100644\\n    index 2fcd5a9..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_progress_report_corrected.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:12:17",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:42:15 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "c137139e8554e0bea2d0153effab0f159afbf52f"
+        ]
+    },
+    "01b7f3369876411e90dba3d06f1d4dae2aa118ae": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_project_management_system.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:42:22):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_project_management_system.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:12:23",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:42:22 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "20c1886fee5f9645e2665ad0377bcf1a9ded33c3"
+        ]
+    },
+    "9acaee506a0eb80afb4498015c3124c7bf49be72": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_quality_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:42:28):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_quality_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_quality_management.py b/tests/code_tests/01_UnitTests/test_main_modules/test_quality_management.py\\n    deleted file mode 100644\\n    index fe17f6f..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_quality_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:12:30",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:42:29 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "01b7f3369876411e90dba3d06f1d4dae2aa118ae"
+        ]
+    },
+    "9fee04f19abe3b69c2640ca8309c5050d2da69df": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_quality_management_updated.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:42:35):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_quality_management_updated.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_quality_management_updated.py b/tests/code_tests/01_UnitTests/test_main_modules/test_quality_management_updated.py\\n    deleted file mode 100644\\n    index 3ca6827..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_quality_management_updated.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:12:37",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:42:35 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9acaee506a0eb80afb4498015c3124c7bf49be72"
+        ]
+    },
+    "91a95112a14bc0102510492990c2a1ce8eb4b3ce": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_reporting.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:42:42):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_reporting.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_reporting.py b/tests/code_tests/01_UnitTests/test_main_modules/test_reporting.py\\n    deleted file mode 100644\\n    index ad60c6d..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_reporting.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:12:43",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:42:42 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9fee04f19abe3b69c2640ca8309c5050d2da69df"
+        ]
+    },
+    "979b3cc084dc2f153dbd507ff921188755b90945": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_reporting_updated.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:42:48):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_reporting_updated.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_reporting_updated.py b/tests/code_tests/01_UnitTests/test_main_modules/test_reporting_updated.py\\n    deleted file mode 100644\\n    index e64a4fb..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_reporting_updated.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:12:50",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:42:49 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "91a95112a14bc0102510492990c2a1ce8eb4b3ce"
+        ]
+    },
+    "10f0cb351bd694de0302e09f54d46d80784fb598": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:42:56):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager.py b/tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager.py\\n    deleted file mode 100644\\n    index 4eea13f..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:12:57",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:42:56 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "979b3cc084dc2f153dbd507ff921188755b90945"
+        ]
+    },
+    "ce873245f6bb1f28111186b70debb6f09a23fb30": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager_updated.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:43:02):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager_updated.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager_updated.py b/tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager_updated.py\\n    deleted file mode 100644\\n    index 4eea13f..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_resource_allocation_manager_updated.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:13:04",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:43:03 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "10f0cb351bd694de0302e09f54d46d80784fb598"
+        ]
+    },
+    "5048aeafaab3349f1783a956689764d84d9f00da": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_resource_leveling.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:43:09):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_resource_leveling.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:13:11",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:43:10 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ce873245f6bb1f28111186b70debb6f09a23fb30"
+        ]
+    },
+    "3b3ebc16808b336533357e2d9996871bfca0b610": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_resource_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:43:16):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_resource_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_resource_management.py b/tests/code_tests/01_UnitTests/test_main_modules/test_resource_management.py\\n    deleted file mode 100644\\n    index 0cf65ae..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_resource_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:13:18",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:43:16 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "5048aeafaab3349f1783a956689764d84d9f00da"
+        ]
+    },
+    "1e94c4c6df0f92857b4a5e62ad12de986301bc8f": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_risk_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:43:23):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_risk_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_risk_management.py b/tests/code_tests/01_UnitTests/test_main_modules/test_risk_management.py\\n    deleted file mode 100644\\n    index f22846f..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_risk_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:13:25",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:43:23 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "3b3ebc16808b336533357e2d9996871bfca0b610"
+        ]
+    },
+    "5ee08f23e3438a55754d9c30e36aa9e8b58f500e": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_scheduler.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:43:30):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_scheduler.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_scheduler.py b/tests/code_tests/01_UnitTests/test_main_modules/test_scheduler.py\\n    deleted file mode 100644\\n    index 16155a7..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_scheduler.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:13:31",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:43:30 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "1e94c4c6df0f92857b4a5e62ad12de986301bc8f"
+        ]
+    },
+    "bd5e321b3596744524044dcff503498d80373bd6": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_scope_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:43:36):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_scope_management.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:13:38",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:43:37 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "5ee08f23e3438a55754d9c30e36aa9e8b58f500e"
+        ]
+    },
+    "e08ed8071308826b22df98d168f27f8d78cf05f9": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_setup_automation.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:43:43):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_setup_automation.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:13:45",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:43:43 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "bd5e321b3596744524044dcff503498d80373bd6"
+        ]
+    },
+    "8d7de827c99dab0762b601ddf2c4ce6da07f87ad": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_setup_initialization.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:43:50):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_setup_initialization.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_setup_initialization.py b/tests/code_tests/01_UnitTests/test_main_modules/test_setup_initialization.py\\n    deleted file mode 100644\\n    index f4bf201..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_setup_initialization.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:13:52",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:43:50 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "e08ed8071308826b22df98d168f27f8d78cf05f9"
+        ]
+    },
+    "55642c36370948c4c67783e8dc832477ee93f2d0": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_task_executor.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:43:57):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_task_executor.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_task_executor.py b/tests/code_tests/01_UnitTests/test_main_modules/test_task_executor.py\\n    deleted file mode 100644\\n    index 09f9a7f..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_task_executor.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:13:58",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:43:57 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8d7de827c99dab0762b601ddf2c4ce6da07f87ad"
+        ]
+    },
+    "e09387e931ee7e2aa1191c5fbb63fe5b169d2a07": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_task_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:44:03):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_task_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_task_management.py b/tests/code_tests/01_UnitTests/test_main_modules/test_task_management.py\\n    deleted file mode 100644\\n    index 45228f6..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_task_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:14:05",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:44:04 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "55642c36370948c4c67783e8dc832477ee93f2d0"
+        ]
+    },
+    "ead6a181b74647d6e2354f438e1042fc78be4532": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_task_management_fixed.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:44:10):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_task_management_fixed.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:14:12",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:44:11 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "e09387e931ee7e2aa1191c5fbb63fe5b169d2a07"
+        ]
+    },
+    "57fbca78348f57b81404571c930fb34bb592ed07": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_task_management_integration.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:44:17):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_task_management_integration.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_task_management_integration.py b/tests/code_tests/01_UnitTests/test_main_modules/test_task_management_integration.py\\n    deleted file mode 100644\\n    index 23fd61f..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_task_management_integration.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:14:19",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:44:18 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ead6a181b74647d6e2354f438e1042fc78be4532"
+        ]
+    },
+    "9094d50c324630fad8acc80d906f1a6b6c4cae19": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_time_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:44:25):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_time_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_time_management.py b/tests/code_tests/01_UnitTests/test_main_modules/test_time_management.py\\n    deleted file mode 100644\\n    index 52ccf98..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_time_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:14:29",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:44:25 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "57fbca78348f57b81404571c930fb34bb592ed07"
+        ]
+    },
+    "8e08397687b1d5dbb4b331b28c3bf6b94f7c5e6c": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_wbs_aggregator.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:44:33):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_wbs_aggregator.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_wbs_aggregator.py b/tests/code_tests/01_UnitTests/test_main_modules/test_wbs_aggregator.py\\n    deleted file mode 100644\\n    index d74eea1..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_wbs_aggregator.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:14:36",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:44:34 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9094d50c324630fad8acc80d906f1a6b6c4cae19"
+        ]
+    },
+    "8f5c17232baebb5c6258bc81fa8db0bf2aa68fdc": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_wbs_merger.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:44:40):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_wbs_merger.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_main_modules/test_wbs_merger.py b/tests/code_tests/01_UnitTests/test_main_modules/test_wbs_merger.py\\n    deleted file mode 100644\\n    index 2ddcf51..0000000\\n    --- a/tests/code_tests/01_UnitTests/test_main_modules/test_wbs_merger.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:14:43",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:44:42 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8e08397687b1d5dbb4b331b28c3bf6b94f7c5e6c"
+        ]
+    },
+    "a580bfe47f4b4adb33737c951acfd39e1d4a349b": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_wbs_parser.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:44:48):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_wbs_parser.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:14:51",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:44:49 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8f5c17232baebb5c6258bc81fa8db0bf2aa68fdc"
+        ]
+    },
+    "9388e82190e02a1b55b7a61313886b94b4ea0a37": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_main_modules/test_workflow_data_collector.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:44:56):\\n- tests/code_tests/01_UnitTests/test_main_modules/test_workflow_data_collector.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:14:58",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:44:57 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "a580bfe47f4b4adb33737c951acfd39e1d4a349b"
+        ]
+    },
+    "96c4ce0bdc4f9d46ff63800ed7d7e0ccc56ad5af": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/test_wbs_merger.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 08:45:03):\\n- tests/code_tests/01_UnitTests/test_wbs_merger.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_wbs_merger.py b/tests/code_tests/01_UnitTests/test_wbs_merger.py\\n    deleted file mode 100644\\n    index e69de29..0000000\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:15:06",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:45:05 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9388e82190e02a1b55b7a61313886b94b4ea0a37"
+        ]
+    },
+    "eca5702c3a40606cb4ed5a31f10a2090d07a44c7": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/importance_urgency_calculator.py",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 08:45:12):\\n- autoprojectmanagement/main_modules/importance_urgency_calculator.py: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/importance_urgency_calculator.py b/autoprojectmanagement/main_modules/importance_urgency_calculator.py\\n    new file mode 100644\\n    index 0000000..f76a531\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/main_modules/importance_urgency_calculator.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 05:15:14",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:45:13 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "96c4ce0bdc4f9d46ff63800ed7d7e0ccc56ad5af"
+        ]
+    },
+    "33f928beee66916107da69536334884acd57c4c1": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/progress_calculator.py",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 08:45:19):\\n- autoprojectmanagement/main_modules/progress_calculator.py: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_calculator.py b/autoprojectmanagement/main_modules/progress_calculator.py\\n    new file mode 100644\\n    index 0000000..2ab74e2\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/main_modules/progress_calculator.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 05:15:21",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:45:20 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "eca5702c3a40606cb4ed5a31f10a2090d07a44c7"
+        ]
+    },
+    "ca8c85f9a0b1030937900a9a32795a272f9f55cd": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/progress_data_generator.py",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 08:45:26):\\n- autoprojectmanagement/main_modules/progress_data_generator.py: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_data_generator.py b/autoprojectmanagement/main_modules/progress_data_generator.py\\n    new file mode 100644\\n    index 0000000..c5d374f\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/main_modules/progress_data_generator.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 05:15:28",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:45:26 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "33f928beee66916107da69536334884acd57c4c1"
+        ]
+    },
+    "6edd94900ea5986602c8755ff4200c760229f32e": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/api/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 08:45:33):\\n- tests/code_tests/01_UnitTests/api/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/api/test_main.py b/tests/code_tests/01_UnitTests/api/test_main.py\\n    new file mode 100644\\n    index 0000000..7c995d3\\n    --- /dev/null\\n    +++ b/tests/code_tests/01_UnitTests/api/test_main.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:15:34",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:45:33 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ca8c85f9a0b1030937900a9a32795a272f9f55cd"
+        ]
+    },
+    "5c956d2603006b5566af5fc0f681ebc19b022036": {
+        "task_id": "root",
+        "file_path": "tests/code_tests/01_UnitTests/main_modules/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 08:45:40):\\n- tests/code_tests/01_UnitTests/main_modules/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/main_modules/test_check_progress_dashboard_update.py b/tests/code_tests/01_UnitTests/main_modules/test_check_progress_dashboard_update.py\\n    new file mode 100644\\n    index 0000000..0fea817\\n    --- /dev/null\\n    +++ b/tests/code_tests/01_UnitTests/main_modules/test_check_progress_dashboard_update.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.005,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-11 05:15:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 08:45:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "6edd94900ea5986602c8755ff4200c760229f32e"
+        ]
     }
 }
