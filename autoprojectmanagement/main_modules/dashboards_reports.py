@@ -1,6 +1,6 @@
 import json
 from typing import Dict, Any, List, Optional
-from .progress_calculator_refactored import ProgressCalculator
+from .progress_calculator import ProgressCalculator
 
 class DashboardReports:
     def __init__(self, input_dir: str = 'JSonDataBase/Inputs/UserInputs'):
