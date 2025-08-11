@@ -20,13 +20,13 @@
 ### High-Level Architecture
 ```mermaid
 graph TD
-    User([User]) --> CLI([CLI Interface])
-    CLI --> Engine([Automation Engine])
-    Engine --> GitHub([GitHub API])
-    Engine --> JSON([JSON Database])
-    Engine --> Actions([GitHub Actions])
-    Engine --> Wiki([Wiki Sync Service])
-    Wiki --> GitHubWiki([GitHub Wiki])
+    User[User] --> CLI[CLI Interface]
+    CLI --> Engine[Automation Engine]
+    Engine --> GitHub[GitHub API]
+    Engine --> JSON[JSON Database]
+    Engine --> Actions[GitHub Actions]
+    Engine --> Wiki[Wiki Sync Service]
+    Wiki --> GitHubWiki[GitHub Wiki]
 ```
 
 ### Detailed System Architecture
@@ -52,62 +52,62 @@ graph TB
 ### Project Initialization Process
 ```mermaid
 flowchart TD
-    A([Start]) --> B{Validate Inputs}
-    B -->|Valid| C([Create Repository])
-    B -->|Invalid| D([Show Error])
-    D --> B
-    C --> E([Setup Actions])
-    E --> F([Initialize JSON])
-    F --> G([Create Config])
-    G --> H([Generate Report])
-    H --> I([Complete])
+    Start[Start] --> Validate{Validate Inputs}
+    Validate -->|Valid| CreateRepo[Create Repository]
+    Validate -->|Invalid| ShowError[Show Error]
+    ShowError --> Validate
+    CreateRepo --> SetupActions[Setup Actions]
+    SetupActions --> InitJSON[Initialize JSON]
+    InitJSON --> CreateConfig[Create Config]
+    CreateConfig --> GenReport[Generate Report]
+    GenReport --> Complete[Complete]
 ```
 
 ### Wiki Synchronization Process
 ```mermaid
 flowchart TD
-    A([Start Sync]) --> B{Wiki Exists?}
-    B -->|No| C[Create Initial Wiki]
-    B -->|Yes| D[Clone Wiki Repo]
-    C --> D
-    D --> E[Scan Docs/ Directory]
-    E --> F[Generate Sync Plan]
-    F --> G{Changes Detected?}
-    G -->|Yes| H[Apply Changes]
-    G -->|No| I[Skip - No Changes]
-    H --> J[Commit & Push]
-    J --> K[Sync Complete]
-    I --> K
+    StartSync[Start Sync] --> WikiExists{Wiki Exists?}
+    WikiExists -->|No| CreateWiki[Create Initial Wiki]
+    WikiExists -->|Yes| CloneRepo[Clone Wiki Repo]
+    CreateWiki --> CloneRepo
+    CloneRepo --> ScanDocs[Scan Docs/ Directory]
+    ScanDocs --> GenPlan[Generate Sync Plan]
+    GenPlan --> Changes{Changes Detected?}
+    Changes -->|Yes| ApplyChanges[Apply Changes]
+    Changes -->|No| Skip[Skip - No Changes]
+    ApplyChanges --> CommitPush[Commit & Push]
+    CommitPush --> SyncComplete[Sync Complete]
+    Skip --> SyncComplete
 ```
 
 ### Task Management Workflow
 ```mermaid
 flowchart TD
-    A([Add Task]) --> B([Parse Details])
-    B --> C{Validate}
-    C -->|Valid| D([Store JSON])
-    C -->|Invalid| E([Show Error])
-    E --> A
-    D --> F([Create Issue])
-    F --> G([Assign Resources])
-    G --> H([Update Status])
-    H --> I([Trigger Automation])
-    I --> J([Send Confirmation])
+    AddTask[Add Task] --> ParseDetails[Parse Details]
+    ParseDetails --> Validate{Validate}
+    Validate -->|Valid| StoreJSON[Store JSON]
+    Validate -->|Invalid| ShowError[Show Error]
+    ShowError --> AddTask
+    StoreJSON --> CreateIssue[Create Issue]
+    CreateIssue --> AssignResources[Assign Resources]
+    AssignResources --> UpdateStatus[Update Status]
+    UpdateStatus --> TriggerAuto[Trigger Automation]
+    TriggerAuto --> SendConfirm[Send Confirmation]
 ```
 
 ### Progress Tracking Process
 ```mermaid
 flowchart TD
-    A([Git Commit]) --> B([Parse Message])
-    B --> C{Valid Format?}
-    C -->|Yes| D([Extract Info])
-    C -->|No| E([Log Error])
-    E --> F([Skip])
-    D --> G([Update Progress])
-    G --> H([Calculate Metrics])
-    H --> I([Update JSON])
-    I --> J([Generate Report])
-    J --> K([Update PR])
+    GitCommit[Git Commit] --> ParseMsg[Parse Message]
+    ParseMsg --> ValidFormat{Valid Format?}
+    ValidFormat -->|Yes| ExtractInfo[Extract Info]
+    ValidFormat -->|No| LogError[Log Error]
+    LogError --> Skip[Skip]
+    ExtractInfo --> UpdateProgress[Update Progress]
+    UpdateProgress --> CalcMetrics[Calculate Metrics]
+    CalcMetrics --> UpdateJSON[Update JSON]
+    UpdateJSON --> GenReport[Generate Report]
+    GenReport --> UpdatePR[Update PR]
 ```
 
 ## 📈 Data Flow Diagrams
