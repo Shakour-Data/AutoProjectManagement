@@ -15,7 +15,7 @@ from watchdog.events import FileSystemEventHandler
 
 from .main_modules.project_management_system import ProjectManagementSystem
 from .main_modules.task_management import TaskManager
-from .main_modules.progress_calculator_refactored import ProgressCalculator
+from .main_modules.progress_calculator import ProgressCalculator
 from .main_modules.git_progress_updater import GitProgressUpdater
 from .services.auto_commit import AutoCommit
 from .services.github_integration import GitHubIntegration
