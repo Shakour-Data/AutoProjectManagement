@@ -15,73 +15,49 @@ This comprehensive test suite provides **complete testing coverage** for the Aut
 
 ## 🏗️ Architecture Overview
 
-### Test Architecture Diagram
+### 🎯 Test Architecture Overview
+**Compact Testing Ecosystem - Optimized for Readability**
 
 ```mermaid
-graph TD
-    A[Test Suite Root] --> B[Unit Tests]
+graph LR
+    A[Test Suite] --> B[Unit Tests]
     A --> C[Integration Tests]
     A --> D[System Tests]
     A --> E[Performance Tests]
-    A --> F[Security Tests]
-    A --> G[Regression Tests]
-    A --> H[Acceptance Tests]
     
-    B --> B1[Main Modules]
+    B --> B1[Modules]
     B --> B2[Services]
-    B --> B3[API Endpoints]
-    
-    C --> C1[Module Integration]
-    C --> C2[API Integration]
-    C --> C3[Database Integration]
-    
-    D --> D1[End-to-End Workflows]
-    D --> D2[User Scenarios]
-    D --> D3[Business Processes]
-    
-    E --> E1[Load Testing]
-    E --> E2[Stress Testing]
-    E --> E3[Benchmark Testing]
-    
-    F --> F1[Authentication Tests]
-    F --> F2[Authorization Tests]
-    F --> F3[Vulnerability Scanning]
+    C --> C1[API Tests]
+    C --> C2[DB Tests]
+    D --> D1[End-to-End]
+    E --> E1[Load Tests]
 ```
 
-### Test Data Flow Diagram
+### 🔄 Test Flow - Simplified
+**Clear Data Flow Path**
 
 ```mermaid
-flowchart LR
-    subgraph "Test Input Sources"
-        A[JSON Test Data]
-        B[Mock Objects]
-        C[Fixtures]
-        D[Test Configuration]
-    end
+flowchart TD
+    Input[JSON Data] --> Runner[Pytest]
+    Runner --> Results[Results]
+    Runner --> Coverage[Coverage]
+    Runner --> Metrics[Metrics]
     
-    subgraph "Test Execution"
-        E[Test Runner]
-        F[Pytest Framework]
-        G[Mocking Library]
-        H[Coverage Tools]
-    end
-    
-    subgraph "Test Outputs"
-        I[Test Results]
-        J[Coverage Reports]
-        K[Performance Metrics]
-        L[Security Reports]
-    end
-    
-    A --> E
-    B --> F
-    C --> F
-    D --> E
-    E --> I
-    F --> J
-    G --> K
-    H --> L
+    style Input fill:#e1f5fe
+    style Runner fill:#fff3e0
+    style Results fill:#e8f5e8
+    style Coverage fill:#fff8e1
+    style Metrics fill:#fce4ec
 ```
+
+### 🏛️ Layered Architecture
+**3-Tier Testing Stack**
+
+| **Layer** | **Focus** | **Tools** | **Coverage** |
+|-----------|-----------|-----------|--------------|
+| **Unit** | Functions/Classes | pytest | 500+ tests |
+| **Integration** | Module/API | pytest + requests | 200+ tests |
+| **System** | End-to-End | Selenium | 100+ tests |
 
 ---
 
