@@ -31821,5 +31821,1994 @@
         "parent_commits": [
             "6edd94900ea5986602c8755ff4200c760229f32e"
         ]
+    },
+    "18bf8c4fb3cf27b7636f90a080434132ce8b0db0": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/INDEX.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:30:40):\\n- Docs/ModuleDocs/INDEX.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/INDEX.md b/Docs/ModuleDocs/INDEX.md\\n    deleted file mode 100644\\n    index 58fb86c..0000000\\n    --- a/Docs/ModuleDocs/INDEX.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:00:42",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:30:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "3b01decb6ee8ce0442cc2009f182bc1bf64bf0bf"
+        ]
+    },
+    "f620ae046c6bed04e1e2bcbbc491210da5cde6d4": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/check_progress_dashboard_update.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:30:46):\\n- Docs/ModuleDocs/main_modules_doc/check_progress_dashboard_update.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/check_progress_dashboard_update.md b/Docs/ModuleDocs/main_modules_doc/check_progress_dashboard_update.md\\n    deleted file mode 100644\\n    index 73abc3f..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/check_progress_dashboard_update.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:00:47",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:30:46 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "18bf8c4fb3cf27b7636f90a080434132ce8b0db0"
+        ]
+    },
+    "c11e85e65d654991ddf5a96204d0ff7c10dc9cf4": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/commit_progress_manager.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:30:52):\\n- Docs/ModuleDocs/main_modules_doc/commit_progress_manager.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/commit_progress_manager.md b/Docs/ModuleDocs/main_modules_doc/commit_progress_manager.md\\n    deleted file mode 100644\\n    index a5470f4..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/commit_progress_manager.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:00:53",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:30:52 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f620ae046c6bed04e1e2bcbbc491210da5cde6d4"
+        ]
+    },
+    "a154a3deae4ca46d81655201c9187c2cd8e2e382": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/communication_management.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:30:57):\\n- Docs/ModuleDocs/main_modules_doc/communication_management.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/communication_management.md b/Docs/ModuleDocs/main_modules_doc/communication_management.md\\n    deleted file mode 100644\\n    index c6e253f..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/communication_management.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:00:59",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:30:58 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "c11e85e65d654991ddf5a96204d0ff7c10dc9cf4"
+        ]
+    },
+    "92282f3a200488613112113b9b711ee4376495a0": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/communication_risk_doc_integration.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:03):\\n- Docs/ModuleDocs/main_modules_doc/communication_risk_doc_integration.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/communication_risk_doc_integration.md b/Docs/ModuleDocs/main_modules_doc/communication_risk_doc_integration.md\\n    deleted file mode 100644\\n    index 5876b1d..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/communication_risk_doc_integration.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:04",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:03 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "a154a3deae4ca46d81655201c9187c2cd8e2e382"
+        ]
+    },
+    "ed34958ee4ce42389bfa3a622073746f133a5fce": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/dashboards_reports.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:09):\\n- Docs/ModuleDocs/main_modules_doc/dashboards_reports.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/dashboards_reports.md b/Docs/ModuleDocs/main_modules_doc/dashboards_reports.md\\n    deleted file mode 100644\\n    index 192fb3c..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/dashboards_reports.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:10",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:09 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "92282f3a200488613112113b9b711ee4376495a0"
+        ]
+    },
+    "7e56c4e48dfa0acef691743b90702c191bb356b0": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/db_data_collector.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:14):\\n- Docs/ModuleDocs/main_modules_doc/db_data_collector.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/db_data_collector.md b/Docs/ModuleDocs/main_modules_doc/db_data_collector.md\\n    deleted file mode 100644\\n    index 8828a9f..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/db_data_collector.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:15 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ed34958ee4ce42389bfa3a622073746f133a5fce"
+        ]
+    },
+    "452d711cee115780c5ea92774b22d6438c32847c": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/do_important_tasks.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:20):\\n- Docs/ModuleDocs/main_modules_doc/do_important_tasks.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/do_important_tasks.md b/Docs/ModuleDocs/main_modules_doc/do_important_tasks.md\\n    deleted file mode 100644\\n    index a6cf7db..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/do_important_tasks.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:22",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:21 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "7e56c4e48dfa0acef691743b90702c191bb356b0"
+        ]
+    },
+    "90daf60b32127584c4ecb927e39283cb67e2f681": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/do_urgent_tasks.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:26):\\n- Docs/ModuleDocs/main_modules_doc/do_urgent_tasks.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/do_urgent_tasks.md b/Docs/ModuleDocs/main_modules_doc/do_urgent_tasks.md\\n    deleted file mode 100644\\n    index 9ff54c2..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/do_urgent_tasks.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:28",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:27 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "452d711cee115780c5ea92774b22d6438c32847c"
+        ]
+    },
+    "5006b3b6a0ff16946ef0c0ebf09b9fc749b9049c": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/extend_database_for_scrum.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:32):\\n- Docs/ModuleDocs/main_modules_doc/extend_database_for_scrum.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/extend_database_for_scrum.md b/Docs/ModuleDocs/main_modules_doc/extend_database_for_scrum.md\\n    deleted file mode 100644\\n    index ae51a7e..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/extend_database_for_scrum.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:34",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:33 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "90daf60b32127584c4ecb927e39283cb67e2f681"
+        ]
+    },
+    "2f924f45424959fb3e940a18ef68ada716630c1a": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/feature_weights.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:38):\\n- Docs/ModuleDocs/main_modules_doc/feature_weights.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/feature_weights.md b/Docs/ModuleDocs/main_modules_doc/feature_weights.md\\n    deleted file mode 100644\\n    index 25f0475..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/feature_weights.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:40",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:39 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "5006b3b6a0ff16946ef0c0ebf09b9fc749b9049c"
+        ]
+    },
+    "7e2b6982b23ab0d035a04b4fdcc9192baa9fca8e": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/gantt_chart_data.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:44):\\n- Docs/ModuleDocs/main_modules_doc/gantt_chart_data.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/gantt_chart_data.md b/Docs/ModuleDocs/main_modules_doc/gantt_chart_data.md\\n    deleted file mode 100644\\n    index 18268ba..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/gantt_chart_data.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:46",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:45 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "2f924f45424959fb3e940a18ef68ada716630c1a"
+        ]
+    },
+    "eaf7b3d488d60ebff9257b8bfe09928ecc246f08": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/git_progress_updater.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:51):\\n- Docs/ModuleDocs/main_modules_doc/git_progress_updater.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/git_progress_updater.md b/Docs/ModuleDocs/main_modules_doc/git_progress_updater.md\\n    deleted file mode 100644\\n    index b00b192..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/git_progress_updater.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:52",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:51 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "7e2b6982b23ab0d035a04b4fdcc9192baa9fca8e"
+        ]
+    },
+    "2cf8b83662593dddb437fe0f997409a68a1e0e9d": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/importance_urgency_calculator_refactored.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:31:56):\\n- Docs/ModuleDocs/main_modules_doc/importance_urgency_calculator_refactored.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/importance_urgency_calculator_refactored.md b/Docs/ModuleDocs/main_modules_doc/importance_urgency_calculator_refactored.md\\n    deleted file mode 100644\\n    index dc83104..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/importance_urgency_calculator_refactored.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:01:58",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:31:57 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "eaf7b3d488d60ebff9257b8bfe09928ecc246f08"
+        ]
+    },
+    "f10fc1e0a23bf2193b7a543b25707ac894af1bc7": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/input_handler.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:02):\\n- Docs/ModuleDocs/main_modules_doc/input_handler.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/input_handler.md b/Docs/ModuleDocs/main_modules_doc/input_handler.md\\n    deleted file mode 100644\\n    index 89163a9..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/input_handler.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:04",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:03 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "2cf8b83662593dddb437fe0f997409a68a1e0e9d"
+        ]
+    },
+    "257060fcc9e54224c75970b80147c82f78ab49cf": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/progress_calculator_refactored.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:09):\\n- Docs/ModuleDocs/main_modules_doc/progress_calculator_refactored.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/progress_calculator_refactored.md b/Docs/ModuleDocs/main_modules_doc/progress_calculator_refactored.md\\n    deleted file mode 100644\\n    index 844a60b..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/progress_calculator_refactored.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:11",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:09 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f10fc1e0a23bf2193b7a543b25707ac894af1bc7"
+        ]
+    },
+    "f5504c86c46d2eb3e5f1b7c23fe9328334e50c0e": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/main_modules_doc/progress_data_generator_refactored.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:15):\\n- Docs/ModuleDocs/main_modules_doc/progress_data_generator_refactored.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/main_modules_doc/progress_data_generator_refactored.md b/Docs/ModuleDocs/main_modules_doc/progress_data_generator_refactored.md\\n    deleted file mode 100644\\n    index 615b71d..0000000\\n    --- a/Docs/ModuleDocs/main_modules_doc/progress_data_generator_refactored.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:15 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "257060fcc9e54224c75970b80147c82f78ab49cf"
+        ]
+    },
+    "7a1e2f9603946bef6733315a78f6f1577ba51acf": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/services_doc/auto_commit.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:21):\\n- Docs/ModuleDocs/services_doc/auto_commit.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/services_doc/auto_commit.md b/Docs/ModuleDocs/services_doc/auto_commit.md\\n    deleted file mode 100644\\n    index 0e8751c..0000000\\n    --- a/Docs/ModuleDocs/services_doc/auto_commit.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:22",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:21 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f5504c86c46d2eb3e5f1b7c23fe9328334e50c0e"
+        ]
+    },
+    "b33e6aec84531b5df7cee59a8bcd66425bf53e6c": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/services_doc/backup_manager.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:27):\\n- Docs/ModuleDocs/services_doc/backup_manager.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/services_doc/backup_manager.md b/Docs/ModuleDocs/services_doc/backup_manager.md\\n    deleted file mode 100644\\n    index 11c2008..0000000\\n    --- a/Docs/ModuleDocs/services_doc/backup_manager.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:28",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:27 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "7a1e2f9603946bef6733315a78f6f1577ba51acf"
+        ]
+    },
+    "4ca44ad059b6bd83a4713f31cdcb2c605407bf70": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/services_doc/cli_commands.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:32):\\n- Docs/ModuleDocs/services_doc/cli_commands.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/services_doc/cli_commands.md b/Docs/ModuleDocs/services_doc/cli_commands.md\\n    deleted file mode 100644\\n    index 3f9ca15..0000000\\n    --- a/Docs/ModuleDocs/services_doc/cli_commands.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:34",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:33 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "b33e6aec84531b5df7cee59a8bcd66425bf53e6c"
+        ]
+    },
+    "fc0e43cc895bcc7f77a0cc543089c85e1fe2f0af": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/services_doc/config_and_token_management.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:39):\\n- Docs/ModuleDocs/services_doc/config_and_token_management.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/services_doc/config_and_token_management.md b/Docs/ModuleDocs/services_doc/config_and_token_management.md\\n    deleted file mode 100644\\n    index e38b863..0000000\\n    --- a/Docs/ModuleDocs/services_doc/config_and_token_management.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:40",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:39 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "4ca44ad059b6bd83a4713f31cdcb2c605407bf70"
+        ]
+    },
+    "8fdb06befd9c45649df6501c884b59143b25594c": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/services_doc/documentation_automation.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:44):\\n- Docs/ModuleDocs/services_doc/documentation_automation.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/services_doc/documentation_automation.md b/Docs/ModuleDocs/services_doc/documentation_automation.md\\n    deleted file mode 100644\\n    index f2a25f5..0000000\\n    --- a/Docs/ModuleDocs/services_doc/documentation_automation.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:46",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:45 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "fc0e43cc895bcc7f77a0cc543089c85e1fe2f0af"
+        ]
+    },
+    "324bb1a98611568678039dbb7dffe18c94418792": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/services_doc/github_integration.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:50):\\n- Docs/ModuleDocs/services_doc/github_integration.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/services_doc/github_integration.md b/Docs/ModuleDocs/services_doc/github_integration.md\\n    deleted file mode 100644\\n    index 8920aa7..0000000\\n    --- a/Docs/ModuleDocs/services_doc/github_integration.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:52",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:50 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8fdb06befd9c45649df6501c884b59143b25594c"
+        ]
+    },
+    "8d71a4b51979706f7f263ebc91063fc0ce5a1cdb": {
+        "task_id": "root",
+        "file_path": "Docs/ModuleDocs/services_doc/integration_manager.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:32:57):\\n- Docs/ModuleDocs/services_doc/integration_manager.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/ModuleDocs/services_doc/integration_manager.md b/Docs/ModuleDocs/services_doc/integration_manager.md\\n    deleted file mode 100644\\n    index b532bc5..0000000\\n    --- a/Docs/ModuleDocs/services_doc/integration_manager.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:02:59",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:32:57 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "324bb1a98611568678039dbb7dffe18c94418792"
+        ]
+    },
+    "ab0e9b005ce339e7a8b62a19ddfc85b4dca1f754": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Diagrams/BPMN_Diagrams.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:03):\\n- Docs/SystemDesign/Diagrams/BPMN_Diagrams.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Diagrams/BPMN_Diagrams.md b/Docs/SystemDesign/Diagrams/BPMN_Diagrams.md\\n    deleted file mode 100644\\n    index 51e8cc3..0000000\\n    --- a/Docs/SystemDesign/Diagrams/BPMN_Diagrams.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:03:05",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:04 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8d71a4b51979706f7f263ebc91063fc0ce5a1cdb"
+        ]
+    },
+    "605b7bf6dbbed8608b89ac1db381d3da02489f4e": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Diagrams/DFD_Diagrams.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:09):\\n- Docs/SystemDesign/Diagrams/DFD_Diagrams.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Diagrams/DFD_Diagrams.md b/Docs/SystemDesign/Diagrams/DFD_Diagrams.md\\n    deleted file mode 100644\\n    index de88a01..0000000\\n    --- a/Docs/SystemDesign/Diagrams/DFD_Diagrams.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:03:11",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:10 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ab0e9b005ce339e7a8b62a19ddfc85b4dca1f754"
+        ]
+    },
+    "ac45815e77c4a8f96e0e4c337c0c2da9844bad99": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Diagrams/UML_Diagrams.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:15):\\n- Docs/SystemDesign/Diagrams/UML_Diagrams.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Diagrams/UML_Diagrams.md b/Docs/SystemDesign/Diagrams/UML_Diagrams.md\\n    deleted file mode 100644\\n    index 564fd96..0000000\\n    --- a/Docs/SystemDesign/Diagrams/UML_Diagrams.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:03:17",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:16 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "605b7bf6dbbed8608b89ac1db381d3da02489f4e"
+        ]
+    },
+    "b001ae656d1e5529ee6d7717e168933c1f2e1a08": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Glossary/API_Reference.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:21):\\n- Docs/SystemDesign/Glossary/API_Reference.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Glossary/API_Reference.md b/Docs/SystemDesign/Glossary/API_Reference.md\\n    deleted file mode 100644\\n    index dd0dab9..0000000\\n    --- a/Docs/SystemDesign/Glossary/API_Reference.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:03:23",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:22 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ac45815e77c4a8f96e0e4c337c0c2da9844bad99"
+        ]
+    },
+    "73dcc66cff1e6db2cffb93094777dcf0964ab481": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Glossary/Glossary.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:27):\\n- Docs/SystemDesign/Glossary/Glossary.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Glossary/Glossary.md b/Docs/SystemDesign/Glossary/Glossary.md\\n    deleted file mode 100644\\n    index e74fff6..0000000\\n    --- a/Docs/SystemDesign/Glossary/Glossary.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:03:30",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:28 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "b001ae656d1e5529ee6d7717e168933c1f2e1a08"
+        ]
+    },
+    "1aae9886d153f9ac83c30c91932fefed18b6b3e8": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Guides/Developer_Guidelines.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:34):\\n- Docs/SystemDesign/Guides/Developer_Guidelines.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Guides/Developer_Guidelines.md b/Docs/SystemDesign/Guides/Developer_Guidelines.md\\n    deleted file mode 100644\\n    index 21e55a6..0000000\\n    --- a/Docs/SystemDesign/Guides/Developer_Guidelines.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:03:36",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:34 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "73dcc66cff1e6db2cffb93094777dcf0964ab481"
+        ]
+    },
+    "266da222ea46f7d6bc01f2a700e9fdbcae6bbdf1": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Guides/Developer_Onboarding_Guide.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:40):\\n- Docs/SystemDesign/Guides/Developer_Onboarding_Guide.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Guides/Developer_Onboarding_Guide.md b/Docs/SystemDesign/Guides/Developer_Onboarding_Guide.md\\n    deleted file mode 100644\\n    index 696e7d6..0000000\\n    --- a/Docs/SystemDesign/Guides/Developer_Onboarding_Guide.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:03:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "1aae9886d153f9ac83c30c91932fefed18b6b3e8"
+        ]
+    },
+    "f922b743c028cccaa44b30ec9254c357ff358fb5": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Guides/Maintenance_and_Troubleshooting_Guide.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:46):\\n- Docs/SystemDesign/Guides/Maintenance_and_Troubleshooting_Guide.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Guides/Maintenance_and_Troubleshooting_Guide.md b/Docs/SystemDesign/Guides/Maintenance_and_Troubleshooting_Guide.md\\n    deleted file mode 100644\\n    index f7f6de6..0000000\\n    --- a/Docs/SystemDesign/Guides/Maintenance_and_Troubleshooting_Guide.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:03:47",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:46 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "266da222ea46f7d6bc01f2a700e9fdbcae6bbdf1"
+        ]
+    },
+    "75d5ea2e44f252bf932e36dfb8f0b3114842dd6e": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Guides/User_Guide.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:52):\\n- Docs/SystemDesign/Guides/User_Guide.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Guides/User_Guide.md b/Docs/SystemDesign/Guides/User_Guide.md\\n    deleted file mode 100644\\n    index 86e9cf2..0000000\\n    --- a/Docs/SystemDesign/Guides/User_Guide.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:03:54",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:52 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f922b743c028cccaa44b30ec9254c357ff358fb5"
+        ]
+    },
+    "010dc712617a604168d50d84c3943658c3c6c702": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Guides/standard_operating_procedures_and_help_documentation.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:33:58):\\n- Docs/SystemDesign/Guides/standard_operating_procedures_and_help_documentation.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Guides/standard_operating_procedures_and_help_documentation.md b/Docs/SystemDesign/Guides/standard_operating_procedures_and_help_documentation.md\\n    deleted file mode 100644\\n    index f6a725a..0000000\\n    --- a/Docs/SystemDesign/Guides/standard_operating_procedures_and_help_documentation.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:00",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:33:59 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "75d5ea2e44f252bf932e36dfb8f0b3114842dd6e"
+        ]
+    },
+    "be62b6b7dda6a5b403583e27e0bba82d437a41b6": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/ProjectPlanning/DocumentCreationPlan.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:04):\\n- Docs/SystemDesign/ProjectPlanning/DocumentCreationPlan.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/ProjectPlanning/DocumentCreationPlan.md b/Docs/SystemDesign/ProjectPlanning/DocumentCreationPlan.md\\n    deleted file mode 100644\\n    index acd5581..0000000\\n    --- a/Docs/SystemDesign/ProjectPlanning/DocumentCreationPlan.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:06",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:05 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "010dc712617a604168d50d84c3943658c3c6c702"
+        ]
+    },
+    "9f2bb11188e2a82c3b1cac2d02e43e1c4f37b542": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/ProjectPlanning/Installation_and_Setup.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:10):\\n- Docs/SystemDesign/ProjectPlanning/Installation_and_Setup.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/ProjectPlanning/Installation_and_Setup.md b/Docs/SystemDesign/ProjectPlanning/Installation_and_Setup.md\\n    deleted file mode 100644\\n    index 917f1d5..0000000\\n    --- a/Docs/SystemDesign/ProjectPlanning/Installation_and_Setup.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:12",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:10 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "be62b6b7dda6a5b403583e27e0bba82d437a41b6"
+        ]
+    },
+    "63947a7a10e763fbbb87486fa0559a1b48bb09c7": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/ProjectPlanning/change_management_and_versioning_plan.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:16):\\n- Docs/SystemDesign/ProjectPlanning/change_management_and_versioning_plan.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/ProjectPlanning/change_management_and_versioning_plan.md b/Docs/SystemDesign/ProjectPlanning/change_management_and_versioning_plan.md\\n    deleted file mode 100644\\n    index d231f7d..0000000\\n    --- a/Docs/SystemDesign/ProjectPlanning/change_management_and_versioning_plan.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:18",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:16 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9f2bb11188e2a82c3b1cac2d02e43e1c4f37b542"
+        ]
+    },
+    "e5c0e3a7e0e660e26d449ffe77219ac2ff601bd5": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/ProjectPlanning/communication_risk_management_and_documentation_plan.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:22):\\n- Docs/SystemDesign/ProjectPlanning/communication_risk_management_and_documentation_plan.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/ProjectPlanning/communication_risk_management_and_documentation_plan.md b/Docs/SystemDesign/ProjectPlanning/communication_risk_management_and_documentation_plan.md\\n    deleted file mode 100644\\n    index 2b7ab4b..0000000\\n    --- a/Docs/SystemDesign/ProjectPlanning/communication_risk_management_and_documentation_plan.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:24",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:22 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "63947a7a10e763fbbb87486fa0559a1b48bb09c7"
+        ]
+    },
+    "dbf0e48a35e7e9f25aca5c2fcac5b403f6259024": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/ProjectPlanning/implementation_plan.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:28):\\n- Docs/SystemDesign/ProjectPlanning/implementation_plan.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/ProjectPlanning/implementation_plan.md b/Docs/SystemDesign/ProjectPlanning/implementation_plan.md\\n    deleted file mode 100644\\n    index 6ecc4b7..0000000\\n    --- a/Docs/SystemDesign/ProjectPlanning/implementation_plan.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:30",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:28 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "e5c0e3a7e0e660e26d449ffe77219ac2ff601bd5"
+        ]
+    },
+    "d34293c4c148d660a8f1792c96308e4082376dff": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/ProjectPlanning/project_features_and_functional_specifications.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:34):\\n- Docs/SystemDesign/ProjectPlanning/project_features_and_functional_specifications.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/ProjectPlanning/project_features_and_functional_specifications.md b/Docs/SystemDesign/ProjectPlanning/project_features_and_functional_specifications.md\\n    deleted file mode 100644\\n    index a308f92..0000000\\n    --- a/Docs/SystemDesign/ProjectPlanning/project_features_and_functional_specifications.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:35",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:34 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "dbf0e48a35e7e9f25aca5c2fcac5b403f6259024"
+        ]
+    },
+    "aaf2e8decb523dd2c9b88bfc030a10216bb39f5a": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/ProjectPlanning/requirements_specification_document.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:40):\\n- Docs/SystemDesign/ProjectPlanning/requirements_specification_document.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/ProjectPlanning/requirements_specification_document.md b/Docs/SystemDesign/ProjectPlanning/requirements_specification_document.md\\n    deleted file mode 100644\\n    index 43b077b..0000000\\n    --- a/Docs/SystemDesign/ProjectPlanning/requirements_specification_document.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:42",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "d34293c4c148d660a8f1792c96308e4082376dff"
+        ]
+    },
+    "0b827e4fe2c2e28f08bcef3c965dedf797f462a2": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/ProjectPlanning/system_design_document.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:47):\\n- Docs/SystemDesign/ProjectPlanning/system_design_document.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/ProjectPlanning/system_design_document.md b/Docs/SystemDesign/ProjectPlanning/system_design_document.md\\n    deleted file mode 100644\\n    index 89ec899..0000000\\n    --- a/Docs/SystemDesign/ProjectPlanning/system_design_document.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:48",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:47 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "aaf2e8decb523dd2c9b88bfc030a10216bb39f5a"
+        ]
+    },
+    "f9a0dab83a2a03a4d5571c4cc990704219982a21": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/ProjectPlanning/work_breakdown_structure_and_project_management_overview.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:52):\\n- Docs/SystemDesign/ProjectPlanning/work_breakdown_structure_and_project_management_overview.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/ProjectPlanning/work_breakdown_structure_and_project_management_overview.md b/Docs/SystemDesign/ProjectPlanning/work_breakdown_structure_and_project_management_overview.md\\n    deleted file mode 100644\\n    index ad001be..0000000\\n    --- a/Docs/SystemDesign/ProjectPlanning/work_breakdown_structure_and_project_management_overview.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:04:54",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:53 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "0b827e4fe2c2e28f08bcef3c965dedf797f462a2"
+        ]
+    },
+    "9f615d10b5329632eec2234b0cf5a0e96fb8c272": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Reports/ProjectManagementPackage_FullScenarios.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:34:58):\\n- Docs/SystemDesign/Reports/ProjectManagementPackage_FullScenarios.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Reports/ProjectManagementPackage_FullScenarios.md b/Docs/SystemDesign/Reports/ProjectManagementPackage_FullScenarios.md\\n    deleted file mode 100644\\n    index 69496f8..0000000\\n    --- a/Docs/SystemDesign/Reports/ProjectManagementPackage_FullScenarios.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:00",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:34:59 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f9a0dab83a2a03a4d5571c4cc990704219982a21"
+        ]
+    },
+    "ecca9b67203738677fd2e48494022e55d0211f25": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Reports/ProjectManagementPackage_FullScenarios_FA.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:04):\\n- Docs/SystemDesign/Reports/ProjectManagementPackage_FullScenarios_FA.md: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:06",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:05 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9f615d10b5329632eec2234b0cf5a0e96fb8c272"
+        ]
+    },
+    "0eece28e0b9482d80a43a63534fe3a971ab193de": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Reports/Reports.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:10):\\n- Docs/SystemDesign/Reports/Reports.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Reports/Reports.md b/Docs/SystemDesign/Reports/Reports.md\\n    deleted file mode 100644\\n    index 34d79f8..0000000\\n    --- a/Docs/SystemDesign/Reports/Reports.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:12",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:11 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ecca9b67203738677fd2e48494022e55d0211f25"
+        ]
+    },
+    "3fa493879c2a16f7d32d02533b976806d22c76e5": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Reports/dashboards.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:16):\\n- Docs/SystemDesign/Reports/dashboards.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Reports/dashboards.md b/Docs/SystemDesign/Reports/dashboards.md\\n    deleted file mode 100644\\n    index 3c4651c..0000000\\n    --- a/Docs/SystemDesign/Reports/dashboards.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:17",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:16 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "0eece28e0b9482d80a43a63534fe3a971ab193de"
+        ]
+    },
+    "58acfb072ff668582c0db549847f928b17bddbef": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Reports/project_management_package_scenarios.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:22):\\n- Docs/SystemDesign/Reports/project_management_package_scenarios.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Reports/project_management_package_scenarios.md b/Docs/SystemDesign/Reports/project_management_package_scenarios.md\\n    deleted file mode 100644\\n    index decb1fa..0000000\\n    --- a/Docs/SystemDesign/Reports/project_management_package_scenarios.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:23",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:22 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "3fa493879c2a16f7d32d02533b976806d22c76e5"
+        ]
+    },
+    "c6fbf4d09198fbbddf4fa45be26edf1b6c05ad0c": {
+        "task_id": "root",
+        "file_path": "Docs/SystemDesign/Usage_Instructions.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:28):\\n- Docs/SystemDesign/Usage_Instructions.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/SystemDesign/Usage_Instructions.md b/Docs/SystemDesign/Usage_Instructions.md\\n    deleted file mode 100644\\n    index 4ac2baa..0000000\\n    --- a/Docs/SystemDesign/Usage_Instructions.md\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:29",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:28 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "58acfb072ff668582c0db549847f928b17bddbef"
+        ]
+    },
+    "d1ef4168a36367a5f86be620b71461545774620c": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/check_progress_dashboard_update.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:34):\\n- autoprojectmanagement/main_modules/check_progress_dashboard_update.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/check_progress_dashboard_update.py b/autoprojectmanagement/main_modules/check_progress_dashboard_update.py\\n    deleted file mode 100644\\n    index d4b56f7..0000000\\n    --- a/autoprojectmanagement/main_modules/check_progress_dashboard_update.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:35",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:34 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "c6fbf4d09198fbbddf4fa45be26edf1b6c05ad0c"
+        ]
+    },
+    "ccefcd493ff4af080c70ed4fc207b6e2cb172b64": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/commit_progress_manager.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:40):\\n- autoprojectmanagement/main_modules/commit_progress_manager.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/commit_progress_manager.py b/autoprojectmanagement/main_modules/commit_progress_manager.py\\n    deleted file mode 100644\\n    index ac17ab6..0000000\\n    --- a/autoprojectmanagement/main_modules/commit_progress_manager.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:42",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "d1ef4168a36367a5f86be620b71461545774620c"
+        ]
+    },
+    "33103db53b31a0ed01f890ecfe7a05e2e4f90c63": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/communication_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:46):\\n- autoprojectmanagement/main_modules/communication_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/communication_management.py b/autoprojectmanagement/main_modules/communication_management.py\\n    deleted file mode 100644\\n    index d7ede66..0000000\\n    --- a/autoprojectmanagement/main_modules/communication_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:48",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:46 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ccefcd493ff4af080c70ed4fc207b6e2cb172b64"
+        ]
+    },
+    "9ad89d0ccafec7fc79ce87bcdcf37ccd6ccd0aa5": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/communication_risk_doc_integration.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:52):\\n- autoprojectmanagement/main_modules/communication_risk_doc_integration.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/communication_risk_doc_integration.py b/autoprojectmanagement/main_modules/communication_risk_doc_integration.py\\n    deleted file mode 100644\\n    index dff161c..0000000\\n    --- a/autoprojectmanagement/main_modules/communication_risk_doc_integration.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:05:54",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:52 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "33103db53b31a0ed01f890ecfe7a05e2e4f90c63"
+        ]
+    },
+    "09bcf24091235ae4d106c128cbb90436bacafdef": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/dashboards_reports.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:35:58):\\n- autoprojectmanagement/main_modules/dashboards_reports.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/dashboards_reports.py b/autoprojectmanagement/main_modules/dashboards_reports.py\\n    deleted file mode 100644\\n    index e1c96df..0000000\\n    --- a/autoprojectmanagement/main_modules/dashboards_reports.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:01",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:35:59 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9ad89d0ccafec7fc79ce87bcdcf37ccd6ccd0aa5"
+        ]
+    },
+    "013857abfd474edc9128567cf8193cea87b765c0": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/db_data_collector.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:05):\\n- autoprojectmanagement/main_modules/db_data_collector.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/db_data_collector.py b/autoprojectmanagement/main_modules/db_data_collector.py\\n    deleted file mode 100644\\n    index 65be825..0000000\\n    --- a/autoprojectmanagement/main_modules/db_data_collector.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:06",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:05 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "09bcf24091235ae4d106c128cbb90436bacafdef"
+        ]
+    },
+    "3fd8ea9291b2aa61cc0495fade6d778c1affb426": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/do_important_tasks.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:11):\\n- autoprojectmanagement/main_modules/do_important_tasks.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/do_important_tasks.py b/autoprojectmanagement/main_modules/do_important_tasks.py\\n    deleted file mode 100644\\n    index bf2bbf6..0000000\\n    --- a/autoprojectmanagement/main_modules/do_important_tasks.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:12",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:11 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "013857abfd474edc9128567cf8193cea87b765c0"
+        ]
+    },
+    "88e096baa6b681030f3cc183edf58340d1da9cbb": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/do_urgent_tasks.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:17):\\n- autoprojectmanagement/main_modules/do_urgent_tasks.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/do_urgent_tasks.py b/autoprojectmanagement/main_modules/do_urgent_tasks.py\\n    deleted file mode 100644\\n    index 0e35e10..0000000\\n    --- a/autoprojectmanagement/main_modules/do_urgent_tasks.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:18",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:17 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "3fd8ea9291b2aa61cc0495fade6d778c1affb426"
+        ]
+    },
+    "5b6c11dec76bcfe10b03a2f503eedbe9ee506173": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/estimation_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:22):\\n- autoprojectmanagement/main_modules/estimation_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/estimation_management.py b/autoprojectmanagement/main_modules/estimation_management.py\\n    deleted file mode 100644\\n    index 34b5e41..0000000\\n    --- a/autoprojectmanagement/main_modules/estimation_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:24",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:22 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "88e096baa6b681030f3cc183edf58340d1da9cbb"
+        ]
+    },
+    "ff3f6cd443c60a9a0e57d5f901e0e249c2324d86": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/feature_weights.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:28):\\n- autoprojectmanagement/main_modules/feature_weights.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/feature_weights.py b/autoprojectmanagement/main_modules/feature_weights.py\\n    deleted file mode 100644\\n    index 1232228..0000000\\n    --- a/autoprojectmanagement/main_modules/feature_weights.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:30",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:28 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "5b6c11dec76bcfe10b03a2f503eedbe9ee506173"
+        ]
+    },
+    "06af8e435ca67b781317be86b9845e6801b612d9": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/gantt_chart_data.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:34):\\n- autoprojectmanagement/main_modules/gantt_chart_data.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/gantt_chart_data.py b/autoprojectmanagement/main_modules/gantt_chart_data.py\\n    deleted file mode 100644\\n    index c46c290..0000000\\n    --- a/autoprojectmanagement/main_modules/gantt_chart_data.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:36",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:34 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ff3f6cd443c60a9a0e57d5f901e0e249c2324d86"
+        ]
+    },
+    "a66de50e7d01d905ccaa785deddf881ae34f47a9": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/git_progress_updater.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:40):\\n- autoprojectmanagement/main_modules/git_progress_updater.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/git_progress_updater.py b/autoprojectmanagement/main_modules/git_progress_updater.py\\n    deleted file mode 100644\\n    index 216913c..0000000\\n    --- a/autoprojectmanagement/main_modules/git_progress_updater.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:42",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "06af8e435ca67b781317be86b9845e6801b612d9"
+        ]
+    },
+    "f3d603bd2d5992a996e49c436a5b584b713379c7": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/github_actions_automation.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:46):\\n- autoprojectmanagement/main_modules/github_actions_automation.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:48",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:46 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "a66de50e7d01d905ccaa785deddf881ae34f47a9"
+        ]
+    },
+    "0207ba4ed22979be5f5527f4d65756e609f9dff7": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/importance_urgency_calculator.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:52):\\n- autoprojectmanagement/main_modules/importance_urgency_calculator.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/importance_urgency_calculator.py b/autoprojectmanagement/main_modules/importance_urgency_calculator.py\\n    deleted file mode 100644\\n    index f76a531..0000000\\n    --- a/autoprojectmanagement/main_modules/importance_urgency_calculator.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:06:54",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:52 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f3d603bd2d5992a996e49c436a5b584b713379c7"
+        ]
+    },
+    "c3d3990ef9a975e824a919a136eb8c67d2fadf08": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/input_handler.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:36:58):\\n- autoprojectmanagement/main_modules/input_handler.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/input_handler.py b/autoprojectmanagement/main_modules/input_handler.py\\n    deleted file mode 100644\\n    index d063bae..0000000\\n    --- a/autoprojectmanagement/main_modules/input_handler.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:00",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:36:58 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "0207ba4ed22979be5f5527f4d65756e609f9dff7"
+        ]
+    },
+    "f1a0323b972ec274bd2c8d9fc979436364fde778": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/progress_calculator.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:04):\\n- autoprojectmanagement/main_modules/progress_calculator.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_calculator.py b/autoprojectmanagement/main_modules/progress_calculator.py\\n    deleted file mode 100644\\n    index 2ab74e2..0000000\\n    --- a/autoprojectmanagement/main_modules/progress_calculator.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:06",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:04 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "c3d3990ef9a975e824a919a136eb8c67d2fadf08"
+        ]
+    },
+    "18b5785fd068e4d82f2623f44611db19be849ce0": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/progress_data_generator.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:10):\\n- autoprojectmanagement/main_modules/progress_data_generator.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_data_generator.py b/autoprojectmanagement/main_modules/progress_data_generator.py\\n    deleted file mode 100644\\n    index c5d374f..0000000\\n    --- a/autoprojectmanagement/main_modules/progress_data_generator.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:12",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:10 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f1a0323b972ec274bd2c8d9fc979436364fde778"
+        ]
+    },
+    "563db997051c5f6d34d4affbc95caf53c497f935": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/progress_report.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:16):\\n- autoprojectmanagement/main_modules/progress_report.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_report.py b/autoprojectmanagement/main_modules/progress_report.py\\n    deleted file mode 100644\\n    index 1fb22ef..0000000\\n    --- a/autoprojectmanagement/main_modules/progress_report.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:17",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:16 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "18b5785fd068e4d82f2623f44611db19be849ce0"
+        ]
+    },
+    "0841808311216ad3ed42f3975a572b34ab5c28f3": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/project_views_generator.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:21):\\n- autoprojectmanagement/main_modules/project_views_generator.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/project_views_generator.py b/autoprojectmanagement/main_modules/project_views_generator.py\\n    deleted file mode 100644\\n    index c2f087b..0000000\\n    --- a/autoprojectmanagement/main_modules/project_views_generator.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:23",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:22 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "563db997051c5f6d34d4affbc95caf53c497f935"
+        ]
+    },
+    "fc92fea08eea5e820ba6d5a22acb3989f06dfcba": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/quality_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:27):\\n- autoprojectmanagement/main_modules/quality_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/quality_management.py b/autoprojectmanagement/main_modules/quality_management.py\\n    deleted file mode 100644\\n    index 56a6bf6..0000000\\n    --- a/autoprojectmanagement/main_modules/quality_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:29",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:28 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "0841808311216ad3ed42f3975a572b34ab5c28f3"
+        ]
+    },
+    "149a513b1f0c555841ede6fe78ae099430d45c56": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/reporting.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:33):\\n- autoprojectmanagement/main_modules/reporting.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/reporting.py b/autoprojectmanagement/main_modules/reporting.py\\n    deleted file mode 100644\\n    index 532d327..0000000\\n    --- a/autoprojectmanagement/main_modules/reporting.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:35",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:33 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "fc92fea08eea5e820ba6d5a22acb3989f06dfcba"
+        ]
+    },
+    "35cc5b1ce4622b0335307a7f3071ac8c6928c9b3": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/resource_allocation_manager.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:40):\\n- autoprojectmanagement/main_modules/resource_allocation_manager.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/resource_allocation_manager.py b/autoprojectmanagement/main_modules/resource_allocation_manager.py\\n    deleted file mode 100644\\n    index 57958fd..0000000\\n    --- a/autoprojectmanagement/main_modules/resource_allocation_manager.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:40 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "149a513b1f0c555841ede6fe78ae099430d45c56"
+        ]
+    },
+    "017c977d0a72ba07b55dc823502dce41e7933612": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/resource_leveling.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:45):\\n- autoprojectmanagement/main_modules/resource_leveling.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/resource_leveling.py b/autoprojectmanagement/main_modules/resource_leveling.py\\n    deleted file mode 100644\\n    index c280a50..0000000\\n    --- a/autoprojectmanagement/main_modules/resource_leveling.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:47",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:46 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "35cc5b1ce4622b0335307a7f3071ac8c6928c9b3"
+        ]
+    },
+    "5c42f1312aae71c7459ca360e697fb191c097fb7": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/resource_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:51):\\n- autoprojectmanagement/main_modules/resource_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/resource_management.py b/autoprojectmanagement/main_modules/resource_management.py\\n    deleted file mode 100644\\n    index 4b24a86..0000000\\n    --- a/autoprojectmanagement/main_modules/resource_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:53",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:52 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "017c977d0a72ba07b55dc823502dce41e7933612"
+        ]
+    },
+    "146e0d3f70e5677986933aa86acfb78eb2dde8f9": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/risk_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:37:57):\\n- autoprojectmanagement/main_modules/risk_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/risk_management.py b/autoprojectmanagement/main_modules/risk_management.py\\n    deleted file mode 100644\\n    index e27c4db..0000000\\n    --- a/autoprojectmanagement/main_modules/risk_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:07:59",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:37:58 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "5c42f1312aae71c7459ca360e697fb191c097fb7"
+        ]
+    },
+    "79a5cdf7b579c1695ca97706fc766f3cb78a8db3": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/scheduler.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:03):\\n- autoprojectmanagement/main_modules/scheduler.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/scheduler.py b/autoprojectmanagement/main_modules/scheduler.py\\n    deleted file mode 100644\\n    index 9b81c18..0000000\\n    --- a/autoprojectmanagement/main_modules/scheduler.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:05",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:03 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "146e0d3f70e5677986933aa86acfb78eb2dde8f9"
+        ]
+    },
+    "e737d0315c42f9cd58a37bd895101fb6030ab63a": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/scope_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:09):\\n- autoprojectmanagement/main_modules/scope_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/scope_management.py b/autoprojectmanagement/main_modules/scope_management.py\\n    deleted file mode 100644\\n    index 27d73f7..0000000\\n    --- a/autoprojectmanagement/main_modules/scope_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:11",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:09 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "79a5cdf7b579c1695ca97706fc766f3cb78a8db3"
+        ]
+    },
+    "10e81f1eb865eb6f9007fb0a7a1729bde2462697": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/setup_automation.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:15):\\n- autoprojectmanagement/main_modules/setup_automation.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:17",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:15 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "e737d0315c42f9cd58a37bd895101fb6030ab63a"
+        ]
+    },
+    "15bb72747bc79babec1cd9c954d5ff7ddd7ff22e": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/setup_initialization.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:21):\\n- autoprojectmanagement/main_modules/setup_initialization.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/setup_initialization.py b/autoprojectmanagement/main_modules/setup_initialization.py\\n    deleted file mode 100644\\n    index 147deaa..0000000\\n    --- a/autoprojectmanagement/main_modules/setup_initialization.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:23",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:21 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "10e81f1eb865eb6f9007fb0a7a1729bde2462697"
+        ]
+    },
+    "f0a0c2732b4b8110d301d2c124fe63ee6fb76d5d": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/task_executor.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:27):\\n- autoprojectmanagement/main_modules/task_executor.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_executor.py b/autoprojectmanagement/main_modules/task_executor.py\\n    deleted file mode 100644\\n    index 01636f6..0000000\\n    --- a/autoprojectmanagement/main_modules/task_executor.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:29",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:27 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "15bb72747bc79babec1cd9c954d5ff7ddd7ff22e"
+        ]
+    },
+    "38f2a5734bd3e6137c67ff9b131126b7b98f5b3c": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/task_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:33):\\n- autoprojectmanagement/main_modules/task_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_management.py b/autoprojectmanagement/main_modules/task_management.py\\n    deleted file mode 100644\\n    index 593f737..0000000\\n    --- a/autoprojectmanagement/main_modules/task_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:35",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:33 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f0a0c2732b4b8110d301d2c124fe63ee6fb76d5d"
+        ]
+    },
+    "4f3e244f7eaec14ebc26d8c85b1905bb6d454ba2": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/task_management_integration.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:39):\\n- autoprojectmanagement/main_modules/task_management_integration.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_management_integration.py b/autoprojectmanagement/main_modules/task_management_integration.py\\n    deleted file mode 100644\\n    index 75d5ebb..0000000\\n    --- a/autoprojectmanagement/main_modules/task_management_integration.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:39 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "38f2a5734bd3e6137c67ff9b131126b7b98f5b3c"
+        ]
+    },
+    "dd4b07d629492b4d677296c5fd2e75c947764e16": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/time_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:45):\\n- autoprojectmanagement/main_modules/time_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/time_management.py b/autoprojectmanagement/main_modules/time_management.py\\n    deleted file mode 100644\\n    index 1efe79f..0000000\\n    --- a/autoprojectmanagement/main_modules/time_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:46",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:45 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "4f3e244f7eaec14ebc26d8c85b1905bb6d454ba2"
+        ]
+    },
+    "ecb31ae40787b588bf0994882800d598ae9be39d": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/wbs_aggregator.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:51):\\n- autoprojectmanagement/main_modules/wbs_aggregator.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/wbs_aggregator.py b/autoprojectmanagement/main_modules/wbs_aggregator.py\\n    deleted file mode 100644\\n    index 399239e..0000000\\n    --- a/autoprojectmanagement/main_modules/wbs_aggregator.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:53",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:51 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "dd4b07d629492b4d677296c5fd2e75c947764e16"
+        ]
+    },
+    "fbe1749166e09cc93a59ccdec9383988006f3b58": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/wbs_merger.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:38:57):\\n- autoprojectmanagement/main_modules/wbs_merger.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/wbs_merger.py b/autoprojectmanagement/main_modules/wbs_merger.py\\n    deleted file mode 100644\\n    index 9613554..0000000\\n    --- a/autoprojectmanagement/main_modules/wbs_merger.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:08:59",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:38:57 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ecb31ae40787b588bf0994882800d598ae9be39d"
+        ]
+    },
+    "91b393b448f4170ee426091dbd9bf42bce2c421b": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/wbs_parser.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:03):\\n- autoprojectmanagement/main_modules/wbs_parser.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/wbs_parser.py b/autoprojectmanagement/main_modules/wbs_parser.py\\n    deleted file mode 100644\\n    index 011deb0..0000000\\n    --- a/autoprojectmanagement/main_modules/wbs_parser.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:05",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:03 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "fbe1749166e09cc93a59ccdec9383988006f3b58"
+        ]
+    },
+    "8629f6a9c6b083757620bc36e7cbbe87938976d8": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/workflow_data_collector.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:09):\\n- autoprojectmanagement/main_modules/workflow_data_collector.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/workflow_data_collector.py b/autoprojectmanagement/main_modules/workflow_data_collector.py\\n    deleted file mode 100644\\n    index 857b0ca..0000000\\n    --- a/autoprojectmanagement/main_modules/workflow_data_collector.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:11",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:10 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "91b393b448f4170ee426091dbd9bf42bce2c421b"
+        ]
+    },
+    "94b276dc3a841111e75ac685ad0d05eaead3411f": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/auto_commit.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:15):\\n- autoprojectmanagement/services/auto_commit.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:17",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:16 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8629f6a9c6b083757620bc36e7cbbe87938976d8"
+        ]
+    },
+    "881cb49ecaf425adb4e39e86d32b135af558c177": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/backup_manager.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:21):\\n- autoprojectmanagement/services/backup_manager.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/backup_manager.py b/autoprojectmanagement/services/backup_manager.py\\n    deleted file mode 100644\\n    index 61bed20..0000000\\n    --- a/autoprojectmanagement/services/backup_manager.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:22",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:21 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "94b276dc3a841111e75ac685ad0d05eaead3411f"
+        ]
+    },
+    "1f2bcebb583619a3a441ee57f6fdd73fbcfba5fd": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/cli_commands.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:27):\\n- autoprojectmanagement/services/cli_commands.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:29",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:27 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "881cb49ecaf425adb4e39e86d32b135af558c177"
+        ]
+    },
+    "0e223b7f9e73b055e730cd6f88ad58798f08d4f4": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/config_and_token_management.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:33):\\n- autoprojectmanagement/services/config_and_token_management.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/config_and_token_management.py b/autoprojectmanagement/services/config_and_token_management.py\\n    deleted file mode 100644\\n    index fa4ebda..0000000\\n    --- a/autoprojectmanagement/services/config_and_token_management.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:35",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:33 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "1f2bcebb583619a3a441ee57f6fdd73fbcfba5fd"
+        ]
+    },
+    "f0f26f16a89440300bf17203b6553b2638dcbe01": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/documentation_automation.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:39):\\n- autoprojectmanagement/services/documentation_automation.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/documentation_automation.py b/autoprojectmanagement/services/documentation_automation.py\\n    deleted file mode 100644\\n    index 72c24a4..0000000\\n    --- a/autoprojectmanagement/services/documentation_automation.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:40",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:39 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "0e223b7f9e73b055e730cd6f88ad58798f08d4f4"
+        ]
+    },
+    "2868600db66f35982dfb1798f0775b57de393378": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/github_integration.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:45):\\n- autoprojectmanagement/services/github_integration.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/github_integration.py b/autoprojectmanagement/services/github_integration.py\\n    deleted file mode 100644\\n    index dc9b424..0000000\\n    --- a/autoprojectmanagement/services/github_integration.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:46",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:45 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f0f26f16a89440300bf17203b6553b2638dcbe01"
+        ]
+    },
+    "3e19db0812e891ba867646f63362fbd30354ff86": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/github_project_manager.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:51):\\n- autoprojectmanagement/services/github_project_manager.py: This file was removed from the project.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:53",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:52 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "2868600db66f35982dfb1798f0775b57de393378"
+        ]
+    },
+    "8b1bead941978c13599d7d0f4ee9eeed008767fc": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/integration_manager.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:39:57):\\n- autoprojectmanagement/services/integration_manager.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/integration_manager.py b/autoprojectmanagement/services/integration_manager.py\\n    deleted file mode 100644\\n    index ea24f1f..0000000\\n    --- a/autoprojectmanagement/services/integration_manager.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:09:59",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:39:57 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "3e19db0812e891ba867646f63362fbd30354ff86"
+        ]
+    },
+    "ee43b75d7e9db1c8749ff58c6f660199fcdec15e": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/json_data_linker.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:40:03):\\n- autoprojectmanagement/services/json_data_linker.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/json_data_linker.py b/autoprojectmanagement/services/json_data_linker.py\\n    deleted file mode 100644\\n    index 73fcb0e..0000000\\n    --- a/autoprojectmanagement/services/json_data_linker.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:05",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:03 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "8b1bead941978c13599d7d0f4ee9eeed008767fc"
+        ]
+    },
+    "9dd969f8c7aab95634e5f2f2d7bea134f6505409": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/vscode_extension_installer.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:40:09):\\n- autoprojectmanagement/services/vscode_extension_installer.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/vscode_extension_installer.py b/autoprojectmanagement/services/vscode_extension_installer.py\\n    deleted file mode 100644\\n    index 295b3d1..0000000\\n    --- a/autoprojectmanagement/services/vscode_extension_installer.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:11",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:09 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "ee43b75d7e9db1c8749ff58c6f660199fcdec15e"
+        ]
+    },
+    "a8d96e1c689618ae9886c321625b062fe4b9e76d": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/wiki_git_operations.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:40:15):\\n- autoprojectmanagement/services/wiki_git_operations.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/wiki_git_operations.py b/autoprojectmanagement/services/wiki_git_operations.py\\n    deleted file mode 100644\\n    index 5474d2f..0000000\\n    --- a/autoprojectmanagement/services/wiki_git_operations.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:15 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "9dd969f8c7aab95634e5f2f2d7bea134f6505409"
+        ]
+    },
+    "1879881aae195cc480dbe852b023f85d78fde069": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/wiki_page_mapper.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:40:21):\\n- autoprojectmanagement/services/wiki_page_mapper.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/wiki_page_mapper.py b/autoprojectmanagement/services/wiki_page_mapper.py\\n    deleted file mode 100644\\n    index 9ac5938..0000000\\n    --- a/autoprojectmanagement/services/wiki_page_mapper.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:22",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:21 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "a8d96e1c689618ae9886c321625b062fe4b9e76d"
+        ]
+    },
+    "f4207e895f01ef97257863d94533c431777a3d11": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/wiki_sync_service.py",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-11 14:40:26):\\n- autoprojectmanagement/services/wiki_sync_service.py: This file was removed from the project.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/wiki_sync_service.py b/autoprojectmanagement/services/wiki_sync_service.py\\n    deleted file mode 100644\\n    index 5dd7e56..0000000\\n    --- a/autoprojectmanagement/services/wiki_sync_service.py\\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:28",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:27 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "1879881aae195cc480dbe852b023f85d78fde069"
+        ]
+    },
+    "88f91557863533cfe21f9ddc2359907411761cce": {
+        "task_id": "root",
+        "file_path": "Docs/Appendices/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:40:32):\\n- Docs/Appendices/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/Appendices/Module_Detailed_Specifications.md b/Docs/Appendices/Module_Detailed_Specifications.md\\n    new file mode 100644\\n    index 0000000..8bb83fd\\n    --- /dev/null\\n    +++ b/Docs/Appendices/Module_Detailed_Specifications.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:34",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:33 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "f4207e895f01ef97257863d94533c431777a3d11"
+        ]
+    },
+    "b0a1617844266611545e81e485745ce0011d9e4a": {
+        "task_id": "root",
+        "file_path": "Docs/modules_docs/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:40:38):\\n- Docs/modules_docs/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/modules_docs/_modules_docs.md b/Docs/modules_docs/_modules_docs.md\\n    new file mode 100644\\n    index 0000000..e69de29\\n    diff --git a/Docs/modules_docs/api/_api_docs.md b/Docs/modules_docs/api/_api_docs.md\\n    new file mode 100644\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:40",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:39 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "88f91557863533cfe21f9ddc2359907411761cce"
+        ]
+    },
+    "0c2ccb1c06b759197cc892aa0aca5fb78ade7a7b": {
+        "task_id": "root",
+        "file_path": "INDEX.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:40:44):\\n- INDEX.md: This file is new and not yet tracked by git.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:46",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:44 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "b0a1617844266611545e81e485745ce0011d9e4a"
+        ]
+    },
+    "321aca42a1547bb2ccf1ee3e7023ae6cc8698176": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/REORGANIZATION_COMPLETED.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:40:50):\\n- autoprojectmanagement/REORGANIZATION_COMPLETED.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/REORGANIZATION_COMPLETED.md b/autoprojectmanagement/REORGANIZATION_COMPLETED.md\\n    new file mode 100644\\n    index 0000000..3305b9f\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/REORGANIZATION_COMPLETED.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:52",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:51 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "0c2ccb1c06b759197cc892aa0aca5fb78ade7a7b"
+        ]
+    },
+    "7ca32db8c0cbba7bffbb46376f26068b5b8c3de8": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/REORGANIZATION_MAPPING.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:40:56):\\n- autoprojectmanagement/REORGANIZATION_MAPPING.md: This file is new and not yet tracked by git.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:10:57",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:40:56 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "321aca42a1547bb2ccf1ee3e7023ae6cc8698176"
+        ]
+    },
+    "d6c4684293041406b91831db3ea9c931c57dfeb8": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/communication_risk/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:02):\\n- autoprojectmanagement/main_modules/communication_risk/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/communication_risk/communication_management.py b/autoprojectmanagement/main_modules/communication_risk/communication_management.py\\n    new file mode 100644\\n    index 0000000..d7ede66\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/main_modules/communication_risk/communication_management.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:03",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:02 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "7ca32db8c0cbba7bffbb46376f26068b5b8c3de8"
+        ]
+    },
+    "c796f00c5e738bde0b9b923f1d79e013cc8d7b21": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/data_collection_processing/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:08):\\n- autoprojectmanagement/main_modules/data_collection_processing/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/data_collection_processing/db_data_collector.py b/autoprojectmanagement/main_modules/data_collection_processing/db_data_collector.py\\n    new file mode 100644\\n    index 0000000..65be825\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/main_modules/data_collection_processing/db_data_collector.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:09",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:08 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "d6c4684293041406b91831db3ea9c931c57dfeb8"
+        ]
+    },
+    "0eb384ebf3b45a2d97e1bd8b6dedcc413e425f7e": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/planning_estimation/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:14):\\n- autoprojectmanagement/main_modules/planning_estimation/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/planning_estimation/estimation_management.py b/autoprojectmanagement/main_modules/planning_estimation/estimation_management.py\\n    new file mode 100644\\n    index 0000000..34b5e41\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/main_modules/planning_estimation/estimation_management.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:15",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:14 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "c796f00c5e738bde0b9b923f1d79e013cc8d7b21"
+        ]
+    },
+    "724eb40293fe7f20cec134eb25b03bf3e7d6d176": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/progress_reporting/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:20):\\n- autoprojectmanagement/main_modules/progress_reporting/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.py b/autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.py\\n    new file mode 100644\\n    index 0000000..d4b56f7\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:21",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:20 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "0eb384ebf3b45a2d97e1bd8b6dedcc413e425f7e"
+        ]
+    },
+    "2f5fb8cb864c70e7288da421b11aa9844663b43e": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/quality_commit_management/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:26):\\n- autoprojectmanagement/main_modules/quality_commit_management/: This file is new and not yet tracked by git.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:27",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:26 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "724eb40293fe7f20cec134eb25b03bf3e7d6d176"
+        ]
+    },
+    "af3a032c1ac0e70d4c5efb430d3864d4a7cfce78": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/resource_management/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:31):\\n- autoprojectmanagement/main_modules/resource_management/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.py b/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.py\\n    new file mode 100644\\n    index 0000000..57958fd\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:33",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:32 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "2f5fb8cb864c70e7288da421b11aa9844663b43e"
+        ]
+    },
+    "d406d51b0bbf686e5be54ec5226f57cdf2370778": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/task_workflow_management/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:37):\\n- autoprojectmanagement/main_modules/task_workflow_management/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_workflow_management/do_important_tasks.py b/autoprojectmanagement/main_modules/task_workflow_management/do_important_tasks.py\\n    new file mode 100644\\n    index 0000000..bf2bbf6\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/main_modules/task_workflow_management/do_important_tasks.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:39",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:38 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "af3a032c1ac0e70d4c5efb430d3864d4a7cfce78"
+        ]
+    },
+    "21ba05241e713db1f3aea4dad33cfafa7a904be2": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/main_modules/utility_modules/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:43):\\n- autoprojectmanagement/main_modules/utility_modules/: This file is new and not yet tracked by git.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:45",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:44 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "d406d51b0bbf686e5be54ec5226f57cdf2370778"
+        ]
+    },
+    "36a44f3c4ab7abd8f8fb7db3ea20dfebd409b23c": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/migrate_reorganization.py",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:49):\\n- autoprojectmanagement/migrate_reorganization.py: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/migrate_reorganization.py b/autoprojectmanagement/migrate_reorganization.py\\n    new file mode 100644\\n    index 0000000..02ee8ba\\n    --- /dev/null\\n    +++ b/autoprojectmanagement/migrate_reorganization.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:51",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:50 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "21ba05241e713db1f3aea4dad33cfafa7a904be2"
+        ]
+    },
+    "51260cbc6434257f49805530585873a539a6f593": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/automation_services/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:41:56):\\n- autoprojectmanagement/services/automation_services/: This file is new and not yet tracked by git.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:11:58",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:41:57 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "36a44f3c4ab7abd8f8fb7db3ea20dfebd409b23c"
+        ]
+    },
+    "4bd0171dcc3ef3cc3af65cd2fdce065becee6ca2": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/configuration_cli/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:42:03):\\n- autoprojectmanagement/services/configuration_cli/: This file is new and not yet tracked by git.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:12:05",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:42:04 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "51260cbc6434257f49805530585873a539a6f593"
+        ]
+    },
+    "6a9741215dca35627a9089c6eaec7a249affbfe1": {
+        "task_id": "root",
+        "file_path": "autoprojectmanagement/services/integration_services/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:42:11):\\n- autoprojectmanagement/services/integration_services/: This file is new and not yet tracked by git.\\n  Summary:\\n    No diff available.\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:12:14",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:42:12 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "4bd0171dcc3ef3cc3af65cd2fdce065becee6ca2"
+        ]
+    },
+    "d969f986cc3f78de745ed03a8488af490a7ceb9f": {
+        "task_id": "root",
+        "file_path": "tests/test_docs/ModuleDocs/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-11 14:42:19):\\n- tests/test_docs/ModuleDocs/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/tests/test_docs/ModuleDocs/INDEX.md b/tests/test_docs/ModuleDocs/INDEX.md\\n    new file mode 100644\\n    index 0000000..a39cff1\\n    --- /dev/null\\n    +++ b/tests/test_docs/ModuleDocs/INDEX.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.003,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-11 11:12:21",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Mon Aug 11 14:42:20 2025 +0330",
+        "branch": "* Test",
+        "parent_commits": [
+            "6a9741215dca35627a9089c6eaec7a249affbfe1"
+        ]
     }
 }
