@@ -2,16 +2,15 @@
 Services module for AutoProjectManagement
 """
 
-from .auto_commit import AutoCommit
-from .backup_manager import BackupManager
-from .cli_commands import CLICommands
+from .automation_services.auto_commit import AutoCommit
+from .automation_services.backup_manager import BackupManager
+from .configuration_cli.cli_commands import *
 from .github_integration import GitHubIntegration
-from .integration_manager import IntegrationManager
+from .integration_services.integration_manager import IntegrationManager
 
 __all__ = [
     "AutoCommit",
     "BackupManager",
-    "CLICommands",
     "GitHubIntegration",
     "IntegrationManager",
 ]
