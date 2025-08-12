@@ -1,4 +1,4 @@
-from project_management.modules.services.github_integration import GitHubIntegration
+from autoprojectmanagement.services.github_integration import GitHubIntegration
 from collections import defaultdict
 
 class RiskManagement:
