@@ -3,11 +3,43 @@ import os
 import subprocess
 import logging
 import json
-from ..main_modules.setup_initialization import initialize_git_repo, create_virtualenv, install_dependencies, create_requirements_file, ensure_gitignore_excludes_venv
+from autoprojectmanagement.main_modules.utility_modules.setup_initialization import initialize_git_repo, create_virtualenv, install_dependencies, create_requirements_file, ensure_gitignore_excludes_venv
 from .github_project_manager import GitHubProjectManager
 
 logger = logging.getLogger("cli_commands")
 logging.basicConfig(level=logging.INFO)
+
+class CLICommands:
+    def __init__(self):
+        self.github_manager = GitHubProjectManager()
+
+    def create_project(self, project_name, description=None, template=None):
+        # Placeholder implementation for creating a project
+        # You can expand this with actual logic
+        print(f"Creating project: {project_name}")
+        return True
+
+    def get_project_status(self, project_id, format='table'):
+        # Placeholder implementation for getting project status
+        # You can expand this with actual logic
+        return f"Status for project {project_id} in format {format}"
+
+    def add_task(self, project_id, task_name, priority, description=None, assignee=None, due_date=None):
+        # Placeholder implementation for adding a task
+        # You can expand this with actual logic
+        print(f"Adding task '{task_name}' to project {project_id} with priority {priority}")
+        return True
+
+    def generate_report(self, project_id, report_type, format='markdown'):
+        # Placeholder implementation for generating a report
+        # You can expand this with actual logic
+        return f"Report {report_type} for project {project_id} in format {format}"
+
+    def update_task_status(self, project_id, task_id, new_status):
+        # Placeholder implementation for updating task status
+        # You can expand this with actual logic
+        print(f"Updating task {task_id} status to {new_status} in project {project_id}")
+        return True
 
 def run_command(command):
     try:
@@ -172,3 +204,21 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# Standalone function wrappers for API imports
+_cli_commands_instance = CLICommands()
+
+def get_project_status(project_id, format='table'):
+    return _cli_commands_instance.get_project_status(project_id, format)
+
+def create_project(project_name, description=None, template=None):
+    return _cli_commands_instance.create_project(project_name, description, template)
+
+def add_task(project_id, task_name, priority, description=None, assignee=None, due_date=None):
+    return _cli_commands_instance.add_task(project_id, task_name, priority, description, assignee, due_date)
+
+def generate_report(project_id, report_type, format='markdown'):
+    return _cli_commands_instance.generate_report(project_id, report_type, format)
+
+def update_task_status(project_id, task_id, new_status):
+    return _cli_commands_instance.update_task_status(project_id, task_id, new_status)
