@@ -68,28 +68,28 @@ class VSCodeExtension:
                         "title": "Show Status"
                     }
                 ],
-            "configuration": {
-                "title": "Auto Project Management",
-                "properties": {
-                    "autoProjectManagement.enabled": {
-                        "type": "boolean",
-                        "default": True,
-                        "description": "Enable automatic project management"
-                    },
-                    "autoProjectManagement.autoCommit": {
-                        "type": "boolean",
-                        "default": True,
-                        "description": "Enable automatic commits"
-                    },
-                    "autoProjectManagement.autoProgress": {
-                        "type": "boolean",
-                        "default": True,
-                        "description": "Enable automatic progress tracking"
+                "configuration": {
+                    "title": "Auto Project Management",
+                    "properties": {
+                        "autoProjectManagement.enabled": {
+                            "type": "boolean",
+                            "default": True,
+                            "description": "Enable automatic project management"
+                        },
+                        "autoProjectManagement.autoCommit": {
+                            "type": "boolean",
+                            "default": True,
+                            "description": "Enable automatic commits"
+                        },
+                        "autoProjectManagement.autoProgress": {
+                            "type": "boolean",
+                            "default": True,
+                            "description": "Enable automatic progress tracking"
+                        }
                     }
                 }
             }
         }
-        
         
         config_path = os.path.join(self.extension_dir, 'package.json')
         with open(config_path, 'w') as f:
@@ -111,12 +111,12 @@ class VSCodeExtension:
                         "${workspaceFolder}"
                     ],
                     "group": "build",
-            "presentation": {
-                "echo": True,
-                "reveal": "silent",
-                "focus": False,
-                "panel": "shared"
-            },
+                    "presentation": {
+                        "echo": True,
+                        "reveal": "silent",
+                        "focus": False,
+                        "panel": "shared"
+                    },
                     "runOptions": {
                         "runOn": "folderOpen"
                     }
@@ -130,10 +130,10 @@ class VSCodeExtension:
                         "from autoprojectmanagement.services.auto_commit import AutoCommit; AutoCommit().run_auto_commit()"
                     ],
                     "group": "build",
-            "presentation": {
-                "echo": False,
-                "reveal": "never"
-            },
+                    "presentation": {
+                        "echo": False,
+                        "reveal": "never"
+                    },
                     "runOptions": {
                         "runOn": "default"
                     }
