@@ -68,28 +68,28 @@ class VSCodeExtension:
                         "title": "Show Status"
                     }
                 ],
-                "configuration": {
-                    "title": "Auto Project Management",
-                    "properties": {
-                        "autoProjectManagement.enabled": {
-                            "type": "boolean",
-                            "default": true,
-                            "description": "Enable automatic project management"
-                        },
-                        "autoProjectManagement.autoCommit": {
-                            "type": "boolean",
-                            "default": true,
-                            "description": "Enable automatic commits"
-                        },
-                        "autoProjectManagement.autoProgress": {
-                            "type": "boolean",
-                            "default": true,
-                            "description": "Enable automatic progress tracking"
-                        }
+            "configuration": {
+                "title": "Auto Project Management",
+                "properties": {
+                    "autoProjectManagement.enabled": {
+                        "type": "boolean",
+                        "default": True,
+                        "description": "Enable automatic project management"
+                    },
+                    "autoProjectManagement.autoCommit": {
+                        "type": "boolean",
+                        "default": True,
+                        "description": "Enable automatic commits"
+                    },
+                    "autoProjectManagement.autoProgress": {
+                        "type": "boolean",
+                        "default": True,
+                        "description": "Enable automatic progress tracking"
                     }
                 }
             }
         }
+        
         
         config_path = os.path.join(self.extension_dir, 'package.json')
         with open(config_path, 'w') as f:
@@ -111,12 +111,12 @@ class VSCodeExtension:
                         "${workspaceFolder}"
                     ],
                     "group": "build",
-                    "presentation": {
-                        "echo": true,
-                        "reveal": "silent",
-                        "focus": false,
-                        "panel": "shared"
-                    },
+            "presentation": {
+                "echo": True,
+                "reveal": "silent",
+                "focus": False,
+                "panel": "shared"
+            },
                     "runOptions": {
                         "runOn": "folderOpen"
                     }
@@ -130,10 +130,10 @@ class VSCodeExtension:
                         "from autoprojectmanagement.services.auto_commit import AutoCommit; AutoCommit().run_auto_commit()"
                     ],
                     "group": "build",
-                    "presentation": {
-                        "echo": false,
-                        "reveal": "never"
-                    },
+            "presentation": {
+                "echo": False,
+                "reveal": "never"
+            },
                     "runOptions": {
                         "runOn": "default"
                     }
@@ -150,13 +150,13 @@ class VSCodeExtension:
         settings = {
             "files.autoSave": "afterDelay",
             "files.autoSaveDelay": 1000,
-            "git.autofetch": true,
-            "git.enableSmartCommit": true,
+            "git.autofetch": True,
+            "git.enableSmartCommit": True,
             "git.postCommitCommand": "push",
-            "extensions.autoUpdate": true,
-            "autoProjectManagement.enabled": true,
-            "autoProjectManagement.autoCommit": true,
-            "autoProjectManagement.autoProgress": true
+            "extensions.autoUpdate": True,
+            "autoProjectManagement.enabled": True,
+            "autoProjectManagement.autoCommit": True,
+            "autoProjectManagement.autoProgress": True
         }
         
         settings_path = os.path.join(self.extension_dir, 'settings.json')
