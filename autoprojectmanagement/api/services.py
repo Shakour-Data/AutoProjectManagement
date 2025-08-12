@@ -1,85 +1,124 @@
 import json
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
-# This file will house the business logic, making it independent of both the
+# This file houses the business logic, making it independent of both the
 # API framework (FastAPI) and the CLI framework (Click). This is a key
 # part of the refactoring.
 
-# We will eventually import directly from `main_modules` to perform tasks.
-# For example:
+# Future imports from main_modules:
 # from autoprojectmanagement.main_modules.progress_calculator_refactored import calculate_project_progress
 # from autoprojectmanagement.main_modules.reporting import generate_status_report
+
 
 class ProjectService:
     """
     A service class to handle project-related business logic.
-    It acts as a bridge between the API endpoints and the core logic modules.
+    
+    Acts as a bridge between API endpoints and core logic modules,
+    providing a clean separation between presentation and business layers.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
-        Initializes the service, setting up paths to the data storage.
+        Initialize the service with data storage paths.
+        
+        Sets up paths relative to this file's location to ensure
+        consistent behavior regardless of execution context.
         """
-        # The base path is calculated relative to this file's location to ensure it works
-        # regardless of where the application is run from.
-        self.db_path = Path(__file__).resolve().parents[2] / 'JSonDataBase'
-        self.inputs_path = self.db_path / 'Inputs'
-        self.outputs_path = self.db_path / 'OutPuts'
+        self.db_path: Path = Path(__file__).resolve().parents[2] / 'JSonDataBase'
+        self.inputs_path: Path = self.db_path / 'Inputs'
+        self.outputs_path: Path = self.db_path / 'OutPuts'
 
     def get_status(self, project_id: str) -> Optional[Dict[str, Any]]:
         """
-        Retrieves and calculates the status of a given project.
-
-        This method is the new home for the logic that was in `CLICommands.get_project_status`.
-        Instead of returning a formatted string, it returns structured data (a dictionary).
-
-        Args:
-            project_id: The ID or name of the project. For now, we assume it maps
-                        to a file or a key in the JSON database.
-
-        Returns:
-            A dictionary containing status information, or None if the project is not found.
-        """
-        # This is a placeholder implementation. The real implementation will
-        # involve reading the relevant JSON files and calling logic from `main_modules`.
+        Retrieve and calculate the status of a given project.
         
-        # Example: Check for a project's task database
-        # Note: The project_id needs to be mapped to actual files. This is a simplification.
-        task_db_path = self.inputs_path / 'UserInputs' / 'commit_task_database.json'
+        This method replaces CLICommands.get_project_status, returning
+        structured data instead of formatted strings.
+        
+        Args:
+            project_id: Unique identifier for the project
+            
+        Returns:
+            Dict containing status information, or None if project
+            is not found. Returns error dict if file operations fail.
+            
+        Raises:
+            No exceptions are raised; errors are returned as dict values.
+        """
+        task_db_path: Path = (
+            self.inputs_path / 'UserInputs' / 'commit_task_database.json'
+        )
 
         if not task_db_path.exists():
             return None
 
         try:
-            with open(task_db_path, 'r', encoding='utf-8') as f:
-                tasks_data = json.load(f)
-        except (IOError, json.JSONDecodeError):
-            # Handle cases where the file is unreadable or not valid JSON
-            return {"error": "Could not read or parse the task database."}
+            with open(task_db_path, 'r', encoding='utf-8') as file:
+                tasks_data: Union[list, dict] = json.load(file)
+        except IOError as e:
+            return {
+                "error": f"Could not read task database: {str(e)}"
+            }
+        except json.JSONDecodeError as e:
+            return {
+                "error": f"Invalid JSON in task database: {str(e)}"
+            }
 
-        # This is a simplified calculation. The real calculation would be more complex
-        # and likely handled by a dedicated module in `main_modules`.
-        # We assume `tasks_data` is a list of task dictionaries for this example.
         if not isinstance(tasks_data, list):
-             return {"error": "Task database is not in the expected format (a list of tasks)."}
+            return {
+                "error": (
+                    "Task database format error: expected list "
+                    f"but got {type(tasks_data).__name__}"
+                )
+            }
 
-        total_tasks = len(tasks_data)
-        completed_tasks = sum(1 for task in tasks_data if task.get('status') == 'Done')
-        progress = (completed_tasks / total_tasks) * 100 if total_tasks > 0 else 0
+        total_tasks: int = len(tasks_data)
+        completed_tasks: int = sum(
+            1 for task in tasks_data 
+            if isinstance(task, dict) and task.get('status') == 'Done'
+        )
+        
+        progress: float = (
+            (completed_tasks / total_tasks) * 100 
+            if total_tasks > 0 
+            else 0.0
+        )
 
-        # This is the structured data that our API will return.
-        status_info = {
+        # Determine project summary based on progress
+        if progress == 0:
+            summary: str = "Project not started."
+        elif progress >= 100:
+            summary = "Project completed."
+        else:
+            summary = "Project is in progress."
+
+        status_info: Dict[str, Any] = {
             "project_id": project_id,
             "total_tasks": total_tasks,
             "completed_tasks": completed_tasks,
             "progress_percentage": round(progress, 2),
-            "summary": "Project is in progress." if progress < 100 and progress > 0 else "Project not started." if progress == 0 else "Project completed.",
+            "summary": summary,
             "source_file": str(task_db_path)
         }
 
         return status_info
 
-# A single instance of the service that can be imported and used by API endpoints.
-# This follows the singleton pattern for this context.
-project_service = ProjectService()
+    def get_project_list(self) -> Dict[str, Any]:
+        """
+        Retrieve list of available projects.
+        
+        Returns:
+            Dict containing list of projects and metadata
+        """
+        # Placeholder for future implementation
+        return {
+            "projects": [],
+            "count": 0,
+            "message": "Project listing not yet implemented"
+        }
+
+
+# Singleton instance for API endpoints
+project_service: ProjectService = ProjectService()
