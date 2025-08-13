@@ -62,28 +62,28 @@ Review all code files in 4 distinct phases to ensure systematic quality improvem
 | `input_handler.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
 | `progress_data_generator.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
 | `workflow_data_collector.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
-| `estimation_management.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `gantt_chart_data.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `scheduler.py` | ☐ | ☐ | ☐ | ☐ | | |
+| `estimation_management.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data| |
+| `gantt_chart_data.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data | |
+| `scheduler.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data| |
 | `scope_management.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
-| `wbs_aggregator.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `wbs_merger.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `wbs_parser.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `check_progress_dashboard_update.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `dashboards_reports.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `progress_calculator.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `progress_report.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `reporting.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `commit_progress_manager.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `git_progress_updater.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `github_actions_automation.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `quality_management.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `resource_allocation_manager.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `resource_leveling.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `resource_management.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `do_important_tasks.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `do_urgent_tasks.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `importance_urgency_calculator.py` | ☐ | ☐ | ☐ | ☐ | | |
+| `wbs_aggregator.py` | ☐ | ☐ | ☐ | ☐ | Shakour-Data| |
+| `wbs_merger.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data| |
+| `wbs_parser.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data| |
+| `check_progress_dashboard_update.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data2| |
+| `dashboards_reports.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data2| |
+| `progress_calculator.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data2| |
+| `progress_report.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data2| |
+| `reporting.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data2| |
+| `commit_progress_manager.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesDB| |
+| `git_progress_updater.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesDB| |
+| `github_actions_automation.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesDB| |
+| `quality_management.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesDB| |
+| `resource_allocation_manager.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesDB| |
+| `resource_leveling.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesFundamental| |
+| `resource_management.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesFundamental| |
+| `do_important_tasks.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesFundamental| |
+| `do_urgent_tasks.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesFundamental| |
+| `importance_urgency_calculator.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesFundamental| |
 | `task_executor.py` | ☐ | ☐ | ☐ | ☐ | | |
 | `task_management_integration.py` | ☐ | ☐ | ☐ | ☐ | | |
 | `task_management.py` | ☐ | ☐ | ☐ | ☐ | | |
