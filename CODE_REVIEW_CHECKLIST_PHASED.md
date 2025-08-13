@@ -61,10 +61,10 @@ Review all code files in 4 distinct phases to ensure systematic quality improvem
 | `db_data_collector.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
 | `input_handler.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
 | `progress_data_generator.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
-| `workflow_data_collector.py` | ☐ | ☐ | ☐ | ☐ | | |
-| `estimation_management.py` | ✅ | ✅ | ✅ | ✅ |GravityWavesFundamental|2025-08-13|
-| `gantt_chart_data.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
-| `scheduler.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
+| `workflow_data_collector.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
+| `estimation_management.py` | ☐ | ☐ | ☐ | ☐ | | |
+| `gantt_chart_data.py` | ☐ | ☐ | ☐ | ☐ | | |
+| `scheduler.py` | ☐ | ☐ | ☐ | ☐ | | |
 | `scope_management.py` | ✅ | ✅ | ✅ | ✅ |Shakour-Data|2025-08-13|
 | `wbs_aggregator.py` | ☐ | ☐ | ☐ | ☐ | | |
 | `wbs_merger.py` | ☐ | ☐ | ☐ | ☐ | | |
