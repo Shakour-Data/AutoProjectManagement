@@ -1,0 +1,958 @@
+"""
+Configuration file for AutoProjectManagement API.
+
+This module provides centralized configuration management for the AutoProjectManagement
+system, including API endpoints, database connections, and system settings.
+
+Configuration options:
+    - API_HOST: API server host (default: 127.0.0.1)
+    - API_PORT: API server port (default: 8000)
+    - API_RELOAD: Enable auto-reload (default: True in development)
+    - API_VERSION: API version (default: v1)
+    - API_PREFIX: API prefix (default: /api/v1)
+    - API_DOCS_URL: API documentation URL (default: /docs)
+    - API_REDOC_URL: API documentation URL (default: /redoc)
+    - API_OPENAPI_URL: OpenAPI URL (default: /openapi.json)
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API title
+    - API_VERSION: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE: API version
+    - API_CONTACT: API contact information
+    - API_LICENSE: API license information
+    - API_DESCRIPTION: API description
+    - API_TITLE:
