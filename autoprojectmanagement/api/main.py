@@ -13,7 +13,6 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 from autoprojectmanagement.api.app import app
 from autoprojectmanagement.api.server import start_server
 
-
 # Export the app for uvicorn
 __all__ = ['app']
 
