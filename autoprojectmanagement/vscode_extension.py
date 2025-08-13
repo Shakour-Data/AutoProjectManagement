@@ -289,8 +289,178 @@ class VSCodeExtension:
                 "**/node_modules": True,
                 "**/venv": True,
                 "**/.venv": True,
-                "**The attempt to edit the file failed due to an error opening the diff editor. I will try a different approach by reading the first 20 lines of the file to confirm the import section, then I will rewrite the import section with the added `import sys` line to fix the issue. This will ensure the file is updated correctly.
+                "**/.auto_project": True
+            }
+        }
 
-<read_file>
-<path>autoprojectmanagement/vscode_extension.py</path>
-</read_file>
+        settings_path = os.path.join(self.vscode_dir, SETTINGS_FILE)
+        with open(settings_path, 'w', encoding='utf-8') as f:
+            json.dump(settings_config, f, indent=2)
+        
+        self.logger.info(f"Created settings configuration: {settings_path}")
+
+    def create_extensions_configuration(self) -> None:
+        """Create extensions.json with recommended extensions."""
+        extensions_config = {
+            "recommendations": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.black-formatter",
+                "visualstudioexptteam.vscodeintellicode",
+                "ms-vscode.makefile-tools",
+                "eamodio.gitlens",
+                "ms-azuretools.vscode-docker",
+                "ms-vscode-remote.remote-containers"
+            ]
+        }
+
+        extensions_path = os.path.join(self.vscode_dir, EXTENSIONS_FILE)
+        with open(extensions_path, 'w', encoding='utf-8') as f:
+            json.dump(extensions_config, f, indent=2)
+        
+        self.logger.info(f"Created extensions configuration: {extensions_path}")
+
+    def create_workspace_configuration(self) -> None:
+        """Create comprehensive workspace configuration."""
+        workspace_config = {
+            "folders": [
+                {
+                    "path": self.project_path
+                }
+            ],
+            "settings": {
+                "python.pythonPath": "./venv/bin/python",
+                "python.linting.enabled": True,
+                "python.linting.pylintEnabled": True,
+                "python.formatting.provider": "black",
+                "editor.formatOnSave": True
+            }
+        }
+
+        workspace_path = os.path.join(self.project_path, WORKSPACE_FILE)
+        with open(workspace_path, 'w', encoding='utf-8') as f:
+            json.dump(workspace_config, f, indent=2)
+        
+        self.logger.info(f"Created workspace configuration: {workspace_path}")
+
+    def create_extension_manifest(self) -> None:
+        """Create package.json for VS Code extension development."""
+        manifest = {
+            "name": EXTENSION_NAME,
+            "displayName": EXTENSION_DISPLAY_NAME,
+            "description": EXTENSION_DESCRIPTION,
+            "version": EXTENSION_VERSION,
+            "publisher": EXTENSION_PUBLISHER,
+            "engines": {
+                "vscode": EXTENSION_ENGINE
+            },
+            "categories": [
+                "Other"
+            ],
+            "activationEvents": [
+                "onCommand:autoprojectmanagement.start",
+                "onCommand:autoprojectmanagement.stop",
+                "onCommand:autoprojectmanagement.configure"
+            ],
+            "main": "./out/extension.js",
+            "contributes": {
+                "commands": [
+                    {
+                        "command": "autoprojectmanagement.start",
+                        "title": "Start Auto Project Management"
+                    },
+                    {
+                        "command": "autoprojectmanagement.stop",
+                        "title": "Stop Auto Project Management"
+                    },
+                    {
+                        "command": "autoprojectmanagement.configure",
+                        "title": "Configure Auto Project Management"
+                    }
+                ],
+                "configuration": {
+                    "title": "Auto Project Management",
+                    "properties": {
+                        "autoprojectmanagement.projectPath": {
+                            "type": "string",
+                            "default": "${workspaceFolder}",
+                            "description": "Path to the project root"
+                        },
+                        "autoprojectmanagement.autoStart": {
+                            "type": "boolean",
+                            "default": True,
+                            "description": "Automatically start management on workspace load"
+                        }
+                    }
+                }
+            },
+            "scripts": {
+                "vscode:prepublish": "npm run compile",
+                "compile": "tsc -p ./",
+                "watch": "tsc -watch -p ./",
+                "pretest": "npm run compile",
+                "test": "node ./out/test/runTest.js"
+            },
+            "devDependencies": {
+                "@types/vscode": "^1.60.0",
+                "@types/node": "14.x",
+                "@types/mocha": "^8.2.2",
+                "typescript": "^4.4.3"
+            }
+        }
+
+        manifest_path = os.path.join(self.project_path, "package.json")
+        with open(manifest_path, 'w', encoding='utf-8') as f:
+            json.dump(manifest, f, indent=2)
+        
+        self.logger.info(f"Created extension manifest: {manifest_path}")
+
+    def setup_complete_environment(self) -> None:
+        """
+        Setup complete VS Code environment with all configurations.
+        
+        This includes:
+        - VS Code directory
+        - Tasks configuration
+        - Launch configuration
+        - Settings
+        - Recommended extensions
+        - Workspace configuration
+        - Extension manifest
+        """
+        self.create_vscode_directory()
+        self.create_tasks_configuration()
+        self.create_launch_configuration()
+        self.create_settings_configuration()
+        self.create_extensions_configuration()
+        self.create_workspace_configuration()
+        self.create_extension_manifest()
+        
+        self.logger.info("Completed VS Code environment setup")
+
+def main() -> None:
+    """Command line interface for VS Code extension setup."""
+    import argparse
+    
+    parser = argparse.ArgumentParser(
+        description="Setup VS Code environment for AutoProjectManagement"
+    )
+    parser.add_argument(
+        "--path",
+        type=str,
+        default=os.getcwd(),
+        help="Path to the project directory"
+    )
+    
+    args = parser.parse_args()
+    
+    try:
+        extension = VSCodeExtension(args.path)
+        extension.setup_complete_environment()
+        print("VS Code environment setup completed successfully")
+    except Exception as e:
+        logger.error(f"Error setting up VS Code environment: {str(e)}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
