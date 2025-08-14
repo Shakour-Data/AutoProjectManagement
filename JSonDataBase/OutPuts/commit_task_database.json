@@ -34762,5 +34762,1059 @@
         "parent_commits": [
             "781f94a44dd58fd1cbe99a982fa78bc25339d5e7"
         ]
+    },
+    "55384a1ab7212855c6c17702659409f6bbcb101a": {
+        "task_id": "root",
+        "file_path": "CODE_REVIEW_CHECKLIST_PHASED.md",
+        "commit_message": "🐛 fix: Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:12):\\n- CODE_REVIEW_CHECKLIST_PHASED.md: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/CODE_REVIEW_CHECKLIST_PHASED.md b/CODE_REVIEW_CHECKLIST_PHASED.md\\n    index 9482287..0fc710b 100644\\n    --- a/CODE_REVIEW_CHECKLIST_PHASED.md\\n    +++ b/CODE_REVIEW_CHECKLIST_PHASED.md\\n    @@ -77,7 +77,7 @@ Review all code files in 4 distinct phases to ensure systematic quality improvem\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:12",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:12 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "e635606d2a09df33138d852baffa4751e44f7b6f"
+        ]
+    },
+    "b9a405d1e44e3d067a6e77e7513b3724e25d1e41": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/api/main.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:14):\\n- autoprojectmanagement/api/main.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/api/main.py b/autoprojectmanagement/api/main.py\\n    index d4fcfe1..58b38a6 100644\\n    --- a/autoprojectmanagement/api/main.py\\n    +++ b/autoprojectmanagement/api/main.py\\n    @@ -1,8 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:14",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:14 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "55384a1ab7212855c6c17702659409f6bbcb101a"
+        ]
+    },
+    "9e1e0fe6b90f1902b12c879e0c884326ec624982": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/api/services.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:15):\\n- autoprojectmanagement/api/services.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/api/services.py b/autoprojectmanagement/api/services.py\\n    index 040915d..c9d94f8 100644\\n    --- a/autoprojectmanagement/api/services.py\\n    +++ b/autoprojectmanagement/api/services.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:15",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:15 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "b9a405d1e44e3d067a6e77e7513b3724e25d1e41"
+        ]
+    },
+    "9c469512b353c39e6cc75582544fb3a6afd404e8": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/communication_risk/communication_risk_doc_integration.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:17):\\n- autoprojectmanagement/main_modules/communication_risk/communication_risk_doc_integration.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/communication_risk/communication_risk_doc_integration.py b/autoprojectmanagement/main_modules/communication_risk/communication_risk_doc_integration.py\\n    index dff161c..edf97da 100644\\n    --- a/autoprojectmanagement/main_modules/communication_risk/communication_risk_doc_integration.py\\n    +++ b/autoprojectmanagement/main_modules/communication_risk/communication_risk_doc_integration.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:17",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:17 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "9e1e0fe6b90f1902b12c879e0c884326ec624982"
+        ]
+    },
+    "bee9728faf7c955278fa8979a38734d41877b295": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/communication_risk/risk_management.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:18):\\n- autoprojectmanagement/main_modules/communication_risk/risk_management.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/communication_risk/risk_management.py b/autoprojectmanagement/main_modules/communication_risk/risk_management.py\\n    index 5737a57..e22c16f 100644\\n    --- a/autoprojectmanagement/main_modules/communication_risk/risk_management.py\\n    +++ b/autoprojectmanagement/main_modules/communication_risk/risk_management.py\\n    @@ -1,12 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:18",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:18 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "9c469512b353c39e6cc75582544fb3a6afd404e8"
+        ]
+    },
+    "8825bc608f5a7b6b63cea4ccdfa58a56552d3be3": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/data_collection_processing/progress_data_generator.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:20):\\n- autoprojectmanagement/main_modules/data_collection_processing/progress_data_generator.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/data_collection_processing/progress_data_generator.py b/autoprojectmanagement/main_modules/data_collection_processing/progress_data_generator.py\\n    index 2b064af..0c30789 100644\\n    --- a/autoprojectmanagement/main_modules/data_collection_processing/progress_data_generator.py\\n    +++ b/autoprojectmanagement/main_modules/data_collection_processing/progress_data_generator.py\\n    @@ -1,10 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:20",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:20 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "bee9728faf7c955278fa8979a38734d41877b295"
+        ]
+    },
+    "c3bc9727e073077473230fd92a0750aec91692d5": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/planning_estimation/estimation_management.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:21):\\n- autoprojectmanagement/main_modules/planning_estimation/estimation_management.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/planning_estimation/estimation_management.py b/autoprojectmanagement/main_modules/planning_estimation/estimation_management.py\\n    index 34b5e41..ec7ab56 100644\\n    --- a/autoprojectmanagement/main_modules/planning_estimation/estimation_management.py\\n    +++ b/autoprojectmanagement/main_modules/planning_estimation/estimation_management.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:21",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:21 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "8825bc608f5a7b6b63cea4ccdfa58a56552d3be3"
+        ]
+    },
+    "f89b96f5737f9cd5cca643ded4ce25cccf7e83bd": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/planning_estimation/wbs_parser.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:22):\\n- autoprojectmanagement/main_modules/planning_estimation/wbs_parser.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/planning_estimation/wbs_parser.py b/autoprojectmanagement/main_modules/planning_estimation/wbs_parser.py\\n    index 5f8fd0f..357ac4f 100644\\n    --- a/autoprojectmanagement/main_modules/planning_estimation/wbs_parser.py\\n    +++ b/autoprojectmanagement/main_modules/planning_estimation/wbs_parser.py\\n    @@ -1,25 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:23",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:22 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "c3bc9727e073077473230fd92a0750aec91692d5"
+        ]
+    },
+    "805db7c2ddad90f203764316dd422cdec7d09de4": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:24):\\n- autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.py b/autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.py\\n    index d4b56f7..4c9aee3 100644\\n    --- a/autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.py\\n    +++ b/autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:24",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:24 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "f89b96f5737f9cd5cca643ded4ce25cccf7e83bd"
+        ]
+    },
+    "331ee878c4008c53a7f633e3fae46d44724fd8ce": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/progress_reporting/dashboards_reports.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:25):\\n- autoprojectmanagement/main_modules/progress_reporting/dashboards_reports.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_reporting/dashboards_reports.py b/autoprojectmanagement/main_modules/progress_reporting/dashboards_reports.py\\n    index e1c96df..a8ef13e 100644\\n    --- a/autoprojectmanagement/main_modules/progress_reporting/dashboards_reports.py\\n    +++ b/autoprojectmanagement/main_modules/progress_reporting/dashboards_reports.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:25",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:25 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "805db7c2ddad90f203764316dd422cdec7d09de4"
+        ]
+    },
+    "756dc71ebb6d6af136800494294c78d54a1011d2": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/progress_reporting/progress_calculator.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:27):\\n- autoprojectmanagement/main_modules/progress_reporting/progress_calculator.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_reporting/progress_calculator.py b/autoprojectmanagement/main_modules/progress_reporting/progress_calculator.py\\n    index 2ab74e2..a07bf68 100644\\n    --- a/autoprojectmanagement/main_modules/progress_reporting/progress_calculator.py\\n    +++ b/autoprojectmanagement/main_modules/progress_reporting/progress_calculator.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:27",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:27 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "331ee878c4008c53a7f633e3fae46d44724fd8ce"
+        ]
+    },
+    "7986436fd8e576f401264c7cc07d8ab66ef076d5": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/progress_reporting/progress_report.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:28):\\n- autoprojectmanagement/main_modules/progress_reporting/progress_report.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_reporting/progress_report.py b/autoprojectmanagement/main_modules/progress_reporting/progress_report.py\\n    index 1fb22ef..827d963 100644\\n    --- a/autoprojectmanagement/main_modules/progress_reporting/progress_report.py\\n    +++ b/autoprojectmanagement/main_modules/progress_reporting/progress_report.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:28",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:28 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "756dc71ebb6d6af136800494294c78d54a1011d2"
+        ]
+    },
+    "8db0411ce2d1697f4177b847e47fcfe19b139003": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/progress_reporting/reporting.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:30):\\n- autoprojectmanagement/main_modules/progress_reporting/reporting.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/progress_reporting/reporting.py b/autoprojectmanagement/main_modules/progress_reporting/reporting.py\\n    index 532d327..a56a931 100644\\n    --- a/autoprojectmanagement/main_modules/progress_reporting/reporting.py\\n    +++ b/autoprojectmanagement/main_modules/progress_reporting/reporting.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:30",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:30 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "7986436fd8e576f401264c7cc07d8ab66ef076d5"
+        ]
+    },
+    "1ffafe18528ef16484c68f7a3d2aec1fee14258c": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/project_management_system.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:31):\\n- autoprojectmanagement/main_modules/project_management_system.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/project_management_system.py b/autoprojectmanagement/main_modules/project_management_system.py\\n    index 5bba304..dd82ffd 100644\\n    --- a/autoprojectmanagement/main_modules/project_management_system.py\\n    +++ b/autoprojectmanagement/main_modules/project_management_system.py\\n    @@ -1,29 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:31",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:31 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "8db0411ce2d1697f4177b847e47fcfe19b139003"
+        ]
+    },
+    "6100503794aaa4f9eccc9e1f5eed5106ca31be27": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/quality_commit_management/commit_progress_manager.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:33):\\n- autoprojectmanagement/main_modules/quality_commit_management/commit_progress_manager.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/quality_commit_management/commit_progress_manager.py b/autoprojectmanagement/main_modules/quality_commit_management/commit_progress_manager.py\\n    index ac17ab6..6cb68f4 100644\\n    --- a/autoprojectmanagement/main_modules/quality_commit_management/commit_progress_manager.py\\n    +++ b/autoprojectmanagement/main_modules/quality_commit_management/commit_progress_manager.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:33",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:33 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "1ffafe18528ef16484c68f7a3d2aec1fee14258c"
+        ]
+    },
+    "697d3a0c55b82ac371ab131f019bcec987755aef": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/quality_commit_management/git_progress_updater.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:34):\\n- autoprojectmanagement/main_modules/quality_commit_management/git_progress_updater.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/quality_commit_management/git_progress_updater.py b/autoprojectmanagement/main_modules/quality_commit_management/git_progress_updater.py\\n    index 216913c..62d9197 100644\\n    --- a/autoprojectmanagement/main_modules/quality_commit_management/git_progress_updater.py\\n    +++ b/autoprojectmanagement/main_modules/quality_commit_management/git_progress_updater.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:35",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:34 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "6100503794aaa4f9eccc9e1f5eed5106ca31be27"
+        ]
+    },
+    "05dfb345d98a2a49f9715abc939870019080b03b": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/quality_commit_management/github_actions_automation.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:36):\\n- autoprojectmanagement/main_modules/quality_commit_management/github_actions_automation.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/quality_commit_management/github_actions_automation.py b/autoprojectmanagement/main_modules/quality_commit_management/github_actions_automation.py\\n    index 2185eb0..a18a8ea 100644\\n    --- a/autoprojectmanagement/main_modules/quality_commit_management/github_actions_automation.py\\n    +++ b/autoprojectmanagement/main_modules/quality_commit_management/github_actions_automation.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:36",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:36 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "697d3a0c55b82ac371ab131f019bcec987755aef"
+        ]
+    },
+    "766b0065e33c2dede4a23eafb4bf88ba146b5223": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/quality_commit_management/quality_management.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:38):\\n- autoprojectmanagement/main_modules/quality_commit_management/quality_management.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/quality_commit_management/quality_management.py b/autoprojectmanagement/main_modules/quality_commit_management/quality_management.py\\n    index 56a6bf6..ff77886 100644\\n    --- a/autoprojectmanagement/main_modules/quality_commit_management/quality_management.py\\n    +++ b/autoprojectmanagement/main_modules/quality_commit_management/quality_management.py\\n    @@ -1,3 +1,65 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:38",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:38 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "05dfb345d98a2a49f9715abc939870019080b03b"
+        ]
+    },
+    "1d9719e7a34518c04ae6d353cfc536dfa25f520f": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:39):\\n- autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.py b/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.py\\n    index 57958fd..4b7c262 100644\\n    --- a/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.py\\n    +++ b/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:39",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:39 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "766b0065e33c2dede4a23eafb4bf88ba146b5223"
+        ]
+    },
+    "ff3b06b267d7887003a9356b97df77c6d0e6140b": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/resource_management/resource_leveling.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:41):\\n- autoprojectmanagement/main_modules/resource_management/resource_leveling.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/resource_management/resource_leveling.py b/autoprojectmanagement/main_modules/resource_management/resource_leveling.py\\n    index c280a50..25a1f16 100644\\n    --- a/autoprojectmanagement/main_modules/resource_management/resource_leveling.py\\n    +++ b/autoprojectmanagement/main_modules/resource_management/resource_leveling.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:41",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:41 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "1d9719e7a34518c04ae6d353cfc536dfa25f520f"
+        ]
+    },
+    "1d9650a347be72045cf8c49ac1d359fc7991b64b": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/resource_management/resource_management.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:42):\\n- autoprojectmanagement/main_modules/resource_management/resource_management.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/resource_management/resource_management.py b/autoprojectmanagement/main_modules/resource_management/resource_management.py\\n    index 4b24a86..793a68c 100644\\n    --- a/autoprojectmanagement/main_modules/resource_management/resource_management.py\\n    +++ b/autoprojectmanagement/main_modules/resource_management/resource_management.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:42",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:42 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "ff3b06b267d7887003a9356b97df77c6d0e6140b"
+        ]
+    },
+    "dfc6e17f93f1d12420b2eac77055aba830e25b8e": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/task_workflow_management/do_important_tasks.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:44):\\n- autoprojectmanagement/main_modules/task_workflow_management/do_important_tasks.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_workflow_management/do_important_tasks.py b/autoprojectmanagement/main_modules/task_workflow_management/do_important_tasks.py\\n    index bf2bbf6..2ef1a90 100644\\n    --- a/autoprojectmanagement/main_modules/task_workflow_management/do_important_tasks.py\\n    +++ b/autoprojectmanagement/main_modules/task_workflow_management/do_important_tasks.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:44",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:44 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "1d9650a347be72045cf8c49ac1d359fc7991b64b"
+        ]
+    },
+    "a97d8cec7d98af9d4d8883871cb395d8e39545f7": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/task_workflow_management/do_urgent_tasks.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:45):\\n- autoprojectmanagement/main_modules/task_workflow_management/do_urgent_tasks.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_workflow_management/do_urgent_tasks.py b/autoprojectmanagement/main_modules/task_workflow_management/do_urgent_tasks.py\\n    index 0e35e10..d294d57 100644\\n    --- a/autoprojectmanagement/main_modules/task_workflow_management/do_urgent_tasks.py\\n    +++ b/autoprojectmanagement/main_modules/task_workflow_management/do_urgent_tasks.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:45",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:45 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "dfc6e17f93f1d12420b2eac77055aba830e25b8e"
+        ]
+    },
+    "0249416fdf8a7c0929443e3c6d7afe91642fae33": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/task_workflow_management/importance_urgency_calculator.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:46):\\n- autoprojectmanagement/main_modules/task_workflow_management/importance_urgency_calculator.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_workflow_management/importance_urgency_calculator.py b/autoprojectmanagement/main_modules/task_workflow_management/importance_urgency_calculator.py\\n    index f76a531..0cdd9ac 100644\\n    --- a/autoprojectmanagement/main_modules/task_workflow_management/importance_urgency_calculator.py\\n    +++ b/autoprojectmanagement/main_modules/task_workflow_management/importance_urgency_calculator.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:47",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:47 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "a97d8cec7d98af9d4d8883871cb395d8e39545f7"
+        ]
+    },
+    "36ea8777032d045713ba0713ec51c21276c1e8cd": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/task_workflow_management/task_executor.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:48):\\n- autoprojectmanagement/main_modules/task_workflow_management/task_executor.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_workflow_management/task_executor.py b/autoprojectmanagement/main_modules/task_workflow_management/task_executor.py\\n    index 01636f6..51551bc 100644\\n    --- a/autoprojectmanagement/main_modules/task_workflow_management/task_executor.py\\n    +++ b/autoprojectmanagement/main_modules/task_workflow_management/task_executor.py\\n    @@ -1,10 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:48",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:48 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "0249416fdf8a7c0929443e3c6d7afe91642fae33"
+        ]
+    },
+    "7f119ffd77ca38e2a50794113dcb4dee13d8bfa5": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/task_workflow_management/task_management.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:49):\\n- autoprojectmanagement/main_modules/task_workflow_management/task_management.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_workflow_management/task_management.py b/autoprojectmanagement/main_modules/task_workflow_management/task_management.py\\n    index 593f737..b345405 100644\\n    --- a/autoprojectmanagement/main_modules/task_workflow_management/task_management.py\\n    +++ b/autoprojectmanagement/main_modules/task_workflow_management/task_management.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:50",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:49 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "36ea8777032d045713ba0713ec51c21276c1e8cd"
+        ]
+    },
+    "a042d3d4ee57e6fcece95036afd6feb1968720cf": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/task_workflow_management/task_management_integration.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:51):\\n- autoprojectmanagement/main_modules/task_workflow_management/task_management_integration.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/task_workflow_management/task_management_integration.py b/autoprojectmanagement/main_modules/task_workflow_management/task_management_integration.py\\n    index 75d5ebb..4d4e08e 100644\\n    --- a/autoprojectmanagement/main_modules/task_workflow_management/task_management_integration.py\\n    +++ b/autoprojectmanagement/main_modules/task_workflow_management/task_management_integration.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:51",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:51 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "7f119ffd77ca38e2a50794113dcb4dee13d8bfa5"
+        ]
+    },
+    "50d0acbad6685619aaf8901819ddfbba1780e2be": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/utility_modules/feature_weights.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:53):\\n- autoprojectmanagement/main_modules/utility_modules/feature_weights.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/utility_modules/feature_weights.py b/autoprojectmanagement/main_modules/utility_modules/feature_weights.py\\n    index 1232228..7cc6b7a 100644\\n    --- a/autoprojectmanagement/main_modules/utility_modules/feature_weights.py\\n    +++ b/autoprojectmanagement/main_modules/utility_modules/feature_weights.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:53",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:53 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "a042d3d4ee57e6fcece95036afd6feb1968720cf"
+        ]
+    },
+    "e62d3941865d1b842ecee024c74430381dae6686": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/utility_modules/project_views_generator.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:54):\\n- autoprojectmanagement/main_modules/utility_modules/project_views_generator.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/utility_modules/project_views_generator.py b/autoprojectmanagement/main_modules/utility_modules/project_views_generator.py\\n    index c2f087b..08cf469 100644\\n    --- a/autoprojectmanagement/main_modules/utility_modules/project_views_generator.py\\n    +++ b/autoprojectmanagement/main_modules/utility_modules/project_views_generator.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:54",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:54 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "50d0acbad6685619aaf8901819ddfbba1780e2be"
+        ]
+    },
+    "dcbe3bf2a25914f4b7c79832daa31aac1a589940": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/utility_modules/setup_initialization.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:57):\\n- autoprojectmanagement/main_modules/utility_modules/setup_initialization.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/utility_modules/setup_initialization.py b/autoprojectmanagement/main_modules/utility_modules/setup_initialization.py\\n    index 147deaa..f65a60e 100644\\n    --- a/autoprojectmanagement/main_modules/utility_modules/setup_initialization.py\\n    +++ b/autoprojectmanagement/main_modules/utility_modules/setup_initialization.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:57",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:57 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "e62d3941865d1b842ecee024c74430381dae6686"
+        ]
+    },
+    "1c9b3271bfd99bd84b9e355e859755b567506c65": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/main_modules/utility_modules/time_management.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:53:58):\\n- autoprojectmanagement/main_modules/utility_modules/time_management.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/main_modules/utility_modules/time_management.py b/autoprojectmanagement/main_modules/utility_modules/time_management.py\\n    index 1efe79f..c93cd7c 100644\\n    --- a/autoprojectmanagement/main_modules/utility_modules/time_management.py\\n    +++ b/autoprojectmanagement/main_modules/utility_modules/time_management.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:23:58",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:53:58 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "dcbe3bf2a25914f4b7c79832daa31aac1a589940"
+        ]
+    },
+    "a3f834c334634ac996c7656bd55dbd50b4b7f802": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/automation_services/__init__.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:54:00):\\n- autoprojectmanagement/services/automation_services/__init__.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/automation_services/__init__.py b/autoprojectmanagement/services/automation_services/__init__.py\\n    index 0fd6687..113d1ba 100644\\n    --- a/autoprojectmanagement/services/automation_services/__init__.py\\n    +++ b/autoprojectmanagement/services/automation_services/__init__.py\\n    @@ -1,14 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:24:00",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:54:00 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "1c9b3271bfd99bd84b9e355e859755b567506c65"
+        ]
+    },
+    "53acd5f0362de1310ea141a48e7b11feb1a591dc": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/automation_services/auto_commit.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:54:01):\\n- autoprojectmanagement/services/automation_services/auto_commit.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/automation_services/auto_commit.py b/autoprojectmanagement/services/automation_services/auto_commit.py\\n    index 71ad55b..a472a78 100644\\n    --- a/autoprojectmanagement/services/automation_services/auto_commit.py\\n    +++ b/autoprojectmanagement/services/automation_services/auto_commit.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:24:01",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:54:01 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "a3f834c334634ac996c7656bd55dbd50b4b7f802"
+        ]
+    },
+    "52a0525dbda8aef0e4bc4bb3029cbb88e7f451b0": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/automation_services/backup_manager.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:54:02):\\n- autoprojectmanagement/services/automation_services/backup_manager.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/automation_services/backup_manager.py b/autoprojectmanagement/services/automation_services/backup_manager.py\\n    index 61bed20..f77b1eb 100644\\n    --- a/autoprojectmanagement/services/automation_services/backup_manager.py\\n    +++ b/autoprojectmanagement/services/automation_services/backup_manager.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:24:03",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:54:02 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "53acd5f0362de1310ea141a48e7b11feb1a591dc"
+        ]
+    },
+    "aa4e4c6cdb301fdcd32e5aab671bf4e9199d99d0": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/configuration_cli/cli_commands.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:54:05):\\n- autoprojectmanagement/services/configuration_cli/cli_commands.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/configuration_cli/cli_commands.py b/autoprojectmanagement/services/configuration_cli/cli_commands.py\\n    index cda5e44..d3971a4 100644\\n    --- a/autoprojectmanagement/services/configuration_cli/cli_commands.py\\n    +++ b/autoprojectmanagement/services/configuration_cli/cli_commands.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:24:05",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:54:05 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "52a0525dbda8aef0e4bc4bb3029cbb88e7f451b0"
+        ]
+    },
+    "6361b435cf225a765e150b22066c0ca11dcadebd": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/configuration_cli/config_and_token_management.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:54:07):\\n- autoprojectmanagement/services/configuration_cli/config_and_token_management.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/configuration_cli/config_and_token_management.py b/autoprojectmanagement/services/configuration_cli/config_and_token_management.py\\n    index fa4ebda..81fc083 100644\\n    --- a/autoprojectmanagement/services/configuration_cli/config_and_token_management.py\\n    +++ b/autoprojectmanagement/services/configuration_cli/config_and_token_management.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:24:07",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:54:07 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "aa4e4c6cdb301fdcd32e5aab671bf4e9199d99d0"
+        ]
+    },
+    "b6d4e78c68554dce016fa00a78a7ac86e3aaed86": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/configuration_cli/json_data_linker.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:54:09):\\n- autoprojectmanagement/services/configuration_cli/json_data_linker.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/configuration_cli/json_data_linker.py b/autoprojectmanagement/services/configuration_cli/json_data_linker.py\\n    index 73fcb0e..d4cc415 100644\\n    --- a/autoprojectmanagement/services/configuration_cli/json_data_linker.py\\n    +++ b/autoprojectmanagement/services/configuration_cli/json_data_linker.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:24:09",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:54:09 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "6361b435cf225a765e150b22066c0ca11dcadebd"
+        ]
+    },
+    "fe200d6d3b0787ca801c66269cdd10147df2a8e6": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/integration_services/github_integration.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:54:11):\\n- autoprojectmanagement/services/integration_services/github_integration.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/integration_services/github_integration.py b/autoprojectmanagement/services/integration_services/github_integration.py\\n    index dc9b424..2855818 100644\\n    --- a/autoprojectmanagement/services/integration_services/github_integration.py\\n    +++ b/autoprojectmanagement/services/integration_services/github_integration.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:24:11",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:54:11 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "b6d4e78c68554dce016fa00a78a7ac86e3aaed86"
+        ]
+    },
+    "71799f5021fd5e70237beffc17cf4fe2e1db4cc7": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/integration_services/github_project_manager.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 15:54:12):\\n- autoprojectmanagement/services/integration_services/github_project_manager.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/integration_services/github_project_manager.py b/autoprojectmanagement/services/integration_services/github_project_manager.py\\n    index bafc7fb..e6dd7ae 100644\\n    --- a/autoprojectmanagement/services/integration_services/github_project_manager.py\\n    +++ b/autoprojectmanagement/services/integration_services/github_project_manager.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:24:12",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 15:54:12 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "fe200d6d3b0787ca801c66269cdd10147df2a8e6"
+        ]
+    },
+    "28dd8c434471c3c891f1aa31ed726be4f9ae25d0": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/integration_services/vscode_extension_installer.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:38):\\n- autoprojectmanagement/services/integration_services/vscode_extension_installer.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/integration_services/vscode_extension_installer.py b/autoprojectmanagement/services/integration_services/vscode_extension_installer.py\\n    index 295b3d1..f31d60f 100644\\n    --- a/autoprojectmanagement/services/integration_services/vscode_extension_installer.py\\n    +++ b/autoprojectmanagement/services/integration_services/vscode_extension_installer.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:32:38",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:38 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "71799f5021fd5e70237beffc17cf4fe2e1db4cc7"
+        ]
+    },
+    "c3d8ffab0677738bea08ed37dc8729abd05b53a5": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/integration_services/wiki_git_operations.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:40):\\n- autoprojectmanagement/services/integration_services/wiki_git_operations.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/integration_services/wiki_git_operations.py b/autoprojectmanagement/services/integration_services/wiki_git_operations.py\\n    index 5474d2f..b3e8c83 100644\\n    --- a/autoprojectmanagement/services/integration_services/wiki_git_operations.py\\n    +++ b/autoprojectmanagement/services/integration_services/wiki_git_operations.py\\n    @@ -1,8 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:32:40",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:40 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "28dd8c434471c3c891f1aa31ed726be4f9ae25d0"
+        ]
+    },
+    "0b781eabecf196128c93db805981ead3a6b5fd82": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/integration_services/wiki_page_mapper.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:41):\\n- autoprojectmanagement/services/integration_services/wiki_page_mapper.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/integration_services/wiki_page_mapper.py b/autoprojectmanagement/services/integration_services/wiki_page_mapper.py\\n    index 9ac5938..5e8fdce 100644\\n    --- a/autoprojectmanagement/services/integration_services/wiki_page_mapper.py\\n    +++ b/autoprojectmanagement/services/integration_services/wiki_page_mapper.py\\n    @@ -1,8 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:32:41",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:41 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "c3d8ffab0677738bea08ed37dc8729abd05b53a5"
+        ]
+    },
+    "a9ad0c64a3fa521545831941c5becdd47dc628f3": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/templates/header_updater.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:43):\\n- autoprojectmanagement/templates/header_updater.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/templates/header_updater.py b/autoprojectmanagement/templates/header_updater.py\\n    index 8d64659..aa27077 100644\\n    --- a/autoprojectmanagement/templates/header_updater.py\\n    +++ b/autoprojectmanagement/templates/header_updater.py\\n    @@ -1,28 +1,62 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.007,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:32:43",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:43 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "0b781eabecf196128c93db805981ead3a6b5fd82"
+        ]
+    },
+    "5e4d0865eb833e690c929f33419333a3c14abf44": {
+        "task_id": "tests",
+        "file_path": "tests/api/test_api_endpoints.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:44):\\n- tests/api/test_api_endpoints.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/api/test_api_endpoints.py b/tests/api/test_api_endpoints.py\\n    index b6dcd42..b57f2dc 100644\\n    --- a/tests/api/test_api_endpoints.py\\n    +++ b/tests/api/test_api_endpoints.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:32:44",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:44 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "a9ad0c64a3fa521545831941c5becdd47dc628f3"
+        ]
+    },
+    "110a6c9bb4396755d59ce781fa015ea82e1528ac": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/conftest.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:45):\\n- tests/code_tests/01_UnitTests/test_services/conftest.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/conftest.py b/tests/code_tests/01_UnitTests/test_services/conftest.py\\n    index f69adb8..549a10c 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/conftest.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/conftest.py\\n    @@ -1,7 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:46",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:45 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "5e4d0865eb833e690c929f33419333a3c14abf44"
+        ]
+    },
+    "537c971daeb5085cee3448bbc88d04ec643c151e": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_auto_commit.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:47):\\n- tests/code_tests/01_UnitTests/test_services/test_auto_commit.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_auto_commit.py b/tests/code_tests/01_UnitTests/test_services/test_auto_commit.py\\n    index f7c537b..938cf07 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_auto_commit.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_auto_commit.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:47",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:47 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "110a6c9bb4396755d59ce781fa015ea82e1528ac"
+        ]
+    },
+    "794ed46dcf984983d9b2fac6a68c46db50364e74": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_backup_manager.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:48):\\n- tests/code_tests/01_UnitTests/test_services/test_backup_manager.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_backup_manager.py b/tests/code_tests/01_UnitTests/test_services/test_backup_manager.py\\n    index 9cfb444..dbb3c29 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_backup_manager.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_backup_manager.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:48",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:48 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "537c971daeb5085cee3448bbc88d04ec643c151e"
+        ]
+    },
+    "b0d46df0574cfc60454ab2cb5fa433e2f4aeadbb": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_check_progress_dashboard_update_service.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:50):\\n- tests/code_tests/01_UnitTests/test_services/test_check_progress_dashboard_update_service.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_check_progress_dashboard_update_service.py b/tests/code_tests/01_UnitTests/test_services/test_check_progress_dashboard_update_service.py\\n    index e69536a..5b2dda1 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_check_progress_dashboard_update_service.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_check_progress_dashboard_update_service.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:50",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:50 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "794ed46dcf984983d9b2fac6a68c46db50364e74"
+        ]
+    },
+    "882e9e1dbcd59ea4efbf6d287f48f0f5fc9de7dd": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_commit_progress_manager_service.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:51):\\n- tests/code_tests/01_UnitTests/test_services/test_commit_progress_manager_service.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_commit_progress_manager_service.py b/tests/code_tests/01_UnitTests/test_services/test_commit_progress_manager_service.py\\n    index eeaf294..4dadfff 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_commit_progress_manager_service.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_commit_progress_manager_service.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:51",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:51 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "b0d46df0574cfc60454ab2cb5fa433e2f4aeadbb"
+        ]
+    },
+    "e8df1ba82b6dde709f1f69f1d68f7d663c9679e5": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_communication_risk_doc_integration_service.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:53):\\n- tests/code_tests/01_UnitTests/test_services/test_communication_risk_doc_integration_service.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_communication_risk_doc_integration_service.py b/tests/code_tests/01_UnitTests/test_services/test_communication_risk_doc_integration_service.py\\n    index 3374c39..88e861f 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_communication_risk_doc_integration_service.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_communication_risk_doc_integration_service.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:53",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:53 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "882e9e1dbcd59ea4efbf6d287f48f0f5fc9de7dd"
+        ]
+    },
+    "bfd56ca27f731226bbf19779951bf461828c207e": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:54):\\n- tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service.py b/tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service.py\\n    index a76228b..c6c66df 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:54",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:54 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "e8df1ba82b6dde709f1f69f1d68f7d663c9679e5"
+        ]
+    },
+    "40b0edda64a91233a68ca6ddf47c82c74d787ee1": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service_refactored.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:56):\\n- tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service_refactored.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service_refactored.py b/tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service_refactored.py\\n    index 1df86fe..ef4293b 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service_refactored.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_dashboards_reports_service_refactored.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:56",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:56 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "bfd56ca27f731226bbf19779951bf461828c207e"
+        ]
+    },
+    "c3b430ad03a765b3fb26c13c5af5158838bee413": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:57):\\n- tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service.py b/tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service.py\\n    index 1eaae30..d85170e 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:57",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:57 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "40b0edda64a91233a68ca6ddf47c82c74d787ee1"
+        ]
+    },
+    "6bc827ae2d0e4626e39aab9d7be964325fa8a196": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service_refactored.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:02:59):\\n- tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service_refactored.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service_refactored.py b/tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service_refactored.py\\n    index 1471c15..975b8b8 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service_refactored.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_db_data_collector_service_refactored.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:32:59",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:02:59 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "c3b430ad03a765b3fb26c13c5af5158838bee413"
+        ]
+    },
+    "cce1f4ca065815b3fedefb3a5eb564b49f0e891f": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_do_important_tasks_service.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:03:00):\\n- tests/code_tests/01_UnitTests/test_services/test_do_important_tasks_service.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_do_important_tasks_service.py b/tests/code_tests/01_UnitTests/test_services/test_do_important_tasks_service.py\\n    index 63c31f5..88c1309 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_do_important_tasks_service.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_do_important_tasks_service.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:33:00",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:03:00 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "6bc827ae2d0e4626e39aab9d7be964325fa8a196"
+        ]
+    },
+    "4dc1d521971b216db34d96d73e7114d38869b22c": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:03:02):\\n- tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks.py b/tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks.py\\n    index 943566e..b23d50b 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks.py\\n    @@ -1,3 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:33:02",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:03:02 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "cce1f4ca065815b3fedefb3a5eb564b49f0e891f"
+        ]
+    },
+    "50d5cfb3328aba6135f91ab57e04db3cb2867266": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks_refactored.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:03:06):\\n- tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks_refactored.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks_refactored.py b/tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks_refactored.py\\n    index ceaf5a9..4884669 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks_refactored.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_do_urgent_tasks_refactored.py\\n    @@ -1,6 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:33:06",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:03:06 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "4dc1d521971b216db34d96d73e7114d38869b22c"
+        ]
+    },
+    "e056d1cf0510e3b0bb30b953acbc3e809863c991": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_wiki_git_operations.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:03:07):\\n- tests/code_tests/01_UnitTests/test_services/test_wiki_git_operations.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_wiki_git_operations.py b/tests/code_tests/01_UnitTests/test_services/test_wiki_git_operations.py\\n    index aa4f641..fa8c378 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_wiki_git_operations.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_wiki_git_operations.py\\n    @@ -1,8 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:33:07",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:03:07 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "50d5cfb3328aba6135f91ab57e04db3cb2867266"
+        ]
+    },
+    "ce018c608b68dc04524d64da5bc70473e94f6580": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_wiki_page_mapper.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:03:08):\\n- tests/code_tests/01_UnitTests/test_services/test_wiki_page_mapper.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_wiki_page_mapper.py b/tests/code_tests/01_UnitTests/test_services/test_wiki_page_mapper.py\\n    index a7fec2c..df6b421 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_wiki_page_mapper.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_wiki_page_mapper.py\\n    @@ -1,8 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:33:09",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:03:08 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "e056d1cf0510e3b0bb30b953acbc3e809863c991"
+        ]
+    },
+    "fda717f4740bc928721ff0b99e66b342287069cc": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_wiki_services_runner.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:03:10):\\n- tests/code_tests/01_UnitTests/test_services/test_wiki_services_runner.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_wiki_services_runner.py b/tests/code_tests/01_UnitTests/test_services/test_wiki_services_runner.py\\n    index 028803e..ed622a8 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_wiki_services_runner.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_wiki_services_runner.py\\n    @@ -1,8 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:33:10",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:03:10 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "ce018c608b68dc04524d64da5bc70473e94f6580"
+        ]
+    },
+    "a7099e5ae50e84064416879eaa4d784ac604449d": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/01_UnitTests/test_services/test_wiki_sync_service.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:03:11):\\n- tests/code_tests/01_UnitTests/test_services/test_wiki_sync_service.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/01_UnitTests/test_services/test_wiki_sync_service.py b/tests/code_tests/01_UnitTests/test_services/test_wiki_sync_service.py\\n    index c809ed2..abfcb97 100644\\n    --- a/tests/code_tests/01_UnitTests/test_services/test_wiki_sync_service.py\\n    +++ b/tests/code_tests/01_UnitTests/test_services/test_wiki_sync_service.py\\n    @@ -1,8 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-14 12:33:11",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:03:11 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "fda717f4740bc928721ff0b99e66b342287069cc"
+        ]
+    },
+    "0c0fda18da6f67038b4eae7dd3e6ba6888ae0338": {
+        "task_id": "tests",
+        "file_path": "tests/code_tests/02_IntegrationTests/test_progress_integration.py",
+        "commit_message": "🐛 fix(tests): Modified files updated\\n\\nChanges included (as of 2025-08-14 16:03:14):\\n- tests/code_tests/02_IntegrationTests/test_progress_integration.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/tests/code_tests/02_IntegrationTests/test_progress_integration.py b/tests/code_tests/02_IntegrationTests/test_progress_integration.py\\n    index 127d69c..c03ce70 100644\\n    --- a/tests/code_tests/02_IntegrationTests/test_progress_integration.py\\n    +++ b/tests/code_tests/02_IntegrationTests/test_progress_integration.py\\n    @@ -1,10 +1,66 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.016,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-14 12:33:14",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 14 16:03:14 2025 +0330",
+        "branch": "* shakour",
+        "parent_commits": [
+            "a7099e5ae50e84064416879eaa4d784ac604449d"
+        ]
     }
 }
