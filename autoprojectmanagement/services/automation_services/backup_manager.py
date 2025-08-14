@@ -574,6 +574,3 @@ if __name__ == "__main__":
     if "--test" in sys.argv:
         success = BackupManagerTests.run_tests()
 
-<read_file>
-<path>autoprojectmanagement/services/automation_services/backup_manager.py</path>
-</read_file>
