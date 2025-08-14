@@ -1,14 +1,44 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 path: autoprojectmanagement/main_modules/task_workflow_management/do_urgent_tasks.py
 File: do_urgent_tasks.py
-Purpose: Manage and execute urgent tasks with comprehensive logging and error handling
-Author: AutoProjectManagement System
-Version: 3.0.0
+Purpose: Urgent task execution
+Author: AutoProjectManagement Team
+Version: 2.0.0
 License: MIT
-Description: Advanced task execution module for handling urgent project tasks with
-             comprehensive logging, error handling, and performance monitoring.
-             Implements all four phases of code quality review checklist.
+Description: Urgent task execution within the AutoProjectManagement system
 """
+
+import logging
+from typing import Dict, Any, Optional, List, Union
+import os
+import sys
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Constants
+CURRENT_VERSION = "2.0.0"
+PYTHON_MIN_VERSION = "3.8+"
+CREATED_DATE = "2025-08-14"
+MODIFIED_DATE = "2025-08-14"
+
+# Module-level docstring
+__doc__ = """
+Urgent task execution within the AutoProjectManagement system
+
+This module is part of the AutoProjectManagement system.
+For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
+"""
+
+# Version information
+__version__ = CURRENT_VERSION
+__author__ = "AutoProjectManagement Team"
+__license__ = "MIT"
+
 
 import logging
 import sys
