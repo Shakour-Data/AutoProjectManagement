@@ -1,18 +1,44 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-================================================================================
-AutoProjectManagement - Documentation Standards
-================================================================================
 path: autoprojectmanagement/templates/documentation_standard.py
 File: documentation_standard.py
-Purpose: Standardized documentation templates and generator for AutoProjectManagement
+Purpose: Documentation standards
 Author: AutoProjectManagement Team
 Version: 2.0.0
 License: MIT
-Description: Provides comprehensive documentation templates and generation utilities
-    for all project documentation including README, API docs, user guides,
-    and technical specifications with bilingual support (Persian/English)
-================================================================================
+Description: Documentation standards within the AutoProjectManagement system
 """
+
+import logging
+from typing import Dict, Any, Optional, List, Union
+import os
+import sys
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Constants
+CURRENT_VERSION = "2.0.0"
+PYTHON_MIN_VERSION = "3.8+"
+CREATED_DATE = "2025-08-14"
+MODIFIED_DATE = "2025-08-14"
+
+# Module-level docstring
+__doc__ = """
+Documentation standards within the AutoProjectManagement system
+
+This module is part of the AutoProjectManagement system.
+For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
+"""
+
+# Version information
+__version__ = CURRENT_VERSION
+__author__ = "AutoProjectManagement Team"
+__license__ = "MIT"
+
 
 from __future__ import annotations
 
