@@ -98,12 +98,12 @@ class AutoCommit:
     
     def __init__(self) -> None:
         """Initialize the AutoCommit service."""
-        self.bm = self._load_backup_manager()
         self.logger = logging.getLogger(__name__)
+        self.bm = self._load_backup_manager()
         
     def _load_backup_manager(self) -> Any:
         """
-        Load the backup manager module dynamically.
+        Load the backup manager module dynamically with proper configuration.
         
         Returns:
             BackupManager instance
@@ -120,7 +120,17 @@ class AutoCommit:
             backup_manager = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(backup_manager)
             
-            return backup_manager.BackupManager()
+            # Create proper BackupConfig instance
+            project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+            config = backup_manager.BackupConfig(
+                source_paths=[project_root],
+                backup_location=os.path.join(project_root, 'backups'),
+                retention_days=30,
+                compression_type=backup_manager.CompressionType.ZIP,
+                exclude_patterns=['.git', '__pycache__', '*.pyc', '.DS_Store', 'node_modules', 'venv', '.venv']
+            )
+            
+            return backup_manager.BackupManager(config)
         except Exception as e:
             self.logger.error(f"Failed to load backup manager: {e}")
             raise
