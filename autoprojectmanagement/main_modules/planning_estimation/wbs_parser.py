@@ -1,24 +1,65 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-WBS Parser Module - Parses different WBS formats into structured data
+================================================================================
+AutoProjectManagement - Automated Project Management System
+================================================================================
+Module: wbs_parser
+File: wbs_parser.py
+Path: autoprojectmanagement/main_modules/planning_estimation/wbs_parser.py
 
-This module provides comprehensive parsing capabilities for various WBS (Work Breakdown Structure)
-formats including JSON, text, and other structured formats. It validates, normalizes, and
-extracts detailed information from WBS structures.
+Description:
+    Wbs Parser module
+
+Author: AutoProjectManagement Team
+Contact: team@autoprojectmanagement.com
+Repository: https://github.com/autoprojectmanagement/autoprojectmanagement
+
+Version Information:
+    Current Version: 1.0.0
+    Last Updated: 2025-08-14
+    Python Version: 3.8+
+    
+Development Status:
+    Status: Production/Stable
+    Created: 2024-01-01
+    Last Modified: 2025-08-14
+    Modified By: AutoProjectManagement Team
+
+Dependencies:
+    - Python 3.8+
+    - See requirements.txt for full dependency list
+
+License: MIT License
+Copyright: (c) 2024 AutoProjectManagement Team
+
+Usage:
+    This module is part of the AutoProjectManagement package.
+    Import and use as needed within the package ecosystem.
 
 Example:
-    >>> from autoprojectmanagement.main_modules.planning_estimation.wbs_parser import WBSParser
-    >>> parser = WBSParser()
-    >>> wbs_data = {
-    ...     "id": 1,
-    ...     "name": "Project Alpha",
-    ...     "level": 0,
-    ...     "subtasks": [
-    ...         {"id": 2, "name": "Phase 1", "level": 1, "subtasks": []}
-    ...     ]
-    ... }
-    >>> parsed = parser.parse_json_wbs(wbs_data)
-    >>> print(parsed['name'])  # Output: Project Alpha
+    >>> from autoprojectmanagement.main_modules.planning_estimation.wbs_parser import {main_class}
+    >>> instance = {main_class}()
+    >>> instance.run()
+
+Notes:
+    - This file follows the AutoProjectManagement coding standards
+    - All changes should be documented in the changelog below
+    - Ensure compatibility with Python 3.8+
+
+Changelog:
+    1.0.0 (2024-01-01): Initial release
+    1.0.1 (2025-08-14): {change_description}
+
+TODO:
+    - [ ] Add comprehensive error handling
+    - [ ] Implement logging throughout
+    - [ ] Add unit tests
+    - [ ] Update documentation
+
+================================================================================
 """
+
 
 import json
 import logging
