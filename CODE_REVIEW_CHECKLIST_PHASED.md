@@ -71,7 +71,7 @@ Review all code files in 4 distinct phases to ensure systematic quality improvem
 | `wbs_parser.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data| |
 | `check_progress_dashboard_update.py` | ✅ | ✅ | ✅ | ✅ | Shakour-Data2 | 2025-08-13 |
 | `dashboards_reports.py` | ✅ | ✅ | ✅ | ✅ | Shakour-Data2 | 2025-08-13 |
-| `progress_calculator.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data2| |
+| `progress_calculator.py`  | ✅ | ✅ | ✅ | ✅ | Shakour-Data2 | 2025-08-14 |
 | `progress_report.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data2| |
 | `reporting.py` | ☐ | ☐ | ☐ | ☐ |Shakour-Data2| |
 | `commit_progress_manager.py` | ✅ | ✅ | ✅ | ✅|GravityWavesDB|2025-08-13|
@@ -79,8 +79,7 @@ Review all code files in 4 distinct phases to ensure systematic quality improvem
 | `github_actions_automation.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesDB| |
 | `quality_management.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesDB| |
 | `resource_allocation_manager.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesDB| |
-| `resource_leveling.py` | ✅ | ✅ | ✅ | ✅ |GravityWavesFundamental| |
-| `resource_management.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesFundamental| |
+| `resource_leveling.py` | ✅ | ✅ | ✅ | ✅ |GravityWavesFundamental| 2025-08-14 |
 | `do_important_tasks.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesFundamental| |
 | `do_urgent_tasks.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesFundamental| |
 | `importance_urgency_calculator.py` | ☐ | ☐ | ☐ | ☐ |GravityWavesFundamental| |
