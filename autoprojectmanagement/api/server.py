@@ -1,45 +1,44 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Server runner for the FastAPI application.
-
-This module provides comprehensive server management for the AutoProjectManagement
-API, including uvicorn integration, configuration management, and production-ready
-features like graceful shutdown, logging, and monitoring.
-
-Key Features:
-    - Uvicorn server integration
-    - Configuration management
-    - Graceful shutdown handling
-    - Logging and monitoring
-    - Production deployment support
-    - Health checks and readiness probes
-
-Usage:
-    Development server:
-        $ python -m autoprojectmanagement.api.server
-    
-    Production server:
-        $ python -m autoprojectmanagement.api.server --host 0.0.0.0 --port 8000
-    
-    Custom configuration:
-        $ python -m autoprojectmanagement.api.server --config production.json
-
-Configuration:
-    The server supports configuration through:
-    - Environment variables
-    - Command line arguments
-    - Configuration files
-    - Default values
-
-Examples:
-    Basic usage:
-        >>> from autoprojectmanagement.api.server import start_server
-        >>> start_server(host='0.0.0.0', port=8000)
-    
-    Custom configuration:
-        >>> start_server(host='localhost', port=8080, reload=False)
-
-For more information, visit: https://github.com/AutoProjectManagement/AutoProjectManagement
+path: autoprojectmanagement/api/server.py
+File: server.py
+Purpose: API server configuration
+Author: AutoProjectManagement Team
+Version: 2.0.0
+License: MIT
+Description: API server configuration within the AutoProjectManagement system
 """
+
+import logging
+from typing import Dict, Any, Optional, List, Union
+import os
+import sys
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Constants
+CURRENT_VERSION = "2.0.0"
+PYTHON_MIN_VERSION = "3.8+"
+CREATED_DATE = "2025-08-14"
+MODIFIED_DATE = "2025-08-14"
+
+# Module-level docstring
+__doc__ = """
+API server configuration within the AutoProjectManagement system
+
+This module is part of the AutoProjectManagement system.
+For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
+"""
+
+# Version information
+__version__ = CURRENT_VERSION
+__author__ = "AutoProjectManagement Team"
+__license__ = "MIT"
+
 
 import argparse
 import logging
