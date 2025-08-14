@@ -1,21 +1,54 @@
+"""
+Progress Calculator Module for AutoProjectManagement.
+
+This module provides comprehensive progress calculation capabilities for project tasks,
+including commit-based progress, workflow progress, and dynamic importance/urgency scoring.
+"""
+
 import os
 import json
 import datetime
 import logging
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional, Union
 from collections import defaultdict
+from pathlib import Path
+
+__version__ = "1.0.0"
+__author__ = "AutoProjectManagement Team"
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 class ProgressCalculator:
-    def __init__(self, input_dir: str = 'project_inputs/PM_JSON/user_inputs'):
-        self.input_dir = input_dir
-        self.tasks = []
-        self.workflow_steps = []
-        self.commit_progress = {}
-        self.importance_cache = {}
-        self.urgency_cache = {}
+    """
+    A comprehensive progress calculator for project management tasks.
+    
+    This class calculates progress based on multiple factors including:
+    - Commit-based progress from version control
+    - Workflow step completion
+    - Dynamic importance and urgency scoring
+    - Task status and dependencies
+    """
+    
+    DEFAULT_INPUT_DIR: str = 'project_inputs/PM_JSON/user_inputs'
+    DEFAULT_WEIGHT_COMMIT: float = 0.5
+    DEFAULT_WEIGHT_WORKFLOW: float = 0.5
+    MAX_DEPENDENCIES: int = 10
+    TIME_WINDOW_DAYS: int = 7
+    URGENCY_WINDOW_DAYS: int = 3
+    
+    def __init__(self, input_dir: Optional[str] = None) -> None:
+        """
+        Initialize the ProgressCalculator.
+        
+        Args:
+            input_dir: Directory path for input JSON files. Defaults to DEFAULT_INPUT_DIR.
+        """
+        self.input_dir: str = input_dir or self.DEFAULT_INPUT_DIR
+        self.tasks: List[Dict[str, Any]] = []
+        self.workflow_steps: List[Dict[str, Any]] = []
+        self.commit_progress: Dict[str, float] = {}
+        self.importance_cache: Dict[str, float] = {}
+        self.urgency_cache: Dict[str, float] = {}
 
     def load_json_file(self, filename: str) -> Any:
         path = os.path.join(self.input_dir, filename)
