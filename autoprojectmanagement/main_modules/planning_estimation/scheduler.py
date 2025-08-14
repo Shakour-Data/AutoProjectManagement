@@ -1,27 +1,44 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Advanced Task Scheduler for AutoProjectManagement System.
-
-This module provides a comprehensive scheduling system for automating
-project management tasks including progress updates, report generation,
-and system maintenance. It supports both periodic and cron-like scheduling
-with robust error handling and logging capabilities.
-
-Classes:
-    Scheduler: Main scheduling class for managing automated tasks
-    ScheduledJob: Wrapper class for individual scheduled jobs
-    ScheduleConfig: Configuration class for scheduling parameters
-
-Functions:
-    create_default_scheduler: Factory function for creating scheduler instances
-    validate_schedule_config: Utility function for validating schedule configurations
-
-Usage Examples:
-    >>> from autoprojectmanagement.main_modules.planning_estimation.scheduler import Scheduler
-    >>> scheduler = Scheduler()
-    >>> scheduler.schedule_hourly(lambda: print("Hourly task"))
-    >>> scheduler.schedule_daily_at("02:00", lambda: print("Daily backup"))
-    >>> scheduler.start()
+path: autoprojectmanagement/main_modules/planning_estimation/scheduler.py
+File: scheduler.py
+Purpose: Task scheduling system
+Author: AutoProjectManagement Team
+Version: 2.0.0
+License: MIT
+Description: Task scheduling system within the AutoProjectManagement system
 """
+
+import logging
+from typing import Dict, Any, Optional, List, Union
+import os
+import sys
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Constants
+CURRENT_VERSION = "2.0.0"
+PYTHON_MIN_VERSION = "3.8+"
+CREATED_DATE = "2025-08-14"
+MODIFIED_DATE = "2025-08-14"
+
+# Module-level docstring
+__doc__ = """
+Task scheduling system within the AutoProjectManagement system
+
+This module is part of the AutoProjectManagement system.
+For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
+"""
+
+# Version information
+__version__ = CURRENT_VERSION
+__author__ = "AutoProjectManagement Team"
+__license__ = "MIT"
+
 
 import schedule
 import time
