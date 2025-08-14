@@ -1,29 +1,44 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Dashboard Reports Module for AutoProjectManagement System.
-
-This module provides comprehensive dashboard reporting capabilities including
-progress tracking, resource allocation, cost management, and risk/issue tracking.
-It generates various reports in markdown format for project management purposes.
-
-Classes:
-    DashboardReports: Main class for generating dashboard reports
-
-Functions:
-    load_json_file: Utility function to load JSON files
-    _format_task: Format individual task information
-    generate_progress_report: Create progress overview report
-    generate_priority_urgency_report: Create priority and urgency analysis
-    generate_resource_allocation_report: Create resource allocation overview
-    generate_cost_management_report: Create cost analysis report
-    generate_risk_issue_tracking_report: Create risk and issue tracking report
-
-Usage Example:
-    >>> from autoprojectmanagement.main_modules.progress_reporting.dashboards_reports import DashboardReports
-    >>> dashboard = DashboardReports()
-    >>> dashboard.load_inputs()
-    >>> progress_report = dashboard.generate_progress_report()
-    >>> print(progress_report)
+path: autoprojectmanagement/main_modules/progress_reporting/dashboards_reports.py
+File: dashboards_reports.py
+Purpose: Dashboard and report generation
+Author: AutoProjectManagement Team
+Version: 2.0.0
+License: MIT
+Description: Dashboard and report generation within the AutoProjectManagement system
 """
+
+import logging
+from typing import Dict, Any, Optional, List, Union
+import os
+import sys
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Constants
+CURRENT_VERSION = "2.0.0"
+PYTHON_MIN_VERSION = "3.8+"
+CREATED_DATE = "2025-08-14"
+MODIFIED_DATE = "2025-08-14"
+
+# Module-level docstring
+__doc__ = """
+Dashboard and report generation within the AutoProjectManagement system
+
+This module is part of the AutoProjectManagement system.
+For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
+"""
+
+# Version information
+__version__ = CURRENT_VERSION
+__author__ = "AutoProjectManagement Team"
+__license__ = "MIT"
+
 
 import json
 import logging
