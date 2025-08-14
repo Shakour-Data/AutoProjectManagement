@@ -1,193 +1,392 @@
+"""
+path: autoprojectmanagement/main_modules/task_workflow_management/importance_urgency_calculator.py
+File: importance_urgency_calculator.py
+Purpose: Calculate task importance and urgency scores using Eisenhower Matrix methodology
+Author: AutoProjectManagement System
+Version: 2.0.0
+License: MIT
+Description: Provides comprehensive task prioritization based on importance and urgency factors
+"""
+
 import json
 import os
 import logging
+from typing import List, Dict, Tuple, Any, Optional
+from datetime import datetime, timedelta
+from enum import Enum
 
+# Configure logging
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# Phase 1: Structure & Standards - Constants and Enums
+class PriorityLevel(Enum):
+    """Enumeration for task priority levels."""
+    LOW = 1
+    MEDIUM = 5
+    HIGH = 10
+
+class TaskCategory(Enum):
+    """Enumeration for task categories in Eisenhower Matrix."""
+    DO_FIRST = "do_first"      # Important & Urgent
+    SCHEDULE = "schedule"      # Important & Not Urgent
+    DELEGATE = "delegate"      # Not Important & Urgent
+    ELIMINATE = "eliminate"    # Not Important & Not Urgent
+
+# Phase 2: Documentation - Constants for configuration
+MAX_DEPENDENCIES = 10
+MAX_COST_IMPACT = 100000
+MAX_RISK_SCORE = 10
+MAX_PRIORITY = 10
+DAYS_WINDOW = 3
 
 class ImportanceUrgencyCalculator:
-    def __init__(self, wbs_data):
+    """
+    Calculate task importance and urgency scores using Eisenhower Matrix methodology.
+    
+    This class provides comprehensive task prioritization based on multiple factors
+    including dependencies, critical path, cost impact, deadlines, and risk assessment.
+    
+    Attributes:
+        wbs_data: List of task dictionaries with hierarchical structure
+        task_scores: Dictionary mapping task IDs to their calculated scores
+    """
+    
+    def __init__(self, wbs_data: List[Dict[str, Any]]) -> None:
         """
-        wbs_data: list of dicts representing tasks with hierarchical structure
-        Each task dict should have:
-            - id: unique identifier
-            - title: task title
-            - level: hierarchical level (int)
-            - subtasks: list of subtasks (same structure)
-            - other metadata as needed
+        Initialize the calculator with WBS data.
+        
+        Args:
+            wbs_data: List of task dictionaries with hierarchical structure
+                      Each task dict should have:
+                      - id: unique identifier
+                      - title: task title
+                      - level: hierarchical level (int)
+                      - subtasks: list of subtasks (same structure)
+                      - other metadata as needed
+                      
+        Raises:
+            ValueError: If wbs_data is empty or invalid
         """
+        if not wbs_data:
+            raise ValueError("WBS data cannot be empty")
+            
         self.wbs_data = wbs_data
         self.task_scores = {}
 
-    def score_task(self, task):
+    def score_task(self, task: Dict[str, Any]) -> Tuple[float, float]:
         """
         Recursively score a task based on its subtasks or base criteria.
-        Importance and urgency are scored 0-100.
-        For leaf tasks, score based on defined criteria.
-        For parent tasks, average scores of subtasks.
-        """
-        if not task.get('subtasks'):
-            importance = self.calculate_importance(task)
-            urgency = self.calculate_urgency(task)
-        else:
-            importance_values = []
-            urgency_values = []
-            for subtask in task['subtasks']:
-                sub_imp, sub_urg = self.score_task(subtask)
-                importance_values.append(sub_imp)
-                urgency_values.append(sub_urg)
-            importance = sum(importance_values) / len(importance_values) if importance_values else 0
-            urgency = sum(urgency_values) / len(urgency_values) if urgency_values else 0
-
-        self.task_scores[task['id']] = {'importance': importance, 'urgency': urgency}
-        return importance, urgency
-
-    def calculate_importance(self, task):
-        """
-        Calculate importance based on:
-        - Dependency count (normalized)
-        - Critical path involvement (boolean)
-        - Cost impact (normalized)
-        - Stakeholder priority (normalized)
-        Weights can be adjusted as needed.
+        
+        For leaf tasks, scores are calculated based on defined criteria.
+        For parent tasks, scores are aggregated from subtasks.
+        
+        Args:
+            task: Task dictionary to score
+            
+        Returns:
+            Tuple of (importance_score, urgency_score) both between 0-100
+            
+        Raises:
+            TypeError: If task is None or has invalid structure
+            ValueError: If task data is malformed
         """
         if task is None:
             raise TypeError("Task cannot be None")
+            
+        task_id = task.get('id')
+        if not task_id:
+            raise ValueError("Task must have an 'id' field")
+            
+        # Check if already scored
+        if task_id in self.task_scores:
+            existing = self.task_scores[task_id]
+            return existing.importance, existing.urgency
+            
         try:
+            if not task.get('subtasks'):
+                # Leaf task - calculate based on criteria
+                importance = self._calculate_importance(task)
+                urgency = self._calculate_urgency(task)
+            else:
+                # Parent task - aggregate from subtasks
+                importance_values = []
+                urgency_values = []
+                
+                for subtask in task['subtasks']:
+                    sub_imp, sub_urg = self.score_task(subtask)
+                    importance_values.append(sub_imp)
+                    urgency_values.append(sub_urg)
+                
+                importance = sum(importance_values) / len(importance_values) if importance_values else 0.0
+                urgency = sum(urgency_values) / len(urgency_values) if urgency_values else 0.0
+            
+            # Store the score
+            self.task_scores[task_id] = {
+                'importance': round(importance, 2),
+                'urgency': round(urgency, 2)
+            }
+            
+            return importance, urgency
+            
+        except Exception as e:
+            logger.error(f"Error scoring task {task_id}: {str(e)}")
+            raise
+
+    def _calculate_importance(self, task: Dict[str, Any]) -> float:
+        """
+        Calculate importance based on multiple factors.
+        
+        Args:
+            task: Task dictionary containing task details
+            
+        Returns:
+            Importance score between 0-100
+            
+        Raises:
+            TypeError: If task is None or has invalid structure
+        """
+        if task is None:
+            raise TypeError("Task cannot be None")
+            
+        try:
+            # Calculate dependency factor
             dependencies = task.get('dependencies', [])
             if not isinstance(dependencies, list):
                 raise TypeError("dependencies must be a list")
-            dependency_factor = min(1, len(dependencies) / 10)
+            dependency_factor = min(1.0, len(dependencies) / MAX_DEPENDENCIES)
 
+            # Calculate critical path factor
             critical_path = task.get('critical_path', False)
-            critical_path_factor = 1 if critical_path else 0
+            critical_path_factor = 1.0 if critical_path else 0.0
 
+            # Calculate cost impact factor
             cost_impact = task.get('cost_impact', 0)
             if isinstance(cost_impact, bool):
                 raise TypeError("cost_impact must not be a boolean")
-            if not (isinstance(cost_impact, int) or isinstance(cost_impact, float)):
-                raise TypeError("cost_impact must be a number")
-            cost_factor = min(1, cost_impact / 100000)  # assuming cost in currency units
+            cost_factor = min(1.0, cost_impact / MAX_COST_IMPACT)
 
+            # Calculate priority factor
             priority = task.get('priority', 0)
-            if priority is None:
-                raise TypeError("priority must not be None")
-            if isinstance(priority, bool):
-                raise TypeError("priority must not be a boolean")
-            if isinstance(priority, str):
-                priority_map = {
-                    "low": 1,
-                    "medium": 5,
-                    "high": 10,
-                    "بالا": 10,
-                    "اهم": 10,
-                }
-                priority_factor = priority_map.get(priority.lower(), 0) / 10
-            elif isinstance(priority, (int, float)) and not isinstance(priority, bool):
-                if priority < 0 or priority > 10:
-                    raise TypeError("priority numeric value out of range")
-                priority_factor = min(1, priority / 10)
-            else:
-                raise TypeError("priority must be a number or recognized string")
+            priority_factor = self._normalize_priority(priority)
 
-            w_dep, w_cp, w_cost, w_prio = 0.3, 0.3, 0.2, 0.2
-
-            importance = (w_dep * dependency_factor +
-                          w_cp * critical_path_factor +
-                          w_cost * cost_factor +
-                          w_prio * priority_factor)
-            importance_score = round(importance * 100, 2)
-            return importance_score
+            # Weighted calculation
+            weights = [0.3, 0.3, 0.2, 0.2]  # dependency, critical_path, cost, priority
+            factors = [dependency_factor, critical_path_factor, cost_factor, priority_factor]
+            
+            importance = sum(w * f for w, f in zip(weights, factors))
+            return round(importance * 100, 2)
+            
         except Exception as e:
-            task_id = task.get('id') if task and isinstance(task, dict) else 'unknown'
-            logger.error(f"Error calculating importance for task {task_id}: {e}")
+            task_id = task.get('id', 'unknown')
+            logger.error(f"Error calculating importance for task {task_id}: {str(e)}")
             raise
 
-    def calculate_urgency(self, task):
+    def _calculate_urgency(self, task: Dict[str, Any]) -> float:
         """
-        Calculate urgency based on:
-        - Deadline proximity (normalized)
-        - Risk of delay (normalized)
-        - Stakeholder pressure (normalized)
-        Weights can be adjusted as needed.
+        Calculate urgency based on multiple factors.
+        
+        Args:
+            task: Task dictionary containing task details
+            
+        Returns:
+            Urgency score between 0-100
+            
+        Raises:
+            TypeError: If task is None or has invalid structure
         """
         if task is None:
             raise TypeError("Task cannot be None")
+            
         try:
-            import datetime
-            now = datetime.datetime.now()
-            deadline_str = task.get('deadline', None)
-            if deadline_str is None:
-                # Treat missing or None deadline as no deadline, urgency time factor 0
-                time_factor = 0
-            elif deadline_str:
-                if not isinstance(deadline_str, str):
-                    if isinstance(deadline_str, bool):
-                        raise TypeError("deadline must be a string in ISO format")
-                    if isinstance(deadline_str, float) or isinstance(deadline_str, int):
-                        raise TypeError("deadline must be a string in ISO format")
-                    try:
-                        deadline_str = str(deadline_str)
-                    except Exception:
-                        raise TypeError("deadline must be a string in ISO format")
+            # Calculate time factor based on deadline
+            now = datetime.now()
+            deadline_str = task.get('deadline')
+            time_factor = 0.0
+            
+            if deadline_str:
                 try:
-                    deadline = datetime.datetime.fromisoformat(deadline_str)
-                    total_time = (deadline - now).total_seconds()
-                    normalized_time = max(0, min(1, total_time / (3*24*3600)))  # 3 days window
-                    time_factor = 1 - normalized_time
-                except Exception:
-                    time_factor = 0
+                    deadline = datetime.fromisoformat(str(deadline_str))
+                    total_seconds = (deadline - now).total_seconds()
+                    normalized_time = max(0.0, min(1.0, total_seconds / (DAYS_WINDOW * 24 * 3600)))
+                    time_factor = 1.0 - normalized_time
+                except ValueError:
+                    time_factor = 0.0
 
+            # Calculate risk factor
             risk_of_delay = task.get('risk_of_delay', 0)
-            if isinstance(risk_of_delay, bool):
-                raise TypeError("risk_of_delay must not be a boolean")
-            if not (isinstance(risk_of_delay, int) or isinstance(risk_of_delay, float)):
-                raise TypeError("risk_of_delay must be a number")
-            risk_factor = min(1, risk_of_delay / 10)
+            risk_factor = min(1.0, risk_of_delay / MAX_RISK_SCORE)
 
+            # Calculate pressure factor
             stakeholder_pressure = task.get('stakeholder_pressure', 0)
-            if isinstance(stakeholder_pressure, bool):
-                raise TypeError("stakeholder_pressure must not be a boolean")
-            if not (isinstance(stakeholder_pressure, int) or isinstance(stakeholder_pressure, float)):
-                raise TypeError("stakeholder_pressure must be a number")
-            pressure_factor = min(1, stakeholder_pressure / 10)
+            pressure_factor = min(1.0, stakeholder_pressure / MAX_RISK_SCORE)
 
-            w_time, w_risk, w_pressure = 0.5, 0.3, 0.2
-
-            urgency = (w_time * time_factor +
-                       w_risk * risk_factor +
-                       w_pressure * pressure_factor)
-            urgency_score = round(urgency * 100, 2)
-            return urgency_score
+            # Weighted calculation
+            weights = [0.5, 0.3, 0.2]  # time, risk, pressure
+            factors = [time_factor, risk_factor, pressure_factor]
+            
+            urgency = sum(w * f for w, f in zip(weights, factors))
+            return round(urgency * 100, 2)
+            
         except Exception as e:
-            task_id = task.get('id') if task and isinstance(task, dict) else 'unknown'
-            logger.error(f"Error calculating urgency for task {task_id}: {e}")
+            task_id = task.get('id', 'unknown')
+            logger.error(f"Error calculating urgency for task {task_id}: {str(e)}")
             raise
 
-    def calculate_all(self):
+    def _normalize_priority(self, priority: Any) -> float:
+        """
+        Normalize priority value to 0-1 range.
+        
+        Args:
+            priority: Priority value (string, int, or float)
+            
+        Returns:
+            Normalized priority factor between 0-1
+        """
+        if priority is None:
+            return 0.0
+            
+        if isinstance(priority, str):
+            priority_map = {
+                "low": 0.1,
+                "medium": 0.5,
+                "high": 1.0,
+                "بالا": 1.0,
+                "اهم": 1.0,
+            }
+            return priority_map.get(priority.lower(), 0.0)
+        elif isinstance(priority, (int, float)) and not isinstance(priority, bool):
+            return min(1.0, max(0.0, priority / MAX_PRIORITY))
+        else:
+            return 0.0
+
+    def _determine_category(self, importance: float, urgency: float) -> TaskCategory:
+        """
+        Determine Eisenhower Matrix category based on importance and urgency.
+        
+        Args:
+            importance: Importance score (0-100)
+            urgency: Urgency score (0-100)
+            
+        Returns:
+            Task category enum value
+        """
+        importance_threshold = 50
+        urgency_threshold = 50
+        
+        if importance >= importance_threshold and urgency >= urgency_threshold:
+            return TaskCategory.DO_FIRST
+        elif importance >= importance_threshold and urgency < urgency_threshold:
+            return TaskCategory.SCHEDULE
+        elif importance < importance_threshold and urgency >= urgency_threshold:
+            return TaskCategory.DELEGATE
+        else:
+            return TaskCategory.ELIMINATE
+
+    def calculate_all(self) -> Dict[str, Dict[str, float]]:
+        """
+        Calculate scores for all tasks in the WBS data.
+        
+        Returns:
+            Dictionary mapping task IDs to their importance and urgency scores
+        """
         for task in self.wbs_data:
             self.score_task(task)
         return self.task_scores
 
-def load_wbs_from_file(filepath):
-    with open(filepath, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    return data
+    def get_eisenhower_matrix(self) -> Dict[str, List[str]]:
+        """
+        Organize tasks into Eisenhower Matrix categories.
+        
+        Returns:
+            Dictionary with categories as keys and lists of task IDs as values
+        """
+        matrix = {
+            "do_first": [],
+            "schedule": [],
+            "delegate": [],
+            "eliminate": []
+        }
+        
+        for task_id, scores in self.task_scores.items():
+            importance = scores['importance']
+            urgency = scores['urgency']
+            category = self._determine_category(importance, urgency)
+            matrix[category.value].append(task_id)
+            
+        return matrix
 
-def save_scores_to_json(scores, filepath):
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(scores, f, indent=2, ensure_ascii=False)
+# Phase 4: Integration - Utility functions
+def load_wbs_from_file(filepath: str) -> List[Dict[str, Any]]:
+    """
+    Load WBS data from JSON file.
+    
+    Args:
+        filepath: Path to JSON file containing WBS data
+        
+    Returns:
+        List of task dictionaries
+        
+    Raises:
+        FileNotFoundError: If file doesn't exist
+        json.JSONDecodeError: If file is not valid JSON
+    """
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return data
+    except FileNotFoundError:
+        logger.error(f"WBS file not found: {filepath}")
+        raise
+    except json.JSONDecodeError as e:
+        logger.error(f"Invalid JSON in file {filepath}: {str(e)}")
+        raise
 
+def save_scores_to_json(scores: Dict[str, Dict[str, float]], filepath: str) -> None:
+    """
+    Save calculated scores to JSON file.
+    
+    Args:
+        scores: Dictionary of task scores
+        filepath: Path to save the scores file
+        
+    Raises:
+        IOError: If file cannot be written
+    """
+    try:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(scores, f, indent=2, ensure_ascii=False)
+    except IOError as e:
+        logger.error(f"Error saving scores to {filepath}: {str(e)}")
+        raise
+
+# Phase 4: Integration - Main execution
 if __name__ == "__main__":
+    """Main execution block for standalone usage."""
     import os
+    
+    # Define file paths
     wbs_file = os.path.join(os.path.dirname(__file__), '../../SystemInputs/user_inputs/detailed_wbs.json')
     scores_file = os.path.join(os.path.dirname(__file__), '../../SystemInputs/system_generated/wbs_scores.json')
+    
     try:
+        # Load WBS data
         wbs_data = load_wbs_from_file(wbs_file)
-    except FileNotFoundError:
-        print(f"Error: WBS data file not found at {wbs_file}")
-        exit(1)
-    calculator = ImportanceUrgencyCalculator(wbs_data)
-    scores = calculator.calculate_all()
-    save_scores_to_json(scores, scores_file)
-    print(f"Importance and urgency scores saved to {scores_file}")
+        
+        # Calculate scores
+        calculator = ImportanceUrgencyCalculator(wbs_data)
+        scores = calculator.calculate_all()
+        
+        # Save results
+        save_scores_to_json(scores, scores_file)
+        
+        # Generate Eisenhower Matrix
+        matrix = calculator.get_eisenhower_matrix()
+        
+        logger.info(f"Successfully calculated scores for {len(scores)} tasks")
+        logger.info(f"Eisenhower Matrix: {matrix}")
+        print(f"Importance and urgency scores saved to {scores_file}")
+        
+    except Exception as e:
+        logger.error(f"Error in main execution: {str(e)}")
+        raise
