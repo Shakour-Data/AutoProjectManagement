@@ -1,21 +1,5 @@
-"""
-Progress Dashboard Update Module.
-
-This module provides functionality to check and update the progress dashboard
-by reading the current state, processing updates through task management,
-and generating new reports.
-
-Author: AutoProjectManagement Team
-Version: 1.0.0
-"""
-
-import logging
-import os
-from typing import Optional
-from pathlib import Path
-
-from autoprojectmanagement.main_modules.task_workflow_management.task_management import TaskManagement
-from autoprojectmanagement.main_modules.progress_reporting.progress_report import generate_report
+from project_management.modules.main_modules.task_management import TaskManagement
+from project_management.modules.main_modules.progress_report import generate_report
 
 # Constants
 DEFAULT_DASHBOARD_PATH = "docs/project_management/progress_dashboard.md"
