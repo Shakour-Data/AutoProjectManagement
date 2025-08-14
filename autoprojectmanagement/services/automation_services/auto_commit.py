@@ -1,3 +1,15 @@
+"""
+path: autoprojectmanagement/services/automation_services/auto_commit.py
+File: auto_commit.py
+Purpose: Automated git commit service with project management integration
+Author: Shakour-Data2
+Version: 2.0.0
+License: MIT
+Description: This module provides automated commit functionality that integrates with
+project management workflows, including progress tracking, task mapping, and
+intelligent commit message generation based on conventional commit standards.
+"""
+
 import os
 import subprocess
 import datetime
@@ -5,21 +17,52 @@ from collections import defaultdict
 import sys
 import re
 import json
+from typing import Dict, List, Tuple, Optional, Any, Union
+from pathlib import Path
+import logging
+
+# Constants
+MAX_COMMIT_MESSAGE_LENGTH = 255
+DEFAULT_ENCODING = 'utf-8'
+LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+STAGE_WEIGHTS = {
+    "Requirements Gathering": 0.15,
+    "Design": 0.15,
+    "Implementation": 0.30,
+    "Code Review": 0.10,
+    "Testing": 0.15,
+    "Deployment": 0.10,
+    "Maintenance": 0.05
+}
+
+# Type aliases
+GitStatus = str
+FilePath = str
+CommitHash = str
+TaskId = str
+
+# Configure logging
+logging.basicConfig(format=LOG_FORMAT, level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Add the project root to Python path to handle imports
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-def format_commit_message(message):
+
+def format_commit_message(message: Optional[str]) -> str:
     """
     Format a commit message by cleaning and normalizing it.
     
     Args:
-        message (str): The raw commit message
+        message: The raw commit message
         
     Returns:
-        str: The formatted commit message
+        The formatted commit message
+        
+    Raises:
+        TypeError: If message is None or not a string
     """
     if message is None:
         raise TypeError("Commit message cannot be None")
@@ -36,129 +79,212 @@ def format_commit_message(message):
     # Remove control characters except for spaces and tabs
     message = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]', '', message)
     
-    # Remove literal escape sequences like \n, \t, \r (but not other backslashes)
-    # Use word boundaries to avoid partial matches
-    message = re.sub(r'\\n(?=\s|$)', ' ', message)  # newline followed by space or end of string
-    message = re.sub(r'\\t(?=\s|$)', ' ', message)  # tab followed by space or end of string
-    message = re.sub(r'\\r(?=\s|$)', ' ', message)  # carriage return followed by space or end of string
+    # Remove literal escape sequences like \n, \t, \r
+    message = re.sub(r'\\n(?=\s|$)', ' ', message)
+    message = re.sub(r'\\t(?=\s|$)', ' ', message)
+    message = re.sub(r'\\r(?=\s|$)', ' ', message)
+    
     # Remove extra spaces that may have been created
     message = re.sub(r'\s+', ' ', message).strip()
     
-    # Limit message length to 255 characters
-    if len(message) > 255:
-        message = message[:255]
+    # Limit message length
+    if len(message) > MAX_COMMIT_MESSAGE_LENGTH:
+        message = message[:MAX_COMMIT_MESSAGE_LENGTH]
     
     return message
 
 class AutoCommit:
-    def __init__(self):
-        # Import backup manager using direct path
-        import importlib.util
-        import importlib.machinery
+    """Automated git commit service with project management integration."""
+    
+    def __init__(self) -> None:
+        """Initialize the AutoCommit service."""
+        self.bm = self._load_backup_manager()
+        self.logger = logging.getLogger(__name__)
         
-        # Get the path to backup_manager.py
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        backup_manager_path = os.path.join(current_dir, 'backup_manager.py')
+    def _load_backup_manager(self) -> Any:
+        """
+        Load the backup manager module dynamically.
         
-        # Load the module
-        spec = importlib.util.spec_from_file_location("backup_manager", backup_manager_path)
-        backup_manager = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(backup_manager)
-        
-        self.bm = backup_manager.BackupManager()
-
-    def run_git_command(self, args, cwd=None):
-        """Run a git command and return (success, output)."""
+        Returns:
+            BackupManager instance
+        """
         try:
-            # Use UTF-8 encoding to avoid UnicodeDecodeError
-            result = subprocess.run(["git"] + args, capture_output=True, text=True, check=True, cwd=cwd, encoding='utf-8', errors='ignore')
-            if result.stdout is None:
-                return True, ""
+            import importlib.util
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            backup_manager_path = os.path.join(current_dir, 'backup_manager.py')
+            
+            spec = importlib.util.spec_from_file_location("backup_manager", backup_manager_path)
+            if spec is None or spec.loader is None:
+                raise ImportError("Could not load backup_manager module")
+                
+            backup_manager = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(backup_manager)
+            
+            return backup_manager.BackupManager()
+        except Exception as e:
+            self.logger.error(f"Failed to load backup manager: {e}")
+            raise
+
+    def run_git_command(self, args: List[str], cwd: Optional[str] = None) -> Tuple[bool, str]:
+        """
+        Run a git command and return the result.
+        
+        Args:
+            args: Git command arguments
+            cwd: Working directory for the command
+            
+        Returns:
+            Tuple of (success, output)
+        """
+        try:
+            result = subprocess.run(
+                ["git"] + args,
+                capture_output=True,
+                text=True,
+                check=True,
+                cwd=cwd,
+                encoding=DEFAULT_ENCODING,
+                errors='ignore'
+            )
             return True, result.stdout.strip()
         except subprocess.CalledProcessError as e:
-            print(f"Git command failed: git {' '.join(args)}")
-            print(f"Error: {e.stderr.strip()}")
+            self.logger.error(f"Git command failed: git {' '.join(args)}")
+            self.logger.error(f"Error: {e.stderr.strip()}")
             return False, e.stderr.strip()
 
-    def get_git_changes(self):
-        """Fetch Git status and return list of changes."""
+    def get_git_changes(self) -> List[str]:
+        """
+        Fetch Git status and return list of changes.
+        
+        Returns:
+            List of git status lines
+        """
         success, output = self.run_git_command(["status", "--short"])
         if not success:
             return []
-        return output.splitlines()
+        return [line for line in output.splitlines() if line.strip()]
 
-    def group_related_files(self, changes):
-        """Group files based on top-level directory (code relationship)."""
-        groups = defaultdict(list)
+    def group_related_files(self, changes: List[str]) -> Dict[str, List[Tuple[str, str]]]:
+        """
+        Group files based on top-level directory (code relationship).
+        
+        Args:
+            changes: List of git status changes
+            
+        Returns:
+            Dictionary mapping group names to file tuples
+        """
+        groups: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
 
         for change in changes:
             if not change:
                 continue
-            if change.startswith("??"):
-                status = "??"
-                file_path = change[2:].lstrip()
-            else:
-                parts = change.split(None, 1)
-                if len(parts) == 2:
-                    status, file_path = parts[0], parts[1].lstrip()
-                else:
-                    status = parts[0]
-                    file_path = ""
-
-            if status == "R":
-                parts = file_path.split("->")
-                if len(parts) == 2:
-                    old_path = parts[0].strip()
-                    new_path = parts[1].strip()
-                    file_path = new_path
-                else:
-                    file_path = file_path.strip()
-
-            parts = file_path.split(os.sep)
-            if len(parts) > 1:
-                top_level_dir = parts[0]
-            else:
-                top_level_dir = "root"
-
-            groups[top_level_dir].append((status, file_path))
+                
+            status, file_path = self._parse_git_status(change)
+            if not file_path:
+                continue
+                
+            group_name = self._determine_group_name(file_path)
+            groups[group_name].append((status, file_path))
 
         return groups
 
-    def categorize_files(self, files):
-        """Categorize files into different change types."""
-        categories = defaultdict(list)
-
-        for status, file in files:
-            if status == "A":
-                categories["Added"].append(file)
-            elif status == "M":
-                categories["Modified"].append(file)
-            elif status == "D":
-                categories["Deleted"].append(file)
-            elif status == "R":
-                categories["Renamed"].append(file)
-            elif status == "??":
-                categories["Untracked"].append(file)
+    def _parse_git_status(self, change: str) -> Tuple[str, str]:
+        """
+        Parse a git status line into status and file path.
+        
+        Args:
+            change: Git status line
+            
+        Returns:
+            Tuple of (status, file_path)
+        """
+        if change.startswith("??"):
+            status = "??"
+            file_path = change[2:].lstrip()
+        else:
+            parts = change.split(None, 1)
+            if len(parts) == 2:
+                status, file_path = parts[0], parts[1].lstrip()
             else:
-                categories["Other"].append(file)
+                status = parts[0]
+                file_path = ""
+
+        if status == "R":
+            parts = file_path.split("->")
+            if len(parts) == 2:
+                file_path = parts[1].strip()
+            else:
+                file_path = file_path.strip()
+
+        return status, file_path
+
+    def _determine_group_name(self, file_path: str) -> str:
+        """
+        Determine the group name for a file based on its path.
+        
+        Args:
+            file_path: Path to the file
+            
+        Returns:
+            Group name
+        """
+        parts = file_path.split(os.sep)
+        return parts[0] if len(parts) > 1 else "root"
+
+    def categorize_files(self, files: List[Tuple[str, str]]) -> Dict[str, List[str]]:
+        """
+        Categorize files into different change types.
+        
+        Args:
+            files: List of (status, file_path) tuples
+            
+        Returns:
+            Dictionary mapping categories to file lists
+        """
+        categories: Dict[str, List[str]] = defaultdict(list)
+        
+        status_mapping = {
+            "A": "Added",
+            "M": "Modified",
+            "D": "Deleted",
+            "R": "Renamed",
+            "??": "Untracked"
+        }
+
+        for status, file_path in files:
+            category = status_mapping.get(status, "Other")
+            categories[category].append(file_path)
 
         return categories
 
-    def get_file_diff_summary(self, file_path):
-        """Get a short summary of changes for a file."""  
+    def get_file_diff_summary(self, file_path: str) -> str:
+        """
+        Get a short summary of changes for a file.
+        
+        Args:
+            file_path: Path to the file
+            
+        Returns:
+            Summary of changes
+        """
         try:
             result = subprocess.run(
                 ["git", "diff", "--staged", "--", file_path],
                 capture_output=True,
                 text=True,
                 check=True,
+                encoding=DEFAULT_ENCODING
             )
-            if result.stdout is None:
-                return "No diff available."
             diff_lines = result.stdout.strip().splitlines()
-            summary = "\\n    ".join(diff_lines[:5]) if diff_lines else "No diff available."
-            return summary
-        except subprocess.CalledProcessError:
+            if not diff_lines:
+                return "No diff available."
+            
+            # Limit to first 5 lines and escape properly
+            summary_lines = diff_lines[:5]
+            return "\n    ".join(summary_lines)
+        except subprocess.CalledProcessError as e:
+            logger.warning(f"Could not retrieve diff for {file_path}: {e}")
             return "Could not retrieve diff."
 
     def generate_commit_message(self, group_name, category_name, files):
@@ -236,17 +362,55 @@ class AutoCommit:
         message = f"{subject}\\n\\n{body}\\n{footer}"
         return message
 
-    def load_linked_wbs_resources(self, filepath="JSonDataBase/Inputs/UserInputs/linked_wbs_resources.json"):
-        if not os.path.exists(filepath):
-            print(f"Linked WBS resources file not found: {filepath}")
-            return []
-        with open(filepath, 'r', encoding='utf-8') as f:
-            return json.load(f)
-
-    def find_task_by_file_path(self, linked_wbs, file_path):
+    def load_linked_wbs_resources(self, filepath: str = "JSonDataBase/Inputs/UserInputs/linked_wbs_resources.json") -> List[Dict[str, Any]]:
         """
-        Find the task in linked Wbs resources that corresponds to the given file path.
-        This is a placeholder function and should be customized based on actual file-task mapping.
+        Load linked WBS (Work Breakdown Structure) resources from JSON file.
+        
+        This method loads the project task structure that links files to specific
+        project tasks, enabling intelligent commit messages and progress tracking.
+        
+        Args:
+            filepath: Path to the linked WBS resources JSON file
+            
+        Returns:
+            List of task dictionaries with hierarchical structure
+            
+        Example:
+            >>> tasks = auto_commit.load_linked_wbs_resources()
+            >>> print(tasks[0]['id'])
+            'task-001'
+        """
+        if not os.path.exists(filepath):
+            logger.warning(f"Linked WBS resources file not found: {filepath}")
+            return []
+        
+        try:
+            with open(filepath, 'r', encoding=DEFAULT_ENCODING) as f:
+                return json.load(f)
+        except json.JSONDecodeError as e:
+            logger.error(f"Failed to parse WBS resources file: {e}")
+            return []
+
+    def find_task_by_file_path(self, linked_wbs: List[Dict[str, Any]], file_path: str) -> Optional[Dict[str, Any]]:
+        """
+        Find the task in linked WBS resources that corresponds to the given file path.
+        
+        This method searches through the hierarchical task structure to find
+        which project task a specific file belongs to, enabling task-based
+        commit categorization and progress tracking.
+        
+        Args:
+            linked_wbs: List of task dictionaries from WBS resources
+            file_path: Path to the file being committed
+            
+        Returns:
+            Task dictionary if found, None otherwise
+            
+        Example:
+            >>> task = auto_commit.find_task_by_file_path(wbs_tasks, 'src/main.py')
+            >>> if task:
+            ...     print(task['name'])
+            'Main Application Development'
         """
         for task in linked_wbs:
             found = self.search_task_recursive(task, file_path)
@@ -254,23 +418,62 @@ class AutoCommit:
                 return found
         return None
 
-    def search_task_recursive(self, task, file_path):
+    def search_task_recursive(self, task: Dict[str, Any], file_path: str) -> Optional[Dict[str, Any]]:
+        """
+        Recursively search for a task that matches the given file path.
+        
+        This helper method traverses the task hierarchy (including subtasks)
+        to find a task whose ID appears in the file path, establishing the
+        relationship between files and project tasks.
+        
+        Args:
+            task: Current task dictionary to examine
+            file_path: File path to match against task IDs
+            
+        Returns:
+            Task dictionary if match found, None otherwise
+            
+        Note:
+            This is a basic implementation that matches task IDs in file paths.
+            For more sophisticated matching, consider using path patterns or
+            file extension mappings.
+        """
         if task.get("id") and task.get("id") in file_path:
             return task
+        
         for subtask in task.get("subtasks", []):
             found = self.search_task_recursive(subtask, file_path)
             if found:
                 return found
         return None
 
-    def backup(self):
-        print("Running backup of user input JSON files before commit...")
+    def backup(self) -> str:
+        """
+        Create a backup of user input JSON files before committing changes.
+        
+        This method ensures data integrity by creating backups of critical
+        project configuration files before any git operations are performed.
+        
+        Returns:
+            Path to the backup directory
+            
+        Raises:
+            SystemExit: If backup creation fails
+            
+        Example:
+            >>> backup_path = auto_commit.backup()
+            >>> print(f"Backup created at: {backup_path}")
+            '/tmp/autoproject_backup_20241220_143022'
+        """
+        logger.info("Running backup of user input JSON files before commit...")
         backup_dir = self.bm.create_backup()
+        
         if backup_dir is None:
-            print("Backup failed. Aborting commit.")
-            exit(1)
-        else:
-            print(f"Backup successful: {backup_dir}")
+            logger.error("Backup failed. Aborting commit.")
+            raise SystemExit("Backup creation failed")
+        
+        logger.info(f"Backup successful: {backup_dir}")
+        return backup_dir
 
     def map_group_to_workflow_stage(self, group_name):
         mapping = {
