@@ -1,12 +1,44 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Database Data Collector Module
-
-This module provides functionality for collecting and storing project management data
-from various sources into JSON files for further processing and analysis.
-
+path: autoprojectmanagement/main_modules/data_collection_processing/db_data_collector.py
+File: db_data_collector.py
+Purpose: Database data collection
 Author: AutoProjectManagement Team
 Version: 2.0.0
+License: MIT
+Description: Database data collection within the AutoProjectManagement system
 """
+
+import logging
+from typing import Dict, Any, Optional, List, Union
+import os
+import sys
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Constants
+CURRENT_VERSION = "2.0.0"
+PYTHON_MIN_VERSION = "3.8+"
+CREATED_DATE = "2025-08-14"
+MODIFIED_DATE = "2025-08-14"
+
+# Module-level docstring
+__doc__ = """
+Database data collection within the AutoProjectManagement system
+
+This module is part of the AutoProjectManagement system.
+For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
+"""
+
+# Version information
+__version__ = CURRENT_VERSION
+__author__ = "AutoProjectManagement Team"
+__license__ = "MIT"
+
 
 import json
 import datetime
