@@ -2,9 +2,24 @@
 
 ## 🎯 Overview
 
-This document provides comprehensive UML class diagrams for the AutoProjectManagement system, showcasing the object-oriented design, relationships, and architectural patterns used throughout the codebase.
+The AutoProjectManagement system is a comprehensive automated project management platform built with Python 3.8+. This document provides detailed UML class diagrams showcasing the object-oriented design relationships, architectural patterns, and design principles used throughout the codebase.
 
-## 🏗️ Core System Architecture
+### Key Design Principles
+
+- **Single Responsibility Principle**: Each class has one primary responsibility
+- **Open/Closed Principle**: Classes are open for extension but closed for modification
+- **Dependency Inversion**: High-level modules don't depend on low-level modules
+- **Composition over Inheritance**: Favor composition for flexibility
+- **DRY (Don't Repeat Yourself)**: Minimize code duplication
+- **KISS (Keep It Simple, Stupid)**: Maintain simplicity in design
+
+---
+
+## 🏗️ System Architecture
+
+### High-Level Architecture Overview
+
+The system follows a modular architecture with clear separation of concerns, utilizing object-oriented design principles including inheritance, composition, and dependency injection.
 
 ### 1.1 Main Project Management System
 
@@ -18,1007 +33,509 @@ classDiagram
         +shutdown_system() bool
         +reset_system() bool
         +add_project(project: Dict[str, Any]) bool
-        +remove_project(project_id: int) bool
-        +update_project(project: Dict[str, Any]) bool
-        +get_project(project_id: int) Optional[Dict]
+        +update_project(project_id: int, updates: Dict[str, Any]) bool
+        +delete_project(project_id: int) bool
+        +get_project(project_id: int) Dict[str, Any]
         +list_projects() List[Dict[str, Any]]
-        +add_task_to_project(project_id: int, task: Dict[str, Any]) bool
-        +remove_task_from_project(project_id: int, task_id: int) bool
-        +update_task_in_project(project_id: int, task: Dict[str, Any]) bool
-        +get_task_from_project(project_id: int, task_id: int) Optional[Dict]
-        +list_tasks_in_project(project_id: int) List[Dict[str, Any]]
+        +add_task(project_id: int, task: Dict[str, Any]) bool
+        +update_task(project_id: int, task_id: int, updates: Dict[str, Any]) bool
+        +delete_task(project_id: int, task_id: int) bool
+        +get_task(project_id: int, task_id: int) Dict[str, Any]
+        +list_tasks(project_id: int) List[Dict[str, Any]]
+        +get_system_status() Dict[str, Any]
     }
 
-    class Project {
-        +id: int
-        +name: str
-        +description: str
-        +start_date: datetime
-        +end_date: datetime
-        +status: ProjectStatus
-        +priority: Priority
-        +manager_id: int
-        +budget: float
-        +created_at: datetime
-        +updated_at: datetime
-        +validate() bool
-        +calculate_progress() float
-        +get_total_hours() float
+    class ConfigurationManager {
+        -config: Dict[str, Any]
+        -config_file: str
+        -validators: Dict[str, Callable]
+        +load_config() Dict[str, Any]
+        +save_config(config: Dict[str, Any]) bool
+        +validate_config(config: Dict[str, Any]) bool
+        +get_config_value(key: str) Any
+        +set_config_value(key: str, value: Any) bool
+        +reset_to_defaults() bool
     }
 
+    class DataPersistence {
+        -storage_backend: str
+        -connection_params: Dict[str, Any]
+        -is_connected: bool
+        +connect() bool
+        +disconnect() bool
+        +save_data(data_type: str, data: Dict[str, Any]) bool
+        +load_data(data_type: str, identifier: str) Dict[str, Any]
+        +update_data(data_type: str, identifier: str, updates: Dict[str, Any]) bool
+        +delete_data(data_type: str, identifier: str) bool
+        +query_data(data_type: str, filters: Dict[str, Any]) List[Dict[str, Any]]
+    }
+
+    class LoggingService {
+        -log_level: str
+        -log_file: str
+        -formatters: Dict[str, str]
+        +configure_logging(config: Dict[str, Any]) bool
+        +log_debug(message: str, context: Dict[str, Any]) void
+        +log_info(message: str, context: Dict[str, Any]) void
+        +log_warning(message: str, context: Dict[str, Any]) void
+        +log_error(message: str, context: Dict[str, Any]) void
+        +log_critical(message: str, context: Dict[str, Any]) void
+    }
+
+    ProjectManagementSystem --> ConfigurationManager : uses
+    ProjectManagementSystem --> DataPersistence : uses
+    ProjectManagementSystem --> LoggingService : uses
+```
+
+### 1.2 Task Management Module
+
+```mermaid
+classDiagram
     class Task {
-        +id: int
-        +title: str
-        +description: str
-        +project_id: int
-        +assigned_to: int
-        +status: TaskStatus
-        +priority: Priority
-        +estimated_hours: float
-        +actual_hours: float
-        +due_date: datetime
-        +created_at: datetime
-        +updated_at: datetime
-        +validate() bool
-        +is_overdue() bool
-        +get_completion_percentage() float
+        -task_id: int
+        -project_id: int
+        -title: str
+        -description: str
+        -status: TaskStatus
+        -priority: Priority
+        -assigned_to: Optional[str]
+        -due_date: Optional[datetime]
+        -created_at: datetime
+        -updated_at: datetime
+        -tags: List[str]
+        +create() bool
+        +update(updates: Dict[str, Any]) bool
+        +delete() bool
+        +assign_to(user: str) bool
+        +set_priority(priority: Priority) bool
+        +set_status(status: TaskStatus) bool
+        +add_tag(tag: str) bool
+        +remove_tag(tag: str) bool
+        +get_progress() float
     }
 
-    class User {
-        +id: int
-        +username: str
-        +email: str
-        +full_name: str
-        +role: UserRole
-        +is_active: bool
-        +created_at: datetime
-        +updated_at: datetime
-        +validate() bool
-        +get_assigned_tasks() List[Task]
-        +get_managed_projects() List[Project]
+    class TaskStatus {
+        <<enumeration>>
+        PENDING
+        IN_PROGRESS
+        COMPLETED
+        CANCELLED
+        ON_HOLD
     }
 
+    class Priority {
+        <<enumeration>>
+        LOW
+        MEDIUM
+        HIGH
+        CRITICAL
+    }
+
+    class TaskWorkflow {
+        -workflow_rules: Dict[str, List[str]]
+        -validators: List[Callable]
+        +validate_transition(task: Task, new_status: TaskStatus) bool
+        +get_next_possible_states(task: Task) List[TaskStatus]
+        +execute_workflow(task: Task, action: str) bool
+        +add_workflow_rule(from_status: TaskStatus, to_status: TaskStatus) bool
+    }
+
+    class TaskDependency {
+        -dependency_id: int
+        -task_id: int
+        -depends_on_task_id: int
+        -dependency_type: DependencyType
+        +create() bool
+        +delete() bool
+        +get_dependencies(task_id: int) List[TaskDependency]
+        +get_dependents(task_id: int) List[TaskDependency]
+    }
+
+    class DependencyType {
+        <<enumeration>>
+        FINISH_TO_START
+        START_TO_START
+        FINISH_TO_FINISH
+        START_TO_FINISH
+    }
+
+    Task --> TaskStatus : has
+    Task --> Priority : has
+    TaskWorkflow --> Task : manages
+    TaskDependency --> Task : relates
+    TaskDependency --> DependencyType : has
+```
+
+### 1.3 Resource Management Module
+
+```mermaid
+classDiagram
     class Resource {
-        +id: int
-        +name: str
-        +type: ResourceType
-        +cost_per_hour: float
-        +availability: int
-        +skills: List[str]
-        +is_active: bool
-        +validate() bool
-        +is_available(date: datetime) bool
-        +calculate_cost(hours: float) float
+        -resource_id: int
+        -name: str
+        -type: ResourceType
+        -capacity: float
+        -availability: float
+        -skills: List[str]
+        -cost_per_hour: float
+        -is_active: bool
+        +allocate(amount: float) bool
+        +deallocate(amount: float) bool
+        +get_availability() float
+        +get_utilization() float
+        +add_skill(skill: str) bool
+        +remove_skill(skill: str) bool
     }
 
-    ProjectManagementSystem "1" --> "*" Project : manages
-    ProjectManagementSystem "1" --> "*" Task : contains
-    Project "1" --> "*" Task : has
-    Project "1" --> "1" User : managed_by
-    Task "*" --> "1" User : assigned_to
-    Task "*" --> "*" Resource : uses
+    class ResourceType {
+        <<enumeration>>
+        HUMAN
+        EQUIPMENT
+        MATERIAL
+        BUDGET
+    }
+
+    class ResourceAllocation {
+        -allocation_id: int
+        -resource_id: int
+        -task_id: int
+        -allocated_amount: float
+        -start_date: datetime
+        -end_date: datetime
+        -allocation_type: AllocationType
+        +create() bool
+        +update(updates: Dict[str, Any]) bool
+        +delete() bool
+        +get_total_allocation(resource_id: int) float
+        +check_conflicts() List[Dict[str, Any]]
+    }
+
+    class AllocationType {
+        <<enumeration>>
+        FULL_TIME
+        PART_TIME
+        CONTRACT
+        TEMPORARY
+    }
+
+    class ResourceManager {
+        -resources: Dict[int, Resource]
+        -allocations: Dict[int, ResourceAllocation]
+        +add_resource(resource: Resource) bool
+        +remove_resource(resource_id: int) bool
+        +update_resource(resource_id: int, updates: Dict[str, Any]) bool
+        +allocate_resource(resource_id: int, task_id: int, allocation: ResourceAllocation) bool
+        +deallocate_resource(allocation_id: int) bool
+        +get_resource_utilization(resource_id: int) float
+        +find_available_resources(skill: str, availability: float) List[Resource]
+    }
+
+    Resource --> ResourceType : has
+    ResourceAllocation --> Resource : references
+    ResourceAllocation --> AllocationType : has
+    ResourceManager --> Resource : manages
+    ResourceManager --> ResourceAllocation : manages
 ```
 
-### 1.2 Planning and Estimation Module
-
-```mermaid
-classDiagram
-    class EstimationEngine {
-        -config: EstimationConfig
-        +estimate_project(project: Project) ProjectEstimate
-        +estimate_task(task: Task) TaskEstimate
-        +calculate_risk_factors(project: Project) RiskAssessment
-        +generate_wbs(project: Project) WorkBreakdownStructure
-    }
-
-    class ProjectEstimate {
-        +total_hours: float
-        +total_cost: float
-        +confidence_level: float
-        +risk_factors: List[RiskFactor]
-        +milestones: List[Milestone]
-        +validate() bool
-        +adjust_for_risk() void
-    }
-
-    class TaskEstimate {
-        +estimated_hours: float
-        +optimistic_hours: float
-        +pessimistic_hours: float
-        +most_likely_hours: float
-        +complexity_factor: float
-        +calculate_three_point_estimate() float
-        +apply_complexity_adjustment() float
-    }
-
-    class WorkBreakdownStructure {
-        +id: int
-        +project_id: int
-        +root_element: WBSElement
-        +total_elements: int
-        +validate_structure() bool
-        +calculate_total_effort() float
-        +generate_gantt_data() GanttChartData
-    }
-
-    class WBSElement {
-        +id: int
-        +parent_id: int
-        +name: str
-        +description: str
-        +estimated_hours: float
-        +priority: Priority
-        +dependencies: List[int]
-        +is_milestone: bool
-        +get_subtasks() List[WBSElement]
-        +calculate_critical_path() List[WBSElement]
-    }
-
-    class GanttChartData {
-        +tasks: List[GanttTask]
-        +dependencies: List[Dependency]
-        +start_date: datetime
-        +end_date: datetime
-        +generate_chart() str
-        +optimize_schedule() void
-    }
-
-    EstimationEngine "1" --> "1" ProjectEstimate : creates
-    EstimationEngine "1" --> "*" TaskEstimate : calculates
-    EstimationEngine "1" --> "1" WorkBreakdownStructure : generates
-    WorkBreakdownStructure "1" --> "*" WBSElement : contains
-    WorkBreakdownStructure "1" --> "1" GanttChartData : produces
-```
-
-### 1.3 Progress Reporting Module
-
-```mermaid
-classDiagram
-    class ProgressReporter {
-        -config: ReportingConfig
-        +generate_progress_report(project: Project) ProgressReport
-        +calculate_kpis(project: Project) KPISet
-        +create_dashboard_data(project: Project) DashboardData
-        +export_report(format: ReportFormat) str
-    }
-
-    class ProgressReport {
-        +project_id: int
-        +report_date: datetime
-        +overall_progress: float
-        +task_completion_rate: float
-        +budget_utilization: float
-        +schedule_performance_index: float
-        +cost_performance_index: float
-        +risk_assessment: RiskSummary
-        +generate_executive_summary() str
-        +get_detailed_metrics() Dict[str, Any]
-    }
-
-    class KPISet {
-        +spi: float
-        +cpi: float
-        +bac: float
-        +ev: float
-        +pv: float
-        +ac: float
-        +etc: float
-        +eac: float
-        +calculate_forecast() Forecast
-        +identify_trends() List[Trend]
-    }
-
-    class DashboardData {
-        +project_overview: ProjectOverview
-        +task_distribution: TaskDistribution
-        +resource_utilization: ResourceUtilization
-        +timeline_data: TimelineData
-        +risk_heatmap: RiskHeatmap
-        +generate_charts() List[Chart]
-    }
-
-    class Chart {
-        +type: ChartType
-        +title: str
-        +data: Dict[str, Any]
-        +options: ChartOptions
-        +render() str
-        +export(format: str) bytes
-    }
-
-    ProgressReporter "1" --> "*" ProgressReport : generates
-    ProgressReporter "1" --> "1" KPISet : calculates
-    ProgressReporter "1" --> "1" DashboardData : creates
-    DashboardData "1" --> "*" Chart : contains
-```
-
-### 1.4 Communication and Risk Management
+### 1.4 Communication & Risk Management
 
 ```mermaid
 classDiagram
     class CommunicationManager {
-        -channels: List[CommunicationChannel]
-        +send_notification(notification: Notification) bool
-        +create_communication_plan(project: Project) CommunicationPlan
-        +schedule_updates(project: Project) Schedule
-        +track_communications() List[CommunicationLog]
+        -channels: Dict[str, CommunicationChannel]
+        -subscribers: Dict[str, List[str]]
+        -message_queue: Queue
+        +register_channel(channel: CommunicationChannel) bool
+        +send_message(channel_id: str, message: Message) bool
+        +broadcast_message(message: Message) bool
+        +subscribe(channel_id: str, subscriber: str) bool
+        +unsubscribe(channel_id: str, subscriber: str) bool
+        +process_pending_messages() bool
+    }
+
+    class CommunicationChannel {
+        -channel_id: str
+        -name: str
+        -type: ChannelType
+        -config: Dict[str, Any]
+        -is_active: bool
+        +send(message: Message) bool
+        +receive() List[Message]
+        +configure(config: Dict[str, Any]) bool
+    }
+
+    class Message {
+        -message_id: str
+        -sender: str
+        -recipients: List[str]
+        -content: str
+        -priority: MessagePriority
+        -timestamp: datetime
+        -metadata: Dict[str, Any]
+        +create() bool
+        +mark_read() bool
+        +add_attachment(attachment: Dict[str, Any]) bool
     }
 
     class RiskManager {
-        -risk_register: RiskRegister
-        +identify_risks(project: Project) List[Risk]
-        +assess_risks(risks: List[Risk]) RiskAssessment
-        +mitigate_risks(risks: List[Risk]) MitigationPlan
-        +monitor_risks() RiskReport
-    }
-
-    class Notification {
-        +id: int
-        +type: NotificationType
-        +recipient: User
-        +subject: str
-        +content: str
-        +priority: Priority
-        +scheduled_time: datetime
-        +status: NotificationStatus
-        +send() bool
-        +schedule() bool
-        +cancel() bool
+        -risks: Dict[int, Risk]
+        -assessments: Dict[int, RiskAssessment]
+        -mitigation_strategies: Dict[int, MitigationStrategy]
+        +identify_risk(risk: Risk) bool
+        +assess_risk(risk_id: int) RiskAssessment
+        +create_mitigation_strategy(risk_id: int, strategy: MitigationStrategy) bool
+        +monitor_risks() List[Risk]
+        +get_risk_heatmap() Dict[str, Any]
     }
 
     class Risk {
-        +id: int
-        +name: str
-        +description: str
-        +probability: float
-        +impact: float
-        +risk_score: float
-        +category: RiskCategory
-        +status: RiskStatus
-        +mitigation_strategy: str
-        +calculate_risk_score() float
-        +update_status(status: RiskStatus) void
+        -risk_id: int
+        -description: str
+        -probability: float
+        -impact: float
+        -status: RiskStatus
+        -category: RiskCategory
+        -identified_date: datetime
+        -owner: str
+        +update_probability(probability: float) bool
+        +update_impact(impact: float) bool
+        +set_status(status: RiskStatus) bool
+        +assign_owner(owner: str) bool
     }
 
-    class RiskAssessment {
-        +project_id: int
-        +assessment_date: datetime
-        +total_risks: int
-        +high_risks: int
-        +medium_risks: int
-        +low_risks: int
-        +overall_risk_score: float
-        +generate_heatmap() RiskHeatmap
-        +prioritize_risks() List[Risk]
-    }
-
-    CommunicationManager "1" --> "*" Notification : manages
-    RiskManager "1" --> "*" Risk : tracks
-    RiskManager "1" --> "1" RiskAssessment : performs
-    Risk "*" --> "1" RiskAssessment : included_in
+    CommunicationManager --> CommunicationChannel : manages
+    CommunicationManager --> Message : processes
+    CommunicationChannel --> Message : handles
+    RiskManager --> Risk : manages
 ```
 
-### 1.5 Resource Management Module
+### 1.5 Progress Reporting & Analytics
 
 ```mermaid
 classDiagram
-    class ResourceManager {
-        -resources: List[Resource]
-        -allocations: List[ResourceAllocation]
-        +allocate_resource(resource: Resource, task: Task) bool
-        +deallocate_resource(resource: Resource, task: Task) bool
-        +get_available_resources(date: datetime) List[Resource]
-        +calculate_resource_utilization() ResourceUtilizationReport
+    class ProgressReporter {
+        -metrics: Dict[str, Metric]
+        -reports: Dict[str, Report]
+        -dashboards: Dict[str, Dashboard]
+        +collect_metrics() bool
+        +generate_report(report_type: str) Report
+        +update_dashboard(dashboard_id: str) bool
+        +export_report(report_id: str, format: str) bool
+        +schedule_report(report_id: str, schedule: str) bool
     }
 
-    class ResourceAllocation {
-        +id: int
-        +resource_id: int
-        +task_id: int
-        +project_id: int
-        +allocated_hours: float
-        +start_date: datetime
-        +end_date: datetime
-        +allocation_percentage: float
-        +validate_allocation() bool
-        +calculate_cost() float
+    class Metric {
+        -metric_id: str
+        -name: str
+        -type: MetricType
+        -value: float
+        -threshold: float
+        -unit: str
+        -timestamp: datetime
+        +calculate() float
+        +update_value(value: float) bool
+        +check_threshold() bool
+        +get_trend() List[float]
     }
 
-    class ResourceUtilizationReport {
-        +report_date: datetime
-        +total_resources: int
-        +allocated_resources: int
-        +utilization_rate: float
-        +overallocated_resources: List[Resource]
-        +underutilized_resources: List[Resource]
-        +generate_recommendations() List[str]
+    class Report {
+        -report_id: str
+        -type: ReportType
+        -data: Dict[str, Any]
+        -generated_at: datetime
+        -format: str
+        +generate() bool
+        +export(format: str) bool
+        +schedule(schedule: str) bool
     }
 
-    class Skill {
-        +id: int
-        +name: str
-        +category: SkillCategory
-        +level: SkillLevel
-        +validate_skill() bool
-    }
-
-    class ResourceSkill {
-        +resource_id: int
-        +skill_id: int
-        +proficiency_level: int
-        +years_experience: float
-        +certification: str
-    }
-
-    ResourceManager "1" --> "*" ResourceAllocation : manages
-    ResourceManager "1" --> "1" ResourceUtilizationReport : generates
-    Resource "*" --> "*" Skill : has
-    ResourceSkill "*" --> "1" Resource : belongs_to
-    ResourceSkill "*" --> "1" Skill : relates_to
-```
-
-## 🔧 Service Layer Architecture
-
-### 2.1 GitHub Integration Services
-
-```mermaid
-classDiagram
-    class GitHubIntegrationService {
-        -client: GitHubClient
-        -config: GitHubConfig
-        +authenticate() bool
-        +create_repository(project: Project) Repository
-        +create_issue(task: Task) Issue
-        +update_issue(issue: Issue) bool
-        +link_commit_to_task(commit: Commit, task: Task) bool
-        +get_project_board(project: Project) ProjectBoard
-    }
-
-    class Repository {
-        +id: int
-        +name: str
-        +full_name: str
-        +url: str
-        +clone_url: str
-        +default_branch: str
-        +private: bool
-        +created_at: datetime
-        +updated_at: datetime
-    }
-
-    class Issue {
-        +id: int
-        +number: int
-        +title: str
-        +body: str
-        +state: IssueState
-        +assignee: User
-        +labels: List[Label]
-        +milestone: Milestone
-        +created_at: datetime
-        +updated_at: datetime
-    }
-
-    class Commit {
-        +sha: str
-        +message: str
-        +author: User
-        +date: datetime
-        +files_changed: List[str]
-        +additions: int
-        +deletions: int
-    }
-
-    class ProjectBoard {
-        +id: int
-        +name: str
-        +columns: List[Column]
-        +cards: List[Card]
-        +get_column_by_name(name: str) Column
-        +move_card(card: Card, column: Column) bool
-    }
-
-    GitHubIntegrationService "1" --> "*" Repository : manages
-    GitHubIntegrationService "1" --> "*" Issue : creates
-    GitHubIntegrationService "1" --> "*" Commit : tracks
-    GitHubIntegrationService "1" --> "*" ProjectBoard : syncs
-```
-
-### 2.2 JSON Data Services
-
-```mermaid
-classDiagram
-    class JSONDataService {
-        -file_manager: FileManager
-        -validator: JSONValidator
-        +load_data(file_path: str) Dict[str, Any]
-        +save_data(file_path: str, data: Dict[str, Any]) bool
-        +validate_schema(data: Dict[str, Any], schema: Dict[str, Any]) bool
-        +create_backup(file_path: str) bool
-        +restore_backup(backup_path: str) bool
-    }
-
-    class FileManager {
-        +base_path: str
-        +ensure_directory(path: str) bool
-        +get_file_list(directory: str) List[str]
-        +get_file_info(file_path: str) FileInfo
-        +delete_file(file_path: str) bool
-    }
-
-    class JSONValidator {
-        +schema: Dict[str, Any]
-        +validate(data: Dict[str, Any]) ValidationResult
-        +get_validation_errors() List[str]
-        +update_schema(new_schema: Dict[str, Any]) void
-    }
-
-    class ValidationResult {
-        +is_valid: bool
-        +errors: List[str]
-        +warnings: List[str]
-        +data: Dict[str, Any]
-    }
-
-    class FileInfo {
-        +name: str
-        +path: str
-        +size: int
-        +created: datetime
-        +modified: datetime
-        +is_readable: bool
-        +is_writable: bool
-    }
-
-    JSONDataService "1" --> "1" FileManager : uses
-    JSONDataService "1" --> "1" JSONValidator : validates
-    JSONValidator "1" --> "*" ValidationResult : produces
-    FileManager "1" --> "*" FileInfo : manages
-```
-
-## 📊 Data Processing Classes
-
-### 3.1 Data Collection and Processing
-
-```mermaid
-classDiagram
-    class DataCollector {
-        <<abstract>>
-        +collect() List[Dict[str, Any]]
-        +validate(data: List[Dict[str, Any]]) bool
-        +transform(data: List[Dict[str, Any]]) List[Dict[str, Any]]
-    }
-
-    class WorkflowDataCollector {
-        +source: str
-        +collect() List[Dict[str, Any]]
-        +parse_workflow_data(raw_data: str) List[Dict[str, Any]]
-    }
-
-    class ProgressDataGenerator {
-        +project_id: int
-        +generate_progress_data() ProgressData
-        +calculate_completion_rate() float
-        +identify_bottlenecks() List[Bottleneck]
-    }
-
-    class InputHandler {
-        +supported_formats: List[str]
-        +parse_input(input_data: str, format: str) Dict[str, Any]
-        +validate_input(data: Dict[str, Any]) bool
-        +convert_format(data: Dict[str, Any], target_format: str) str
-    }
-
-    class DataProcessor {
-        -collectors: List[DataCollector]
-        -processors: List[DataProcessor]
-        +add_collector(collector: DataCollector) void
-        +process_all() ProcessedData
-        +generate_report() DataReport
-    }
-
-    class ProcessedData {
-        +raw_data: Dict[str, Any]
-        +processed_data: Dict[str, Any]
-        +metadata: ProcessingMetadata
-        +validate_integrity() bool
-        +export(format: str) str
-    }
-
-    DataCollector <|-- WorkflowDataCollector
-    DataCollector <|-- ProgressDataGenerator
-    DataCollector <|-- InputHandler
-    DataProcessor "1" --> "*" DataCollector : uses
-    DataProcessor "1" --> "1" ProcessedData : produces
-```
-
-### 3.2 Quality and Commit Management
-
-```mermaid
-classDiagram
-    class CommitProgressManager {
-        -git_client: GitClient
-        -config: CommitConfig
-        +track_commit(commit: Commit) bool
-        +update_task_progress(commit: Commit, task: Task) bool
-        +generate_commit_report() CommitReport
-        +validate_commit_message(message: str) bool
-    }
-
-    class GitProgressUpdater {
-        +repository_path: str
-        +branch: str
-        +update_progress_from_commits() bool
-        +link_commits_to_tasks() List[TaskCommitLink]
-        +calculate_contribution_stats() ContributionStats
-    }
-
-    class CommitReport {
-        +total_commits: int
-        +commits_by_task: Dict[int, List[Commit]]
-        +contribution_by_user: Dict[str, int]
-        +files_changed: List[str]
-        +lines_added: int
-        +lines_deleted: int
-        +generate_summary() str
-    }
-
-    class TaskCommitLink {
-        +task_id: int
-        +commit_sha: str
-        +link_type: LinkType
-        +created_at: datetime
-        +validate_link() bool
-    }
-
-    class ContributionStats {
-        +user_id: int
-        +commits_count: int
-        +lines_added: int
-        +lines_deleted: int
-        +files_modified: int
-        +contribution_score: float
-        +calculate_score() float
-    }
-
-    CommitProgressManager "1" --> "1" GitProgressUpdater : uses
-    CommitProgressManager "1" --> "*" CommitReport : generates
-    GitProgressUpdater "1" --> "*" TaskCommitLink : creates
-    GitProgressUpdater "1" --> "*" ContributionStats : calculates
-```
-
-## 🎨 UI/UX Classes
-
-### 4.1 Dashboard Components
-
-```mermaid
-classDiagram
     class Dashboard {
-        +id: int
-        +name: str
-        +layout: DashboardLayout
-        +widgets: List[Widget]
-        +refresh_interval: int
+        -dashboard_id: str
+        -name: str
+        -widgets: List[Widget]
+        -layout: Dict[str, Any]
         +add_widget(widget: Widget) bool
-        +remove_widget(widget_id: int) bool
+        +remove_widget(widget_id: str) bool
+        +update_layout(layout: Dict[str, Any]) bool
         +refresh_data() bool
     }
 
     class Widget {
-        <<abstract>>
-        +id: int
-        +type: WidgetType
-        +title: str
-        +position: Position
-        +size: Size
-        +data_source: DataSource
+        -widget_id: str
+        -type: WidgetType
+        -data_source: str
+        -config: Dict[str, Any]
         +render() str
         +update_data() bool
+        +configure(config: Dict[str, Any]) bool
     }
 
-    class ProgressWidget {
-        +project_id: int
-        +show_percentage: bool
-        +color_scheme: ColorScheme
-        +render() str
-    }
-
-    class GanttChartWidget {
-        +project_id: int
-        +time_range: TimeRange
-        +zoom_level: ZoomLevel
-        +render() str
-    }
-
-    class ResourceUtilizationWidget {
-        +resource_type: ResourceType
-        +aggregation_level: AggregationLevel
-        +render() str
-    }
-
-    class RiskHeatmapWidget {
-        +project_id: int
-        +risk_categories: List[RiskCategory]
-        +render() str
-    }
-
-    Dashboard "1" --> "*" Widget : contains
-    Widget <|-- ProgressWidget
-    Widget <|-- GanttChartWidget
-    Widget <|-- ResourceUtilizationWidget
-    Widget <|-- RiskHeatmapWidget
+    ProgressReporter --> Metric : collects
+    ProgressReporter --> Report : generates
+    ProgressReporter --> Dashboard : manages
+    Dashboard --> Widget : contains
 ```
 
-## 🔗 Relationships and Associations
+## 🔧 Design Patterns Used
 
-### 5.1 Entity Relationship Summary
+### Factory Pattern
+- **Usage**: Creating different types of tasks, resources, and reports
+- **Benefit**: Encapsulates object creation logic
 
-| Relationship Type | From | To | Cardinality | Description |
-|------------------|------|----|-------------|-------------|
-| **Composition** | Project | Task | 1:N | Project contains multiple tasks |
-| **Aggregation** | User | Project | 1:N | User manages multiple projects |
-| **Association** | Task | User | N:1 | Task assigned to one user |
-| **Association** | Task | Resource | N:M | Task uses multiple resources |
-| **Composition** | Dashboard | Widget | 1:N | Dashboard contains widgets |
-| **Aggregation** | Project | Milestone | 1:N | Project has milestones |
+### Observer Pattern
+- **Usage**: Real-time updates for progress tracking and notifications
+- **Benefit**: Loose coupling between components
 
-### 5.2 Inheritance Hierarchy
+### Strategy Pattern
+- **Usage**: Different algorithms for task prioritization and resource allocation
+- **Benefit**: Easy to add new strategies without modifying existing code
 
-```mermaid
-classDiagram
-    class BaseEntity {
-        +id: int
-        +created_at: datetime
-        +updated_at: datetime
-        +is_active: bool
-        +validate() bool
-    }
+### Repository Pattern
+- **Usage**: Data persistence layer abstraction
+- **Benefit**: Clean separation between business logic and data access
 
-    class ProjectEntity {
-        +project_id: int
-        +get_project() Project
-    }
+### Decorator Pattern
+- **Usage**: Adding functionality to reports and metrics dynamically
+- **Benefit**: Flexible extension without inheritance
 
-    class UserEntity {
-        +user_id: int
-        +get_user() User
-    }
+## 📊 Class Relationships
 
-    class AuditableEntity {
-        +created_by: int
-        +updated_by: int
-        +audit_trail: List[AuditLog]
-    }
-
-    BaseEntity <|-- Project
-    BaseEntity <|-- Task
-    BaseEntity <|-- User
-    BaseEntity <|-- Resource
-    
-    ProjectEntity <|-- Task
-    ProjectEntity <|-- Milestone
-    ProjectEntity <|-- Risk
-    
-    UserEntity <|-- Task
-    UserEntity <|-- Comment
-    UserEntity <|-- Activity
-    
-    AuditableEntity <|-- Project
-    AuditableEntity <|-- Task
+### Inheritance Hierarchy
+```
+BaseEntity
+├── Task
+├── Project
+├── Resource
+└── User
 ```
 
-## 📋 Design Patterns Implementation
+### Composition Relationships
+- ProjectManagementSystem contains Projects
+- Projects contain Tasks
+- Tasks have ResourceAllocations
+- Resources have Skills and Availability
 
-### 6.1 Creational Patterns
+### Association Relationships
+- Many-to-Many: Tasks ↔ Resources (through ResourceAllocation)
+- One-to-Many: Project ↔ Tasks
+- One-to-One: Task ↔ TaskWorkflow
 
-#### Singleton Pattern - ProjectManagementSystem
-```mermaid
-classDiagram
-    class ProjectManagementSystem {
-        -instance: ProjectManagementSystem
-        -constructor() 
-        +get_instance() ProjectManagementSystem
-    }
-    
-    note for ProjectManagementSystem "Ensures only one instance\nof the system exists"
-```
+## 🔄 Data Flow
 
-#### Factory Pattern - Task Creation
-```mermaid
-classDiagram
-    class TaskFactory {
-        +create_task(type: TaskType, params: Dict) Task
-        +create_subtask(parent: Task, params: Dict) SubTask
-    }
+### Typical Workflow
+1. **Initialization**: ConfigurationManager loads system settings
+2. **Project Creation**: ProjectManagementSystem creates new projects
+3. **Task Management**: Tasks are created and assigned to projects
+4. **Resource Allocation**: Resources are allocated to tasks based on availability and skills
+5. **Progress Tracking**: Metrics are collected and reports are generated
+6. **Communication**: Status updates are sent through CommunicationManager
+7. **Risk Management**: Risks are identified, assessed, and mitigated
 
-    class Task {
-        <<interface>>
-        +execute() void
-        +get_status() TaskStatus
-    }
+## 🎯 Usage Examples
 
-    class DevelopmentTask {
-        +execute() void
-        +get_status() TaskStatus
-    }
+### Creating a New Project
+```python
+# Initialize the system
+system = ProjectManagementSystem()
+system.initialize_system(config)
 
-    class TestingTask {
-        +execute() void
-        +get_status() TaskStatus
-    }
-
-    class DocumentationTask {
-        +execute() void
-        +get_status() TaskStatus
-    }
-
-    TaskFactory ..> Task : creates
-    Task <|.. DevelopmentTask
-    Task <|.. TestingTask
-    Task <|.. DocumentationTask
-```
-
-### 6.2 Structural Patterns
-
-#### Decorator Pattern - Task Enhancement
-```mermaid
-classDiagram
-    class Task {
-        <<interface>>
-        +get_description() str
-        +get_estimated_hours() float
-    }
-
-    class BaseTask {
-        +get_description() str
-        +get_estimated_hours() float
-    }
-
-    class TaskDecorator {
-        -task: Task
-        +get_description() str
-        +get_estimated_hours() float
-    }
-
-    class PriorityDecorator {
-        -priority: Priority
-        +get_description() str
-        +get_estimated_hours() float
-    }
-
-    class ComplexityDecorator {
-        -complexity: Complexity
-        +get_description() str
-        +get_estimated_hours() float
-    }
-
-    Task <|-- BaseTask
-    TaskDecorator o-- Task
-    TaskDecorator <|-- PriorityDecorator
-    TaskDecorator <|-- ComplexityDecorator
-```
-
-### 6.3 Behavioral Patterns
-
-#### Observer Pattern - Progress Monitoring
-```mermaid
-classDiagram
-    class Subject {
-        +attach(observer: Observer) void
-        +detach(observer: Observer) void
-        +notify() void
-    }
-
-    class Observer {
-        <<interface>>
-        +update(subject: Subject) void
-    }
-
-    class Project {
-        +attach(observer: Observer) void
-        +detach(observer: Observer) void
-        +notify() void
-    }
-
-    class ProgressObserver {
-        +update(subject: Subject) void
-    }
-
-    class NotificationObserver {
-        +update(subject: Subject) void
-    }
-
-    class ReportObserver {
-        +update(subject: Subject) void
-    }
-
-    Subject <|-- Project
-    Observer <|.. ProgressObserver
-    Observer <|.. NotificationObserver
-    Observer <|.. ReportObserver
-    Project o-- Observer
-```
-
-## 📊 Data Models and Schemas
-
-### 7.1 JSON Schema Definitions
-
-#### Project Schema
-```json
-{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "properties": {
-    "id": {"type": "integer"},
-    "name": {"type": "string", "maxLength": 100},
-    "description": {"type": "string", "maxLength": 500},
-    "start_date": {"type": "string", "format": "date"},
-    "end_date": {"type": "string", "format": "date"},
-    "status": {"enum": ["planning", "active", "on_hold", "completed", "cancelled"]},
-    "priority": {"enum": ["low", "medium", "high", "critical"]},
-    "budget": {"type": "number", "minimum": 0},
-    "manager_id": {"type": "integer"}
-  },
-  "required": ["id", "name", "status", "priority"]
+# Create a new project
+project = {
+    "name": "Website Redesign",
+    "description": "Complete overhaul of company website",
+    "start_date": datetime.now(),
+    "end_date": datetime.now() + timedelta(days=90),
+    "budget": 50000.0
 }
+system.add_project(project)
 ```
 
-#### Task Schema
-```json
-{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "properties": {
-    "id": {"type": "integer"},
-    "title": {"type": "string", "maxLength": 200},
-    "description": {"type": "string", "maxLength": 1000},
-    "project_id": {"type": "integer"},
-    "assigned_to": {"type": "integer"},
-    "status": {"enum": ["todo", "in_progress", "review", "testing", "done"]},
-    "priority": {"enum": ["low", "medium", "high", "critical"]},
-    "estimated_hours": {"type": "number", "minimum": 0},
-    "actual_hours": {"type": "number", "minimum": 0},
-    "due_date": {"type": "string", "format": "date"}
-  },
-  "required": ["id", "title", "project_id", "status", "priority"]
-}
+### Allocating Resources
+```python
+# Create a resource
+resource = Resource(
+    name="Senior Developer",
+    type=ResourceType.HUMAN,
+    capacity=40.0,  # hours per week
+    skills=["Python", "Django", "React"]
+)
+
+# Allocate to task
+allocation = ResourceAllocation(
+    resource_id=resource.resource_id,
+    task_id=task.task_id,
+    allocated_amount=20.0,  # 20 hours per week
+    start_date=datetime.now(),
+    end_date=datetime.now() + timedelta(days=30)
+)
 ```
 
-## 🔍 Class Responsibilities and Collaborations
+## 📈 Performance Considerations
 
-### 8.1 CRC Cards Summary
+### Optimization Strategies
+- **Lazy Loading**: Resources and tasks are loaded on-demand
+- **Caching**: Frequently accessed data is cached
+- **Batch Operations**: Database operations are batched when possible
+- **Indexing**: Proper indexing for fast queries
 
-#### ProjectManagementSystem CRC
-| Responsibility | Collaboration |
-|----------------|---------------|
-| Manage all projects | Project, Task, User |
-| Handle CRUD operations | Database, FileManager |
-| Maintain data integrity | Validator, Logger |
-| Provide system status | StatusService |
+### Memory Management
+- **Object Pooling**: Reuse of expensive objects
+- **Garbage Collection**: Efficient cleanup of unused objects
+- **Memory Profiling**: Regular monitoring of memory usage
 
-#### Task CRC
-| Responsibility | Collaboration |
-|----------------|---------------|
-| Store task information | Project, User, Resource |
-| Track progress | ProgressTracker |
-| Manage dependencies | DependencyManager |
-| Calculate metrics | EstimationEngine |
+## 🔒 Security Considerations
 
-#### User CRC
-| Responsibility | Collaboration |
-|----------------|---------------|
-| Manage user profile | AuthenticationService |
-| Track assigned tasks | TaskManager |
-| Manage permissions | PermissionManager |
-| Generate reports | ReportGenerator |
+### Access Control
+- **Role-Based Access Control (RBAC)**: Different access levels for different roles
+- **Authentication**: User identity verification
+- **Authorization**: Permission-based access to resources
 
-## 🚀 Extension Points
+### Data Protection
+- **Encryption**: Sensitive data is encrypted at rest and in transit
+- **Audit Trail**: All changes are logged with user attribution
+- **Backup Strategy**: Regular automated backups with recovery procedures
 
-### 9.1 Plugin Architecture
+## 🧪 Testing Strategy
 
-```mermaid
-classDiagram
-    class PluginInterface {
-        <<interface>>
-        +initialize(config: Dict[str, Any]) bool
-        +execute(context: Dict[str, Any]) Any
-        +cleanup() void
-    }
+### Unit Tests
+- Individual class testing
+- Method-level validation
+- Edge case handling
 
-    class EstimationPlugin {
-        +initialize(config: Dict[str, Any]) bool
-        +execute(context: Dict[str, Any]) EstimationResult
-        +cleanup() void
-    }
+### Integration Tests
+- Component interaction testing
+- Database integration testing
+- API endpoint testing
 
-    class ReportingPlugin {
-        +initialize(config: Dict[str, Any]) bool
-        +execute(context: Dict[str, Any]) Report
-        +cleanup() void
-    }
+### System Tests
+- End-to-end workflow testing
+- Performance testing
+- Security testing
 
-    class NotificationPlugin {
-        +initialize(config: Dict[str, Any]) bool
-        +execute(context: Dict[str, Any]) bool
-        +cleanup() void
-    }
+## 📚 Maintenance Guidelines
 
-    class PluginManager {
-        -plugins: List[PluginInterface]
-        +register_plugin(plugin: PluginInterface) bool
-        +unregister_plugin(plugin_id: str) bool
-        +execute_plugin(plugin_id: str, context: Dict[str, Any]) Any
-        +get_plugin_status(plugin_id: str) PluginStatus
-    }
+### Code Organization
+- **Modular Structure**: Clear separation of concerns
+- **Documentation**: Comprehensive inline documentation
+- **Naming Conventions**: Consistent naming across all classes
 
-    PluginInterface <|-- EstimationPlugin
-    PluginInterface <|-- ReportingPlugin
-    PluginInterface <|-- NotificationPlugin
-    PluginManager o-- PluginInterface
-```
-
-## 📋 Configuration Classes
-
-### 10.1 System Configuration
-
-```mermaid
-classDiagram
-    class Configuration {
-        +database: DatabaseConfig
-        +api: APIConfig
-        +logging: LoggingConfig
-        +security: SecurityConfig
-        +load_from_file(file_path: str) bool
-        +save_to_file(file_path: str) bool
-        +validate() bool
-    }
-
-    class DatabaseConfig {
-        +type: str
-        +host: str
-        +port: int
-        +database: str
-        +username: str
-        +password: str
-        +pool_size: int
-        +timeout: int
-    }
-
-    class APIConfig {
-        +host: str
-        +port: int
-        +debug: bool
-        +cors_origins: List[str]
-        +rate_limit: int
-        +api_version: str
-    }
-
-    class LoggingConfig {
-        +level: str
-        +format: str
-        +file_path: str
-        +max_size: int
-        +backup_count: int
-    }
-
-    class SecurityConfig {
-        +secret_key: str
-        +algorithm: str
-        +access_token_expire_minutes: int
-        +refresh_token_expire_days: int
-    }
-
-    Configuration *-- DatabaseConfig
-    Configuration *-- APIConfig
-    Configuration *-- LoggingConfig
-    Configuration *-- SecurityConfig
-```
+### Version Control
+- **Semantic Versioning**: Clear version numbering
+- **Change Logs**: Detailed change documentation
+- **Branching Strategy**: Feature branches for new development
 
 ---
 
-<div align="center">
-  <p><strong>UML Class Diagrams Documentation</strong></p>
-  <p><strong>Version:</strong> 1.0.0</p>
-  <p><strong>Last Updated:</strong> 2025-08-14</p>
-  <p><strong>© 2024-2025 AutoProjectManagement Team</strong></p>
-</div>
+## 🔄 Version History
+
+- **v1.0.0**: Initial class diagram documentation
+- **v1.1.0**: Added resource management diagrams
+- **v1.2.0**: Enhanced with design patterns
+- **v1.3.0**: Added security and testing sections
+
+## 📞 Support
+
+For questions or issues regarding these class diagrams, please:
+1. Check the [System Overview](../System_Overview.md) for general context
+2. Review the [Technical Architecture](../Technical_Architecture.md) for implementation details
+3. Create an issue in the project repository with the label `documentation`
