@@ -14,7 +14,7 @@ This document provides a comprehensive checklist of all documentation that shoul
 ### 1. System Overview & Architecture
 | Document Path | Document Name | Priority | Team Member | Due Date | Status | Notes |
 |---------------|---------------|----------|-------------|----------|--------|--------|
-| `Docs/System_Overview.md` | System Overview Document | High |shakour-Data| | 📋 | Complete system overview |
+| `Docs/System_Overview.md` | System Overview Document | High |shakour-Data| | 📋2025-08-16 | Complete system overview |
 | `Docs/Technical_Architecture.md` | Technical Architecture | High |shakour-Data | | 📋 | Detailed technical architecture |
 | `Docs/System_Requirements.md` | System Requirements | High |shakour-Data | | 📋 | Hardware/software requirements |
 | `Docs/User_Personas.md` | User Personas | Medium |shakour-Data | | 📋 | Different user types |
@@ -100,6 +100,8 @@ This document provides a comprehensive checklist of all documentation that shoul
 | Document Path | Document Name | Priority | Team Member | Due Date | Status | Notes |
 |---------------|---------------|----------|-------------|----------|--------|--------|
 | `Docs/autoprojectmanagement/main_modules/progress_reporting/__init__.md` | Progress Reporting Package | High |shakour-Data | | 📋 | Package documentation |
+| `Docs/autoprojectmanagement/main_modules/progress_reporting/__init__.md` | Progress Reporting Package | High |shakour-Data | | 📋 | Package documentation |
+| `Docs/autoprojectmanagement/main_modules/progress_reporting/__init__.md` | Progress Reporting Package | High |shakour-Data | | 📋 | Package documentation |
 | `Docs/autoprojectmanagement/main_modules/progress_reporting/check_progress_dashboard_update.md` | Dashboard Update Checker | High |shakour-Data | | 📋 | Progress dashboard updates |
 | `Docs/autoprojectmanagement/main_modules/progress_reporting/dashboards_reports.md` | Dashboards & Reports | High |shakour-Data | | 📋 | Reporting features |
 | `Docs/autoprojectmanagement/main_modules/progress_reporting/progress_calculator.md` | Progress Calculator | High |shakour-Data | | 📋 | Progress calculation |
@@ -118,6 +120,8 @@ This document provides a comprehensive checklist of all documentation that shoul
 #### 6.6 Resource Management
 | Document Path | Document Name | Priority | Team Member | Due Date | Status | Notes |
 |---------------|---------------|----------|-------------|----------|--------|--------|
+| `Docs/autoprojectmanagement/main_modules/resource_management/resource_managemen_Module.md` | Resource Management Package | High |GravityWavesDB
+ | | 📋 | Package documentation |
 | `Docs/autoprojectmanagement/main_modules/resource_management/__init__.md` | Resource Management Package | High |GravityWavesDB
  | | 📋 | Package documentation |
 | `Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md` | Resource Allocation Manager | High |GravityWavesDB
