@@ -36751,5 +36751,464 @@
         "parent_commits": [
             "587069926edda5c3907c40ec531155dfe6a41e2c"
         ]
+    },
+    "ec6213fbfaa635426a58a924731609b8cf2a49d0": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Deployment/Deployment_Execution.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:20:10):\\n- Docs/json_inputs_standard/Deployment/Deployment_Execution.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Deployment/Deployment_Execution.md b/Docs/json_inputs_standard/Deployment/Deployment_Execution.md\n    deleted file mode 100644\n    index 3b73b94..0000000\n    --- a/Docs/json_inputs_standard/Deployment/Deployment_Execution.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:50:12",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:20:11 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "10e9098d0782aa1c8b944acc35370a947f95950f"
+        ]
+    },
+    "cdc39040fe6c2c21ad38854fbbcd35afdf6bac97": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Deployment/Deployment_Planning.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:20:18):\\n- Docs/json_inputs_standard/Deployment/Deployment_Planning.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Deployment/Deployment_Planning.md b/Docs/json_inputs_standard/Deployment/Deployment_Planning.md\n    deleted file mode 100644\n    index a686352..0000000\n    --- a/Docs/json_inputs_standard/Deployment/Deployment_Planning.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:50:20",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:20:18 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "ec6213fbfaa635426a58a924731609b8cf2a49d0"
+        ]
+    },
+    "ab4c8beed98b14a4d0abeb523fb35454b19cf364": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Deployment/Post_Deployment_Support.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:20:25):\\n- Docs/json_inputs_standard/Deployment/Post_Deployment_Support.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Deployment/Post_Deployment_Support.md b/Docs/json_inputs_standard/Deployment/Post_Deployment_Support.md\n    deleted file mode 100644\n    index 4770265..0000000\n    --- a/Docs/json_inputs_standard/Deployment/Post_Deployment_Support.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:50:27",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:20:25 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "cdc39040fe6c2c21ad38854fbbcd35afdf6bac97"
+        ]
+    },
+    "221e28c6a68198062e87a127a8ab3654c83502d0": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Design/Architectural_Design.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:20:32):\\n- Docs/json_inputs_standard/Design/Architectural_Design.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Design/Architectural_Design.md b/Docs/json_inputs_standard/Design/Architectural_Design.md\n    deleted file mode 100644\n    index 3da0ba4..0000000\n    --- a/Docs/json_inputs_standard/Design/Architectural_Design.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:50:34",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:20:33 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "ab4c8beed98b14a4d0abeb523fb35454b19cf364"
+        ]
+    },
+    "2eec2e3965fbd84f88452e18595f6ac523c71b94": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Design/Coding_Enhanced.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:20:39):\\n- Docs/json_inputs_standard/Design/Coding_Enhanced.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Design/Coding_Enhanced.md b/Docs/json_inputs_standard/Design/Coding_Enhanced.md\n    deleted file mode 100644\n    index cef2366..0000000\n    --- a/Docs/json_inputs_standard/Design/Coding_Enhanced.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:50:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:20:39 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "221e28c6a68198062e87a127a8ab3654c83502d0"
+        ]
+    },
+    "0460791bc70007197f10b9978461b5a265213af8": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Design/Component_Design_Implementation_Based.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:20:46):\\n- Docs/json_inputs_standard/Design/Component_Design_Implementation_Based.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Design/Component_Design_Implementation_Based.md b/Docs/json_inputs_standard/Design/Component_Design_Implementation_Based.md\n    deleted file mode 100644\n    index 22ebb23..0000000\n    --- a/Docs/json_inputs_standard/Design/Component_Design_Implementation_Based.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:50:48",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:20:46 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "2eec2e3965fbd84f88452e18595f6ac523c71b94"
+        ]
+    },
+    "f7876f86b6fb87ccbd63cb306ee9056b1a8e7f54": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Design/Document_Analysis.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:20:53):\\n- Docs/json_inputs_standard/Design/Document_Analysis.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Design/Document_Analysis.md b/Docs/json_inputs_standard/Design/Document_Analysis.md\n    deleted file mode 100644\n    index 8e31034..0000000\n    --- a/Docs/json_inputs_standard/Design/Document_Analysis.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:50:54",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:20:53 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "0460791bc70007197f10b9978461b5a265213af8"
+        ]
+    },
+    "394d8bf630a24eca7a6571fe2b9f2d0ab72d51a7": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Prototypes/Prototype_Development.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:21:00):\\n- Docs/json_inputs_standard/Prototypes/Prototype_Development.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Prototypes/Prototype_Development.md b/Docs/json_inputs_standard/Prototypes/Prototype_Development.md\n    deleted file mode 100644\n    index 910547a..0000000\n    --- a/Docs/json_inputs_standard/Prototypes/Prototype_Development.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:51:01",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:21:00 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "f7876f86b6fb87ccbd63cb306ee9056b1a8e7f54"
+        ]
+    },
+    "6a2a93a696d72d82f42257c51e4f7bbdf69ace1b": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Prototypes/Prototype_Planning.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:21:07):\\n- Docs/json_inputs_standard/Prototypes/Prototype_Planning.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Prototypes/Prototype_Planning.md b/Docs/json_inputs_standard/Prototypes/Prototype_Planning.md\n    deleted file mode 100644\n    index 7c00af8..0000000\n    --- a/Docs/json_inputs_standard/Prototypes/Prototype_Planning.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:51:08",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:21:07 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "394d8bf630a24eca7a6571fe2b9f2d0ab72d51a7"
+        ]
+    },
+    "83f1f260e8fc3924e5f2d0d192c1624220a4eb1d": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Prototypes/Prototype_Refinement.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:21:14):\\n- Docs/json_inputs_standard/Prototypes/Prototype_Refinement.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Prototypes/Prototype_Refinement.md b/Docs/json_inputs_standard/Prototypes/Prototype_Refinement.md\n    deleted file mode 100644\n    index 7656a78..0000000\n    --- a/Docs/json_inputs_standard/Prototypes/Prototype_Refinement.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:51:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:21:14 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "6a2a93a696d72d82f42257c51e4f7bbdf69ace1b"
+        ]
+    },
+    "f6ff433949445f113c999488e7a99bedcd6719d1": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Prototypes/Prototype_Testing.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:21:21):\\n- Docs/json_inputs_standard/Prototypes/Prototype_Testing.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Prototypes/Prototype_Testing.md b/Docs/json_inputs_standard/Prototypes/Prototype_Testing.md\n    deleted file mode 100644\n    index a458063..0000000\n    --- a/Docs/json_inputs_standard/Prototypes/Prototype_Testing.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:51:24",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:21:21 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "83f1f260e8fc3924e5f2d0d192c1624220a4eb1d"
+        ]
+    },
+    "2b679863cb6dcc0e681e5f1040b44dea264f27f1": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Requirements/Requirement_Validation.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:21:29):\\n- Docs/json_inputs_standard/Requirements/Requirement_Validation.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Requirements/Requirement_Validation.md b/Docs/json_inputs_standard/Requirements/Requirement_Validation.md\n    deleted file mode 100644\n    index 45bf7c0..0000000\n    --- a/Docs/json_inputs_standard/Requirements/Requirement_Validation.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:51:31",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:21:30 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "f6ff433949445f113c999488e7a99bedcd6719d1"
+        ]
+    },
+    "3e6cf5d2dc41ac9776dc810b5563d7c56711b77d": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Requirements/Requirement_Workshops.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:21:36):\\n- Docs/json_inputs_standard/Requirements/Requirement_Workshops.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Requirements/Requirement_Workshops.md b/Docs/json_inputs_standard/Requirements/Requirement_Workshops.md\n    deleted file mode 100644\n    index d52ad37..0000000\n    --- a/Docs/json_inputs_standard/Requirements/Requirement_Workshops.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:51:38",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:21:37 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "2b679863cb6dcc0e681e5f1040b44dea264f27f1"
+        ]
+    },
+    "b178647f4468a2ff62f2f1f3e6eb3bc0a97b77f9": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Requirements/Stakeholder_Interviews.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:21:44):\\n- Docs/json_inputs_standard/Requirements/Stakeholder_Interviews.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Requirements/Stakeholder_Interviews.md b/Docs/json_inputs_standard/Requirements/Stakeholder_Interviews.md\n    deleted file mode 100644\n    index 97d3d89..0000000\n    --- a/Docs/json_inputs_standard/Requirements/Stakeholder_Interviews.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:51:45",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:21:44 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "3e6cf5d2dc41ac9776dc810b5563d7c56711b77d"
+        ]
+    },
+    "260e8e7af51e6a1083ef577bbe07184a46421fd9": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Workflow/auto_commit_process.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:21:51):\\n- Docs/json_inputs_standard/Workflow/auto_commit_process.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Workflow/auto_commit_process.md b/Docs/json_inputs_standard/Workflow/auto_commit_process.md\n    deleted file mode 100644\n    index 1fc5405..0000000\n    --- a/Docs/json_inputs_standard/Workflow/auto_commit_process.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:51:53",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:21:51 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "b178647f4468a2ff62f2f1f3e6eb3bc0a97b77f9"
+        ]
+    },
+    "799e51ff850c1d977c43d89e8aa9c829002a124e": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Workflow/commit_task_database.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:21:58):\\n- Docs/json_inputs_standard/Workflow/commit_task_database.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Workflow/commit_task_database.md b/Docs/json_inputs_standard/Workflow/commit_task_database.md\n    deleted file mode 100644\n    index 07cc62e..0000000\n    --- a/Docs/json_inputs_standard/Workflow/commit_task_database.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:52:01",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:21:58 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "260e8e7af51e6a1083ef577bbe07184a46421fd9"
+        ]
+    },
+    "d8afb1f80c64fdb00d48e1e83ca30a4c9f7f0194": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Workflow/json_files_overview.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:22:05):\\n- Docs/json_inputs_standard/Workflow/json_files_overview.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Workflow/json_files_overview.md b/Docs/json_inputs_standard/Workflow/json_files_overview.md\n    deleted file mode 100644\n    index 2714814..0000000\n    --- a/Docs/json_inputs_standard/Workflow/json_files_overview.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:52:08",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:22:06 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "799e51ff850c1d977c43d89e8aa9c829002a124e"
+        ]
+    },
+    "67146969f5bd8be43181caa780b0a181bd5045a4": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Workflow/json_input_files_usage.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:22:13):\\n- Docs/json_inputs_standard/Workflow/json_input_files_usage.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Workflow/json_input_files_usage.md b/Docs/json_inputs_standard/Workflow/json_input_files_usage.md\n    deleted file mode 100644\n    index 390a214..0000000\n    --- a/Docs/json_inputs_standard/Workflow/json_input_files_usage.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:52:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:22:14 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "d8afb1f80c64fdb00d48e1e83ca30a4c9f7f0194"
+        ]
+    },
+    "55a09ac293a377c6a1d3cef936ca4a089dc3c863": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Workflow/json_workflow_detailed.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:22:21):\\n- Docs/json_inputs_standard/Workflow/json_workflow_detailed.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Workflow/json_workflow_detailed.md b/Docs/json_inputs_standard/Workflow/json_workflow_detailed.md\n    deleted file mode 100644\n    index 95ec242..0000000\n    --- a/Docs/json_inputs_standard/Workflow/json_workflow_detailed.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:52:23",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:22:21 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "67146969f5bd8be43181caa780b0a181bd5045a4"
+        ]
+    },
+    "c6f9173762d67808c6c66e766748dcedc2024d35": {
+        "task_id": "root",
+        "file_path": "Docs/json_inputs_standard/Workflow/workflow_definition_detailed.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-16 12:22:28):\\n- Docs/json_inputs_standard/Workflow/workflow_definition_detailed.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/json_inputs_standard/Workflow/workflow_definition_detailed.md b/Docs/json_inputs_standard/Workflow/workflow_definition_detailed.md\n    deleted file mode 100644\n    index b2ed77e..0000000\n    --- a/Docs/json_inputs_standard/Workflow/workflow_definition_detailed.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:52:32",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:22:28 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "55a09ac293a377c6a1d3cef936ca4a089dc3c863"
+        ]
+    },
+    "9bdd80ca5ac6d4b4fba25de97c4c9e792955b8a6": {
+        "task_id": "root",
+        "file_path": "Docs/Deployment/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-16 12:22:36):\\n- Docs/Deployment/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/Deployment/Deployment_Execution.md b/Docs/Deployment/Deployment_Execution.md\n    new file mode 100644\n    index 0000000..3b73b94\n    --- /dev/null\n    +++ b/Docs/Deployment/Deployment_Execution.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:52:38",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:22:36 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "c6f9173762d67808c6c66e766748dcedc2024d35"
+        ]
+    },
+    "d0a6155055d084d1c0a5fe447fc4f710b1c80d6f": {
+        "task_id": "root",
+        "file_path": "Docs/Design/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-16 12:22:44):\\n- Docs/Design/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/Design/Architectural_Design.md b/Docs/Design/Architectural_Design.md\n    new file mode 100644\n    index 0000000..3da0ba4\n    --- /dev/null\n    +++ b/Docs/Design/Architectural_Design.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:52:47",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:22:44 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "9bdd80ca5ac6d4b4fba25de97c4c9e792955b8a6"
+        ]
+    },
+    "bf321059c690ba1d7783fe43e37cda807e4ea8ee": {
+        "task_id": "root",
+        "file_path": "Docs/Prototypes/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-16 12:22:52):\\n- Docs/Prototypes/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/Prototypes/Prototype_Development.md b/Docs/Prototypes/Prototype_Development.md\n    new file mode 100644\n    index 0000000..910547a\n    --- /dev/null\n    +++ b/Docs/Prototypes/Prototype_Development.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:52:54",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:22:52 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "d0a6155055d084d1c0a5fe447fc4f710b1c80d6f"
+        ]
+    },
+    "32a64edcc542422503a84522ce62e65eaa3d89c1": {
+        "task_id": "root",
+        "file_path": "Docs/Requirements/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-16 12:22:59):\\n- Docs/Requirements/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/Requirements/Requirement_Validation.md b/Docs/Requirements/Requirement_Validation.md\n    new file mode 100644\n    index 0000000..45bf7c0\n    --- /dev/null\n    +++ b/Docs/Requirements/Requirement_Validation.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:53:03",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:23:00 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "bf321059c690ba1d7783fe43e37cda807e4ea8ee"
+        ]
+    },
+    "e00a88529868c5441da64dea126ed01ac4095ff4": {
+        "task_id": "root",
+        "file_path": "Docs/Workflow/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-16 12:23:07):\\n- Docs/Workflow/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/Workflow/auto_commit_process.md b/Docs/Workflow/auto_commit_process.md\n    new file mode 100644\n    index 0000000..1fc5405\n    --- /dev/null\n    +++ b/Docs/Workflow/auto_commit_process.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-16 08:53:09",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:23:08 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "32a64edcc542422503a84522ce62e65eaa3d89c1"
+        ]
+    },
+    "91311eb3ad042c61c878648adcdafc575026fc48": {
+        "task_id": "root",
+        "file_path": "backups/backup_20250816_122006.zip",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-16 12:23:16):\\n- backups/backup_20250816_122006.zip: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/backup_20250816_122006.zip b/backups/backup_20250816_122006.zip\n    new file mode 100644\n    index 0000000..bb3f6df\n    Binary files /dev/null and b/backups/backup_20250816_122006.zip differ\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-16 08:53:18",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:23:17 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "e00a88529868c5441da64dea126ed01ac4095ff4"
+        ]
+    },
+    "ee6d57ce8e15af50bb700ab3c83ac63c17f3e53c": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250816_122006.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-16 12:23:23):\\n- backups/metadata/backup_20250816_122006.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250816_122006.json b/backups/metadata/backup_20250816_122006.json\n    new file mode 100644\n    index 0000000..1eecbf6\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250816_122006.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.011,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-16 08:53:25",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Sat Aug 16 12:23:24 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "91311eb3ad042c61c878648adcdafc575026fc48"
+        ]
     }
 }
