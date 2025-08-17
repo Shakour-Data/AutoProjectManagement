@@ -42,10 +42,10 @@ This document provides a comprehensive checklist of all documentation that shoul
 ### 3. Root Level Documentation
 | Document Path | Document Name | Priority | Team Member | Due Date | Status | Notes |
 |---------------|---------------|----------|-------------|----------|--------|--------|
-| `Docs/Code_Structure/Root_README.md` | Root README Documentation | High |shakour-Data | | 📋 | Main project README |
-| `Docs/Code_Structure/pyproject_toml.md` | pyproject.toml Documentation | Medium |shakour-Data | | 📋 | Project configuration |
-| `Docs/Code_Structure/requirements_txt.md` | Requirements Documentation | Medium |shakour-Data | | 📋 | Dependencies documentation |
-| `Docs/Code_Structure/setup_py.md` | Setup.py Documentation | Medium |shakour-Data | | 📋 | Package setup documentation |
+| `Docs/Code_Structure/Root_README.md` | Root README Documentation | High |shakour-Data | ✅ | 📋  2025-08-17| Main project README |
+| `Docs/Code_Structure/pyproject_toml.md` | pyproject.toml Documentation | Medium |shakour-Data | ✅ | 📋  2025-08-17| Project configuration |
+| `Docs/Code_Structure/requirements_txt.md` | Requirements Documentation | Medium |shakour-Data | ✅ | 📋  2025-08-17|  Dependencies documentation |
+| `Docs/Code_Structure/setup_py.md` | Setup.py Documentation | Medium |shakour-Data | ✅ | 📋  2025-08-17|  Package setup documentation |
 | `Docs/Code_Structure/gitignore.md` | Gitignore Documentation | Low |shakour-Data | | 📋 | Git ignore patterns |
 
 ### 4. Main Package Documentation
@@ -259,8 +259,8 @@ This document provides a comprehensive checklist of all documentation that shoul
 |---------------|---------------|----------|-------------|----------|--------|--------|
 | `Docs/tests/code_tests/01_UnitTests/README.md` | Unit Tests Documentation | High |GravityWavesPr | ✅ | 📋 2025-08-17 | Unit testing guide |
 | `Docs/tests/code_tests/02_IntegrationTests/README.md` | Integration Tests Documentation | High |GravityWavesPr | ✅ | 📋 2025-08-17 | Integration testing |
-| `Docs/tests/code_tests/03_SystemTests/README.md` | System Tests Documentation | High |GravityWavesPr | | 📋 | System testing |
-| `Docs/tests/code_tests/04_PerformanceTests/README.md` | Performance Tests Documentation | Medium | GravityWavesPr| | 📋 | Performance testing |
+| `Docs/tests/code_tests/03_SystemTests/README.md` | System Tests Documentation | High |GravityWavesPr | ✅ | 📋 2025-08-17 | System testing |
+| `Docs/tests/code_tests/04_PerformanceTests/README.md` | Performance Tests Documentation | Medium | GravityWavesPr| ✅ | 📋 2025-08-17 | Performance testing |
 | `Docs/tests/code_tests/05_SecurityTests/README.md` | Security Tests Documentation | High |GravityWavesPr | | 📋 | Security testing |
 | `Docs/tests/code_tests/06_RegressionTests/README.md` | Regression Tests Documentation | Medium |GravityWavesPr | | 📋 | Regression testing |
 | `Docs/tests/code_tests/07_AcceptanceTests/README.md` | Acceptance Tests Documentation | High |GravityWavesPr | | 📋 | Acceptance testing |
@@ -373,8 +373,8 @@ This document provides a comprehensive checklist of all documentation that shoul
 | `Docs/Software_Engineering/README.md` | Software Engineering Overview | High |GravityWavesDB| ✅ | 📋2025-08-17 | Complete SE documentation |
 | `Docs/Software_Engineering/Software_Requirements_Specification.md` | SRS Document | Critical |shakour-Data2 | ✅ | 📋2025-08-17 | IEEE 830 standard SRS |
 | `Docs/Software_Engineering/Software_Design_Description.md` | SDD Document | Critical |shakour-Data2 | ✅ | 📋2025-08-17 |IEEE 1016 standard SDD |
-| `Docs/Software_Engineering/Software_Architecture_Document.md` | SAD Document | Critical |shakour-Data2| | 📋 | Architecture decisions |
-| `Docs/Software_Engineering/Coding_Standards.md` | Coding Standards | High | | | 📋 | PEP 8, naming conventions |
+| `Docs/Software_Engineering/Software_Architecture_Document.md` | SAD Document | Critical |shakour-Data2| ✅ | 📋2025-08-17 | Architecture decisions |
+| `Docs/Software_Engineering/Coding_Standards.md` | Coding Standards | High | shakour-Data2  | ✅ | 📋2025-08-17 |  PEP 8, naming conventions |
 | `Docs/Software_Engineering/Code_Review_Guidelines.md` | Code Review Guidelines | High |shakour-Data2 | | 📋 | Review process and checklist |
 | `Docs/Software_Engineering/Version_Control_Strategy.md` | Version Control Strategy | High |shakour-Data2| | 📋 | Git workflow and branching |
 | `Docs/Software_Engineering/Testing_Strategy.md` | Testing Strategy Document | High |shakour-Data2 | | 📋 | Test plans and approaches |
