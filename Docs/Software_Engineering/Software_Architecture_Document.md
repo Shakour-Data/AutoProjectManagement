@@ -1,7 +1,7 @@
 # Software Architecture Document (SAD)
 ## AutoProjectManagement System
 
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Date:** 2025-08-16  
 **Author:** AutoProjectManagement Architecture Team  
 **Status:** Production Ready  
@@ -55,97 +55,74 @@ The AutoProjectManagement system is an intelligent, automated project management
 ## 2. Architectural Overview
 
 ### 2.1 Architectural Style
-The system follows a **Microservices Architecture** pattern with **Event-Driven Architecture** for real-time updates and **CQRS (Command Query Responsibility Segregation)** for optimal read/write performance.
+The system follows a **Modular Monolith Architecture** with **Plugin-based Extensions** and **Event-Driven Architecture** for real-time updates. The architecture balances simplicity with scalability, providing a clear separation of concerns while maintaining operational efficiency.
 
 ### 2.2 High-Level Architecture
 
 ```mermaid
 graph TB
-    subgraph "Client Layer"
-        WebUI[Web Dashboard<br/>React + TypeScript]
+    subgraph "User Interface Layer"
+        CLI[CLI Interface<br/>Python Click]
         VSCodeExt[VS Code Extension<br/>TypeScript]
-        CLI[CLI Tool<br/>Python Click]
-        MobileApp[Mobile App<br/>React Native]
+        WebUI[Web Dashboard<br/>React + FastAPI]
     end
     
-    subgraph "API Gateway Layer"
-        APIGateway[Kong API Gateway<br/>Rate Limiting + Auth]
-        LoadBalancer[NGINX Load Balancer<br/>SSL Termination]
+    subgraph "Core Application Layer"
+        APIGateway[API Gateway<br/>FastAPI]
+        MainModules[Main Modules<br/>Python Classes]
+        Services[Service Layer<br/>Integration Services]
     end
     
-    subgraph "Microservices Layer"
-        ProjectMS[Project Service<br/>FastAPI + PostgreSQL]
-        TaskMS[Task Service<br/>FastAPI + MongoDB]
-        ResourceMS[Resource Service<br/>FastAPI + Redis]
-        AnalyticsMS[Analytics Service<br/>FastAPI + ClickHouse]
-        NotificationMS[Notification Service<br/>FastAPI + RabbitMQ]
+    subgraph "Data Processing Layer"
+        DataCollection[Data Collection<br/>JSON Processing]
+        WorkflowEngine[Workflow Engine<br/>State Management]
+        Analytics[Analytics Engine<br/>Progress Tracking]
     end
     
-    subgraph "Event Bus Layer"
-        Kafka[Apache Kafka<br/>Event Streaming]
-        Redis[Redis Streams<br/>Real-time Updates]
+    subgraph "Storage Layer"
+        JSONDB[(JSON Database<br/>File-based)]
+        Cache[(Redis Cache<br/>Session Data)]
+        Backups[(Backup System<br/>Zip Archives)]
     end
     
-    subgraph "Data Layer"
-        PostgreSQL[(PostgreSQL<br/>Transactional Data)]
-        MongoDB[(MongoDB<br/>Document Store)]
-        RedisCache[(Redis Cache<br/>Session + Cache)]
-        S3[S3 Storage<br/>Files + Artifacts]
-    end
-    
-    subgraph "External Services"
+    subgraph "External Integrations"
         GitHub[GitHub API<br/>Repository Integration]
-        Slack[Slack API<br/>Team Communication]
-        Email[Email Service<br/>SMTP + SendGrid]
-        Calendar[Calendar API<br/>Google/Outlook]
+        VSCodeAPI[VS Code API<br/>Extension Integration]
+        Email[Email Services<br/>SMTP/SendGrid]
     end
     
-    WebUI --> LoadBalancer
-    VSCodeExt --> APIGateway
     CLI --> APIGateway
-    MobileApp --> LoadBalancer
+    VSCodeExt --> VSCodeAPI
+    WebUI --> APIGateway
     
-    LoadBalancer --> APIGateway
-    APIGateway --> ProjectMS
-    APIGateway --> TaskMS
-    APIGateway --> ResourceMS
-    APIGateway --> AnalyticsMS
+    APIGateway --> MainModules
+    MainModules --> Services
+    Services --> DataCollection
+    DataCollection --> WorkflowEngine
+    WorkflowEngine --> Analytics
     
-    ProjectMS --> Kafka
-    TaskMS --> Kafka
-    ResourceMS --> Kafka
-    AnalyticsMS --> Kafka
+    MainModules --> JSONDB
+    Services --> Cache
+    JSONDB --> Backups
     
-    Kafka --> NotificationMS
-    Kafka --> AnalyticsMS
-    
-    ProjectMS --> PostgreSQL
-    TaskMS --> MongoDB
-    ResourceMS --> RedisCache
-    AnalyticsMS --> ClickHouse
-    
-    NotificationMS --> Slack
-    NotificationMS --> Email
-    NotificationMS --> Calendar
+    Services --> GitHub
+    Services --> Email
 ```
 
 ### 2.3 Technology Stack Matrix
 
 | Layer | Technology | Version | Purpose |
 |-------|------------|---------|---------|
-| **Frontend** | React | 18.x | Web dashboard |
-| **Frontend** | TypeScript | 5.x | Type safety |
+| **CLI** | Python Click | 8.x | Command-line interface |
 | **Backend** | FastAPI | 0.110.x | REST API framework |
 | **Backend** | Python | 3.11.x | Core language |
-| **Database** | PostgreSQL | 15.x | Primary database |
-| **Database** | MongoDB | 7.x | Document storage |
-| **Cache** | Redis | 7.x | Caching layer |
-| **Message Queue** | Apache Kafka | 3.x | Event streaming |
-| **Search** | Elasticsearch | 8.x | Full-text search |
-| **Monitoring** | Prometheus | 2.x | Metrics collection |
-| **Logging** | ELK Stack | 8.x | Centralized logging |
-| **Container** | Docker | 24.x | Containerization |
-| **Orchestration** | Kubernetes | 1.29.x | Container orchestration |
+| **Database** | JSON Files | Custom | Project data storage |
+| **Cache** | Redis | 7.x | Session and cache data |
+| **Storage** | File System | OS Native | Local file storage |
+| **Backup** | Zip Archives | Python zipfile | Backup and restore |
+| **Testing** | pytest | 7.x | Testing framework |
+| **Documentation** | Markdown | GitHub Flavored | Documentation |
+| **Monitoring** | Custom Logging | Python logging | System monitoring |
 
 ---
 
@@ -159,80 +136,75 @@ graph TB
         BC1[Project Management]
         BC2[Task Management]
         BC3[Resource Management]
-        BC4[Analytics & Reporting]
-        BC5[Communication]
-        BC6[Quality Assurance]
+        BC4[Risk Management]
+        BC5[Communication Management]
+        BC6[Quality Management]
     end
     
-    subgraph "Domain Services"
-        DS1[Project Service]
-        DS2[Task Service]
-        DS3[Resource Service]
-        DS4[Analytics Service]
-        DS5[Notification Service]
-        DS6[Quality Service]
+    subgraph "Domain Modules"
+        DM1[Project Management System]
+        DM2[Task Workflow Management]
+        DM3[Resource Allocation]
+        DM4[Risk Assessment]
+        DM5[Communication Engine]
+        DM6[Quality Assurance]
     end
     
     subgraph "Shared Services"
-        SS1[Authentication Service]
-        SS2[Authorization Service]
-        SS3[Audit Service]
-        SS4[Configuration Service]
-        SS5[Health Check Service]
+        SS1[Configuration Service]
+        SS2[Logging Service]
+        SS3[Backup Service]
+        SS4[Validation Service]
     end
     
-    BC1 --> DS1
-    BC2 --> DS2
-    BC3 --> DS3
-    BC4 --> DS4
-    BC5 --> DS5
-    BC6 --> DS6
+    BC1 --> DM1
+    BC2 --> DM2
+    BC3 --> DM3
+    BC4 --> DM4
+    BC5 --> DM5
+    BC6 --> DM6
     
-    DS1 --> SS1
-    DS2 --> SS2
-    DS3 --> SS3
-    DS4 --> SS4
-    DS5 --> SS5
+    DM1 --> SS1
+    DM2 --> SS2
+    DM3 --> SS3
+    DM4 --> SS4
 ```
 
 ### 3.2 Physical Architecture
 
 ```mermaid
 graph TB
+    subgraph "Development Environment"
+        subgraph "Local Machine"
+            LocalApp[AutoProjectManagement<br/>Python Application]
+            LocalDB[JSON Database<br/>Local Files]
+            LocalCache[Redis<br/>Local Instance]
+            LocalVSCode[VS Code Extension<br/>TypeScript]
+        end
+        
+        subgraph "Development Tools"
+            Git[Git Repository]
+            VSCode[VS Code Editor]
+            Terminal[Terminal/CLI]
+        end
+    end
+    
     subgraph "Production Environment"
-        subgraph "Availability Zone 1"
-            AZ1_API[API Instances<br/>3x m5.large]
-            AZ1_DB[PostgreSQL Primary<br/>db.r5.xlarge]
-            AZ1_Cache[Redis Cluster<br/>cache.r6g.large]
-        end
-        
-        subgraph "Availability Zone 2"
-            AZ2_API[API Instances<br/>3x m5.large]
-            AZ2_DB[PostgreSQL Replica<br/>db.r5.xlarge]
-            AZ2_Cache[Redis Cluster<br/>cache.r6g.large]
-        end
-        
-        subgraph "Availability Zone 3"
-            AZ3_API[API Instances<br/>3x m5.large]
-            AZ3_DB[PostgreSQL Replica<br/>db.r5.xlarge]
-            AZ3_Cache[Redis Cluster<br/>cache.r6g.large]
+        subgraph "Single Server"
+            ProdApp[AutoProjectManagement<br/>Python Application]
+            ProdDB[JSON Database<br/>File System]
+            ProdCache[Redis<br/>Server Instance]
+            ProdBackups[Backup System<br/>Scheduled]
         end
     end
     
-    subgraph "Global Services"
-        CDN[CloudFront CDN]
-        WAF[AWS WAF]
-        Route53[Route 53 DNS]
-    end
+    LocalApp --> LocalDB
+    LocalApp --> LocalCache
+    LocalVSCode --> LocalApp
     
-    CDN --> WAF
-    WAF --> Route53
-    Route53 --> AZ1_API
-    Route53 --> AZ2_API
-    Route53 --> AZ3_API
-    
-    AZ1_DB -.->|Replication| AZ2_DB
-    AZ1_DB -.->|Replication| AZ3_DB
+    ProdApp --> ProdDB
+    ProdApp --> ProdCache
+    ProdApp --> ProdBackups
 ```
 
 ### 3.3 Process Architecture
@@ -240,24 +212,28 @@ graph TB
 ```mermaid
 flowchart TD
     subgraph "Project Lifecycle Process"
-        A[Project Initiation] --> B[Planning Phase]
-        B --> C[Resource Allocation]
-        C --> D[Task Creation]
-        D --> E[Development Phase]
-        E --> F[Quality Assurance]
-        F --> G[Progress Monitoring]
-        G --> H{Milestone Check}
-        H -->|Not Complete| E
-        H -->|Complete| I[Project Completion]
-        I --> J[Post-Project Analysis]
+        A[Project Initiation] --> B[Data Collection]
+        B --> C[Planning & Estimation]
+        C --> D[Resource Allocation]
+        D --> E[Task Creation]
+        E --> F[Development Phase]
+        F --> G[Progress Tracking]
+        G --> H[Quality Checks]
+        H --> I{Risk Assessment}
+        I -->|High Risk| J[Risk Mitigation]
+        I -->|Low Risk| K[Continue Development]
+        J --> K
+        K --> L{Milestone Check}
+        L -->|Not Complete| F
+        L -->|Complete| M[Project Completion]
+        M --> N[Post-Project Analysis]
     end
     
     subgraph "Real-time Monitoring Process"
-        K[Event Stream] --> L[Event Processor]
-        L --> M[Business Rules Engine]
-        M --> N[Action Generator]
-        N --> O[Notification Service]
-        O --> P[Multi-channel Delivery]
+        O[Event Detection] --> P[Data Processing]
+        P --> Q[Progress Calculation]
+        Q --> R[Report Generation]
+        R --> S[Notification Delivery]
     end
 ```
 
@@ -270,45 +246,48 @@ flowchart TD
 ```mermaid
 graph TB
     subgraph "Core Components"
-        C1[Project Management Component]
-        C2[Task Management Component]
-        C3[Resource Management Component]
-        C4[Analytics Component]
-        C5[Communication Component]
-        C6[Quality Management Component]
+        C1[Project Management System]
+        C2[Task Workflow Management]
+        C3[Resource Management]
+        C4[Communication Risk Management]
+        C5[Data Collection Processing]
+        C6[Planning Estimation]
     end
     
-    subgraph "Cross-cutting Components"
-        CC1[Authentication Component]
-        CC2[Authorization Component]
-        CC3[Logging Component]
-        CC4[Monitoring Component]
-        CC5[Configuration Component]
+    subgraph "Service Components"
+        SC1[GitHub Integration]
+        SC2[VS Code Extension]
+        SC3[Status Service]
+        SC4[Configuration CLI]
     end
     
-    subgraph "Infrastructure Components"
-        IC1[API Gateway Component]
-        IC2[Service Discovery Component]
-        IC3[Circuit Breaker Component]
-        IC4[Rate Limiter Component]
+    subgraph "Utility Components"
+        UC1[JSON Data Linker]
+        UC2[Header Updater]
+        UC3[Backup Service]
+        UC4[Validation Engine]
     end
     
-    C1 --> CC1
-    C2 --> CC2
-    C3 --> CC3
-    C4 --> CC4
-    C5 --> CC5
-    C6 --> CC1
+    C1 --> C2
+    C2 --> C3
+    C3 --> C4
+    C4 --> C5
+    C5 --> C6
     
-    C1 --> IC1
-    C2 --> IC2
-    C3 --> IC3
-    C4 --> IC4
+    C1 --> SC1
+    C2 --> SC2
+    C3 --> SC3
+    C4 --> SC4
+    
+    C5 --> UC1
+    C6 --> UC2
+    C1 --> UC3
+    C2 --> UC4
 ```
 
 ### 4.2 Component Details
 
-#### 4.2.1 Project Management Component
+#### 4.2.1 Project Management System Component
 
 **Purpose**: Central orchestrator for project lifecycle management
 
@@ -316,109 +295,119 @@ graph TB
 - Project creation, update, and deletion
 - Project status tracking and reporting
 - Project milestone management
-- Project resource allocation
+- Integration with task management
 
 **Class Diagram**:
 ```mermaid
 classDiagram
-    class ProjectManagementComponent {
-        -project_repository: IProjectRepository
-        -event_bus: IEventBus
-        -validator: IProjectValidator
-        +create_project(command: CreateProjectCommand): ProjectDTO
-        +update_project(command: UpdateProjectCommand): ProjectDTO
-        +delete_project(command: DeleteProjectCommand): void
-        +get_project(query: GetProjectQuery): ProjectDTO
-        +list_projects(query: ListProjectsQuery): List[ProjectDTO]
+    class ProjectManagementSystem {
+        -project_data: dict
+        -config: Configuration
+        -logger: Logger
+        +create_project(project_data: dict): Project
+        +update_project(project_id: str, updates: dict): bool
+        +delete_project(project_id: str): bool
+        +get_project_status(project_id: str): ProjectStatus
+        +list_projects(): List[Project]
     }
     
     class Project {
-        -id: ProjectId
-        -name: ProjectName
-        -description: ProjectDescription
-        -status: ProjectStatus
-        -start_date: Date
-        -end_date: Date
-        -progress: ProgressPercentage
-        -metadata: ProjectMetadata
-        +add_task(task: Task): void
-        +remove_task(task_id: TaskId): void
-        +update_progress(): void
+        -id: str
+        -name: str
+        -description: str
+        -start_date: datetime
+        -end_date: datetime
+        -status: str
+        -progress: float
+        -tasks: List[Task]
+        +calculate_progress(): float
+        +update_status(status: str): void
     }
     
-    ProjectManagementComponent --> Project
+    class Task {
+        -id: str
+        -title: str
+        -description: str
+        -status: str
+        -priority: int
+        -estimated_hours: float
+        -actual_hours: float
+        +update_status(status: str): void
+    }
+    
+    ProjectManagementSystem --> Project
+    Project --> Task
 ```
 
-#### 4.2.2 Task Management Component
+#### 4.2.2 Task Workflow Management Component
 
 **Purpose**: Task lifecycle and workflow management
 
 **Responsibilities**:
 - Task creation and assignment
 - Task status tracking
-- Task dependency management
-- Task priority calculation
+- Workflow state management
+- Progress calculation
 
 **Class Diagram**:
 ```mermaid
 classDiagram
-    class TaskManagementComponent {
-        -task_repository: ITaskRepository
-        -priority_calculator: IPriorityCalculator
-        -workflow_engine: IWorkflowEngine
-        +create_task(command: CreateTaskCommand): TaskDTO
-        +update_task(command: UpdateTaskCommand): TaskDTO
-        +assign_task(command: AssignTaskCommand): void
-        +update_status(command: UpdateTaskStatusCommand): TaskDTO
-        +calculate_priority(task: Task): Priority
+    class TaskWorkflowManager {
+        -workflow_data: dict
+        -state_machine: StateMachine
+        -progress_calculator: ProgressCalculator
+        +create_task(task_data: dict): Task
+        +update_task_status(task_id: str, status: str): bool
+        +calculate_task_progress(task_id: str): float
+        +get_workflow_state(task_id: str): WorkflowState
     }
     
-    class Task {
-        -id: TaskId
-        -title: TaskTitle
-        -description: TaskDescription
-        -status: TaskStatus
-        -priority: TaskPriority
-        -assignee: UserId
-        -estimated_hours: EstimatedHours
-        -actual_hours: ActualHours
-        -dependencies: List[TaskId]
-        +start(): void
-        +complete(): void
-        +block(reason: str): void
+    class WorkflowState {
+        -current_state: str
+        -allowed_transitions: List[str]
+        -metadata: dict
+        +can_transition_to(new_state: str): bool
+        +transition_to(new_state: str): void
     }
     
-    TaskManagementComponent --> Task
+    class ProgressCalculator {
+        -completion_weights: dict
+        +calculate_progress(tasks: List[Task]): float
+        +calculate_estimated_completion(tasks: List[Task]): datetime
+    }
+    
+    TaskWorkflowManager --> WorkflowState
+    TaskWorkflowManager --> ProgressCalculator
 ```
 
 ### 4.3 Component Interaction Diagram
 
 ```mermaid
 sequenceDiagram
-    participant Client
-    participant API
-    participant ProjectComponent
-    participant TaskComponent
-    participant ResourceComponent
-    participant Database
+    participant CLI
+    participant ProjectSystem
+    participant TaskManager
+    participant DataCollector
+    participant JSONDB
     
-    Client->>API: POST /projects
-    API->>ProjectComponent: create_project(data)
-    ProjectComponent->>Database: save_project()
-    Database-->>ProjectComponent: project_saved
-    ProjectComponent-->>API: project_created
-    API-->>Client: 201 Created
+    CLI->>ProjectSystem: create_project(project_data)
+    ProjectSystem->>JSONDB: save_project(project_data)
+    JSONDB-->>ProjectSystem: project_saved
+    ProjectSystem-->>CLI: project_created
     
-    Client->>API: POST /projects/1/tasks
-    API->>TaskComponent: create_task(project_id, task_data)
-    TaskComponent->>ResourceComponent: check_resource_availability()
-    ResourceComponent->>Database: query_resources()
-    Database-->>ResourceComponent: available_resources
-    ResourceComponent-->>TaskComponent: resource_available
-    TaskComponent->>Database: save_task()
-    Database-->>TaskComponent: task_saved
-    TaskComponent-->>API: task_created
-    API-->>Client: 201 Created
+    CLI->>TaskManager: create_task(project_id, task_data)
+    TaskManager->>DataCollector: collect_task_data(task_data)
+    DataCollector->>JSONDB: save_task(task_data)
+    JSONDB-->>DataCollector: task_saved
+    DataCollector-->>TaskManager: data_collected
+    TaskManager-->>CLI: task_created
+    
+    CLI->>ProjectSystem: get_project_status(project_id)
+    ProjectSystem->>TaskManager: get_task_progress(project_id)
+    TaskManager->>JSONDB: load_tasks(project_id)
+    JSONDB-->>TaskManager: tasks_data
+    TaskManager-->>ProjectSystem: progress_calculated
+    ProjectSystem-->>CLI: status_response
 ```
 
 ---
@@ -431,41 +420,38 @@ sequenceDiagram
 erDiagram
     PROJECT ||--o{ TASK : contains
     PROJECT ||--o{ MILESTONE : has
-    PROJECT ||--o{ RESOURCE : allocates
+    PROJECT ||--o{ RESOURCE : uses
     TASK ||--o{ SUBTASK : has
-    TASK ||--o{ DEPENDENCY : depends_on
-    TASK ||--o{ COMMENT : has
+    TASK ||--o{ PROGRESS : tracks
     RESOURCE ||--o{ ALLOCATION : assigned_to
-    USER ||--o{ PROJECT : owns
-    USER ||--o{ TASK : assigned
+    COMMIT ||--o{ TASK : references
     
     PROJECT {
-        uuid id PK
+        string id PK
         string name
         string description
-        date start_date
-        date end_date
-        enum status
+        string status
+        datetime start_date
+        datetime end_date
         float progress
         json metadata
     }
     
     TASK {
-        uuid id PK
-        uuid project_id FK
+        string id PK
+        string project_id FK
         string title
         string description
-        enum status
+        string status
         int priority
-        uuid assignee_id FK
-        int estimated_hours
-        int actual_hours
-        date due_date
+        float estimated_hours
+        float actual_hours
+        datetime due_date
         json custom_fields
     }
     
     RESOURCE {
-        uuid id PK
+        string id PK
         string name
         string type
         float availability
@@ -473,58 +459,89 @@ erDiagram
         json calendar
     }
     
-    USER {
-        uuid id PK
-        string email
-        string name
-        json preferences
-        date created_at
+    PROGRESS {
+        string id PK
+        string task_id FK
+        datetime timestamp
+        float completion_percentage
+        json details
+    }
+    
+    COMMIT {
+        string hash PK
+        string message
+        datetime timestamp
+        string author
+        json changes
     }
 ```
 
 ### 5.2 Data Storage Strategy
 
-| Data Type | Storage | Reasoning |
-|-----------|---------|-----------|
-| **Transactional Data** | PostgreSQL | ACID compliance, complex queries |
-| **Document Data** | MongoDB | Flexible schema, JSON documents |
-| **Session Data** | Redis | Fast access, TTL support |
-| **File Storage** | S3 | Scalable, durable object storage |
-| **Cache** | Redis | In-memory, high performance |
-| **Search** | Elasticsearch | Full-text search capabilities |
+| Data Type | Storage Format | Location | Purpose |
+|-----------|----------------|----------|---------|
+| **Project Data** | JSON files | `JSonDataBase/Inputs/` | Project configuration |
+| **Task Data** | JSON files | `JSonDataBase/Inputs/` | Task definitions |
+| **Progress Data** | JSON files | `JSonDataBase/OutPuts/` | Progress tracking |
+| **Commit Data** | JSON files | `JSonDataBase/OutPuts/` | Commit tracking |
+| **Configuration** | Python files | `autoprojectmanagement/` | System configuration |
+| **Cache** | Redis | Local/Server | Session data |
+| **Backups** | ZIP files | `backups/` | Data backup |
 
 ### 5.3 Data Flow Architecture
 
 ```mermaid
 flowchart TD
     subgraph "Data Ingestion"
-        A[User Input] --> B[Validation Layer]
-        B --> C[Transformation Layer]
-        C --> D[Persistence Layer]
+        A[User Input] --> B[CLI/Web Interface]
+        B --> C[Validation Layer]
+        C --> D[JSON Processing]
+    end
+    
+    subgraph "Data Storage"
+        D --> E{Data Type?}
+        E -->|Project| F[project_data.json]
+        E -->|Task| G[task_data.json]
+        E -->|Progress| H[progress_data.json]
+        E -->|Commit| I[commit_data.json]
     end
     
     subgraph "Data Processing"
-        D --> E[Event Processor]
-        E --> F[Business Rules Engine]
-        F --> G[Data Enrichment]
-        G --> H[Storage Decision]
+        F --> J[Project Manager]
+        G --> K[Task Manager]
+        H --> L[Progress Calculator]
+        I --> M[Commit Analyzer]
     end
     
-    subgraph "Storage Selection"
-        H --> I{Data Type?}
-        I -->|Transactional| J[PostgreSQL]
-        I -->|Document| K[MongoDB]
-        I -->|Cache| L[Redis]
-        I -->|File| M[S3]
-    end
-    
-    subgraph "Data Access"
-        J --> N[Query Engine]
+    subgraph "Data Output"
+        J --> N[Reports]
         K --> N
         L --> N
         M --> N
-        N --> O[API Response]
+        N --> O[JSON Output Files]
     end
+```
+
+### 5.4 JSON Schema Examples
+
+#### Project Data Schema
+```json
+{
+  "project_id": "string",
+  "name": "string",
+  "description": "string",
+  "status": "enum: [planning, active, completed, on_hold]",
+  "start_date": "ISO8601 datetime",
+  "end_date": "ISO8601 datetime",
+  "progress": "float (0-100)",
+  "tasks": ["array of task objects"],
+  "resources": ["array of resource objects"],
+  "metadata": {
+    "created_by": "string",
+    "created_at": "ISO8601 datetime",
+    "last_updated": "ISO8601 datetime"
+  }
+}
 ```
 
 ---
@@ -533,68 +550,66 @@ flowchart TD
 
 ### 6.1 Deployment Strategy
 
-| Environment | Strategy | Infrastructure |
-|-------------|----------|----------------|
-| **Development** | Local Docker | Docker Compose |
-| **Testing** | Kubernetes | Minikube |
-| **Staging** | Kubernetes | EKS Cluster |
-| **Production** | Kubernetes | Multi-region EKS |
+| Environment | Strategy | Infrastructure | Configuration |
+|-------------|----------|----------------|---------------|
+| **Development** | Local Python | Virtual Environment | `requirements-dev.txt` |
+| **Testing** | pytest | GitHub Actions | `tests/` directory |
+| **Production** | Systemd Service | Linux Server | `setup_env.sh` |
+| **Backup** | Automated | Cron Jobs | `backups/` directory |
 
-### 6.2 Container Architecture
+### 6.2 Installation Process
+
+```mermaid
+flowchart TD
+    subgraph "Installation Flow"
+        A[Clone Repository] --> B[Install Dependencies]
+        B --> C[Run Setup Script]
+        C --> D[Configure Environment]
+        D --> E[Initialize Database]
+        E --> F[Start Services]
+    end
+    
+    subgraph "Configuration Steps"
+        C --> C1[setup_env.sh]
+        D --> D1[autoproject_configuration.py]
+        E --> E1[JSON initialization]
+        F --> F1[Redis service]
+    end
+```
+
+### 6.3 Service Architecture
 
 ```mermaid
 graph TB
-    subgraph "Kubernetes Cluster"
-        subgraph "Namespace: autoproject-prod"
-            API[API Deployment<br/>3 replicas]
-            Worker[Worker Deployment<br/>2 replicas]
-            Scheduler[Scheduler Deployment<br/>1 replica]
-        end
-        
-        subgraph "Services"
-            APIService[API Service<br/>LoadBalancer]
-            DBService[PostgreSQL Service<br/>ClusterIP]
-            CacheService[Redis Service<br/>ClusterIP]
-        end
-        
-        subgraph "ConfigMaps & Secrets"
-            Config[App Config<br/>ConfigMap]
-            Secrets[API Keys<br/>Secret]
-            TLS[TLS Certificates<br/>Secret]
-        end
+    subgraph "System Services"
+        APIService[API Service<br/>FastAPI Server]
+        CLIService[CLI Service<br/>Click Commands]
+        ExtensionService[VS Code Extension<br/>TypeScript]
+        BackupService[Backup Service<br/>Python Script]
     end
     
-    API --> APIService
-    Worker --> DBService
-    Scheduler --> CacheService
-```
-
-### 6.3 CI/CD Pipeline
-
-```mermaid
-flowchart LR
-    subgraph "Development"
-        A[Code Commit] --> B[GitHub Actions]
+    subgraph "Background Processes"
+        Scheduler[Cron Jobs<br/>Task Scheduling]
+        Monitor[System Monitor<br/>Health Checks]
+        Logger[Logging Service<br/>File-based]
     end
     
-    subgraph "Testing"
-        B --> C[Unit Tests]
-        C --> D[Integration Tests]
-        D --> E[Security Scan]
+    subgraph "Data Storage"
+        JSONStore[JSON Database<br/>File System]
+        CacheStore[Redis Cache<br/>Memory]
+        LogStore[Log Files<br/>File System]
     end
     
-    subgraph "Building"
-        E --> F[Build Docker Images]
-        F --> G[Push to Registry]
-    end
+    APIService --> JSONStore
+    CLIService --> JSONStore
+    ExtensionService --> JSONStore
     
-    subgraph "Deployment"
-        G --> H[Deploy to Staging]
-        H --> I[Smoke Tests]
-        I --> J[Deploy to Production]
-    end
+    APIService --> CacheStore
+    BackupService --> JSONStore
     
-    J --> K[Monitoring & Alerts]
+    Scheduler --> BackupService
+    Monitor --> Logger
+    Logger --> LogStore
 ```
 
 ---
@@ -605,84 +620,89 @@ flowchart LR
 
 ```mermaid
 graph TB
-    subgraph "Security Layers"
-        L1[Network Security]
-        L2[Application Security]
-        L3[Data Security]
-        L4[Identity Security]
+    subgraph "Security Architecture"
+        L1[Input Validation]
+        L2[Access Control]
+        L3[Data Protection]
+        L4[Audit Logging]
     end
     
-    subgraph "Network Security"
-        FW[Firewall Rules]
-        VPN[VPN Access]
-        WAF[Web Application Firewall]
+    subgraph "Input Validation"
+        V1[JSON Schema Validation]
+        V2[Type Checking]
+        V3[Sanitization]
     end
     
-    subgraph "Application Security"
-        Auth[Authentication]
-        AuthZ[Authorization]
-        Input[Input Validation]
+    subgraph "Access Control"
+        AC1[File Permissions]
+        AC2[User Authentication]
+        AC3[Role-based Access]
     end
     
-    subgraph "Data Security"
-        Encrypt[Encryption at Rest]
-        Transit[Encryption in Transit]
-        Backup[Secure Backups]
+    subgraph "Data Protection"
+        DP1[Encryption at Rest]
+        DP2[Secure Backups]
+        DP3[Data Integrity]
     end
     
-    subgraph "Identity Security"
-        IAM[Identity Management]
-        RBAC[Role-Based Access]
-        Audit[Audit Logging]
+    subgraph "Audit Logging"
+        AL1[Access Logs]
+        AL2[Change Tracking]
+        AL3[Error Monitoring]
     end
+    
+    L1 --> V1
+    L1 --> V2
+    L1 --> V3
+    
+    L2 --> AC1
+    L2 --> AC2
+    L2 --> AC3
+    
+    L3 --> DP1
+    L3 --> DP2
+    L3 --> DP3
+    
+    L4 --> AL1
+    L4 --> AL2
+    L4 --> AL3
 ```
 
 ### 7.2 Security Controls
 
 | Control Type | Implementation | Description |
 |--------------|----------------|-------------|
-| **Authentication** | JWT + OAuth 2.0 | Token-based authentication |
-| **Authorization** | RBAC | Role-based access control |
-| **Encryption** | AES-256 | Data encryption at rest |
-| **Transport** | TLS 1.3 | Secure data in transit |
-| **API Security** | Rate limiting | Prevent abuse and DDoS |
-| **Input Validation** | Schema validation | Prevent injection attacks |
+| **Input Validation** | JSON Schema | Validate all JSON inputs |
+| **File Permissions** | OS-level | Restrict file access |
+| **Data Encryption** | AES-256 | Encrypt sensitive data |
+| **Access Control** | User-based | Role-based permissions |
+| **Audit Trail** | Logging | Track all changes |
+| **Backup Security** | Encrypted ZIP | Secure backup files |
 
-### 7.3 Security Architecture Diagram
+### 7.3 Security Configuration
 
 ```mermaid
 graph TB
-    subgraph "Security Architecture"
-        Client[Client Applications]
-        
-        subgraph "Security Gateway"
-            WAF[AWS WAF]
-            Shield[AWS Shield]
-            Cert[SSL/TLS Certificates]
-        end
-        
-        subgraph "Application Security"
-            AuthService[Auth Service]
-            TokenService[Token Service]
-            RateLimiter[Rate Limiter]
-        end
-        
-        subgraph "Data Security"
-            KMS[AWS KMS]
-            Secrets[AWS Secrets Manager]
-            Backup[Encrypted Backups]
-        end
+    subgraph "Security Configuration"
+        Config[Security Config]
+        Permissions[File Permissions]
+        Encryption[Data Encryption]
+        Monitoring[Security Monitoring]
     end
     
-    Client --> WAF
-    WAF --> Shield
-    Shield --> Cert
-    Cert --> AuthService
-    AuthService --> TokenService
-    TokenService --> RateLimiter
-    RateLimiter --> KMS
-    KMS --> Secrets
-    Secrets --> Backup
+    subgraph "Implementation"
+        Config --> C1[autoproject_configuration.py]
+        Permissions --> P1[Linux file permissions]
+        Encryption --> E1[AES encryption for sensitive data]
+        Monitoring --> M1[Security audit logs]
+    end
+    
+    subgraph "Security Checks"
+        Check1[Input validation]
+        Check2[Access control]
+        Check3[Data integrity]
+        Check4[Backup verification]
+    end
 ```
 
 ---
@@ -691,49 +711,53 @@ graph TB
 
 ### 8.1 Performance Targets
 
-| Metric | Target | SLA |
-|--------|--------|-----|
-| **API Response Time** | < 100ms | 95th percentile |
-| **Database Query Time** | < 50ms | 95th percentile |
-| **Page Load Time** | < 2s | 95th percentile |
-| **Concurrent Users** | 10,000+ | Load tested |
-| **Throughput** | 1000 req/sec | Sustained load |
+| Metric | Target | Measurement | Tool |
+|--------|--------|-------------|------|
+| **CLI Response Time** | < 1s | Command execution | Built-in timing |
+| **JSON Processing** | < 500ms | File operations | Python profiler |
+| **Memory Usage** | < 500MB | RAM consumption | psutil |
+| **Backup Time** | < 5min | Archive creation | Timer |
+| **API Response** | < 200ms | HTTP requests | FastAPI metrics |
 
 ### 8.2 Performance Optimization
 
 ```mermaid
 graph TB
-    subgraph "Performance Optimization Stack"
-        CDN[CloudFront CDN]
+    subgraph "Performance Stack"
         Cache[Redis Cache]
-        DBPool[Connection Pooling]
-        Index[Database Indexing]
-        Async[Async Processing]
+        Lazy[Lazy Loading]
+        Batch[Batch Processing]
+        Index[JSON Indexing]
+        Compress[Data Compression]
     end
     
     subgraph "Monitoring"
-        APM[Application Performance Monitoring]
-        Metrics[Custom Metrics]
+        Metrics[Performance Metrics]
         Alerts[Performance Alerts]
+        Reports[Performance Reports]
     end
     
-    CDN --> Cache
-    Cache --> DBPool
-    DBPool --> Index
-    Index --> Async
-    Async --> APM
-    APM --> Metrics
-    Metrics --> Alerts
+    subgraph "Optimization Techniques"
+        Cache --> C1[Cache frequently accessed data]
+        Lazy --> L1[Load data on demand]
+        Batch --> B1[Process multiple items together]
+        Index --> I1[Create indexes for JSON files]
+        Compress --> C2[Compress backup files]
+    end
+    
+    Metrics --> M1[Track response times]
+    Alerts --> A1[Notify on performance degradation]
+    Reports --> R1[Generate performance reports]
 ```
 
 ### 8.3 Caching Strategy
 
 | Cache Type | Technology | TTL | Use Case |
 |------------|------------|-----|----------|
-| **L1 Cache** | In-memory | 5 minutes | Session data |
-| **L2 Cache** | Redis | 1 hour | API responses |
-| **L3 Cache** | CDN | 24 hours | Static assets |
-| **L4 Cache** | Browser | 7 days | Client-side caching |
+| **Session Cache** | Redis | 1 hour | User sessions |
+| **Data Cache** | In-memory | 5 minutes | JSON data |
+| **Result Cache** | File-based | 1 hour | Computation results |
+| **Template Cache** | Memory | 24 hours | VS Code templates |
 
 ---
 
@@ -744,56 +768,70 @@ graph TB
 ```mermaid
 graph TB
     subgraph "External Integrations"
-        GitHub[GitHub API]
-        GitLab[GitLab API]
-        Bitbucket[Bitbucket API]
-        Jira[Jira API]
-        Slack[Slack API]
-        Teams[Microsoft Teams]
-        Email[Email Services]
-        Calendar[Calendar APIs]
+        GitHub[GitHub API<br/>Repository Data]
+        VSCodeAPI[VS Code API<br/>Extension Data]
+        Email[Email Services<br/>SMTP/SendGrid]
+        Calendar[Calendar APIs<br/>Google/Outlook]
     end
     
     subgraph "Integration Layer"
-        Adapter[API Adapters]
-        Transformer[Data Transformers]
-        Validator[Data Validators]
-        RateLimiter[Rate Limiters]
+        Adapter[API Adapters<br/>Python Classes]
+        Transformer[Data Transformers<br/>JSON Processing]
+        Validator[Data Validators<br/>Schema Validation]
+        Sync[Sync Engine<br/>Real-time Updates]
     end
     
-    subgraph "Internal Services"
-        ProjectService
-        TaskService
-        NotificationService
+    subgraph "Internal Systems"
+        ProjectSystem[Project Management]
+        TaskSystem[Task Management]
+        ResourceSystem[Resource Management]
+        NotificationSystem[Notification System]
     end
     
     GitHub --> Adapter
-    GitLab --> Adapter
-    Bitbucket --> Adapter
-    Jira --> Adapter
+    VSCodeAPI --> Adapter
+    Email --> Adapter
     
     Adapter --> Transformer
     Transformer --> Validator
-    Validator --> RateLimiter
-    RateLimiter --> ProjectService
-    RateLimiter --> TaskService
-    RateLimiter --> NotificationService
+    Validator --> Sync
     
-    Slack --> NotificationService
-    Teams --> NotificationService
-    Email --> NotificationService
-    Calendar --> NotificationService
+    Sync --> ProjectSystem
+    Sync --> TaskSystem
+    Sync --> ResourceSystem
+    Sync --> NotificationSystem
+    
+    NotificationSystem --> Email
 ```
 
 ### 9.2 Integration Patterns
 
 | Pattern | Use Case | Implementation |
 |---------|----------|----------------|
-| **API Gateway** | Unified API access | Kong Gateway |
-| **Adapter** | Third-party APIs | Custom adapters |
-| **Circuit Breaker** | Fault tolerance | Hystrix pattern |
-| **Retry** | Transient failures | Exponential backoff |
-| **Webhook** | Real-time updates | Event-driven |
+| **Adapter** | GitHub API | Custom Python classes |
+| **Observer** | VS Code events | Event listeners |
+| **Repository** | Data access | JSON file operations |
+| **Factory** | Object creation | Python factories |
+| **Strategy** | Different algorithms | Strategy classes |
+
+### 9.3 Integration Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant VSCode
+    participant Extension
+    participant API
+    project participant JSONDB
+    
+    VSCode->>Extension: User action
+    Extension->>API: Send data
+    API->>JSONDB: Store/update
+    JSONDB-->>API: Confirmation
+    API-->>Extension: Success response
+    Extension-->>VSCode: Update UI
+    
+    Note over VSCode,JSONDB: Real-time synchronization
+```
 
 ---
 
@@ -803,51 +841,46 @@ graph TB
 
 | Attribute | Scenario | Metric | Target |
 |-----------|----------|--------|--------|
-| **Availability** | System must be available 99.9% of time | Uptime | 99.9% |
-| **Scalability** | Handle 10x traffic increase | Throughput | 10,000 req/sec |
-| **Performance** | API response under load | Response time | < 100ms |
-| **Security** | Prevent unauthorized access | Security incidents | 0 |
-| **Maintainability** | Deploy new features | Deployment time | < 30 minutes |
+| **Reliability** | Handle file corruption | Error recovery | 99% success rate |
+| **Usability** | CLI commands | User feedback | < 3 steps per action |
+| **Performance** | JSON processing | Response time | < 500ms |
+| **Maintainability** | Code changes | Modification time | < 30 minutes |
+| **Portability** | Cross-platform | OS compatibility | Linux/Windows/macOS |
 
 ### 10.2 Quality Attribute Tactics
 
 ```mermaid
 graph TB
     subgraph "Quality Attributes"
-        QA1[Availability]
-        QA2[Scalability]
-        QA3[Performance]
-        QA4[Security]
-        QA5[Maintainability]
+        QA1[Reliability]
+        QA2[Performance]
+        QA3[Usability]
+        QA4[Maintainability]
     end
     
     subgraph "Tactics"
-        T1[Redundancy]
-        T2[Load Balancing]
-        T3[Caching]
-        T4[Encryption]
-        T5[Automation]
+        T1[Error Handling]
+        T2[Caching]
+        T3[User Feedback]
+        T4[Modular Design]
     end
     
     subgraph "Implementation"
-        I1[Multi-AZ Deployment]
-        I2[Auto-scaling Groups]
-        I3[Redis Cluster]
-        I4[TLS 1.3]
-        I5[CI/CD Pipeline]
+        I1[Try-catch blocks]
+        I2[Redis caching]
+        I3[Progress indicators]
+        I4[Plugin architecture]
     end
     
     QA1 --> T1
     QA2 --> T2
     QA3 --> T3
     QA4 --> T4
-    QA5 --> T5
     
     T1 --> I1
     T2 --> I2
     T3 --> I3
     T4 --> I4
-    T5 --> I5
 ```
 
 ---
@@ -856,42 +889,45 @@ graph TB
 
 ### 11.1 Decision Records
 
-#### ADR-001: Microservices Architecture
+#### ADR-001: JSON-based Storage
 **Status**: Accepted  
-**Context**: Need for scalability and independent deployment  
-**Decision**: Adopt microservices architecture with service mesh  
+**Context**: Need for simple, version-controlled storage  
+**Decision**: Use JSON files for data storage  
 **Consequences**: 
-- ✅ Independent scaling
-- ✅ Technology diversity
-- ❌ Increased complexity
+- ✅ Human-readable format
+- ✅ Git-friendly versioning
+- ✅ Simple backup/restore
+- ❌ Limited query capabilities
 
-#### ADR-002: Event-Driven Architecture
+#### ADR-002: Modular Monolith
 **Status**: Accepted  
-**Context**: Real-time updates and loose coupling  
-**Decision**: Use Apache Kafka for event streaming  
+**Context**: Balance simplicity with scalability  
+**Decision**: Use modular monolith architecture  
 **Consequences**:
-- ✅ Real-time updates
-- ✅ Loose coupling
-- ❌ Operational complexity
+- ✅ Simple deployment
+- ✅ Easy debugging
+- ✅ Shared codebase
+- ❌ Limited independent scaling
 
-#### ADR-003: Polyglot Persistence
+#### ADR-003: Python-based CLI
 **Status**: Accepted  
-**Context**: Different data requirements  
-**Decision**: Use PostgreSQL + MongoDB + Redis  
+**Context**: Developer-friendly command interface  
+**Decision**: Use Python Click for CLI  
 **Consequences**:
-- ✅ Optimal storage for each use case
-- ✅ Performance optimization
-- ❌ Operational overhead
+- ✅ Rich command interface
+- ✅ Easy to extend
+- ✅ Good documentation
+- ❌ Python dependency
 
 ### 11.2 Technology Decisions
 
 | Decision | Rationale | Alternatives Considered |
 |----------|-----------|------------------------|
-| **FastAPI** | High performance, async support | Django, Flask |
-| **PostgreSQL** | ACID compliance, JSON support | MySQL, Oracle |
-| **Redis** | Performance, pub/sub | Memcached, DynamoDB |
-| **Kafka** | Scalability, durability | RabbitMQ, SNS/SQS |
-| **Kubernetes** | Orchestration, scaling | Docker Swarm, ECS |
+| **JSON Storage** | Simplicity, version control | SQLite, PostgreSQL |
+| **Python** | Rich ecosystem, AI libraries | Node.js, Go |
+| **FastAPI** | Modern, async support | Flask, Django |
+| **Redis** | Performance, pub/sub | Memcached, local cache |
+| **Click** | CLI framework | argparse, docopt |
 
 ---
 
@@ -901,54 +937,67 @@ graph TB
 
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|------------|
-| **Service Outage** | Medium | High | Multi-region deployment |
-| **Data Loss** | Low | Critical | Automated backups |
-| **Security Breach** | Low | High | Security audits |
-| **Performance Degradation** | Medium | Medium | Load testing |
-| **Vendor Lock-in** | Low | Medium | Open standards |
+| **Data Corruption** | Medium | High | Automated backups |
+| **Performance Issues** | Low | Medium | Profiling and optimization |
+| **Security Vulnerabilities** | Low | High | Regular security audits |
+| **Scalability Limits** | Medium | Medium | Architecture evolution plan |
+| **Dependency Issues** | Low | Low | Dependency management |
 
 ### 12.2 Technical Debt
 
 | Debt Item | Priority | Impact | Resolution Plan |
 |-----------|----------|--------|-----------------|
-| **Legacy CLI** | High | Medium | Migrate to new CLI |
-| **Monolithic Components** | Medium | High | Refactor to microservices |
-| **Hardcoded Configurations** | Low | Low | Externalize configurations |
-| **Lack of Tests** | High | High | Increase test coverage |
+| **JSON Schema Validation** | High | Medium | Add comprehensive validation |
+| **Error Handling** | Medium | High | Improve error messages |
+| **Test Coverage** | High | High | Increase unit tests |
+| **Documentation** | Medium | Medium | Update API documentation |
+| **Performance Monitoring** | Low | Low | Add performance metrics |
 
 ---
 
 ## 13. Appendices
 
 ### 13.1 Architecture Decision Records (ADRs)
-- ADR-001: Microservices Architecture
-- ADR-002: Event-Driven Architecture
-- ADR-003: Polyglot Persistence
-- ADR-004: API Gateway Pattern
-- ADR-005: CQRS Implementation
+- ADR-001: JSON-based Storage
+- ADR-002: Modular Monolith Architecture
+- ADR-003: Python Click CLI Framework
+- ADR-004: Redis for Caching
+- ADR-005: FastAPI for Web Interface
 
 ### 13.2 Glossary
 - **SAD**: Software Architecture Document
 - **ADR**: Architecture Decision Record
-- **CQRS**: Command Query Responsibility Segregation
-- **DDD**: Domain-Driven Design
+- **JSON**: JavaScript Object Notation
+- **CLI**: Command Line Interface
 - **API**: Application Programming Interface
-- **SLA**: Service Level Agreement
+- **TTL**: Time To Live
 
-### 13.3 References
-- [Microservices Patterns](https://microservices.io/patterns/)
-- [Domain-Driven Design](https://domainlanguage.com/ddd/)
-- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-- [12-Factor App](https://12factor.net/)
+### 13.3 File Structure Reference
+
+```
+AutoProjectManagement/
+├── autoprojectmanagement/          # Core application
+│   ├── main_modules/              # Business logic modules
+│   ├── services/                  # Integration services
+│   ├── templates/                 # Code templates
+│   └── api/                       # REST API
+├── JSonDataBase/                  # Data storage
+│   ├── Inputs/                    # Input JSON files
+│   └── OutPuts/                   # Generated outputs
+├── Docs/                          # Documentation
+├── tests/                         # Test suites
+├── backups/                       # Backup storage
+└── requirements.txt               # Dependencies
+```
 
 ### 13.4 Contact Information
-- **Architecture Team**: architecture@autoprojectmanagement.com
-- **Technical Lead**: tech-lead@autoprojectmanagement.com
+- **Project Repository**: https://github.com/autoprojectmanagement/autoprojectmanagement
 - **Documentation**: https://docs.autoprojectmanagement.com
+- **Issues**: https://github.com/autoprojectmanagement/autoprojectmanagement/issues
 
 ---
 
 **Document Status**: Approved  
 **Last Updated**: 2025-08-16  
 **Next Review**: 2025-11-16  
-**Version**: 3.0.0
+**Version**: 4.0.0
