@@ -7,6 +7,7 @@ This document provides comprehensive UML class diagrams for the AutoProjectManag
 ## 📊 System Overview
 
 ### Architecture Components
+
 | Component | Description | Key Classes |
 |-----------|-------------|-------------|
 | **Core System** | Main project management engine | ProjectManagementSystem, BaseEntity |
@@ -386,6 +387,7 @@ classDiagram
 ### Attribute Tables
 
 #### Task Attributes
+
 | Attribute | Type | Required | Description | Validation |
 |-----------|------|----------|-------------|------------|
 | task_id | int | Yes | Unique identifier | Auto-increment |
@@ -398,6 +400,7 @@ classDiagram
 | due_date | datetime | No | Deadline | Future date |
 
 #### Resource Attributes
+
 | Attribute | Type | Required | Description | Validation |
 |-----------|------|----------|-------------|------------|
 | resource_id | int | Yes | Unique identifier | Auto-increment |
@@ -632,12 +635,14 @@ CMD ["python", "-m", "autoprojectmanagement.main"]
 ## 📞 Support & Maintenance
 
 ### Regular Maintenance Tasks
+
 - [ ] Update class diagrams when new features are added
 - [ ] Review and update performance metrics quarterly
 - [ ] Validate data model relationships with actual usage
 - [ ] Update configuration examples based on production feedback
 
 ### Contact Information
+
 - **Documentation Owner**: AutoProjectManagement Team
 - **Last Updated**: 2024-01-15
 - **Version**: 2.0.0
