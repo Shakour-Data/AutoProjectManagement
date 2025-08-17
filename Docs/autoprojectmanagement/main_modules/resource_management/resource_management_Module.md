@@ -1,427 +1,414 @@
 # Resource Management Module Documentation
 
+## Table of Contents
+1. [Overview](#overview)
+2. [Architecture](#architecture)
+3. [Core Components](#core-components)
+4. [Data Models](#data-models)
+5. [Resource Allocation Process](#resource-allocation-process)
+6. [Analysis and Optimization](#analysis-and-optimization)
+7. [API Reference](#api-reference)
+8. [Usage Examples](#usage-examples)
+9. [Configuration](#configuration)
+10. [Best Practices](#best-practices)
+
+---
+
 ## Overview
 
-The **Resource Management Module** is a critical component of the AutoProjectManagement system that provides comprehensive resource allocation, leveling, and optimization capabilities. This module ensures optimal utilization of project resources while maintaining cost efficiency and preventing resource conflicts.
+The Resource Management Module is a comprehensive system designed to handle project resource allocation, tracking, and optimization within the AutoProjectManagement system. It provides intelligent resource allocation algorithms, real-time capacity monitoring, and resource leveling capabilities to ensure optimal resource utilization across projects.
 
-## Architecture Overview
+### Key Features
+- **Dynamic Resource Allocation**: Automatic allocation based on availability and requirements
+- **Resource Leveling**: Balances resource loads to prevent over-allocation
+- **Multi-project Support**: Handle resources across multiple concurrent projects
+- **Real-time Monitoring**: Track resource utilization and availability
+- **Conflict Resolution**: Intelligent resolution of resource allocation conflicts
+- **Performance Optimization**: Optimize resource distribution for maximum efficiency
 
-### System Architecture Diagram
+### Module Structure
+```
+autoprojectmanagement/main_modules/resource_management/
+├── resource_management.py              # Core resource management
+├── resource_allocation_manager.py      # Allocation algorithms
+├── resource_leveling.py               # Load balancing engine
+```
+
+---
+
+## Architecture
+
+### High-Level Architecture
 
 ```mermaid
 graph TB
     subgraph "Resource Management Module"
-        RM[Resource Manager] --> RAM[Resource Allocation Manager]
-        RM --> RL[Resource Leveler]
-        
-        RAM --> RCM[Cost Management]
-        RAM --> ROP[Optimization Engine]
-        RAM --> REP[Reporting Engine]
-        
-        RL --> RLE[Leveling Algorithm]
-        RL --> RSC[Schedule Generator]
-        RL --> RCO[Conflict Resolution]
-        
-        RCM --> RCT[Cost Tracking]
-        RCM --> RBU[Budget Analysis]
-        
-        REP --> RRE[Resource Reports]
-        REP --> RCE[Cost Reports]
-        REP --> RUT[Utilization Reports]
+        RM[Resource Management Core]
+        RAM[Resource Allocation Manager]
+        RL[Resource Leveling Engine]
+        RDB[Resource Database]
+        API[API Interface]
     end
     
-    subgraph "External Interfaces"
-        JSON[JSON Files] --> RAM
-        JSON --> RL
-        RAM --> OUT[Output Files]
-        RL --> OUT
+    subgraph "External Systems"
+        PM[Project Management]
+        TS[Task System]
+        WBS[WBS Generator]
+        JSON[JSON Database]
     end
+    
+    PM --> RM
+    TS --> RAM
+    WBS --> RDB
+    JSON --> RM
+    RM --> API
+    
+    style RM fill:#f9f,stroke:#333
+    style RAM fill:#bbf,stroke:#333
+    style RL fill:#9f9,stroke:#333
 ```
 
-## Core Components
-
-### 1. Resource Allocation Manager (`resource_allocation_manager.py`)
-
-#### Purpose
-Manages comprehensive resource allocation with cost tracking, optimization, and detailed reporting capabilities.
-
-#### Key Features
-- **Cost Calculation**: Calculates detailed costs for resource allocations
-- **Resource Optimization**: Optimizes resource utilization
-- **Conflict Detection**: Identifies and reports resource conflicts
-- **Comprehensive Reporting**: Generates detailed resource and cost reports
-
-#### Class Structure
-
-```mermaid
-classDiagram
-    class ResourceAllocationManager {
-        -resource_allocation_path: Path
-        -detailed_wbs_path: Path
-        -resource_costs_path: Path
-        -output_path: Path
-        -total_cost: float
-        -task_cost_summary: Dict
-        +__init__()
-        +load_inputs()
-        +calculate_task_cost()
-        +enrich_wbs_with_resources()
-        +summarize_costs()
-        +run()
-    }
-    
-    class ResourceType {
-        <<enumeration>>
-        HUMAN
-        EQUIPMENT
-        MATERIAL
-        SOFTWARE
-        FACILITY
-    }
-    
-    class AllocationStatus {
-        <<enumeration>>
-        PLANNED
-        ACTIVE
-        COMPLETED
-        CANCELLED
-        ON_HOLD
-    }
-    
-    class ResourceAllocation {
-        +task_id: str
-        +resource_id: str
-        +allocation_percent: float
-        +start_date: str
-        +end_date: str
-        +status: AllocationStatus
-        +calculated_cost: float
-    }
-    
-    ResourceAllocationManager --> ResourceType
-    ResourceAllocationManager --> AllocationStatus
-    ResourceAllocationManager --> ResourceAllocation
-```
-
-#### Data Flow Diagram
+### Component Interaction Flow
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant RAM as ResourceAllocationManager
-    participant JSON as JSON Files
-    participant CALC as Cost Calculator
-    participant REPORT as Report Generator
+    participant Client
+    participant ResourceManager
+    participant AllocationManager
+    participant LevelingEngine
+    participant Database
     
-    User->>RAM: Initialize with file paths
-    RAM->>JSON: Load resource allocations
-    RAM->>JSON: Load detailed WBS
-    RAM->>JSON: Load resource costs
-    RAM->>CALC: Calculate task costs
-    CALC-->>RAM: Return calculated costs
-    RAM->>RAM: Enrich WBS with resources
-    RAM->>REPORT: Generate reports
-    REPORT-->>RAM: Return reports
-    RAM->>JSON: Save enriched data
-    RAM-->>User: Process complete
+    Client->>ResourceManager: Request resource allocation
+    ResourceManager->>AllocationManager: Process allocation
+    AllocationManager->>Database: Check availability
+    Database-->>AllocationManager: Return resource data
+    AllocationManager->>LevelingEngine: Apply leveling
+    LevelingEngine-->>AllocationManager: Return balanced allocation
+    AllocationManager->>Database: Update allocations
+    AllocationManager-->>ResourceManager: Return result
+    ResourceManager-->>Client: Send confirmation
 ```
 
-### 2. Resource Leveler (`resource_leveling.py`)
+---
 
-#### Purpose
-Performs resource leveling optimization to prevent resource conflicts and ensure smooth project execution.
+## Core Components
 
-#### Key Features
-- **Conflict Prevention**: Prevents resource conflicts through intelligent scheduling
-- **Schedule Optimization**: Optimizes task schedules for maximum efficiency
-- **Resource Balancing**: Balances resource utilization across the project
-- **Flexible Duration Types**: Supports optimistic, normal, and pessimistic duration estimates
+### 1. Resource Management Core (`resource_management.py`)
 
-#### Algorithm Flow
+The central component that manages all resource-related operations.
+
+#### Key Classes:
 
 ```mermaid
-flowchart TD
-    A[Load Tasks & Allocations] --> B[Flatten Task Hierarchy]
-    B --> C[Initialize Resource Maps]
-    C --> D[Process Each Resource]
-    D --> E[Sort Tasks by Priority]
-    E --> F[Calculate Start/End Times]
-    F --> G[Check for Conflicts]
-    G --> H{Conflict Found?}
-    H -->|Yes| I[Adjust Schedule]
-    I --> F
-    H -->|No| J[Store Schedule]
-    J --> K[Generate Report]
-    K --> L[Save Output]
+classDiagram
+    class BaseManagement {
+        -input_paths: Dict[str, str]
+        -output_path: str
+        -inputs: Dict[str, Any]
+        -output: Dict[str, Any]
+        +load_json(path: str): Optional[Dict[str, Any]]
+        +save_json(data: Dict[str, Any], path: str): void
+        +load_inputs(): void
+        +analyze(): void
+        +run(): void
+    }
+    
+    class ResourceManagement {
+        -resource_data: dict
+        -allocation_history: list
+        +analyze_resource_utilization(resource_data: Dict[str, Any]): Dict[str, Any]
+        +resolve_conflicts(resource_data: Dict[str, Any]): Dict[str, Any]
+        +generate_recommendations(resource_data: Dict[str, Any], utilization_analysis: Dict[str, Any], conflicts: Dict[str, Any]): List[Dict[str, Any]]
+    }
+    
+    ResourceManagement --|> BaseManagement
 ```
+
+#### Key Methods:
+
+| Method | Description | Parameters | Returns |
+|---|---|---|---|
+| `analyze_resource_utilization()` | Analyzes resource utilization patterns | `resource_data: Dict[str, Any]` | Utilization analysis results |
+| `resolve_conflicts()` | Detects and resolves allocation conflicts | `resource_data: Dict[str, Any]` | Conflict resolution results |
+| `generate_recommendations()` | Generates optimization recommendations | Multiple analysis results | List of recommendations |
+
+### 2. Resource Allocation Manager (`resource_allocation_manager.py`)
+
+Handles the allocation of resources to tasks and projects based on availability and requirements.
+
+### 3. Resource Leveling Engine (`resource_leveling.py`)
+
+Provides load balancing and optimization capabilities to prevent resource over-allocation.
+
+---
 
 ## Data Models
 
+### Resource Entity Structure
+
+```mermaid
+erDiagram
+    RESOURCE ||--o{ ALLOCATION : has
+    RESOURCE ||--o{ AVAILABILITY : tracks
+    PROJECT ||--o{ ALLOCATION : contains
+    TASK ||--o{ ALLOCATION : requires
+    
+    RESOURCE {
+        string id PK
+        string name
+        string type
+        float capacity
+        float current_allocation
+        string status
+        json capabilities
+        float cost_per_hour
+    }
+    
+    ALLOCATION {
+        string id PK
+        string resource_id FK
+        string project_id FK
+        string task_id FK
+        datetime start_time
+        datetime end_time
+        float allocated_hours
+        string allocation_type
+    }
+```
+
 ### Resource Types
 
-| Resource Type | Description | Examples |
-|--------------|-------------|----------|
-| **HUMAN** | Human resources | Developers, Designers, Project Managers |
-| **EQUIPMENT** | Physical equipment | Servers, Laptops, Testing devices |
-| **MATERIAL** | Consumable materials | Paper, Office supplies, Hardware components |
-| **SOFTWARE** | Software licenses | Development tools, Productivity software |
-| **FACILITY** | Physical spaces | Office space, Meeting rooms, Data centers |
+| Type | Description | Attributes | Examples |
+|---|---|---|---|
+| **Human** | Team members and stakeholders | skills, availability, cost_rate | Developers, Designers, PMs |
+| **Equipment** | Physical tools and machinery | capacity, maintenance_schedule | Servers, Laptops, Licenses |
+| **Digital** | Software and digital assets | version, capacity, access_rights | APIs, Databases, Cloud Services |
 
-### Allocation Status
+---
 
-| Status | Description | Color Code |
-|--------|-------------|------------|
-| **PLANNED** | Scheduled but not started | 🟡 Yellow |
-| **ACTIVE** | Currently in progress | 🟢 Green |
-| **COMPLETED** | Finished successfully | ✅ Blue |
-| **CANCELLED** | Cancelled or aborted | ❌ Red |
-| **ON_HOLD** | Temporarily paused | ⏸️ Orange |
+## Resource Allocation Process
 
-### Resource Cost Structure
+### Allocation Workflow
+
+```mermaid
+stateDiagram-v2
+    [*] --> RequestReceived: Allocation Request
+    RequestReceived --> Validating: Validate Request
+    Validating --> Analyzing: Request Valid
+    Validating --> Rejected: Request Invalid
+    Analyzing --> Allocating: Find Resources
+    Allocating --> Confirmed: Resources Available
+    Allocating --> Queued: Resources Busy
+    Confirmed --> Active: Allocation Active
+    Queued --> Active: Resources Free
+    Active --> Completed: Task Complete
+    Completed --> Released: Resources Released
+    Released --> [*]
+    
+    Rejected --> [*]
+```
+
+### Allocation Request Structure
 
 ```json
 {
-  "resource_costs": {
-    "dev_001": {
-      "resource_name": "Senior Developer",
-      "resource_type": "HUMAN",
-      "hourly_cost": 75.0,
-      "daily_cost": 600.0,
-      "currency": "USD",
-      "effective_date": "2025-01-01",
-      "expiry_date": "2025-12-31"
+  "request_id": "req_12345",
+  "project_id": "proj_67890",
+  "task_id": "task_54321",
+  "resource_requirements": {
+    "type": "human",
+    "skills": ["python", "react"],
+    "experience_level": "senior",
+    "availability_window": {
+      "start": "2024-01-15T09:00:00Z",
+      "end": "2024-01-20T17:00:00Z"
     },
-    "server_001": {
-      "resource_name": "Production Server",
-      "resource_type": "EQUIPMENT",
-      "hourly_cost": 5.0,
-      "daily_cost": 120.0,
-      "currency": "USD",
-      "effective_date": "2025-01-01"
+    "allocation_hours": 40,
+    "priority": "high"
+  }
+}
+```
+
+---
+
+## Analysis and Optimization
+
+### Utilization Analysis
+
+```mermaid
+ganttChart
+    title Resource Utilization Timeline
+    dateFormat  YYYY-MM-DD
+    section Developer Resources
+    Alice           :active, dev1, 2024-01-01, 30d
+    Bob             :dev2, after dev1, 20d
+    Charlie         :dev3, 2024-01-15
+    
+    section Equipment Resources
+    Server1         :active, srv1, 2024-01-01, 45d
+    Server2         :srv2, after srv1, 15d
+```
+
+### Performance Metrics
+
+| Metric | Description | Target Value | Calculation |
+|---|---|---|---|
+| **Utilization Rate** | Percentage of resource capacity used | 80-100% | (Allocated Hours / Capacity) × 100 |
+| **Efficiency Score** | Overall resource efficiency | >85% | Weighted average of utilization rates |
+| **Conflict Rate** | Percentage of allocations with conflicts | <5% | (Conflicts / Total Allocations) × 100 |
+| **Optimization Score** | Resource optimization effectiveness | >90% | (Optimized Allocations / Total Allocations) × 100 |
+
+---
+
+## API Reference
+
+### ResourceManagement Class
+
+#### Constructor
+```python
+manager = ResourceManagement(
+    resource_allocation_path: str = "path/to/allocations.json",
+    output_path: str = "path/to/output.json"
+)
+```
+
+#### Methods
+
+| Method | Description | Parameters | Returns |
+|---|---|---|---|
+| `run()` | Execute complete resource management process | None | None |
+| `analyze_resource_utilization()` | Analyze resource utilization patterns | `resource_data: Dict[str, Any]` | Utilization analysis |
+| `resolve_conflicts()` | Detect and resolve conflicts | `resource_data: Dict[str, Any]` | Conflict resolution |
+| `generate_recommendations()` | Generate optimization recommendations | Multiple analysis results | List of recommendations |
+
+---
+
+## Usage Examples
+
+### Basic Usage
+
+```python
+from autoprojectmanagement.main_modules.resource_management.resource_management import ResourceManagement
+
+# Initialize resource manager
+manager = ResourceManagement()
+
+# Run resource management analysis
+manager.run()
+
+# Results will be saved to JSonDataBase/OutPuts/resource_management.json
+```
+
+### Custom Configuration
+
+```python
+# Use custom paths
+manager = ResourceManagement(
+    resource_allocation_path="custom/path/allocations.json",
+    output_path="custom/path/output.json"
+)
+manager.run()
+```
+
+### Integration with Other Modules
+
+```python
+# Integrate with project management
+from autoprojectmanagement.main_modules.resource_management.resource_management import ResourceManagement
+
+# After project planning
+manager = ResourceManagement(
+    resource_allocation_path="JSonDataBase/OutPuts/resource_allocation_enriched.json"
+)
+manager.run()
+```
+
+---
+
+## Configuration
+
+### Environment Variables
+
+| Variable | Description | Default Value |
+|---|---|---|
+| `RESOURCE_ALLOCATION_PATH` | Path to resource allocation JSON | `JSonDataBase/OutPuts/resource_allocation_enriched.json` |
+| `OUTPUT_PATH` | Path for output JSON | `JSonDataBase/OutPuts/resource_management.json` |
+| `LOG_LEVEL` | Logging level | `INFO` |
+
+### JSON Configuration
+
+```json
+{
+  "resource_management": {
+    "input_paths": {
+      "resource_allocations": "JSonDataBase/OutPuts/resource_allocation_enriched.json"
+    },
+    "output_path": "JSonDataBase/OutPuts/resource_management.json",
+    "analysis_options": {
+      "include_utilization_analysis": true,
+      "include_conflict_detection": true,
+      "include_recommendations": true
     }
   }
 }
 ```
 
-## Configuration Parameters
-
-### ResourceAllocationManager Configuration
-
-| Parameter | Type | Default Value | Description |
-|-----------|------|---------------|-------------|
-| `resource_allocation_path` | str | `task_resource_allocation.json` | Path to resource allocation data |
-| `detailed_wbs_path` | str | `detailed_wbs.json` | Path to detailed WBS data |
-| `resource_costs_path` | str | `resource_costs.json` | Path to resource cost data |
-| `output_path` | str | `resource_allocation_enriched.json` | Output file for enriched data |
-| `summary_output_path` | str | `resource_allocation_summary.json` | Output file for cost summary |
-
-### ResourceLeveler Configuration
-
-| Parameter | Type | Default Value | Description |
-|-----------|------|---------------|-------------|
-| `tasks_filepath` | str | `detailed_wbs.json` | Path to tasks data |
-| `allocations_filepath` | str | `task_resource_allocation.json` | Path to allocations data |
-| `output_filepath` | str | `leveled_resource_schedule.json` | Output file for leveled schedule |
-| `duration_type` | str | `normal` | Duration type for calculations |
-
-## Usage Examples
-
-### Basic Resource Allocation
-
-```python
-from autoprojectmanagement.main_modules.resource_management import ResourceAllocationManager
-
-# Initialize the manager
-manager = ResourceAllocationManager(
-    resource_allocation_path='my_project/task_allocations.json',
-    detailed_wbs_path='my_project/detailed_wbs.json',
-    resource_costs_path='my_project/resource_costs.json'
-)
-
-# Run the allocation process
-manager.run()
-
-# Access results
-print(f"Total project cost: ${manager.total_cost}")
-print(f"Number of tasks: {len(manager.task_cost_summary)}")
-```
-
-### Resource Leveling
-
-```python
-from autoprojectmanagement.main_modules.resource_management import ResourceLeveler
-
-# Initialize the leveler
-leveler = ResourceLeveler(
-    tasks_filepath='project/tasks.json',
-    allocations_filepath='project/allocations.json',
-    output_filepath='project/leveled_schedule.json',
-    duration_type='normal'
-)
-
-# Run leveling
-leveler.run()
-```
-
-## Performance Metrics
-
-### Key Performance Indicators (KPIs)
-
-| Metric | Formula | Target Value |
-|--------|---------|--------------|
-| **Resource Utilization** | `(Actual Hours / Available Hours) × 100` | 80-90% |
-| **Cost Variance** | `(Actual Cost - Planned Cost) / Planned Cost × 100` | ±10% |
-| **Schedule Variance** | `(Actual Duration - Planned Duration) / Planned Duration × 100` | ±5% |
-| **Resource Conflict Rate** | `(Conflicts / Total Allocations) × 100` | <5% |
-
-### Performance Dashboard
-
-```mermaid
-pie title Resource Utilization
-    "Human Resources" : 45
-    "Equipment" : 25
-    "Software" : 20
-    "Facilities" : 10
-```
-
-```mermaid
-pie title Cost Distribution by Resource Type
-    "Human Resources" : 45
-    "Equipment" : 25
-    "Software" : 20
-    "Facilities" : 10
-```
-
-## Integration Points
-
-### Input Files
-
-| File Name | Purpose | Schema |
-|-----------|---------|--------|
-| `task_resource_allocation.json` | Resource assignments to tasks | [Schema](#task-allocation-schema) |
-| `detailed_wbs.json` | Work Breakdown Structure | [Schema](#wbs-schema) |
-| `resource_costs.json` | Resource cost information | [Schema](#cost-schema) |
-
-### Output Files
-
-| File Name | Purpose | Format |
-|-----------|---------|--------|
-| `resource_allocation_enriched.json` | Enriched WBS with resource data | JSON |
-| `resource_allocation_summary.json` | Cost summary by task | JSON |
-| `leveled_resource_schedule.json` | Optimized schedule | JSON |
-
-## Error Handling
-
-### Common Error Types
-
-| Error Code | Description | Resolution |
-|------------|-------------|------------|
-| `RESOURCE_NOT_FOUND` | Resource ID not found in costs | Check resource_costs.json |
-| `INVALID_DATE_FORMAT` | Date format not recognized | Use YYYY-MM-DD format |
-| `OVERLAP_DETECTED` | Resource allocation conflict | Run resource leveling |
-| `NEGATIVE_DURATION` | Invalid task duration | Check task estimates |
-
-### Error Recovery Process
-
-```mermaid
-flowchart TD
-    A[Error Detected] --> B{Error Type}
-    B -->|Resource Not Found| C[Update resource_costs.json]
-    B -->|Invalid Date| D[Correct date format]
-    B -->|Overlap Detected| E[Run Resource Leveler]
-    B -->|Negative Duration| F[Review task estimates]
-    C --> G[Re-run Process]
-    D --> G
-    E --> G
-    F --> G
-    G --> H{Success?}
-    H -->|No| A
-    H -->|Yes| I[Process Complete]
-```
+---
 
 ## Best Practices
 
 ### Resource Planning
-1. **Start with accurate estimates**: Use historical data for better accuracy
-2. **Consider resource constraints**: Account for availability and skills
-3. **Plan for contingencies**: Include buffer time for unexpected issues
-4. **Regular reviews**: Update allocations based on project progress
+1. **Regular Analysis**: Run resource analysis weekly to identify trends
+2. **Capacity Planning**: Always maintain 20% buffer capacity for unexpected demands
+3. **Skill Matching**: Ensure resource skills match task requirements
+4. **Load Balancing**: Distribute work evenly across available resources
 
-### Cost Management
-1. **Track actual vs planned**: Monitor cost variances regularly
-2. **Use realistic rates**: Update resource costs based on market rates
-3. **Include all costs**: Don't forget overhead and indirect costs
-4. **Budget for changes**: Allow for scope changes and adjustments
+### Conflict Prevention
+1. **Early Detection**: Monitor resource conflicts daily
+2. **Proactive Scheduling**: Schedule resources with buffer time
+3. **Communication**: Maintain clear communication about resource availability
+4. **Flexibility**: Build flexibility into resource allocation plans
 
-### Schedule Optimization
-1. **Critical path analysis**: Focus on tasks that impact project timeline
-2. **Resource smoothing**: Balance resource utilization across time
-3. **Parallel execution**: Identify tasks that can run concurrently
-4. **Regular updates**: Adjust schedules based on actual progress
+### Performance Optimization
+1. **Continuous Monitoring**: Track resource performance metrics
+2. **Regular Reviews**: Conduct monthly resource utilization reviews
+3. **Optimization**: Implement recommendations from analysis
+4. **Feedback Loop**: Use feedback to improve resource allocation strategies
 
-## Troubleshooting Guide
+---
 
-### Common Issues and Solutions
+## Troubleshooting
 
-#### Issue: High Resource Conflicts
-**Symptoms**: Multiple tasks assigned to same resource simultaneously
-**Solution**: 
-1. Run ResourceLeveler to detect conflicts
-2. Adjust task priorities
-3. Consider additional resources
-4. Re-sequence tasks
+### Common Issues
 
-#### Issue: Budget Overrun
-**Symptoms**: Actual costs exceed planned budget
-**Solution**:
-1. Review resource rates
-2. Identify cost drivers
-3. Negotiate better rates
-4. Optimize resource allocation
+| Issue | Cause | Solution |
+|---|---|---|
+| **No resource data** | Missing input file | Check file path and permissions |
+| **Permission errors** | File system permissions | Ensure write access to output directory |
+| **JSON parsing errors** | Invalid JSON format | Validate JSON structure |
+| **Resource conflicts** | Overlapping allocations | Use conflict resolution methods |
 
-#### Issue: Schedule Delays
-**Symptoms**: Tasks taking longer than estimated
-**Solution**:
-1. Review task estimates
-2. Check resource availability
-3. Identify bottlenecks
-4. Add parallel tasks
+### Debug Mode
 
-## API Reference
+Enable debug logging:
+```python
+import logging
+logging.basicConfig(level=logging.DEBUG)
+```
 
-### ResourceAllocationManager Methods
-
-| Method | Parameters | Returns | Description |
-|--------|------------|---------|-------------|
-| `__init__()` | file_paths: dict | None | Initialize with configuration |
-| `load_inputs()` | None | None | Load all input data |
-| `calculate_task_cost()` | allocation: dict | float | Calculate task cost |
-| `run()` | None | None | Execute complete process |
-
-### ResourceLeveler Methods
-
-| Method | Parameters | Returns | Description |
-|--------|------------|---------|-------------|
-| `__init__()` | file_paths: dict, duration_type: str | None | Initialize leveler |
-| `flatten_tasks()` | tasks: list, parent_id: str | list | Flatten task hierarchy |
-| `resource_leveling()` | None | dict | Perform leveling |
-| `run()` | None | None | Execute complete process |
+---
 
 ## Support and Maintenance
 
 ### Regular Maintenance Tasks
-- [ ] Update resource costs monthly
-- [ ] Review resource allocations weekly
-- [ ] Generate performance reports monthly
-- [ ] Update documentation quarterly
-- [ ] Backup configuration files daily
+- [ ] Weekly resource utilization analysis
+- [ ] Monthly conflict resolution review
+- [ ] Quarterly optimization recommendations update
+- [ ] Annual resource capacity planning
 
-### Support Contact
-For technical support or questions about the Resource Management Module:
-- **Documentation**: See this file and related documentation
-- **Issues**: Report via GitHub issues
-- **Updates**: Check for updates in the AutoProjectManagement repository
+### Contact Information
+For support and questions, please refer to the AutoProjectManagement documentation or contact the development team.
 
 ---
 
-*This documentation is part of the AutoProjectManagement system. For the latest updates and additional information, please refer to the official repository.*
+*This documentation is automatically generated and maintained by the AutoProjectManagement system. Last updated: 2024-01-15*
