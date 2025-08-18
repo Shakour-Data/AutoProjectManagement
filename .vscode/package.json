@@ -1,0 +1,57 @@
+{
+  "name": "auto-project-management-status",
+  "displayName": "Auto Project Management Status",
+  "description": "Real-time status bar for automatic project management",
+  "version": "1.0.0",
+  "publisher": "autoprojectmanagement",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "autoProjectManagement.refreshStatus",
+        "title": "Refresh Project Status",
+        "category": "AutoPM"
+      },
+      {
+        "command": "autoProjectManagement.showDetails",
+        "title": "Show Project Details",
+        "category": "AutoPM"
+      },
+      {
+        "command": "autoProjectManagement.start",
+        "title": "Start Auto Management",
+        "category": "AutoPM"
+      },
+      {
+        "command": "autoProjectManagement.stop",
+        "title": "Stop Auto Management",
+        "category": "AutoPM"
+      },
+      {
+        "command": "autoProjectManagement.refreshStatus",
+        "title": "Refresh Project Status",
+        "category": "AutoPM"
+      },
+      {
+        "command": "autoProjectManagement.showDetails",
+        "title": "Show Project Details",
+        "category": "AutoPM"
+      }
+    ],
+    "menus": {
+      "statusBar": [
+        {
+          "command": "autoProjectManagement.showDetails",
+          "when": "true",
+          "group": "navigation"
+        }
+      ]
+    }
+  }
+}
