@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-1.1",
+  "name": "Stakeholder Interviews",
+  "description": "Conduct interviews with stakeholders to gather requirements.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "Requirements Gathering",
+  "level_3": "Stakeholder Interviews",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-1.1.1",
+      "name": "Prepare Interview Questions",
+      "description": "Develop questions to guide stakeholder interviews.",
+      "level_4": "Prepare Interview Questions",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.1.2",
+      "name": "Schedule Interviews",
+      "description": "Arrange interview times with stakeholders.",
+      "level_4": "Schedule Interviews",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.1.3",
+      "name": "Conduct Interviews",
+      "description": "Perform interviews and record responses.",
+      "level_4": "Conduct Interviews",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.1.4",
+      "name": "Analyze Interview Data",
+      "description": "Review and analyze data collected from interviews.",
+      "level_4": "Analyze Interview Data",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.1.5",
+      "name": "Document Findings",
+      "description": "Document the results and insights from interviews.",
+      "level_4": "Document Findings",
+      "subtasks": []
+    }
+  ]
+}

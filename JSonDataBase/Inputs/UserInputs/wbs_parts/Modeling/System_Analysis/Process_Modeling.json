@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-2.4",
+  "name": "Process Modeling",
+  "description": "Model system processes and workflows.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Analysis",
+  "level_3": "Process Modeling",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-2.4.1",
+      "name": "Identify Processes",
+      "description": "Identify key system processes and workflows.",
+      "level_4": "Identify Processes",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.4.2",
+      "name": "Create Process Diagrams",
+      "description": "Develop flowcharts and process diagrams.",
+      "level_4": "Create Process Diagrams",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.4.3",
+      "name": "Validate Processes",
+      "description": "Review process models with stakeholders.",
+      "level_4": "Validate Processes",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.4.4",
+      "name": "Refine Process Models",
+      "description": "Update process models based on feedback.",
+      "level_4": "Refine Process Models",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.4.5",
+      "name": "Document Process Models",
+      "description": "Prepare documentation for process models.",
+      "level_4": "Document Process Models",
+      "subtasks": []
+    }
+  ]
+}

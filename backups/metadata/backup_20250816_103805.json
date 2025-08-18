@@ -1,0 +1,14 @@
+{
+  "backup_id": "backup_20250816_103805",
+  "timestamp": "2025-08-16T10:38:07.900999",
+  "source_paths": [
+    "c:\\Users\\Behgozin\\Documents\\Projects\\AutoProjectManagement"
+  ],
+  "total_files": 331,
+  "total_size_bytes": 6920966,
+  "checksum": "99793d5a7308f209345fb99915f4ecd06fce6354e3d090a9d487cc718b3cf252",
+  "compression_type": "zip",
+  "status": "completed",
+  "duration_seconds": 2.218653440475464,
+  "error_message": null
+}

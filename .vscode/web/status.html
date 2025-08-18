@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Project Management - Status</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .status-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-icon.running {
+            background-color: #4CAF50;
+        }
+        
+        .status-icon.stopped {
+            background-color: #f44336;
+        }
+        
+        .status-icon.idle {
+            background-color: #ff9800;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 8px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+        
+        .last-updated {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-icon running" id="statusIcon"></div>
+            <span id="statusText">Auto Project Management - Running</span>
+        </div>
+        
+        <div class="status-item">
+            <span>Progress:</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <span id="progressText">0%</span>
+        </div>
+        
+        <div class="status-item last-updated" id="lastUpdated">
+            Last updated: Never
+        </div>
+    </div>
+
+    <script>
+        async function updateStatus() {
+            try {
+                const response = await fetch('/api/v1/projects/current/status');
+                const data = await response.json();
+                
+                // Update status
+                const statusIcon = document.getElementById('statusIcon');
+                const statusText = document.getElementById('statusText');
+                const progressFill = document.getElementById('progressFill');
+                const progressText = document.getElementById('progressText');
+                const lastUpdated = document.getElementById('lastUpdated');
+                
+                // Update based on data
+                if (data.progress === 100) {
+                    statusIcon.className = 'status-icon idle';
+                    statusText.textContent = 'Auto Project Management - Complete';
+                } else {
+                    statusIcon.className = 'status-icon running';
+                    statusText.textContent = 'Auto Project Management - Running';
+                }
+                
+                progressFill.style.width = data.progress + '%';
+                progressText.textContent = data.progress + '%';
+                lastUpdated.textContent = 'Last updated: ' + new Date().toLocaleString();
+                
+            } catch (error) {
+                console.error('Error updating status:', error);
+                document.getElementById('statusText').textContent = 'Auto Project Management - Error';
+                document.getElementById('statusIcon').className = 'status-icon stopped';
+            }
+        }
+        
+        // Update every 30 seconds
+        setInterval(updateStatus, 30000);
+        
+        // Initial update
+        updateStatus();
+    </script>
+</body>
+</html>

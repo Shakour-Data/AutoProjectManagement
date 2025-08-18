@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-2.2",
+  "name": "Feasibility Study",
+  "description": "Evaluate technical and economic feasibility of the system.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Analysis",
+  "level_3": "Feasibility Study",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-2.2.1",
+      "name": "Technical Feasibility",
+      "description": "Assess technical resources and capabilities.",
+      "level_4": "Technical Feasibility",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.2.2",
+      "name": "Economic Feasibility",
+      "description": "Analyze cost-benefit and financial aspects.",
+      "level_4": "Economic Feasibility",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.2.3",
+      "name": "Operational Feasibility",
+      "description": "Evaluate operational requirements and constraints.",
+      "level_4": "Operational Feasibility",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.2.4",
+      "name": "Schedule Feasibility",
+      "description": "Assess project timeline and deadlines.",
+      "level_4": "Schedule Feasibility",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-2.2.5",
+      "name": "Feasibility Report",
+      "description": "Prepare and present feasibility study report.",
+      "level_4": "Feasibility Report",
+      "subtasks": []
+    }
+  ]
+}

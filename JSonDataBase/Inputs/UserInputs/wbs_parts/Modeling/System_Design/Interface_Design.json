@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-3.2",
+  "name": "Interface Design",
+  "description": "Design user interfaces and system interfaces.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Design",
+  "level_3": "Interface Design",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-3.2.1",
+      "name": "User Interface Design",
+      "description": "Design the user interface layout and elements.",
+      "level_4": "User Interface Design",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.2.2",
+      "name": "System Interface Design",
+      "description": "Define interfaces between system components.",
+      "level_4": "System Interface Design",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.2.3",
+      "name": "Prototype Interfaces",
+      "description": "Develop interface prototypes for review.",
+      "level_4": "Prototype Interfaces",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.2.4",
+      "name": "Interface Testing",
+      "description": "Test interfaces for usability and functionality.",
+      "level_4": "Interface Testing",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.2.5",
+      "name": "Document Interfaces",
+      "description": "Prepare documentation for interfaces.",
+      "level_4": "Document Interfaces",
+      "subtasks": []
+    }
+  ]
+}

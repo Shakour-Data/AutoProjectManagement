@@ -1,0 +1,14 @@
+{
+  "backup_id": "backup_20250818_172832",
+  "timestamp": "2025-08-18T17:28:44.985979",
+  "source_paths": [
+    "/home/gravitywaves/GravityProject/AutoProjectManagement"
+  ],
+  "total_files": 384,
+  "total_size_bytes": 199321985,
+  "checksum": "c0a29b5a7b96ff8d5053b88477666276e038ff4ea8598570d51e3eab0ebeef64",
+  "compression_type": "zip",
+  "status": "completed",
+  "duration_seconds": 12.69302225112915,
+  "error_message": null
+}

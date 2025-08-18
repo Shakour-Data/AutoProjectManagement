@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-3.4",
+  "name": "Component Design",
+  "description": "Design individual software components and modules.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "System Design",
+  "level_3": "Component Design",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-3.4.1",
+      "name": "Identify Components",
+      "description": "Determine software components and their responsibilities.",
+      "level_4": "Identify Components",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.4.2",
+      "name": "Define Interfaces",
+      "description": "Specify interfaces for components.",
+      "level_4": "Define Interfaces",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.4.3",
+      "name": "Design Component Logic",
+      "description": "Develop internal logic and algorithms for components.",
+      "level_4": "Design Component Logic",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.4.4",
+      "name": "Component Testing Plan",
+      "description": "Plan testing for individual components.",
+      "level_4": "Component Testing Plan",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-3.4.5",
+      "name": "Document Component Design",
+      "description": "Prepare documentation for component design.",
+      "level_4": "Document Component Design",
+      "subtasks": []
+    }
+  ]
+}

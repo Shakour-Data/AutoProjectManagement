@@ -1,0 +1,20 @@
+# Development dependencies
+pytest>=6.0
+pytest-cov>=2.12
+black>=22.0
+flake8>=4.0
+mypy>=0.910
+pre-commit>=2.15
+isort>=5.10
+bandit>=1.7
+safety>=1.10
+
+# Documentation
+sphinx>=4.0
+sphinx-rtd-theme>=1.0
+myst-parser>=0.15
+
+# Testing utilities
+pytest-mock>=3.6
+pytest-xdist>=2.4
+factory-boy>=3.2

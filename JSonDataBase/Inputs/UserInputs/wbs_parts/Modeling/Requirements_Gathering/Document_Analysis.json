@@ -1,0 +1,46 @@
+{
+  "id": "WBS-Modeling-1.2",
+  "name": "Document Analysis",
+  "description": "Analyze existing documentation for requirements.",
+  "level_0": "Software Project",
+  "level_1": "Modeling",
+  "level_2": "Requirements Gathering",
+  "level_3": "Document Analysis",
+  "subtasks": [
+    {
+      "id": "WBS-Modeling-1.2.1",
+      "name": "Collect Documents",
+      "description": "Gather all relevant documents for analysis.",
+      "level_4": "Collect Documents",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.2.2",
+      "name": "Review Documents",
+      "description": "Read and understand the collected documents.",
+      "level_4": "Review Documents",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.2.3",
+      "name": "Extract Requirements",
+      "description": "Identify requirements from the documents.",
+      "level_4": "Extract Requirements",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.2.4",
+      "name": "Validate Requirements",
+      "description": "Check the validity and relevance of extracted requirements.",
+      "level_4": "Validate Requirements",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Modeling-1.2.5",
+      "name": "Document Analysis Report",
+      "description": "Prepare a report summarizing the analysis findings.",
+      "level_4": "Document Analysis Report",
+      "subtasks": []
+    }
+  ]
+}
