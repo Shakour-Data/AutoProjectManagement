@@ -279,12 +279,26 @@ class AutoCommit:
             Summary of changes
         """
         try:
+            # First check if file is binary
+            is_binary = False
+            try:
+                with open(file_path, 'rb') as f:
+                    chunk = f.read(1024)
+                    if b'\0' in chunk:
+                        is_binary = True
+            except (IOError, OSError):
+                pass
+            
+            if is_binary:
+                return "Binary file changes (diff not shown)"
+            
             result = subprocess.run(
                 ["git", "diff", "--staged", "--", file_path],
                 capture_output=True,
                 text=True,
                 check=True,
-                encoding=DEFAULT_ENCODING
+                encoding=DEFAULT_ENCODING,
+                errors='ignore'
             )
             diff_lines = result.stdout.strip().splitlines()
             if not diff_lines:
@@ -296,6 +310,9 @@ class AutoCommit:
         except subprocess.CalledProcessError as e:
             logger.warning(f"Could not retrieve diff for {file_path}: {e}")
             return "Could not retrieve diff."
+        except UnicodeDecodeError as e:
+            logger.warning(f"Unicode decode error for {file_path}: {e}")
+            return "Non-text file or encoding issue (diff not shown)"
 
     def generate_commit_message(self, group_name, category_name, files):
         """Generate a professional conventional commit style message."""
