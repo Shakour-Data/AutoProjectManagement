@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # سیستم مدیریت پروژه خودکار - مستندات کامل
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -554,3 +556,5 @@ pytest tests/
 ---
 
 *این README به‌طور خودکار با GitHub Wiki همگام‌سازی می‌شود. آخرین بروزرسانی: ۱۴ اوت ۲۰۲۵*
+
+</div>
