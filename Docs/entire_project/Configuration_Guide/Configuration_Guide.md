@@ -194,6 +194,90 @@ flowchart TD
 
 ---
 
+## JSON Storage Configuration
+
+### JSON Storage Architecture
+
+```mermaid
+flowchart TD
+    A[Application] --> B[JSON Storage]
+    B --> C[JSonDataBase Directory]
+    C --> D[Inputs Folder]
+    C --> E[Outputs Folder]
+    C --> F[Backups Folder]
+    
+    D --> G[System Inputs]
+    D --> H[User Inputs]
+    E --> I[Generated Reports]
+    E --> J[Progress Data]
+    F --> K[Backup Files]
+    
+    style A fill:#e1f5fe
+    style B fill:#fff3e0
+    style C fill:#e8f5e9
+    style G fill:#f3e5f5
+    style H fill:#e3f2fd
+```
+
+### JSON Storage Configuration Options
+
+| Setting | Type | Default | Description |
+|---------|------|---------|-------------|
+| `type` | string | json | Storage type (always 'json') |
+| `json_path` | string | autoproject.json | Main JSON configuration file |
+| `data_directory` | string | JSonDataBase | Directory for JSON data files |
+| `inputs_path` | string | JSonDataBase/Inputs | Input JSON files directory |
+| `outputs_path` | string | JSonDataBase/OutPuts | Output JSON files directory |
+| `backup_enabled` | boolean | true | Enable automatic backups |
+| `backup_count` | integer | 5 | Number of backup files to keep |
+| `max_file_size` | integer | 10485760 | Maximum JSON file size (10MB) |
+| `encoding` | string | utf-8 | File encoding for JSON files |
+
+### JSON Storage Configuration Examples
+
+#### 1. Basic JSON Storage
+```json
+{
+  "database": {
+    "type": "json",
+    "json_path": "autoproject.json",
+    "data_directory": "JSonDataBase",
+    "backup_enabled": true
+  }
+}
+```
+
+#### 2. Custom Directory Structure
+```json
+{
+  "database": {
+    "type": "json",
+    "json_path": "config/project_data.json",
+    "data_directory": "project_data",
+    "inputs_path": "project_data/inputs",
+    "outputs_path": "project_data/outputs",
+    "backup_enabled": true,
+    "backup_count": 10
+  }
+}
+```
+
+#### 3. Production JSON Storage
+```json
+{
+  "database": {
+    "type": "json",
+    "json_path": "/opt/autoproject/data/main.json",
+    "data_directory": "/opt/autoproject/data",
+    "backup_enabled": true,
+    "backup_count": 20,
+    "max_file_size": 52428800
+  }
+}
+```
+
+---
+
 ## Project Configuration
 
 ### Project Configuration Structure
@@ -277,7 +361,7 @@ classDiagram
 | Feature | Development | Production | Testing |
 |---------|-------------|------------|---------|
 | **API Debug** | true | false | true |
-| **Database** | SQLite | PostgreSQL | SQLite (memory) |
+| **Storage Type** | JSON files | JSON files | JSON files |
 | **Logging Level** | DEBUG | INFO | DEBUG |
 | **GitHub Integration** | true | true | false |
 | **SSL Required** | false | true | false |
@@ -295,8 +379,8 @@ classDiagram
     "reload": true
   },
   "database": {
-    "type": "sqlite",
-    "sqlite_path": "dev.db"
+    "type": "json",
+    "json_path": "dev.json"
   },
   "logging": {
     "level": "DEBUG"
@@ -317,11 +401,8 @@ classDiagram
     "reload": false
   },
   "database": {
-    "type": "postgresql",
-    "postgres_host": "prod-db.example.com",
-    "postgres_port": 5432,
-    "postgres_db": "autoproject_prod",
-    "pool_size": 20
+    "type": "json",
+    "json_path": "prod.json"
   },
   "logging": {
     "level": "INFO",
@@ -345,8 +426,8 @@ classDiagram
     "reload": true
   },
   "database": {
-    "type": "sqlite",
-    "sqlite_path": ":memory:"
+    "type": "json",
+    "json_path": ":memory:"
   },
   "logging": {
     "level": "DEBUG"
@@ -407,7 +488,7 @@ flowchart TD
 | Section | Required Fields | Validation Rules |
 |---------|-----------------|------------------|
 | **API** | host, port | host must be valid IP/domain, port 1-65535 |
-| **Database** | type | must be 'sqlite' or 'postgresql' |
+| **Database** | type | must be 'json' |
 | **GitHub** | token (if enabled) | must be valid GitHub token format |
 | **Security** | jwt_secret_key | must not be default value |
 | **Logging** | level | must be valid log level |
@@ -549,7 +630,7 @@ python -m autoprojectmanagement.configuration validate
 | **Invalid JSON** | JSON parsing error | Use JSON validator |
 | **Missing required field** | Validation error | Add missing configuration |
 | **Invalid port** | Port already in use | Change port number |
-| **Database connection failed** | Connection timeout | Check database settings |
+| **JSON file not found** | File not found error | Check file paths |
 | **GitHub token invalid** | 401 Unauthorized | Regenerate GitHub token |
 | **SSL certificate error** | SSL handshake failed | Check certificate paths |
 
@@ -580,8 +661,9 @@ try:
 except ValueError as e:
     print(f"Validation error: {e}")
 
-# Test database connection
-print(f"Database: {config.database.connection_string}")
+# Test JSON storage
+print(f"Storage type: {config.database.type}")
+print(f"JSON path: {config.database.json_path}")
 ```
 
 #### 3. Environment Variable Check
@@ -603,8 +685,8 @@ python -m json.tool config.json
 # Validate configuration
 python -c "from autoproject_configuration import config; config.validate()"
 
-# Test database connection
-python -c "from autoproject_configuration import config; print(config.database.connection_string)"
+# Test JSON storage
+python -c "from autoproject_configuration import config; print(f'Storage: {config.database.type}')"
 
 # Test GitHub integration
 python -c "from autoprojectmanagement.services.github_integration import GitHubIntegration; print('GitHub ready')"
@@ -643,8 +725,10 @@ python -c "from autoprojectmanagement.services.github_integration import GitHubI
     "cors_origins": ["http://localhost:3000"]
   },
   "database": {
-    "type": "sqlite",
-    "sqlite_path": "autoproject.db"
+    "type": "json",
+    "json_path": "autoproject.json",
+    "data_directory": "JSonDataBase",
+    "backup_enabled": true
   },
   "github": {
     "token": "your-github-token",
@@ -674,27 +758,65 @@ python -c "from autoprojectmanagement.services.github_integration import GitHubI
 export API_HOST=127.0.0.1
 export API_PORT=8000
 export API_DEBUG=true
-export DB_TYPE=sqlite
+export DB_TYPE=json
 export GITHUB_TOKEN=your-token
 
 # Production
 export API_HOST=0.0.0.0
 export API_PORT=8080
 export API_DEBUG=false
-export DB_TYPE=postgresql
-export DB_POSTGRES_HOST=prod-db.example.com
+export DB_TYPE=json
 ```
 
 ### Configuration Validation Checklist
 
 - [ ] JSON syntax is valid
 - [ ] All required fields are present
-- [ ] Database connection string is correct
+- [ ] JSON file paths are correct
 - [ ] GitHub token has correct permissions
 - [ ] Security settings are properly configured
 - [ ] File paths exist and are accessible
 - [ ] Port numbers are available
 - [ ] Environment variables are set
+
+---
+
+## External Database Integration (Optional)
+
+### Overview
+While AutoProjectManagement uses JSON files as its primary storage mechanism, users can integrate with external databases if needed. This is completely optional and external to the core system.
+
+### Integration Approaches
+
+#### 1. Data Export/Import
+- Export JSON data to external databases
+- Import data from external databases into JSON format
+- Use the `JSONDataLinker` service for data transformation
+
+#### 2. Custom Adapters
+- Create custom database adapters
+- Implement JSON-to-database mapping
+- Use external ETL tools for data synchronization
+
+#### 3. Hybrid Storage
+- Keep core configuration in JSON files
+- Store large datasets in external databases
+- Maintain JSON as the primary configuration format
+
+### Example Integration
+```python
+# Example: Export JSON data to external database
+from autoprojectmanagement.services.json_data_linker import JSONDataLinker
+import sqlite3
+
+def export_to_sqlite(json_files, db_path):
+    linker = JSONDataLinker()
+    linker.link_files(json_files)
+    
+    conn = sqlite3.connect(db_path)
+    # Custom export logic here
+    conn.close()
+```
 
 ---
 
