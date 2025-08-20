@@ -1,0 +1,127 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/ssl:/etc/nginx/ssl:ro
+      - apm_logs:/var/log/nginx
+    depends_on:
+      - api
+    networks:
+      - apm_network
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - apm_data:/app/data
+      - apm_logs:/app/logs
+      - apm_config:/app/config
+    depends_on:
+      - redis
+    networks:
+      - apm_network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  worker-1:
+    build:
+      context: .
+      dockerfile: docker/worker/Dockerfile
+    environment:
+      - PYTHONPATH=/app
+      - WORKER_ID=worker-1
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+    volumes:
+      - apm_data:/app/data
+      - apm_logs:/app/logs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - api
+    networks:
+      - apm_network
+    restart: unless-stopped
+
+  worker-2:
+    build:
+      context: .
+      dockerfile: docker/worker/Dockerfile
+    environment:
+      - PYTHONPATH=/app
+      - WORKER_ID=worker-2
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+    volumes:
+      - apm_data:/app/data
+      - apm_logs:/app/logs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - api
+    networks:
+      - apm_network
+    restart: unless-stopped
+
+  monitor:
+    build:
+      context: .
+      dockerfile: docker/monitor/Dockerfile
+    environment:
+      - PYTHONPATH=/app
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+    ports:
+      - "8080:8080"
+    volumes:
+      - apm_logs:/app/logs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - api
+      - worker-1
+      - worker-2
+    networks:
+      - apm_network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - apm_network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+volumes:
+  apm_data:
+    driver: local
+  apm_logs:
+    driver: local
+  apm_config:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  apm_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
