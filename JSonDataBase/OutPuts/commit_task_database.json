@@ -38553,5 +38553,209 @@
         "parent_commits": [
             "36444277819488e56d79a7e63dc07f25aa7bcfbd"
         ]
+    },
+    "59eba619923331e4f43202137a4449ab9fc73f36": {
+        "task_id": "root",
+        "file_path": ".dockerignore",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:14):\\n- .dockerignore: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/.dockerignore b/.dockerignore\n    new file mode 100644\n    index 0000000..aacd74a\n    --- /dev/null\n    +++ b/.dockerignore\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:15",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:14 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "40a27414270f7d424924e3d8b6b7746b6aba2e4e"
+        ]
+    },
+    "247b688c47c1f600a2b6f9d3ee2d6da49d3fa140": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:24):\\n- Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf b/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf\n    new file mode 100644\n    index 0000000..af70196\n    --- /dev/null\n    +++ b/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:28",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:26 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "59eba619923331e4f43202137a4449ab9fc73f36"
+        ]
+    },
+    "36dc0dd2e114254ba02de6d68f36013a97651b5d": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:36):\\n- Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf b/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf\n    new file mode 100644\n    index 0000000..f858fe1\n    --- /dev/null\n    +++ b/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:38 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "247b688c47c1f600a2b6f9d3ee2d6da49d3fa140"
+        ]
+    },
+    "19a3e09a60fa9d227bdb9bb01c3e6eff0c9bcdf4": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:48):\\n- Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md b/Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md\n    new file mode 100644\n    index 0000000..097975e\n    --- /dev/null\n    +++ b/Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:49",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:48 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "36dc0dd2e114254ba02de6d68f36013a97651b5d"
+        ]
+    },
+    "627c44566ade41bfe644f8cacd2e1d7602293e77": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Docker_Setup/README.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:56):\\n- Docs/entire_project/Docker_Setup/README.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/README.md b/Docs/entire_project/Docker_Setup/README.md\n    new file mode 100644\n    index 0000000..2ae4d61\n    --- /dev/null\n    +++ b/Docs/entire_project/Docker_Setup/README.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:59",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:56 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "19a3e09a60fa9d227bdb9bb01c3e6eff0c9bcdf4"
+        ]
+    },
+    "a7ff059c8f62cf69fb661eddada011551adf7ebd": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:05):\\n- Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md b/Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md\n    new file mode 100644\n    index 0000000..0a5918b\n    --- /dev/null\n    +++ b/Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:07",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:05 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "627c44566ade41bfe644f8cacd2e1d7602293e77"
+        ]
+    },
+    "f721c0790c699d9cc7d9c92b1b2e2d6ceb8e4b52": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250820_123545.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:13):\\n- backups/metadata/backup_20250820_123545.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250820_123545.json b/backups/metadata/backup_20250820_123545.json\n    new file mode 100644\n    index 0000000..7c26404\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250820_123545.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-20 09:10:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:14 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "a7ff059c8f62cf69fb661eddada011551adf7ebd"
+        ]
+    },
+    "c869c008051e0fcea5c4504bbab0a9f8ad938fe7": {
+        "task_id": "root",
+        "file_path": "docker-compose.dev.yml",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:23):\\n- docker-compose.dev.yml: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/docker-compose.dev.yml b/docker-compose.dev.yml\n    new file mode 100644\n    index 0000000..d4b1aa4\n    --- /dev/null\n    +++ b/docker-compose.dev.yml\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:24",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:23 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "f721c0790c699d9cc7d9c92b1b2e2d6ceb8e4b52"
+        ]
+    },
+    "fe92ec5a92d848d170b5625fccc689524d082f9b": {
+        "task_id": "root",
+        "file_path": "docker-compose.prod.yml",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:31):\\n- docker-compose.prod.yml: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/docker-compose.prod.yml b/docker-compose.prod.yml\n    new file mode 100644\n    index 0000000..0de6c99\n    --- /dev/null\n    +++ b/docker-compose.prod.yml\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:33",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:32 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "c869c008051e0fcea5c4504bbab0a9f8ad938fe7"
+        ]
+    },
+    "d2863664065df37553a0f2277437b6d4efb2ba4a": {
+        "task_id": "root",
+        "file_path": "docker-compose.yml",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:40):\\n- docker-compose.yml: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/docker-compose.yml b/docker-compose.yml\n    new file mode 100644\n    index 0000000..89f8c2a\n    --- /dev/null\n    +++ b/docker-compose.yml\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:40 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "fe92ec5a92d848d170b5625fccc689524d082f9b"
+        ]
+    },
+    "e92612fc77d12ee3fa1ed2ca69d00825441c6822": {
+        "task_id": "root",
+        "file_path": "docker/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:50):\\n- docker/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/docker/api/Dockerfile b/docker/api/Dockerfile\n    new file mode 100644\n    index 0000000..cecd4bf\n    --- /dev/null\n    +++ b/docker/api/Dockerfile\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:53",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:50 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "d2863664065df37553a0f2277437b6d4efb2ba4a"
+        ]
+    },
+    "9c14c735ac412922606585f2453d1170d7aa1ff9": {
+        "task_id": "root",
+        "file_path": "scripts/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:41:01):\\n- scripts/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/scripts/auto-docker-setup.sh b/scripts/auto-docker-setup.sh\n    new file mode 100644\n    index 0000000..e5f130f\n    --- /dev/null\n    +++ b/scripts/auto-docker-setup.sh\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:11:03",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:41:02 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "e92612fc77d12ee3fa1ed2ca69d00825441c6822"
+        ]
     }
 }
