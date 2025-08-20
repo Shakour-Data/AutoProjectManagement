@@ -1,0 +1,9 @@
+# AutoProjectManagement Worker Cron Jobs
+# Run auto-commit every 5 minutes
+*/5 * * * * /usr/local/bin/python -m autoprojectmanagement.services.automation_services.auto_commit >> /app/logs/cron.log 2>&1
+
+# Run cleanup daily at 2 AM
+0 2 * * * /usr/local/bin/python -c "import os; os.system('find /app/logs -name \"*.log\" -mtime +7 -delete')" >> /app/logs/cleanup.log 2>&1
+
+# Run backup daily at 3 AM
+0 3 * * * /usr/local/bin/python -m autoprojectmanagement.services.backup_service >> /app/logs/backup.log 2>&1
