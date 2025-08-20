@@ -38281,5 +38281,141 @@
         "parent_commits": [
             "941a7befff66253edce0efe77e1af1b26ca837b5"
         ]
+    },
+    "b1b17ab7dc9291aa20c7837b7a3a11c71943fb86": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/__init__.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:03):\\n- Docs/autoprojectmanagement/main_modules/resource_management/__init__.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/__init__.md b/Docs/autoprojectmanagement/main_modules/resource_management/__init__.md\n    deleted file mode 100644\n    index 4784cad..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/__init__.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:06",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:04 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "07ae22ab18689016a68690e16973c46c6c975f1b"
+        ]
+    },
+    "c8573431437302311ffda861d78e5416905cbaa3": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:15):\\n- Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md b/Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md\n    deleted file mode 100644\n    index d6ef83e..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:18",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:16 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "b1b17ab7dc9291aa20c7837b7a3a11c71943fb86"
+        ]
+    },
+    "8ef33dc7be269b844d9ce3d78ed2deacc33e1031": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:26):\\n- Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md b/Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md\n    deleted file mode 100644\n    index 403cc38..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:29",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:27 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "c8573431437302311ffda861d78e5416905cbaa3"
+        ]
+    },
+    "28542e4ac519b79277f4403867ba9ecb4b25de65": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:37):\\n- Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md b/Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md\n    deleted file mode 100644\n    index f082c04..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:42",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:38 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "8ef33dc7be269b844d9ce3d78ed2deacc33e1031"
+        ]
+    },
+    "25d7cbd5d20c8c69490f047f2cda223ea26846ac": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:50):\\n- Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md b/Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md\n    deleted file mode 100644\n    index d0f8865..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:54",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:51 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "28542e4ac519b79277f4403867ba9ecb4b25de65"
+        ]
+    },
+    "9da8681e3bb609c2ae8da4b7083badefa96763cd": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:38:02):\\n- Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md b/Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md\n    deleted file mode 100644\n    index 275574e..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:08:05",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:38:03 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "25d7cbd5d20c8c69490f047f2cda223ea26846ac"
+        ]
+    },
+    "b46cb74597fe6c9116bef34dfa6f7a1d88470c59": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:38:13):\\n- Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md b/Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md\n    deleted file mode 100644\n    index 96dc9bf..0000000\n    --- a/Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:08:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:38:13 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "9da8681e3bb609c2ae8da4b7083badefa96763cd"
+        ]
+    },
+    "a612aa4a18ddaf0ca2d3745f232b6ebb247f373e": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Development_Environment/Development_Environment_fa.md",
+        "commit_message": "🐛 fix: Modified files updated\\n\\nChanges included (as of 2025-08-20 08:38:25):\\n- Docs/entire_project/Development_Environment/Development_Environment_fa.md: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/Docs/entire_project/Development_Environment/Development_Environment_fa.md b/Docs/entire_project/Development_Environment/Development_Environment_fa.md\n    index 4f04cde..96dc9bf 100644\n    --- a/Docs/entire_project/Development_Environment/Development_Environment_fa.md\n    +++ b/Docs/entire_project/Development_Environment/Development_Environment_fa.md\n    @@ -1,18 +1,20 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:08:28",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:38:25 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "b46cb74597fe6c9116bef34dfa6f7a1d88470c59"
+        ]
     }
 }
