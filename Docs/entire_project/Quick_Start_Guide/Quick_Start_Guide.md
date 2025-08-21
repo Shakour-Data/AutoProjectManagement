@@ -31,33 +31,33 @@ Welcome to **AutoProjectManagement** - your comprehensive automated project mana
 ```mermaid
 graph TB
     subgraph "AutoProjectManagement Ecosystem"
-### Required Tools
-
-```bash
-# Check Python version
-python --version  # Should be 3.8+
-
-# Check Git version
-git --version     # Should be 2.20+
-
-# Check pip
-pip --version
-```
-
----
-
-## 📦 Installation
-
-### Option 1: PyPI Installation (Recommended)
-
-```bash
-# Install from PyPI
-pip install autoprojectmanagement
-
-# Verify installation
-autoproject --version
-```
-
+        A[CLI Interface] --> B[AutoRunner Engine]
+        C[API Gateway] --> B
+        D[Web Interface] --> C
+        B --> E[Project Management System]
+        
+        E --> F[Communication Risk Module]
+        E --> G[Data Collection & Processing]
+        E --> H[Planning & Estimation]
+        E --> I[Progress Reporting]
+        E --> J[Quality Commit Management]
+        E --> K[Resource Management]
+        E --> L[Task Workflow Management]
+        E --> M[Utility Modules]
+        
+        F --> N[GitHub Integration]
+        G --> O[JSON Data Storage]
+        H --> P[ML Algorithms]
+        I --> Q[Report Generator]
+        J --> R[Auto Commit Service]
+        K --> S[Resource Optimizer]
+        L --> T[Workflow Engine]
+        M --> U[Helper Utilities]
+        
+        N --> V[GitHub API]
+        O --> W[File System Storage]
+        P --> X[Analytics Engine]
+        Q --> Y[Markdown/PDF Reports]
 ### Option 2: From Source
 
 ```bash
