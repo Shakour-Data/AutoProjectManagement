@@ -245,6 +245,43 @@ graph LR
 }
 ```
 
+#### 4. 🆕 پیکربندی داشبورد
+```json
+{
+  "dashboard": {
+    "enabled": true,
+    "port": 3000,
+    "refresh_rate": 3000,
+    "default_layout": "standard",
+    
+    "widgets": {
+      "project_health": {
+        "enabled": true,
+        "position": "top-left",
+        "refresh_interval": 5000,
+        "metrics": ["completion", "quality", "risk"]
+      },
+      "task_progress": {
+        "enabled": true,
+        "position": "top-right",
+        "show_burndown": true,
+        "show_velocity": true
+      },
+      "team_performance": {
+        "enabled": true,
+        "position": "bottom-left",
+        "show_individual_stats": true,
+        "privacy_mode": false
+      },
+      "risk_assessment": {
+        "enabled": true,
+        "position": "bottom-right",
+        "alert_threshold": 7,
+        "notification_channels": ["dashboard", "email"]
+      },
+      "quality_metrics": {
+        "enabled": true,
+        "position": "center",
 
 ---
 
