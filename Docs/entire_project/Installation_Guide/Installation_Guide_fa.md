@@ -1,4 +1,38 @@
+---
 # سیستم AutoProjectManagement - راهنمای جامع نصب
+dir: rtl
+lang: fa
+---
+
+<style>
+  .rtl-content {
+    direction: rtl;
+    text-align: right;
+  }
+  
+  .ltr-content {
+    direction: ltr;
+    text-align: left;
+  }
+  
+  .rtl-list {
+    direction: rtl;
+    text-align: right;
+    padding-right: 2em;
+  }
+  
+  .rtl-table {
+    direction: rtl;
+    text-align: right;
+  }
+  
+  .rtl-code {
+    direction: ltr;
+    text-align: left;
+  }
+</style>
+
+<div dir="rtl" class="rtl-content">
 
 ## 📋 فهرست مطالب
 ۱. [بررسی کلی سیستم](#بررسی-کلی-سیستم)
