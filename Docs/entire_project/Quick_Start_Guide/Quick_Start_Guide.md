@@ -313,26 +313,26 @@ fi
 ### Project Initialization Workflow
 
 ```mermaid
-    subgraph "AutoProjectManagement Core"
-        A[CLI Interface] --> B[AutoRunner Engine]
-        C[API Server] --> B
-        B --> D[Project Management System]
-        
-        D --> E[9 Core Modules]
-        E --> F[Communication Risk]
-        E --> G[Data Processing]
-        E --> H[Planning & Estimation]
-        E --> I[Progress Reporting]
-        E --> J[Quality Management]
-        E --> K[Resource Management]
-        E --> L[Task Workflow]
-        E --> M[Utility Modules]
-        
-        F --> N[Git Services]
-        G --> O[JSON Storage]
-        H --> P[ML Algorithms]
-        I --> Q[Report Generator]
-        J --> R[Auto Commit]
+sequenceDiagram
+    participant User
+    participant CLI
+    participant AutoRunner
+    participant FileSystem
+    participant Git
+    participant ConfigSystem
+
+    User->>CLI: autoproject init --name "MyProject"
+    CLI->>AutoRunner: Initialize project structure
+    AutoRunner->>FileSystem: Create .auto_project directory
+    FileSystem-->>AutoRunner: Directory created
+    AutoRunner->>ConfigSystem: Generate default config
+    ConfigSystem-->>AutoRunner: Configuration created
+    AutoRunner->>Git: Initialize git repository (if not exists)
+    Git-->>AutoRunner: Git initialized
+    AutoRunner->>FileSystem: Create project structure
+    FileSystem-->>AutoRunner: Structure created
+    AutoRunner-->>CLI: Initialization complete
+    CLI-->>User: Project ready with ID: project_123
         K --> S[Resource Optimizer]
         L --> T[Workflow Engine]
     end
