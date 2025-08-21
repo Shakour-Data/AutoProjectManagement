@@ -214,105 +214,105 @@ autoproject --help-commands
 
 # Test basic functionality
 autoproject system-info
-  }
-}
 ```
 
-#### 3. Module Configuration
-```json
-{
-  "modules": {
-    "communication_risk": {
-      "enabled": true,
-      "risk_threshold": 7,
-      "notification_channels": ["slack", "email"]
-    },
-    "quality_management": {
-      "enabled": true,
-      "code_quality_threshold": 80,
-      "test_coverage_minimum": 70
-    }
-  }
-}
+### Option 2: From Source (Recommended for Developers)
+
+```bash
+# Clone the repository
+git clone https://github.com/autoprojectmanagement/autoprojectmanagement.git
+cd autoprojectmanagement
+
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install development dependencies
+pip install -r requirements.txt
+pip install -r requirements-dev.txt  # For development tools
+
+# Install in development mode (editable)
+pip install -e .
+
+# Verify installation
+python -m autoprojectmanagement.cli --version
+```
+
+### Option 3: Docker Installation (Recommended for Production)
+
+```bash
+# Method 3A: Using Docker Compose (Full stack)
+docker-compose up -d
+
+# Method 3B: Single container
+docker build -t autoprojectmanagement .
+docker run -v $(pwd):/workspace autoprojectmanagement
+
+# Method 3C: Using pre-built image
+docker pull autoprojectmanagement/autoprojectmanagement:latest
+docker run -p 8000:8000 -v $(pwd):/app autoprojectmanagement
+
+# Verify Docker deployment
+docker ps
+docker logs <container_id>
+curl http://localhost:8000/health
+```
+
+### Option 4: Cloud Deployment
+
+```bash
+# AWS ECS deployment example
+aws ecr create-repository --repository-name autoprojectmanagement
+docker tag autoprojectmanagement:latest 123456789012.dkr.ecr.region.amazonaws.com/autoprojectmanagement:latest
+aws ecr get-login-password --region region | docker login --username AWS --password-stdin 123456789012.dkr.ecr.region.amazonaws.com
+docker push 123456789012.dkr.ecr.region.amazonaws.com/autoprojectmanagement:latest
+
+# Create ECS task definition and service
+```
+
+### Installation Verification Script
+
+```bash
+#!/bin/bash
+# installation_verification.sh
+
+echo "🔍 Verifying AutoProjectManagement Installation"
+
+# Check Python installation
+if ! command -v python &> /dev/null; then
+    echo "❌ Python not found"
+    exit 1
+fi
+
+# Check package installation
+if ! python -c "import autoprojectmanagement" 2>/dev/null; then
+    echo "❌ AutoProjectManagement package not installed"
+    exit 1
+fi
+
+# Check CLI availability
+if ! command -v autoproject &> /dev/null; then
+    echo "❌ CLI command not available"
+    exit 1
+fi
+
+# Test basic functionality
+if autoproject --version; then
+    echo "✅ Installation successful!"
+    echo "Version: $(autoproject --version)"
+else
+    echo "❌ Installation failed"
+    exit 1
+fi
 ```
 
 ---
 
-## 🎮 Basic Usage
+## 🎯 First Project Setup
 
-### Command Line Interface
-
-#### Essential Commands
-
-```bash
-# Initialize a new project
-autoproject init
-
-# Start monitoring
-autoproject start
-
-# Stop monitoring
-autoproject stop
-
-# Check status
-autoproject status
-
-# Generate report
-autoproject report --type daily
-
-# Update configuration
-autoproject config --edit
-
-# View logs
-autoproject logs --follow
-```
-
-#### Interactive Mode
-```bash
-# Launch interactive CLI
-autoproject interactive
-
-# Available commands:
-# - create-project
-# - add-task
-# - view-progress
-# - generate-report
-# - configure-modules
-```
-
-### API Usage
-
-#### REST API Examples
-
-```bash
-# Start API server
-autoproject api --port 8000
-
-# Get project status
-curl http://localhost:8000/api/v1/projects/status
-
-# Add new task
-curl -X POST http://localhost:8000/api/v1/tasks \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Implement new feature",
-    "description": "Add user authentication",
-    "priority": "high",
-    "estimated_hours": 8
-  }'
-
-# Get progress report
-curl http://localhost:8000/api/v1/reports/progress
-```
-
----
-
-## 🧠 Understanding the System
-
-### System Architecture Overview
+### Project Initialization Workflow
 
 ```mermaid
-graph TB
     subgraph "AutoProjectManagement Core"
         A[CLI Interface] --> B[AutoRunner Engine]
         C[API Server] --> B
