@@ -243,6 +243,8 @@ echo "🎉 تمام بررسی‌ها با موفقیت انجام شد! آما�
 
 ### روش ۱: نصب خودکار یک‌خطی (توصیه شده)
 
+<div dir="ltr" class="ltr-content">
+
 ```bash
 # دانلود و اجرای نصب‌کننده خودکار
 curl -fsSL https://raw.githubusercontent.com/autoprojectmanagement/AutoProjectManagement/main/scripts/one-command-deploy.sh | bash
@@ -253,6 +255,8 @@ cd AutoProjectManagement
 chmod +x scripts/one-command-deploy.sh
 ./scripts/one-command-deploy.sh
 ```
+
+</div>
 
 ### روش ۲: نصب دستی گام به گام
 
