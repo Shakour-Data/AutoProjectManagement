@@ -379,6 +379,8 @@ echo "🎉 تمام تست‌های تأیید تکمیل شد!"
 ### مشکلات رایج و راه‌حل‌ها
 
 #### مشکل ۱: خطاهای وارد کردن Python
+<div dir="ltr" class="ltr-content">
+
 ```bash
 # خطا: ModuleNotFoundError: No module named 'autoprojectmanagement'
 # راه‌حل:
@@ -387,7 +389,11 @@ pip install -e .  # نصب در حالت توسعه
 pip install -r requirements.txt
 ```
 
+</div>
+
 #### مشکل ۲: خطاهای احراز هویت GitHub
+<div dir="ltr" class="ltr-content">
+
 ```bash
 # خطا: 401 Unauthorized
 # راه‌حل‌ها:
@@ -397,6 +403,8 @@ echo $GITHUB_TOKEN | cut -c1-10  # باید ghp_... را نشان دهد
 # ۲. بررسی مجوزهای توکن
 python -m autoprojectmanagement.cli github verify-permissions
 ```
+
+</div>
 
 ---
 
