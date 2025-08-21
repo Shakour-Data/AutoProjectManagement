@@ -383,3 +383,5 @@ python -m autoprojectmanagement.cli github verify-permissions
 ۴. بررسی [پروژه‌های نمونه](https://github.com/autoprojectmanagement/examples)
 
 **اتوماسیون خوش!** 🚀
+
+</div>
