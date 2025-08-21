@@ -289,6 +289,55 @@ autoproject interactive
 # - configure-modules
 # - 🆕 open-dashboard    # باز کردن داشبورد تعاملی
 # - 🆕 customize-dashboard # سفارشی‌سازی داشبورد
+# - 🆕 dashboard-metrics # مشاهده معیارهای داشبورد
+```
+
+### استفاده از API
+
+#### مثال‌های REST API
+
+```bash
+# راه‌اندازی سرور API
+autoproject api --port 8000
+
+# دریافت وضعیت پروژه
+curl http://localhost:8000/api/v1/projects/status
+
+# افزودن تسک جدید
+curl -X POST http://localhost:8000/api/v1/tasks \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "پیاده‌سازی ویژگی جدید",
+    "description": "افزودن احراز هویت کاربر",
+    "priority": "high",
+    "estimated_hours": 8
+  }'
+
+# دریافت گزارش پیشرفت
+curl http://localhost:8000/api/v1/reports/progress
+
+# 🆕 APIهای داشبورد
+curl http://localhost:8000/api/v1/dashboard/overview      # نمای کلی داشبورد
+curl http://localhost:8000/api/v1/dashboard/metrics      # معیارهای زمان واقعی
+curl http://localhost:8000/api/v1/dashboard/alerts       # هشدارهای فعال
+curl http://localhost:8000/api/v1/dashboard/health       # سلامت پروژه
+curl http://localhost:8000/api/v1/dashboard/team-performance # عملکرد تیم
+
+# دریافت داده‌های داشبورد به صورت جریان
+curl http://localhost:8000/api/v1/dashboard/stream
+
+# سفارشی‌سازی داشبورد
+curl -X POST http://localhost:8000/api/v1/dashboard/layout \
+  -H "Content-Type: application/json" \
+  -d '{
+    "layout": "custom",
+    "widgets": ["health", "progress", "risks", "team"],
+    "refresh_rate": 5000
+  }'
+```
+
+### دسترسی به داشبورد وب
+
 
 ---
 
