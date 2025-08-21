@@ -341,6 +341,8 @@ python -m autoprojectmanagement.cli setup wizard
 ### مجموعه تأیید نصب
 
 #### اسکریپت تأیید خودکار
+<div dir="ltr" class="ltr-content">
+
 ```bash
 #!/bin/bash
 # ذخیره به عنوان: verify_installation.sh
@@ -367,6 +369,8 @@ python -c "from autoprojectmanagement.services.database_service import DatabaseS
 echo ""
 echo "🎉 تمام تست‌های تأیید تکمیل شد!"
 ```
+
+</div>
 
 ---
 
