@@ -575,3 +575,48 @@ autoproject logs --level debug --follow
 
 | منبع | توضیحات | لینک |
 |----------|-------------|------|
+| **مستندات کامل** | مستندات کامل سیستم | [ReadTheDocs](https://autoprojectmanagement.readthedocs.io) |
+| **مرجع API** | مستندات دقیق API | [API Docs](https://autoprojectmanagement.readthedocs.io/api) |
+| **آموزش‌های ویدیویی** | راهنماهای گام به گام ویدیویی | [کانال یوتیوب](https://youtube.com/autoprojectmanagement) |
+| **انجمن جامعه** | دریافت کمک از جامعه | [Discord](https://discord.gg/autoprojectmanagement) |
+| **مخزن گیت‌هاب** | کد منبع و issues | [GitHub](https://github.com/autoprojectmanagement/autoprojectmanagement) |
+
+### مرجع سریع دستورات
+
+```bash
+# برگه تقلب دستورات ضروری
+autoproject init              # مقداردهی اولیه پروژه جدید
+autoproject start             # شروع نظارت
+autoproject status            # بررسی وضعیت فعلی
+autoproject report --daily    # تولید گزارش روزانه
+autoproject config --edit     # ویرایش پیکربندی
+autoproject logs --follow     # مشاهده لاگ‌های زنده
+autoproject stop              # توقف نظارت
+autoproject --help            # نمایش تمام دستورات
+```
+
+---
+
+## 🎉 تبریک!
+
+شما با موفقیت راهنمای شروع سریع AutoProjectManagement را تکمیل کردید! سیستم شما اکنون آماده است تا پروژه‌های شما را با اتوماسیون هوشمند به صورت خودکار مدیریت کند.
+
+### چک‌لیست سریع
+- [ ] سیستم نصب و پیکربندی شده
+- [ ] اولین پروژه مقداردهی اولیه شده
+- [ ] پیکربندی پایه تنظیم شده
+- [ ] نظارت شروع شده
+- [ ] اولین گزارش‌ها تولید شده
+
+### پشتیبانی
+اگر نیاز به کمک دارید:
+- بخش [عیب‌یابی](#عیب‌یابی) را بررسی کنید
+- به [جامعه Discord](https://discord.gg/autoprojectmanagement) ما بپیوندید
+- یک issue در [GitHub](https://github.com/autoprojectmanagement/issues) باز کنید
+
+---
+
+*اتوماسیون موفق! 🚀*
+
+---
+*آخرین به‌روزرسانی: 2025-08-14*
