@@ -1225,3 +1225,33 @@ PATCH /api/v1/tasks/{task_id}
 
 # Bulk task operations
 POST /api/v1/projects/{project_id}/tasks/bulk
+# Body: Array of task operations
+# Response: Bulk operation results
+```
+
+#### Reporting APIs
+```bash
+# Generate report
+POST /api/v1/reports/generate
+# Body: Report configuration
+# Response: Report data or file download
+
+# Get report history
+GET /api/v1/reports/history
+# Query: period, type, format
+# Response: List of available reports
+
+# Schedule report
+POST /api/v1/reports/schedule
+# Body: Schedule configuration
+# Response: Schedule confirmation
+```
+
+#### 🆕 Dashboard APIs
+```bash
+# Get dashboard overview
+GET /api/v1/dashboard/overview
+# Response: Comprehensive project overview with key metrics
+
+# Get real-time metrics
+GET /api/v1/dashboard/metrics
