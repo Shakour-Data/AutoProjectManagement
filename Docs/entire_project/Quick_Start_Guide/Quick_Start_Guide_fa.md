@@ -752,6 +752,83 @@ graph LR
     
     F --> S[پوشش تست: 75%]
     F --> T[کیفیت کد: 82%]
+    F --> U[ترند باگ: ↓ 30%]
+```
+
+#### انواع داشبوردهای موجود
+
+##### 1. داشبورد اجرایی
+```json
+{
+  "type": "executive",
+  "focus": ["health", "progress", "risks", "budget"],
+  "refresh_rate": 10000,
+  "widgets": [
+    "project_health_score",
+    "milestone_timeline", 
+    "risk_heatmap",
+    "budget_vs_actual"
+  ]
+}
+```
+
+##### 2. داشبورد تیم توسعه
+```json
+{
+  "type": "development",
+  "focus": ["tasks", "code", "quality", "velocity"],
+  "refresh_rate": 5000,
+  "widgets": [
+    "sprint_burndown",
+    "code_contributions",
+    "test_coverage",
+    "pull_request_metrics"
+  ]
+}
+```
+
+##### 3. داشبورد مدیریت ریسک
+```json
+{
+  "type": "risk",
+  "focus": ["issues", "dependencies", "blockers", "mitigation"],
+  "refresh_rate": 3000,
+  "widgets": [
+    "risk_matrix",
+    "dependency_map",
+    "issue_trends",
+    "mitigation_progress"
+  ]
+}
+```
+
+##### 4. داشبورد کیفیت
+```json
+{
+  "type": "quality",
+  "focus": ["testing", "bugs", "performance", "security"],
+  "refresh_rate": 8000,
+  "widgets": [
+    "test_results",
+    "bug_triage",
+    "performance_metrics",
+    "security_scans"
+  ]
+}
+```
+
+### ویژگی‌های پیشرفته داشبورد
+
+#### 1. تجسم داده‌های زمان واقعی
+- **به‌روزرسانی زنده**: هر 3 ثانیه بدون نیاز به رفرش
+- **نمودارهای تعاملی**: امکان زوم، پان و فیلتر مستقیم روی نمودارها
+- **داده‌های تاریخی**: مقایسه با دوره‌های قبلی و ترندها
+
+#### 2. هشدارهای هوشمند
+```json
+{
+  "alerts": {
+    "risk_threshold": {
 
 ---
 
