@@ -1362,3 +1362,4 @@ ws.onmessage = (event) => {
 
 // Subscribe to specific events
 ws.send(JSON.stringify({
+  action: 'subscribe',
