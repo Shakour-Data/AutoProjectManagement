@@ -1363,3 +1363,902 @@ ws.onmessage = (event) => {
 // Subscribe to specific events
 ws.send(JSON.stringify({
   action: 'subscribe',
+  channels: ['metrics', 'alerts', 'progress']
+}));
+```
+
+### API Usage Examples
+
+#### Example 1: Project Setup via API
+```bash
+#!/bin/bash
+
+# Create new project
+PROJECT_ID=$(curl -X POST http://localhost:8000/api/v1/projects \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: $API_KEY" \
+  -d '{
+    "name": "Web Application",
+    "description": "Full-stack web application development",
+    "team_size": 5,
+    "start_date": "2024-08-15",
+    "target_date": "2024-12-15"
+  }' | jq -r '.data.id')
+
+echo "Created project with ID: $PROJECT_ID"
+
+# Configure project settings
+curl -X PUT http://localhost:8000/api/v1/projects/$PROJECT_ID \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: $API_KEY" \
+  -d '{
+    "automation": {
+      "auto_commit": true,
+      "commit_threshold": 5,
+      "check_interval": 300
+    },
+    "reporting": {
+      "frequency": "daily",
+      "recipients": ["team@company.com"]
+    }
+  }'
+```
+
+#### Example 2: Dashboard Integration
+```javascript
+// Frontend dashboard integration
+class ProjectDashboard {
+  constructor(apiBaseUrl, apiKey) {
+    this.apiBaseUrl = apiBaseUrl;
+    this.apiKey = apiKey;
+    this.metrics = {};
+    this.alerts = [];
+  }
+  
+  async initialize() {
+    // Load initial data
+    await this.loadOverview();
+    await this.loadMetrics();
+    await this.loadAlerts();
+    
+    // Connect to real-time stream
+    this.connectWebSocket();
+  }
+  
+  async loadOverview() {
+    const response = await fetch(`${this.apiBaseUrl}/dashboard/overview`, {
+      headers: { 'X-API-Key': this.apiKey }
+    });
+    this.overview = await response.json();
+    this.renderOverview();
+  }
+  
+  async loadMetrics() {
+    const response = await fetch(`${this.apiBaseUrl}/dashboard/metrics`, {
+      headers: { 'X-API-Key': this.apiKey }
+    });
+    this.metrics = await response.json();
+    this.renderMetrics();
+  }
+  
+  connectWebSocket() {
+    this.ws = new WebSocket(`ws://${this.apiBaseUrl}/ws/dashboard`);
+    this.ws.onmessage = this.handleWebSocketMessage.bind(this);
+  }
+  
+  handleWebSocketMessage(event) {
+    const data = JSON.parse(event.data);
+    this.updateRealTime(data);
+  }
+}
+```
+
+#### Example 3: Automated Reporting
+```python
+import requests
+import json
+from datetime import datetime, timedelta
+
+class AutoReporter:
+    def __init__(self, api_url, api_key):
+        self.api_url = api_url
+        self.api_key = api_key
+        self.headers = {'X-API-Key': api_key, 'Content-Type': 'application/json'}
+    
+    def generate_daily_report(self, project_id):
+        """Generate and send daily report"""
+        report_data = {
+            'project_id': project_id,
+            'report_type': 'daily',
+            'format': 'markdown',
+            'include_metrics': True,
+            'include_risks': True,
+            'recipients': ['pm@company.com', 'team@company.com']
+        }
+        
+        response = requests.post(
+            f'{self.api_url}/reports/generate',
+            headers=self.headers,
+            json=report_data
+        )
+        
+        return response.json()
+    
+    def get_dashboard_snapshot(self, project_id):
+        """Get current dashboard state for archiving"""
+        response = requests.get(
+            f'{self.api_url}/dashboard/overview?project_id={project_id}',
+            headers=self.headers
+        )
+        
+        snapshot = {
+            'timestamp': datetime.now().isoformat(),
+            'data': response.json(),
+            'project_id': project_id
+        }
+        
+        # Save to database or file system
+        self.save_snapshot(snapshot)
+        return snapshot
+```
+
+### API Error Handling
+
+#### Standard Error Responses
+```json
+{
+  "success": false,
+  "error": {
+    "code": "validation_error",
+    "message": "Invalid project configuration",
+    "details": {
+      "field": "team_size",
+      "issue": "Must be a positive integer"
+    }
+  },
+  "metadata": {
+    "timestamp": "2024-08-14T10:30:00Z",
+    "request_id": "req_123456789"
+  }
+}
+```
+
+#### Common Error Codes
+| Code | Description | HTTP Status | Resolution |
+|------|-------------|-------------|------------|
+| `validation_error` | Invalid input data | 400 | Check request body |
+| `authentication_error` | Invalid API key or token | 401 | Verify credentials |
+| `authorization_error` | Insufficient permissions | 403 | Check user roles |
+| `not_found` | Resource doesn't exist | 404 | Verify resource ID |
+| `rate_limit_exceeded` | Too many requests | 429 | Wait and retry |
+| `internal_error` | Server-side issue | 500 | Contact support |
+
+---
+
+## 🐳 Docker Deployment
+
+### Docker Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "Docker Deployment Stack"
+        A[AutoProjectManagement] --> B[Docker Compose]
+        B --> C[Main Service]
+        B --> D[Database Service]
+        B --> E[Cache Service]
+        B --> F[🆕 Dashboard Service]
+        
+        C --> G[Application Logic]
+        D --> H[PostgreSQL]
+        E --> I[Redis]
+        F --> J[Web Interface]
+        
+        G --> K[API Endpoints]
+        G --> L[Background Workers]
+        G --> M[File Processing]
+        
+        J --> N[Real-time UI]
+        J --> O[Interactive Charts]
+        J --> P[Alert Management]
+        
+        subgraph "Networking"
+            Q[Internal Network] --> R[Service Discovery]
+            Q --> S[Load Balancing]
+            Q --> T[SSL Termination]
+        end
+        
+        subgraph "Storage"
+            U[Persistent Volumes] --> V[Config Storage]
+            U --> W[Data Storage]
+            U --> X[Log Storage]
+        end
+    end
+    
+    subgraph "External Access"
+        Y[HTTP/HTTPS] --> Z[Reverse Proxy]
+        Z --> C
+        Z --> F
+        AA[SSH] --> AB[Management Access]
+        AB --> C
+    end
+    
+    subgraph "Monitoring"
+        AC[Prometheus] --> AD[Metrics Collection]
+        AE[Grafana] --> AF[Dashboard Visualization]
+        AG[ELK Stack] --> AH[Log Management]
+        
+        AD --> C
+        AD --> F
+        AH --> C
+        AH --> F
+    end
+```
+
+### Deployment Options
+
+#### Option 1: Single Container Deployment
+```dockerfile
+# Dockerfile for single container deployment
+FROM python:3.11-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create application directory
+WORKDIR /app
+
+# Copy requirements and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Create non-root user
+RUN useradd --create-home --shell /bin/bash appuser
+USER appuser
+
+# Expose ports
+EXPOSE 8000  # API port
+EXPOSE 3000  # 🆕 Dashboard port
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Start application
+CMD ["python", "-m", "autoprojectmanagement.api"]
+```
+
+#### Option 2: Multi-container Docker Compose
+```yaml
+# docker-compose.yml
+version: '3.8'
+
+services:
+  # Main application service
+  app:
+    build: .
+    ports:
+      - "8000:8000"  # API
+      - "3000:3000"  # 🆕 Dashboard
+    environment:
+      - DATABASE_URL=postgresql://db:5432/autoproject
+      - REDIS_URL=redis://cache:6379
+      - DASHBOARD_ENABLED=true
+      - DASHBOARD_PORT=3000
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+    depends_on:
+      - db
+      - cache
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Database service
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=autoproject
+      - POSTGRES_USER=appuser
+      - POSTGRES_PASSWORD=apppass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appuser"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Cache service
+  cache:
+    image: redis:7
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # 🆕 Dashboard service (optional separate service)
+  dashboard:
+    build: .
+    ports:
+      - "3000:3000"
+    command: ["python", "-m", "autoprojectmanagement.dashboard"]
+    environment:
+      - API_URL=http://app:8000
+      - DASHBOARD_PORT=3000
+    depends_on:
+      - app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Reverse proxy (optional)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/ssl/certs
+    depends_on:
+      - app
+      - dashboard
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+```
+
+#### Option 3: Production Docker Compose with Monitoring
+```yaml
+# docker-compose.prod.yml
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      target: production
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://db:5432/autoproject
+      - REDIS_URL=redis://cache:6379
+      - DASHBOARD_ENABLED=true
+      - PROMETHEUS_METRICS=true
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=Host(`api.example.com`)"
+      - "traefik.http.services.app.loadbalancer.server.port=8000"
+
+  dashboard:
+    build:
+      context: .
+      target: production
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://app:8000
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.25'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`dashboard.example.com`)"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=3000"
+
+  # Monitoring stack
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+volumes:
+  prometheus_data:
+  grafana_data:
+```
+
+### Docker Deployment Commands
+
+#### Basic Deployment
+```bash
+# Build and start containers
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop containers
+docker-compose down
+
+# Build specific service
+docker-compose build app
+
+# Scale services
+docker-compose up -d --scale app=3 --scale dashboard=2
+```
+
+#### Production Deployment
+```bash
+# Build production images
+docker-compose -f docker-compose.prod.yml build
+
+# Deploy to production
+docker-compose -f docker-compose.prod.yml up -d
+
+# View production logs
+docker-compose -f docker-compose.prod.yml logs -f
+
+# Monitor resource usage
+docker-compose -f docker-compose.prod.yml stats
+
+# Backup database
+docker-compose exec db pg_dump -U appuser autoproject > backup.sql
+```
+
+#### 🆕 Dashboard-specific Commands
+```bash
+# Start only dashboard service
+docker-compose up -d dashboard
+
+# View dashboard logs
+docker-compose logs -f dashboard
+
+# Scale dashboard service
+docker-compose up -d --scale dashboard=3
+
+# Check dashboard health
+curl http://localhost:3000/health
+
+# Access dashboard
+open http://localhost:3000/dashboard
+```
+
+### Environment Configuration for Docker
+
+#### Environment Variables
+```bash
+# Application configuration
+DATABASE_URL=postgresql://user:pass@db:5432/dbname
+REDIS_URL=redis://cache:6379
+LOG_LEVEL=INFO
+
+# Dashboard configuration
+DASHBOARD_ENABLED=true
+DASHBOARD_PORT=3000
+DASHBOARD_HOST=0.0.0.0
+DASHBOARD_REFRESH_RATE=3000
+
+# API configuration
+API_PORT=8000
+API_HOST=0.0.0.0
+API_CORS_ORIGINS=*
+
+# Security
+SECRET_KEY=your-secret-key-here
+JWT_SECRET=your-jwt-secret-here
+
+# Monitoring
+PROMETHEUS_METRICS=true
+HEALTH_CHECK_ENABLED=true
+```
+
+#### Docker-specific Configuration
+```dockerfile
+# Multi-stage build for production
+FROM python:3.11-slim as builder
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Production stage
+FROM python:3.11-slim as production
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy virtual environment
+COPY --from=builder /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Create app user
+RUN useradd --create-home --shell /bin/bash appuser
+USER appuser
+
+# Create app directory
+WORKDIR /app
+
+# Copy application code
+COPY --chown=appuser:appuser . .
+
+# Expose ports
+EXPOSE 8000 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Start application
+CMD ["python", "-m", "autoprojectmanagement.api"]
+```
+
+### Monitoring and Logging
+
+#### Docker Logging Configuration
+```yaml
+# docker-compose.logging.yml
+version: '3.8'
+
+services:
+  app:
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        tag: "autoproject-app"
+
+  dashboard:
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        tag: "autoproject-dashboard"
+
+  # Centralized logging with ELK
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.8.0
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - "5000:5000"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+volumes:
+  elasticsearch_data:
+```
+
+#### Performance Monitoring
+```bash
+# Monitor container performance
+docker stats
+
+# Check container resource usage
+docker container stats
+
+# View detailed container info
+docker container inspect <container_id>
+
+# Monitor dashboard performance specifically
+docker exec -it autoproject-dashboard-1 \
+  python -c "import psutil; print(f'CPU: {psutil.cpu_percent()}%, Memory: {psutil.virtual_memory().percent}%')"
+
+# Check dashboard response times
+curl -w "\nTime: %{time_total}s\n" http://localhost:3000/health
+```
+
+### Security Best Practices
+
+#### Docker Security Configuration
+```dockerfile
+# Security-hardened Dockerfile
+FROM python:3.11-slim
+
+# Security updates
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# Non-root user
+RUN useradd -r -s /bin/false appuser
+
+# Copy application as non-root
+COPY --chown=appuser:appuser . /app
+WORKDIR /app
+USER appuser
+
+# Read-only filesystem where possible
+VOLUME ["/tmp", "/data"]
+
+# Security headers and limits
+CMD ["python", "-m", "autoprojectmanagement.api", \
+     "--disable-insecure-options", \
+     "--enable-security-headers", \
+     "--rate-limit-enabled"]
+```
+
+#### Network Security
+```yaml
+# docker-compose.security.yml
+version: '3.8'
+
+services:
+  app:
+    networks:
+      - internal
+      - proxy
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:rw,size=64M
+
+  dashboard:
+    networks:
+      - internal
+      - proxy
+    security_opt:
+      - no-new-privileges:true
+
+  db:
+    networks:
+      - internal
+    read_only: true
+
+networks:
+  internal:
+    internal: true
+  proxy:
+    driver: bridge
+```
+
+---
+
+## 🔄 Common Workflows
+
+### Workflow Architecture
+
+```mermaid
+graph TB
+    subgraph "Workflow Management System"
+        A[Workflow Engine] --> B[Workflow Definitions]
+        A --> C[Task Scheduler]
+        A --> D[State Manager]
+        A --> E[🆕 Dashboard Integration]
+        
+        B --> F[Predefined Workflows]
+        B --> G[Custom Workflows]
+        B --> H[Workflow Templates]
+        
+        C --> I[Time-based Triggers]
+        C --> J[Event-based Triggers]
+        C --> K[Manual Triggers]
+        
+        D --> L[Workflow State Storage]
+        D --> M[Progress Tracking]
+        D --> N[Error Handling]
+        
+        E --> O[Real-time Visualization]
+        E --> P[Workflow Analytics]
+        E --> Q[Interactive Controls]
+    end
+    
+    subgraph "Workflow Execution"
+        R[Workflow Trigger] --> S[Task Execution]
+        S --> T[State Update]
+        T --> U[Next Task Decision]
+        U --> V[Completion Check]
+        V --> W[Workflow Complete]
+        
+        S --> X[🆕 Dashboard Update]
+        T --> X
+        U --> X
+        V --> X
+    end
+    
+    subgraph "Workflow Monitoring"
+        Y[🆕 Dashboard Overview] --> Z[Active Workflows]
+        Y --> AA[Completed Workflows]
+        Y --> AB[Failed Workflows]
+        
+        Z --> AC[Real-time Progress]
+        AA --> AD[Performance Analytics]
+        AB --> AE[Error Analysis]
+    end
+```
+
+### Workflow 1: New Project Setup with Dashboard
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant CLI
+    participant AutoRunner
+    participant Config
+    participant Git
+    participant 🆕 Dashboard
+    
+    User->>CLI: autoproject init --name "MyProject"
+    CLI->>AutoRunner: Initialize project
+    AutoRunner->>Config: Create default configuration
+    Config-->>AutoRunner: Configuration created
+    AutoRunner->>Git: Initialize repository
+    Git-->>AutoRunner: Git initialized
+    AutoRunner->>Config: 🆕 Setup dashboard config
+    Config-->>AutoRunner: Dashboard configured
+    AutoRunner->>🆕 Dashboard: 🆕 Start dashboard service
+    🆕 Dashboard-->>AutoRunner: Dashboard ready
+    AutoRunner-->>CLI: Initialization complete
+    CLI-->>User: Project ready with dashboard at http://localhost:3000
+```
+
+### Workflow 2: Daily Development Cycle with Dashboard
+
+```mermaid
+graph TD
+    A[Start of Day] --> B[Review Real-time Dashboard]
+    B --> C[Check Alerts & Key Metrics]
+    C --> D[Plan Daily Tasks Based on Data]
+    D --> E[Start Coding with Active Monitoring]
+    E --> F[🆕 See Immediate Impact on Dashboard]
+    F --> G[Auto Commit When Threshold Reached]
+    G --> H[🆕 Live Dashboard Updates]
+    H --> I[End of Day Summary with Integrated Reports]
+```
+
+### Workflow 3: Sprint Planning with Dashboard Analysis
+
+```mermaid
+graph LR
+    A[Review Previous Sprint in Dashboard] --> B[Analyze Velocity & Productivity Metrics]
+    B --> C[Plan New Sprint Tasks]
+    C --> D[Update Project Configuration]
+    D --> E[Set Sprint Goals in Dashboard]
+    E --> F[Continuous Monitoring During Sprint]
+    F --> G[Generate Sprint Reports from Dashboard Data]
+```
+
+### Workflow 4: Project Status Review with Stakeholders
+
+```mermaid
+graph TB
+    A[Prepare for Meeting] --> B[Open Dashboard in Presentation Mode]
+    B --> C[Filter Data for Relevant Period]
+    C --> D[Use Interactive Charts for Explanation]
+    D --> E[Share Custom View with Team]
+    E --> F[Save Snapshot of Current State]
+    F --> G[Plan Next Actions Based on Insights]
+```
+
+### Workflow 5: Responding to Dashboard Alerts
+
+```mermaid
+graph LR
+    A[Receive Alert from Dashboard] --> B[Review Alert Details]
+    B --> C[Analyze Root Cause with Historical Data]
+    C --> D[Determine Priority & Immediate Action]
+    D --> E[Communicate Status to Team via Integrations]
+    E --> F[Track Resolution Progress in Dashboard]
+    F --> G[Archive Alert & Document Lessons Learned]
+```
+
+### Workflow 6: Dashboard Customization & Optimization
+
+```mermaid
+graph TD
+    A[Identify Specific Monitoring Needs] --> B[Create Custom Widgets]
+    B --> C[Set Personalized Alert Thresholds]
+    C --> D[Configure External Integrations]
+    D --> E[Test & Validate New View]
+    E --> F[Share with Team]
+    F --> G[Iterate Based on Feedback for Improvement]
+```
+
+### Key Dashboard Usage Tips in Workflows
+
+#### 1. Continuous Monitoring
+- **Always On**: Keep dashboard open on secondary monitor
+- **Regular Checks**: Check status at least 3 times daily
+- **Quick Response**: Respond to alerts promptly
+
+#### 2. Data-Driven Decision Making
+```bash
+# Use dashboard data for decision making
+autoproject dashboard metrics --period "7d" --format json
+# Output: 7-day metric data for analysis
+
+autoproject dashboard trends --metric "velocity" --window "4sprints"
+# Output: Team velocity trend over 4 sprints
+```
+
+#### 3. Communication & Transparency
+- **Auto Sharing**: Automatic daily reports for team and management
+- **Controlled Access**: Different access levels for various roles
+- **Documentation**: Save historical snapshots for future reference
+
+#### 4. Continuous Improvement
+```bash
+# Analyze past performance
+autoproject dashboard analyze --period "last-month"
+
+# Identify patterns and improvement points
+autoproject dashboard insights --category "efficiency"
+
+# Plan improvements based on data
+autoproject dashboard plan-improvements --based-on "last-quarter"
+```
+
+### Practical Example: Sprint Review Meeting with Dashboard
+
+```markdown
+# Sprint Review Meeting - Using Dashboard
+
+## 1. Sprint Overview
+- Open dashboard in presentation mode
+- Display project health score: 82% → 88% 📈
+- Review task completion: 18/20 (90%)
