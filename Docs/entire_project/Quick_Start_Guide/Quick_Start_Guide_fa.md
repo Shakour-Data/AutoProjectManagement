@@ -101,3 +101,23 @@ autoproject init
 
 ### مرحله 2: ساختار پروژه
 
+پس از مقداردهی اولیه، پروژه شما این ساختار را خواهد داشت:
+
+```mermaid
+graph TD
+    A[my-first-project/] --> B[.auto_project/]
+    A --> C[.git/]
+    A --> D[src/]
+    A --> E[README.md]
+    
+    B --> F[config/]
+    B --> G[data/]
+    B --> H[logs/]
+    B --> I[reports/]
+    
+    F --> J[auto_config.json]
+    F --> K[module_configs/]
+    G --> L[projects.json]
+    G --> M[tasks.json]
+    I --> N[daily/]
+    I --> O[weekly/]
