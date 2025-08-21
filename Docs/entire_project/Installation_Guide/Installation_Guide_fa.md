@@ -185,6 +185,8 @@ graph TD
 ## 📋 چک‌لیست پیش از نصب
 
 ### اسکریپت تأیید سیستم
+<div dir="ltr" class="ltr-content">
+
 ```bash
 #!/bin/bash
 # ذخیره به عنوان: pre_install_check.sh
@@ -193,45 +195,6 @@ echo "🔍 بررسی پیش از نصب AutoProjectManagement"
 echo "======================================="
 
 # بررسی Python
-python3 --version 2>/dev/null || { echo "❌ Python 3 یافت نشد"; exit 1; }
-echo "✅ نسخه Python: $(python3 --version)"
-
-# بررسی pip
-pip3 --version 2>/dev/null || { echo "❌ pip3 یافت نشد"; exit 1; }
-echo "✅ نسخه pip: $(pip3 --version)"
-
-# بررسی Git
-git --version 2>/dev/null || { echo "❌ Git یافت نشد"; exit 1; }
-echo "✅ نسخه Git: $(git --version)"
-
-# بررسی Node.js
-node --version 2>/dev/null || echo "⚠️ Node.js یافت نشد (اختیاری)"
-npm --version 2>/dev/null || echo "⚠️ npm یافت نشد (اختیاری)"
-
-# بررسی Docker
-docker --version 2>/dev/null || echo "⚠️ Docker یافت نشد (اختیاری)"
-
-# بررسی VS Code
-code --version 2>/dev/null || echo "⚠️ VS Code یافت نشد (اختیاری)"
-
-# بررسی فضای دیسک
-available=$(df -BG . | awk 'NR==2{print $4}' | sed 's/G//')
-if [ "$available" -lt 5 ]; then
-    echo "❌ فضای دیسک کافی نیست: ${available}GB در دسترس"
-    exit 1
-fi
-echo "✅ فضای دیسک: ${available}GB در دسترس"
-
-# بررسی اتصال شبکه
-if ! curl -s https://api.github.com > /dev/null; then
-    echo "❌ اتصال به GitHub برقرار نیست"
-    exit 1
-fi
-echo "✅ اتصال شبکه تأیید شد"
-
-echo ""
-echo "🎉 تمام بررسی‌ها با موفقیت انجام شد! آماده برای نصب."
-```
 
 ---
 
