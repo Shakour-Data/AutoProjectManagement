@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-Enhanced automated git commit service with authentication handling
-Purpose: Fixed automated git commit service with authentication fallback
-Author: Shakour-Data2
-Version: 3.0.0
+Unified AutoCommit Service for AutoProjectManagement
+Purpose: Merged enhanced auto-commit with robust authentication and git push error handling
+Author: AutoProjectManagement System
+Version: 4.0.0
 License: MIT
-Description: Enhanced version that handles authentication issues and provides fallback strategies
+Description: Unified version combining enhanced authentication from auto_commit_enhanced.py 
+           with project management integration, plus comprehensive git push error handling
 """
 
 import os
@@ -32,11 +33,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-class EnhancedAutoCommit:
-    """Enhanced automated git commit service with authentication handling."""
+class UnifiedAutoCommit:
+    """Unified automated git commit service with enhanced authentication and push error handling."""
     
     def __init__(self) -> None:
-        """Initialize the EnhancedAutoCommit service."""
+        """Initialize the UnifiedAutoCommit service."""
         self.logger = logging.getLogger(__name__)
         self._configure_git_automatically()
         self._setup_authentication()
@@ -75,7 +76,6 @@ class EnhancedAutoCommit:
                 text=True,
                 timeout=10
             )
-            # GitHub returns 1 for successful auth with message
             return "successfully authenticated" in result.stderr.lower() or result.returncode == 1
         except:
             return False
@@ -105,12 +105,11 @@ class EnhancedAutoCommit:
             'GIT_MMAP_LIMIT': '1g',
             'GIT_ALLOC_LIMIT': '1g',
             'GIT_SSL_NO_VERIFY': '1',
-            'GIT_ASKPASS': 'echo',  # Prevent interactive prompts
+            'GIT_ASKPASS': 'echo',
             'GIT_TERMINAL_PROMPT': '0'
         })
         
         try:
-            # If using HTTPS, ensure we have the right remote URL
             if use_https and "push" in args:
                 self._ensure_https_remote(cwd)
             
@@ -133,7 +132,6 @@ class EnhancedAutoCommit:
         try:
             success, current_url = self.run_git_command(["config", "--get", "remote.origin.url"], cwd=cwd)
             if success and current_url.startswith("git@"):
-                # Convert SSH to HTTPS
                 https_url = current_url.replace("git@github.com:", "https://github.com/")
                 success, _ = self.run_git_command(["remote", "set-url", "origin", https_url], cwd=cwd)
                 if success:
@@ -148,7 +146,6 @@ class EnhancedAutoCommit:
         try:
             success, current_url = self.run_git_command(["config", "--get", "remote.origin.url"], cwd=cwd)
             if success and current_url.startswith("https://"):
-                # Convert HTTPS to SSH
                 ssh_url = current_url.replace("https://github.com/", "git@github.com:")
                 success, _ = self.run_git_command(["remote", "set-url", "origin", ssh_url], cwd=cwd)
                 if success:
@@ -173,7 +170,6 @@ class EnhancedAutoCommit:
             if not change:
                 continue
                 
-            # Parse git status
             if change.startswith("??"):
                 status = "??"
                 file_path = change[2:].lstrip()
@@ -184,17 +180,12 @@ class EnhancedAutoCommit:
                 else:
                     continue
             
-            # Determine group
             parts = file_path.split(os.sep)
             group_name = parts[0] if len(parts) > 1 else "root"
             
-            # Determine category
             status_mapping = {
-                "A": "Added",
-                "M": "Modified",
-                "D": "Deleted",
-                "R": "Renamed",
-                "??": "Untracked"
+                "A": "Added", "M": "Modified", "D": "Deleted",
+                "R": "Renamed", "??": "Untracked"
             }
             category = status_mapping.get(status, "Other")
             
@@ -205,11 +196,8 @@ class EnhancedAutoCommit:
     def generate_commit_message(self, group_name: str, category_name: str, files: List[str]) -> str:
         """Generate a simple commit message."""
         type_map = {
-            "Added": "feat",
-            "Modified": "fix",
-            "Deleted": "remove",
-            "Renamed": "refactor",
-            "Untracked": "docs"
+            "Added": "feat", "Modified": "fix", "Deleted": "remove",
+            "Renamed": "refactor", "Untracked": "docs"
         }
         
         commit_type = type_map.get(category_name, "chore")
@@ -227,7 +215,6 @@ class EnhancedAutoCommit:
         backup_dir = f"backups/{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
         os.makedirs(backup_dir, exist_ok=True)
         
-        # Create backup marker
         with open(os.path.join(backup_dir, "backup_info.txt"), "w") as f:
             f.write(f"Backup created at {datetime.datetime.now()}\n")
         
@@ -238,7 +225,7 @@ class EnhancedAutoCommit:
         for file_path in files:
             success, _ = self.run_git_command(["add", file_path])
             if not success:
-                logger.error(f"Failed to stage file: {file_path}")
+                self.logger.error(f"Failed to stage file: {file_path}")
                 return False
         return True
 
@@ -246,14 +233,14 @@ class EnhancedAutoCommit:
         """Commit staged files."""
         success, _ = self.run_git_command(["commit", "-m", message])
         if not success:
-            logger.error("Failed to commit changes")
+            self.logger.error("Failed to commit changes")
             return False
         return True
 
     def push_changes_with_fallback(self, remote: str = "origin", branch: str = "main") -> bool:
         """Push changes with comprehensive authentication fallback strategies."""
         
-        # Strategy 1: Try current method (SSH or HTTPS)
+        # Strategy 1: Try current method
         self.logger.info("🔍 Trying current authentication method...")
         success, output = self._try_push_strategy(["push", remote, branch])
         if success:
@@ -302,10 +289,8 @@ class EnhancedAutoCommit:
             
             # Check for specific error patterns
             error_patterns = [
-                "Permission denied",
-                "authentication failed",
-                "could not read Username",
-                "could not read Password"
+                "Permission denied", "authentication failed",
+                "could not read Username", "could not read Password"
             ]
             
             for pattern in error_patterns:
@@ -323,7 +308,7 @@ class EnhancedAutoCommit:
         """Commit and push all changes with authentication handling."""
         changes = self.get_git_changes()
         if not changes:
-            logger.info("No changes detected")
+            self.logger.info("No changes detected")
             return True
 
         grouped_files = self.group_and_categorize_files(changes)
@@ -350,21 +335,21 @@ class EnhancedAutoCommit:
         try:
             # Create backup
             backup_dir = self.create_backup()
-            logger.info(f"Backup created: {backup_dir}")
+            self.logger.info(f"Backup created: {backup_dir}")
             
             # Commit and push
             success = self.commit_and_push_all(remote, branch)
             
             if success:
-                logger.info("✅ Auto-commit workflow completed successfully")
+                self.logger.info("✅ Auto-commit workflow completed successfully")
             else:
-                logger.error("❌ Auto-commit workflow failed")
+                self.logger.error("❌ Auto-commit workflow failed")
                 self._provide_troubleshooting_help()
             
             return success
             
         except Exception as e:
-            logger.error(f"Workflow failed: {str(e)}")
+            self.logger.error(f"Workflow failed: {str(e)}")
             self._provide_troubleshooting_help()
             return False
     
@@ -398,7 +383,7 @@ class EnhancedAutoCommit:
 
 
 if __name__ == "__main__":
-    auto_commit = EnhancedAutoCommit()
+    auto_commit = UnifiedAutoCommit()
     success = auto_commit.run_complete_workflow()
     
     if success:
