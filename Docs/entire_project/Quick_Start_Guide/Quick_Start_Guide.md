@@ -379,7 +379,7 @@ graph TD
     I --> Q[environment.env]
     
     J --> R[projects.json]
-- **Purpose**: Central orchestrator for all project operations
+    J --> S[tasks.json]
 - **Features**: Task management, resource allocation, progress tracking
 - **Integration**: Connects all modules and services
 
