@@ -318,6 +318,8 @@ pip install -r requirements-dev.txt  # ابزارهای توسعه اختیار�
 ## ⚙️ پیکربندی و راه‌اندازی
 
 ### جادوی پیکربندی اولیه
+<div dir="ltr" class="ltr-content">
+
 ```bash
 # اجرای جادوی پیکربندی تعاملی
 python -m autoprojectmanagement.cli setup wizard
@@ -329,6 +331,8 @@ python -m autoprojectmanagement.cli setup wizard
 # ۴. پیکربندی پشتیبان‌گیری
 # ۵. تنظیم عملکرد
 ```
+
+</div>
 
 ---
 
