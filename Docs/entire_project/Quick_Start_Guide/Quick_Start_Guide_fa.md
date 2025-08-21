@@ -273,6 +273,22 @@ autoproject dashboard --start    # راه‌اندازی سرور داشبورد
 autoproject dashboard --stop     # توقف سرور داشبورد
 autoproject dashboard --status   # بررسی وضعیت داشبورد
 autoproject dashboard --open     # باز کردن داشبورد در مرورگر
+autoproject dashboard --export   # خروجی گرفتن از داده‌های داشبورد
+```
+
+#### حالت تعاملی
+```bash
+# راه‌اندازی CLI تعاملی
+autoproject interactive
+
+# دستورات موجود:
+# - create-project
+# - add-task
+# - view-progress
+# - generate-report
+# - configure-modules
+# - 🆕 open-dashboard    # باز کردن داشبورد تعاملی
+# - 🆕 customize-dashboard # سفارشی‌سازی داشبورد
 
 ---
 
