@@ -31,16 +31,49 @@ class AutoCommit:
     def __init__(self) -> None:
         """Initialize the AutoCommit service."""
         self.logger = logging.getLogger(__name__)
+        self._configure_git_memory()
+        
+    def _configure_git_memory(self) -> None:
+        """Configure git to handle memory issues for large repositories."""
+        try:
+            # Configure git memory limits
+            memory_configs = [
+                ["config", "--global", "pack.packSizeLimit", "100m"],
+                ["config", "--global", "pack.deltaCacheSize", "512m"],
+                ["config", "--global", "pack.windowMemory", "512m"],
+                ["config", "--global", "core.packedGitLimit", "512m"],
+                ["config", "--global", "core.packedGitWindowSize", "512m"],
+                ["config", "--global", "core.bigFileThreshold", "50m"],
+                ["config", "--global", "http.postBuffer", "524288000"],
+                ["config", "--global", "core.preloadIndex", "false"],
+                ["config", "--global", "core.fscache", "false"],
+                ["config", "--global", "pack.threads", "1"]
+            ]
+            
+            for config in memory_configs:
+                self.run_git_command(config)
+                
+            self.logger.info("Git memory configuration applied")
+        except Exception as e:
+            self.logger.warning(f"Could not configure git memory: {e}")
         
     def run_git_command(self, args: List[str], cwd: str = None) -> Tuple[bool, str]:
-        """Run a git command and return the result."""
+        """Run a git command with memory optimization."""
+        env = os.environ.copy()
+        env.update({
+            'GIT_MMAP_LIMIT': '1g',
+            'GIT_ALLOC_LIMIT': '1g',
+            'GIT_SSL_NO_VERIFY': '1'
+        })
+        
         try:
             result = subprocess.run(
                 ["git"] + args,
                 capture_output=True,
                 text=True,
                 check=True,
-                cwd=cwd
+                cwd=cwd,
+                env=env
             )
             return True, result.stdout.strip()
         except subprocess.CalledProcessError as e:
