@@ -387,236 +387,666 @@ graph TD
     K --> W[error.log]
     K --> X[audit.log]
     
-
----
-
-## 🔄 Common Workflows
-
-### Workflow 1: New Project Setup
-
-```mermaid
-graph LR
-    A[Create Project Directory] --> B[Initialize Git]
-    B --> C[Install AutoProjectManagement]
-    C --> D[Run autoproject init]
-    D --> E[Configure settings]
-    E --> F[Start monitoring]
-    F --> G[Begin development]
-```
-
-### Workflow 2: Daily Development Cycle
-
-```mermaid
-graph TD
-    A[Start Day] --> B[Check overnight progress]
-    B --> C[Review auto-generated reports]
-    C --> D[Plan daily tasks]
-    D --> E[Begin coding]
-    E --> F[System monitors changes]
-    F --> G[Auto-commit when threshold reached]
-    G --> H[Generate progress updates]
-    H --> I[End of day summary]
-```
-
-### Workflow 3: Sprint Planning
-
-```mermaid
-graph LR
-    A[Review previous sprint] --> B[Analyze velocity metrics]
-    B --> C[Plan new sprint tasks]
-    C --> D[Update project configuration]
-    D --> E[Set sprint goals]
-    E --> F[Monitor throughout sprint]
-    F --> G[Generate sprint reports]
-```
-
----
-
-## 📊 Monitoring and Reports
-
-### Available Reports
-
-#### 1. Daily Progress Report
-```markdown
-# Daily Progress Report - 2024-08-14
-
-## Summary
-- **Tasks Completed**: 3/5
-- **Code Changes**: 47 lines added
-- **Risk Level**: Low (2/10)
-- **Next Milestone**: 2 days away
-
-## Detailed Breakdown
-- **Feature Development**: 60% complete
-- **Bug Fixes**: 80% complete
-- **Documentation**: 30% complete
-
-## Recommendations
-- Focus on documentation
-- Review test coverage
-```
-
-#### 2. Weekly Summary
-```markdown
-# Weekly Summary - Week 33
-
-## Achievements
-- ✅ Completed user authentication feature
-- ✅ Fixed 5 critical bugs
-- ✅ Updated documentation
-
-## Metrics
-- **Velocity**: 15 story points/week
-- **Quality Score**: 85/100
-- **Team Productivity**: ↑ 20%
-
-## Next Week
-- Implement payment processing
-- Performance optimization
-- Security review
-```
-
-### Monitoring Dashboard
-
-```mermaid
-graph TD
-    A[Real-time Dashboard] --> B[Project Health]
-    A --> C[Task Progress]
-    A --> D[Risk Assessment]
-    A --> E[Team Performance]
+    L --> Y[daily/]
+    L --> Z[weekly/]
+    L --> AA[monthly/]
+    L --> AB[custom/]
     
-    B --> F[Overall Score: 85/100]
-    C --> G[Tasks: 15/20 Complete]
-    D --> H[Risk Level: Low]
-    E --> I[Productivity: ↑ 15%]
+    M --> AC[daily/]
+    M --> AD[weekly/]
+    
+    P --> AE[communication_risk.json]
+    P --> AF[quality_management.json]
+    P --> AG[resource_management.json]
+```
+
+### Step 3: Comprehensive Configuration Setup
+
+Create your first project configuration with detailed settings:
+
+```json
+// .auto_project/config/auto_config.json
+{
+  "system": {
+    "version": "1.0.0",
+    "environment": "development",
+    "debug_mode": false,
+    "log_level": "INFO",
+    "max_file_size": 10485760,
+    "backup_retention_days": 30
+  },
+  "project": {
+    "id": "proj_001",
+    "name": "My First Auto-Managed Project",
+    "description": "Comprehensive project to learn AutoProjectManagement features",
+    "version": "1.0.0",
+    "team_size": 3,
+    "start_date": "2024-08-14",
+    "target_date": "2024-09-14",
+    "status": "active",
+    "priority": "high",
+    "team_members": [
+      {
+        "id": "user_001",
+        "name": "John Developer",
+        "email": "john@example.com",
+        "role": "lead_developer",
+        "skills": ["python", "javascript", "devops"]
+      },
+      {
+        "id": "user_002",
+        "name": "Jane Designer",
+        "email": "jane@example.com",
+        "role": "ui_designer",
+        "skills": ["ui/ux", "figma", "css"]
+      }
+    ],
+    "milestones": [
+      {
+        "id": "milestone_1",
+        "name": "Project Setup Complete",
+        "description": "Initial project configuration and environment setup",
+        "target_date": "2024-08-16",
+        "status": "pending",
+        "deliverables": ["environment setup", "initial config", "team onboarding"]
+      },
+      {
+        "id": "milestone_2",
+        "name": "Core Features Implementation",
+        "description": "Development of main project features",
+        "target_date": "2024-08-30",
+        "status": "pending",
+        "deliverables": ["feature A", "feature B", "integration testing"]
+      }
+    ]
+  },
+  "automation": {
+    "auto_commit": {
+      "enabled": true,
+      "threshold": 5,
+      "min_interval": 300,
+      "max_interval": 3600,
+      "exclude_patterns": ["*.log", "*.tmp", "*.cache", "node_modules/", ".git/"],
+      "commit_message_template": "Auto commit: {changes_count} changes | {timestamp}"
+    },
+    "monitoring": {
+      "enabled": true,
+      "check_interval": 300,
+      "file_extensions": [".py", ".js", ".java", ".html", ".css", ".md", ".json"],
+      "max_depth": 5,
+      "real_time": false
+    },
+    "reporting": {
+      "enabled": true,
+      "frequency": "daily",
+      "format": "markdown",
+      "recipients": ["team@company.com", "manager@company.com"],
+      "include_metrics": true,
+      "include_risks": true,
+      "include_recommendations": true
+    },
+    "backup": {
+      "enabled": true,
+      "frequency": "daily",
+      "retention_days": 7,
+      "compression": true,
+      "encryption": false
+    }
+  },
+  "modules": {
+    "enabled": ["all"],
+    "communication_risk": {
+      "enabled": true,
+      "risk_threshold": 7,
+      "check_interval": 3600,
+      "notification_channels": ["slack", "email", "in_app"],
+      "escalation_rules": {
+        "high_risk": "notify_immediately",
+        "medium_risk": "daily_digest",
+        "low_risk": "weekly_summary"
+      }
+    },
+    "quality_management": {
+      "enabled": true,
+      "code_quality_threshold": 80,
+      "test_coverage_minimum": 70,
+      "linting_enabled": true,
+      "security_scanning": true,
+      "performance_metrics": true
+    },
+    "resource_management": {
+      "enabled": true,
+      "allocation_algorithm": "balanced",
+      "overload_threshold": 80,
+      "underutilization_threshold": 20,
+      "skill_matching": true
+    },
+    "planning_estimation": {
+      "enabled": true,
+      "ml_enabled": true,
+      "historical_data_days": 90,
+      "confidence_threshold": 0.7,
+      "adjustment_factor": 1.2
+    }
+  },
+  "integrations": {
+    "github": {
+      "enabled": false,
+      "token": "your_github_token_here",
+      "repo_owner": "your_username",
+      "repo_name": "your_repository",
+      "auto_sync": true,
+      "webhook_enabled": false
+    },
+    "slack": {
+      "enabled": false,
+      "webhook_url": "your_slack_webhook_here",
+      "channel": "#project-updates",
+      "notify_on": ["risk", "completion", "blockers"]
+    },
+    "email": {
+      "enabled": true,
+      "smtp_server": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "your_email@gmail.com",
+      "password": "your_app_password",
+      "from_address": "noreply@company.com"
+    }
+  },
+  "notifications": {
+    "levels": ["error", "warning", "info", "success"],
+    "channels": ["console", "email", "slack"],
+    "schedule": {
+      "immediate": ["error", "critical_risk"],
+      "daily": ["warning", "progress"],
+      "weekly": ["info", "summary"]
+    }
+  }
+}
+```
+
+### Step 4: Environment Configuration
+
+```bash
+# Set up environment variables
+export AUTO_PROJECT_PATH="/path/to/your/project"
+export AUTO_LOG_LEVEL="DEBUG"
+export AUTO_GITHUB_TOKEN="your_github_token"
+export AUTO_SLACK_WEBHOOK="your_slack_webhook"
+
+# Or create environment file
+cat > .auto_project/config/environment.env << 'EOF'
+AUTO_PROJECT_PATH=/path/to/your/project
+AUTO_LOG_LEVEL=INFO
+AUTO_CHECK_INTERVAL=300
+AUTO_COMMIT_THRESHOLD=5
+AUTO_BACKUP_ENABLED=true
+EOF
+
+# Load environment
+export $(cat .auto_project/config/environment.env | xargs)
 ```
 
 ---
 
-## 🔍 Troubleshooting
+## ⚙️ Configuration Deep Dive
 
-### Common Issues
+### Configuration Architecture Overview
 
-#### Issue 1: "Command not found"
-```bash
-# Solution
-pip install autoprojectmanagement
-# or
-export PATH=$PATH:~/.local/bin
+```mermaid
+graph LR
+    A[Configuration Sources] --> B[Environment Variables]
+    A --> C[Config Files]
+    A --> D[CLI Arguments]
+    A --> E[API Requests]
+    
+    B --> F[System Settings]
+    C --> G[Project Settings]
+    D --> H[Runtime Overrides]
+    E --> I[Dynamic Changes]
+    
+    F --> J[Base Configuration]
+    G --> K[Project-specific]
+    H --> L[Session-specific]
+    I --> M[Temporary Adjustments]
+    
+    J --> N[Configuration Engine]
+    K --> N
+    L --> N
+    M --> N
+    
+    N --> O[Validated Configuration]
+    O --> P[All Modules & Services]
 ```
 
-#### Issue 2: "Permission denied"
-```bash
-# Solution
-chmod +x ~/.local/bin/autoproject
-# or use virtual environment
-python -m venv venv
-source venv/bin/activate
-pip install autoprojectmanagement
+### Configuration Priority Hierarchy
+
+| Level | Source | Priority | Scope | Examples |
+|-------|--------|----------|-------|----------|
+| **1** | CLI Arguments | Highest | Session | `--check-interval 600` |
+| **2** | Environment Variables | High | Process | `AUTO_CHECK_INTERVAL=600` |
+| **3** | Config File Overrides | Medium | Project | `"check_interval": 600` |
+| **4** | Default Values | Low | System | `DEFAULT_CHECK_INTERVAL=300` |
+
+### Key Configuration Sections Explained
+
+#### 1. Project Configuration Schema
+```json
+{
+  "project": {
+    "id": "string:unique_identifier",
+    "name": "string:project_name",
+    "description": "string:detailed_description",
+    "version": "string:semantic_version",
+    "team_size": "integer:number_of_members",
+    "start_date": "string:iso_date",
+    "target_date": "string:iso_date",
+    "status": "enum:active|paused|completed|archived",
+    "priority": "enum:low|medium|high|critical",
+    "team_members": [
+      {
+        "id": "string:unique_id",
+        "name": "string:full_name",
+        "email": "string:email_address",
+        "role": "string:role_name",
+        "skills": ["array:of_skills"],
+        "capacity": "integer:hours_per_week",
+        "timezone": "string:timezone"
+      }
+    ],
+    "milestones": [
+      {
+        "id": "string:milestone_id",
+        "name": "string:milestone_name",
+        "description": "string:detailed_description",
+        "target_date": "string:iso_date",
+        "status": "enum:planned|in_progress|completed|delayed",
+        "deliverables": ["array:deliverable_items"],
+        "dependencies": ["array:milestone_ids"],
+        "progress": "integer:0-100"
+      }
+    ],
+    "budget": {
+      "total": "number:total_budget",
+      "currency": "string:currency_code",
+      "allocated": "number:allocated_amount",
+      "spent": "number:amount_spent",
+      "forecast": "number:forecasted_total"
+    }
+  }
+}
 ```
 
-#### Issue 3: "Git repository not found"
-```bash
-# Solution
-git init
-git config user.name "Your Name"
-git config user.email "your.email@example.com"
+#### 2. Automation Settings Deep Dive
+```json
+{
+  "automation": {
+    "auto_commit": {
+      "enabled": "boolean:true/false",
+      "threshold": "integer:min_changes",
+      "min_interval": "integer:seconds",
+      "max_interval": "integer:seconds",
+      "exclude_patterns": ["array:glob_patterns"],
+      "commit_message_template": "string:template_with_variables",
+      "push_strategy": "enum:immediate|scheduled|manual",
+      "branch_protection": "boolean:true/false"
+    },
+    "monitoring": {
+      "enabled": "boolean:true/false",
+      "check_interval": "integer:seconds",
+      "file_extensions": ["array:file_extensions"],
+      "max_depth": "integer:directory_depth",
+      "real_time": "boolean:true/false",
+      "ignore_hidden": "boolean:true/false",
+      "scan_strategy": "enum:full|incremental|smart"
+    },
+    "reporting": {
+      "enabled": "boolean:true/false",
+      "frequency": "enum:daily|weekly|monthly|custom",
+      "format": "enum:markdown|html|pdf|json",
+      "recipients": ["array:email_addresses"],
+      "include_metrics": "boolean:true/false",
+      "include_risks": "boolean:true/false",
+      "include_recommendations": "boolean:true/false",
+      "delivery_method": "enum:email|slack|webhook|file"
+    },
+    "backup": {
+      "enabled": "boolean:true/false",
+      "frequency": "enum:hourly|daily|weekly",
+      "retention_days": "integer:days_to_keep",
+      "compression": "boolean:true/false",
+      "encryption": "boolean:true/false",
+      "verification": "boolean:true/false",
+      "storage_location": "string:path_or_url"
+    }
+  }
+}
 ```
 
-#### Issue 4: "Configuration errors"
+#### 3. Module Configuration Details
+```json
+{
+  "modules": {
+    "communication_risk": {
+      "enabled": "boolean:true/false",
+      "risk_threshold": "integer:1-10",
+      "check_interval": "integer:seconds",
+      "notification_channels": ["array:channel_names"],
+      "escalation_rules": {
+        "high_risk": "string:escalation_policy",
+        "medium_risk": "string:escalation_policy",
+        "low_risk": "string:escalation_policy"
+      },
+      "metrics": {
+        "response_time": "boolean:true/false",
+        "collaboration_score": "boolean:true/false",
+        "knowledge_distribution": "boolean:true/false"
+      }
+    },
+    "quality_management": {
+      "enabled": "boolean:true/false",
+      "code_quality_threshold": "integer:0-100",
+      "test_coverage_minimum": "integer:0-100",
+      "linting_enabled": "boolean:true/false",
+      "security_scanning": "boolean:true/false",
+      "performance_metrics": "boolean:true/false",
+      "quality_gates": [
+        {
+          "metric": "string:metric_name",
+          "threshold": "number:threshold_value",
+          "action": "string:action_to_take"
+        }
+      ]
+    },
+    "resource_management": {
+      "enabled": "boolean:true/false",
+      "allocation_algorithm": "enum:balanced|priority_based|skill_based",
+      "overload_threshold": "integer:0-100",
+      "underutilization_threshold": "integer:0-100",
+      "skill_matching": "boolean:true/false",
+      "availability_tracking": "boolean:true/false",
+      "capacity_planning": "boolean:true/false"
+    }
+  }
+}
+```
+
+### Configuration Management Commands
+
 ```bash
+# Interactive configuration wizard
+autoproject config --interactive
+
+# Set specific configuration values
+autoproject config set --key project.name --value "New Project Name"
+autoproject config set --key automation.auto_commit.threshold --value 10
+autoproject config set --key modules.communication_risk.enabled --value true
+
+# View current configuration
+autoproject config show
+autoproject config show --section automation
+autoproject config show --key project.team_members
+
 # Validate configuration
 autoproject config --validate
 
 # Reset to defaults
 autoproject config --reset
 
-# Edit configuration
-autoproject config --edit
-```
+# Export configuration
+autoproject config --export > config_backup.json
 
-### Debug Mode
+# Import configuration
+autoproject config --import config_backup.json
 
-Enable detailed logging:
-```bash
-# Enable debug mode
-export AUTOPROJECT_DEBUG=1
-autoproject start
-
-# View logs
-autoproject logs --level debug --follow
+# Environment-specific configuration
+autoproject config --environment development
+autoproject config --environment production
 ```
 
 ---
 
-## 🎯 Next Steps
+## 🏗️ Core Architecture
 
-### Learning Path
+### Complete System Architecture Diagram
 
-#### Beginner (Week 1-2)
-1. ✅ Complete this quick start guide
-2. Set up your first project
-3. Understand basic commands
-4. Review daily reports
+```mermaid
+graph TB
+    subgraph "User Interaction Layer"
+        A[Web Interface] --> B[API Gateway]
+        C[CLI Interface] --> D[Command Processor]
+        E[Desktop App] --> F[Native Bridge]
+    end
+    
+    subgraph "Core Orchestration Layer"
+        B --> G[AutoRunner Engine]
+        D --> G
+        F --> G
+        
+        G --> H[Project Management System]
+        H --> I[Task Orchestrator]
+        H --> J[Resource Manager]
+        H --> K[Progress Tracker]
+        H --> L[Risk Assessor]
+    end
+    
+    subgraph "Module Layer"
+        I --> M[Communication Risk Module]
+        I --> N[Data Processing Module]
+        I --> O[Planning & Estimation]
+        I --> P[Progress Reporting]
+        I --> Q[Quality Management]
+        I --> R[Resource Management]
+        I --> S[Task Workflow]
+        I --> T[Utility Modules]
+        
+        M --> U[Git Integration]
+        N --> V[Analytics Engine]
+        O --> W[ML Algorithms]
+        P --> X[Report Generator]
+        Q --> Y[Auto Commit]
+        R --> Z[Optimizer]
+        S --> AA[Workflow Engine]
+        T --> AB[Helper Utilities]
+    end
+    
+    subgraph "Data Layer"
+        AC[JSON Database] --> AD[Project Data]
+        AC --> AE[Task Data]
+        AC --> AF[Analytics Data]
+        AC --> AG[Configuration Data]
+        
+        AH[File System] --> AI[Source Code]
+        AH --> AJ[Documentation]
+        AH --> AK[Logs]
+        AH --> AL[Reports]
+    end
+    
+    subgraph "External Integration Layer"
+        AM[GitHub API] --> AN[Repository Management]
+        AO[Slack API] --> AP[Notifications]
+        AQ[Email SMTP] --> AR[Email Alerts]
+        AS[Calendar APIs] --> AT[Scheduling]
+    end
+    
+    subgraph "Monitoring & Observability"
+        AU[Prometheus] --> AV[Metrics Collection]
+        AW[Grafana] --> AX[Dashboard Visualization]
+        AY[ELK Stack] --> AZ[Log Management]
+        BA[Health Checks] --> BB[Alert System]
+    end
+    
+    %% Connections between layers
+    U --> AM
+    X --> AO
+    X --> AQ
+    Z --> AS
+    
+    AV --> AX
+    AK --> AZ
+    G --> BA
+```
 
-#### Intermediate (Week 3-4)
-1. Configure advanced modules
-2. Set up team collaboration
-3. Customize reports
-4. Integrate with external tools
+### Data Flow Architecture
 
-#### Advanced (Month 2+)
-1. Create custom modules
-2. Set up CI/CD integration
-3. Implement custom workflows
-4. Contribute to the project
+```mermaid
+sequenceDiagram
+    participant User
+    participant CLI
+    participant API
+    participant AutoRunner
+    participant PMS
+    participant Modules
+    participant Services
+    participant Storage
+    participant External
+    
+    User->>CLI: Execute command
+    CLI->>AutoRunner: Process request
+    AutoRunner->>PMS: Validate & route
+    
+    PMS->>Modules: Delegate to appropriate module
+    Modules->>Services: Execute business logic
+    Services->>Storage: Read/write data
+    Storage-->>Services: Return data
+    
+    Services->>External: Call external APIs (if needed)
+    External-->>Services: API response
+    
+    Services-->>Modules: Processed result
+    Modules-->>PMS: Module output
+    PMS-->>AutoRunner: System response
+    
+    AutoRunner->>CLI: Command result
+    CLI->>User: Display output
+    
+    loop Continuous Monitoring
+        AutoRunner->>Services: Monitor changes
+        Services->>Storage: Check for updates
+        Storage-->>Services: Change detection
+        
+        Services->>Modules: Analyze changes
+        Modules->>PMS: Update project state
+        PMS->>Storage: Persist changes
+        
+        PMS->>Services: Generate reports/alerts
+        Services->>External: Send notifications
+    end
+```
 
-### Resources for Continued Learning
+### Component Interaction Details
 
-| Resource | Description | Link |
-|----------|-------------|------|
-| **Full Documentation** | Complete system documentation | [ReadTheDocs](https://autoprojectmanagement.readthedocs.io) |
-| **API Reference** | Detailed API documentation | [API Docs](https://autoprojectmanagement.readthedocs.io/api) |
-| **Video Tutorials** | Step-by-step video guides | [YouTube Channel](https://youtube.com/autoprojectmanagement) |
-| **Community Forum** | Get help from community | [Discord](https://discord.gg/autoprojectmanagement) |
-| **GitHub Repository** | Source code and issues | [GitHub](https://github.com/autoprojectmanagement/autoprojectmanagement) |
+#### 1. AutoRunner Engine Architecture
+```mermaid
+graph TB
+    subgraph "AutoRunner Core"
+        A[Main Scheduler] --> B[Task Queue]
+        A --> C[Event Loop]
+        A --> D[Configuration Manager]
+        
+        B --> E[Worker Pool]
+        E --> F[Task Executor]
+        E --> G[Resource Monitor]
+        E --> H[Progress Calculator]
+        
+        C --> I[Event Handler]
+        I --> J[File Watcher]
+        I --> K[Timer Events]
+        I --> L[External Triggers]
+        
+        D --> M[Config Loader]
+        D --> N[Config Validator]
+        D --> O[Config Updater]
+    end
+    
+    subgraph "Integration Points"
+        P[File System] --> Q[Change Events]
+        R[API Gateway] --> S[HTTP Requests]
+        T[CLI Interface] --> U[Command Events]
+        V[System Clock] --> W[Timed Events]
+    end
+    
+    Q --> J
+    S --> I
+    U --> I
+    W --> K
+    
+    F --> X[Module Execution]
+    G --> Y[Resource Allocation]
+    H --> Z[Progress Tracking]
+    
+    X --> AA[Business Logic]
+    Y --> BB[Optimization]
+    Z --> CC[Reporting]
+```
 
-### Quick Commands Reference
+#### 2. Project Management System Components
+| Component | Responsibility | Key Methods | Dependencies |
+|-----------|----------------|-------------|--------------|
+| **ProjectManager** | Project lifecycle | create, update, delete, list | Storage, Validation |
+| **TaskManager** | Task operations | add, remove, update, assign | ProjectManager, Scheduling |
+| **ResourceAllocator** | Resource management | allocate, optimize, balance | TaskManager, SkillsDB |
+| **ProgressTracker** | Progress monitoring | calculate, update, forecast | TaskManager, Analytics |
+| **RiskAssessor** | Risk management | identify, evaluate, mitigate | Analytics, Notification |
+| **ReportGenerator** | Reporting | create, format, distribute | DataAggregator, Templates |
 
-```bash
-# Essential commands cheat sheet
-autoproject init              # Initialize new project
-autoproject start             # Start monitoring
-autoproject status            # Check current status
-autoproject report --daily    # Generate daily report
-autoproject config --edit     # Edit configuration
-autoproject logs --follow     # View live logs
-autoproject stop              # Stop monitoring
-autoproject --help            # Show all commands
+#### 3. Data Storage Architecture
+```mermaid
+graph LR
+    A[Data Sources] --> B[JSON Files]
+    A --> C[In-Memory Cache]
+    A --> D[External Databases]
+    
+    B --> E[Data Processor]
+    C --> E
+    D --> E
+    
+    E --> F[Data Validator]
+    F --> G[Data Transformer]
+    G --> H[Data Aggregator]
+    
+    H --> I[Analytics Engine]
+    H --> J[Reporting System]
+    H --> K[API Responses]
+    
+    I --> L[Insights & Metrics]
+    J --> M[Reports & Dashboards]
+    K --> N[Client Applications]
+    
+    %% Data flow for persistence
+    H --> O[Data Persister]
+    O --> B
+    O --> C
+    O --> D
 ```
 
 ---
 
-## 🎉 Congratulations!
+## 🧩 Module Specifications
 
-You've successfully completed the AutoProjectManagement Quick Start Guide! Your system is now ready to automatically manage your projects with intelligent automation.
+### Module Architecture Overview
 
-### Quick Checklist
-- [ ] System installed and configured
-- [ ] First project initialized
-- [ ] Basic configuration set up
-- [ ] Monitoring started
-- [ ] First reports generated
-
-### Support
-If you need help:
-- Check the [troubleshooting section](#troubleshooting)
-- Join our [Discord community](https://discord.gg/autoprojectmanagement)
-- Open an issue on [GitHub](https://github.com/autoprojectmanagement/issues)
-
----
-
-*Happy automating! 🚀*
-
----
-*Last updated: 2025-08-14*
+```mermaid
+graph TB
+    subgraph "Module Ecosystem"
+        A[ProjectManagementSystem] --> B[Module Manager]
+        B --> C[Module Loader]
+        B --> D[Module Router]
+        B --> E[Module Monitor]
+        
+        C --> F[Core Modules]
+        C --> G[Custom Modules]
+        C --> H[Third-party Modules]
+        
+        D --> I[Request Dispatcher]
+        I --> J[Module Executor]
+        J --> K[Result Aggregator]
+        
+        E --> L[Health Monitor]
+        E --> M[Performance Tracker]
+        E --> N[Error Handler]
+    end
+    
+    subgraph "Core Module Suite"
+        F --> O[Communication Risk]
+        F
