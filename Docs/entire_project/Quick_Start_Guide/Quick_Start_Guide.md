@@ -380,13 +380,13 @@ graph TD
     
     J --> R[projects.json]
     J --> S[tasks.json]
-- **Features**: Task management, resource allocation, progress tracking
-- **Integration**: Connects all modules and services
-
-#### 3. AutoCommit Service
-- **Purpose**: Automatic git commits based on progress
-- **Triggers**: File changes, task completion, time intervals
-- **Configuration**: Threshold-based and time-based triggers
+    J --> T[analytics.json]
+    J --> U[users.json]
+    
+    K --> V[auto_runner.log]
+    K --> W[error.log]
+    K --> X[audit.log]
+    
 
 ---
 
