@@ -3,10 +3,11 @@
 Unified AutoCommit Service for AutoProjectManagement
 Purpose: Merged enhanced auto-commit with robust authentication and git push error handling
 Author: AutoProjectManagement System
-Version: 4.0.0
+Version: 4.1.0
 License: MIT
 Description: Unified version combining enhanced authentication from auto_commit_enhanced.py 
            with project management integration, plus comprehensive git push error handling
+           NOW WITH AUTOMATIC PUSH ENABLED BY DEFAULT
 """
 
 import os
