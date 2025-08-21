@@ -205,6 +205,46 @@ graph LR
 }
 ```
 
+#### 2. تنظیمات اتوماسیون
+```json
+{
+  "automation": {
+    "auto_commit": {
+      "enabled": true,
+      "threshold": 5,
+      "exclude_patterns": ["*.log", "*.tmp"]
+    },
+    "monitoring": {
+      "check_interval": 300,
+      "file_extensions": ["*.py", "*.js", "*.md"]
+    },
+    "reporting": {
+      "frequency": "daily",
+      "format": "markdown",
+      "recipients": ["team@company.com"]
+    }
+  }
+}
+```
+
+#### 3. پیکربندی ماژول
+```json
+{
+  "modules": {
+    "communication_risk": {
+      "enabled": true,
+      "risk_threshold": 7,
+      "notification_channels": ["slack", "email"]
+    },
+    "quality_management": {
+      "enabled": true,
+      "code_quality_threshold": 80,
+      "test_coverage_minimum": 70
+    }
+  }
+}
+```
+
 
 ---
 
