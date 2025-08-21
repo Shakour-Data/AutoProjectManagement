@@ -1049,4 +1049,28 @@ graph TB
     
     subgraph "Core Module Suite"
         F --> O[Communication Risk]
-        F
+        F --> P[Data Processing]
+        F --> Q[Planning & Estimation]
+        F --> R[Progress Reporting]
+        F --> S[Quality Management]
+        F --> T[Resource Management]
+        F --> U[Task Workflow]
+        F --> V[Utility Modules]
+        
+        O --> W[Git Integration]
+        P --> X[Analytics Engine]
+        Q --> Y[ML Algorithms]
+        R --> Z[Report Generator]
+        S --> AA[Auto Commit]
+        T --> BB[Optimizer]
+        U --> CC[Workflow Engine]
+        V --> DD[Helper Utilities]
+        
+        %% Add dashboard components
+        Z --> EE[Dashboard Engine]
+        EE --> FF[Real-time Dashboard]
+        EE --> GG[Visual Reports]
+        EE --> HH[Alerts & Notifications]
+    end
+    
+    subgraph "External Integrations"
