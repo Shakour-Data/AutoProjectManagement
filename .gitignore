@@ -132,6 +132,11 @@ project_management/PM_Backups/
 backups/*.zip
 backups/backup_*.zip
 
+# Exclude all backup directories and their contents
+backups/**
+!backups/metadata/  # Keep metadata directory but not its contents
+backups/metadata/*.json
+
 # Sensitive files - GitHub tokens and credentials
 .git-credentials
 important
