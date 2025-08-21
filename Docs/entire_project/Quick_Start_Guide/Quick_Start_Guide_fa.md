@@ -79,3 +79,25 @@ pip install -e .
 docker pull autoprojectmanagement/autoprojectmanagement:latest
 
 # اجرای کانتینر
+docker run -v $(pwd):/workspace autoprojectmanagement/autoprojectmanagement
+```
+
+---
+
+## 🎯 راه‌اندازی اولین پروژه
+
+### مرحله 1: مقداردهی اولیه پروژه شما
+
+```bash
+# ایجاد دایرکتوری پروژه جدید
+mkdir my-first-project && cd my-first-project
+
+# مقداردهی اولیه مخزن گیت
+git init
+
+# مقداردهی اولیه AutoProjectManagement
+autoproject init
+```
+
+### مرحله 2: ساختار پروژه
+
