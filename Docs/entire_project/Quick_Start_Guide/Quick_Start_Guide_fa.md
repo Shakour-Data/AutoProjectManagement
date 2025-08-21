@@ -334,3 +334,26 @@ graph TB
         I --> Q[تولیدکننده گزارش]
         J --> R[کامیت خودکار]
         K --> S[بهینه‌ساز منابع]
+        L --> T[موتور گردش کار]
+    end
+    
+    subgraph "ادغام‌های خارجی"
+        N --> U[API گیت‌هاب]
+        R --> V[مخزن گیت]
+        Q --> W[گزارش‌های Markdown]
+    end
+```
+
+### جریان داده
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant CLI
+    participant AutoRunner
+    participant PMS as ProjectManagementSystem
+    participant Modules
+    participant Storage
+    
+    User->>CLI: شروع پروژه
+    CLI->>AutoRunner: مقداردهی اولیه
