@@ -298,3 +298,28 @@ curl -X POST http://localhost:8000/api/v1/tasks \
     "title": "پیاده‌سازی ویژگی جدید",
     "description": "افزودن احراز هویت کاربر",
     "priority": "high",
+    "estimated_hours": 8
+  }'
+
+# دریافت گزارش پیشرفت
+curl http://localhost:8000/api/v1/reports/progress
+```
+
+---
+
+## 🧠 درک سیستم
+
+### نمای کلی معماری سیستم
+
+```mermaid
+graph TB
+    subgraph "هسته AutoProjectManagement"
+        A[رابط CLI] --> B[موتور AutoRunner]
+        C[سرور API] --> B
+        B --> D[سیستم مدیریت پروژه]
+        
+        D --> E[9 ماژول اصلی]
+        E --> F[ریسک ارتباطی]
+        E --> G[پردازش داده]
+        E --> H[برنامه‌ریزی و تخمین]
+        E --> I[گزارش‌دهی پیشرفت]
