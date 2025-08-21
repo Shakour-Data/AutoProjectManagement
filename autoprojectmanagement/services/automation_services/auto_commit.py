@@ -3,9 +3,9 @@ path: autoprojectmanagement/services/automation_services/auto_commit_fixed.py
 File: auto_commit.py
 Purpose: Fixed automated git commit service with project management integration
 Author: Shakour-Data2
-Version: 2.1.0
+Version: 2.2.0
 License: MIT
-Description: Fixed version that properly handles backup, commit, and push operations
+Description: Fixed version that properly handles backup, commit, and push operations with automatic RPC error prevention
 """
 
 import os
@@ -16,6 +16,12 @@ import sys
 import json
 from typing import Dict, List, Tuple
 import logging
+
+# Import the new Git configuration manager
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from git_config_manager import configure_git_automatically
 
 # Configure logging
 logging.basicConfig(
@@ -31,41 +37,19 @@ class AutoCommit:
     def __init__(self) -> None:
         """Initialize the AutoCommit service."""
         self.logger = logging.getLogger(__name__)
-        self._configure_git_memory()
+        self._configure_git_automatically()
         
-    def _configure_git_memory(self) -> None:
-        """Configure git to handle memory issues for large repositories."""
+    def _configure_git_automatically(self) -> None:
+        """Automatically configure Git to prevent RPC errors."""
         try:
-            # Configure git memory limits and network settings
-            memory_configs = [
-                ["config", "--global", "pack.packSizeLimit", "100m"],
-                ["config", "--global", "pack.deltaCacheSize", "512m"],
-                ["config", "--global", "pack.windowMemory", "512m"],
-                ["config", "--global", "core.packedGitLimit", "512m"],
-                ["config", "--global", "core.packedGitWindowSize", "512m"],
-                ["config", "--global", "core.bigFileThreshold", "50m"],
-                ["config", "--global", "http.postBuffer", "524288000"],
-                ["config", "--global", "http.maxRequestBuffer", "100M"],
-                ["config", "--global", "http.lowSpeedLimit", "0"],
-                ["config", "--global", "http.lowSpeedTime", "999999"],
-                ["config", "--global", "core.preloadIndex", "false"],
-                ["config", "--global", "core.fscache", "false"],
-                ["config", "--global", "pack.threads", "1"],
-                ["config", "--global", "http.version", "HTTP/1.1"],
-                ["config", "--global", "http.sslVerify", "false"],
-                ["config", "--global", "core.compression", "0"],
-                ["config", "--global", "transfer.maxPackSize", "100m"],
-                ["config", "--global", "transfer.maxPackObjects", "1000"],
-                ["config", "--global", "receive.maxInputSize", "100m"],
-                ["config", "--global", "sendpack.sideband", "false"]
-            ]
-            
-            for config in memory_configs:
-                self.run_git_command(config)
-                
-            self.logger.info("Git memory and network configuration applied")
+            # Use the new Git configuration manager
+            success = configure_git_automatically()
+            if success:
+                self.logger.info("✅ Git automatically configured for RPC error prevention")
+            else:
+                self.logger.warning("⚠️  Git auto-configuration partially applied")
         except Exception as e:
-            self.logger.warning(f"Could not configure git memory: {e}")
+            self.logger.warning(f"Could not auto-configure git: {e}")
         
     def run_git_command(self, args: List[str], cwd: str = None) -> Tuple[bool, str]:
         """Run a git command with memory optimization."""
