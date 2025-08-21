@@ -223,10 +223,38 @@ class UnifiedAutoCommit:
     def stage_files(self, files: List[str]) -> bool:
         """Stage files for commit."""
         for file_path in files:
-            success, _ = self.run_git_command(["add", file_path])
-            if not success:
-                self.logger.error(f"Failed to stage file: {file_path}")
-                return False
+            # Clean up file path - remove any invalid characters or formatting
+            clean_path = file_path.strip()
+            if " -> " in clean_path:
+                # Handle file rename/move operations
+                parts = clean_path.split(" -> ")
+                if len(parts) == 2:
+                    # Stage both old and new files for renames
+                    old_file = parts[0].strip()
+                    new_file = parts[1].strip()
+                    
+                    # Try to stage the new file (it should exist)
+                    if os.path.exists(new_file):
+                        success, _ = self.run_git_command(["add", new_file])
+                        if not success:
+                            self.logger.error(f"Failed to stage new file: {new_file}")
+                            return False
+                    else:
+                        # If new file doesn't exist, stage the old file
+                        success, _ = self.run_git_command(["add", old_file])
+                        if not success:
+                            self.logger.error(f"Failed to stage old file: {old_file}")
+                            return False
+                continue
+            
+            # Handle regular files
+            if os.path.exists(clean_path):
+                success, _ = self.run_git_command(["add", clean_path])
+                if not success:
+                    self.logger.error(f"Failed to stage file: {clean_path}")
+                    return False
+            else:
+                self.logger.warning(f"File does not exist: {clean_path}")
         return True
 
     def commit_files(self, message: str) -> bool:
