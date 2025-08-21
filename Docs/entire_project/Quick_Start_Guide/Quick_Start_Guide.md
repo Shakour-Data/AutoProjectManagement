@@ -1074,3 +1074,154 @@ graph TB
     end
     
     subgraph "External Integrations"
+        W --> II[GitHub API]
+        AA --> JJ[Git Repository]
+        Z --> KK[Markdown/PDF Reports]
+        FF --> LL[Web Browser]
+        FF --> MM[Mobile App]
+    end
+    
+    subgraph "Dashboard Presentation"
+        FF --> NN[📊 Project Health]
+        FF --> OO[📈 Task Progress]
+        FF --> PP[⚠️ Risk Assessment]
+        FF --> QQ[👥 Team Performance]
+        FF --> RR[🔧 Quality Metrics]
+    end
+```
+
+### Module Interaction Details
+
+#### 1. Communication Risk Module
+- **Purpose**: Monitor team collaboration patterns and identify communication bottlenecks
+- **Key Features**: Response time tracking, collaboration scoring, risk identification
+- **Integration**: GitHub API, Slack/Email notifications
+
+#### 2. Data Processing Module
+- **Purpose**: Collect, process, and analyze project data in real-time
+- **Key Features**: JSON data parsing, analytics computation, trend analysis
+- **Integration**: File system monitoring, database connections
+
+#### 3. Planning & Estimation Module
+- **Purpose**: Provide intelligent task estimation and project planning
+- **Key Features**: ML-based estimation, historical data analysis, confidence scoring
+- **Integration**: Task management systems, calendar integration
+
+#### 4. Progress Reporting Module
+- **Purpose**: Generate comprehensive progress reports and visualizations
+- **Key Features**: Automated reporting, customizable templates, multi-format export
+- **Integration**: Dashboard engine, email/Slack delivery
+
+#### 5. Quality Management Module
+- **Purpose**: Monitor and maintain code quality standards
+- **Key Features**: Code quality scoring, test coverage tracking, security scanning
+- **Integration**: Auto commit service, quality gates
+
+#### 6. Resource Management Module
+- **Purpose**: Optimize team resource allocation and workload balancing
+- **Key Features**: Skill matching, capacity planning, overload prevention
+- **Integration**: Task assignment, calendar systems
+
+#### 7. Task Workflow Module
+- **Purpose**: Manage task lifecycle and workflow automation
+- **Key Features**: Task creation/assignment, status tracking, dependency management
+- **Integration**: Project management tools, notification systems
+
+#### 8. Utility Modules
+- **Purpose**: Provide supporting functionality and helper services
+- **Key Features**: Logging, configuration management, error handling
+- **Integration**: All other modules
+
+---
+
+## 🔌 API Integration
+
+### REST API Architecture
+
+```mermaid
+graph TB
+    subgraph "API Gateway Layer"
+        A[HTTP Server] --> B[Request Router]
+        B --> C[Authentication Middleware]
+        B --> D[Rate Limiter]
+        B --> E[Request Validator]
+    end
+    
+    subgraph "Business Logic Layer"
+        C --> F[Project Controller]
+        D --> G[Task Controller]
+        E --> H[Report Controller]
+        E --> I[🆕 Dashboard Controller]
+        
+        F --> J[Project Service]
+        G --> K[Task Service]
+        H --> L[Report Service]
+        I --> M[🆕 Dashboard Service]
+    end
+    
+    subgraph "Data Access Layer"
+        J --> N[Project Repository]
+        K --> O[Task Repository]
+        L --> P[Report Repository]
+        M --> Q[🆕 Dashboard Repository]
+        
+        N --> R[JSON Database]
+        O --> R
+        P --> R
+        Q --> R
+    end
+    
+    subgraph "External Integration Layer"
+        R --> S[File System Storage]
+        M --> T[Real-time Data Stream]
+        T --> U[WebSocket Connections]
+        U --> V[Browser Clients]
+        U --> W[Mobile Apps]
+    end
+```
+
+### Core API Endpoints
+
+#### Project Management APIs
+```bash
+# Get all projects
+GET /api/v1/projects
+# Response: List of all managed projects with basic info
+
+# Get specific project
+GET /api/v1/projects/{project_id}
+# Response: Detailed project information including configuration
+
+# Create new project
+POST /api/v1/projects
+# Body: Project configuration JSON
+# Response: Created project with assigned ID
+
+# Update project
+PUT /api/v1/projects/{project_id}
+# Body: Updated project configuration
+# Response: Updated project
+
+# Delete project
+DELETE /api/v1/projects/{project_id}
+# Response: Success confirmation
+```
+
+#### Task Management APIs
+```bash
+# Get project tasks
+GET /api/v1/projects/{project_id}/tasks
+# Response: List of tasks with current status
+
+# Create new task
+POST /api/v1/projects/{project_id}/tasks
+# Body: Task definition JSON
+# Response: Created task with ID
+
+# Update task status
+PATCH /api/v1/tasks/{task_id}
+# Body: Status update JSON
+# Response: Updated task
+
+# Bulk task operations
+POST /api/v1/projects/{project_id}/tasks/bulk
