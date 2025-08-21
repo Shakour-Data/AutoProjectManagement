@@ -341,6 +341,14 @@ autoproject config --set dashboard.default_layout="minimal"
 autoproject config --set dashboard.widgets.team_performance.enabled=true
 
 
+autoproject config --set dashboard.refresh_rate=2000
+
+# تغییر پورت داشبورد
+autoproject config --set dashboard.port=8080
+
+# اعمال تغییرات
+autoproject config --apply
+```
 ---
 
 ## 🎮 استفاده پایه
