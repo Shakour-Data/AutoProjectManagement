@@ -38,3 +38,44 @@
 python --version  # باید 3.8+ باشد
 
 # بررسی نسخه گیت
+git --version     # باید 2.20+ باشد
+
+# بررسی pip
+pip --version
+```
+
+---
+
+## 📦 نصب
+
+### گزینه 1: نصب از PyPI (توصیه شده)
+
+```bash
+# نصب از PyPI
+pip install autoprojectmanagement
+
+# تأیید نصب
+autoproject --version
+```
+
+### گزینه 2: از منبع
+
+```bash
+# کلون کردن مخزن
+git clone https://github.com/autoprojectmanagement/autoprojectmanagement.git
+cd autoprojectmanagement
+
+# نصب وابستگی‌ها
+pip install -r requirements.txt
+
+# نصب در حالت توسعه
+pip install -e .
+```
+
+### گزینه 3: نصب داکر
+
+```bash
+# کشیدن تصویر داکر
+docker pull autoprojectmanagement/autoprojectmanagement:latest
+
+# اجرای کانتینر
