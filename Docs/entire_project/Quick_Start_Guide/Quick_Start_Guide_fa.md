@@ -159,3 +159,142 @@ graph TD
 ```mermaid
 graph LR
     A[فایل‌های پیکربندی] --> B[تنظیمات سیستم]
+    A --> C[تنظیمات ماژول]
+    A --> D[ترجیحات کاربر]
+    
+    B --> E[قوانین کامیت خودکار]
+    B --> F[فواصل نظارت]
+    B --> G[تولید گزارش]
+    
+    C --> H[ریسک ارتباطی]
+    C --> I[مدیریت کیفیت]
+    C --> J[تخصیص منابع]
+    
+    D --> K[ترجیحات اعلان]
+    D --> L[تم‌های رابط کاربری]
+    D --> M[تنظیمات زبان]
+```
+
+### بخش‌های کلیدی پیکربندی
+
+#### 1. پیکربندی پروژه
+```json
+{
+  "project": {
+    "name": "string",
+    "description": "string",
+    "version": "string",
+    "team_members": ["member1", "member2"],
+    "milestones": [
+      {
+        "name": "فاز 1",
+        "target_date": "2024-09-01",
+        "deliverables": ["feature1", "feature2"]
+      }
+    ]
+  }
+}
+```
+
+#### 2. تنظیمات اتوماسیون
+```json
+{
+  "automation": {
+    "auto_commit": {
+      "enabled": true,
+      "threshold": 5,
+      "exclude_patterns": ["*.log", "*.tmp"]
+    },
+    "monitoring": {
+      "check_interval": 300,
+      "file_extensions": ["*.py", "*.js", "*.md"]
+    },
+    "reporting": {
+      "frequency": "daily",
+      "format": "markdown",
+      "recipients": ["team@company.com"]
+    }
+  }
+}
+```
+
+#### 3. پیکربندی ماژول
+```json
+{
+  "modules": {
+    "communication_risk": {
+      "enabled": true,
+      "risk_threshold": 7,
+      "notification_channels": ["slack", "email"]
+    },
+    "quality_management": {
+      "enabled": true,
+      "code_quality_threshold": 80,
+      "test_coverage_minimum": 70
+    }
+  }
+}
+```
+
+---
+
+## 🎮 استفاده پایه
+
+### رابط خط فرمان
+
+#### دستورات ضروری
+
+```bash
+# مقداردهی اولیه پروژه جدید
+autoproject init
+
+# شروع نظارت
+autoproject start
+
+# توقف نظارت
+autoproject stop
+
+# بررسی وضعیت
+autoproject status
+
+# تولید گزارش
+autoproject report --type daily
+
+# به‌روزرسانی پیکربندی
+autoproject config --edit
+
+# مشاهده لاگ‌ها
+autoproject logs --follow
+```
+
+#### حالت تعاملی
+```bash
+# راه‌اندازی CLI تعاملی
+autoproject interactive
+
+# دستورات موجود:
+# - create-project
+# - add-task
+# - view-progress
+# - generate-report
+# - configure-modules
+```
+
+### استفاده از API
+
+#### مثال‌های REST API
+
+```bash
+# راه‌اندازی سرور API
+autoproject api --port 8000
+
+# دریافت وضعیت پروژه
+curl http://localhost:8000/api/v1/projects/status
+
+# افزودن تسک جدید
+curl -X POST http://localhost:8000/api/v1/tasks \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "پیاده‌سازی ویژگی جدید",
+    "description": "افزودن احراز هویت کاربر",
+    "priority": "high",
