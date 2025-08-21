@@ -1,4 +1,4 @@
-# AutoProjectManagement - Quick Start Guide
+# AutoProjectManagement - Comprehensive Quick Start Guide
 
 ## 🚀 Quick Start Guide
 
