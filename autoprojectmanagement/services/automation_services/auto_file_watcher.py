@@ -5,7 +5,7 @@ Purpose: Provides real-time file monitoring and automatic auto-commit execution
 Author: AutoProjectManagement System
 Version: 1.0.0
 License: MIT
-Description: Monitors file system changes and triggers auto-commit automatically
+Description: Monitors file system changes and automatically triggers auto-commit every 15 minutes
 """
 
 import os
@@ -19,6 +19,7 @@ from watchdog.events import FileSystemEventHandler, FileSystemEvent
 import threading
 from threading import Timer
 from datetime import datetime, timedelta
+import subprocess
 
 # Import the auto-commit service
 from autoprojectmanagement.services.automation_services.auto_commit import UnifiedAutoCommit
@@ -187,20 +188,169 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             logger.error(f"Error during auto-commit: {e}")
 
 
+class ScheduledAutoCommit:
+    """
+    Scheduled auto-commit service that runs every 15 minutes.
+    
+    This class provides scheduled automatic commits and pushes regardless of
+    file system events, ensuring regular backups every 15 minutes.
+    """
+    
+    def __init__(self, project_path: str, interval_minutes: int = 15):
+        """
+        Initialize the scheduled auto-commit service.
+        
+        Args:
+            project_path: Path to the project directory
+            interval_minutes: Interval in minutes for scheduled commits (default: 15)
+        """
+        self.project_path = Path(project_path).resolve()
+        self.interval_minutes = interval_minutes
+        self.auto_commit = UnifiedAutoCommit()
+        self.timer: Optional[threading.Timer] = None
+        self.running = False
+        self.lock = threading.Lock()
+        
+        logger.info(f"Initialized ScheduledAutoCommit for {self.project_path} every {interval_minutes} minutes")
+    
+    def start(self) -> None:
+        """Start the scheduled auto-commit service."""
+        if self.running:
+            logger.warning("ScheduledAutoCommit is already running")
+            return
+        
+        self.running = True
+        logger.info(f"🕐 Starting scheduled auto-commit every {self.interval_minutes} minutes")
+        self._schedule_next_commit()
+    
+    def stop(self) -> None:
+        """Stop the scheduled auto-commit service."""
+        if not self.running:
+            return
+        
+        self.running = False
+        
+        with self.lock:
+            if self.timer:
+                self.timer.cancel()
+                self.timer = None
+        
+        logger.info("ScheduledAutoCommit stopped")
+    
+    def get_status(self) -> dict:
+        """Get the current status of the scheduled auto-commit service."""
+        return {
+            'running': self.running,
+            'interval_minutes': self.interval_minutes,
+            'project_path': str(self.project_path)
+        }
+    
+    def _schedule_next_commit(self) -> None:
+        """Schedule the next automatic commit."""
+        if not self.running:
+            return
+        
+        # Convert minutes to seconds
+        interval_seconds = self.interval_minutes * 60
+        
+        with self.lock:
+            self.timer = threading.Timer(interval_seconds, self._execute_scheduled_commit)
+            self.timer.start()
+    
+    def _execute_scheduled_commit(self) -> None:
+        """Execute the scheduled auto-commit and push."""
+        try:
+            if not self.running:
+                return
+            
+            logger.info("🔄 Executing scheduled auto-commit")
+            
+            # Check if there are any changes to commit
+            has_changes = self._has_uncommitted_changes()
+            
+            if has_changes:
+                # Generate commit message with timestamp
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                commit_message = f"Auto-commit: Scheduled backup at {timestamp}"
+                
+                # Execute auto-commit with custom message
+                success = self.auto_commit.run_complete_workflow_guaranteed(
+                    custom_message=commit_message
+                )
+                
+                if success:
+                    logger.info("✅ Scheduled auto-commit completed successfully")
+                else:
+                    logger.warning("⚠️  Scheduled auto-commit completed with warnings")
+            else:
+                logger.info("ℹ️  No changes to commit - skipping scheduled auto-commit")
+            
+            # Schedule the next commit
+            self._schedule_next_commit()
+            
+        except Exception as e:
+            logger.error(f"Error during scheduled auto-commit: {e}")
+            # Continue scheduling even if this commit fails
+            self._schedule_next_commit()
+    
+    def _has_uncommitted_changes(self) -> bool:
+        """
+        Check if there are uncommitted changes in the repository.
+        
+        Returns:
+            bool: True if there are uncommitted changes, False otherwise
+        """
+        try:
+            # Check for staged changes
+            result = subprocess.run(
+                ["git", "diff", "--cached", "--quiet"],
+                cwd=self.project_path,
+                capture_output=True,
+                text=True
+            )
+            has_staged_changes = result.returncode != 0
+            
+            # Check for unstaged changes
+            result = subprocess.run(
+                ["git", "diff", "--quiet"],
+                cwd=self.project_path,
+                capture_output=True,
+                text=True
+            )
+            has_unstaged_changes = result.returncode != 0
+            
+            # Check for untracked files
+            result = subprocess.run(
+                ["git", "ls-files", "--others", "--exclude-standard"],
+                cwd=self.project_path,
+                capture_output=True,
+                text=True
+            )
+            has_untracked_files = bool(result.stdout.strip())
+            
+            return has_staged_changes or has_unstaged_changes or has_untracked_files
+            
+        except Exception as e:
+            logger.error(f"Error checking for uncommitted changes: {e}")
+            return True  # Assume changes exist if check fails
+
+
 class AutoFileWatcherService:
     """
     Main service class for automatic file watching and auto-commit.
     
     This class provides a complete service that monitors file system changes
-    and automatically triggers auto-commit without any manual intervention.
+    and automatically triggers auto-commit every 15 minutes, combining both
+    event-driven and scheduled commits.
     """
     
-    def __init__(self, project_path: Optional[str] = None):
+    def __init__(self, project_path: Optional[str] = None, interval_minutes: int = 15):
         """
         Initialize the auto file watcher service.
         
         Args:
             project_path: Path to the project directory. If None, uses current directory.
+            interval_minutes: Interval in minutes for scheduled commits (default: 15)
         """
         if project_path is None:
             self.project_path = os.getcwd()
@@ -209,22 +359,27 @@ class AutoFileWatcherService:
         
         self.observer = None
         self.event_handler = None
+        self.scheduled_commit = None
         self.running = False
         
-        logger.info(f"AutoFileWatcherService initialized for {self.project_path}")
+        # Initialize scheduled auto-commit
+        self.scheduled_commit = ScheduledAutoCommit(self.project_path, interval_minutes)
+        
+        logger.info(f"AutoFileWatcherService initialized for {self.project_path} with {interval_minutes}-minute scheduled commits")
     
     def start(self) -> None:
         """
         Start the automatic file watching service.
         
         This method begins monitoring the project directory for file changes
-        and automatically triggers auto-commit when changes are detected.
+        and starts the scheduled auto-commit every 15 minutes.
         """
         if self.running:
             logger.warning("AutoFileWatcherService is already running")
             return
         
         try:
+            # Start file watching
             self.event_handler = AutoCommitFileWatcher(self.project_path)
             self.observer = Observer()
             self.observer.schedule(
@@ -236,7 +391,11 @@ class AutoFileWatcherService:
             self.observer.start()
             self.running = True
             
+            # Start scheduled auto-commit
+            self.scheduled_commit.start()
+            
             logger.info("🚀 AutoFileWatcherService started - monitoring for file changes")
+            logger.info("🕐 Scheduled auto-commit running every 15 minutes")
             logger.info("💡 No manual intervention required - auto-commit will run automatically")
             
             # Keep the service running
@@ -257,9 +416,14 @@ class AutoFileWatcherService:
         
         self.running = False
         
+        # Stop file observer
         if self.observer:
             self.observer.stop()
             self.observer.join()
+        
+        # Stop scheduled commits
+        if self.scheduled_commit:
+            self.scheduled_commit.stop()
         
         logger.info("AutoFileWatcherService stopped")
     
@@ -269,10 +433,13 @@ class AutoFileWatcherService:
         if self.observer:
             observer_alive = self.observer.is_alive()
         
+        scheduled_status = self.scheduled_commit.get_status() if self.scheduled_commit else {}
+        
         return {
             'running': self.running,
             'project_path': self.project_path,
-            'monitoring': observer_alive
+            'monitoring': observer_alive,
+            'scheduled_commit': scheduled_status
         }
 
 
@@ -281,7 +448,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(
-        description='Auto File Watcher - Automatic auto-commit on file changes'
+        description='Auto File Watcher - Automatic auto-commit on file changes and scheduled commits'
     )
     parser.add_argument(
         '--path',
@@ -292,12 +459,18 @@ def main():
         '--debounce',
         type=float,
         default=5.0,
-        help='Debounce delay in seconds (default: 5.0)'
+        help='Debounce delay in seconds for file changes (default: 5.0)'
+    )
+    parser.add_argument(
+        '--interval',
+        type=int,
+        default=15,
+        help='Scheduled commit interval in minutes (default: 15)'
     )
     
     args = parser.parse_args()
     
-    service = AutoFileWatcherService(args.path)
+    service = AutoFileWatcherService(args.path, args.interval)
     
     try:
         service.start()
