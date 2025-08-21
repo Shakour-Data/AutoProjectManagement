@@ -269,6 +269,50 @@ sudo apt update && sudo apt upgrade -y  # Ubuntu/Debian
 sudo yum update -y                      # CentOS/RHEL
 brew update && brew upgrade            # macOS
 
+# نصب وابستگی‌های سیستم
+sudo apt install -y python3 python3-pip python3-venv git curl wget
+sudo apt install -y nodejs npm docker.io
+```
+
+</div>
+
+#### گام ۲: راه‌اندازی مخزن
+<div dir="ltr" class="ltr-content">
+
+```bash
+# کلون مخزن
+git clone https://github.com/autoprojectmanagement/AutoProjectManagement.git
+cd AutoProjectManagement
+
+# تأیید یکپارچگی مخزن
+git log --oneline -5
+git status
+```
+
+</div>
+
+#### گام ۳: راه‌اندازی محیط Python
+<div dir="ltr" class="ltr-content">
+
+```bash
+# ایجاد محیط مجازی
+python3 -m venv venv
+
+# فعال‌سازی محیط مجازی
+source venv/bin/activate  # Linux/macOS
+# یا
+venv\Scripts\activate     # Windows
+
+# ارتقاء pip
+pip install --upgrade pip setuptools wheel
+
+# نصب وابستگی‌های Python
+pip install -r requirements.txt
+pip install -r requirements-dev.txt  # ابزارهای توسعه اختیاری
+```
+
+</div>
+
 ---
 
 ## ⚙️ پیکربندی و راه‌اندازی
