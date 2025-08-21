@@ -25,13 +25,13 @@
 
 ### نیازمندی‌های سیستم
 
-| مؤلفه | حداقل | توصیه شده |
-|-----------|---------|-------------|
-| **پایتون** | 3.8+ | 3.9+ |
-| **گیت** | 2.20+ | 2.30+ |
-| **سیستم عامل** | لینوکس/مک/ویندوز | لینوکس/مک |
-| **رم** | 4GB | 8GB+ |
-| **فضای ذخیره‌سازی** | 1GB آزاد | 5GB+ آزاد |
+| مؤلفه              | حداقل            | توصیه شده |
+| ------------------ | ---------------- | --------- |
+| **پایتون**         | 3.8+             | 3.9+      |
+| **گیت**            | 2.20+            | 2.30+     |
+| **سیستم عامل**     | لینوکس/مک/ویندوز | لینوکس/مک |
+| **رم**             | 4GB              | 8GB+      |
+| **فضای ذخیره‌سازی** | 1GB آزاد         | 5GB+ آزاد |
 
 ### ابزارهای مورد نیاز
 
@@ -282,6 +282,64 @@ graph LR
       "quality_metrics": {
         "enabled": true,
         "position": "center",
+        "include": ["test_coverage", "code_quality", "bug_density"]
+      }
+    },
+    
+    "alerts": {
+      "enabled": true,
+      "risk_above_threshold": true,
+      "progress_stalled": true,
+      "quality_below_minimum": true,
+      "milestone_approaching": true,
+      "team_performance_issues": true
+    },
+    
+    "integrations": {
+      "slack": {
+        "enabled": false,
+        "webhook_url": "",
+        "channel": "#project-alerts"
+      },
+      "email": {
+        "enabled": true,
+        "recipients": ["pm@company.com", "team@company.com"],
+        "frequency": "daily"
+      },
+      "teams": {
+        "enabled": false,
+        "webhook_url": ""
+      }
+    },
+    
+    "appearance": {
+      "theme": "light",
+      "chart_style": "modern",
+      "animation_enabled": true,
+      "high_contrast_mode": false
+    },
+    
+    "access_control": {
+      "public_access": false,
+      "allowed_ips": ["192.168.1.0/24"],
+      "require_authentication": true,
+      "session_timeout": 3600
+    }
+  }
+}
+```
+
+### سفارشی‌سازی داشبورد
+
+برای سفارشی‌سازی سریع داشبورد از دستورات زیر استفاده کنید:
+
+```bash
+# تغییر طرح‌بندی پیش‌فرض
+autoproject config --set dashboard.default_layout="minimal"
+
+# فعال‌سازی ویجت خاص
+autoproject config --set dashboard.widgets.team_performance.enabled=true
+
 
 ---
 
@@ -716,13 +774,13 @@ autoproject logs --level debug --follow
 
 ### منابع برای یادگیری ادامه
 
-| منبع | توضیحات | لینک |
-|----------|-------------|------|
-| **مستندات کامل** | مستندات کامل سیستم | [ReadTheDocs](https://autoprojectmanagement.readthedocs.io) |
-| **مرجع API** | مستندات دقیق API | [API Docs](https://autoprojectmanagement.readthedocs.io/api) |
-| **آموزش‌های ویدیویی** | راهنماهای گام به گام ویدیویی | [کانال یوتیوب](https://youtube.com/autoprojectmanagement) |
-| **انجمن جامعه** | دریافت کمک از جامعه | [Discord](https://discord.gg/autoprojectmanagement) |
-| **مخزن گیت‌هاب** | کد منبع و issues | [GitHub](https://github.com/autoprojectmanagement/autoprojectmanagement) |
+| منبع                 | توضیحات                      | لینک                                                                     |
+| -------------------- | ---------------------------- | ------------------------------------------------------------------------ |
+| **مستندات کامل**     | مستندات کامل سیستم           | [ReadTheDocs](https://autoprojectmanagement.readthedocs.io)              |
+| **مرجع API**         | مستندات دقیق API             | [API Docs](https://autoprojectmanagement.readthedocs.io/api)             |
+| **آموزش‌های ویدیویی** | راهنماهای گام به گام ویدیویی | [کانال یوتیوب](https://youtube.com/autoprojectmanagement)                |
+| **انجمن جامعه**      | دریافت کمک از جامعه          | [Discord](https://discord.gg/autoprojectmanagement)                      |
+| **مخزن گیت‌هاب**      | کد منبع و issues             | [GitHub](https://github.com/autoprojectmanagement/autoprojectmanagement) |
 
 ### مرجع سریع دستورات
 
