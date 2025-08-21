@@ -267,45 +267,12 @@ autoproject config --edit
 
 # مشاهده لاگ‌ها
 autoproject logs --follow
-```
 
-#### حالت تعاملی
-```bash
-# راه‌اندازی CLI تعاملی
-autoproject interactive
-
-# دستورات موجود:
-# - create-project
-# - add-task
-# - view-progress
-# - generate-report
-# - configure-modules
-```
-
-### استفاده از API
-
-#### مثال‌های REST API
-
-```bash
-# راه‌اندازی سرور API
-autoproject api --port 8000
-
-# دریافت وضعیت پروژه
-curl http://localhost:8000/api/v1/projects/status
-
-# افزودن تسک جدید
-curl -X POST http://localhost:8000/api/v1/tasks \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "پیاده‌سازی ویژگی جدید",
-    "description": "افزودن احراز هویت کاربر",
-    "priority": "high",
-    "estimated_hours": 8
-  }'
-
-# دریافت گزارش پیشرفت
-curl http://localhost:8000/api/v1/reports/progress
-```
+# 🆕 دستورات داشبورد
+autoproject dashboard --start    # راه‌اندازی سرور داشبورد
+autoproject dashboard --stop     # توقف سرور داشبورد
+autoproject dashboard --status   # بررسی وضعیت داشبورد
+autoproject dashboard --open     # باز کردن داشبورد در مرورگر
 
 ---
 
