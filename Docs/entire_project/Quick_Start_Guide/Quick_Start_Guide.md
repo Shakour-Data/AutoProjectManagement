@@ -58,30 +58,30 @@ graph TB
         O --> W[File System Storage]
         P --> X[Analytics Engine]
         Q --> Y[Markdown/PDF Reports]
-### Option 2: From Source
-
-```bash
-# Clone repository
-git clone https://github.com/autoprojectmanagement/autoprojectmanagement.git
-cd autoprojectmanagement
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Install in development mode
-pip install -e .
+        R --> Z[Git Repository]
+        S --> AA[Task Scheduler]
+        T --> AB[Workflow Orchestrator]
+    end
+    
+    subgraph "External Integrations"
+        V --> AC[GitHub Ecosystem]
+        Z --> AD[Version Control]
+        Y --> AE[Documentation System]
+        AA --> AF[Calendar Systems]
+    end
+    
+    subgraph "Monitoring & Observability"
+        AG[Prometheus Metrics] --> AH[Grafana Dashboards]
+        AI[ELK Stack] --> AJ[Log Analytics]
+        AK[Health Checks] --> AL[Alert System]
+    end
 ```
 
-### Option 3: Docker Installation
+### System Statistics & Capabilities
 
-```bash
-# Pull Docker image
-docker pull autoprojectmanagement/autoprojectmanagement:latest
-
-# Run container
-docker run -v $(pwd):/workspace autoprojectmanagement/autoprojectmanagement
-```
-
+| Category | Metric | Value | Description |
+|----------|--------|-------|-------------|
+| **Core System** | Total Modules | 9 Core + 15 Sub-modules | Comprehensive coverage |
 ---
 
 ## 🎯 First Project Setup
