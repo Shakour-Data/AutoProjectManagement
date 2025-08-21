@@ -1255,3 +1255,109 @@ GET /api/v1/dashboard/overview
 
 # Get real-time metrics
 GET /api/v1/dashboard/metrics
+# Response: Current project metrics and performance indicators
+
+# Get active alerts
+GET /api/v1/dashboard/alerts
+# Response: List of active alerts and warnings
+
+# Get project health
+GET /api/v1/dashboard/health
+# Response: Project health score and component status
+
+# Get team performance
+GET /api/v1/dashboard/team-performance
+# Response: Team performance metrics and individual contributions
+
+# Real-time data stream
+GET /api/v1/dashboard/stream
+# Response: Server-sent events stream of real-time updates
+
+# Customize dashboard layout
+POST /api/v1/dashboard/layout
+# Body: Layout configuration JSON
+# Response: Layout confirmation
+
+# Get dashboard configuration
+GET /api/v1/dashboard/config
+# Response: Current dashboard configuration
+
+# Update dashboard settings
+PUT /api/v1/dashboard/config
+# Body: Updated configuration JSON
+# Response: Update confirmation
+```
+
+### API Authentication & Security
+
+#### Authentication Methods
+```json
+{
+  "authentication": {
+    "methods": ["api_key", "jwt", "oauth2"],
+    "api_key": {
+      "header": "X-API-Key",
+      "env_var": "AUTO_API_KEY",
+      "rotation_days": 90
+    },
+    "jwt": {
+      "issuer": "autoprojectmanagement",
+      "audience": "api-clients",
+      "expiration_hours": 24
+    },
+    "rate_limiting": {
+      "requests_per_minute": 100,
+      "burst_capacity": 50,
+      "ip_whitelist": ["192.168.1.0/24"]
+    }
+  }
+}
+```
+
+#### API Response Format
+```json
+{
+  "success": true,
+  "data": {
+    // Endpoint-specific data
+  },
+  "metadata": {
+    "timestamp": "2024-08-14T10:30:00Z",
+    "version": "1.0.0",
+    "request_id": "req_123456789"
+  },
+  "pagination": {
+    "total": 100,
+    "page": 1,
+    "per_page": 20,
+    "total_pages": 5
+  }
+}
+```
+
+### WebSocket API for Real-time Updates
+
+```javascript
+// Connect to WebSocket
+const ws = new WebSocket('ws://localhost:8000/ws/dashboard');
+
+// Handle incoming messages
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  console.log('Real-time update:', data);
+  
+  // Update UI based on message type
+  switch(data.type) {
+    case 'metrics_update':
+      updateMetrics(data.payload);
+      break;
+    case 'alert_triggered':
+      showAlert(data.payload);
+      break;
+    case 'progress_update':
+      updateProgress(data.payload);
+      break;
+  }
+};
+
+// Subscribe to specific events
