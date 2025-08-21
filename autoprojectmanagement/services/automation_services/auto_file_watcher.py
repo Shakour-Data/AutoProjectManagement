@@ -21,8 +21,25 @@ from threading import Timer
 from datetime import datetime, timedelta
 import subprocess
 
-# Import the auto-commit service
-from autoprojectmanagement.services.automation_services.auto_commit import UnifiedAutoCommit
+# Handle import for both standalone script and package usage
+try:
+    # Try the normal package import first
+    from autoprojectmanagement.services.automation_services.auto_commit import UnifiedAutoCommit
+except ImportError:
+    # If that fails, we're probably running as a standalone script
+    # Add the project root to sys.path to enable package imports
+    current_dir = Path(__file__).resolve().parent
+    project_root = current_dir.parent.parent.parent  # Go up 3 levels to reach autoprojectmanagement root
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+    
+    # Try the import again
+    try:
+        from autoprojectmanagement.services.automation_services.auto_commit import UnifiedAutoCommit
+    except ImportError as e:
+        logging.error(f"Failed to import UnifiedAutoCommit: {e}")
+        logging.error("Please ensure you're running from the project root or the package is installed")
+        sys.exit(1)
 
 # Configure logging
 logging.basicConfig(
@@ -68,7 +85,7 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
         # Define directories to exclude
         self.excluded_dirs = {
             '.git', '__pycache__', 'node_modules', '.auto_project', 'venv', 'env',
-            '.venv', '.env', 'dist', 'build', '.pytest_cache', '.mypy_cache'
+            '.venv', '.env', 'dist', 'build', '.pytest_cache', '.mypy_cache', 'backups'
         }
         
         logger.info(f"Initialized AutoCommitFileWatcher for {self.project_path}")
