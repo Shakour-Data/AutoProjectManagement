@@ -605,6 +605,10 @@ sequenceDiagram
 
 ```mermaid
 graph LR
+    A[ایجاد دایرکتوری پروژه] --> B[مقداردهی اولیه گیت]
+    B --> C[نصب AutoProjectManagement]
+    C --> D[اجرای autoproject init]
+    D --> E[تنظیم تنظیمات]
 
 #### معیارهای کلیدی عملکرد (KPI) در داشبورد
 
