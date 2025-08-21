@@ -131,3 +131,11 @@ project_management/PM_Backups/
 # Large backup files
 backups/*.zip
 backups/backup_*.zip
+
+# Sensitive files - GitHub tokens and credentials
+.git-credentials
+important
+*.token
+*.key
+secrets/
+credentials/
