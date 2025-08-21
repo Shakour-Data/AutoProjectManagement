@@ -333,52 +333,52 @@ sequenceDiagram
     FileSystem-->>AutoRunner: Structure created
     AutoRunner-->>CLI: Initialization complete
     CLI-->>User: Project ready with ID: project_123
-        K --> S[Resource Optimizer]
-        L --> T[Workflow Engine]
-    end
-    
-    subgraph "External Integrations"
-        N --> U[GitHub API]
-        R --> V[Git Repository]
-        Q --> W[Markdown Reports]
-    end
 ```
 
-### Data Flow
+### Step 1: Initialize Your Project
+
+```bash
+# Create new project directory
+mkdir my-first-project && cd my-first-project
+
+# Initialize git repository (if not already)
+git init
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
+
+# Initialize AutoProjectManagement
+autoproject init --name "My First Project" --description "Learning AutoProjectManagement"
+
+# Alternative: Initialize with specific template
+autoproject init --name "WebApp" --template "python-web" --verbose
+```
+
+### Step 2: Project Structure Analysis
+
+After initialization, your project will have this comprehensive structure:
 
 ```mermaid
-sequenceDiagram
-    participant User
-    participant CLI
-    participant AutoRunner
-    participant PMS as ProjectManagementSystem
-    participant Modules
-    participant Storage
+graph TD
+    A[my-first-project/] --> B[.auto_project/]
+    A --> C[.git/]
+    A --> D[src/]
+    A --> E[docs/]
+    A --> F[tests/]
+    A --> G[README.md]
+    A --> H[requirements.txt]
     
-    User->>CLI: Start project
-    CLI->>AutoRunner: Initialize
-    AutoRunner->>PMS: Load configuration
-    PMS->>Storage: Load project data
+    B --> I[config/]
+    B --> J[data/]
+    B --> K[logs/]
+    B --> L[reports/]
+    B --> M[backups/]
+    B --> N[cache/]
     
-    loop Continuous Monitoring
-        AutoRunner->>Modules: Analyze changes
-        Modules->>Storage: Update data
-        Storage-->>AutoRunner: Return updates
-        AutoRunner->>Storage: Generate reports
-    end
+    I --> O[auto_config.json]
+    I --> P[module_configs/]
+    I --> Q[environment.env]
     
-    AutoRunner-->>CLI: Status updates
-    CLI-->>User: Display progress
-```
-
-### Key Components Explained
-
-#### 1. AutoRunner Engine
-- **Purpose**: Continuous monitoring and automation
-- **Frequency**: Every 5 minutes (configurable)
-- **Actions**: File scanning, progress calculation, auto-commit, report generation
-
-#### 2. Project Management System
+    J --> R[projects.json]
 - **Purpose**: Central orchestrator for all project operations
 - **Features**: Task management, resource allocation, progress tracking
 - **Integration**: Connects all modules and services
