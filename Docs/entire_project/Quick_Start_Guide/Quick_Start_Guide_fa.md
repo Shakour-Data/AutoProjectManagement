@@ -121,3 +121,41 @@ graph TD
     G --> M[tasks.json]
     I --> N[daily/]
     I --> O[weekly/]
+```
+
+### مرحله 3: پیکربندی پایه
+
+اولین پیکربندی پروژه خود را ایجاد کنید:
+
+```json
+// .auto_project/config/auto_config.json
+{
+  "project": {
+    "name": "اولین پروژه من با مدیریت خودکار",
+    "description": "یادگیری AutoProjectManagement",
+    "version": "1.0.0",
+    "team_size": 1,
+    "start_date": "2024-08-14",
+    "target_date": "2024-09-14"
+  },
+  "automation": {
+    "auto_commit": true,
+    "commit_threshold": 5,
+    "check_interval": 300,
+    "generate_reports": true
+  },
+  "modules": {
+    "enabled": ["all"]
+  }
+}
+```
+
+---
+
+## ⚙️ پیکربندی
+
+### نمای کلی پیکربندی
+
+```mermaid
+graph LR
+    A[فایل‌های پیکربندی] --> B[تنظیمات سیستم]
