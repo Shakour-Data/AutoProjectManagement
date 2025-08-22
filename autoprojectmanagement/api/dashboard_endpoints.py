@@ -160,6 +160,26 @@ class WebSocketConnectionManager:
         logger.debug(f"Subscribing to event types: {event_types}")
         
         # Clear existing subscriptions first
+        for event_type in list(connection.subscriptions):
+            event_service.unsubscribe(connection_id, event_type)
+        
+        # Add new subscriptions
+        for event_type_str in event_types:
+            try:
+                event_type = EventType(event_type_str)
+                event_service.subscribe(connection_id, event_type)
+                logger.debug(f"Subscribed to {event_type}")
+            except ValueError:
+                logger.warning(f"Invalid event type: {event_type_str}")
+        
+        # Set project filter
+        project_id = subscription_request.get('project_id')
+        event_service.set_project_filter(connection_id, project_id)
+        
+        # Handle last event ID for reconnection support
+        last_event_id = subscription_request.get('last_event_id')
+        if last_event_id:
+            event_service.set_last_event_id(connection_id, last_event_id)
 
 # Global connection manager
 websocket_manager = WebSocketConnectionManager()
