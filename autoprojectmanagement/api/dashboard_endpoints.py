@@ -84,31 +84,7 @@ class DashboardLayout(BaseModel):
     refresh_rate: int = Field(3000, description="Refresh rate in milliseconds")
     theme: str = Field("light", description="Theme (light, dark)")
 
-# WebSocket connection manager
-class ConnectionManager:
-    def __init__(self):
-        self.active_connections: List[WebSocket] = []
-
-    async def connect(self, websocket: WebSocket):
-        await websocket.accept()
-        self.active_connections.append(websocket)
-        logger.info(f"New dashboard connection. Total connections: {len(self.active_connections)}")
-
-    def disconnect(self, websocket: WebSocket):
-        self.active_connections.remove(websocket)
-        logger.info(f"Dashboard connection closed. Total connections: {len(self.active_connections)}")
-
-    async def broadcast(self, message: Dict[str, Any]):
-        """Broadcast message to all connected clients."""
-        for connection in self.active_connections:
-            try:
-                await connection.send_json(message)
-            except Exception as e:
-                logger.error(f"Error broadcasting message: {e}")
-                self.disconnect(connection)
-
-# Global connection manager
-manager = ConnectionManager()
+class WebSocketSubscriptionRequest(BaseModel):
 
 # Utility functions (to be implemented in separate modules)
 def calculate_health_score(status_data: Dict[str, Any]) -> float:
