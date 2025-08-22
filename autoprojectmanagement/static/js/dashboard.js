@@ -324,3 +324,53 @@ class Dashboard {
         
         // Update metrics if available
         if (data.metrics) {
+            this.updateCharts({ metrics: data.metrics, trends: data.trends || {} });
+        }
+        
+        // Update alerts if available
+        if (data.alerts) {
+            this.updateAlerts(data.alerts);
+        }
+        
+        this.updateLastUpdated();
+    }
+
+    highlightUpdates() {
+        const elements = document.querySelectorAll('.stat-value, .score-value');
+        elements.forEach(el => {
+            el.classList.add('highlight');
+            setTimeout(() => el.classList.remove('highlight'), 1000);
+        });
+    }
+
+    updateConnectionStatus(connected) {
+        const statusElement = document.getElementById('connectionStatus');
+        statusElement.textContent = connected ? 'Connected' : 'Disconnected';
+        statusElement.className = connected ? 'connected' : 'disconnected';
+    }
+
+    updateRefreshRate() {
+        // In a real implementation, this would update the WebSocket refresh rate
+        console.log('Refresh rate updated to:', this.refreshRate);
+    }
+
+    showLoading(show) {
+        document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none';
+    }
+
+    showError(message) {
+        // Simple error display - could be enhanced with a proper notification system
+        console.error('Dashboard error:', message);
+        alert(`Error: ${message}`);
+    }
+}
+
+// Initialize dashboard when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.dashboard = new Dashboard();
+});
+
+// Export for testing
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Dashboard;
+}
