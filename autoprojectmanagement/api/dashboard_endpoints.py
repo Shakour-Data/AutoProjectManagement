@@ -157,21 +157,21 @@ def get_alerts(project_id: Optional[str], severity: Optional[str], resolved: boo
             severity="warning",
             message="Progress slowing down in sprint",
             timestamp=datetime.now(),
-    timeframe: str = Query("24h", description="Timeframe for metrics (1h, 24h, 7d, 30d)")
-) -> DashboardMetrics:
-    """
-    Get detailed metrics and trends for dashboard visualization.
-    
-    Provides comprehensive metrics data for charts and graphs.
-    """
-    try:
-        metrics_data = get_metrics_data(project_id, timeframe)
-        trends_data = get_trends_data(project_id, timeframe)
-        
-        return DashboardMetrics(
-            timestamp=datetime.now(),
-            metrics=metrics_data,
-            trends=trends_data
+            project_id=project_id or "default",
+            resolved=False
+        )
+    ]
+
+def get_health_data(project_id: str) -> Dict[str, Any]:
+    """Get comprehensive health data."""
+    # Placeholder implementation
+    return {
+        "overall_health": 85,
+        "components": {
+            "code_quality": "healthy",
+            "test_coverage": "degraded",
+            "documentation": "healthy",
+            "deployment": "healthy"
         )
         
     except Exception as e:
