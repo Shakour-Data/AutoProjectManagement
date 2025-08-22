@@ -2467,3 +2467,42 @@ autoproject dashboard schedule-report --name "DailyExecutive" \
 - **Email**: Scheduled reports and alerts
 - **Microsoft Teams**: Full integration with Teams environment
 - **JIRA**: Automatic task and status synchronization
+- **GitHub**: Display commit and pull request activities
+
+### Dashboard Access
+
+```bash
+# Start dashboard server
+autoproject dashboard --start --port 3000
+
+# Access via browser
+open http://localhost:3000/dashboard
+
+# Or use built-in command
+autoproject dashboard --open
+
+# Check dashboard status
+autoproject dashboard --status
+
+# Stop dashboard server
+autoproject dashboard --stop
+```
+
+### Professional Dashboard Usage Tips
+
+1. **Second Monitor Installation**: Keep dashboard always open for continuous monitoring
+2. **Full-screen Mode**: Use for review meetings and stakeholder presentations
+3. **Personalized Alerts**: Set for project-specific metrics
+4. **Tool Integration**: For seamless workflow
+5. **Daily Review**: Minimum 5 minutes daily for project status check
+
+---
+
+## 📊 Monitoring & Reporting
+
+### Comprehensive Monitoring Architecture
+
+```mermaid
+graph TB
+    subgraph "Monitoring Ecosystem"
+        A[Monitoring Engine] --> B[Metric Collectors]
