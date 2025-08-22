@@ -274,6 +274,15 @@ class Dashboard {
                 this.isConnected = true;
                 this.updateConnectionStatus(true);
                 console.log('WebSocket connected');
+                
+                // Subscribe to dashboard events
+                this.subscribeToEvents([
+                    'file_change',
+                    'auto_commit',
+                    'progress_update',
+                    'risk_alert',
+                    'dashboard_update'
+                ]);
             };
 
             this.socket.onmessage = (event) => {
@@ -303,14 +312,38 @@ class Dashboard {
         }
     }
 
+    subscribeToEvents(eventTypes) {
+        if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+            this.socket.send(JSON.stringify({
+                type: 'subscribe',
+                event_types: eventTypes,
+                project_id: this.projectId || 'default'
+            }));
+        }
+    }
+
     handleWebSocketMessage(data) {
+        console.log('WebSocket message received:', data);
+        
         switch (data.type) {
-            case 'initial':
-                console.log('WebSocket initialized:', data.message);
+            case 'connection_established':
+                console.log('WebSocket connection established:', data.message);
                 break;
                 
-            case 'update':
-                this.handleRealTimeUpdate(data);
+            case 'subscription_confirmed':
+                console.log('Subscription confirmed:', data.event_types);
+                break;
+                
+            case 'event':
+                this.handleRealTimeEvent(data.event_type, data.data);
+                break;
+                
+            case 'heartbeat':
+                // Keep connection alive, no action needed
+                break;
+                
+            case 'pong':
+                // Response to ping, no action needed
                 break;
                 
             default:
@@ -318,22 +351,60 @@ class Dashboard {
         }
     }
 
-    handleRealTimeUpdate(data) {
-        // Highlight updated elements
-        this.highlightUpdates();
+    handleRealTimeEvent(eventType, eventData) {
+        console.log(`Handling event: ${eventType}`, eventData);
         
-        // Update metrics if available
-        if (data.metrics) {
-            this.updateCharts({ metrics: data.metrics, trends: data.trends || {} });
+        switch (eventType) {
+            case 'file_change':
+                this.handleFileChangeEvent(eventData);
+                break;
+                
+            case 'auto_commit':
+                this.handleAutoCommitEvent(eventData);
+                break;
+                
+            case 'progress_update':
+                this.handleProgressUpdateEvent(eventData);
+                break;
+                
+            case 'risk_alert':
+                this.handleRiskAlertEvent(eventData);
+                break;
+                
+            case 'dashboard_update':
+                this.handleDashboardUpdateEvent(eventData);
+                break;
+                
+            default:
+                console.log('Unknown event type:', eventType);
         }
         
-        // Update alerts if available
-        if (data.alerts) {
-            this.updateAlerts(data.alerts);
-        }
-        
+        // Always update last updated timestamp
         this.updateLastUpdated();
     }
+
+    handleFileChangeEvent(data) {
+        // Update file change counter
+        const fileChangeElement = document.getElementById('fileChanges');
+        if (fileChangeElement) {
+            const currentCount = parseInt(fileChangeElement.textContent) || 0;
+            fileChangeElement.textContent = currentCount + 1;
+            this.highlightElement(fileChangeElement);
+        }
+        
+        // Show notification
+        this.showNotification(`File ${data.change_type}: ${data.file_path}`, 'info');
+    }
+
+    handleAutoCommitEvent(data) {
+        if (data.event === 'start') {
+            this.showNotification('Auto-commit started...', 'info');
+        } else if (data.event === 'result') {
+            const status = data.success ? 'success' : 'warning';
+            const message = data.success ? 
+                `Auto-commit completed successfully (${data.changes_count} changes)` :
+                `Auto-commit completed with warnings (${data.changes_count} changes)`;
+            
 
     highlightUpdates() {
         const elements = document.querySelectorAll('.stat-value, .score-value');
