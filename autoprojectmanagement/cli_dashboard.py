@@ -202,3 +202,46 @@ class DashboardCLI:
                 return False
             
             # Open in browser
+            webbrowser.open(dashboard_url)
+            console.print("[bold green]✅ Dashboard opened in browser![/bold green]")
+            return True
+            
+        except Exception as e:
+            console.print(f"[bold red]❌ Failed to open dashboard: {e}[/bold red]")
+            logger.error(f"Browser open failed: {e}")
+            return False
+    
+    def export_dashboard_data(self, format: str = "json", output_file: Optional[str] = None) -> bool:
+        """
+        Export dashboard data to file.
+        
+        Args:
+            format: Export format (json, csv, markdown)
+            output_file: Output file path
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            console.print(f"[bold blue]💾 Exporting Dashboard Data...[/bold blue]")
+            console.print(f"   Format: [cyan]{format}[/cyan]")
+            
+            # Get data from API
+            endpoints = [
+                ("overview", f"{self.api_base_url}/dashboard/overview?project_id=default"),
+                ("metrics", f"{self.api_base_url}/dashboard/metrics?project_id=default&timeframe=24h"),
+                ("alerts", f"{self.api_base_url}/dashboard/alerts?project_id=default")
+            ]
+            
+            data = {}
+            for name, url in endpoints:
+                try:
+                    response = requests.get(url, timeout=10)
+                    if response.status_code == 200:
+                        data[name] = response.json()
+                    else:
+                        data[name] = {"error": f"Status {response.status_code}"}
+                except Exception as e:
+                    data[name] = {"error": str(e)}
+            
+            # Determine output file
