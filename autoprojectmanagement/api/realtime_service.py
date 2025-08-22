@@ -224,3 +224,15 @@ class EventService:
             "total_connections": total_connections,
             "subscription_counts": subscription_counts,
             "message_queue_size": self.message_queue.qsize(),
+            "uptime_seconds": time.time() - getattr(self, '_start_time', time.time())
+        }
+    
+    def register_event_handler(self, event_type: EventType, handler: Callable):
+        """Register event handler for specific event type."""
+        if event_type not in self.event_handlers:
+            self.event_handlers[event_type] = []
+        self.event_handlers[event_type].append(handler)
+        logger.debug(f"Handler registered for event type: {event_type}")
+    
+    async def trigger_event_handlers(self, event: Event):
+        """Trigger handlers for specific event type."""
