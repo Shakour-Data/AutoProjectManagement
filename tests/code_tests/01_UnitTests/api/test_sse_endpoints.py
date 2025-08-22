@@ -104,3 +104,23 @@ class TestSSEConnectionManager:
         await self.manager.close_connection(connection_id)
         
         assert connection_id not in self.manager.active_connections
+        self.mock_event_service.unregister_connection.assert_called_once_with(connection_id)
+
+    @pytest.mark.asyncio
+    async def test_handle_subscription(self):
+        """Test handling subscription requests"""
+        connection_id = "test-conn-sub"
+        connection = Mock()
+        connection.subscriptions = {EventType.FILE_CHANGE}
+        self.manager.active_connections[connection_id] = connection
+        
+        self.mock_event_service.unsubscribe = AsyncMock()
+        self.mock_event_service.subscribe = AsyncMock()
+        self.mock_event_service.set_project_filter = AsyncMock()
+        
+        result = await self.manager.handle_subscription(
+            connection_id, ["file_change", "auto_commit"], "test-project"
+        )
+        
+        assert result == ["file_change", "auto_commit"]
+        self.mock_event_service.unsubscribe.assert_called_once_with(connection_id, EventType.FILE_CHANGE)
