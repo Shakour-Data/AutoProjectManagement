@@ -67,18 +67,6 @@ This report analyzes the implementation status of dashboard functionality based 
 
 ## 🔄 Partially Implemented Activities
 
-#### 1.1 Web Server Setup
-- [x] Implement WebSocket/SSE for real-time updates (WebSocket and SSE fully implemented)
-
-#### 1.2 Frontend Foundation
-- [x] Set up JavaScript framework (Vanilla JS implemented, not Vue.js/React)
-
-#### 1.3 Real-time Data System
-- [x] Implement WebSocket connection handler (Complete implementation with connection management, subscriptions, and reconnection)
-- [x] Create data streaming service (Complete event service with publishing, broadcasting, and retention)
-- [x] Set up event-driven update system (Full implementation with multiple event types and integrations)
-- [x] Implement client-side data synchronization (Complete JavaScript implementation with real-time UI updates)
-
 #### 4.2 Interactive Features
 - [~] Drag-and-drop widget arrangement (Not implemented)
 - [~] Custom widget configuration (Basic layout config only)
