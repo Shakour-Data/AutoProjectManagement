@@ -186,3 +186,35 @@ select {
 
 /* Widgets Grid */
 .widgets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.widget {
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.widget h3 {
+    padding: 1rem 1.5rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.widget-content {
+    padding: 1.5rem;
+    min-height: 200px;
+}
+
+/* Chart containers */
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Risk Matrix */
