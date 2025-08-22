@@ -342,6 +342,25 @@ class DashboardCLI:
                 )
                 
                 selected_indices = [int(idx.strip()) - 1 for idx in selected.split(",") if idx.strip().isdigit()]
+                widgets = [available_widgets[i] for i in selected_indices if i < len(available_widgets)]
+            
+            if not refresh_rate:
+                refresh_rate = click.prompt(
+                    "Refresh rate (milliseconds)", 
+                    type=int,
+                    default=3000
+                )
+            
+            if not theme:
+                theme = click.prompt(
+                    "Theme", 
+                    type=click.Choice(['light', 'dark']),
+                    default='light'
+                )
+            
+            # Create layout configuration
+            layout_config = {
+                "layout_type": layout_name,
 
 # Click command group for dashboard
 @click.group()
