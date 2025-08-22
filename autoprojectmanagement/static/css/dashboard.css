@@ -89,6 +89,12 @@ body {
     font-size: 1.125rem;
 }
 
+.layout-controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
 .refresh-controls {
     display: flex;
     gap: 0.5rem;
@@ -111,6 +117,33 @@ body {
 
 .btn-primary:hover {
     background: #1d4ed8;
+}
+
+.btn-secondary {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #475569;
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #059669;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
 }
 
 select {
