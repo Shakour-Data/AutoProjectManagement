@@ -124,3 +124,25 @@ class TestSSEConnectionManager:
         
         assert result == ["file_change", "auto_commit"]
         self.mock_event_service.unsubscribe.assert_called_once_with(connection_id, EventType.FILE_CHANGE)
+        self.mock_event_service.subscribe.assert_any_call(connection_id, EventType.FILE_CHANGE)
+        self.mock_event_service.subscribe.assert_any_call(connection_id, EventType.AUTO_COMMIT)
+        self.mock_event_service.set_project_filter.assert_called_once_with(connection_id, "test-project")
+
+class TestSSEEndpoints:
+    """Test class for SSE endpoints"""
+    
+    def setup_method(self):
+        """Setup for each test method"""
+        self.mock_request = Mock()
+        self.mock_sse_manager = Mock()
+        sse_endpoints.sse_manager = self.mock_sse_manager
+    
+    def teardown_method(self):
+        """Cleanup after each test method"""
+        sse_endpoints.sse_manager = sse_endpoints.SSEConnectionManager()
+
+    @pytest.mark.asyncio
+    async def test_sse_endpoint_basic(self):
+        """Test basic SSE endpoint functionality"""
+        mock_connection = Mock()
+        mock_connection.connection_id = "test-conn-111"
