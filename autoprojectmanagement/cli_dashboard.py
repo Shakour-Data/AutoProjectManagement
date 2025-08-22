@@ -661,6 +661,32 @@ class DashboardCLI:
         """Validate cron expression format."""
         import re
         # Basic cron validation: 5 fields separated by spaces
+        pattern = r'^(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)$'
+        if not bool(re.match(pattern, cron_expr)):
+            return False
+        
+        # Additional validation for field ranges
+        fields = cron_expr.split()
+        if len(fields) != 5:
+            return False
+        
+        # Validate minute (0-59)
+        if fields[0] != '*' and not self._validate_cron_field(fields[0], 0, 59):
+            return False
+        
+        # Validate hour (0-23)
+        if fields[1] != '*' and not self._validate_cron_field(fields[1], 0, 23):
+            return False
+        
+        # Validate day of month (1-31)
+        if fields[2] != '*' and not self._validate_cron_field(fields[2], 1, 31):
+            return False
+        
+        # Validate month (1-12)
+        if fields[3] != '*' and not self._validate_cron_field(fields[3], 1, 12):
+            return False
+        
+        # Validate day of week (0-6)
 
 # Click command group for dashboard
 @click.group()
