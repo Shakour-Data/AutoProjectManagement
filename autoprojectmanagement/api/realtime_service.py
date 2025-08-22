@@ -178,6 +178,39 @@ class EventService:
         except Exception as e:
             logger.error(f"Error publishing event: {e}")
     
+    async def get_missed_events(self, last_event_id: Optional[str]) -> List[Event]:
+        """Get events that occurred after the specified event ID."""
+        if not last_event_id:
+            return []
+        
+        missed_events = []
+        found_last_event = False
+        
+        # Search recent events in reverse order (newest first)
+        for event in reversed(self.recent_events):
+            if event.event_id == last_event_id:
+                found_last_event = True
+                break
+            missed_events.append(event)
+        
+        if found_last_event:
+            return list(reversed(missed_events))  # Return in chronological order
+        else:
+            # Last event ID not found, return empty or all recent events
+            logger.warning(f"Last event ID {last_event_id} not found in recent events")
+            return []
+    
+    async def _process_message_queue(self):
+        """Process events from the message queue."""
+        while self.running:
+            try:
+                event = await self.message_queue.get()
+                await self._broadcast_event(event)
+                self.message_queue.task_done()
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"Error processing message queue: {e}")
     
     async def _broadcast_event(self, event: Event):
         """Broadcast event to all subscribed connections."""
