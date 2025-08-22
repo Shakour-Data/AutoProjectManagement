@@ -134,3 +134,55 @@ async def test_sse_functionality():
                                 return True
                             break
                     
+                    return True
+                else:
+                    logger.error(f"❌ SSE endpoint returned status: {response.status}")
+                    return False
+                    
+    except Exception as e:
+        logger.error(f"❌ SSE test failed: {e}")
+        return False
+
+async def test_event_publishing():
+    """Test event publishing functionality."""
+    try:
+        from autoprojectmanagement.api.realtime_service import publish_file_change_event
+        
+        logger.info("Testing event publishing...")
+        
+        # Test publishing file change event
+        await publish_file_change_event(
+            file_path="test_file.py",
+            change_type="modified",
+            project_id="test_project"
+        )
+        
+        logger.info("✅ Event published successfully")
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ Event publishing test failed: {e}")
+        return False
+
+async def test_api_endpoints():
+    """Test API endpoints."""
+    try:
+        logger.info("Testing API endpoints...")
+        
+        # Test health endpoint
+        response = requests.get("http://localhost:8000/api/v1/health")
+        if response.status_code == 200:
+            logger.info("✅ Health endpoint working")
+        else:
+            logger.error(f"❌ Health endpoint failed: {response.status_code}")
+            return False
+        
+        # Test WebSocket stats
+        response = requests.get("http://localhost:8000/api/v1/dashboard/ws/stats")
+        if response.status_code == 200:
+            logger.info("✅ WebSocket stats endpoint working")
+        else:
+            logger.error(f"❌ WebSocket stats endpoint failed: {response.status_code}")
+            return False
+        
+        # Test SSE stats
