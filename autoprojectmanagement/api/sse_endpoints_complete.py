@@ -264,3 +264,4 @@ async def _send_heartbeats(connection: SSEConnection):
             logger.debug(f"Heartbeat sent to SSE connection {connection.connection_id}")
     except asyncio.CancelledError:
         logger.debug(f"Heartbeat task cancelled for connection: {connection.connection_id}")
+    except Exception as e:
