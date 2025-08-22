@@ -369,3 +369,4 @@ class Dashboard {
         try {
             this.showLoading(true);
             
+            // Update positions from current DOM order
