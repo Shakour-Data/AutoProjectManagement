@@ -67,6 +67,29 @@ class Connection:
         self.connection_id = connection_id
         self.connected_at = time.time()
         self.last_activity = time.time()
+        self.subscriptions: Set[EventType] = set()
+        self.project_filter: Optional[str] = None
+        self.last_event_id: Optional[str] = None
+
+    def is_subscribed(self, event_type: EventType) -> bool:
+        """Check if connection is subscribed to event type."""
+        return event_type in self.subscriptions
+
+    def update_activity(self):
+        """Update last activity timestamp."""
+        self.last_activity = time.time()
+
+    def get_connection_info(self) -> Dict[str, Any]:
+        """Get connection information."""
+        return {
+            "connection_id": self.connection_id,
+            "connected_at": self.connected_at,
+            "last_activity": self.last_activity,
+            "subscriptions": [sub.value for sub in self.subscriptions],
+            "project_filter": self.project_filter,
+            "last_event_id": self.last_event_id,
+            "duration_seconds": time.time() - self.connected_at
+        }
 
 class EventService:
     """Centralized event service for real-time communications."""
