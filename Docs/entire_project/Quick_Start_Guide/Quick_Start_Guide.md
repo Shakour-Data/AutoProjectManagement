@@ -2571,3 +2571,31 @@ graph TB
     
     "performance_monitoring": {
       "enabled": true,
+      "cpu_usage": true,
+      "memory_usage": true,
+      "disk_usage": true,
+      "network_usage": true,
+      "thresholds": {
+        "cpu_warning": 80,
+        "cpu_critical": 95,
+        "memory_warning": 85,
+        "memory_critical": 95
+      }
+    },
+    
+    "quality_monitoring": {
+      "enabled": true,
+      "test_coverage": true,
+      "code_quality": true,
+      "security_issues": true,
+      "performance_metrics": true,
+      "thresholds": {
+        "test_coverage_min": 70,
+        "code_quality_min": 80,
+        "security_issues_max": 0
+      }
+    },
+    
+    "🆕 dashboard_monitoring": {
+      "enabled": true,
+      "refresh_rate": 3000,
