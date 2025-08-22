@@ -544,13 +544,8 @@ async def websocket_endpoint(websocket: WebSocket):
 async def get_websocket_stats():
     """Get WebSocket connection statistics."""
     try:
-        stats = event_service.get_connection_stats()
-        return {
-            "websocket_connections": len(websocket_manager.active_connections),
-            "total_connections": stats["total_connections"],
-            "subscription_counts": stats["subscription_counts"],
-            "message_queue_size": stats["message_queue_size"]
-        }
+        stats = websocket_manager.get_stats()
+        return stats
     except Exception as e:
         logger.error(f"Error getting WebSocket stats: {e}")
         raise HTTPException(status_code=500, detail=f"Error getting stats: {str(e)}")
