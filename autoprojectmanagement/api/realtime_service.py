@@ -87,3 +87,23 @@ class EventService:
     
     def __init__(self):
         self.connections: Dict[str, Connection] = {}
+        self.event_handlers: Dict[EventType, List[Callable]] = {}
+        self.message_queue: asyncio.Queue = asyncio.Queue()
+        self.running = False
+        self.connection_counter = 0
+        
+    def generate_connection_id(self) -> str:
+        """Generate unique connection ID."""
+        self.connection_counter += 1
+        return f"conn_{self.connection_counter}_{int(time.time())}"
+    
+    async def start(self):
+        """Start the event service."""
+        if self.running:
+            return
+            
+        self.running = True
+        logger.info("Event service started")
+        
+        # Start background tasks
+        asyncio.create_task(self._cleanup_inactive_connections())
