@@ -2719,3 +2719,787 @@ graph TB
 {
   "alerts": {
     "enabled": true,
+    "default_channels": ["dashboard", "email"],
+    
+    "alert_rules": [
+      {
+        "name": "high_risk_detected",
+        "condition": "risk_score >= 7",
+        "severity": "critical",
+        "channels": ["dashboard", "email", "slack", "sms"],
+        "throttling": "none",
+        "auto_acknowledge": false
+      },
+      {
+        "name": "progress_stalled",
+        "condition": "progress_change == 0 for 24h",
+        "severity": "warning",
+        "channels": ["dashboard", "email"],
+        "throttling": "1h",
+        "auto_acknowledge": true
+      },
+      {
+        "name": "quality_degradation",
+        "condition": "code_quality_drop >= 10%",
+        "severity": "warning",
+        "channels": ["dashboard", "email"],
+        "throttling": "6h",
+        "auto_acknowledge": false
+      },
+      {
+        "name": "milestone_approaching",
+        "condition": "days_until_milestone <= 3",
+        "severity": "info",
+        "channels": ["dashboard", "email"],
+        "throttling": "daily",
+        "auto_acknowledge": true
+      }
+    ],
+    
+    "🆕 dashboard_alerts": {
+      "enabled": true,
+      "visual_indicators": true,
+      "sound_notifications": false,
+      "popup_alerts": true,
+      "acknowledgement_required": true,
+      "escalation_policies": {
+        "unacknowledged_1h": "notify_manager",
+        "unacknowledged_4h": "notify_director",
+        "unacknowledged_24h": "notify_executive"
+      }
+    },
+    
+    "notification_templates": {
+      "email": {
+        "subject": "Alert: {alert_name} - {project_name}",
+        "body": "Project: {project_name}\nSeverity: {severity}\nCondition: {condition}\nTimestamp: {timestamp}\n\nDetails:\n{details}\n\nView Dashboard: {dashboard_url}"
+      },
+      "slack": {
+        "message": "🚨 {severity} Alert: {alert_name}\nProject: {project_name}\n{details}\n<{dashboard_url}|View Dashboard>"
+      },
+      "sms": {
+        "message": "Alert: {alert_name} for {project_name}. Severity: {severity}. Check email for details."
+      }
+    }
+  }
+}
+```
+
+### Monitoring Commands
+
+#### Basic Monitoring Commands
+```bash
+# Start monitoring
+autoproject monitor --start
+
+# Stop monitoring
+autoproject monitor --stop
+
+# Check monitoring status
+autoproject monitor --status
+
+# View monitoring logs
+autoproject monitor --logs --follow
+
+# Force immediate check
+autoproject monitor --check-now
+
+# View current metrics
+autoproject metrics --live
+
+# 🆕 Dashboard monitoring commands
+autoproject dashboard monitor --start
+autoproject dashboard monitor --metrics
+autoproject dashboard monitor --alerts
+autoproject dashboard monitor --trends
+```
+
+#### Reporting Commands
+```bash
+# Generate report
+autoproject report --type daily --format markdown
+autoproject report --type weekly --format html
+autoproject report --type monthly --format pdf
+
+# Generate specific report
+autoproject report --name project_health --format json
+autoproject report --name team_performance --format csv
+
+# 🆕 Dashboard reporting commands
+autoproject dashboard report --generate --type daily
+autoproject dashboard report --snapshot --name "pre-meeting"
+autoproject dashboard report --export --format pdf
+autoproject dashboard report --schedule --type weekly --time "monday 09:00"
+```
+
+#### Alert Management Commands
+```bash
+# View active alerts
+autoproject alerts --list
+
+# Acknowledge alert
+autoproject alerts --acknowledge alert_id
+
+# View alert history
+autoproject alerts --history --days 7
+
+# Test alert configuration
+autoproject alerts --test --rule high_risk_detected
+
+# 🆕 Dashboard alert commands
+autoproject dashboard alerts --list
+autoproject dashboard alerts --acknowledge alert_id
+autoproject dashboard alerts --mute --duration 1h
+autoproject dashboard alerts --escalate alert_id
+```
+
+### Monitoring Best Practices
+
+#### 1. Comprehensive Coverage
+```bash
+# Set up complete monitoring
+autoproject config set monitoring.file_monitoring.enabled true
+autoproject config set monitoring.git_monitoring.enabled true
+autoproject config set monitoring.performance_monitoring.enabled true
+autoproject config set monitoring.quality_monitoring.enabled true
+autoproject config set monitoring.dashboard_monitoring.enabled true
+
+# Apply configuration
+autoproject config --apply
+```
+
+#### 2. Alert Optimization
+```bash
+# Fine-tune alert thresholds
+autoproject config set alerts.alert_rules.0.condition "risk_score >= 8"
+autoproject config set alerts.alert_rules.1.condition "progress_change == 0 for 48h"
+autoproject config set alerts.alert_rules.2.condition "code_quality_drop >= 15%"
+
+# Configure notification channels
+autoproject config set alerts.default_channels "['dashboard', 'email']"
+autoproject config set alerts.alert_rules.0.channels "['dashboard', 'email', 'slack', 'sms']"
+
+# Apply changes
+autoproject config --apply
+```
+
+#### 3. Reporting Strategy
+```bash
+# Set up comprehensive reporting
+autoproject config set reporting.scheduled_reports.0.recipients "['team@company.com']"
+autoproject config set reporting.scheduled_reports.1.recipients "['management@company.com', 'team@company.com']"
+autoproject config set reporting.scheduled_reports.2.recipients "['executives@company.com']"
+
+# Configure dashboard reporting
+autoproject config set reporting.dashboard_reports.auto_snapshots true
+autoproject config set reporting.dashboard_reports.snapshot_frequency "daily"
+autoproject config set reporting.dashboard_reports.export_formats "['png', 'pdf', 'json']"
+
+# Apply reporting configuration
+autoproject config --apply
+```
+
+#### 4. Performance Optimization
+```bash
+# Optimize monitoring performance
+autoproject config set monitoring.check_interval 600  # 10 minutes
+autoproject config set monitoring.real_time false
+autoproject config set monitoring.file_monitoring.max_depth 3
+autoproject config set monitoring.git_monitoring.analysis_depth 25
+
+# Optimize dashboard performance
+autoproject config set monitoring.dashboard_monitoring.refresh_rate 5000  # 5 seconds
+autoproject config set monitoring.dashboard_monitoring.retention_period "14d"
+
+# Apply performance settings
+autoproject config --apply
+```
+
+### Integration with External Monitoring Tools
+
+#### Prometheus Integration
+```yaml
+# prometheus.yml
+scrape_configs:
+  - job_name: 'autoprojectmanagement'
+    static_configs:
+      - targets: ['localhost:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+
+  - job_name: 'autoprojectmanagement-dashboard'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 5s
+```
+
+#### Grafana Dashboard Configuration
+```json
+{
+  "dashboard": {
+    "title": "AutoProjectManagement - Comprehensive Monitoring",
+    "panels": [
+      {
+        "title": "Project Health Score",
+        "type": "gauge",
+        "targets": [{"expr": "autoproject_health_score"}],
+        "thresholds": {"steps": [{"value": 70, "color": "red"}, {"value": 85, "color": "yellow"}, {"value": 95, "color": "green"}]}
+      },
+      {
+        "title": "Team Velocity Trend",
+        "type": "graph",
+        "targets": [{"expr": "rate(autoproject_velocity_points[7d])"}],
+        "fill": 1,
+        "lines": true
+      },
+      {
+        "title": "Active Risks",
+        "type": "stat",
+        "targets": [{"expr": "autoproject_active_risks"}],
+        "colorMode": "value",
+        "thresholds": {"steps": [{"value": 0, "color": "green"}, {"value": 3, "color": "yellow"}, {"value": 5, "color": "red"}]}
+      }
+    ],
+    "refresh": "5s",
+    "time": {"from": "now-7d", "to": "now"}
+  }
+}
+```
+
+#### ELK Stack Integration
+```yaml
+# logstash.conf
+input {
+  file {
+    path => "/var/log/autoprojectmanagement/*.log"
+    type => "autoproject"
+  }
+}
+
+filter {
+  if [type] == "autoproject" {
+    grok {
+      match => { "message" => "%{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:loglevel} %{GREEDYDATA:message}" }
+    }
+    date {
+      match => [ "timestamp", "ISO8601" ]
+    }
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["localhost:9200"]
+    index => "autoproject-logs-%{+YYYY.MM.dd}"
+  }
+}
+```
+
+### Monitoring Metrics and KPIs
+
+#### Key Metrics to Monitor
+```bash
+# Project Health Metrics
+autoproject metrics --type health
+# Output: Overall health score, component status, trend
+
+# Progress Metrics
+autoproject metrics --type progress  
+# Output: Task completion, velocity, burn down, forecasts
+
+# Quality Metrics
+autoproject metrics --type quality
+# Output: Test coverage, code quality, security issues, performance
+
+# Risk Metrics
+autoproject metrics --type risk
+# Output: Active risks, severity scores, mitigation progress
+
+# Team Metrics
+autoproject metrics --type team
+# Output: Productivity, collaboration, capacity utilization
+
+# 🆕 Dashboard-specific Metrics
+autoproject dashboard metrics --overview
+autoproject dashboard metrics --detailed
+autoproject dashboard metrics --custom "team_velocity,risk_score,quality_trend"
+```
+
+#### Metric Export and Analysis
+```bash
+# Export metrics for analysis
+autoproject metrics --export --format json --period 30d > metrics_30d.json
+autoproject metrics --export --format csv --period 7d > metrics_7d.csv
+
+# 🆕 Dashboard metric export
+autoproject dashboard metrics --export --format json --period 14d > dashboard_metrics.json
+autoproject dashboard metrics --export --format csv --period 30d > dashboard_trends.csv
+
+# Analyze metrics trends
+autoproject metrics --analyze --period 90d --output summary.md
+autoproject metrics --trends --metric velocity --window 4sprints
+
+# 🆕 Dashboard analysis
+autoproject dashboard metrics --analyze --period last-quarter
+autoproject dashboard metrics --insights --category efficiency
+```
+
+---
+
+## 🔍 Troubleshooting
+
+### Common Issues and Solutions
+
+#### Issue 1: "Command not found" or Installation Problems
+```bash
+# Solution: Verify installation
+python -c "import autoprojectmanagement; print('Package installed')"
+autoproject --version
+
+# If not found, reinstall:
+pip install autoprojectmanagement
+# or from source:
+pip install -e .
+
+# Check PATH configuration
+echo $PATH
+which autoproject
+
+# Add to PATH if needed
+export PATH=$PATH:~/.local/bin
+```
+
+#### Issue 2: Permission Denied Errors
+```bash
+# Solution: Fix permissions
+chmod +x ~/.local/bin/autoproject
+
+# Or use virtual environment
+python -m venv venv
+source venv/bin/activate
+pip install autoprojectmanagement
+
+# Check file permissions
+ls -la ~/.local/bin/autoproject
+```
+
+#### Issue 3: Git Repository Not Found
+```bash
+# Solution: Initialize git
+git init
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
+
+# Verify git configuration
+git config --list
+
+# Check if in git repository
+git status
+```
+
+#### Issue 4: Configuration Errors
+```bash
+# Solution: Validate configuration
+autoproject config --validate
+
+# Reset to defaults
+autoproject config --reset
+
+# Edit configuration
+autoproject config --edit
+
+# Check configuration files
+cat .auto_project/config/auto_config.json | jq .
+```
+
+#### Issue 5: Module Loading Failures
+```bash
+# Solution: Check module status
+autoproject modules --list
+autoproject modules --status
+
+# Enable/disable modules
+autoproject modules --enable communication_risk
+autoproject modules --disable quality_management
+
+# Check module dependencies
+pip list | grep -E "(requests|pygithub|click)"
+```
+
+#### Issue 6: Dashboard Not Starting
+```bash
+# Solution: Check dashboard status
+autoproject dashboard --status
+
+# Start dashboard manually
+autoproject dashboard --start --port 3000
+
+# Check port availability
+netstat -tulpn | grep :3000
+lsof -i :3000
+
+# Check dashboard logs
+autoproject dashboard --logs
+
+# Verify dashboard configuration
+autoproject config show --section dashboard
+```
+
+### Debug Mode and Advanced Troubleshooting
+
+#### Enabling Debug Mode
+```bash
+# Enable debug logging
+export AUTO_DEBUG=1
+export AUTO_LOG_LEVEL=DEBUG
+
+# Or use command line
+autoproject --debug --log-level DEBUG
+
+# Start with verbose output
+autoproject start --verbose
+
+# 🆕 Dashboard debug mode
+autoproject dashboard --start --debug --port 3000
+```
+
+#### Comprehensive Diagnostic Commands
+```bash
+# Run system diagnostics
+autoproject diagnose --full
+
+# Check system health
+autoproject system-health --detailed
+
+# Test all components
+autoproject test --all
+
+# 🆕 Dashboard diagnostics
+autoproject dashboard diagnose --full
+autoproject dashboard test --connectivity
+autoproject dashboard test --performance
+```
+
+#### Log Analysis Commands
+```bash
+# View logs in real-time
+autoproject logs --follow --level DEBUG
+
+# Filter logs by component
+autoproject logs --grep "error" --level ERROR
+autoproject logs --grep "dashboard" --level INFO
+
+# Export logs for analysis
+autoproject logs --export --format json > logs_debug.json
+autoproject logs --export --format text > logs_full.txt
+
+# 🆕 Dashboard-specific logs
+autoproject dashboard logs --follow
+autoproject dashboard logs --grep "error"
+autoproject dashboard logs --export --format json > dashboard_logs.json
+```
+
+### Common Error Messages and Solutions
+
+#### Error: "Configuration validation failed"
+```bash
+# Solution: Validate and fix configuration
+autoproject config --validate --fix
+
+# View validation errors
+autoproject config --validate --verbose
+
+# Check specific section
+autoproject config validate --section project
+autoproject config validate --section automation
+```
+
+#### Error: "Module initialization failed"
+```bash
+# Solution: Check module requirements
+autoproject modules --requirements
+
+# Reinstall module dependencies
+pip install -r requirements.txt
+
+# Check module compatibility
+autoproject modules --compatibility
+
+# Reset module state
+autoproject modules --reset communication_risk
+```
+
+#### Error: "Git operation failed"
+```bash
+# Solution: Verify git configuration
+git config --global user.name
+git config --global user.email
+
+# Check git authentication
+git remote -v
+git fetch --dry-run
+
+# Test git operations
+git status
+git log --oneline -5
+```
+
+#### Error: "Dashboard service unavailable"
+```bash
+# Solution: Check dashboard service
+autoproject dashboard --status --verbose
+
+# Restart dashboard service
+autoproject dashboard --stop
+autoproject dashboard --start
+
+# Check firewall and ports
+sudo ufw status
+sudo netstat -tulpn | grep :3000
+
+# Test dashboard connectivity
+curl -v http://localhost:3000/health
+```
+
+### Performance Troubleshooting
+
+#### Identifying Performance Bottlenecks
+```bash
+# Monitor system resources
+autoproject monitor --performance --interval 5
+
+# Check CPU and memory usage
+top -p $(pgrep -f autoproject)
+htop
+
+# Profile specific operations
+autoproject --profile start
+
+# 🆕 Dashboard performance testing
+autoproject dashboard --profile --start
+autoproject dashboard metrics --performance
+```
+
+#### Memory Leak Detection
+```bash
+# Monitor memory usage over time
+autoproject monitor --memory --period 1h
+
+# Generate memory report
+autoproject report --type memory --format json
+
+# Check for memory leaks
+autoproject diagnose --memory
+
+# 🆕 Dashboard memory monitoring
+autoproject dashboard monitor --memory
+autoproject dashboard report --memory-usage
+```
+
+#### Database and Storage Issues
+```bash
+# Check database health
+autoproject database --health
+
+# Verify data integrity
+autoproject database --integrity-check
+
+# Backup and restore
+autoproject database --backup
+autoproject database --restore backup_file.json
+
+# 🆕 Dashboard data issues
+autoproject dashboard database --health
+autoproject dashboard database --verify
+```
+
+### Network and Connectivity Issues
+
+#### Testing Network Connectivity
+```bash
+# Test API connectivity
+autoproject api --test
+
+# Test external integrations
+autoproject integrations --test --all
+
+# Check network latency
+autoproject network --test
+
+# 🆕 Dashboard network testing
+autoproject dashboard network --test
+autoproject dashboard integrations --verify
+```
+
+#### Firewall and Port Configuration
+```bash
+# Check open ports
+autoproject network --ports
+
+# Test specific ports
+autoproject network --test-port 8000
+autoproject network --test-port 3000
+
+# Configure firewall rules
+autoproject network --configure-firewall
+
+# 🆕 Dashboard port configuration
+autoproject dashboard network --ports
+autoproject dashboard network --configure
+```
+
+### Recovery Procedures
+
+#### System Recovery Commands
+```bash
+# Full system reset
+autoproject system --reset --confirm
+
+# Recover from backup
+autoproject system --recover --backup-file backup.json
+
+# Repair installation
+autoproject system --repair
+
+# 🆕 Dashboard recovery
+autoproject dashboard system --reset
+autoproject dashboard system --recover
+```
+
+#### Data Recovery and Repair
+```bash
+# Repair corrupted data
+autoproject database --repair
+
+# Restore from snapshot
+autoproject database --restore --snapshot snapshot.json
+
+# Rebuild indexes
+autoproject database --rebuild-indexes
+
+# 🆕 Dashboard data recovery
+autoproject dashboard database --repair
+autoproject dashboard database --restore
+```
+
+### Getting Help and Support
+
+#### Community Resources
+```bash
+# Access help documentation
+autoproject --help
+autoproject help --full
+
+# Search documentation
+autoproject docs --search "troubleshooting"
+
+# 🆕 Dashboard help
+autoproject dashboard --help
+autoproject dashboard docs --search "issues"
+```
+
+#### Support Channels
+```bash
+# Generate support bundle
+autoproject support --generate-bundle
+
+# Contact support
+autoproject support --contact
+
+# Check community forums
+autoproject support --forums
+
+# 🆕 Dashboard support
+autoproject dashboard support --bundle
+autoproject dashboard support --contact
+```
+
+---
+
+## ⚡ Performance Optimization
+
+### Performance Optimization Architecture
+
+```mermaid
+graph TB
+    subgraph "Performance Optimization System"
+        A[Performance Monitor] --> B[Metric Collector]
+        A --> C[Analysis Engine]
+        A --> D[Optimization Recommender]
+        A --> E[🆕 Dashboard Integration]
+        
+        B --> F[Resource Usage]
+        B --> G[Response Times]
+        B --> H[Throughput Metrics]
+        B --> I[Latency Measurements]
+        
+        C --> J[Bottleneck Identification]
+        C --> K[Trend Analysis]
+        C --> L[Anomaly Detection]
+        
+        D --> M[Configuration Tweaks]
+        D --> N[Resource Allocation]
+        D --> O[Architecture Changes]
+        
+        E --> P[Real-time Performance Dashboard]
+        E --> Q[Historical Trends]
+        E --> R[Optimization Recommendations]
+    end
+    
+    subgraph "Optimization Targets"
+        S[CPU Usage] --> T[Load Balancing]
+        U[Memory Usage] --> V[Garbage Collection]
+        W[Disk I/O] --> X[Caching Strategy]
+        Y[Network Latency] --> Z[Connection Pooling]
+    end
+    
+    subgraph "Optimization Results"
+        AA[🆕 Performance Dashboard] --> AB[Live Metrics]
+        AC[Optimization Reports] --> AD[Actionable Insights]
+        AE[System Alerts] --> AF[Proactive Measures]
+        AG[Capacity Planning] --> AH[Future Scaling]
+    end
+```
+
+### Performance Configuration
+
+#### Comprehensive Performance Settings
+```json
+{
+  "performance": {
+    "enabled": true,
+    "monitoring_interval": 60,
+    
+    "resource_optimization": {
+      "enabled": true,
+      "max_memory_mb": 1024,
+      "max_cpu_percent": 80,
+      "max_threads": 50,
+      "connection_pool_size": 20,
+      "cache_size_mb": 256
+    },
+    
+    "caching_strategy": {
+      "enabled": true,
+      "memory_cache": true,
+      "disk_cache": true,
+      "cache_ttl": 300,
+      "cache_max_size": 1000,
+      "cache_compression": true
+    },
+    
+    "database_optimization": {
+      "enabled": true,
+      "batch_size": 100,
+      "write_buffer_size": 16384,
+      "read_ahead_size": 8192,
+      "indexing_strategy": "auto",
+      "compression_level": 6
+    },
+    
+    "network_optimization": {
+      "enabled": true,
+      "keepalive_enabled": true,
+      "keepalive_interval": 60,
+      "timeout_seconds": 30,
