@@ -236,3 +236,42 @@ canvas {
 .risk-high { background: #fee2e2; color: #b91c1c; }
 
 /* Alerts List */
+.alerts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.alert-item {
+    padding: 0.75rem;
+    border-radius: 6px;
+    border-left: 4px solid;
+    background: var(--bg-primary);
+}
+
+.alert-info { border-left-color: var(--info-color); }
+.alert-warning { border-left-color: var(--warning-color); }
+.alert-error { border-left-color: var(--danger-color); }
+.alert-critical { border-left-color: #dc2626; }
+
+.alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.alert-type {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.alert-severity {
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 12px;
+    background: var(--border-color);
+}
+
+.alert-message {
+    font-size: 0.875rem;
