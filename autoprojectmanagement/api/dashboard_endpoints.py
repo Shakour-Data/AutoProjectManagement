@@ -234,15 +234,6 @@ def get_performance_data(project_id: str) -> Dict[str, Any]:
         }
     }
 
-def get_realtime_update() -> Dict[str, Any]:
-    """Get real-time update data for WebSocket."""
-    # Placeholder implementation
-    return {
-        "type": "update",
-        "timestamp": datetime.now().isoformat(),
-        "metrics": get_metrics_data("default", "1h"),
-        "alerts": get_alerts(None, None, False)
-    }
 
 def save_layout_config(layout_config: Dict[str, Any]) -> Dict[str, Any]:
     """Save layout configuration."""
