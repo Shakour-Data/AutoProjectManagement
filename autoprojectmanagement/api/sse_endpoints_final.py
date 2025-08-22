@@ -240,3 +240,49 @@ async def sse_endpoint(
                 "Cache-Control": "no-cache",
                 "Connection": "keep-alive",
                 "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": "true",
+                "X-Accel-Buffering": "no"  # Disable buffering for nginx
+            }
+        )
+        
+    except Exception as e:
+        logger.error(f"Error creating SSE connection: {e}")
+        raise HTTPException(status_code=500, detail=f"Error creating SSE stream: {str(e)}")
+
+async def _send_heartbeats(connection: SSEConnection):
+    """Send heartbeat messages to keep SSE connection alive."""
+    try:
+        while True:
+            await asyncio.sleep(30)  # Send heartbeat every 30 seconds
+            heartbeat_message = {
+                "type": "heartbeat",
+                "timestamp": datetime.now().isoformat(),
+                "message": "SSE connection heartbeat",
+                "connection_id": connection.connection_id
+            }
+            await connection.send(heartbeat_message)
+            logger.debug(f"Heartbeat sent to SSE connection {connection.connection_id}")
+    except asyncio.CancelledError:
+        logger.debug(f"Heartbeat task cancelled for connection: {connection.connection_id}")
+    except Exception as e:
+        logger.error(f"Error in heartbeat task for {connection.connection_id}: {e}")
+
+@router.post("/subscribe")
+async def sse_subscribe(
+    subscription: SSESubscriptionRequest,
+    connection_id: str = Query(..., description="SSE connection ID")
+):
+    """
+    Update SSE subscription for an existing connection.
+    
+    Allows dynamic subscription changes without reconnecting.
+    """
+    try:
+        subscribed_types = await sse_manager.handle_subscription(
+            connection_id, subscription.event_types, subscription.project_id
+        )
+        
+        return {
+            "message": "SSE subscriptions updated successfully",
+            "connection_id": connection_id,
+            "event_types": subscribed_types,
