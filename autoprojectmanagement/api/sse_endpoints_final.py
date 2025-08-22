@@ -287,3 +287,100 @@ async def sse_subscribe(
             "connection_id": connection_id,
             "event_types": subscribed_types,
             "project_id": subscription.project_id
+        }
+        
+    except Exception as e:
+        logger.error(f"Error updating SSE subscriptions: {e}")
+        raise HTTPException(status_code=400, detail=f"极 updating subscriptions: {str(e)}")
+
+@router.get("/stats")
+async def get_sse_stats():
+    """Get comprehensive SSE connection statistics."""
+    try:
+        stats = event_service.get_connection_stats()
+        sse_stats = {
+            "sse_connections": len(sse_manager.active_connections),
+            "total_connections": stats["total_connections"],
+            "subscription_counts": stats["subscription_counts"],
+            "message_queue_size": stats["message_queue_size"],
+            "uptime_seconds": stats["uptime_seconds"],
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        # Add per-connection details
+        connection_details = []
+        for conn_id, connection in sse_manager.active_connections.items():
+            connection_details.append({
+                "connection_id": conn_id,
+                "connected_at": connection.connected_at,
+                "last_activity": connection.last_activity,
+                "subscriptions": [et.value for et in connection.subscriptions],
+                "project_filter": connection.project_filter
+            })
+        
+        sse_stats["connections"] = connection_details
+        return sse_stats
+        
+    except Exception as e:
+        logger.error(f"Error getting SSE stats: {e}")
+        raise HTTPException(status_code=500, detail=f"Error getting stats: {str(e)}")
+
+# Utility function for testing SSE
+@router.post("/test-event")
+async def test_sse_event(
+    event_type: str = Query(..., description="Event type for test"),
+    project_id: Optional[str] = Query(None, description="Project ID for test")
+):
+    """Send a test event to all SSE subscribers (for development/testing)."""
+    try:
+        from autoprojectmanagement.api.realtime_service import Event, EventType
+        
+        event = Event(
+            type=EventType(event_type),
+            data={
+                "test": True,
+                "message": "Test event from SSE endpoint",
+                "timestamp": time.time(),
+                "project_id": project_id
+            },
+            project_id=project_id
+        )
+        
+        await event_service.publish_event(event)
+        
+        return {
+            "message": f"Test {event_type} event published",
+            "project_id": project_id,
+            "timestamp": datetime.now().isoformat(),
+            "event_id": getattr(event, 'event_id', 'unknown')
+        }
+        
+    except ValueError:
+        raise HTTPException(status_code=400, detail=f"Invalid event type: {event_type}")
+    except Exception as e:
+        logger.error(f"Error publishing test event: {e}")
+        raise HTTPException(status_code=500, detail=f"Error publishing test event: {str(e)}")
+
+@router.get("/connections")
+async def list_sse_connections():
+    """List all active SSE connections with details."""
+    try:
+        connections = []
+        for conn_id, connection in sse_manager.active_connections.items():
+            connections.append({
+                "connection_id": conn_id,
+                "connected_at": datetime.fromtimestamp(connection.connected_at).isoformat(),
+                "last_activity": datetime.fromtimestamp(connection.last_activity).isoformat(),
+                "duration_seconds": time.time() - connection.connected_at,
+                "subscriptions": [et.value for et in connection.subscriptions],
+                "project_filter": connection.project_filter
+            })
+        
+        return {
+            "total_connections": len(connections),
+            "connections": connections,
+            "timestamp": datetime.now().isoformat()
+        }
+    except Exception as e:
+        logger.error(f"Error listing SSE connections: {e}")
+        raise HTTPException(status_code=500, detail=f"Error listing connections: {str(e)}")
