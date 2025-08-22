@@ -94,6 +94,35 @@ class WidgetPosition(BaseModel):
     settings: Dict[str, Any] = Field({}, description="Widget-specific settings")
 
 class DashboardLayout(BaseModel):
+    """Model for dashboard layout configuration."""
+    layout_type: str = Field(..., description="Layout type (standard, minimal, custom)")
+    widgets: List[WidgetPosition] = Field(..., description="List of widget positions")
+    refresh_rate: int = Field(3000, description="Refresh rate in milliseconds")
+    theme: str = Field("light", description="Theme (light, dark)")
+    created_at: datetime = Field(default_factory=datetime.now, description="Creation timestamp")
+    updated_at: datetime = Field(default_factory=datetime.now, description="Last update timestamp")
+    
+    @validator('widgets')
+    def validate_widgets(cls, v):
+        """Validate that widgets are unique and valid."""
+        widget_ids = [widget.widget_id for widget in v]
+        if len(widget_ids) != len(set(widget_ids)):
+            raise ValueError('Widget IDs must be unique')
+        
+        for widget in v:
+            if widget.widget_id not in AVAILABLE_WIDGETS:
+                raise ValueError(f'Invalid widget ID: {widget.widget_id}')
+        
+        return v
+    
+    @validator('refresh_rate')
+    def validate_refresh_rate(cls, v):
+        """Validate refresh rate is within reasonable limits."""
+        if v < 1000:
+            raise ValueError('Refresh rate must be at least 1000ms')
+        if v > 60000:
+            raise ValueError('Refresh rate must be at most 60000ms')
+        return v
 
 class WebSocketSubscriptionRequest(BaseModel):
     """Model for WebSocket subscription requests."""
