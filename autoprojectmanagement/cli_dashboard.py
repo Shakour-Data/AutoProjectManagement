@@ -389,6 +389,28 @@ class DashboardCLI:
             logger.error(f"Create view failed: {e}")
             return False
 
+    def share_dashboard_view(self, layout_name: str, output_format: str = "json") -> bool:
+        """
+        Share dashboard view by generating export files.
+        
+        Args:
+            layout_name: Name of the layout to share
+            output_format: Export format (json, markdown)
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            console.print(f"[bold blue]📤 Sharing Dashboard View: {layout_name}[/bold blue]")
+            
+            # Get layout configuration
+            response = requests.get(
+                f"{self.api_base_url}/dashboard/layout?layout_type={layout_name}",
+                timeout=10
+            )
+            
+            if response.status_code != 200:
+                console.print(f"[bold red]❌ Layout '{layout_name}' not found![/bold red]")
 
 # Click command group for dashboard
 @click.group()
