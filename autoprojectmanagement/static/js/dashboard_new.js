@@ -232,3 +232,34 @@ class Dashboard {
     }
 
     showConfigModal(widgetId) {
+        const widget = this.currentLayout.widgets.find(w => w.widget_id === widgetId);
+        if (widget) {
+            this.currentEditingWidget = widgetId;
+            
+            // Populate form
+            document.getElementById('widgetEnabled').checked = widget.enabled;
+            document.getElementById('widgetRefreshRate').value = this.currentLayout.refresh_rate;
+            document.getElementById('widgetTheme').value = this.currentLayout.theme;
+            
+            // Show modal
+            document.getElementById('widgetConfigModal').style.display = 'flex';
+        }
+    }
+
+    hideConfigModal() {
+        document.getElementById('widgetConfigModal').style.display = 'none';
+        this.currentEditingWidget = null;
+    }
+
+    saveWidgetConfig() {
+        if (this.currentEditingWidget) {
+            const widget = this.currentLayout.widgets.find(w => w.widget_id === this.currentEditingWidget);
+            if (widget) {
+                widget.enabled = document.getElementById('widgetEnabled').checked;
+                this.currentLayout.refresh_rate = parseInt(document.getElementById('widgetRefreshRate').value);
+                this.currentLayout.theme = document.getElementById('widgetTheme').value;
+                
+                // Update refresh rate
+                this.refreshRate = this.currentLayout.refresh_rate;
+                this.updateRefreshRate();
+                
