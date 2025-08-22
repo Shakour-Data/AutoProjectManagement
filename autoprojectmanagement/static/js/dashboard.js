@@ -275,19 +275,38 @@ class Dashboard {
                 this.updateConnectionStatus(true);
                 console.log('WebSocket connected');
                 
-                // Subscribe to dashboard events
-                this.subscribeToEvents([
-                    'file_change',
-                    'auto_commit',
-                    'progress_update',
+                // Send reconnection request with last event ID if available
+                const subscriptionData = {
+                    type: 'subscribe',
+                    event_types: [
+                        'file_change',
+                        'auto_commit',
+                        'progress_update',
                     'risk_alert',
-                    'dashboard_update'
-                ]);
+                        'dashboard_update',
+                        'auto_commit_start',
+                        'auto_commit_result',
+                        'auto_commit_error'
+                    ],
+                    project_id: this.projectId || 'default',
+                    last_event_id: this.lastEventId // Send last received event ID for reconnection
+                };
+                
+                this.socket.send(JSON.stringify(subscriptionData));
+                
+                // Start heartbeat
+                this.startHeartbeat();
             };
 
             this.socket.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 this.handleWebSocketMessage(data);
+                
+                // Update last event ID for reconnection support
+                if (data.event_id && !data.is_replay) {
+                    this.lastEventId = data.event_id;
+                    localStorage.setItem('lastEventId', this.lastEventId);
+                }
             };
 
             this.socket.onclose = () => {
@@ -295,14 +314,20 @@ class Dashboard {
                 this.updateConnectionStatus(false);
                 console.log('WebSocket disconnected');
                 
-                // Attempt reconnection after delay
-                setTimeout(() => this.connectWebSocket(), 5000);
+                // Stop heartbeat
+                this.stopHeartbeat();
+                
+                // Attempt reconnection with exponential backoff
+                this.attemptReconnection();
             };
 
             this.socket.onerror = (error) => {
                 console.error('WebSocket error:', error);
                 this.isConnected = false;
                 this.updateConnectionStatus(false);
+                
+                // Stop heartbeat on error
+                this.stopHeartbeat();
             };
 
         } catch (error) {
