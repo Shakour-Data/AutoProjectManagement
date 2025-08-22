@@ -708,3 +708,47 @@ async def get_dashboard_layout(
     except Exception as e:
         logger.error(f"Error getting layout: {e}")
         raise HTTPException(status_code=500, detail=f"Error getting layout: {str(e)}")
+
+@router.get("/layouts", response_model=List[str])
+async def get_available_layouts_list():
+    """
+    Get list of available layout configurations.
+    
+    Returns all saved layout types.
+    """
+    try:
+        layouts = get_available_layouts()
+        return layouts
+        
+    except Exception as e:
+        logger.error(f"Error getting available layouts: {e}")
+        raise HTTPException(status_code=500, detail=f"Error getting layouts: {str(e)}")
+
+@router.delete("/layout/{layout_type}")
+async def delete_dashboard_layout(layout_type: str):
+    """
+    Delete dashboard layout configuration.
+    
+    Removes saved layout settings.
+    """
+    try:
+        success = delete_layout_config(layout_type)
+        if success:
+            return {"message": f"Layout '{layout_type}' deleted successfully"}
+        else:
+            raise HTTPException(status_code=404, detail=f"Layout '{layout_type}' not found")
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting layout: {e}")
+        raise HTTPException(status_code=500, detail=f"Error deleting layout: {str(e)}")
+
+@router.get("/widgets", response_model=List[str])
+async def get_available_widgets():
+    """
+    Get list of available widgets.
+    
+    Returns all widget types that can be used in layouts.
+    """
+    return AVAILABLE_WIDGETS
