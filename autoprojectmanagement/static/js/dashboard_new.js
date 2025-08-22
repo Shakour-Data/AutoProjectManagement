@@ -174,3 +174,49 @@ class Dashboard {
             
             const toggleBtn = document.createElement('button');
             toggleBtn.className = 'widget-toggle';
+            toggleBtn.innerHTML = widgetConfig.enabled ? '👁️' : '👁️‍🗨️';
+            toggleBtn.title = widgetConfig.enabled ? 'Disable widget' : 'Enable widget';
+            toggleBtn.onclick = () => this.toggleWidget(widgetId);
+            
+            const configBtn = document.createElement('button');
+            configBtn.className = 'widget-toggle';
+            configBtn.innerHTML = '⚙️';
+            configBtn.title = 'Configure widget';
+            configBtn.onclick = () => this.showConfigModal(widgetId);
+            
+            controls.appendChild(toggleBtn);
+            controls.appendChild(configBtn);
+            
+            header.appendChild(title);
+            header.appendChild(controls);
+            
+            // Insert header at the beginning of the widget
+            widget.insertBefore(header, widget.firstChild);
+        });
+    }
+
+    removeWidgetControls() {
+        const headers = document.querySelectorAll('.widget-header');
+        headers.forEach(header => header.remove());
+    }
+
+    getWidgetName(widgetId) {
+        const names = {
+            'health': 'Project Health',
+            'progress': 'Task Progress',
+            'risks': 'Risk Assessment',
+            'team': 'Team Performance',
+            'quality': 'Quality Metrics',
+            'alerts': 'Active Alerts'
+        };
+        return names[widgetId] || widgetId;
+    }
+
+    toggleWidget(widgetId) {
+        const widget = this.currentLayout.widgets.find(w => w.widget_id === widgetId);
+        if (widget) {
+            widget.enabled = !widget.enabled;
+            
+            // Update UI
+            const widgetElement = document.querySelector(`[data-widget-id="${widgetId}"]`);
+            if (widgetElement) {
