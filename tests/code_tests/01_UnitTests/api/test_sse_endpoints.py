@@ -172,3 +172,30 @@ class TestSSEEndpoints:
         mock_connection.get_messages = AsyncMock(return_value=AsyncMock())
         
         self.mock_sse_manager.create_connection = AsyncMock(return_value=mock_connection)
+        self.mock_sse_manager.handle_subscription = AsyncMock(return_value=["file_change"])
+        self.mock_sse_manager.close_connection = AsyncMock()
+        
+        with patch('autoprojectmanagement.api.sse_endpoints._send_heartbeats') as mock_heartbeat:
+            mock_heartbeat.return_value = AsyncMock()
+            
+            response = await sse_endpoints.sse_endpoint(
+                self.mock_request, "file_change", "test-project", "last-event-123"
+            )
+            
+            assert response.media_type == "text/event-stream"
+
+    @pytest.mark.asyncio
+    async def test_sse_subscribe_endpoint(self):
+        """Test SSE subscribe endpoint"""
+        self.mock_sse_manager.handle_subscription = AsyncMock(return_value=["file_change", "auto_commit"])
+        
+        subscription = sse_endpoints.SSESubscriptionRequest(
+            event_types=["file_change", "auto_commit"],
+            project_id="test-project"
+        )
+        
+        response = await sse_endpoints.sse_subscribe(subscription, "test-conn-333")
+        
+        assert response["message"] == "SSE subscriptions updated successfully"
+        assert response["connection_id"] == "test-conn-333"
+        assert response["event_types"] == ["file_change", "auto_commit"]
