@@ -419,6 +419,8 @@ def help_command(list_commands: bool, help_flag: bool) -> None:
         click.echo("  add-task          - Add new task to project")
         click.echo("  report            - Generate project reports")
         click.echo("  update-task-status - Update task status")
+        click.echo("  dashboard         - Manage dashboard (start, stop, open, status)")
+        click.echo("  help              - Show help information")
 
 
 if __name__ == "__main__":
