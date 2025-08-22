@@ -289,3 +289,25 @@ async def publish_progress_update(progress_data: Dict[str, Any], project_id: Opt
     """Publish progress update event."""
     event = Event(
         type=EventType.PROGRESS_UPDATE,
+        data=progress_data,
+        project_id=project_id
+    )
+    await event_service.publish_event(event)
+
+async def publish_risk_alert(risk_data: Dict[str, Any], project_id: Optional[str] = None):
+    """Publish risk alert event."""
+    event = Event(
+        type=EventType.RISK_ALERT,
+        data=risk_data,
+        project_id=project_id
+    )
+    await event_service.publish_event(event)
+
+async def publish_task_update(task_data: Dict[str, Any], project_id: Optional[str] = None):
+    """Publish task update event."""
+    event = Event(
+        type=EventType.TASK_UPDATE,
+        data=task_data,
+        project_id=project_id
+    )
+    await event_service.publish_event(event)
