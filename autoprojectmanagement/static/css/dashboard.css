@@ -218,3 +218,21 @@ canvas {
 }
 
 /* Risk Matrix */
+.risk-matrix {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.risk-item {
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.risk-low { background: #d1fae5; color: #065f46; }
+.risk-medium { background: #fef3c7; color: #92400e; }
+.risk-high { background: #fee2e2; color: #b91c1c; }
+
+/* Alerts List */
