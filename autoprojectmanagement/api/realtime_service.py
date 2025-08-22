@@ -26,6 +26,16 @@ logger = logging.getLogger(__name__)
 class EventType(str, Enum):
     """Types of real-time events."""
     FILE_CHANGE = "file_change"
+    COMMIT = "commit"
+    PROGRESS_UPDATE = "progress_update"
+    RISK_ALERT = "risk_alert"
+    TASK_UPDATE = "task_update"
+    SYSTEM_STATUS = "system_status"
+    DASHBOARD_UPDATE = "dashboard_update"
+    HEALTH_CHECK = "health_check"
+    AUTO_COMMIT_START = "auto_commit_start"
+    AUTO_COMMIT_RESULT = "auto_commit_result"
+    AUTO_COMMIT_ERROR = "auto_commit_error"
 
 @dataclass
 class Event:
