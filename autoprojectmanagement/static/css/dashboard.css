@@ -168,3 +168,21 @@ select {
     margin-bottom: 0.5rem;
 }
 
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.risk-level {
+    text-transform: capitalize;
+}
+
+.risk-level.low { color: var(--success-color); }
+.risk-level.medium { color: var(--warning-color); }
+.risk-level.high { color: var(--danger-color); }
+.risk-level.critical { color: #dc2626; }
+
+/* Widgets Grid */
+.widgets-grid {
