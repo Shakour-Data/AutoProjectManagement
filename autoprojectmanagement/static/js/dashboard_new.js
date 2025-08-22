@@ -263,3 +263,49 @@ class Dashboard {
                 this.refreshRate = this.currentLayout.refresh_rate;
                 this.updateRefreshRate();
                 
+                // Update theme (would need theme switching implementation)
+                console.log('Theme changed to:', this.currentLayout.theme);
+            }
+            
+            this.hideConfigModal();
+        }
+    }
+
+    async loadLayout(layoutType) {
+        try {
+            this.showLoading(true);
+            
+            const response = await fetch(`/api/v1/dashboard/layout?layout_type=${layoutType}`);
+            if (!response.ok) throw new Error('Failed to load layout');
+            
+            this.currentLayout = await response.json();
+            this.applyLayout();
+            
+            // Update selector
+            document.getElementById('layoutSelector').value = layoutType;
+            
+        } catch (error) {
+            console.error('Error loading layout:', error);
+            this.showError('Failed to load layout');
+        } finally {
+            this.showLoading(false);
+        }
+    }
+
+    applyLayout() {
+        const widgetsGrid = document.querySelector('.widgets-grid');
+        widgetsGrid.innerHTML = '';
+        
+        // Sort widgets by position
+        const sortedWidgets = [...this.currentLayout.widgets].sort((a, b) => a.position - b.position);
+        
+        sortedWidgets.forEach(widgetConfig => {
+            if (widgetConfig.enabled) {
+                const widgetElement = this.createWidgetElement(widgetConfig.widget_id);
+                if (widgetElement) {
+                    widgetsGrid.appendChild(widgetElement);
+                }
+            }
+        });
+        
+        // Update theme if needed
