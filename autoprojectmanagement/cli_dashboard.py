@@ -411,6 +411,39 @@ class DashboardCLI:
             
             if response.status_code != 200:
                 console.print(f"[bold red]❌ Layout '{layout_name}' not found![/bold red]")
+                return False
+            
+            layout_data = response.json()
+            
+            # Generate export file
+            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            filename = f"dashboard_view_{layout_name}_{timestamp}.{output_format}"
+            
+            if output_format == "json":
+                import json
+                with open(filename, 'w', encoding='utf-8') as f:
+                    json.dump(layout_data, f, indent=2, ensure_ascii=False)
+            
+            elif output_format == "markdown":
+                with open(filename, 'w', encoding='utf-8') as f:
+                    f.write(f"# Dashboard View: {layout_name}\n\n")
+                    f.write(f"Generated: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+                    f.write("## Configuration\n\n")
+                    f.write("```json\n")
+                    f.write(json.dumps(layout_data, indent=2))
+                    f.write("\n```\n")
+            
+            console.print(f"[bold green]✅ View exported to: [cyan]{filename}[/cyan][/bold green]")
+            console.print(f"[dim]Use this file to share or import the dashboard view[/dim]")
+            return True
+            
+        except Exception as e:
+            console.print(f"[bold red]❌ Error sharing view: {e}[/bold red]")
+            logger.error(f"Share view failed: {e}")
+            return False
+
+                    f.write(json.dumps(layout_data, indent=2))
+                    f.write("## Configuration\n\n")
 
 # Click command group for dashboard
 @click.group()
