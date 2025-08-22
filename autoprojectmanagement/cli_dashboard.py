@@ -681,23 +681,23 @@ class DashboardCLI:
             return False
         
         # Validate minute (0-59)
-        if fields[0] != '*' and not self._validate_cron_field(fields[0], 0, 59):
+        if not self._validate_cron_field_simple(fields[0], 0, 59):
             return False
         
         # Validate hour (0-23)
-        if fields[1] != '*' and not self._validate_cron_field(fields[1], 0, 23):
+        if not self._validate_cron_field_simple(fields[1], 0, 23):
             return False
         
         # Validate day of month (1-31)
-        if fields[2] != '*' and not self._validate_cron_field(fields[2], 1, 31):
+        if not self._validate_cron_field_simple(fields[2], 1, 31):
             return False
         
         # Validate month (1-12)
-        if fields[3] != '*' and not self._validate_cron_field(fields[3], 1, 12):
+        if not self._validate_cron_field_simple(fields[3], 1, 12):
             return False
         
         # Validate day of week (0-6)
-        if fields[4] != '*' and not self._validate_cron_field(fields[4], 0, 6):
+        if not self._validate_cron_field_simple(fields[4], 0, 6):
             return False
         
         return True
