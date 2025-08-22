@@ -266,6 +266,23 @@ class EventService:
             except Exception as e:
                 logger.error(f"Error in connection cleanup: {e}")
     
+    async def _send_heartbeats(self, interval: int = 30):
+        """Send periodic heartbeat events to keep connections alive."""
+        while self.running:
+            try:
+                await asyncio.sleep(interval)
+                
+                heartbeat_event = Event(
+                    type=EventType.HEALTH_CHECK,
+                    data={"message": "heartbeat", "timestamp": time.time()}
+                )
+                
+                await self.publish_event(heartbeat_event)
+                logger.debug("Heartbeat event published")
+                
+            except Exception as e:
+                logger.error(f"Error sending heartbeat: {e}")
+    
     def get_connection_stats(self) -> Dict[str, Any]:
         """Get connection statistics."""
         total_connections = len(self.connections)
