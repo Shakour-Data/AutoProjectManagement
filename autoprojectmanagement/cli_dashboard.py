@@ -21,3 +21,52 @@ Usage:
         $ autoprojectmanagement dashboard --open
 
     Advanced usage:
+        $ autoprojectmanagement dashboard --port 8080 --host 0.0.0.0
+        $ autoprojectmanagement dashboard --export --format json --output dashboard.json
+        $ autoprojectmanagement dashboard --config --set refresh_rate=5000
+
+Examples:
+    Start dashboard server:
+        >>> autoprojectmanagement dashboard --start --port 3000
+
+    Open dashboard in browser:
+        >>> autoprojectmanagement dashboard --open
+
+    Check dashboard status:
+        >>> autoprojectmanagement dashboard --status
+
+    Export dashboard data:
+        >>> autoprojectmanagement dashboard --export --format json
+"""
+
+import argparse
+import logging
+import os
+import sys
+import time
+import webbrowser
+from typing import Optional, Dict, Any, List
+from pathlib import Path
+
+import click
+import requests
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich.progress import Progress, SpinnerColumn, TextColumn
+
+# Configure logging
+LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+logger = logging.getLogger(__name__)
+
+console = Console()
+
+class DashboardCLI:
+    """CLI commands for dashboard management."""
+    
+    def __init__(self):
+        self.default_port = 3000
+        self.default_host = "127.0.0.1"
+        self.api_base_url = f"http://{self.default_host}:{self.default_port}/api/v1"
+    
