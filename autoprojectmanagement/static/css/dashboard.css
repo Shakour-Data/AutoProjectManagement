@@ -476,22 +476,3 @@ canvas {
 }
 
 .connection-status.connected {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--success-color);
-}
-
-.connection-status.disconnected {
-    background: rgba(239, 68, 68, 0.1);
-    color: var(--danger-color);
-}
-
-.connection-status.reconnecting {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--warning-color);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
