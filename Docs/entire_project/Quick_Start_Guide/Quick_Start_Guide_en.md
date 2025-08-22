@@ -430,3 +430,15 @@ curl http://localhost:8000/api/v1/reports/progress
 # 🆕 Dashboard APIs
 curl http://localhost:8000/api/v1/dashboard/overview      # Dashboard overview
 curl http://localhost:8000/api/v1/dashboard/metrics      # Real-time metrics
+curl http://localhost:8000/api/v1/dashboard/alerts       # Active alerts
+curl http://localhost:8000/api/v1/dashboard/health       # Project health
+curl http://localhost:8000/api/v1/dashboard/team-performance # Team performance
+
+# Get dashboard data stream
+curl http://localhost:8000/api/v1/dashboard/stream
+
+# Customize dashboard
+curl -X POST http://localhost:8000/api/v1/dashboard/layout \
+  -H "Content-Type: application/json" \
+  -d '{
+    "layout": "custom",
