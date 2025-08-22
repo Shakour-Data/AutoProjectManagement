@@ -190,3 +190,15 @@ class DashboardCLI:
         try:
             dashboard_url = f"http://{self.default_host}:{self.default_port}/dashboard"
             
+            console.print(f"[bold blue]🌐 Opening Dashboard in Browser...[/bold blue]")
+            console.print(f"   URL: [cyan]{dashboard_url}[/cyan]")
+            
+            # Check if server is running first
+            status = self.dashboard_status()
+            if status["status"] != "running":
+                console.print("[bold red]❌ Dashboard server is not running![/bold red]")
+                console.print("[yellow]Please start the dashboard first:[/yellow]")
+                console.print("  autoprojectmanagement dashboard --start")
+                return False
+            
+            # Open in browser
