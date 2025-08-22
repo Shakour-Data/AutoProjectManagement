@@ -99,3 +99,81 @@ class Dashboard {
     }
 
     getHealthColor(score) {
+        if (score >= 80) return '#10b981'; // Green
+        if (score >= 60) return '#f59e0b'; // Orange
+        return '#ef4444'; // Red
+    }
+
+    initializeCharts() {
+        // Health Chart
+        this.charts.health = new Chart(document.getElementById('healthChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Health Score'],
+                datasets: [{
+                    data: [0],
+                    backgroundColor: ['#2563eb'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false }
+                }
+            }
+        });
+
+        // Progress Chart
+        this.charts.progress = new Chart(document.getElementById('progressChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Completed', 'Remaining'],
+                datasets: [{
+                    data: [0, 0],
+                    backgroundColor: ['#10b981', '#e2e8f0'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { display: false },
+                    x: { display: true }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // Team Performance Chart
+        this.charts.team = new Chart(document.getElementById('teamChart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Velocity',
+                    data: [],
+                    borderColor: '#2563eb',
+                    tension: 0.1,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Quality Chart
+        this.charts.quality = new Chart(document.getElementById('qualityChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Test Coverage', 'Code Quality', 'Bug Density'],
+                datasets: [{
+                    data: [0, 0, 0],
