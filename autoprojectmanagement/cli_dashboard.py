@@ -322,6 +322,26 @@ class DashboardCLI:
             True if successful, False otherwise
         """
         try:
+            console.print(f"[bold blue]🎨 Creating Custom Dashboard View: {layout_name}[/bold blue]")
+            
+            # Use interactive prompts if no arguments provided
+            if not widgets:
+                available_widgets = self.get_available_widgets()
+                if not available_widgets:
+                    console.print("[bold red]❌ No widgets available![/bold red]")
+                    return False
+                
+                console.print("\n[bold]Available Widgets:[/bold]")
+                for i, widget in enumerate(available_widgets, 1):
+                    console.print(f"  {i}. {widget}")
+                
+                selected = click.prompt(
+                    "\nSelect widgets (comma-separated numbers)", 
+                    type=str,
+                    default=",".join(str(i) for i in range(1, len(available_widgets) + 1))
+                )
+                
+                selected_indices = [int(idx.strip()) - 1 for idx in selected.split(",") if idx.strip().isdigit()]
 
 # Click command group for dashboard
 @click.group()
