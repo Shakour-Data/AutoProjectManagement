@@ -47,10 +47,12 @@ class Event:
     timestamp: float = field(default_factory=time.time)
     source: str = "system"
     project_id: Optional[str] = None
+    event_id: str = field(default_factory=lambda: str(uuid.uuid4()))
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert event to dictionary for serialization."""
         return {
+            "event_id": self.event_id,
             "type": self.type.value,
             "data": self.data,
             "timestamp": self.timestamp,
