@@ -131,19 +131,19 @@ def get_quality_metrics(project_id: str) -> Dict[str, float]:
 
 def get_metrics_data(project_id: str, timeframe: str) -> Dict[str, Any]:
     """Get comprehensive metrics data."""
-        team_performance = get_team_performance(project_id)
-        
-        # Get quality metrics
-        quality_metrics = get_quality_metrics(project_id)
-        
-        return DashboardOverview(
-            project_id=project_id,
-            total_tasks=status_data.get('total_tasks', 0),
-            completed_tasks=status_data.get('completed_tasks', 0),
-            progress_percentage=status_data.get('progress_percentage', 0),
-            health_score=health_score,
-            risk_level=risk_level,
-            last_updated=datetime.now(),
+    # Placeholder implementation
+    return {
+        "velocity": 25,
+        "throughput": 18,
+        "cycle_time": 2.5,
+        "lead_time": 4.2
+    }
+
+def get_trends_data(project_id: str, timeframe: str) -> Dict[str, List[float]]:
+    """Get historical trends data."""
+    # Placeholder implementation
+    return {
+        "velocity": [20, 22, 25, 23, 26],
             team_performance=team_performance,
             quality_metrics=quality_metrics
         )
