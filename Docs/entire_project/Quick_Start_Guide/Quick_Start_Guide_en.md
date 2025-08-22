@@ -216,3 +216,40 @@ graph LR
     },
     "monitoring": {
       "check_interval": 300,
+      "file_extensions": ["*.py", "*.js", "*.md"]
+    },
+    "reporting": {
+      "frequency": "daily",
+      "format": "markdown",
+      "recipients": ["team@company.com"]
+    }
+  }
+}
+```
+
+#### 3. Module Configuration
+```json
+{
+  "modules": {
+    "communication_risk": {
+      "enabled": true,
+      "risk_threshold": 7,
+      "notification_channels": ["slack", "email"]
+    },
+    "quality_management": {
+      "enabled": true,
+      "code_quality_threshold": 80,
+      "test_coverage_minimum": 70
+    }
+  }
+}
+```
+
+#### 4. 🆕 Dashboard Configuration
+```json
+{
+  "dashboard": {
+    "enabled": true,
+    "port": 3000,
+    "refresh_rate": 3000,
+    "default_layout": "standard",
