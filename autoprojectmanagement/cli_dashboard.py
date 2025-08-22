@@ -689,6 +689,80 @@ class DashboardCLI:
             return False
         
         # Validate day of month (1-31)
+        if fields[2] != '*' and not self._validate_cron_field(fields[2], 1, 31):
+            return False
+        
+        # Validate month (1-12)
+        if fields[3] != '*' and not self._validate_cron_field(fields[3], 1, 12):
+            return False
+        
+        # Validate day of week (0-6)
+        if fields[4] != '*' and not self._validate_cron_field(fields[4], 0, 6):
+            return False
+        
+        return True
+
+    def _validate_cron_field_simple(self, field: str, min_val: int, max_val: int) -> bool:
+        """Simplified cron field validation that handles */pattern correctly."""
+        if field == '*':
+            return True
+        
+        # Handle steps (e.g., */5, 1-30/5)
+        if '/' in field:
+            parts = field.split('/')
+            if len(parts) != 2:
+                return False
+            
+            # Handle */step format
+            if parts[0] == '*':
+                try:
+                    step = int(parts[1])
+                    return step > 0
+                except ValueError:
+                    return False
+            
+            # For other patterns, validate the base part first
+            base_part = parts[0]
+            try:
+                step = int(parts[1])
+                if step <= 0:
+                    return False
+            except ValueError:
+                return False
+            
+            # Now validate the base part
+            return self._validate_cron_field_simple(base_part, min_val, max_val)
+        
+        # Handle ranges (e.g., 1-5)
+        if '-' in field:
+            parts = field.split('-')
+            if len(parts) != 2:
+                return False
+            try:
+                start = int(parts[0])
+                end = int(parts[1])
+                return min_val <= start <= max_val and min_val <= end <= max_val and start <= end
+            except ValueError:
+                return False
+        
+        # Handle lists (e.g., 1,3,5)
+        if ',' in field:
+            parts = field.split(',')
+            for part in parts:
+                try:
+                    val = int(part)
+                    if not min_val <= val <= max_val:
+                        return False
+                except ValueError:
+                    return False
+            return True
+        
+        # Handle single value
+        try:
+            val = int(field)
+            return min_val <= val <= max_val
+        except ValueError:
+            return False
 
     def _validate_cron_field(self, field: str, min_val: int, max_val: int) -> bool:
         """Validate individual cron field."""
