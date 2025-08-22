@@ -374,6 +374,9 @@ class Dashboard {
     }
 
     attemptReconnection() {
+        // Show reconnecting status
+        this.updateConnectionStatus(false, true);
+        
         // Exponential backoff for reconnection
         const maxAttempts = 5;
         const baseDelay = 1000; // 1 second
@@ -382,6 +385,7 @@ class Dashboard {
         if (this.reconnectAttempts >= maxAttempts) {
             console.log('Max reconnection attempts reached, giving up');
             this.reconnectAttempts = 0;
+            this.updateConnectionStatus(false, false);
             return;
         }
         
