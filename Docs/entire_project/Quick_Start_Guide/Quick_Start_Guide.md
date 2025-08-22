@@ -2599,3 +2599,24 @@ graph TB
     "🆕 dashboard_monitoring": {
       "enabled": true,
       "refresh_rate": 3000,
+      "retention_period": "30d",
+      "anomaly_detection": true,
+      "trend_analysis": true,
+      "custom_metrics": [
+        {
+          "name": "team_velocity",
+          "calculation": "points_completed / days_elapsed",
+          "threshold": 20
+        },
+        {
+          "name": "risk_score",
+          "calculation": "active_risks * severity",
+          "threshold": 50
+        }
+      ]
+    }
+  }
+}
+```
+
+### Reporting System
