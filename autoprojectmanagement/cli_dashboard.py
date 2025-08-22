@@ -687,6 +687,72 @@ class DashboardCLI:
             return False
         
         # Validate day of week (0-6)
+        if fields[4] != '*' and not self._validate_cron_field(fields[4], 0, 6):
+            return False
+        
+        return True
+
+    def _validate_cron_field(self, field: str, min_val: int, max_val: int) -> bool:
+        """Validate individual cron field."""
+        import re
+        
+        # Handle ranges (e.g., 1-5)
+        if '-' in field:
+            parts = field.split('-')
+            if len(parts) != 2:
+                return False
+            try:
+                start = int(parts[0])
+                end = int(parts[1])
+                return min_val <= start <= max_val and min_val <= end <= max_val and start <= end
+            except ValueError:
+                return False
+        
+        # Handle steps (e.g., */5)
+        if '/' in field:
+            parts = field.split('/')
+            if len(parts) != 2:
+                return False
+            try:
+                step = int(parts[1])
+                return step > 0
+            except ValueError:
+                return False
+        
+        # Handle lists (e.g., 1,3,5)
+        if ',' in field:
+            parts = field.split(',')
+            for part in parts:
+                try:
+                    val = int(part)
+                    if not min_val <= val <= max_val:
+                        return False
+                except ValueError:
+                    return False
+            return True
+        
+        # Handle single value
+        try:
+            val = int(field)
+            return min_val <= val <= max_val
+        except ValueError:
+            return False
+
+    def _calculate_next_run(self, cron_expr: str) -> str:
+        """Calculate next run time from cron expression."""
+        try:
+            from croniter import croniter
+            from datetime import datetime
+            
+            base_time = datetime.now()
+            iter = croniter(cron_expr, base_time)
+            next_time = iter.get_next(datetime)
+            return next_time.strftime("%Y-%m-%d %H:%M:%S")
+        except ImportError:
+            # Fallback if croniter is not available
+            return "Unknown (install croniter for exact timing)"
+        except Exception:
+            return "Unknown"
 
 # Click command group for dashboard
 @click.group()
