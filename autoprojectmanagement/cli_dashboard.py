@@ -571,6 +571,107 @@ class DashboardCLI:
         """
         try:
             console.print("[bold blue]⚙️  Configuring Dashboard Settings[/bold blue]")
+            
+            # Available settings
+            available_settings = {
+                "refresh_rate": {"type": int, "default": 3000, "min": 1000, "max": 60000},
+                "theme": {"type": str, "default": "light", "choices": ["light", "dark"]},
+                "auto_refresh": {"type": bool, "default": True},
+                "notifications": {"type": bool, "default": True}
+            }
+            
+            if not setting_name:
+                # Interactive configuration
+                console.print("\n[bold]Available Settings:[/bold]")
+                for i, (name, config) in enumerate(available_settings.items(), 1):
+                    current_value = config["default"]
+                    console.print(f"  {i}. {name} (current: {current_value})")
+                
+                selected = click.prompt(
+                    "\nSelect setting to configure (number)", 
+                    type=int
+                )
+                
+                selected_keys = list(available_settings.keys())
+                if selected < 1 or selected > len(selected_keys):
+                    console.print("[bold red]❌ Invalid selection![/bold red]")
+                    return False
+                
+                setting_name = selected_keys[selected - 1]
+                setting_config = available_settings[setting_name]
+                
+                if setting_config["type"] == bool:
+                    setting_value = click.confirm(f"Enable {setting_name}?", default=setting_config["default"])
+                elif setting_config["type"] == int:
+                    setting_value = click.prompt(
+                        f"Enter value for {setting_name}", 
+                        type=int,
+                        default=setting_config["default"]
+                    )
+                    if "min" in setting_config and setting_value < setting_config["min"]:
+                        console.print(f"[bold red]❌ Value must be at least {setting_config['min']}![/bold red]")
+                        return False
+                    if "max" in setting_config and setting_value > setting_config["max"]:
+                        console.print(f"[bold red]❌ Value must be at most {setting_config['max']}![/bold red]")
+                        return False
+                elif setting_config["type"] == str and "choices" in setting_config:
+                    setting_value = click.prompt(
+                        f"Enter value for {setting_name} ({'/'.join(setting_config['choices'])})", 
+                        type=click.Choice(setting_config["choices"]),
+                        default=setting_config["default"]
+                    )
+            
+            # Save configuration
+            config_file = Path("JSonDataBase/OutPuts/dashboard_config.json")
+            config_file.parent.mkdir(parents=True, exist_ok=True)
+            
+            config_data = {}
+            if config_file.exists():
+                with open(config_file, 'r', encoding='utf-8') as f:
+                    config_data = json.load(f)
+            
+            config_data[setting_name] = setting_value
+            
+            with open(config_file, 'w', encoding='utf-8') as f:
+                json.dump(config_data, f, indent=2, ensure_ascii=False)
+            
+            console.print(f"[bold green]✅ Configuration updated![/bold green]")
+            console.print(f"   {setting_name} = {setting_value}")
+            return True
+            
+        except Exception as e:
+            console.print(f"[bold red]❌ Error configuring dashboard: {e}[/bold red]")
+            logger.error(f"Configuration failed: {e}")
+            return False
+
+    def get_available_widgets(self) -> List[str]:
+        """Get list of available widgets from API."""
+        try:
+            response = requests.get(f"{self.api_base_url}/dashboard/widgets", timeout=5)
+            if response.status_code == 200:
+                return response.json()
+            return []
+        except:
+            return ["health", "progress", "risks", "team", "quality", "alerts"]
+
+    def _validate_cron_expression(self, cron_expr: str) -> bool:
+        """Validate cron expression format."""
+        import re
+        # Basic cron validation: 5 fields separated by spaces
+        pattern = r'^(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)$'
+        return bool(re.match(pattern, cron_expr))
+
+    def _calculate_next_run(self, cron_expr: str) -> str:
+        """Calculate next run time from cron expression."""
+        from croniter import croniter
+        from datetime import datetime
+        try:
+            base_time = datetime.now()
+            iter = croniter(cron_expr, base_time)
+            next_time = iter.get_next(datetime)
+            return next_time.strftime("%Y-%m-%d %H:%M:%S")
+        except:
+            return "Unknown"
                     f.write(json.dumps(layout_data, indent=2))
                     f.write("## Configuration\n\n")
 
