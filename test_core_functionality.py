@@ -63,3 +63,32 @@ def test_file_operations():
             json.dump(config_data, f, indent=2)
         
         # Test reading config
+        if config_file.exists():
+            with open(config_file, 'r', encoding='utf-8') as f:
+                loaded_config = json.load(f)
+            success = loaded_config == config_data
+            print(f"✅ Config file test: {success}")
+        else:
+            print("❌ Config file not created")
+            success = False
+        
+        # Test schedule file handling
+        schedule_file = Path(temp_dir) / "test_schedules.json"
+        schedules = [
+            {"report_type": "overview", "schedule": "0 9 * * *"},
+            {"report_type": "metrics", "schedule": "0 * * * *"}
+        ]
+        
+        with open(schedule_file, 'w', encoding='utf-8') as f:
+            json.dump(schedules, f, indent=2)
+        
+        if schedule_file.exists():
+            with open(schedule_file, 'r', encoding='utf-8') as f:
+                loaded_schedules = json.load(f)
+            success = success and (loaded_schedules == schedules)
+            print(f"✅ Schedule file test: {loaded_schedules == schedules}")
+        else:
+            print("❌ Schedule file not created")
+            success = False
+    
+    print(f"✅ File operations test completed: {success}")
