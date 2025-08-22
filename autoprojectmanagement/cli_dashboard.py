@@ -720,5 +720,49 @@ def info():
     cli = DashboardCLI()
     cli.show_dashboard_info()
 
+@dashboard_cli.command()
+@click.option('--name', '-n', required=True, help='Name of the custom view')
+@click.option('--widgets', '-w', help='Comma-separated list of widget IDs')
+@click.option('--refresh-rate', '-r', type=int, help='Refresh rate in milliseconds')
+@click.option('--theme', '-t', type=click.Choice(['light', 'dark']), help='Theme name')
+def create_view(name: str, widgets: Optional[str], refresh_rate: Optional[int], theme: Optional[str]):
+    """Create custom dashboard view/layout"""
+    cli = DashboardCLI()
+    widget_list = widgets.split(',') if widgets else None
+    cli.create_custom_view(name, widget_list, refresh_rate, theme)
+
+@dashboard_cli.command()
+@click.option('--name', '-n', required=True, help='Name of the layout to share')
+@click.option('--format', '-f', type=click.Choice(['json', 'markdown']), default='json', help='Export format')
+def share_view(name: str, format: str):
+    """Share dashboard view by generating export files"""
+    cli = DashboardCLI()
+    cli.share_dashboard_view(name, format)
+
+@dashboard_cli.command()
+@click.option('--type', '-t', required=True, type=click.Choice(['overview', 'metrics', 'health', 'performance']), help='Report type')
+@click.option('--schedule', '-s', required=True, help='Cron expression (e.g., "0 9 * * *" for daily at 9 AM)')
+@click.option('--format', '-f', type=click.Choice(['markdown', 'json']), default='markdown', help='Output format')
+def schedule_report(type: str, schedule: str, format: str):
+    """Schedule automated dashboard reports"""
+    cli = DashboardCLI()
+    cli.schedule_report(type, schedule, format)
+
+@dashboard_cli.command()
+@click.option('--type', '-t', type=click.Choice(['overview', 'metrics', 'health', 'performance']), default='overview', help='Analysis type')
+@click.option('--timeframe', '-tf', default='24h', help='Timeframe for analysis')
+def analyze(type: str, timeframe: str):
+    """Analyze dashboard data and generate insights"""
+    cli = DashboardCLI()
+    cli.analyze_dashboard_data(type, timeframe)
+
+@dashboard_cli.command()
+@click.option('--setting', '-s', help='Setting name to configure')
+@click.option('--value', '-v', help='Value to set')
+def config(setting: Optional[str], value: Optional[str]):
+    """Configure dashboard settings"""
+    cli = DashboardCLI()
+    cli.configure_dashboard(setting, value)
+
 if __name__ == "__main__":
     dashboard_cli()
