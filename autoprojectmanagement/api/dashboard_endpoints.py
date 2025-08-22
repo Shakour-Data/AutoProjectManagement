@@ -48,6 +48,15 @@ project_service = ProjectService()
 progress_reporter = ProgressReport()
 dashboard_reporter = DashboardReports()
 
+# Layout configuration directory
+LAYOUTS_DIR = Path("JSonDataBase/OutPuts/dashboard_layouts")
+LAYOUTS_DIR.mkdir(parents=True, exist_ok=True)
+
+# Available widgets
+AVAILABLE_WIDGETS = [
+    "health", "progress", "risks", "team", "quality", "alerts"
+]
+
 # Pydantic models for dashboard requests/responses
 class DashboardOverview(BaseModel):
     """Model for dashboard overview response."""

@@ -1,0 +1,2 @@
+# Directory for storing dashboard layout configurations
+# Layouts will be stored as JSON files with naming convention: layout_{layout_type}.json
