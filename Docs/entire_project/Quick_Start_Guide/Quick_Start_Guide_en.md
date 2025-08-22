@@ -277,3 +277,67 @@ graph LR
         "enabled": true,
         "position": "bottom-right",
         "alert_threshold": 7,
+        "notification_channels": ["dashboard", "email"]
+      },
+      "quality_metrics": {
+        "enabled": true,
+        "position": "center",
+        "include": ["test_coverage", "code_quality", "bug_density"]
+      }
+    },
+    
+    "alerts": {
+      "enabled": true,
+      "risk_above_threshold": true,
+      "progress_stalled": true,
+      "quality_below_minimum": true,
+      "milestone_approaching": true,
+      "team_performance_issues": true
+    },
+    
+    "integrations": {
+      "slack": {
+        "enabled": false,
+        "webhook_url": "",
+        "channel": "#project-alerts"
+      },
+      "email": {
+        "enabled": true,
+        "recipients": ["pm@company.com", "team@company.com"],
+        "frequency": "daily"
+      },
+      "teams": {
+        "enabled": false,
+        "webhook_url": ""
+      }
+    },
+    
+    "appearance": {
+      "theme": "light",
+      "chart_style": "modern",
+      "animation_enabled": true,
+      "high_contrast_mode": false
+    },
+    
+    "access_control": {
+      "public_access": false,
+      "allowed_ips": ["192.168.1.0/24"],
+      "require_authentication": true,
+      "session_timeout": 3600
+    }
+  }
+}
+```
+
+### Dashboard Customization
+
+Use these commands for quick dashboard customization:
+
+```bash
+# Change default layout
+autoproject config --set dashboard.default_layout="minimal"
+
+# Enable specific widget
+autoproject config --set dashboard.widgets.team_performance.enabled=true
+
+# Set refresh rate
