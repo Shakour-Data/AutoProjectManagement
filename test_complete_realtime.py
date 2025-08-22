@@ -226,3 +226,33 @@ async def main():
         
         # Test SSE
         sse_result = await test_sse_functionality()
+        results.append(("SSE", sse_result))
+        
+        # Print results
+        logger.info("\n" + "="*60)
+        logger.info("COMPLETE TEST RESULTS:")
+        logger.info("="*60)
+        
+        all_passed = True
+        for test_name, result in results:
+            status = "✅ PASS" if result else "❌ FAIL"
+            logger.info(f"{test_name:20} {status}")
+            if not result:
+                all_passed = False
+        
+        logger.info("="*60)
+        
+        if all_passed:
+            logger.info("🎉 ALL TESTS PASSED! Real-time implementation is working correctly.")
+            return 0
+        else:
+            logger.error("💥 SOME TESTS FAILED! Check the implementation.")
+            return 1
+            
+    finally:
+        # Stop server
+        server.stop_server()
+
+if __name__ == "__main__":
+    exit_code = asyncio.run(main())
+    sys.exit(exit_code)
