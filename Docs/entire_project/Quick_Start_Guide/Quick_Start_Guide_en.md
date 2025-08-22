@@ -381,3 +381,52 @@ autoproject logs --follow
 
 # 🆕 Dashboard Commands
 autoproject dashboard --start    # Start dashboard server
+autoproject dashboard --stop     # Stop dashboard server
+autoproject dashboard --status   # Check dashboard status
+autoproject dashboard --open     # Open dashboard in browser
+autoproject dashboard --export   # Export dashboard data
+```
+
+#### Interactive Mode
+```bash
+# Launch interactive CLI
+autoproject interactive
+
+# Available commands:
+# - create-project
+# - add-task
+# - view-progress
+# - generate-report
+# - configure-modules
+# - 🆕 open-dashboard    # Open interactive dashboard
+# - 🆕 customize-dashboard # Customize dashboard
+# - 🆕 dashboard-metrics # View dashboard metrics
+```
+
+### API Usage
+
+#### REST API Examples
+
+```bash
+# Start API server
+autoproject api --port 8000
+
+# Get project status
+curl http://localhost:8000/api/v1/projects/status
+
+# Add new task
+curl -X POST http://localhost:8000/api/v1/tasks \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Implement New Feature",
+    "description": "Add user authentication",
+    "priority": "high",
+    "estimated_hours": 8
+  }'
+
+# Get progress report
+curl http://localhost:8000/api/v1/reports/progress
+
+# 🆕 Dashboard APIs
+curl http://localhost:8000/api/v1/dashboard/overview      # Dashboard overview
+curl http://localhost:8000/api/v1/dashboard/metrics      # Real-time metrics
