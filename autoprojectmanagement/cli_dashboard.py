@@ -671,6 +671,24 @@ class DashboardCLI:
         """Validate cron expression format."""
         import re
         # Basic cron validation: 5 fields separated by spaces
+        pattern = r'^(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)$'
+        if not bool(re.match(pattern, cron_expr)):
+            return False
+        
+        # Additional validation for field ranges
+        fields = cron_expr.split()
+        if len(fields) != 5:
+            return False
+        
+        # Validate minute (0-59)
+        if fields[0] != '*' and not self._validate_cron_field(fields[0], 0, 59):
+            return False
+        
+        # Validate hour (0-23)
+        if fields[1] != '*' and not self._validate_cron_field(fields[1], 0, 23):
+            return False
+        
+        # Validate day of month (1-31)
 
     def _validate_cron_field(self, field: str, min_val: int, max_val: int) -> bool:
         """Validate individual cron field."""
