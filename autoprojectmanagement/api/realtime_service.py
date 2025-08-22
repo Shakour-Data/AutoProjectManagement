@@ -155,11 +155,6 @@ class EventService:
         """Set project filter for connection."""
         if connection_id in self.connections:
             self.connections[connection_id].project_filter = project_id
-            logger.debug(f"Connection {connection_id} project filter set to {project_id}")
-    
-    async def publish_event(self, event: Event):
-        """Publish an event to all subscribed connections."""
-        await self.message_queue.put(event)
     
     async def _process_message_queue(self):
         """Process events from the message queue."""
