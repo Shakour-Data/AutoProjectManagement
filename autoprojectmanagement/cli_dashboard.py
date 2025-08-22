@@ -361,6 +361,34 @@ class DashboardCLI:
             # Create layout configuration
             layout_config = {
                 "layout_type": layout_name,
+                "widgets": [{"widget_id": widget, "position": i, "enabled": True, "settings": {}} 
+                           for i, widget in enumerate(widgets)],
+                "refresh_rate": refresh_rate,
+                "theme": theme
+            }
+            
+            # Save layout via API
+            response = requests.post(
+                f"{self.api_base_url}/dashboard/layout",
+                json=layout_config,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                console.print(f"[bold green]✅ Custom view '{layout_name}' created successfully![/bold green]")
+                console.print(f"   Widgets: {', '.join(widgets)}")
+                console.print(f"   Refresh rate: {refresh_rate}ms")
+                console.print(f"   Theme: {theme}")
+                return True
+            else:
+                console.print(f"[bold red]❌ Failed to create view: {response.text}[/bold red]")
+                return False
+                
+        except Exception as e:
+            console.print(f"[bold red]❌ Error creating custom view: {e}[/bold red]")
+            logger.error(f"Create view failed: {e}")
+            return False
+
 
 # Click command group for dashboard
 @click.group()
