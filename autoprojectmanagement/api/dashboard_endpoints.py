@@ -128,3 +128,41 @@ async def get_dashboard_overview(
         health_score = calculate_health_score(status_data)
         
         # Determine risk level
+        risk_level = determine_risk_level(status_data)
+        
+        # Get team performance metrics
+        team_performance = get_team_performance(project_id)
+        
+        # Get quality metrics
+        quality_metrics = get_quality_metrics(project_id)
+        
+        return DashboardOverview(
+            project_id=project_id,
+            total_tasks=status_data.get('total_tasks', 0),
+            completed_tasks=status_data.get('completed_tasks', 0),
+            progress_percentage=status_data.get('progress_percentage', 0),
+            health_score=health_score,
+            risk_level=risk_level,
+            last_updated=datetime.now(),
+            team_performance=team_performance,
+            quality_metrics=quality_metrics
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting dashboard overview: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+@router.get("/metrics", response_model=DashboardMetrics)
+async def get_dashboard_metrics(
+    project_id: str = Query(..., description="Project ID for metrics"),
+    timeframe: str = Query("24h", description="Timeframe for metrics (1h, 24h, 7d, 30d)")
+) -> DashboardMetrics:
+    """
+    Get detailed metrics and trends for dashboard visualization.
+    
+    Provides comprehensive metrics data for charts and graphs.
+    """
+    try:
+        metrics_data = get_metrics_data(project_id, timeframe)
