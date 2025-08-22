@@ -141,6 +141,25 @@ class WebSocketConnectionManager:
             try:
                 await event_service.unregister_connection(connection_id)
                 del self.active_connections[connection_id]
+                logger.info(f"WebSocket connection closed: {connection_id}. Total: {len(self.active_connections)}")
+            except Exception as e:
+                logger.error(f"Error disconnecting WebSocket connection {connection_id}: {e}")
+    
+    async def handle_subscription(self, connection_id: str, subscription_request: Dict[str, Any]):
+        """Handle subscription request from client."""
+        logger.debug(f"Handling subscription for connection {connection_id}: {subscription_request}")
+        
+        if connection_id not in self.active_connections:
+            logger.warning(f"Connection {connection_id} not found in active connections")
+            return
+        
+        connection = self.active_connections[connection_id]
+        
+        # Parse event types
+        event_types = subscription_request.get('event_types', [])
+        logger.debug(f"Subscribing to event types: {event_types}")
+        
+        # Clear existing subscriptions first
 
 # Global connection manager
 websocket_manager = WebSocketConnectionManager()
