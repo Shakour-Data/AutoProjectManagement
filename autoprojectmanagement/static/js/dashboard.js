@@ -342,10 +342,16 @@ class Dashboard {
             this.socket.send(JSON.stringify({
                 type: 'subscribe',
                 event_types: eventTypes,
-                project_id: this.projectId || 'default'
+                project_id: this.projectId || 'default',
+                last_event_id: this.lastEventId
             }));
         }
     }
+
+    startHeartbeat() {
+        // Clear existing heartbeat if any
+        this.stopHeartbeat();
+        
 
     handleWebSocketMessage(data) {
         console.log('WebSocket message received:', data);
