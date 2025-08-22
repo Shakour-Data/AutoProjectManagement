@@ -85,6 +85,39 @@ class DashboardLayout(BaseModel):
     theme: str = Field("light", description="Theme (light, dark)")
 
 class WebSocketSubscriptionRequest(BaseModel):
+    """Model for WebSocket subscription requests."""
+    event_types: List[str] = Field(..., description="Event types to subscribe to")
+    project_id: Optional[str] = Field(None, description="Project ID filter")
+
+# WebSocket connection class
+class WebSocketConnection(Connection):
+    """WebSocket connection with event subscription support."""
+    
+    def __init__(self, connection_id: str, websocket: WebSocket):
+        super().__init__(connection_id)
+        self.websocket = websocket
+    
+    async def send(self, message: Dict[str, Any]):
+        """Send message through WebSocket."""
+        try:
+            await self.websocket.send_json(message)
+            self.update_activity()
+        except Exception as e:
+            logger.error(f"Error sending WebSocket message: {e}")
+            raise
+
+# WebSocket connection manager
+class WebSocketConnectionManager:
+    def __init__(self):
+        self.active_connections: Dict[str, WebSocketConnection] = {}
+    
+    async def connect(self, websocket: WebSocket) -> WebSocketConnection:
+        """Register a new WebSocket connection."""
+        connection_id = event_service.generate_connection_id()
+        connection = WebSocketConnection(connection_id, websocket)
+        
+        await websocket.accept()
+        await event_service.register_connection(connection)
 
 # Utility functions (to be implemented in separate modules)
 def calculate_health_score(status_data: Dict[str, Any]) -> float:
