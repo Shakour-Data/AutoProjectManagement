@@ -2653,3 +2653,34 @@ graph TB
         "time": "11:00",
         "format": "pdf",
         "recipients": ["executives@company.com"],
+        "sections": ["financials", "progress", "risks", "forecast"]
+      }
+    ],
+    
+    "on_demand_reports": [
+      {
+        "name": "project_health",
+        "format": "json",
+        "sections": ["metrics", "risks", "recommendations"]
+      },
+      {
+        "name": "team_performance",
+        "format": "csv",
+        "sections": ["individual_stats", "team_stats", "trends"]
+      },
+      {
+        "name": "risk_assessment",
+        "format": "markdown",
+        "sections": ["active_risks", "mitigation", "impact_analysis"]
+      }
+    ],
+    
+    "🆕 dashboard_reports": {
+      "enabled": true,
+      "auto_snapshots": true,
+      "snapshot_frequency": "daily",
+      "retention_policy": "keep_7_daily_4_weekly_12_monthly",
+      "export_formats": ["png", "pdf", "json", "csv"],
+      "sharing_options": {
+        "email": true,
+        "slack": true,
