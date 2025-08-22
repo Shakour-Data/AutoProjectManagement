@@ -271,3 +271,4 @@ async def _send_heartbeats(connection: SSEConnection):
 async def sse_subscribe(
     subscription: SSESubscriptionRequest,
     connection_id: str = Query(..., description="SSE connection ID")
+):
