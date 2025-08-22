@@ -87,3 +87,15 @@ class Dashboard {
         document.getElementById('projectId').textContent = `Project: ${data.project_id}`;
         document.getElementById('totalTasks').textContent = data.total_tasks;
         document.getElementById('completedTasks').textContent = data.completed_tasks;
+        document.getElementById('progressPercentage').textContent = `${data.progress_percentage}%`;
+        
+        const riskElement = document.getElementById('riskLevel');
+        riskElement.textContent = data.risk_level;
+        riskElement.className = `stat-value risk-level ${data.risk_level}`;
+        
+        const healthScore = document.getElementById('healthScore').querySelector('.score-value');
+        healthScore.textContent = `${data.health_score}%`;
+        healthScore.style.color = this.getHealthColor(data.health_score);
+    }
+
+    getHealthColor(score) {
