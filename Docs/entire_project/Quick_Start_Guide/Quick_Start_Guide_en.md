@@ -108,3 +108,111 @@ After initialization, your project will have this structure:
 ```mermaid
 graph TD
     A[my-first-project/] --> B[.auto_project/]
+    A --> C[.git/]
+    A --> D[src/]
+    A --> E[README.md]
+    
+    B --> F[config/]
+    B --> G[data/]
+    B --> H[logs/]
+    B --> I[reports/]
+    
+    F --> J[auto_config.json]
+    F --> K[module_configs/]
+    G --> L[projects.json]
+    G --> M[tasks.json]
+    I --> N[daily/]
+    I --> O[weekly/]
+```
+
+### Step 3: Basic Configuration
+
+Create your first project configuration:
+
+```json
+// .auto_project/config/auto_config.json
+{
+  "project": {
+    "name": "My First Project with Auto Management",
+    "description": "Learning AutoProjectManagement",
+    "version": "1.0.0",
+    "team_size": 1,
+    "start_date": "2024-08-14",
+    "target_date": "2024-09-14"
+  },
+  "automation": {
+    "auto_commit": true,
+    "commit_threshold": 5,
+    "check_interval": 300,
+    "generate_reports": true
+  },
+  "modules": {
+    "enabled": ["all"]
+  }
+}
+```
+
+---
+
+## ⚙️ Configuration
+
+### Configuration Overview
+
+```mermaid
+graph LR
+    A[Configuration Files] --> B[System Settings]
+    A --> C[Module Settings]
+    A --> D[User Preferences]
+    A --> E[🆕 Dashboard Settings]
+    
+    B --> F[Auto Commit Rules]
+    B --> G[Monitoring Intervals]
+    B --> H[Report Generation]
+    
+    C --> I[Communication Risk]
+    C --> J[Quality Management]
+    C --> K[Resource Allocation]
+    
+    D --> L[Notification Preferences]
+    D --> M[UI Themes]
+    D --> N[Language Settings]
+    
+    E --> O[Dashboard Widgets]
+    E --> P[Refresh Rates]
+    E --> Q[Alert Thresholds]
+    E --> R[Custom Layouts]
+    E --> S[External Integrations]
+```
+
+### Key Configuration Sections
+
+#### 1. Project Configuration
+```json
+{
+  "project": {
+    "name": "string",
+    "description": "string",
+    "version": "string",
+    "team_members": ["member1", "member2"],
+    "milestones": [
+      {
+        "name": "Phase 1",
+        "target_date": "2024-09-01",
+        "deliverables": ["feature1", "feature2"]
+      }
+    ]
+  }
+}
+```
+
+#### 2. Automation Settings
+```json
+{
+  "automation": {
+    "auto_commit": {
+      "enabled": true,
+      "threshold": 5,
+      "exclude_patterns": ["*.log", "*.tmp"]
+    },
+    "monitoring": {
+      "check_interval": 300,
