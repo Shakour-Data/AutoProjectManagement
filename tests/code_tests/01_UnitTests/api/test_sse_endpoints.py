@@ -199,3 +199,62 @@ class TestSSEEndpoints:
         assert response["message"] == "SSE subscriptions updated successfully"
         assert response["connection_id"] == "test-conn-333"
         assert response["event_types"] == ["file_change", "auto_commit"]
+        assert response["project_id"] == "test-project"
+
+    @pytest.mark.asyncio
+    async def test_get_sse_stats(self):
+        """Test SSE stats endpoint"""
+        mock_stats = {
+            "total_connections": 5,
+            "subscription_counts": {"file_change": 3},
+            "message_queue_size": 0,
+            "uptime_seconds": 100
+        }
+        
+        self.mock_sse_manager.active_connections = {
+            "conn1": Mock(connected_at=1000, last_activity=1100, subscriptions=[EventType.FILE_CHANGE], project_filter="test")
+        }
+        
+        with patch('autoprojectmanagement.api.sse_endpoints.event_service') as mock_event_service:
+            mock_event_service.get_connection_stats.return_value = mock_stats
+            
+            response = await sse_endpoints.get_sse_stats()
+            
+            assert response["sse_connections"] == 1
+            assert response["total_connections"] == 5
+            assert "connections" in response
+
+    @pytest.mark.asyncio
+    async def test_test_sse_event(self):
+        """Test SSE test event endpoint"""
+        with patch('autoprojectmanagement.api.sse_endpoints.event_service') as mock_event_service:
+            mock_event_service.publish_event = AsyncMock()
+            
+            response = await sse_endpoints.test_sse_event("file_change", "test-project")
+            
+            assert "Test file_change event published" in response["message"]
+            mock_event_service.publish_event.assert_called_once()
+
+class TestSSEUtilities:
+    """Test class for SSE utility functions"""
+    
+    @pytest.mark.asyncio
+    async def test_send_heartbeats(self):
+        """Test heartbeat sending function"""
+        mock_connection = Mock()
+        mock_connection.connection_id = "test-heartbeat-conn"
+        mock_connection.send = AsyncMock()
+        
+        with patch('asyncio.sleep', side_effect=[None, asyncio.CancelledError]):
+            try:
+                await sse_endpoints._send_heartbeats(mock_connection)
+            except asyncio.CancelledError:
+                pass  # Expected
+            
+            mock_connection.send.assert_called_once()
+            call_args = mock_connection.send.call_args[0][0]
+            assert call_args["type"] == "heartbeat"
+            assert "connection_id" in call_args
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])
