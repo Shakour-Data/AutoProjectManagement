@@ -94,12 +94,14 @@ class Connection:
 class EventService:
     """Centralized event service for real-time communications."""
     
-    def __init__(self):
+    def __init__(self, max_queue_size: int = 1000, event_retention: int = 100):
         self.connections: Dict[str, Connection] = {}
         self.event_handlers: Dict[EventType, List[Callable]] = {}
-        self.message_queue: asyncio.Queue = asyncio.Queue()
+        self.message_queue: asyncio.Queue = asyncio.Queue(maxsize=max_queue_size)
+        self.recent_events: Deque[Event] = deque(maxlen=event_retention)
         self.running = False
         self.connection_counter = 0
+        self._start_time = time.time()
         
     def generate_connection_id(self) -> str:
         """Generate unique connection ID."""
