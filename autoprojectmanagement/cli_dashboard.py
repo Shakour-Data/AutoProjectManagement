@@ -671,7 +671,7 @@ class DashboardCLI:
         """Validate cron expression format."""
         import re
         # Basic cron validation: 5 fields separated by spaces
-        pattern = r'^(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)$'
+        pattern = r'^(\*|[\d,/-]+|(\*\/\d+))\s+(\*|[\d,/-]+|(\*\/\d+))\s+(\*|[\d,/-]+|(\*\/\d+))\s+(\*|[\d,/-]+|(\*\/\d+))\s+(\*|[\d,/-]+|(\*\/\d+))$'
         if not bool(re.match(pattern, cron_expr)):
             return False
         
