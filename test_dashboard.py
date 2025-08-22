@@ -138,3 +138,63 @@ def test_api_integration():
         # Check for static files mounting
         if 'app.mount("/static", StaticFiles(directory="autoprojectmanagement/static"), name="static")' in app_content:
             print("✅ Static files mounting found")
+        else:
+            print("❌ Static files mounting missing")
+            return False
+        
+        # Check for dashboard route
+        if '@app.get("/dashboard")' in app_content:
+            print("✅ Dashboard route found")
+        else:
+            print("❌ Dashboard route missing")
+            return False
+        
+    except Exception as e:
+        print(f"❌ Error testing API integration: {e}")
+        return False
+    
+    print("✅ API integration tests passed!")
+    return True
+
+def main():
+    """Run all dashboard tests."""
+    print("🚀 Starting AutoProjectManagement Dashboard Tests")
+    print("=" * 50)
+    
+    tests = [
+        test_dashboard_endpoints,
+        test_cli_commands,
+        test_static_files,
+        test_api_integration
+    ]
+    
+    results = []
+    for test in tests:
+        try:
+            result = test()
+            results.append(result)
+        except Exception as e:
+            print(f"❌ Test failed with exception: {e}")
+            results.append(False)
+    
+    print("\n" + "=" * 50)
+    print("📊 Test Results Summary:")
+    
+    passed = sum(results)
+    total = len(results)
+    
+    for i, result in enumerate(results, 1):
+        status = "✅ PASS" if result else "❌ FAIL"
+        print(f"Test {i}: {status}")
+    
+    print(f"\nOverall: {passed}/{total} tests passed")
+    
+    if passed == total:
+        print("🎉 All dashboard tests passed successfully!")
+        return 0
+    else:
+        print("💥 Some tests failed. Please check the implementation.")
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())
