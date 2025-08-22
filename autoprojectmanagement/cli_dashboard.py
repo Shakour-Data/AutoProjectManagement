@@ -672,8 +672,6 @@ class DashboardCLI:
             return next_time.strftime("%Y-%m-%d %H:%M:%S")
         except:
             return "Unknown"
-                    f.write(json.dumps(layout_data, indent=2))
-                    f.write("## Configuration\n\n")
 
 # Click command group for dashboard
 @click.group()
