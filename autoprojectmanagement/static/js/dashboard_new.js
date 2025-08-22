@@ -356,3 +356,15 @@ class Dashboard {
         };
         
         const template = templates[widgetId];
+        if (template) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = template();
+            return tempDiv.firstChild;
+        }
+        
+        return null;
+    }
+
+    async saveLayout() {
+        try {
+            this.showLoading(true);
