@@ -159,3 +159,22 @@ async def sse_endpoint(
     event_types: Optional[str] = Query(None, description="Comma-separated event types to subscribe to"),
     project_id: Optional[str] = Query(None, description="Project ID filter"),
     last_event_id: Optional[str] = Query(None, description="Last received event ID")
+):
+    """
+    Server-Sent Events endpoint for real-time updates.
+    
+    Provides event streaming for browser clients with support for:
+    - Event type subscriptions
+    - Project filtering
+    - Reconnection with last event ID
+    - Heartbeat messages
+    - Automatic reconnection
+    """
+    try:
+        # Create SSE connection
+        connection = await sse_manager.create_connection()
+        
+        # Parse event types from query parameter
+        subscribed_event_types = []
+        if event_types:
+            event_type_list = [et.strip() for et in event_types.split(',') if et.strip()]
