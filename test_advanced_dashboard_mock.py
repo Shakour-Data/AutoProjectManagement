@@ -194,3 +194,70 @@ def test_configure_dashboard():
     else:
         print("❌ Config file not created")
         success = False
+    
+    print(f"✅ Configure dashboard test completed: {success}")
+    return success
+
+def test_get_available_widgets_mock():
+    """Test getting available widgets with mock."""
+    print("🧪 Testing get_available_widgets (mock)...")
+    cli = DashboardCLI()
+    
+    # Mock the API response
+    with patch('autoprojectmanagement.cli_dashboard.requests.get') as mock_get:
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = ["health", "progress", "risks", "team"]
+        mock_get.return_value = mock_get
+        
+        widgets = cli.get_available_widgets()
+    
+    success = len(widgets) > 0
+    print(f"✅ Available widgets: {widgets}")
+    print(f"✅ Get available widgets test completed: {success}")
+    return success
+
+def main():
+    """Run all mock tests."""
+    print("🚀 Starting Advanced Dashboard Commands Mock Tests\n")
+    
+    # Create output directory
+    Path("JSonDataBase/OutPuts").mkdir(parents=True, exist_ok=True)
+    
+    tests = [
+        test_cron_validation,
+        test_get_available_widgets_mock,
+        test_create_custom_view_mock,
+        test_share_dashboard_view_mock,
+        test_schedule_report,
+        test_analyze_dashboard_data_mock,
+        test_configure_dashboard,
+    ]
+    
+    results = []
+    for test in tests:
+        try:
+            result = test()
+            results.append(result)
+        except Exception as e:
+            print(f"❌ Test {test.__name__} failed with error: {e}")
+            results.append(False)
+        print()
+    
+    # Summary
+    passed = sum(results)
+    total = len(results)
+    
+    print("📊 Mock Test Results Summary:")
+    print(f"   Passed: {passed}/{total}")
+    print(f"   Failed: {total - passed}/{total}")
+    
+    if passed == total:
+        print("🎉 All mock tests passed!")
+        return 0
+    else:
+        print("❌ Some mock tests failed!")
+        return 1
+
+if __name__ == "__main__":
+    exit(main())
