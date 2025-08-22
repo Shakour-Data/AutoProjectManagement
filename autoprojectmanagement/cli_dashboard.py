@@ -519,6 +519,33 @@ class DashboardCLI:
                 "overview": f"{self.api_base_url}/dashboard/overview?project_id=default",
                 "metrics": f"{self.api_base_url}/dashboard/metrics?project_id=default&timeframe={timeframe}",
                 "health": f"{self.api_base_url}/dashboard/health?project_id=default",
+                "performance": f"{self.api_base_url}/dashboard/team-performance?project_id=default"
+            }
+            
+            if analysis_type not in endpoints:
+                console.print(f"[bold red]❌ Invalid analysis type: {analysis_type}[/bold red]")
+                console.print(f"[yellow]Available types: {list(endpoints.keys())}[/yellow]")
+                return False
+            
+            response = requests.get(endpoints[analysis_type], timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Generate analysis report
+                timestamp = time.strftime("%Y%m%d_%H%M%S")
+                filename = f"dashboard_analysis_{analysis_type}_{timestamp}.md"
+                
+                with open(filename, 'w', encoding='utf-8') as f:
+                    f.write(f"# Dashboard Analysis: {analysis_type}\n\n")
+                    f.write(f"Timeframe: {timeframe}\n")
+                    f.write(f"Generated: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+                    f.write("## Analysis Results\n\n")
+                    f.write("```json\n")
+                    f.write(json.dumps(data, indent=2))
+                    f.write("\n```\n")
+                
+                console.print(f"[bold green]✅ Analysis completed![/bold green]")
                     f.write(json.dumps(layout_data, indent=2))
                     f.write("## Configuration\n\n")
 
