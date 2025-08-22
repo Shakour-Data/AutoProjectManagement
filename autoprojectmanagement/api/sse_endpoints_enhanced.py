@@ -222,3 +222,28 @@ async def sse_endpoint(
                     
             except asyncio.CancelledError:
                 logger.info(f"SSE connection cancelled: {connection.connection_id}")
+            except Exception as e:
+                logger.error(f"Error in SSE event generator for {connection.connection_id}: {e}")
+            finally:
+                if heartbeat_task:
+                    heartbeat_task.cancel()
+                    try:
+                        await heartbeat_task
+                    except as极cio.CancelledError:
+                        pass
+                await sse_manager.close_connection(connection.connection_id)
+        
+        return StreamingResponse(
+            event_generator(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": "true",
+                "X-Accel-Buffering": "no"  # Disable buffering for nginx
+            }
+        )
+        
+    except Exception as e:
+        logger.error(f"Error creating SSE connection: {e}")
