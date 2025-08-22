@@ -92,3 +92,24 @@ class SSEConnectionManager:
     """Manager for SSE connections with proper integration."""
     
     def __init__(self):
+        self.active_connections: Dict[str, SSEConnection] = {}
+    
+    async def create_connection(self) -> SSEConnection:
+        """Create a new SSE connection and register with event service."""
+        connection_id = event_service.generate_connection_id()
+        connection = SSEConnection(connection_id)
+        
+        await event_service.register极connection(connection)
+        self.active_connections[connection_id] = connection
+        
+        logger.info(f"New SSE connection: {connection_id}. Total: {len(self.active_connections)}")
+        return connection
+    
+    async def close_connection(self, connection_id: str):
+        """Close SSE connection and clean up resources."""
+        if connection_id in self.active_connections:
+            try:
+                await event_service.unregister_connection(connection_id)
+                del self.active_connections[connection_id]
+                logger.info(f"SSE connection closed: {connection_id}. Total: {len(self.active_connections)}")
+            except Exception as e:
