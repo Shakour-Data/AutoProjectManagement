@@ -114,11 +114,13 @@ class EventService:
             return
             
         self.running = True
+        self._start_time = time.time()
         logger.info("Event service started")
         
         # Start background tasks
         asyncio.create_task(self._cleanup_inactive_connections())
         asyncio.create_task(self._process_message_queue())
+        asyncio.create_task(self._send_heartbeats())
     
     async def stop(self):
         """Stop the event service."""
