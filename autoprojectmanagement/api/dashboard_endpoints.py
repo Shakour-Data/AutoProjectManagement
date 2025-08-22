@@ -199,3 +199,24 @@ async def get_dashboard_alerts(
 
 @router.get("/health", response_model=Dict[str, Any])
 async def get_dashboard_health(
+    project_id: str = Query(..., description="Project ID for health check")
+) -> Dict[str, Any]:
+    """
+    Get comprehensive project health status for dashboard.
+    
+    Detailed health assessment with component-level status.
+    """
+    try:
+        health_data = get_health_data(project_id)
+        return health_data
+        
+    except Exception as e:
+        logger.error(f"Error getting dashboard health: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+@router.get("/team-performance", response_model=Dict[str, Any])
+async def get_team_performance_metrics(
+    project_id: str = Query(..., description="Project ID for team performance")
+) -> Dict[str, Any]:
+    """
+    Get team performance metrics for dashboard.
