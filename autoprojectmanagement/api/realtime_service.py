@@ -236,3 +236,24 @@ class EventService:
     
     async def trigger_event_handlers(self, event: Event):
         """Trigger handlers for specific event type."""
+        if event.type in self.event_handlers:
+            for handler in self.event_handlers[event.type]:
+                try:
+                    await handler(event)
+                except Exception as e:
+                    logger.error(f"Error in event handler for {event.type}: {e}")
+
+# Global event service instance
+event_service = EventService()
+
+async def initialize_event_service():
+    """Initialize the global event service."""
+    await event_service.start()
+    logger.info("Global event service initialized")
+
+async def shutdown_event_service():
+    """Shutdown the global event service."""
+    await event_service.stop()
+    logger.info("Global event service shutdown")
+
+# Utility functions for common event types
