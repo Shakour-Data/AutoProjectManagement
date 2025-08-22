@@ -309,3 +309,50 @@ class Dashboard {
         });
         
         // Update theme if needed
+        if (this.currentLayout.theme !== 'light') {
+            console.log('Applying theme:', this.currentLayout.theme);
+            // Theme switching would be implemented here
+        }
+    }
+
+    createWidgetElement(widgetId) {
+        const templates = {
+            'health': () => `<div class="widget health-widget" data-widget-id="health">
+                <h3>Project Health</h3>
+                <div class="widget-content">
+                    <canvas id="healthChart"></canvas>
+                </div>
+            </div>`,
+            'progress': () => `<div class="widget progress-widget" data-widget-id="progress">
+                <h3>Task Progress</h3>
+                <div class="widget-content">
+                    <canvas id="progressChart"></canvas>
+                </div>
+            </div>`,
+            'risks': () => `<div class="widget risk-widget" data-widget-id="risks">
+                <h3>Risk Assessment</h3>
+                <div class="widget-content">
+                    <div class="risk-matrix" id="riskMatrix"></div>
+                </div>
+            </div>`,
+            'team': () => `<div class="widget team-widget" data-widget-id="team">
+                <h3>Team Performance</h3>
+                <div class="widget-content">
+                    <canvas id="teamChart"></canvas>
+                </div>
+            </div>`,
+            'quality': () => `<div class="widget quality-widget" data-widget-id="quality">
+                <h3>Quality Metrics</h3>
+                <div class="widget-content">
+                    <canvas id="qualityChart"></canvas>
+                </div>
+            </div>`,
+            'alerts': () => `<div class="widget alerts-widget" data-widget-id="alerts">
+                <h3>Active Alerts</h3>
+                <div class="widget-content">
+                    <div class="alerts-list" id="alertsList"></div>
+                </div>
+            </div>`
+        };
+        
+        const template = templates[widgetId];
