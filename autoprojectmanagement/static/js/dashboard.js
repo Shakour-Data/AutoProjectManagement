@@ -45,3 +45,19 @@ class Dashboard {
             const projectId = this.projectId || 'default';
             
             // Load overview data
+            const overviewResponse = await fetch(`/api/v1/dashboard/overview?project_id=${projectId}`);
+            if (!overviewResponse.ok) throw new Error('Failed to load overview');
+            const overviewData = await overviewResponse.json();
+            
+            // Load metrics data
+            const metricsResponse = await fetch(`/api/v1/dashboard/metrics?project_id=${projectId}&timeframe=24h`);
+            const metricsData = metricsResponse.ok ? await metricsResponse.json() : null;
+            
+            // Load alerts
+            const alertsResponse = await fetch(`/api/v1/dashboard/alerts?project_id=${projectId}`);
+            const alertsData = alertsResponse.ok ? await alertsResponse.json() : [];
+            
+            this.updateDashboard(overviewData, metricsData, alertsData);
+            
+        } catch (error) {
+            console.error('Error loading dashboard data:', error);
