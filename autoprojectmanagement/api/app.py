@@ -471,8 +471,7 @@ def system_info() -> Dict[str, Any]:
             "progress_monitoring",
             "automated_commits",
             "risk_assessment",
-            "reporting",
-            "dashboard"  # Added dashboard capability
+            "reporting"
         ],
         "supported_formats": ["json", "markdown", "table"],
         "timestamp": datetime.now().isoformat()
