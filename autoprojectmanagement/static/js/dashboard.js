@@ -61,3 +61,29 @@ class Dashboard {
             
         } catch (error) {
             console.error('Error loading dashboard data:', error);
+            this.showError('Failed to load dashboard data');
+        } finally {
+            this.showLoading(false);
+        }
+    }
+
+    updateDashboard(overview, metrics, alerts) {
+        // Update overview section
+        this.updateOverview(overview);
+        
+        // Update charts with metrics
+        if (metrics) {
+            this.updateCharts(metrics);
+        }
+        
+        // Update alerts
+        this.updateAlerts(alerts);
+        
+        // Update last updated timestamp
+        this.updateLastUpdated();
+    }
+
+    updateOverview(data) {
+        document.getElementById('projectId').textContent = `Project: ${data.project_id}`;
+        document.getElementById('totalTasks').textContent = data.total_tasks;
+        document.getElementById('completedTasks').textContent = data.completed_tasks;
