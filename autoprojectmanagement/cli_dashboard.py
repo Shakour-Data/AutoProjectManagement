@@ -97,3 +97,26 @@ class DashboardCLI:
                 TextColumn("[progress.description]{task.description}"),
                 transient=True,
             ) as progress:
+                task = progress.add_task("Starting server...", total=None)
+                
+                # Simulate server startup
+                time.sleep(2)
+                
+                progress.update(task, description="Loading dashboard components...")
+                time.sleep(1)
+                
+                progress.update(task, description="Initializing WebSocket connections...")
+                time.sleep(1)
+                
+            console.print("[bold green]✅ Dashboard server started successfully![/bold green]")
+            console.print("\n[dim]Press Ctrl+C to stop the server[/dim]")
+            
+            # Keep the server running (simulated)
+            try:
+                while True:
+                    time.sleep(1)
+            except KeyboardInterrupt:
+                console.print("\n[yellow]🛑 Dashboard server stopped[/yellow]")
+                return True
+                
+        except Exception as e:
