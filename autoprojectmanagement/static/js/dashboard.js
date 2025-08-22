@@ -633,10 +633,15 @@ class Dashboard {
         });
     }
 
-    updateConnectionStatus(connected) {
+    updateConnectionStatus(connected, reconnecting = false) {
         const statusElement = document.getElementById('connectionStatus');
-        statusElement.textContent = connected ? 'Connected' : 'Disconnected';
-        statusElement.className = connected ? 'connected' : 'disconnected';
+        if (reconnecting) {
+            statusElement.textContent = 'Reconnecting...';
+            statusElement.className = 'connection-status reconnecting';
+        } else {
+            statusElement.textContent = connected ? 'Connected' : 'Disconnected';
+            statusElement.className = `connection-status ${connected ? 'connected' : 'disconnected'}`;
+        }
     }
 
     updateRefreshRate() {
