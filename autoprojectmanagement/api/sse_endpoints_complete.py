@@ -99,7 +99,7 @@ class SSEConnectionManager:
         connection_id = event_service.generate_connection_id()
         connection = SSEConnection(connection_id)
         
-        await event_service.register极connection(connection)
+        await event_service.register_connection(connection)
         self.active_connections[connection_id] = connection
         
         logger.info(f"New SSE connection: {connection_id}. Total: {len(self.active_connections)}")
