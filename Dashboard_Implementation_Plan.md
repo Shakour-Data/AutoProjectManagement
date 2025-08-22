@@ -74,8 +74,8 @@ This report analyzes the implementation status of dashboard functionality based 
 ## 🔄 Partially Implemented Activities
 
 #### 4.2 Interactive Features
-- [~] Drag-and-drop widget arrangement (Not implemented)
-- [~] Custom widget configuration (Basic layout config only)
+- [x] Drag-and-drop widget arrangement (Fully implemented with SortableJS)
+- [x] Custom widget configuration (Complete implementation with layout management API)
 
 ## ❌ Not Yet Implemented Activities
 
