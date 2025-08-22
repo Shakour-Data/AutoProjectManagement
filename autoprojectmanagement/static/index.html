@@ -1,3 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoProjectManagement Dashboard</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.7.2/dist/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h1>AutoProjectManagement Dashboard</h1>
+                <span class="project-id" id="projectId">Project: Loading...</span>
+            </div>
+            <div class="header-right">
+                <div class="health-score" id="healthScore">
+                    <span class="score-label">Health:</span>
+                    <span class="score-value">--</span>
+                </div>
+                <div class="refresh-controls">
+                    <button id="refreshBtn" class="btn btn-primary">Refresh</button>
+                    <select id="refreshRate">
+                        <option value="3000">3s</option>
+                        <option value="5000">5s</option>
+                        <option value="10000">10s</option>
+                        <option value="30000">30s</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Overview Section -->
+            <section class="overview-section">
+                <div class="overview-card">
+                    <h3>Project Overview</h3>
+                    <div class="overview-stats">
+                        <div class="stat">
+                            <span class="stat-label">Total Tasks</span>
+                            <span class="stat-value" id="totalTasks">--</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Completed</span>
+                            <span class="stat-value" id="completedTasks">--</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Progress</span>
+                            <span class="stat-value" id="progressPercentage">--%</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Risk Level</span>
+                            <span class="stat-value risk-level" id="riskLevel">--</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Widgets Grid -->
+            <section class="widgets-grid">
+                <!-- Project Health Widget -->
+                <div class="widget health-widget">
+                    <h3>Project Health</h3>
+                    <div class="widget-content">
+                        <canvas id="healthChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Task Progress Widget -->
+                <div class="widget progress-widget">
+                    <h3>Task Progress</h3>
+                    <div class="widget-content">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Risk Assessment Widget -->
+                <div class="widget risk-widget">
+                    <h3>Risk Assessment</h3>
+                    <div class="widget-content">
+                        <div class="risk-matrix" id="riskMatrix">
+                            <!-- Risk indicators will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Performance Widget -->
+                <div class="widget team-widget">
+                    <h3>Team Performance</h3>
