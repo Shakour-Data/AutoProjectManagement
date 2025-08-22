@@ -142,3 +142,51 @@ class DashboardCLI:
             return True
             
         except Exception as e:
+            console.print(f"[bold red]❌ Failed to stop dashboard: {e}[/bold red]")
+            logger.error(f"Dashboard stop failed: {e}")
+            return False
+    
+    def dashboard_status(self) -> Dict[str, Any]:
+        """
+        Get dashboard server status.
+        
+        Returns:
+            Dictionary containing status information
+        """
+        try:
+            # Try to connect to the dashboard API
+            response = requests.get(f"{self.api_base_url}/health", timeout=5)
+            
+            if response.status_code == 200:
+                return {
+                    "status": "running",
+                    "health": response.json(),
+                    "url": f"http://{self.default_host}:{self.default_port}"
+                }
+            else:
+                return {
+                    "status": "stopped",
+                    "error": f"API returned status {response.status_code}"
+                }
+                
+        except requests.ConnectionError:
+            return {
+                "status": "stopped",
+                "error": "Cannot connect to dashboard server"
+            }
+        except Exception as e:
+            return {
+                "status": "error",
+                "error": str(e)
+            }
+    
+    def open_dashboard(self) -> bool:
+        """
+        Open dashboard in default web browser.
+        
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            dashboard_url = f"http://{self.default_host}:{self.default_port}/dashboard"
+            
