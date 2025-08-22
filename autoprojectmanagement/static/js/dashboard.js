@@ -893,3 +893,172 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async loadLayout(layoutType) {
+        try {
+            this.showLoading(true);
+            
+            const response = await fetch(`/api/v1/dashboard/layout?layout_type=${layoutType}`);
+            if (!response.ok) throw new Error('Failed to load layout');
+            
+            this.currentLayout = await response.json();
+            this.applyLayout();
+            
+            // Update selector
+            document.getElementById('layoutSelector').value = layoutType;
+            
+        } catch (error) {
+            console.error('Error loading layout:', error);
+            this.showError('Failed to load layout');
+        } finally {
+            this.showLoading(false);
+        }
+    }
+
+    applyLayout() {
+        const widgetsGrid = document.querySelector('.widgets-grid');
+        widgetsGrid.innerHTML = '';
+        
+        // Sort widgets by position
+        const sortedWidgets = [...this.currentLayout.widgets].sort((a, b) => a.position - b.position);
+        
+        sortedWidgets.forEach(widgetConfig => {
+            if (widgetConfig.enabled) {
+                const widgetElement = this.createWidgetElement(widgetConfig.widget_id);
+                if (widgetElement) {
+                    widgetsGrid.appendChild(widgetElement);
+                }
+            }
+        });
+        
+        // Update theme if needed
+        if (this.currentLayout.theme !== 'light') {
+            console.log('Applying theme:', this.currentLayout.theme);
+            // Theme switching would be implemented here
+        }
+    }
+
+    createWidgetElement(widgetId) {
+        const templates = {
+            'health': () => `<div class="widget health-widget" data-widget-id="health">
+                <h3>Project Health</h3>
+                <div class="widget-content">
+                    <canvas id="healthChart"></canvas>
+                </div>
+            </div>`,
+            'progress': () => `<div class="widget progress-widget" data-widget-id="progress">
+                <h3>Task Progress</h3>
+                <div class="widget-content">
+                    <canvas id="progressChart"></canvas>
+                </div>
+            </div>`,
+            'risks': () => `<div class="widget risk-widget" data-widget-id="risks">
+                <h3>Risk Assessment</h3>
+                <div class="widget-content">
+                    <div class="risk-matrix" id="riskMatrix"></div>
+                </div>
+            </div>`,
+            'team': () => `<div class="widget team-widget" data-widget-id="team">
+                <h3>Team Performance</h3>
+                <div class="widget-content">
+                    <canvas id="teamChart"></canvas>
+                </div>
+            </div>`,
+            'quality': () => `<div class="widget quality-widget" data-widget-id="quality">
+                <h3>Quality Metrics</h3>
+                <div class="widget-content">
+                    <canvas id="qualityChart"></canvas>
+                </div>
+            </div>`,
+            'alerts': () => `<div class="widget alerts-widget" data-widget-id="alerts">
+                <h3>Active Alerts</h3>
+                <div class="widget-content">
+                    <div class="alerts-list" id="alertsList"></div>
+                </div>
+            </div>`
+        };
+        
+        const template = templates[widgetId];
+        if (template) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = template();
+            return tempDiv.firstChild;
+        }
+        
+        return null;
+    }
+
+    async saveLayout() {
+        try {
+            this.showLoading(true);
+            
+            // Update positions from current DOM order
+            this.updateWidgetPositions();
+            
+            const response = await fetch('/api/v1/dashboard/layout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(this.currentLayout)
+            });
+            
+            if (!response.ok) throw new Error('Failed to save layout');
+            
+            const result = await response.json();
+            console.log('Layout saved:', result);
+            
+            this.showNotification('Layout saved successfully', 'success');
+            this.exitEditMode();
+            
+        } catch (error) {
+            console.error('Error saving layout:', error);
+            this.showError('Failed to save layout');
+        } finally {
+            this.showLoading(false);
+        }
+    }
+
+    async getAvailableLayouts() {
+        try {
+            const response = await fetch('/api/v1/dashboard/layouts');
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            console.error('Error getting available layouts:', error);
+        }
+        return ['standard', 'minimal', 'custom'];
+    }
+
+    async populateLayoutSelector() {
+        const layouts = await this.getAvailableLayouts();
+        const selector = document.getElementById('layoutSelector');
+        
+        selector.innerHTML = '';
+        layouts.forEach(layout => {
+            const option = document.createElement('option');
+            option.value = layout;
+            option.textContent = this.getLayoutName(layout);
+            selector.appendChild(option);
+        });
+        
+        // Set default value
+        if (layouts.includes('standard')) {
+            selector.value = 'standard';
+        }
+    }
+
+    getLayoutName(layoutType) {
+        const names = {
+            'standard': 'Standard Layout',
+            'minimal': 'Minimal Layout',
+            'custom': 'Custom Layout'
+        };
+        return names[layoutType] || layoutType;
+    }
+}
+
+// Export for testing
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Dashboard;
+}
