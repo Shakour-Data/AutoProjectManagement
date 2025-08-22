@@ -18,3 +18,30 @@ class Dashboard {
     }
 
     setupEventListeners() {
+        // Refresh button
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            this.loadProjectData();
+        });
+
+        // Refresh rate selector
+        document.getElementById('refreshRate').addEventListener('change', (e) => {
+            this.refreshRate = parseInt(e.target.value);
+            this.updateRefreshRate();
+        });
+
+        // Handle window focus for reconnection
+        window.addEventListener('focus', () => {
+            if (!this.isConnected) {
+                this.connectWebSocket();
+            }
+        });
+    }
+
+    async loadProjectData() {
+        try {
+            this.showLoading(true);
+            
+            // In a real implementation, we would get the project ID from URL or configuration
+            const projectId = this.projectId || 'default';
+            
+            // Load overview data
