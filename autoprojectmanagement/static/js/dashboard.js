@@ -352,6 +352,45 @@ class Dashboard {
         // Clear existing heartbeat if any
         this.stopHeartbeat();
         
+        // Send ping every 25 seconds (slightly less than server timeout)
+        this.heartbeatInterval = setInterval(() => {
+            if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+                this.socket.send(JSON.stringify({
+                    type: 'ping',
+                    timestamp: Date.now()
+                }));
+            }
+        }, 25000);
+    }
+
+    stopHeartbeat() {
+        if (this.heartbeatInterval) {
+            clearInterval(this.heartbeatInterval);
+            this.heartbeatInterval = null;
+        }
+    }
+
+    attemptReconnection() {
+        // Exponential backoff for reconnection
+        const maxAttempts = 5;
+        const baseDelay = 1000; // 1 second
+        const maxDelay = 30000; // 30 seconds
+        
+        if (this.reconnectAttempts >= maxAttempts) {
+            console.log('Max reconnection attempts reached, giving up');
+            this.reconnectAttempts = 0;
+            return;
+        }
+        
+        const delay = Math.min(baseDelay * Math.pow(2, this.reconnectAttempts), maxDelay);
+        this.reconnectAttempts++;
+        
+        console.log(`Attempting reconnection in ${delay}ms (attempt ${this.reconnectAttempts}/${maxAttempts})`);
+        
+        setTimeout(() => {
+            this.connectWebSocket();
+        }, delay);
+    }
 
     handleWebSocketMessage(data) {
         console.log('WebSocket message received:', data);
