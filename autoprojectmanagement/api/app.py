@@ -446,6 +446,9 @@ async def internal_error_handler(request, exc):
         }
     )
 
+# Include dashboard endpoints
+app.include_router(dashboard_router, prefix=API_PREFIX)
+
 # Additional utility endpoints
 @app.get(
     f"{API_PREFIX}/system/info",
@@ -469,7 +472,8 @@ def system_info() -> Dict[str, Any]:
             "progress_monitoring",
             "automated_commits",
             "risk_assessment",
-            "reporting"
+            "reporting",
+            "dashboard"  # Added dashboard capability
         ],
         "supported_formats": ["json", "markdown", "table"],
         "timestamp": datetime.now().isoformat()
