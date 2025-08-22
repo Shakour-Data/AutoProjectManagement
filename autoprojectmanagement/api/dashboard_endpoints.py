@@ -110,53 +110,37 @@ class WebSocketConnection(Connection):
 class WebSocketConnectionManager:
     def __init__(self):
         self.active_connections: Dict[str, WebSocketConnection] = {}
+        self.connection_stats = {
+            "total_connections": 0,
+            "failed_connections": 0,
+            "reconnections": 0
+        }
     
     async def connect(self, websocket: WebSocket) -> WebSocketConnection:
         """Register a new WebSocket connection."""
-        connection_id = event_service.generate_connection_id()
-        connection = WebSocketConnection(connection_id, websocket)
-        
-        await websocket.accept()
-        await event_service.register_connection(connection)
-        self.active_connections[connection_id] = connection
-        
-        logger.info(f"New WebSocket connection: {connection_id}. Total: {len(self.active_connections)}")
-        return connection
+        try:
+            connection_id = event_service.generate_connection_id()
+            connection = WebSocketConnection(connection_id, websocket)
+            
+            await websocket.accept()
+            await event_service.register_connection(connection)
+            self.active_connections[connection_id] = connection
+            self.connection_stats["total_connections"] += 1
+            
+            logger.info(f"New WebSocket connection: {connection_id}. Total: {len(self.active_connections)}")
+            return connection
+            
+        except Exception as e:
+            self.connection_stats["failed_connections"] += 1
+            logger.error(f"Failed to establish WebSocket connection: {e}")
+            raise
     
     async def disconnect(self, connection_id: str):
         """Disconnect WebSocket connection."""
         if connection_id in self.active_connections:
-            await event_service.unregister_connection(connection_id)
-            del self.active_connections[connection_id]
-            logger.info(f"WebSocket connection closed: {connection_id}. Total: {len(self.active_connections)}")
-    
-    async def handle_subscription(self, connection_id: str, subscription_request: Dict[str, Any]):
-        """Handle subscription request from client."""
-        logger.debug(f"Handling subscription for connection {connection_id}: {subscription_request}")
-        
-        if connection_id not in self.active_connections:
-            logger.warning(f"Connection {connection_id} not found in active connections")
-            return
-        
-        connection = self.active_connections[connection_id]
-        
-        # Parse event types
-        event_types = subscription_request.get('event_types', [])
-        logger.debug(f"Subscribing to event types: {event_types}")
-        
-        for event_type_str in event_types:
             try:
-                event_type = EventType(event_type_str)
-                event_service.subscribe(connection_id, event_type)
-                logger.debug(f"Subscribed to {event_type}")
-            except ValueError:
-                logger.warning(f"Invalid event type: {event_type_str}")
-        
-        # Set project filter
-        project_id = subscription_request.get('project_id')
-        event_service.set_project_filter(connection_id, project_id)
-        
-        logger.info(f"Connection {connection_id} subscriptions updated: {event_types}, project: {project_id}")
+                await event_service.unregister_connection(connection_id)
+                del self.active_connections[connection_id]
 
 # Global connection manager
 websocket_manager = WebSocketConnectionManager()
