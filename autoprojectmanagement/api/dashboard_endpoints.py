@@ -76,3 +76,55 @@ class DashboardAlert(BaseModel):
     resolved: bool = Field(False, description="Whether alert is resolved")
 
 class DashboardLayout(BaseModel):
+    """Model for dashboard layout configuration."""
+    layout_type: str = Field(..., description="Layout type (standard, minimal, custom)")
+    widgets: List[str] = Field(..., description="List of enabled widgets")
+    refresh_rate: int = Field(3000, description="Refresh rate in milliseconds")
+    theme: str = Field("light", description="Theme (light, dark)")
+
+# WebSocket connection manager
+class ConnectionManager:
+    def __init__(self):
+        self.active_connections: List[WebSocket] = []
+
+    async def connect(self, websocket: WebSocket):
+        await websocket.accept()
+        self.active_connections.append(websocket)
+        logger.info(f"New dashboard connection. Total connections: {len(self.active_connections)}")
+
+    def disconnect(self, websocket: WebSocket):
+        self.active_connections.remove(websocket)
+        logger.info(f"Dashboard connection closed. Total connections: {len(self.active_connections)}")
+
+    async def broadcast(self, message: Dict[str, Any]):
+        """Broadcast message to all connected clients."""
+        for connection in self.active_connections:
+            try:
+                await connection.send_json(message)
+            except Exception as e:
+                logger.error(f"Error broadcasting message: {e}")
+                self.disconnect(connection)
+
+# Global connection manager
+manager = ConnectionManager()
+
+@router.get("/overview", response_model=DashboardOverview)
+async def get_dashboard_overview(
+    project_id: str = Query(..., description="Project ID for dashboard overview")
+) -> DashboardOverview:
+    """
+    Get comprehensive dashboard overview for a project.
+    
+    Returns real-time project health, progress, risks, and team performance metrics.
+    """
+    try:
+        # Get project status data
+        status_data = project_service.get_status(project_id)
+        
+        if not status_data:
+            raise HTTPException(status_code=404, detail=f"Project '{project_id}' not found")
+        
+        # Calculate health score based on multiple factors
+        health_score = calculate_health_score(status_data)
+        
+        # Determine risk level
