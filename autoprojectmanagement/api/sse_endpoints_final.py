@@ -136,3 +136,51 @@ class SSEConnectionManager:
                 subscribed_types.append(event_type.value)
                 logger.debug(f"SSE connection {connection_id} subscribed to {event_type}")
             except ValueError:
+                logger.warning(f"Invalid event type in SSE subscription: {event_type_str}")
+        
+        # Set project filter
+        event_service.set_project_filter(connection_id, project_id)
+        
+        logger.info(f"SSE connection {connection_id} subscriptions updated: {subscribed_types}, project: {project_id}")
+        return subscribed_types
+
+# Global SSE connection manager
+sse_manager = SSEConnectionManager()
+
+class SSESubscriptionRequest(BaseModel):
+    """Model for SSE subscription requests."""
+    event_types: List[str] = Field(..., description="Event types to subscribe to")
+    project_id: Optional[str] = Field(None, description="Project ID filter")
+    last_event_id: Optional[str] = Field(None, description="Last received event ID for reconnection")
+
+@router.get("/events")
+async def sse_endpoint(
+    request: Request,
+    event_types: Optional[str] = Query(None, description="Comma-separated event types to subscribe to"),
+    project_id: Optional[str] = Query(None, description="Project ID filter"),
+    last_event_id: Optional[str] = Query(None, description="Last received event ID")
+):
+    """
+    Server-Sent Events endpoint for real-time updates.
+    
+    Provides event streaming for browser clients with support for:
+    - Event type subscriptions
+    - Project filtering
+    - Reconnection with last event ID
+    - Heartbeat messages
+    - Automatic reconnection
+    """
+    try:
+        # Create SSE connection
+        connection = await sse_manager.create_connection()
+        
+        # Parse event types from query parameter
+        subscribed_event_types = []
+        if event_types:
+            event_type_list = [et.strip() for et in event_types.split(',') if et.strip()]
+            subscribed_event_types = await sse_manager.handle_subscription(
+                connection.connection_id, event_type_list, project_id
+            )
+        
+        # Handle reconnection with last event ID
+        missed_events = []
