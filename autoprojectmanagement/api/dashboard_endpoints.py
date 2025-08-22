@@ -421,6 +421,15 @@ async def websocket_endpoint(websocket: WebSocket):
                     })
                 
             except asyncio.TimeoutError:
+                # Send heartbeat to keep connection alive
+                await connection.send({
+                    "type": "heartbeat",
+                    "timestamp": datetime.now().isoformat()
+                })
+                
+            except Exception as e:
+                logger.warning(f"Error processing WebSocket message: {e}")
+                break
                 
     except WebSocketDisconnect:
         logger.info(f"WebSocket client disconnected: {connection.connection_id}")
