@@ -203,7 +203,7 @@ async def sse_endpoint(
                     "type": "connection_established",
                     "connection_id": connection.connection_id,
                     "timestamp": datetime.now().isoformat(),
-                    "message": "SS极 connection established",
+                    "message": "SSE connection established",
                     "subscribed_event_types": subscribed_event_types,
                     "project_id": project_id
                 }
