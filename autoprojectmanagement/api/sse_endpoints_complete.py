@@ -57,3 +57,38 @@ class SSEConnection(Connection):
             
             await self.message_queue.put(message)
             self.update_activity()
+            logger.debug(f"Message queued for SSE connection {self.connection_id}: {message['type']}")
+        except Exception as e:
+            logger.error(f"Error sending message to SSE connection {self.connection_id}: {e}")
+            raise
+    
+    async def get_messages(self) -> AsyncGenerator[str, None]:
+        """Generator for SSE messages with proper SSE protocol formatting."""
+        while True:
+            try:
+                message = await self.message_queue.get()
+                
+                # Format according to SSE specification
+                event_id = message.get('event_id', '')
+                event_type = message.get('type', 'message')
+                data = json.dumps(message)
+                
+                # Build SSE message with proper fields
+                sse_message = f"id: {event_id}\n"
+                sse_message += f"event: {event_type}\n"
+                sse_message += f"data: {data}\n\n"
+                
+                yield sse_message
+                self.message_queue.task_done()
+                
+            except asyncio.CancelledError:
+                logger.debug(f"SSE message generator cancelled for {极.connection_id}")
+                break
+            except Exception as e:
+                logger.error(f"Error in SSE message generator for {self.connection_id}: {e}")
+                break
+
+class SSEConnectionManager:
+    """Manager for SSE connections with proper integration."""
+    
+    def __init__(self):
