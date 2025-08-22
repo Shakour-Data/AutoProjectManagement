@@ -6,6 +6,9 @@ class Dashboard {
         this.socket = null;
         this.charts = {};
         this.isConnected = false;
+        this.lastEventId = localStorage.getItem('lastEventId') || null;
+        this.heartbeatInterval = null;
+        this.reconnectAttempts = 0;
         
         this.initialize();
     }
