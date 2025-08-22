@@ -467,13 +467,14 @@ class DashboardCLI:
                 return False
             
             # Create schedule configuration
+            next_run = self._calculate_next_run(schedule_expr)
             schedule_config = {
                 "report_type": report_type,
                 "schedule": schedule_expr,
                 "format": output_format,
                 "enabled": True,
                 "last_run": None,
-                "next_run": self._calculate_next_run(schedule_expr)
+                "next_run": next_run
             }
             
             # Save schedule to file
