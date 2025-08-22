@@ -83,6 +83,7 @@ async def test_websocket_functionality():
             # Wait for subscription confirmation
             response = await websocket.recv()
             response_data = json.loads(response)
+            logger.info(f"WebSocket response: {response_data}")
             
             if response_data.get("type") == "subscription_confirmed":
                 logger.info("✅ WebSocket subscription confirmed")
@@ -91,6 +92,7 @@ async def test_websocket_functionality():
                 await websocket.send(json.dumps({"type": "ping"}))
                 pong_response = await websocket.recv()
                 pong_data = json.loads(pong_response)
+                logger.info(f"Pong response: {pong_data}")
                 
                 if pong_data.get("type") == "pong":
                     logger.info("✅ WebSocket ping/pong working")
@@ -99,7 +101,7 @@ async def test_websocket_functionality():
                     logger.error("❌ WebSocket ping/pong failed")
                     return False
             else:
-                logger.error("❌ WebSocket subscription failed")
+                logger.error(f"❌ WebSocket subscription failed. Expected 'subscription_confirmed', got: {response_data.get('type')}")
                 return False
                 
     except Exception as e:
