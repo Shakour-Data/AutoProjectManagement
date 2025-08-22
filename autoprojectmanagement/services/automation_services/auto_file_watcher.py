@@ -21,6 +21,14 @@ from threading import Timer
 from datetime import datetime, timedelta
 import subprocess
 
+# Import real-time event service
+try:
+    from autoprojectmanagement.api.realtime_service import publish_file_change_event
+except ImportError:
+    # Handle import for development
+    import sys
+    from pathlib import Path
+
 # Handle import for both standalone script and package usage
 try:
     # Try the normal package import first
