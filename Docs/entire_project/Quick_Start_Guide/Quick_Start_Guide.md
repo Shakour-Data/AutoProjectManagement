@@ -2262,3 +2262,96 @@ autoproject dashboard plan-improvements --based-on "last-quarter"
 - Open dashboard in presentation mode
 - Display project health score: 82% → 88% 📈
 - Review task completion: 18/20 (90%)
+- Analyze team velocity: 22 points (target: 25)
+
+## 2. Quality Metrics Review
+- Test coverage: 78% → 82% 📈
+- Code quality: 85% → 88% 📈
+- Bug trends: ↓ 40% 📉
+
+## 3. Risk Management
+- Active risks: 2 items (low 🟢)
+- Resolved alerts: 1 ✅
+- Dependencies: All under control
+
+## 4. Next Sprint Planning
+- Velocity target: 24 points (based on historical data)
+- Focus on improving test coverage to 85%
+- Reduce external dependencies
+
+## 5. Action Items
+- [ ] Improve documentation (Development Team)
+- [ ] Optimize tests (QA Team)
+- [ ] Security review (Security Team)
+```
+
+### Workflow 7: Integration with Existing Tools
+
+```mermaid
+graph LR
+    A[Connect to GitHub] --> B[Sync commits & PRs]
+    B --> C[Connect to JIRA]
+    C --> D[Sync tasks & statuses]
+    D --> E[Connect to Slack]
+    E --> F[Send real-time notifications]
+    F --> G[Connect to Email]
+    G --> H[Send scheduled reports]
+    H --> I[Complete integrated dashboard]
+```
+
+### Useful Dashboard Workflow Commands
+
+```bash
+# Quick setup for meetings
+autoproject dashboard --start --port 8080 --theme presentation
+
+# Create snapshot of current state
+autoproject dashboard snapshot --name "sprint-review-2024-08"
+
+# Share with team
+autoproject dashboard share --view "executive" --recipients "team@company.com"
+
+# Schedule automated reports
+autoproject dashboard schedule --report "daily-summary" --time "09:00"
+
+# Review historical performance
+autoproject dashboard history --period "30d" --metric "velocity"
+```
+
+#### Key Performance Indicators (KPIs) in Dashboard
+
+```mermaid
+graph LR
+    A[Main KPIs] --> B[🎯 Project Health]
+    A --> C[📊 Task Progress]
+    A --> D[⚠️ Risk Level]
+    A --> E[👥 Team Performance]
+    A --> F[🔧 Technical Quality]
+    
+    B --> G[Overall Score: 85%]
+    B --> H[Goal Achievement: 78%]
+    B --> I[Stakeholder Satisfaction: 90%]
+    
+    C --> J[Tasks Completed: 15/20]
+    C --> K[Sprint Velocity: 25 points]
+    C --> L[Delay: 2 days]
+    
+    D --> M[Active Risks: 3 items]
+    D --> N[Risk Score: 2/10]
+    D --> O[Alerts: 1 active]
+    
+    E --> P[Productivity: +15%]
+    E --> Q[Collaboration: 92%]
+    E --> R[Team Satisfaction: 88%]
+    
+    F --> S[Test Coverage: 75%]
+    F --> T[Code Quality: 82%]
+    F --> U[Bug Trend: ↓ 30%]
+```
+
+#### Available Dashboard Types
+
+##### 1. Executive Dashboard
+```json
+{
+  "type": "executive",
