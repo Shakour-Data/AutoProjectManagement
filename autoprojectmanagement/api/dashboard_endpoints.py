@@ -30,6 +30,7 @@ try:
     from autoprojectmanagement.api.services import ProjectService
     from autoprojectmanagement.main_modules.progress_reporting.progress_report import ProgressReport
     from autoprojectmanagement.main_modules.progress_reporting.dashboards_reports import DashboardReports
+    from autoprojectmanagement.api.realtime_service import EventService, EventType, Connection, event_service
 except ImportError:
     # Handle import for development
     import sys
@@ -37,6 +38,7 @@ except ImportError:
     from autoprojectmanagement.api.services import ProjectService
     from autoprojectmanagement.main_modules.progress_reporting.progress_report import ProgressReport
     from autoprojectmanagement.main_modules.progress_reporting.dashboards_reports import DashboardReports
+    from autoprojectmanagement.api.realtime_service import EventService, EventType, Connection, event_service
 
 # Create router
 router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
