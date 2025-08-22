@@ -546,6 +546,30 @@ class DashboardCLI:
                     f.write("\n```\n")
                 
                 console.print(f"[bold green]✅ Analysis completed![/bold green]")
+                console.print(f"   Report saved to: [cyan]{filename}[/cyan]")
+                return True
+            else:
+                console.print(f"[bold red]❌ Analysis failed: {response.text}[/bold red]")
+                return False
+                
+        except Exception as e:
+            console.print(f"[bold red]❌ Error analyzing data: {e}[/bold red]")
+            logger.error(f"Analysis failed: {e}")
+            return False
+
+    def configure_dashboard(self, setting_name: Optional[str] = None, 
+                           setting_value: Optional[str] = None) -> bool:
+        """
+        Configure dashboard settings.
+        
+        Args:
+            setting_name: Name of setting to configure
+            setting_value: Value to set
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
                     f.write(json.dumps(layout_data, indent=2))
                     f.write("## Configuration\n\n")
 
