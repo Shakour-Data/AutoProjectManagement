@@ -286,3 +286,4 @@ async def sse_subscribe(
             "message": "SSE subscriptions updated successfully",
             "connection_id": connection_id,
             "event_types": subscribed_types,
+            "project_id": subscription.project_id
