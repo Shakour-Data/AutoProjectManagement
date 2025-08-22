@@ -220,3 +220,76 @@ async def get_team_performance_metrics(
 ) -> Dict[str, Any]:
     """
     Get team performance metrics for dashboard.
+    
+    Individual and team-level performance statistics.
+    """
+    try:
+        performance_data = get_performance_data(project_id)
+        return performance_data
+        
+    except Exception as e:
+        logger.error(f"Error getting team performance: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+@router.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    """
+    WebSocket endpoint for real-time dashboard updates.
+    
+    Provides live updates for all dashboard metrics and alerts.
+    """
+    await manager.connect(websocket)
+    try:
+        while True:
+            # Send initial data
+            initial_data = {
+                "type": "initial",
+                "timestamp": datetime.now().isoformat(),
+                "message": "Connected to dashboard WebSocket"
+            }
+            await websocket.send_json(initial_data)
+            
+            # Send periodic updates
+            await asyncio.sleep(3)  # Update every 3 seconds
+            
+            # Get latest data and broadcast
+            update_data = get_realtime_update()
+            await websocket.send_json(update_data)
+            
+    except WebSocketDisconnect:
+        manager.disconnect(websocket)
+    except Exception as e:
+        logger.error(f"WebSocket error: {e}")
+        manager.disconnect(websocket)
+
+@router.post("/layout", response_model=Dict[str, Any])
+async def save_dashboard_layout(layout: DashboardLayout):
+    """
+    Save dashboard layout configuration.
+    
+    Persists widget arrangement, theme, and refresh settings.
+    """
+    try:
+        saved = save_layout_config(layout.dict())
+        return {"message": "Layout saved successfully", "layout": saved}
+        
+    except Exception as e:
+        logger.error(f"Error saving layout: {e}")
+        raise HTTPException(status_code=500, detail=f"Error saving layout: {str(e)}")
+
+@router.get("/layout", response_model=DashboardLayout)
+async def get_dashboard_layout(
+    layout_type: str = Query("standard", description="Layout type to retrieve")
+) -> DashboardLayout:
+    """
+    Get saved dashboard layout configuration.
+    
+    Retrieves previously saved layout settings.
+    """
+    try:
+        layout_config = get_layout_config(layout_type)
+        return DashboardLayout(**layout_config)
+        
+    except Exception as e:
+        logger.error(f"Error getting layout: {e}")
+        raise HTTPException(status_code=500, detail
