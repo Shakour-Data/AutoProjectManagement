@@ -77,18 +77,12 @@ logger = logging.getLogger(__name__)
 # Import business logic
 try:
     from autoprojectmanagement.api.services import ProjectService
-    from autoprojectmanagement.services.configuration_cli.cli_commands import (
-        get_project_status as cli_get_project_status
-    )
     from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
 except ImportError:
     # Handle import for development
     import sys
     sys.path.append(str(Path(__file__).resolve().parents[2]))
     from autoprojectmanagement.api.services import ProjectService
-    from autoprojectmanagement.services.configuration_cli.cli_commands import (
-        get_project_status as cli_get_project_status
-    )
     from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
 
 # Pydantic models for request/response validation
