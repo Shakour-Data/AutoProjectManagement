@@ -220,3 +220,15 @@ class Dashboard {
             // Update UI
             const widgetElement = document.querySelector(`[data-widget-id="${widgetId}"]`);
             if (widgetElement) {
+                widgetElement.style.opacity = widget.enabled ? '1' : '0.5';
+                
+                const toggleBtn = widgetElement.querySelector('.widget-toggle');
+                if (toggleBtn) {
+                    toggleBtn.innerHTML = widget.enabled ? '👁️' : '👁️‍🗨️';
+                    toggleBtn.title = widget.enabled ? 'Disable widget' : 'Enable widget';
+                }
+            }
+        }
+    }
+
+    showConfigModal(widgetId) {
