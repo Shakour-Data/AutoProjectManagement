@@ -187,3 +187,40 @@ class EventService:
                 logger.error(f"Error broadcasting to connection {connection_id}: {e}")
                 # Remove faulty connection
                 await self.unregister_connection(connection_id)
+        
+        if subscribers > 0:
+            logger.debug(f"Event {event.type} broadcast to {subscribers} subscribers")
+    
+    async def _cleanup_inactive_connections(self, timeout: int = 300):
+        """Clean up inactive connections."""
+        while self.running:
+            try:
+                await asyncio.sleep(60)  # Check every minute
+                
+                current_time = time.time()
+                inactive_connections = []
+                
+                for connection_id, connection in list(self.connections.items()):
+                    if current_time - connection.last_activity > timeout:
+                        inactive_connections.append(connection_id)
+                
+                for connection_id in inactive_connections:
+                    logger.info(f"Cleaning up inactive connection: {connection_id}")
+                    await self.unregister_connection(connection_id)
+                    
+            except Exception as e:
+                logger.error(f"Error in connection cleanup: {e}")
+    
+    def get_connection_stats(self) -> Dict[str, Any]:
+        """Get connection statistics."""
+        total_connections = len(self.connections)
+        subscription_counts = {et.value: 0 for et in EventType}
+        
+        for connection in self.connections.values():
+            for event_type in connection.subscriptions:
+                subscription_counts[event_type.value] += 1
+        
+        return {
+            "total_connections": total_connections,
+            "subscription_counts": subscription_counts,
+            "message_queue_size": self.message_queue.qsize(),
