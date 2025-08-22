@@ -2716,3 +2716,4 @@ graph TB
 
 #### Alert Configuration
 ```json
+{
