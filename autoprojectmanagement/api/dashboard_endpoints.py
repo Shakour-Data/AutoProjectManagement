@@ -43,8 +43,8 @@ router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
 
 # Initialize services
 project_service = ProjectService()
-progress_reporter = ProgressReporter()
-dashboard_reporter = DashboardReporter()
+progress_reporter = ProgressReport()
+dashboard_reporter = DashboardReports()
 
 # Pydantic models for dashboard requests/responses
 class DashboardOverview(BaseModel):
