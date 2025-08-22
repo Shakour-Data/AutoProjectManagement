@@ -57,3 +57,140 @@ def test_cron_validation():
     return all_valid
 
 def test_create_custom_view_mock():
+    """Test creating a custom dashboard view with mocked API."""
+    print("🧪 Testing create_custom_view (mock)...")
+    cli = DashboardCLI()
+    
+    # Mock the API response
+    with patch('autoprojectmanagement.cli_dashboard.requests.post') as mock_post:
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_post.return_value = mock_response
+        
+        # Mock get_available_widgets to avoid API call
+        with patch.object(cli, 'get_available_widgets', return_value=["health", "progress", "risks"]):
+            success = cli.create_custom_view(
+                layout_name="test_view",
+                widgets=["health", "progress"],
+                refresh_rate=5000,
+                theme="light"
+            )
+    
+    print(f"✅ Create custom view mock test completed: {success}")
+    return success
+
+def test_share_dashboard_view_mock():
+    """Test sharing dashboard view with mocked API."""
+    print("🧪 Testing share_dashboard_view (mock)...")
+    cli = DashboardCLI()
+    
+    # Mock the API response with sample layout data
+    with patch('autoprojectmanagement.cli_dashboard.requests.get') as mock_get:
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "layout_type": "standard",
+            "widgets": [{"widget_id": "health", "position": 0, "enabled": True}],
+            "refresh_rate": 3000,
+            "theme": "light"
+        }
+        mock_get.return_value = mock_response
+        
+        success = cli.share_dashboard_view("standard", "json")
+    
+    # Check if file was created
+    json_files = list(Path(".").glob("dashboard_view_standard_*.json"))
+    if json_files:
+        print(f"✅ JSON export file created: {json_files[0]}")
+        # Clean up
+        for file in json_files:
+            file.unlink()
+        success = True
+    else:
+        print("❌ JSON export file not found")
+        success = False
+    
+    print(f"✅ Share dashboard view mock test completed: {success}")
+    return success
+
+def test_schedule_report():
+    """Test scheduling automated reports."""
+    print("🧪 Testing schedule_report...")
+    cli = DashboardCLI()
+    
+    # Test valid cron expression
+    success = cli.schedule_report("overview", "0 9 * * *", "markdown")
+    
+    # Check if schedule file was created
+    schedule_file = Path("JSonDataBase/OutPuts/dashboard_schedules.json")
+    if schedule_file.exists():
+        with open(schedule_file, 'r') as f:
+            schedules = json.load(f)
+            if any(s.get('report_type') == 'overview' for s in schedules):
+                print("✅ Schedule configuration saved successfully")
+                success = True
+            else:
+                print("❌ Schedule not found in configuration")
+                success = False
+    else:
+        print("❌ Schedule file not created")
+        success = False
+    
+    print(f"✅ Schedule report test completed: {success}")
+    return success
+
+def test_analyze_dashboard_data_mock():
+    """Test dashboard data analysis with mocked API."""
+    print("🧪 Testing analyze_dashboard_data (mock)...")
+    cli = DashboardCLI()
+    
+    # Mock the API response
+    with patch('autoprojectmanagement.cli_dashboard.requests.get') as mock_get:
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "status": "healthy",
+            "metrics": {"cpu": 45, "memory": 60},
+            "timestamp": "2024-01-01T12:00:00"
+        }
+        mock_get.return_value = mock_response
+        
+        success = cli.analyze_dashboard_data("overview", "24h")
+    
+    # Check if analysis file was created
+    analysis_files = list(Path(".").glob("dashboard_analysis_overview_*.md"))
+    if analysis_files:
+        print(f"✅ Analysis file created: {analysis_files[0]}")
+        # Clean up
+        for file in analysis_files:
+            file.unlink()
+        success = True
+    else:
+        print("❌ Analysis file not found")
+        success = False
+    
+    print(f"✅ Analyze dashboard data mock test completed: {success}")
+    return success
+
+def test_configure_dashboard():
+    """Test dashboard configuration."""
+    print("🧪 Testing configure_dashboard...")
+    cli = DashboardCLI()
+    
+    # Test specific setting configuration
+    success = cli.configure_dashboard("refresh_rate", 5000)
+    
+    # Check if config file was created/updated
+    config_file = Path("JSonDataBase/OutPuts/dashboard_config.json")
+    if config_file.exists():
+        with open(config_file, 'r') as f:
+            config = json.load(f)
+            if config.get("refresh_rate") == 5000:
+                print("✅ Configuration updated successfully")
+                success = True
+            else:
+                print(f"❌ Configuration not updated correctly: {config}")
+                success = False
+    else:
+        print("❌ Config file not created")
+        success = False
