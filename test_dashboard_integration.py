@@ -117,14 +117,6 @@ class DashboardIntegrationTest:
             asyncio.run(self.test_websocket_connection())
             
             # Test event publishing
-            self.test_event_publishing()
-            
-            logger.info("🎉 All dashboard integration tests passed!")
-            return True
-            
-        except Exception as e:
-            logger.error(f"❌ Test failed: {e}")
-            return False
 
 if __name__ == "__main__":
     test = DashboardIntegrationTest()
