@@ -157,4 +157,24 @@
                     </div>
                     <div class="form-group">
                         <label for="widgetRefreshRate">Refresh Rate (ms):</label>
+                        <input type="number" id="widgetRefreshRate" min="1000" max="60000" value="3000">
+                    </div>
+                    <div class="form-group">
+                        <label for="widgetTheme">Theme:</label>
+                        <select id="widgetTheme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="saveWidgetConfig">Save</button>
+                <button class="btn btn-secondary" id="cancelWidgetConfig">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
 </html>
