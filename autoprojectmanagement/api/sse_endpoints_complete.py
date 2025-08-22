@@ -370,4 +370,13 @@ async def list_sse_connections():
             connections.append({
                 "connection_id": conn_id,
                 "connected_at": datetime.fromtimestamp(connection.connected_at).isoformat(),
-                "last_activity": datetime
+                "last_activity": datetime.fromtimestamp(connection.last_activity).isoformat(),
+                "subscriptions": [et.value for et in connection.subscriptions],
+                "project_filter": connection.project_filter
+            })
+        
+        return {"connections": connections}
+        
+    except Exception as e:
+        logger.error(f"Error listing SSE connections: {e}")
+        raise HTTPException(status_code=500, detail=f"Error listing connections: {str(e)}")
