@@ -798,3 +798,97 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtn.className = 'widget-toggle';
             toggleBtn.innerHTML = widgetConfig.enabled ? '👁️' : '👁️‍🗨️';
             toggleBtn.title = widgetConfig.enabled ? 'Disable widget' : 'Enable widget';
+            toggleBtn.onclick = () => this.toggleWidget(widgetId);
+            
+            const configBtn = document.createElement('button');
+            configBtn.className = 'widget-toggle';
+            configBtn.innerHTML = '⚙️';
+            configBtn.title = 'Configure widget';
+            configBtn.onclick = () => this.showConfigModal(widgetId);
+            
+            controls.appendChild(toggleBtn);
+            controls.appendChild(configBtn);
+            
+            header.appendChild(title);
+            header.appendChild(controls);
+            
+            // Insert header at the beginning of the widget
+            widget.insertBefore(header, widget.firstChild);
+        });
+    }
+
+    removeWidgetControls() {
+        const headers = document.querySelectorAll('.widget-header');
+        headers.forEach(header => header.remove());
+    }
+
+    getWidgetName(widgetId) {
+        const names = {
+            'health': 'Project Health',
+            'progress': 'Task Progress',
+            'risks': 'Risk Assessment',
+            'team': 'Team Performance',
+            'quality': 'Quality Metrics',
+            'alerts': 'Active Alerts'
+        };
+        return names[widgetId] || widgetId;
+    }
+
+    toggleWidget(widgetId) {
+        const widget = this.currentLayout.widgets.find(w => w.widget_id === widgetId);
+        if (widget) {
+            widget.enabled = !widget.enabled;
+            
+            // Update UI
+            const widgetElement = document.querySelector(`[data-widget-id="${widgetId}"]`);
+            if (widgetElement) {
+                widgetElement.style.opacity = widget.enabled ? '1' : '0.5';
+                
+                const toggleBtn = widgetElement.querySelector('.widget-toggle');
+                if (toggleBtn) {
+                    toggleBtn.innerHTML = widget.enabled ? '👁️' : '👁️‍🗨️';
+                    toggleBtn.title = widget.enabled ? 'Disable widget' : 'Enable widget';
+                }
+            }
+        }
+    }
+
+    showConfigModal(widgetId) {
+        const widget = this.currentLayout.widgets.find(w => w.widget_id === widgetId);
+        if (widget) {
+            this.currentEditingWidget = widgetId;
+            
+            // Populate form
+            document.getElementById('widgetEnabled').checked = widget.enabled;
+            document.getElementById('widgetRefreshRate').value = this.currentLayout.refresh_rate;
+            document.getElementById('widgetTheme').value = this.currentLayout.theme;
+            
+            // Show modal
+            document.getElementById('widgetConfigModal').style.display = 'flex';
+        }
+    }
+
+    hideConfigModal() {
+        document.getElementById('widgetConfigModal').style.display = 'none';
+        this.currentEditingWidget = null;
+    }
+
+    saveWidgetConfig() {
+        if (this.currentEditingWidget) {
+            const widget = this.currentLayout.widgets.find(w => w.widget_id === this.currentEditingWidget);
+            if (widget) {
+                widget.enabled = document.getElementById('widgetEnabled').checked;
+                this.currentLayout.refresh_rate = parseInt(document.getElementById('widgetRefreshRate').value);
+                this.currentLayout.theme = document.getElementById('widgetTheme').value;
+                
+                // Update refresh rate
+                this.refreshRate = this.currentLayout.refresh_rate;
+                this.updateRefreshRate();
+                
+                // Update theme (would need theme switching implementation)
+                console.log('Theme changed to:', this.currentLayout.theme);
+            }
+            
+            this.hideConfigModal();
+        }
+    }
