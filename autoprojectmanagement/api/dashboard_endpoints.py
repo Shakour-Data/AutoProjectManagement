@@ -172,30 +172,30 @@ def get_health_data(project_id: str) -> Dict[str, Any]:
             "test_coverage": "degraded",
             "documentation": "healthy",
             "deployment": "healthy"
-        )
-        
-    except Exception as e:
-        logger.error(f"Error getting dashboard metrics: {e}")
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+        }
+    }
 
-@router.get("/alerts", response_model=List[DashboardAlert])
-async def get_dashboard_alerts(
-    project_id: Optional[str] = Query(None, description="Filter alerts by project ID"),
-    severity: Optional[str] = Query(None, description="Filter by severity"),
-    resolved: bool = Query(False, description="Include resolved alerts")
-) -> List[DashboardAlert]:
-    """
-    Get active alerts and notifications for the dashboard.
-    
-    Returns real-time alerts for risk, progress, quality, and team issues.
-    """
-    try:
-        alerts = get_alerts(project_id, severity, resolved)
-        return alerts
-        
-    except Exception as e:
-        logger.error(f"Error getting dashboard alerts: {e}")
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+def get_performance_data(project_id: str) -> Dict[str, Any]:
+    """Get team performance data."""
+    # Placeholder implementation
+    return {
+        "team_velocity": 25,
+        "individual_performance": {
+            "developer1": 95,
+            "developer2": 88,
+            "developer3": 92
+        }
+    }
+
+def get_realtime_update() -> Dict[str, Any]:
+    """Get real-time update data for WebSocket."""
+    # Placeholder implementation
+    return {
+        "type": "update",
+        "timestamp": datetime.now().isoformat(),
+        "metrics": get_metrics_data("default", "1h"),
+        "alerts": get_alerts(None, None, False)
+    }
 
 @router.get("/health", response_model=Dict[str, Any])
 async def get_dashboard_health(
