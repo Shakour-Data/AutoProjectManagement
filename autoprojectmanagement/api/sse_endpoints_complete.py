@@ -82,7 +82,7 @@ class SSEConnection(Connection):
                 self.message_queue.task_done()
                 
             except asyncio.CancelledError:
-                logger.debug(f"SSE message generator cancelled for {极.connection_id}")
+                logger.debug(f"SSE message generator cancelled for {self.connection_id}")
                 break
             except Exception as e:
                 logger.error(f"Error in SSE message generator for {self.connection_id}: {e}")
