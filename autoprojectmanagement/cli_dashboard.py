@@ -307,6 +307,22 @@ class DashboardCLI:
         except Exception as e:
             console.print(f"[bold red]❌ Error getting dashboard info: {e}[/bold red]")
 
+    def create_custom_view(self, layout_name: str, widgets: Optional[List[str]] = None, 
+                          refresh_rate: Optional[int] = None, theme: Optional[str] = None) -> bool:
+        """
+        Create a custom dashboard view/layout.
+        
+        Args:
+            layout_name: Name of the custom layout
+            widgets: List of widget IDs to include
+            refresh_rate: Refresh rate in milliseconds
+            theme: Theme name (light/dark)
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+
 # Click command group for dashboard
 @click.group()
 def dashboard_cli():
