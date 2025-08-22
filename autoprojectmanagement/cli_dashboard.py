@@ -262,3 +262,24 @@ class DashboardCLI:
                     writer = csv.writer(f)
                     writer.writerow(["Metric", "Value"])
                     for key, value in data.items():
+                        writer.writerow([key, str(value)])
+            
+            elif format == "markdown":
+                with open(output_file, 'w', encoding='utf-8') as f:
+                    f.write("# Dashboard Export\n\n")
+                    f.write(f"Generated: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+                    
+                    for key, value in data.items():
+                        f.write(f"## {key.capitalize()}\n\n")
+                        f.write("```json\n")
+                        f.write(json.dumps(value, indent=2))
+                        f.write("\n```\n\n")
+            
+            console.print(f"[bold green]✅ Data exported to: [cyan]{output_file}[/cyan][/bold green]")
+            return True
+            
+        except Exception as e:
+            console.print(f"[bold red]❌ Export failed: {e}[/bold red]")
+            logger.error(f"Export failed: {e}")
+            return False
+    
