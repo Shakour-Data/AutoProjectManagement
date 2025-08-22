@@ -59,6 +59,7 @@ import click
 
 from .main_modules.project_management_system import ProjectManagementSystem
 from autoprojectmanagement.services.configuration_cli.cli_commands import CLICommands
+from autoprojectmanagement.cli_dashboard import dashboard_cli
 
 
 # Configure logging for CLI
