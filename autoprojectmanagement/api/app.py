@@ -150,9 +150,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Mount static files for dashboard
+app.mount("/static", StaticFiles(directory="autoprojectmanagement/static"), name="static")
+
 # API versioning
 API_VERSION = "v1"
 API_PREFIX = f"/api/{API_VERSION}"
+
+# Dashboard route
+@app.get("/dashboard")
+async def serve_dashboard():
+    """Serve the main dashboard HTML page."""
+    return FileResponse("autoprojectmanagement/static/index.html")
 
 @app.get("/", tags=["System"])
 def read_root() -> Dict[str, Any]:
