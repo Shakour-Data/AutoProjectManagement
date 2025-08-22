@@ -107,3 +107,26 @@ class EventService:
         
         # Start background tasks
         asyncio.create_task(self._cleanup_inactive_connections())
+        asyncio.create_task(self._process_message_queue())
+    
+    async def stop(self):
+        """Stop the event service."""
+        self.running = False
+        logger.info("Event service stopped")
+    
+    async def register_connection(self, connection: Connection) -> str:
+        """Register a new connection."""
+        self.connections[connection.connection_id] = connection
+        logger.info(f"New connection registered: {connection.connection_id}")
+        return connection.connection_id
+    
+    async def unregister_connection(self, connection_id: str):
+        """Unregister a connection."""
+        if connection_id in self.connections:
+            del self.connections[connection_id]
+            logger.info(f"Connection unregistered: {connection_id}")
+    
+    def subscribe(self, connection_id: str, event_type: EventType):
+        """Subscribe connection to event type."""
+        if connection_id in self.connections:
+            self.connections[connection_id].subscriptions.add(event_type)
