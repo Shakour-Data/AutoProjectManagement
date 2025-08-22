@@ -370,10 +370,3 @@ canvas {
 
 /* Animation for updates */
 @keyframes highlight {
-    0% { background-color: rgba(37, 99, 235, 0.1); }
-    100% { background-color: transparent; }
-}
-
-.highlight {
-    animation: highlight 1s ease-in-out;
-}
