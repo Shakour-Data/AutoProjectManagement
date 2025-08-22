@@ -455,6 +455,9 @@ async def internal_error_handler(request, exc):
 # Include dashboard endpoints
 app.include_router(dashboard_router, prefix=API_PREFIX)
 
+# Include SSE endpoints
+app.include_router(sse_router, prefix=API_PREFIX)
+
 # Additional utility endpoints
 @app.get(
     f"{API_PREFIX}/system/info",
