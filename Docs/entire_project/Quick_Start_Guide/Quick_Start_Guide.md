@@ -2620,3 +2620,36 @@ graph TB
 ```
 
 ### Reporting System
+
+#### Report Configuration
+```json
+{
+  "reporting": {
+    "enabled": true,
+    "default_format": "markdown",
+    
+    "scheduled_reports": [
+      {
+        "name": "daily_summary",
+        "type": "daily",
+        "time": "09:00",
+        "format": "markdown",
+        "recipients": ["team@company.com"],
+        "sections": ["progress", "risks", "metrics", "actions"]
+      },
+      {
+        "name": "weekly_review",
+        "type": "weekly",
+        "day": "monday",
+        "time": "10:00",
+        "format": "html",
+        "recipients": ["management@company.com", "team@company.com"],
+        "sections": ["overview", "achievements", "challenges", "plan"]
+      },
+      {
+        "name": "monthly_executive",
+        "type": "monthly",
+        "day": 1,
+        "time": "11:00",
+        "format": "pdf",
+        "recipients": ["executives@company.com"],
