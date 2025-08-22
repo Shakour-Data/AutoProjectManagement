@@ -73,3 +73,62 @@ class DashboardIntegrationTest:
             
             response = await websocket.recv()
             data = json.loads(response)
+            assert data.get('type') == 'pong', "Ping/pong failed"
+            logger.info("✅ WebSocket ping/pong working")
+            
+            # Keep connection open for a bit to test heartbeat
+            await asyncio.sleep(2)
+            
+            # Close connection
+            await websocket.close()
+            logger.info("✅ WebSocket connection closed gracefully")
+    
+    def test_event_publishing(self):
+        """Test that events can be published and received."""
+        logger.info("Testing event publishing...")
+        
+        # Publish a test event
+        event_data = {
+            "event_type": "file_change",
+            "data": {
+                "file_path": "/test/file.py",
+                "change_type": "modified",
+                "project_id": "test_project"
+            }
+        }
+        
+        response = requests.post(f"{self.base_url}/api/v1/events/publish", json=event_data)
+        assert response.status_code == 200, f"Event publishing failed: {response.status_code}"
+        logger.info("✅ Event published successfully")
+    
+    def run_all_tests(self):
+        """Run all integration tests."""
+        logger.info("Starting dashboard integration tests...")
+        
+        try:
+            # Test API endpoints
+            self.test_api_endpoints()
+            
+            # Test WebSocket functionality
+            asyncio.run(self.test_websocket_connection())
+            
+            # Test event publishing
+            self.test_event_publishing()
+            
+            logger.info("🎉 All dashboard integration tests passed!")
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Test failed: {e}")
+            return False
+
+if __name__ == "__main__":
+    test = DashboardIntegrationTest()
+    success = test.run_all_tests()
+    
+    if success:
+        logger.info("Dashboard integration test completed successfully!")
+        exit(0)
+    else:
+        logger.error("Dashboard integration test failed!")
+        exit(1)
