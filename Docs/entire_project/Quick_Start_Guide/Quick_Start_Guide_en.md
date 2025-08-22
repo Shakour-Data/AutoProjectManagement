@@ -555,3 +555,531 @@ graph LR
 
 ### Data Flow
 
+```mermaid
+sequenceDiagram
+    participant User
+    participant CLI
+    participant AutoRunner
+    participant PMS as ProjectManagementSystem
+    participant Modules
+    participant Storage
+    
+    User->>CLI: Start Project
+    CLI->>AutoRunner: Initialize
+    AutoRunner->>PMS: Load Configuration
+    PMS->>Storage: Load Project Data
+    
+    loop Continuous Monitoring
+        AutoRunner->>Modules: Analyze Changes
+        Modules->>Storage: Update Data
+        Storage-->>AutoRunner: Return Updates
+        AutoRunner->>Storage: Generate Reports
+    end
+    
+    AutoRunner-->>CLI: Status Update
+    CLI-->>User: Show Progress
+```
+
+### Key Components Explained
+
+#### 1. AutoRunner Engine
+- **Purpose**: Continuous monitoring and automation
+- **Frequency**: Every 5 minutes (configurable)
+- **Actions**: File scanning, progress calculation, auto commit, report generation
+
+#### 2. Project Management System
+- **Purpose**: Central coordinator for all project operations
+- **Features**: Task management, resource allocation, progress tracking
+- **Integration**: Connects all modules and services
+
+#### 3. AutoCommit Service
+- **Purpose**: Automatic Git commits based on progress
+- **Triggers**: File changes, task completion, time intervals
+- **Configuration**: Threshold-based and time-based triggers
+
+---
+
+## 🔄 Common Workflows
+
+### Workflow 1: New Project Setup with Dashboard
+
+```mermaid
+graph LR
+    A[Create Project Directory] --> B[Initialize Git]
+    B --> C[Install AutoProjectManagement]
+    C --> D[Run autoproject init]
+    D --> E[Configure Settings]
+    E --> F[🆕 Configure Dashboard]
+    F --> G[Start Monitoring]
+    G --> H[🆕 Launch Dashboard]
+    H --> I[Start Development with Visual Monitoring]
+```
+
+### Workflow 2: Daily Development Cycle Using Dashboard
+
+```mermaid
+graph TD
+    A[Start Day] --> B[Check Real-time Dashboard]
+    B --> C[Review Alerts & Key Metrics]
+    C --> D[Plan Daily Tasks Based on Data]
+    D --> E[Start Coding with Active Monitoring]
+    E --> F[🆕 See Immediate Impact on Dashboard]
+    F --> G[Auto Commit When Threshold Reached]
+    G --> H[🆕 Live Dashboard Updates]
+    H --> I[End Day Summary with Integrated Reports]
+```
+
+### Workflow 3: Sprint Planning with Dashboard Analysis
+
+```mermaid
+graph LR
+    A[Review Previous Sprint in Dashboard] --> B[Analyze Velocity & Efficiency Metrics]
+    B --> C[Plan New Sprint Tasks]
+    C --> D[Update Project Configuration]
+    D --> E[Set Sprint Goals in Dashboard]
+    E --> F[Continuous Monitoring During Sprint]
+    F --> G[Generate Sprint Reports from Dashboard Data]
+```
+
+### Workflow 4: Project Status Review with Stakeholders
+
+```mermaid
+graph TB
+    A[Prepare for Meeting] --> B[Open Dashboard in Presentation Mode]
+    B --> C[Filter Data for Relevant Period]
+    C --> D[Use Interactive Charts for Explanation]
+    D --> E[Share Custom View with Team]
+    E --> F[Save Snapshot of Current Status]
+    F --> G[Plan Next Actions Based on Insights]
+```
+
+### Workflow 5: Responding to Dashboard Alerts
+
+```mermaid
+graph LR
+    A[Receive Dashboard Alert] --> B[Review Alert Details]
+    B --> C[Analyze Root Cause with Historical Data]
+    C --> D[Determine Priority & Immediate Action]
+    D --> E[Communicate Status to Team via Integrations]
+    E --> F[Track Resolution in Dashboard]
+    F --> G[Archive Alert & Document Lessons Learned]
+```
+
+### Workflow 6: Dashboard Customization & Optimization
+
+```mermaid
+graph TD
+    A[Identify Specific Monitoring Needs] --> B[Create Custom Widgets]
+    B --> C[Set Personalized Alert Thresholds]
+    C --> D[Configure External Integrations]
+    D --> E[Test & Validate New View]
+    E --> F[Share with Team]
+    F --> G[Feedback & Iterate for Improvement]
+```
+
+### Key Dashboard Usage Tips
+
+#### 1. Continuous Monitoring
+- **Always Open**: Keep dashboard on second monitor
+- **Regular Checks**: Check status at least 3 times daily
+- **Quick Response**: Respond to alerts promptly
+
+#### 2. Data-Driven Decision Making
+```bash
+# Use dashboard data for decisions
+autoproject dashboard metrics --period "7d" --format json
+# Output: 7-day metrics data for analysis
+
+autoproject dashboard trends --metric "velocity" --window "4sprints"
+# Output: Team velocity trends over last 4 sprints
+```
+
+#### 3. Communication & Transparency
+- **Automatic Sharing**: Daily reports for team and management
+- **Controlled Access**: Different access levels for different roles
+- **Documentation**: Save historical snapshots for future reference
+
+#### 4. Continuous Improvement
+```bash
+# Analyze past performance
+autoproject dashboard analyze --period "last-month"
+
+# Identify patterns and improvement points
+autoproject dashboard insights --category "efficiency"
+
+# Plan improvements based on data
+autoproject dashboard plan-improvements --based-on "last-quarter"
+```
+
+### Practical Example: Sprint Review Meeting with Dashboard
+
+```markdown
+# Sprint Review Meeting - Using Dashboard
+
+## 1. Sprint Overview
+- Open dashboard in presentation mode
+- Show project health score: 82% → 88% 📈
+- Review task completion: 18/20 (90%)
+- Analyze team velocity: 22 points (target: 25)
+
+## 2. Quality Metrics Review
+- Test coverage: 78% → 82% 📈
+- Code quality: 85% → 88% 📈
+- Bug trends: ↓ 40% 📉
+
+## 3. Risk Management
+- Active risks: 2 items (low 🟢)
+- Alerts: 1 resolved ✅
+- Dependencies: All under control
+
+## 4. Next Sprint Planning
+- Velocity target: 24 points (based on historical data)
+- Focus on improving test coverage to 85%
+- Reduce external dependencies
+
+## 5. Action Items
+- [ ] Improve documentation (Dev Team)
+- [ ] Optimize tests (QA Team)
+- [ ] Security review (Security Team)
+```
+
+### Workflow 7: Integration with Existing Tools
+
+```mermaid
+graph LR
+    A[Connect to GitHub] --> B[Sync commits & PRs]
+    B --> C[Connect to JIRA] 
+    C --> D[Sync tasks & statuses]
+    D --> E[Connect to Slack]
+    E --> F[Send real-time notifications]
+    F --> G[Connect to Email]
+    G --> H[Send scheduled reports]
+    H --> I[Complete Integrated Dashboard]
+```
+
+### Useful Dashboard Workflow Commands
+
+```bash
+# Quick setup for meetings
+autoproject dashboard --start --port 8080 --theme presentation
+
+# Create snapshot of current status
+autoproject dashboard snapshot --name "sprint-review-2024-08"
+
+# Share with team
+autoproject dashboard share --view "executive" --recipients "team@company.com"
+
+# Schedule automated reports
+autoproject dashboard schedule --report "daily-summary" --time "09:00"
+
+# Review historical performance
+autoproject dashboard history --period "30d" --metric "velocity"
+```
+
+#### Key Performance Indicators (KPIs) in Dashboard
+
+```mermaid
+graph LR
+    A[Main KPIs] --> B[🎯 Project Health]
+    A --> C[📊 Task Progress]
+    A --> D[⚠️ Risk Level]
+    A --> E[👥 Team Performance]
+    A --> F[🔧 Technical Quality]
+    
+    B --> G[Overall Score: 85%]
+    B --> H[Goal Achievement: 78%]
+    B --> I[Stakeholder Satisfaction: 90%]
+    
+    C --> J[Tasks Completed: 15/20]
+    C --> K[Sprint Velocity: 25 points]
+    C --> L[Delay: 2 days]
+    
+    D --> M[Active Risks: 3 items]
+    D --> N[Risk Score: 2/10]
+    D --> O[Alerts: 1 active]
+    
+    E --> P[Productivity: +15%]
+    E --> Q[Collaboration: 92%]
+    E --> R[Team Satisfaction: 88%]
+    
+    F --> S[Test Coverage: 75%]
+    F --> T[Code Quality: 82%]
+    F --> U[Bug Trend: ↓ 30%]
+```
+
+#### Available Dashboard Types
+
+##### 1. Executive Dashboard
+```json
+{
+  "type": "executive",
+  "focus": ["health", "progress", "risks", "budget"],
+  "refresh_rate": 10000,
+  "widgets": [
+    "project_health_score",
+    "milestone_timeline", 
+    "risk_heatmap",
+    "budget_vs_actual"
+  ]
+}
+```
+
+##### 2. Development Team Dashboard
+```json
+{
+  "type": "development",
+  "focus": ["tasks", "code", "quality", "velocity"],
+  "refresh_rate": 5000,
+  "widgets": [
+    "sprint_burndown",
+    "code_contributions",
+    "test_coverage",
+    "pull_request_metrics"
+  ]
+}
+```
+
+##### 3. Risk Management Dashboard
+```json
+{
+  "type": "risk",
+  "focus": ["issues", "dependencies", "blockers", "mitigation"],
+  "refresh_rate": 3000,
+  "widgets": [
+    "risk_matrix",
+    "dependency_map",
+    "issue_trends",
+    "mitigation_progress"
+  ]
+}
+```
+
+##### 4. Quality Dashboard
+```json
+{
+  "type": "quality",
+  "focus": ["testing", "bugs", "performance", "security"],
+  "refresh_rate": 8000,
+  "widgets": [
+    "test_results",
+    "bug_triage",
+    "performance_metrics",
+    "security_scans"
+  ]
+}
+```
+
+### Advanced Dashboard Features
+
+#### 1. Real-time Data Visualization
+- **Live Updates**: Every 3 seconds without refresh needed
+- **Interactive Charts**: Direct zoom, pan, and filter capabilities
+- **Historical Data**: Comparison with previous periods and trends
+
+#### 2. Smart Alerts
+```json
+{
+  "alerts": {
+    "risk_threshold": {
+      "enabled": true,
+      "threshold": 7,
+      "notify": ["dashboard", "email", "slack"]
+    },
+    "progress_stall": {
+      "enabled": true,
+      "hours_without_progress": 24,
+      "notify": ["dashboard", "sms"]
+    },
+    "quality_drop": {
+      "enabled": true,
+      "drop_percentage": 10,
+      "time_window": "24h",
+      "notify": ["dashboard", "email"]
+    }
+  }
+}
+```
+
+#### 3. Advanced Customization
+```bash
+# Create custom view
+autoproject dashboard create-view --name "MyCustomView" \
+  --widgets "health,progress,risks,team" \
+  --layout "grid-2x2" \
+  --refresh-rate 2000
+
+# Share dashboard view
+autoproject dashboard share-view --name "MyCustomView" \
+  --recipients "team@company.com" \
+  --access-level "view"
+
+# Schedule automated reports
+autoproject dashboard schedule-report --name "DailyExecutive" \
+  --time "08:00" \
+  --recipients "executives@company.com" \
+  --format "pdf"
+```
+
+#### 4. External Integrations
+- **Slack**: Real-time notifications in team channels
+- **Email**: Scheduled reports and alerts
+- **Microsoft Teams**: Full integration with Teams environment
+- **JIRA**: Automatic task and status synchronization
+- **GitHub**: Display commit and pull request activities
+
+### Dashboard Access
+
+```bash
+# Start dashboard server
+autoproject dashboard --start --port 3000
+
+# Access via browser
+open http://localhost:3000/dashboard
+
+# Or use built-in command
+autoproject dashboard --open
+
+# Check dashboard status
+autoproject dashboard --status
+
+# Stop dashboard server
+autoproject dashboard --stop
+```
+
+### Professional Dashboard Usage Tips
+
+1. **Install on Second Monitor**: Keep dashboard always open for continuous monitoring
+2. **Use Fullscreen Mode**: For review meetings and stakeholder presentations
+3. **Set Personal Alerts**: For project-specific metrics
+4. **Integrate with Existing Tools**: For seamless workflow
+5. **Daily Review**: At least 5 minutes daily for project status review
+
+---
+
+## 🔍 Troubleshooting
+
+### Common Issues
+
+#### Issue 1: "Command not found"
+```bash
+# Solution
+pip install autoprojectmanagement
+# or
+export PATH=$PATH:~/.local/bin
+```
+
+#### Issue 2: "Permission denied"
+```bash
+# Solution
+chmod +x ~/.local/bin/autoproject
+# or use virtual environment
+python -m venv venv
+source venv/bin/activate
+pip install autoprojectmanagement
+```
+
+#### Issue 3: "Git repository not found"
+```bash
+# Solution
+git init
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
+```
+
+#### Issue 4: "Configuration errors"
+```bash
+# Validate configuration
+autoproject config --validate
+
+# Reset to defaults
+autoproject config --reset
+
+# Edit configuration
+autoproject config --edit
+```
+
+### Debug Mode
+
+Enable detailed logging:
+```bash
+# Enable debug mode
+export AUTOPROJECT_DEBUG=1
+autoproject start
+
+# View logs
+autoproject logs --level debug --follow
+```
+
+---
+
+## 🎯 Next Steps
+
+### Learning Path
+
+#### Beginner (Week 1-2)
+1. ✅ Complete this Quick Start Guide
+2. Set up your first project
+3. Understand basic commands
+4. Review daily reports
+
+#### Intermediate (Week 3-4)
+1. Configure advanced modules
+2. Set up team collaboration
+3. Customize reports
+4. Integrate with external tools
+
+#### Advanced (Month 2+)
+1. Create custom modules
+2. Set up CI/CD integration
+3. Implement custom workflows
+4. Contribute to the project
+
+### Continuing Learning Resources
+
+| Resource              | Description                   | Link                                                                     |
+| --------------------- | ----------------------------- | ------------------------------------------------------------------------ |
+| **Full Documentation**| Complete system documentation | [ReadTheDocs](https://autoprojectmanagement.readthedocs.io)              |
+| **API Reference**     | Detailed API documentation    | [API Docs](https://autoprojectmanagement.readthedocs.io/api)             |
+| **Video Tutorials**   | Step-by-step video guides     | [YouTube Channel](https://youtube.com/autoprojectmanagement)             |
+| **Community Forum**   | Get help from community       | [Discord](https://discord.gg/autoprojectmanagement)                      |
+| **GitHub Repository** | Source code and issues        | [GitHub](https://github.com/autoprojectmanagement/autoprojectmanagement) |
+
+### Quick Command Reference
+
+```bash
+# Essential commands cheat sheet
+autoproject init              # Initialize new project
+autoproject start             # Start monitoring
+autoproject status            # Check current status
+autoproject report --daily    # Generate daily report
+autoproject config --edit     # Edit configuration
+autoproject logs --follow     # View live logs
+autoproject stop              # Stop monitoring
+autoproject --help            # Show all commands
+```
+
+---
+
+## 🎉 Congratulations!
+
+You have successfully completed the AutoProjectManagement Quick Start Guide! Your system is now ready to automatically manage your projects with smart automation.
+
+### Quick Checklist
+- [ ] System installed and configured
+- [ ] First project initialized
+- [ ] Basic configuration set
+- [ ] Monitoring started
+- [ ] First reports generated
+
+### Support
+If you need help:
+- Check the [Troubleshooting](#troubleshooting) section
+- Join our [Discord community](https://discord.gg/autoprojectmanagement)
+- Open an issue on [GitHub](https://github.com/autoprojectmanagement/issues)
+
+---
+
+*Automation success! 🚀*
+
+---
+*Last updated: 2025-08-14*
