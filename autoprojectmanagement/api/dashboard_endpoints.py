@@ -483,6 +483,31 @@ async def websocket_endpoint(websocket: WebSocket):
                             "timestamp": datetime.now().isoformat(),
                             "event_types": data.get('event_types', []),
                             "project_id": data.get('project_id'),
+                            "last_event_id": connection.last_event_id
+                        }
+                        logger.debug(f"Sending subscription confirmation: {confirmation}")
+                        await connection.send(confirmation)
+                    
+                    elif data.get('type') == 'ping':
+                        # Handle ping request
+                        await connection.send({
+                            "type": "pong",
+                            "timestamp": datetime.now().isoformat(),
+                            "connection_id": connection.connection_id
+                        })
+                    
+                    elif data.get('type') == 'reconnect':
+                        # Handle reconnection request
+                        last_event_id = data.get('last_event_id')
+                        if last_event_id:
+                            await websocket_manager.send_missed_events(connection.connection_id, last_event_id)
+                        
+                        await connection.send({
+                            "type": "reconnect_confirmed",
+                            "timestamp": datetime.now().isoformat(),
+                            "connection_id": connection.connection_id,
+                            "last_event_id": connection.last_event_id
+                        })
 
 @router.get("/ws/stats")
 async def get_websocket_stats():
