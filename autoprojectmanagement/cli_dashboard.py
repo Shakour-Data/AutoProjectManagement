@@ -630,8 +630,11 @@ class DashboardCLI:
             
             config_data = {}
             if config_file.exists():
-                with open(config_file, 'r', encoding='utf-8') as f:
-                    config_data = json.load(f)
+                try:
+                    with open(config_file, 'r', encoding='utf-8') as f:
+                        config_data = json.load(f)
+                except (json.JSONDecodeError, FileNotFoundError):
+                    config_data = {}
             
             config_data[setting_name] = setting_value
             
