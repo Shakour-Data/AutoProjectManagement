@@ -424,5 +424,8 @@ def help_command(list_commands: bool, help_flag: bool) -> None:
         click.echo("  help              - Show help information")
 
 
+# Add dashboard command to main CLI
+main.add_command(dashboard_cli, name="dashboard")
+
 if __name__ == "__main__":
     main()
