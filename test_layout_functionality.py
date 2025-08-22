@@ -65,7 +65,7 @@ def test_default_layout_creation():
 
 def test_layout_validation():
     """Test layout validation functionality."""
-    from autoprojectmanagement.api.dashboard_endpoints import DashboardLayout
+    from autoprojectmanagement.api.dashboard_endpoints import DashboardLayout, WidgetPosition
     
     print("\nTesting layout validation...")
     
