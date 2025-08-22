@@ -178,17 +178,6 @@ class EventService:
         except Exception as e:
             logger.error(f"Error publishing event: {e}")
     
-    async def _process_message_queue(self):
-        """Process events from the message queue."""
-        while self.running:
-            try:
-                event = await self.message_queue.get()
-                await self._broadcast_event(event)
-                self.message_queue.task_done()
-            except asyncio.CancelledError:
-                break
-            except Exception as e:
-                logger.error(f"Error processing message queue: {e}")
     
     async def _broadcast_event(self, event: Event):
         """Broadcast event to all subscribed connections."""
