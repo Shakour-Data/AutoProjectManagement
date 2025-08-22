@@ -211,6 +211,110 @@ def get_layout_config(layout_type: str) -> Dict[str, Any]:
         "refresh_rate": 3000,
         "theme": "light"
     }
+
+@router.get("/overview", response_model=DashboardOverview)
+async def get_dashboard_overview(
+    project_id: str = Query(..., description="Project ID for dashboard overview")
+) -> DashboardOverview:
+    """
+    Get comprehensive dashboard overview for a project.
+    
+    Returns real-time project health, progress, risks, and team performance metrics.
+    """
+    try:
+        # Get project status data
+        status_data = project_service.get_status(project_id)
+        
+        if not status_data:
+            raise HTTPException(status_code=404, detail=f"Project '{project_id}' not found")
+        
+        # Calculate health score based on multiple factors
+        health_score = calculate_health_score(status_data)
+        
+        # Determine risk level
+        risk_level = determine_risk_level(status_data)
+        
+        # Get team performance metrics
+        team_performance = get_team_performance(project_id)
+        
+        # Get quality metrics
+        quality_metrics = get_quality_metrics(project_id)
+        
+        return DashboardOverview(
+            project_id=project_id,
+            total_tasks=status_data.get('total_tasks', 0),
+            completed_tasks=status_data.get('completed_tasks', 0),
+            progress_percentage=status_data.get('progress_percentage', 0),
+            health_score=health_score,
+            risk_level=risk_level,
+            last_updated=datetime.now(),
+            team_performance=team_performance,
+            quality_metrics=quality_metrics
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting dashboard overview: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+@router.get("/metrics", response_model=DashboardMetrics)
+async def get_dashboard_metrics(
+    project_id: str = Query(..., description="Project ID for metrics"),
+    timeframe: str = Query("24h", description="Timeframe for metrics (1h, 24h, 7d, 30d)")
+) -> DashboardMetrics:
+    """
+    Get detailed metrics and trends for dashboard visualization.
+    
+    Provides comprehensive metrics data for charts and graphs.
+    """
+    try:
+        metrics_data = get_metrics_data(project_id, timeframe)
+        trends_data = get_trends_data(project_id, timeframe)
+        
+        return DashboardMetrics(
+            timestamp=datetime.now(),
+            metrics=metrics_data,
+            trends=trends_data
+        )
+        
+    except Exception as e:
+        logger.error(f"Error getting dashboard metrics: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+@router.get("/alerts", response_model=List[DashboardAlert])
+async def get_dashboard_alerts(
+    project_id: Optional[str] = Query(None, description="Filter alerts by project ID"),
+    severity: Optional[str] = Query(None, description="Filter by severity"),
+    resolved: bool = Query(False, description="Include resolved alerts")
+) -> List[DashboardAlert]:
+    """
+    Get active alerts and notifications for the dashboard.
+    
+    Returns real-time alerts for risk, progress, quality, and team issues.
+    """
+    try:
+        alerts = get_alerts(project_id, severity, resolved)
+        return alerts
+        
+    except Exception as e:
+        logger.error(f"Error getting dashboard alerts: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+@router.get("/health", response_model=Dict[str, Any])
+async def get_dashboard_health(
+    project_id: str = Query(..., description="Project ID for health check")
+) -> Dict[str, Any]:
+    """
+    Get comprehensive project health status for dashboard.
+    
+    Detailed health assessment with component-level status.
+    """
+    try:
+        health_data = get_health_data(project_id)
+        return health_data
+        
+    except Exception as e:
         logger.error(f"Error getting dashboard health: {e}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
@@ -292,4 +396,4 @@ async def get_dashboard_layout(
         
     except Exception as e:
         logger.error(f"Error getting layout: {e}")
-        raise HTTPException(status_code=500, detail
+        raise HTTPException(status_code=500, detail=f"Error getting layout: {str(e)}")
