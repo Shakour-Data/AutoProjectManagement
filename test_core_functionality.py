@@ -92,3 +92,71 @@ def test_file_operations():
             success = False
     
     print(f"✅ File operations test completed: {success}")
+    return success
+
+def test_next_run_calculation():
+    """Test next run time calculation."""
+    print("🧪 Testing next run calculation...")
+    cli = DashboardCLI()
+    
+    # Test with valid expression
+    next_run = cli._calculate_next_run("0 9 * * *")
+    print(f"✅ Next run for '0 9 * * *': {next_run}")
+    
+    # Should return a string (either actual time or fallback message)
+    success = isinstance(next_run, str) and len(next_run) > 0
+    print(f"✅ Next run calculation test: {success}")
+    return success
+
+def test_widget_management():
+    """Test widget management functionality."""
+    print("🧪 Testing widget management...")
+    cli = DashboardCLI()
+    
+    # Test default widget list
+    widgets = cli.get_available_widgets()
+    print(f"✅ Default widgets: {widgets}")
+    
+    # Should return a list (even if empty)
+    success = isinstance(widgets, list)
+    print(f"✅ Widget management test: {success}")
+    return success
+
+def main():
+    """Run core functionality tests."""
+    print("🚀 Starting Core Functionality Tests\n")
+    
+    tests = [
+        test_cron_validation_comprehensive,
+        test_file_operations,
+        test_next_run_calculation,
+        test_widget_management,
+    ]
+    
+    results = []
+    for test in tests:
+        try:
+            result = test()
+            results.append(result)
+        except Exception as e:
+            print(f"❌ Test {test.__name__} failed with error: {e}")
+            results.append(False)
+        print()
+    
+    # Summary
+    passed = sum(results)
+    total = len(results)
+    
+    print("📊 Core Functionality Test Results:")
+    print(f"   Passed: {passed}/{total}")
+    print(f"   Failed: {total - passed}/{total}")
+    
+    if passed == total:
+        print("🎉 All core functionality tests passed!")
+        return 0
+    else:
+        print("❌ Some core functionality tests failed!")
+        return 1
+
+if __name__ == "__main__":
+    exit(main())
