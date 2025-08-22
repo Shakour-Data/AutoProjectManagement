@@ -488,6 +488,37 @@ class DashboardCLI:
             
             with open(schedules_file, 'w', encoding='utf-8') as f:
                 json.dump(schedules, f, indent=2, ensure_ascii=False)
+            
+            console.print(f"[bold green]✅ Report '{report_type}' scheduled successfully![/bold green]")
+            console.print(f"   Schedule: [cyan]{schedule_expr}[/cyan]")
+            console.print(f"   Format: [cyan]{output_format}[/cyan]")
+            console.print(f"   Next run: [cyan]{schedule_config['next_run']}[/cyan]")
+            return True
+            
+        except Exception as e:
+            console.print(f"[bold red]❌ Error scheduling report: {e}[/bold red]")
+            logger.error(f"Schedule report failed: {e}")
+            return False
+
+    def analyze_dashboard_data(self, analysis_type: str = "overview", timeframe: str = "24h") -> bool:
+        """
+        Analyze dashboard data and generate insights.
+        
+        Args:
+            analysis_type: Type of analysis to perform
+            timeframe: Timeframe for analysis
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            console.print(f"[bold blue]📊 Analyzing Dashboard Data: {analysis_type}[/bold blue]")
+            
+            # Get analysis data from API
+            endpoints = {
+                "overview": f"{self.api_base_url}/dashboard/overview?project_id=default",
+                "metrics": f"{self.api_base_url}/dashboard/metrics?project_id=default&timeframe={timeframe}",
+                "health": f"{self.api_base_url}/dashboard/health?project_id=default",
                     f.write(json.dumps(layout_data, indent=2))
                     f.write("## Configuration\n\n")
 
