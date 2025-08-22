@@ -402,3 +402,29 @@ async def publish_auto_commit_start(project_id: Optional[str] = None, changes_co
     await event_service.publish_event(event)
 
 async def publish_auto_commit_result(success: bool, changes_count: int, message: str = "", project_id: Optional[str] = None):
+    """Publish auto-commit result event."""
+    event = Event(
+        type=EventType.AUTO_COMMIT_RESULT,
+        data={
+            "event": "result",
+            "success": success,
+            "changes_count": changes_count,
+            "message": message,
+            "timestamp": time.time()
+        },
+        project_id=project_id
+    )
+    await event_service.publish_event(event)
+
+async def publish_auto_commit_error(error_message: str, project_id: Optional[str] = None):
+    """Publish auto-commit error event."""
+    event = Event(
+        type=EventType.AUTO_COMMIT_ERROR,
+        data={
+            "event": "error",
+            "error": error_message,
+            "timestamp": time.time()
+        },
+        project_id=project_id
+    )
+    await event_service.publish_event(event)
