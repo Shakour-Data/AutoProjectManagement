@@ -241,3 +241,30 @@ class Dashboard {
 
         alerts.forEach(alert => {
             const alertElement = document.createElement('div');
+            alertElement.className = `alert-item alert-${alert.severity}`;
+            
+            alertElement.innerHTML = `
+                <div class="alert-header">
+                    <span class="alert-type">${alert.type}</span>
+                    <span class="alert-severity">${alert.severity}</span>
+                </div>
+                <div class="alert-message">${alert.message}</div>
+                <div class="alert-time">${new Date(alert.timestamp).toLocaleString()}</div>
+            `;
+            
+            alertsList.appendChild(alertElement);
+        });
+    }
+
+    updateLastUpdated() {
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+    }
+
+    connectWebSocket() {
+        try {
+            // Close existing connection if any
+            if (this.socket) {
+                this.socket.close();
+            }
+
+            // Connect to WebSocket
