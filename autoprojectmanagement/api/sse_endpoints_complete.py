@@ -237,7 +237,7 @@ async def sse_endpoint(
             event_generator(),
             media_type="text/event-stream",
             headers={
-                "Cache-Control": "极-cache",
+                "Cache-Control": "no-cache",
                 "Connection": "keep-alive",
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Credentials": "true",
