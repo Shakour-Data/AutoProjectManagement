@@ -392,44 +392,35 @@ async def websocket_endpoint(websocket: WebSocket):
             "available_event_types": [et.value for et in EventType]
         })
         
-            # Main message loop
-            while True:
-                try:
-                    # Wait for messages from client (subscription requests, etc.)
-                    data = await websocket.receive_json(timeout=300.0)
-                    logger.debug(f"Received WebSocket message: {data}")
+        # Main message loop
+        while True:
+            try:
+                # Wait for messages from client (subscription requests, etc.)
+                data = await websocket.receive_json(timeout=300.0)
+                logger.debug(f"Received WebSocket message: {data}")
+                
+                if data.get('type') == 'subscribe':
+                    # Handle subscription request
+                    await websocket_manager.handle_subscription(connection.connection_id, data)
                     
-                    if data.get('type') == 'subscribe':
-                        # Handle subscription request
-                        await websocket_manager.handle_subscription(connection.connection_id, data)
-                        
-                        # Send subscription confirmation
-                        confirmation = {
-                            "type": "subscription_confirmed",
-                            "timestamp": datetime.now().isoformat(),
-                            "event_types": data.get('event_types', []),
-                            "project_id": data.get('project_id')
-                        }
-                        logger.debug(f"Sending subscription confirmation: {confirmation}")
-                        await connection.send(confirmation)
-                    
-                    elif data.get('type') == 'ping':
-                        # Handle ping request
-                        await connection.send({
-                            "type": "pong",
-                            "timestamp": datetime.now().isoformat()
-                        })
-                    
-                except asyncio.TimeoutError:
-                    # Send heartbeat to keep connection alive
+                    # Send subscription confirmation
+                    confirmation = {
+                        "type": "subscription_confirmed",
+                        "timestamp": datetime.now().isoformat(),
+                        "event_types": data.get('event_types', []),
+                        "project_id": data.get('project_id')
+                    }
+                    logger.debug(f"Sending subscription confirmation: {confirmation}")
+                    await connection.send(confirmation)
+                
+                elif data.get('type') == 'ping':
+                    # Handle ping request
                     await connection.send({
-                        "type": "heartbeat",
+                        "type": "pong",
                         "timestamp": datetime.now().isoformat()
                     })
-                    
-                except Exception as e:
-                    logger.warning(f"Error processing WebSocket message: {e}")
-                    break
+                
+            except asyncio.TimeoutError:
                 
     except WebSocketDisconnect:
         logger.info(f"WebSocket client disconnected: {connection.connection_id}")
