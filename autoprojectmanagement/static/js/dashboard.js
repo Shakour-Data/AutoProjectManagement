@@ -445,6 +445,29 @@ class Dashboard {
             riskElement.textContent = data.severity;
             riskElement.className = `stat-value risk-level ${data.severity}`;
         }
+    }
+
+    handleDashboardUpdateEvent(data) {
+        // Comprehensive dashboard update
+        this.highlightUpdates();
+        
+        if (data.metrics) {
+            this.updateCharts({ metrics: data.metrics, trends: data.trends || {} });
+        }
+        
+        if (data.alerts) {
+            this.updateAlerts(data.alerts);
+        }
+        
+        if (data.overview) {
+            this.updateOverview(data.overview);
+        }
+    }
+
+    highlightElement(element) {
+        element.classList.add('highlight');
+        setTimeout(() => element.classList.remove('highlight'), 1000);
+    }
 
     highlightUpdates() {
         const elements = document.querySelectorAll('.stat-value, .score-value');
