@@ -118,6 +118,23 @@ class WebSocketConnectionManager:
         
         await websocket.accept()
         await event_service.register_connection(connection)
+        self.active_connections[connection_id] = connection
+        
+        logger.info(f"New WebSocket connection: {connection_id}. Total: {len(self.active_connections)}")
+        return connection
+    
+    async def disconnect(self, connection_id: str):
+        """Disconnect WebSocket connection."""
+        if connection_id in self.active_connections:
+            await event_service.unregister_connection(connection_id)
+            del self.active_connections[connection_id]
+            logger.info(f"WebSocket connection closed: {connection_id}. Total: {len(self.active_connections)}")
+    
+    async def handle_subscription(self, connection_id: str, subscription_request: Dict[str, Any]):
+        """Handle subscription request from client."""
+        if connection_id not in self.active_connections:
+            return
+        
 
 # Utility functions (to be implemented in separate modules)
 def calculate_health_score(status_data: Dict[str, Any]) -> float:
