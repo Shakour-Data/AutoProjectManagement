@@ -661,20 +661,6 @@ class DashboardCLI:
         """Validate cron expression format."""
         import re
         # Basic cron validation: 5 fields separated by spaces
-        pattern = r'^(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)\s+(\*|[\d,/-]+)$'
-        return bool(re.match(pattern, cron_expr))
-
-    def _calculate_next_run(self, cron_expr: str) -> str:
-        """Calculate next run time from cron expression."""
-        from croniter import croniter
-        from datetime import datetime
-        try:
-            base_time = datetime.now()
-            iter = croniter(cron_expr, base_time)
-            next_time = iter.get_next(datetime)
-            return next_time.strftime("%Y-%m-%d %H:%M:%S")
-        except:
-            return "Unknown"
 
 # Click command group for dashboard
 @click.group()
