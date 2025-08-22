@@ -370,3 +370,4 @@ class Dashboard {
             this.showLoading(true);
             
             // Update positions from current DOM order
+            this.updateWidgetPositions();
