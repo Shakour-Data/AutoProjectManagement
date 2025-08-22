@@ -180,6 +180,41 @@ class WebSocketConnectionManager:
         last_event_id = subscription_request.get('last_event_id')
         if last_event_id:
             event_service.set_last_event_id(connection_id, last_event_id)
+            logger.debug(f"Set last event ID: {last_event_id} for connection {connection_id}")
+        
+        logger.info(f"Connection {connection_id} subscriptions updated: {event_types}, project: {project_id}")
+    
+    async def send_missed_events(self, connection_id: str, last_event_id: Optional[str]):
+        """Send missed events to reconnecting client."""
+        if connection_id not in self.active_connections:
+            return
+        
+        try:
+            missed_events = await event_service.get_missed_events(last_event_id)
+            if missed_events:
+                logger.info(f"Sending {len(missed_events)} missed events to connection {connection_id}")
+                
+                connection = self.active_connections[connection_id]
+                for event in missed_events:
+                    await connection.send({
+                        "type": "event",
+                        "event_type": event.type.value,
+                        "data": event.data,
+                        "event_id": event.event_id,
+                        "timestamp": event.timestamp,
+                        "is_replay": True  # Indicate this is a replayed event
+                    })
+        
+        except Exception as e:
+            logger.error(f"Error sending missed events to connection {connection_id}: {e}")
+    
+    def get_stats(self) -> Dict[str, Any]:
+        """Get WebSocket connection statistics."""
+        return {
+            **self.connection_stats,
+            "active_connections": len(self.active_connections),
+            "event_service_stats": event_service.get_connection_stats()
+        }
 
 # Global connection manager
 websocket_manager = WebSocketConnectionManager()
