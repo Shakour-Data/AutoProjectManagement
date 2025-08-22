@@ -28,3 +28,62 @@ class EventType(str, Enum):
     FILE_CHANGE = "file_change"
     COMMIT = "commit"
     PROGRESS_UPDATE = "progress_update"
+    RISK_ALERT = "risk_alert"
+    TASK_UPDATE = "task_update"
+    SYSTEM_STATUS = "system_status"
+    DASHBOARD_UPDATE = "dashboard_update"
+    HEALTH_CHECK = "health_check"
+
+@dataclass
+class Event:
+    """Real-time event data structure."""
+    type: EventType
+    data: Dict[str, Any]
+    timestamp: float = field(default_factory=time.time)
+    source: str = "system"
+    project_id: Optional[str] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert event to dictionary for serialization."""
+        return {
+            "type": self.type.value,
+            "data": self.data,
+            "timestamp": self.timestamp,
+            "source": self.source,
+            "project_id": self.project_id,
+            "iso_timestamp": datetime.fromtimestamp(self.timestamp).isoformat()
+        }
+
+class Connection:
+    """Base connection class for WebSocket and SSE."""
+    def __init__(self, connection_id: str):
+        self.connection_id = connection_id
+        self.connected_at = time.time()
+        self.last_activity = time.time()
+        self.subscriptions: Set[EventType] = set()
+        self.project_filter: Optional[str] = None
+
+    def is_subscribed(self, event_type: EventType) -> bool:
+        """Check if connection is subscribed to event type."""
+        return event_type in self.subscriptions
+
+    def update_activity(self):
+        """Update last activity timestamp."""
+        self.last_activity = time.time()
+
+    def get_connection_info(self) -> Dict[str, Any]:
+        """Get connection information."""
+        return {
+            "connection_id": self.connection_id,
+            "connected_at": self.connected_at,
+            "last_activity": self.last_activity,
+            "subscriptions": [sub.value for sub in self.subscriptions],
+            "project_filter": self.project_filter,
+            "duration_seconds": time.time() - self.connected_at
+        }
+
+class EventService:
+    """Centralized event service for real-time communications."""
+    
+    def __init__(self):
+        self.connections: Dict[str, Connection] = {}
