@@ -368,3 +368,4 @@ class Dashboard {
     async saveLayout() {
         try {
             this.showLoading(true);
+            
