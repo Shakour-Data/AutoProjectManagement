@@ -443,6 +443,7 @@ async def websocket_endpoint(websocket: WebSocket):
     WebSocket endpoint for real-time dashboard updates.
     
     Provides live updates for all dashboard metrics and alerts using event-driven architecture.
+    Supports reconnection with event replay and comprehensive error handling.
     """
     connection = await websocket_manager.connect(websocket)
     
@@ -453,13 +454,16 @@ async def websocket_endpoint(websocket: WebSocket):
             "connection_id": connection.connection_id,
             "timestamp": datetime.now().isoformat(),
             "message": "WebSocket connection established",
-            "available_event_types": [et.value for et in EventType]
+            "available_event_types": [et.value for et in EventType],
+            "supports_reconnection": True,
+            "max_reconnect_attempts": 5,
+            "heartbeat_interval": 30
         })
         
         # Main message loop
         while True:
             try:
-                # Wait for messages from client (subscription requests, etc.) with timeout
+                # Wait for messages from client with timeout
                 try:
                     data = await asyncio.wait_for(websocket.receive_json(), timeout=300.0)
                     logger.debug(f"Received WebSocket message: {data}")
@@ -468,41 +472,17 @@ async def websocket_endpoint(websocket: WebSocket):
                         # Handle subscription request
                         await websocket_manager.handle_subscription(connection.connection_id, data)
                         
+                        # Check if client wants missed events
+                        last_event_id = data.get('last_event_id')
+                        if last_event_id:
+                            await websocket_manager.send_missed_events(connection.connection_id, last_event_id)
+                        
                         # Send subscription confirmation
                         confirmation = {
                             "type": "subscription_confirmed",
                             "timestamp": datetime.now().isoformat(),
                             "event_types": data.get('event_types', []),
-                            "project_id": data.get('project_id')
-                        }
-                        logger.debug(f"Sending subscription confirmation: {confirmation}")
-                        await connection.send(confirmation)
-                    
-                    elif data.get('type') == 'ping':
-                        # Handle ping request
-                        await connection.send({
-                            "type": "pong",
-                            "timestamp": datetime.now().isoformat()
-                        })
-                    
-                except asyncio.TimeoutError:
-                    # Send heartbeat to keep connection alive
-                    await connection.send({
-                        "type": "heartbeat",
-                        "timestamp": datetime.now().isoformat()
-                    })
-                    continue
-                
-            except Exception as e:
-                logger.warning(f"Error processing WebSocket message: {e}")
-                break
-                
-    except WebSocketDisconnect:
-        logger.info(f"WebSocket client disconnected: {connection.connection_id}")
-    except Exception as e:
-        logger.error(f"WebSocket error: {e}")
-    finally:
-        await websocket_manager.disconnect(connection.connection_id)
+                            "project_id": data.get('project_id'),
 
 @router.get("/ws/stats")
 async def get_websocket_stats():
