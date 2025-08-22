@@ -142,3 +142,48 @@ class EventService:
         """Set project filter for connection."""
         if connection_id in self.connections:
             self.connections[connection_id].project_filter = project_id
+            logger.debug(f"Connection {connection_id} project filter set to {project_id}")
+    
+    async def publish_event(self, event: Event):
+        """Publish an event to all subscribed connections."""
+        await self.message_queue.put(event)
+    
+    async def _process_message_queue(self):
+        """Process events from the message queue."""
+        while self.running:
+            try:
+                event = await self.message_queue.get()
+                await self._broadcast_event(event)
+                self.message_queue.task_done()
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"Error processing message queue: {e}")
+    
+    async def _broadcast_event(self, event: Event):
+        """Broadcast event to all subscribed connections."""
+        event_dict = event.to_dict()
+        subscribers = 0
+        
+        for connection_id, connection in list(self.connections.items()):
+            try:
+                # Check if connection is subscribed to this event type
+                if not connection.is_subscribed(event.type):
+                    continue
+                
+                # Apply project filter if set
+                if (connection.project_filter and 
+                    event.project_id and 
+                    connection.project_filter != event.project_id):
+                    continue
+                
+                # This is a base class - actual sending is implemented in subclasses
+                # WebSocket and SSE connections will override the send method
+                if hasattr(connection, 'send'):
+                    await connection.send(event_dict)
+                    subscribers += 1
+                    
+            except Exception as e:
+                logger.error(f"Error broadcasting to connection {connection_id}: {e}")
+                # Remove faulty connection
+                await self.unregister_connection(connection_id)
