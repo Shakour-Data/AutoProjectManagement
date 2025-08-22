@@ -177,3 +177,50 @@ class Dashboard {
                 labels: ['Test Coverage', 'Code Quality', 'Bug Density'],
                 datasets: [{
                     data: [0, 0, 0],
+                    backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                    borderColor: '#2563eb',
+                    pointBackgroundColor: '#2563eb'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    }
+
+    updateCharts(metrics) {
+        // Update health chart
+        if (this.charts.health) {
+            this.charts.health.data.datasets[0].data = [metrics.metrics.health_score || 0];
+            this.charts.health.update();
+        }
+
+        // Update progress chart
+        if (this.charts.progress && metrics.metrics) {
+            const completed = metrics.metrics.completed_tasks || 0;
+            const total = metrics.metrics.total_tasks || 1;
+            this.charts.progress.data.datasets[0].data = [completed, total - completed];
+            this.charts.progress.update();
+        }
+
+        // Update team performance chart
+        if (this.charts.team && metrics.trends) {
+            const velocityData = metrics.trends.velocity || [];
+            this.charts.team.data.labels = velocityData.map((_, i) => `Day ${i + 1}`);
+            this.charts.team.data.datasets[0].data = velocityData;
+            this.charts.team.update();
+        }
+
+        // Update quality chart
+        if (this.charts.quality && metrics.metrics.quality_metrics) {
+            const quality = metrics.metrics.quality_metrics;
+            this.charts.quality.data.datasets[0].data = [
+                quality.test_coverage || 0,
+                quality.code_quality || 0,
