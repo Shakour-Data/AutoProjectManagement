@@ -178,3 +178,38 @@ async def sse_endpoint(
         subscribed_event_types = []
         if event_types:
             event_type_list = [et.strip() for et in event_types.split(',') if et.strip()]
+            subscribed_event_types = await sse_manager.handle_subscription(
+                connection.connection_id, event_type_list, project_id
+            )
+        
+        # Handle reconnection with last event ID
+        missed_events = []
+        if last_event_id:
+            logger.info(f"SSE reconnection with last_event_id: {last_event_id}")
+            # In a production system, you might retrieve missed events from a persistent store
+            missed_events.append({
+                "type": "reconnection",
+                "message": "Reconnected with last event ID",
+                "last_event_id": last_event_id,
+                "timestamp": datetime.now().isoformat()
+            })
+        
+        async def event_generator():
+            """Generator for SSE events with proper error handling."""
+            heartbeat_task = None
+            try:
+                # Send initial connection message
+                initial_message = {
+                    "type": "connection_established",
+                    "connection_id": connection.connection_id,
+                    "timestamp": datetime.now().isoformat(),
+                    "message": "SS极 connection established",
+                    "subscribed_event_types": subscribed_event_types,
+                    "project_id": project_id
+                }
+                yield f"data: {json.dumps(initial_message)}\n\n"
+                
+                # Send any missed events for reconnection
+                for missed_event in missed_events:
+                    yield f"data: {json.dumps(missed_event)}\n\n"
+                
