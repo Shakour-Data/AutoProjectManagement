@@ -186,3 +186,43 @@ async def test_api_endpoints():
             return False
         
         # Test SSE stats
+        response = requests.get("http://localhost:8000/api/v1/sse/stats")
+        if response.status_code == 200:
+            logger.info("✅ SSE stats endpoint working")
+        else:
+            logger.error(f"❌ SSE stats endpoint failed: {response.status_code}")
+            return False
+        
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ API endpoints test failed: {e}")
+        return False
+
+async def main():
+    """Run complete real-time implementation test."""
+    logger.info("Starting complete real-time implementation test...")
+    
+    # Start server
+    server = TestServer()
+    if not server.start_server():
+        return 1
+    
+    try:
+        # Run tests
+        results = []
+        
+        # Test API endpoints
+        api_result = await test_api_endpoints()
+        results.append(("API Endpoints", api_result))
+        
+        # Test event publishing
+        event_result = await test_event_publishing()
+        results.append(("Event Publishing", event_result))
+        
+        # Test WebSocket
+        websocket_result = await test_websocket_functionality()
+        results.append(("WebSocket", websocket_result))
+        
+        # Test SSE
+        sse_result = await test_sse_functionality()
