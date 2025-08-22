@@ -144,19 +144,19 @@ def get_trends_data(project_id: str, timeframe: str) -> Dict[str, List[float]]:
     # Placeholder implementation
     return {
         "velocity": [20, 22, 25, 23, 26],
-            team_performance=team_performance,
-            quality_metrics=quality_metrics
-        )
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Error getting dashboard overview: {e}")
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+        "throughput": [15, 16, 18, 17, 19]
+    }
 
-@router.get("/metrics", response_model=DashboardMetrics)
-async def get_dashboard_metrics(
-    project_id: str = Query(..., description="Project ID for metrics"),
+def get_alerts(project_id: Optional[str], severity: Optional[str], resolved: bool) -> List[DashboardAlert]:
+    """Get active alerts."""
+    # Placeholder implementation
+    return [
+        DashboardAlert(
+            id="alert-001",
+            type="risk",
+            severity="warning",
+            message="Progress slowing down in sprint",
+            timestamp=datetime.now(),
     timeframe: str = Query("24h", description="Timeframe for metrics (1h, 24h, 7d, 30d)")
 ) -> DashboardMetrics:
     """
