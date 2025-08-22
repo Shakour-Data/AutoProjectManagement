@@ -339,20 +339,107 @@ def get_performance_data(project_id: str) -> Dict[str, Any]:
     }
 
 
+# Layout configuration functions
 def save_layout_config(layout_config: Dict[str, Any]) -> Dict[str, Any]:
-    """Save layout configuration."""
-    # Placeholder implementation
-    return layout_config
+    """Save layout configuration to JSON file."""
+    try:
+        layout = DashboardLayout(**layout_config)
+        layout.updated_at = datetime.now()
+        
+        # Create filename
+        filename = f"layout_{layout.layout_type}.json"
+        filepath = LAYOUTS_DIR / filename
+        
+        # Save to JSON file
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(layout.dict(), f, indent=2, default=str)
+        
+        logger.info(f"Layout configuration saved: {layout.layout_type}")
+        return layout.dict()
+        
+    except Exception as e:
+        logger.error(f"Error saving layout configuration: {e}")
+        raise
 
 def get_layout_config(layout_type: str) -> Dict[str, Any]:
-    """Get layout configuration."""
-    # Placeholder implementation
+    """Get layout configuration from JSON file."""
+    try:
+        filename = f"layout_{layout_type}.json"
+        filepath = LAYOUTS_DIR / filename
+        
+        if not filepath.exists():
+            # Return default layout if not found
+            return create_default_layout(layout_type)
+        
+        # Load from JSON file
+        with open(filepath, 'r', encoding='utf-8') as f:
+            layout_data = json.load(f)
+        
+        # Parse datetime strings back to datetime objects
+        layout_data['created_at'] = datetime.fromisoformat(layout_data['created_at'])
+        layout_data['updated_at'] = datetime.fromisoformat(layout_data['updated_at'])
+        
+        # Validate the layout
+        layout = DashboardLayout(**layout_data)
+        
+        logger.info(f"Layout configuration loaded: {layout_type}")
+        return layout.dict()
+        
+    except Exception as e:
+        logger.error(f"Error loading layout configuration: {e}")
+        # Return default layout on error
+        return create_default_layout(layout_type)
+
+def create_default_layout(layout_type: str) -> Dict[str, Any]:
+    """Create default layout configuration."""
+    default_widgets = [
+        {"widget_id": "health", "position": 0, "enabled": True, "settings": {}},
+        {"widget_id": "progress", "position": 1, "enabled": True, "settings": {}},
+        {"widget_id": "risks", "position": 2, "enabled": True, "settings": {}},
+        {"widget_id": "team", "position": 3, "enabled": True, "settings": {}},
+        {"widget_id": "quality", "position": 4, "enabled": True, "settings": {}},
+        {"widget_id": "alerts", "position": 5, "enabled": True, "settings": {}}
+    ]
+    
     return {
         "layout_type": layout_type,
-        "widgets": ["health", "progress", "risks", "team"],
+        "widgets": default_widgets,
         "refresh_rate": 3000,
-        "theme": "light"
+        "theme": "light",
+        "created_at": datetime.now(),
+        "updated_at": datetime.now()
     }
+
+def get_available_layouts() -> List[str]:
+    """Get list of available layout types."""
+    layouts = []
+    for file in LAYOUTS_DIR.glob("layout_*.json"):
+        layout_type = file.stem.replace("layout_", "")
+        layouts.append(layout_type)
+    
+    # Always include standard layout
+    if "standard" not in layouts:
+        layouts.append("standard")
+    
+    return sorted(layouts)
+
+def delete_layout_config(layout_type: str) -> bool:
+    """Delete layout configuration file."""
+    try:
+        filename = f"layout_{layout_type}.json"
+        filepath = LAYOUTS_DIR / filename
+        
+        if filepath.exists():
+            filepath.unlink()
+            logger.info(f"Layout configuration deleted: {layout_type}")
+            return True
+        else:
+            logger.warning(f"Layout configuration not found: {layout_type}")
+            return False
+            
+    except Exception as e:
+        logger.error(f"Error deleting layout configuration: {e}")
+        return False
 
 @router.get("/overview", response_model=DashboardOverview)
 async def get_dashboard_overview(
