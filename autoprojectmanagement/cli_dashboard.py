@@ -717,10 +717,29 @@ class DashboardCLI:
             parts = field.split('/')
             if len(parts) != 2:
                 return False
-            try:
-                step = int(parts[1])
-                return step > 0
-            except ValueError:
+            # Handle */step format
+            if parts[0] == '*':
+                try:
+                    step = int(parts[1])
+                    return step > 0
+                except ValueError:
+                    return False
+            # Handle range/step format (e.g., 1-30/5)
+            elif '-' in parts[0]:
+                range_parts = parts[0].split('-')
+                if len(range_parts) != 2:
+                    return False
+                try:
+                    start = int(range_parts[0])
+                    end = int(range_parts[1])
+                    step = int(parts[1])
+                    return (min_val <= start <= max_val and 
+                           min_val <= end <= max_val and 
+                           start <= end and 
+                           step > 0)
+                except ValueError:
+                    return False
+            else:
                 return False
         
         # Handle lists (e.g., 1,3,5)
