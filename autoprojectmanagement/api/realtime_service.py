@@ -320,7 +320,7 @@ class EventService:
                     logger.error(f"Error in event handler for {event.type}: {e}")
 
 # Global event service instance
-event_service = EventService()
+event_service = EventService(max_queue_size=2000, event_retention=200)
 
 async def initialize_event_service():
     """Initialize the global event service."""
