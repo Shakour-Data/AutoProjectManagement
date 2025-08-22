@@ -387,3 +387,18 @@ async def publish_task_update(task_data: Dict[str, Any], project_id: Optional[st
         project_id=project_id
     )
     await event_service.publish_event(event)
+
+async def publish_auto_commit_start(project_id: Optional[str] = None, changes_count: int = 0):
+    """Publish auto-commit start event."""
+    event = Event(
+        type=EventType.AUTO_COMMIT_START,
+        data={
+            "event": "start",
+            "changes_count": changes_count,
+            "timestamp": time.time()
+        },
+        project_id=project_id
+    )
+    await event_service.publish_event(event)
+
+async def publish_auto_commit_result(success: bool, changes_count: int, message: str = "", project_id: Optional[str] = None):
