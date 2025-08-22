@@ -3,11 +3,11 @@
 """
 path: autoprojectmanagement/api/app.py
 File: app.py
-Purpose: Flask application setup
+Purpose: FastAPI application setup
 Author: AutoProjectManagement Team
 Version: 2.0.0
 License: MIT
-Description: Flask application setup within the AutoProjectManagement system
+Description: FastAPI application setup within the AutoProjectManagement system
 """
 
 import logging
@@ -28,7 +28,7 @@ MODIFIED_DATE = "2025-08-14"
 
 # Module-level docstring
 __doc__ = """
-Flask application setup within the AutoProjectManagement system
+FastAPI application setup within the AutoProjectManagement system
 
 This module is part of the AutoProjectManagement system.
 For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
