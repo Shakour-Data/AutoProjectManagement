@@ -268,3 +268,59 @@ class Dashboard {
             }
 
             // Connect to WebSocket
+            this.socket = new WebSocket(`ws://${window.location.host}/api/v1/dashboard/ws`);
+            
+            this.socket.onopen = () => {
+                this.isConnected = true;
+                this.updateConnectionStatus(true);
+                console.log('WebSocket connected');
+            };
+
+            this.socket.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                this.handleWebSocketMessage(data);
+            };
+
+            this.socket.onclose = () => {
+                this.isConnected = false;
+                this.updateConnectionStatus(false);
+                console.log('WebSocket disconnected');
+                
+                // Attempt reconnection after delay
+                setTimeout(() => this.connectWebSocket(), 5000);
+            };
+
+            this.socket.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                this.isConnected = false;
+                this.updateConnectionStatus(false);
+            };
+
+        } catch (error) {
+            console.error('WebSocket connection failed:', error);
+            this.isConnected = false;
+            this.updateConnectionStatus(false);
+        }
+    }
+
+    handleWebSocketMessage(data) {
+        switch (data.type) {
+            case 'initial':
+                console.log('WebSocket initialized:', data.message);
+                break;
+                
+            case 'update':
+                this.handleRealTimeUpdate(data);
+                break;
+                
+            default:
+                console.log('Unknown message type:', data.type);
+        }
+    }
+
+    handleRealTimeUpdate(data) {
+        // Highlight updated elements
+        this.highlightUpdates();
+        
+        // Update metrics if available
+        if (data.metrics) {
