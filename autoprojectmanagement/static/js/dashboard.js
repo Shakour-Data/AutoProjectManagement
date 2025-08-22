@@ -488,18 +488,25 @@ class Dashboard {
 
     handleAutoCommitEvent(data) {
         if (data.event === 'start') {
-            this.showNotification('Auto-commit started...', 'info');
+            this.handleAutoCommitStartEvent(data);
         } else if (data.event === 'result') {
-            const status = data.success ? 'success' : 'warning';
-            const message = data.success ? 
-                `Auto-commit completed successfully (${data.changes_count} changes)` :
-                `Auto-commit completed with warnings (${data.changes_count} changes)`;
-            
-            this.showNotification(message, status);
+            this.handleAutoCommitResultEvent(data);
         } else if (data.event === 'error') {
-            this.showNotification(`Auto-commit error: ${data.error}`, 'error');
+            this.handleAutoCommitErrorEvent(data);
         }
     }
+
+    handleAutoCommitStartEvent(data) {
+        const message = `Auto-commit started (${data.changes_count || 0} changes detected)`;
+        this.showNotification(message, 'info');
+        
+        // Update UI to show auto-commit in progress
+        this.updateAutoCommitStatus('in-progress', message);
+    }
+
+    handleAutoCommitResultEvent(data) {
+        const status = data.success ? 'success' : 'warning';
+        const message = data.success ? 
 
     handleProgressUpdateEvent(data) {
         // Update progress metrics
