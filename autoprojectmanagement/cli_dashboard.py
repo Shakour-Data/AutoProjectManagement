@@ -483,8 +483,14 @@ class DashboardCLI:
             
             schedules = []
             if schedules_file.exists():
-                with open(schedules_file, 'r', encoding='utf-8') as f:
-                    schedules = json.load(f)
+                try:
+                    with open(schedules_file, 'r', encoding='utf-8') as f:
+                        schedules = json.load(f)
+                    # Ensure schedules is a list
+                    if not isinstance(schedules, list):
+                        schedules = []
+                except (json.JSONDecodeError, FileNotFoundError):
+                    schedules = []
             
             # Remove existing schedule for this report type
             schedules = [s for s in schedules if s.get('report_type') != report_type]
