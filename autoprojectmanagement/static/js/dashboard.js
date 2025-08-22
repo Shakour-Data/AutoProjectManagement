@@ -436,6 +436,18 @@ class Dashboard {
                 this.handleAutoCommitEvent(eventData);
                 break;
                 
+            case 'auto_commit_start':
+                this.handleAutoCommitStartEvent(eventData);
+                break;
+                
+            case 'auto_commit_result':
+                this.handleAutoCommitResultEvent(eventData);
+                break;
+                
+            case 'auto_commit_error':
+                this.handleAutoCommitErrorEvent(eventData);
+                break;
+                
             case 'progress_update':
                 this.handleProgressUpdateEvent(eventData);
                 break;
@@ -446,6 +458,11 @@ class Dashboard {
                 
             case 'dashboard_update':
                 this.handleDashboardUpdateEvent(eventData);
+                break;
+                
+            case 'health_check':
+                // Heartbeat received, no action needed
+                console.log('Heartbeat received');
                 break;
                 
             default:
