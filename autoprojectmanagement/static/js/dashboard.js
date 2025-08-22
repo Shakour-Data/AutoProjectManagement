@@ -507,6 +507,65 @@ class Dashboard {
     handleAutoCommitResultEvent(data) {
         const status = data.success ? 'success' : 'warning';
         const message = data.success ? 
+            `Auto-commit completed successfully (${data.changes_count || 0} changes)` :
+            `Auto-commit completed with warnings (${data.changes_count || 0} changes)`;
+        
+        this.showNotification(message, status);
+        
+        // Update UI with final status
+        this.updateAutoCommitStatus(data.success ? 'success' : 'warning', message);
+        
+        // Refresh dashboard data after commit
+        setTimeout(() => {
+            this.loadProjectData();
+        }, 1000);
+    }
+
+    handleAutoCommitErrorEvent(data) {
+        const message = `Auto-commit error: ${data.error || 'Unknown error'}`;
+        this.showNotification(message, 'error');
+        
+        // Update UI with error status
+        this.updateAutoCommitStatus('error', message);
+    }
+
+    updateAutoCommitStatus(status, message) {
+        // Create or update auto-commit status element
+        let statusElement = document.getElementById('autoCommitStatus');
+        if (!statusElement) {
+            statusElement = document.createElement('div');
+            statusElement.id = 'autoCommitStatus';
+            statusElement.className = 'auto-commit-status';
+            document.body.appendChild(statusElement);
+        }
+        
+        statusElement.className = `auto-commit-status ${status}`;
+        statusElement.innerHTML = `
+            <div class="auto-commit-icon">${this.getAutoCommitIcon(status)}</div>
+            <div class="auto-commit-message">${message}</div>
+            <div class="auto-commit-time">${new Date().toLocaleTimeString()}</div>
+        `;
+        
+        // Auto-hide success messages after 5 seconds
+        if (status === 'success') {
+            setTimeout(() => {
+                if (statusElement) {
+                    statusElement.style.opacity = '0';
+                    setTimeout(() => statusElement.remove(), 500);
+                }
+            }, 5000);
+        }
+    }
+
+    getAutoCommitIcon(status) {
+        const icons = {
+            'in-progress': '⏳',
+            'success': '✅',
+            'warning': '⚠️',
+            'error': '❌'
+        };
+        return icons[status] || 'ℹ️';
+    }
 
     handleProgressUpdateEvent(data) {
         // Update progress metrics
