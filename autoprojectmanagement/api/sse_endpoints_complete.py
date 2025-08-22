@@ -37,3 +37,23 @@ except ImportError:
     from autoprojectmanagement.api.realtime_service import EventService, EventType, Connection, event_service
 
 # Create router
+router = APIRouter(prefix="/sse", tags=["Server-Sent Events"])
+
+class SSEConnection(Connection):
+    """SSE connection for Server-Sent Events with proper event service integration."""
+    
+    def __init__(self, connection_id: str):
+        super().__init__(connection_id)
+        self.message_queue: asyncio.Queue = asyncio.Queue()
+        self.last_event_id: Optional[str] = None
+    
+    async def send(self, message: Dict[str, Any]):
+        """Send message through SSE with proper formatting."""
+        try:
+            # Add event ID for reconnection support
+            event_id = str(uuid.uuid4())
+            message['event_id'] = event_id
+            self.last_event_id = event_id
+            
+            await self.message_queue.put(message)
+            self.update_activity()
