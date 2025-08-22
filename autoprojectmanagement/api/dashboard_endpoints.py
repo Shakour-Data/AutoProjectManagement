@@ -444,6 +444,21 @@ async def websocket_endpoint(websocket: WebSocket):
     finally:
         await websocket_manager.disconnect(connection.connection_id)
 
+@router.get("/ws/stats")
+async def get_websocket_stats():
+    """Get WebSocket connection statistics."""
+    try:
+        stats = event_service.get_connection_stats()
+        return {
+            "websocket_connections": len(websocket_manager.active_connections),
+            "total_connections": stats["total_connections"],
+            "subscription_counts": stats["subscription_counts"],
+            "message_queue_size": stats["message_queue_size"]
+        }
+    except Exception as e:
+        logger.error(f"Error getting WebSocket stats: {e}")
+        raise HTTPException(status_code=500, detail=f"Error getting stats: {str(e)}")
+
 @router.post("/layout", response_model=Dict[str, Any])
 async def save_dashboard_layout(layout: DashboardLayout):
     """
