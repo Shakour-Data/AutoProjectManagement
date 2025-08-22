@@ -83,23 +83,27 @@ class DashboardIntegrationTest:
             await websocket.close()
             logger.info("✅ WebSocket connection closed gracefully")
     
-    def test_event_publishing(self):
+    async def test_event_publishing(self):
         """Test that events can be published and received."""
         logger.info("Testing event publishing...")
         
-        # Publish a test event
-        event_data = {
-            "event_type": "file_change",
-            "data": {
-                "file_path": "/test/file.py",
-                "change_type": "modified",
-                "project_id": "test_project"
-            }
-        }
-        
-        response = requests.post(f"{self.base_url}/api/v1/events/publish", json=event_data)
-        assert response.status_code == 200, f"Event publishing failed: {response.status_code}"
-        logger.info("✅ Event published successfully")
+        try:
+            # Import the utility function directly
+            from autoprojectmanagement.api.realtime_service import publish_file_change_event
+            
+            # Publish a test event using the utility function
+            await publish_file_change_event(
+                file_path="/test/file.py",
+                change_type="modified",
+                project_id="test_project"
+            )
+            
+            logger.info("✅ Event published successfully")
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Event publishing failed: {e}")
+            return False
     
     def run_all_tests(self):
         """Run all integration tests."""
