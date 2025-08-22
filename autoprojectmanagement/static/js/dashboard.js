@@ -405,6 +405,46 @@ class Dashboard {
                 `Auto-commit completed successfully (${data.changes_count} changes)` :
                 `Auto-commit completed with warnings (${data.changes_count} changes)`;
             
+            this.showNotification(message, status);
+        } else if (data.event === 'error') {
+            this.showNotification(`Auto-commit error: ${data.error}`, 'error');
+        }
+    }
+
+    handleProgressUpdateEvent(data) {
+        // Update progress metrics
+        if (data.progress_percentage !== undefined) {
+            const progressElement = document.getElementById('progressPercentage');
+            if (progressElement) {
+                progressElement.textContent = `${data.progress_percentage}%`;
+                this.highlightElement(progressElement);
+            }
+        }
+        
+        if (data.completed_tasks !== undefined && data.total_tasks !== undefined) {
+            const completedElement = document.getElementById('completedTasks');
+            const totalElement = document.getElementById('totalTasks');
+            
+            if (completedElement) completedElement.textContent = data.completed_tasks;
+            if (totalElement) totalElement.textContent = data.total_tasks;
+        }
+        
+        // Update charts if data is available
+        if (data.metrics) {
+            this.updateCharts({ metrics: data.metrics, trends: data.trends || {} });
+        }
+    }
+
+    handleRiskAlertEvent(data) {
+        // Add alert to alerts list
+        this.showNotification(`Risk Alert: ${data.message}`, data.severity);
+        
+        // You could also update a risk indicator on the dashboard
+        const riskElement = document.getElementById('riskLevel');
+        if (riskElement && data.severity) {
+            riskElement.textContent = data.severity;
+            riskElement.className = `stat-value risk-level ${data.severity}`;
+        }
 
     highlightUpdates() {
         const elements = document.querySelectorAll('.stat-value, .score-value');
