@@ -247,3 +247,27 @@ async def sse_endpoint(
         
     except Exception as e:
         logger.error(f"Error creating SSE connection: {e}")
+        raise HTTPException(status_code=500, detail=f"Error creating SSE stream: {str(e)}")
+
+async def _send_heartbeats(connection: SSEConnection):
+    """Send heartbeat messages to keep SSE connection alive."""
+    try:
+        while True:
+            await asyncio.sleep(30)  # Send heartbeat every 30 seconds
+            heartbeat_message = {
+                "type": "heartbeat",
+                "timestamp": datetime.now().isoformat(),
+                "message": "SSE connection heartbeat",
+                "connection_id": connection.connection_id
+            }
+            await connection.send(heartbeat_message)
+            logger.debug(f"Heartbeat sent to SSE connection {connection.connection_id}")
+    except asyncio.CancelledError:
+        logger.debug(f"Heartbeat task cancelled for connection: {connection.connection_id}")
+    except Exception as e:
+        logger.error(f"Error in heartbeat task for {connection.connection_id}: {e}")
+
+@router.post("/subscribe")
+async def sse_subscribe(
+    subscription: SSESubscriptionRequest,
+    connection_id: str = Query(..., description="SSE connection ID")
