@@ -132,17 +132,23 @@ class WebSocketConnectionManager:
     
     async def handle_subscription(self, connection_id: str, subscription_request: Dict[str, Any]):
         """Handle subscription request from client."""
+        logger.debug(f"Handling subscription for connection {connection_id}: {subscription_request}")
+        
         if connection_id not in self.active_connections:
+            logger.warning(f"Connection {connection_id} not found in active connections")
             return
         
         connection = self.active_connections[connection_id]
         
         # Parse event types
         event_types = subscription_request.get('event_types', [])
+        logger.debug(f"Subscribing to event types: {event_types}")
+        
         for event_type_str in event_types:
             try:
                 event_type = EventType(event_type_str)
                 event_service.subscribe(connection_id, event_type)
+                logger.debug(f"Subscribed to {event_type}")
             except ValueError:
                 logger.warning(f"Invalid event type: {event_type_str}")
         
@@ -150,7 +156,7 @@ class WebSocketConnectionManager:
         project_id = subscription_request.get('project_id')
         event_service.set_project_filter(connection_id, project_id)
         
-        logger.debug(f"Connection {connection_id} subscriptions updated: {event_types}, project: {project_id}")
+        logger.info(f"Connection {connection_id} subscriptions updated: {event_types}, project: {project_id}")
 
 # Global connection manager
 websocket_manager = WebSocketConnectionManager()
