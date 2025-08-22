@@ -257,3 +257,35 @@ async def shutdown_event_service():
     logger.info("Global event service shutdown")
 
 # Utility functions for common event types
+async def publish_file_change_event(file_path: str, change_type: str, project_id: Optional[str] = None):
+    """Publish file change event."""
+    event = Event(
+        type=EventType.FILE_CHANGE,
+        data={
+            "file_path": file_path,
+            "change_type": change_type,
+            "timestamp": time.time()
+        },
+        project_id=project_id
+    )
+    await event_service.publish_event(event)
+
+async def publish_commit_event(commit_hash: str, message: str, author: str, files_changed: List[str], project_id: Optional[str] = None):
+    """Publish commit event."""
+    event = Event(
+        type=EventType.COMMIT,
+        data={
+            "commit_hash": commit_hash,
+            "message": message,
+            "author": author,
+            "files_changed": files_changed,
+            "timestamp": time.time()
+        },
+        project_id=project_id
+    )
+    await event_service.publish_event(event)
+
+async def publish_progress_update(progress_data: Dict[str, Any], project_id: Optional[str] = None):
+    """Publish progress update event."""
+    event = Event(
+        type=EventType.PROGRESS_UPDATE,
