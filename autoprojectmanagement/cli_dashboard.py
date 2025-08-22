@@ -723,29 +723,21 @@ class DashboardCLI:
             parts = field.split('/')
             if len(parts) != 2:
                 return False
-            # Handle */step format
+            
+            # Handle */step format (most common case)
             if parts[0] == '*':
                 try:
                     step = int(parts[1])
                     return step > 0
                 except ValueError:
                     return False
-            # Handle range/step format (e.g., 1-30/5)
-            elif '-' in parts[0]:
-                range_parts = parts[0].split('-')
-                if len(range_parts) != 2:
-                    return False
-                try:
-                    start = int(range_parts[0])
-                    end = int(range_parts[1])
-                    step = int(parts[1])
-                    return (min_val <= start <= max_val and 
-                           min_val <= end <= max_val and 
-                           start <= end and 
-                           step > 0)
-                except ValueError:
-                    return False
-            else:
+            
+            # For other patterns, we'll be more permissive in validation
+            # since the main validation is done by the pattern matching
+            try:
+                step = int(parts[1])
+                return step > 0
+            except ValueError:
                 return False
         
         # Handle lists (e.g., 1,3,5)
