@@ -155,6 +155,28 @@ class EventService:
         """Set project filter for connection."""
         if connection_id in self.connections:
             self.connections[connection_id].project_filter = project_id
+            logger.debug(f"Connection {connection_id} project filter set to {project_id}")
+    
+    def set_last_event_id(self, connection_id: str, event_id: Optional[str]):
+        """Set last received event ID for connection."""
+        if connection_id in self.connections:
+            self.connections[connection_id].last_event_id = event_id
+            logger.debug(f"Connection {connection_id} last event ID set to {event_id}")
+    
+    async def publish_event(self, event: Event):
+        """Publish an event to all subscribed connections."""
+        try:
+            # Store recent event for reconnection support
+            self.recent_events.append(event)
+            
+            # Put event in queue with timeout to prevent blocking
+            await asyncio.wait_for(self.message_queue.put(event), timeout=1.0)
+            logger.debug(f"Event published: {event.type} (ID: {event.event_id})")
+            
+        except asyncio.TimeoutError:
+            logger.warning(f"Message queue full, dropping event: {event.type}")
+        except Exception as e:
+            logger.error(f"Error publishing event: {e}")
     
     async def _process_message_queue(self):
         """Process events from the message queue."""
