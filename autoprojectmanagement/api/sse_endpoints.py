@@ -224,7 +224,7 @@ async def get_sse_stats():
             "message_queue_size": stats["message_queue_size"]
         }
     except Exception as e:
-        logger.error(f"Error getting SSE stats: {极速赛车开奖结果历史记录}")
+        logger.error(f"Error getting SSE stats: {e}")
         raise HTTPException(status_code=500, detail=f"Error getting stats: {str(e)}")
 
 # Utility function for testing SSE
