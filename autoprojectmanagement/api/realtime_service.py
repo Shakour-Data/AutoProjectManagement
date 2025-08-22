@@ -229,6 +229,9 @@ class EventService:
                     connection.project_filter != event.project_id):
                     continue
                 
+                # Update last event ID for the connection
+                connection.last_event_id = event.event_id
+                
                 # This is a base class - actual sending is implemented in subclasses
                 # WebSocket and SSE connections will override the send method
                 if hasattr(connection, 'send'):
