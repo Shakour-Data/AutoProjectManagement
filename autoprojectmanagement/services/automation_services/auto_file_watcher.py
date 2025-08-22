@@ -28,6 +28,15 @@ except ImportError:
     # Handle import for development
     import sys
     from pathlib import Path
+    project_root = Path(__file__).resolve().parent.parent.parent.parent
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+    
+    try:
+        from autoprojectmanagement.api.realtime_service import publish_file_change_event
+    except ImportError as e:
+        logging.warning(f"Could not import realtime_service: {e}")
+        publish_file_change_event = None
 
 # Handle import for both standalone script and package usage
 try:
