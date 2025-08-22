@@ -79,6 +79,7 @@ try:
     from autoprojectmanagement.services.configuration_cli.cli_commands import (
         get_project_status as cli_get_project_status
     )
+    from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
 except ImportError:
     # Handle import for development
     import sys
@@ -87,6 +88,7 @@ except ImportError:
     from autoprojectmanagement.services.configuration_cli.cli_commands import (
         get_project_status as cli_get_project_status
     )
+    from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
 
 # Pydantic models for request/response validation
 class ProjectStatus(BaseModel):
