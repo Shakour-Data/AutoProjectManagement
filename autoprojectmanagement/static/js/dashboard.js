@@ -224,3 +224,20 @@ class Dashboard {
             this.charts.quality.data.datasets[0].data = [
                 quality.test_coverage || 0,
                 quality.code_quality || 0,
+                100 - (quality.bug_density || 0) * 10 // Scale bug density
+            ];
+            this.charts.quality.update();
+        }
+    }
+
+    updateAlerts(alerts) {
+        const alertsList = document.getElementById('alertsList');
+        alertsList.innerHTML = '';
+
+        if (alerts.length === 0) {
+            alertsList.innerHTML = '<div class="no-alerts">No active alerts</div>';
+            return;
+        }
+
+        alerts.forEach(alert => {
+            const alertElement = document.createElement('div');
