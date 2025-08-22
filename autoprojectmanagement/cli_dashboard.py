@@ -297,3 +297,62 @@ class DashboardCLI:
             table.add_row("Port", str(self.default_port))
             table.add_row("URL", f"http://{self.default_host}:{self.default_port}/dashboard")
             
+            if status["status"] == "running" and "health" in status:
+                health = status["health"]
+                table.add_row("API Version", health.get("version", "N/A"))
+                table.add_row("System Status", health.get("status", "N/A"))
+            
+            console.print(table)
+            
+        except Exception as e:
+            console.print(f"[bold red]❌ Error getting dashboard info: {e}[/bold red]")
+
+# Click command group for dashboard
+@click.group()
+def dashboard_cli():
+    """AutoProjectManagement Dashboard CLI Commands"""
+    pass
+
+@dashboard_cli.command()
+@click.option('--port', '-p', type=int, help='Port number for dashboard')
+@click.option('--host', '-h', help='Host address for dashboard')
+def start(port: Optional[int], host: Optional[str]):
+    """Start the dashboard server"""
+    cli = DashboardCLI()
+    cli.start_dashboard(port, host)
+
+@dashboard_cli.command()
+def stop():
+    """Stop the dashboard server"""
+    cli = DashboardCLI()
+    cli.stop_dashboard()
+
+@dashboard_cli.command()
+def status():
+    """Show dashboard server status"""
+    cli = DashboardCLI()
+    cli.show_dashboard_info()
+
+@dashboard_cli.command()
+def open():
+    """Open dashboard in web browser"""
+    cli = DashboardCLI()
+    cli.open_dashboard()
+
+@dashboard_cli.command()
+@click.option('--format', '-f', type=click.Choice(['json', 'csv', 'markdown']), 
+              default='json', help='Export format')
+@click.option('--output', '-o', help='Output file path')
+def export(format: str, output: Optional[str]):
+    """Export dashboard data to file"""
+    cli = DashboardCLI()
+    cli.export_dashboard_data(format, output)
+
+@dashboard_cli.command()
+def info():
+    """Show detailed dashboard information"""
+    cli = DashboardCLI()
+    cli.show_dashboard_info()
+
+if __name__ == "__main__":
+    dashboard_cli()
