@@ -146,3 +146,29 @@ class TestSSEEndpoints:
         """Test basic SSE endpoint functionality"""
         mock_connection = Mock()
         mock_connection.connection_id = "test-conn-111"
+        mock_connection.get_messages = AsyncMock(return_value=AsyncMock())
+        
+        self.mock_sse_manager.create_connection = AsyncMock(return_value=mock_connection)
+        self.mock_sse_manager.handle_subscription = AsyncMock(return_value=["file_change"])
+        self.mock_sse_manager.close_connection = AsyncMock()
+        
+        # Mock the heartbeat task
+        with patch('autoprojectmanagement.api.sse_endpoints._send_heartbeats') as mock_heartbeat:
+            mock_heartbeat.return_value = AsyncMock()
+            
+            response = await sse_endpoints.sse_endpoint(
+                self.mock_request, "file_change", "test-project", None
+            )
+            
+            assert response.media_type == "text/event-stream"
+            self.mock_sse_manager.create_connection.assert_called_once()
+            self.mock_sse_manager.handle_subscription.assert_called_once()
+
+    @pytest.mark.asyncio
+    async def test_sse_endpoint_with_last_event_id(self):
+        """Test SSE endpoint with last event ID for reconnection"""
+        mock_connection = Mock()
+        mock_connection.connection_id = "test-conn-222"
+        mock_connection.get_messages = AsyncMock(return_value=AsyncMock())
+        
+        self.mock_sse_manager.create_connection = AsyncMock(return_value=mock_connection)
