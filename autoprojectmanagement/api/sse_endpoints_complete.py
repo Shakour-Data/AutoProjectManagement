@@ -213,3 +213,19 @@ async def sse_endpoint(
                 for missed_event in missed_events:
                     yield f"data: {json.dumps(missed_event)}\n\n"
                 
+                # Send heartbeat every 30 seconds to keep connection alive
+                heartbeat_task = asyncio.create_task(_send_heartbeats(connection))
+                
+                # Stream messages from connection with timeout handling
+                async for message in connection.get_messages():
+                    yield message
+                    
+            except asyncio.CancelledError:
+                logger.info(f"SSE connection cancelled: {connection.connection_id}")
+            except Exception as e:
+                logger.error(f"Error in SSE event generator for {connection.connection_id}: {e}")
+            finally:
+                if heartbeat_task:
+                    heartbeat_task.cancel()
+                    try:
+                        await heartbeat_task
