@@ -283,3 +283,17 @@ class DashboardCLI:
             logger.error(f"Export failed: {e}")
             return False
     
+    def show_dashboard_info(self) -> None:
+        """Display comprehensive dashboard information."""
+        try:
+            status = self.dashboard_status()
+            
+            table = Table(title="Dashboard Information", show_header=True, header_style="bold magenta")
+            table.add_column("Property", style="cyan")
+            table.add_column("Value", style="green")
+            
+            table.add_row("Status", status["status"])
+            table.add_row("Host", self.default_host)
+            table.add_row("Port", str(self.default_port))
+            table.add_row("URL", f"http://{self.default_host}:{self.default_port}/dashboard")
+            
