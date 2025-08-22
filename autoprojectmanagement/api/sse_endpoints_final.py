@@ -45,3 +45,71 @@ class SSEConnection(Connection):
     def __init__(self, connection_id: str):
         super().__init__(connection_id)
         self.message_queue: asyncio.Queue = asyncio.Queue()
+        self.last_event_id: Optional[str] = None
+    
+    async def send(self, message: Dict[str, Any]):
+        """Send message through SSE with proper formatting."""
+        try:
+            # Add event ID for reconnection support
+            event_id = str(uuid.uuid4())
+            message['event_id'] = event_id
+            self.last_event_id = event_id
+            
+            await self.message_queue.put(message)
+            self.update_activity()
+            logger.debug(f"Message queued for SSE connection {self.connection_id}: {message['type']}")
+        except Exception as e:
+            logger.error(f"Error sending message to SSE connection {self.connection_id}: {e}")
+            raise
+    
+    async def get_messages(self) -> AsyncGenerator[str, None]:
+        """Generator for SSE messages with proper SSE protocol formatting."""
+        while True:
+            try:
+                message = await self.message_queue.get()
+                
+                # Format according to SSE specification
+                event_id = message.get('event_id', '')
+                event_type = message.get('type', 'message')
+                data = json.dumps(message)
+                
+                # Build SSE message with proper fields
+                sse_message = f"id: {event_id}\n"
+                sse_message += f"event: {event_type}\n"
+                sse_message += f"data: {data}\n\n"
+                
+                yield sse_message
+                self.message_queue.task_done()
+                
+            except asyncio.CancelledError:
+                logger.debug(f"SSE message generator cancelled for {self.connection_id}")
+                break
+            except Exception as e:
+                logger.error(f"Error in SSE message generator for {self.connection极}: {e}")
+                break
+
+class SSEConnectionManager:
+    """Manager for SSE connections with proper integration."""
+    
+    def __init__(self):
+        self.active_connections: Dict[str, SSEConnection] = {}
+    
+    async def create_connection(self) -> SSEConnection:
+        """Create a new SSE connection and register with event service."""
+        connection_id = event_service.generate_connection_id()
+        connection = SSEConnection(connection_id)
+        
+        await event_service.register_connection(connection)
+        self.active_connections[connection_id] = connection
+        
+        logger.info(f"New SSE connection: {connection_id}. Total: {len(self.active_connections)}")
+        return connection
+    
+    async def close_connection(self, connection_id: str):
+        """Close SSE connection and clean up resources."""
+        if connection_id in self.active_connections:
+            try:
+                await event_service.unregister_connection(connection_id)
+                del self.active_connections[connection_id]
+                logger.info(f"SSE connection closed: {connection_id}. Total: {len(self.active_connections)}")
+            except Exception as e:
