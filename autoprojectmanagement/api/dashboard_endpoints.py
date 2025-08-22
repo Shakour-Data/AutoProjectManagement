@@ -508,6 +508,37 @@ async def websocket_endpoint(websocket: WebSocket):
                             "connection_id": connection.connection_id,
                             "last_event_id": connection.last_event_id
                         })
+                    
+                    elif data.get('type') == 'get_stats':
+                        # Handle stats request
+                        stats = websocket_manager.get_stats()
+                        await connection.send({
+                            "type": "stats_response",
+                            "timestamp": datetime.now().isoformat(),
+                            "stats": stats
+                        })
+                    
+                except asyncio.TimeoutError:
+                    # Send heartbeat to keep connection alive
+                    await connection.send({
+                        "type": "heartbeat",
+                        "timestamp": datetime.now().isoformat(),
+                        "connection_id": connection.connection_id
+                    })
+                    continue
+                
+            except Exception as e:
+                logger.warning(f"Error processing WebSocket message: {e}")
+                # Don't break immediately, try to continue
+                await asyncio.sleep(1)
+                continue
+                
+    except WebSocketDisconnect:
+        logger.info(f"WebSocket client disconnected: {connection.connection_id}")
+    except Exception as e:
+        logger.error(f"WebSocket error: {e}")
+    finally:
+        await websocket_manager.disconnect(connection.connection_id)
 
 @router.get("/ws/stats")
 async def get_websocket_stats():
