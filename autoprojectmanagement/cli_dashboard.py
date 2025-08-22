@@ -245,3 +245,20 @@ class DashboardCLI:
                     data[name] = {"error": str(e)}
             
             # Determine output file
+            if not output_file:
+                timestamp = time.strftime("%Y%m%d_%H%M%S")
+                output_file = f"dashboard_export_{timestamp}.{format}"
+            
+            # Export based on format
+            if format == "json":
+                import json
+                with open(output_file, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+            
+            elif format == "csv":
+                import csv
+                # Simplified CSV export - would need proper flattening for nested JSON
+                with open(output_file, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.writer(f)
+                    writer.writerow(["Metric", "Value"])
+                    for key, value in data.items():
