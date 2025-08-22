@@ -392,7 +392,7 @@ def update_task_status(project_id: str, task_id: str, new_status: str) -> None:
 
 @main.command()
 @click.option('--list', '-l', is_flag=True, help='List all available commands')
-@click.option('--help', '-h', isflag=True, help='Show this help message')
+@click.option('--help', '-h', is_flag=True, help='Show this help message')
 def help_command(list_commands: bool, help_flag: bool) -> None:
     """
     Show help information for the CLI.
