@@ -341,3 +341,43 @@ autoproject config --set dashboard.default_layout="minimal"
 autoproject config --set dashboard.widgets.team_performance.enabled=true
 
 # Set refresh rate
+autoproject config --set dashboard.refresh_rate=2000
+
+# Change dashboard port
+autoproject config --set dashboard.port=8080
+
+# Apply changes
+autoproject config --apply
+```
+---
+
+## 🎮 Basic Usage
+
+### Command Line Interface
+
+#### Essential Commands
+
+```bash
+# Initialize new project
+autoproject init
+
+# Start monitoring
+autoproject start
+
+# Stop monitoring
+autoproject stop
+
+# Check status
+autoproject status
+
+# Generate report
+autoproject report --type daily
+
+# Update configuration
+autoproject config --edit
+
+# View logs
+autoproject logs --follow
+
+# 🆕 Dashboard Commands
+autoproject dashboard --start    # Start dashboard server
