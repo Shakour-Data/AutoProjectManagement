@@ -442,6 +442,52 @@ class DashboardCLI:
             logger.error(f"Share view failed: {e}")
             return False
 
+    def schedule_report(self, report_type: str, schedule_expr: str, output_format: str = "markdown") -> bool:
+        """
+        Schedule automated dashboard reports.
+        
+        Args:
+            report_type: Type of report to generate
+            schedule_expr: Cron expression for scheduling
+            output_format: Output format for reports
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            console.print(f"[bold blue]⏰ Scheduling Automated Report: {report_type}[/bold blue]")
+            
+            # Validate cron expression
+            if not self._validate_cron_expression(schedule_expr):
+                console.print("[bold red]❌ Invalid cron expression![/bold red]")
+                console.print("[yellow]Example: '0 9 * * *' for daily at 9 AM[/yellow]")
+                return False
+            
+            # Create schedule configuration
+            schedule_config = {
+                "report_type": report_type,
+                "schedule": schedule_expr,
+                "format": output_format,
+                "enabled": True,
+                "last_run": None,
+                "next_run": self._calculate_next_run(schedule_expr)
+            }
+            
+            # Save schedule to file
+            schedules_file = Path("JSonDataBase/OutPuts/dashboard_schedules.json")
+            schedules_file.parent.mkdir(parents=True, exist_ok=True)
+            
+            schedules = []
+            if schedules_file.exists():
+                with open(schedules_file, 'r', encoding='utf-8') as f:
+                    schedules = json.load(f)
+            
+            # Remove existing schedule for this report type
+            schedules = [s for s in schedules if s.get('report_type') != report_type]
+            schedules.append(schedule_config)
+            
+            with open(schedules_file, 'w', encoding='utf-8') as f:
+                json.dump(schedules, f, indent=2, ensure_ascii=False)
                     f.write(json.dumps(layout_data, indent=2))
                     f.write("## Configuration\n\n")
 
