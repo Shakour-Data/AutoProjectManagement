@@ -130,3 +130,15 @@ class EventService:
         """Subscribe connection to event type."""
         if connection_id in self.connections:
             self.connections[connection_id].subscriptions.add(event_type)
+            logger.debug(f"Connection {connection_id} subscribed to {event_type}")
+    
+    def unsubscribe(self, connection_id: str, event_type: EventType):
+        """Unsubscribe connection from event type."""
+        if connection_id in self.connections:
+            self.connections[connection_id].subscriptions.discard(event_type)
+            logger.debug(f"Connection {connection_id} unsubscribed from {event_type}")
+    
+    def set_project_filter(self, connection_id: str, project_id: Optional[str]):
+        """Set project filter for connection."""
+        if connection_id in self.connections:
+            self.connections[connection_id].project_filter = project_id
