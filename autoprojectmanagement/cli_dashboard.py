@@ -570,6 +570,7 @@ class DashboardCLI:
             True if successful, False otherwise
         """
         try:
+            console.print("[bold blue]⚙️  Configuring Dashboard Settings[/bold blue]")
                     f.write(json.dumps(layout_data, indent=2))
                     f.write("## Configuration\n\n")
 
