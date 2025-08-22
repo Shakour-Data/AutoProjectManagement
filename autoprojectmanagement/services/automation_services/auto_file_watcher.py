@@ -347,6 +347,20 @@ class ScheduledAutoCommit:
             
             logger.info("🔄 Executing scheduled auto-commit")
             
+            # Publish scheduled commit start event
+            if publish_file_change_event:
+                try:
+                    import asyncio
+                    asyncio.create_task(
+                        publish_file_change_event(
+                            file_path="scheduled_commit_start",
+                            change_type="scheduled_commit_start",
+                            project_id=str(self.project_path.name)
+                        )
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to publish scheduled commit start event: {e}")
+            
             # Check if there are any changes to commit
             has_changes = self._has_uncommitted_changes()
             
@@ -360,18 +374,64 @@ class ScheduledAutoCommit:
                     custom_message=commit_message
                 )
                 
+                # Publish scheduled commit result event
+                if publish_file_change_event:
+                    try:
+                        import asyncio
+                        asyncio.create_task(
+                            publish_file_change_event(
+                                file_path="scheduled_commit_result",
+                                change_type="scheduled_commit_result",
+                                project_id=str(self.project_path.name),
+                                commit_data={"success": success, "scheduled": True}
+                            )
+                        )
+                    except Exception as e:
+                        logger.warning(f"Failed to publish scheduled commit result event: {e}")
+                
                 if success:
                     logger.info("✅ Scheduled auto-commit completed successfully")
                 else:
                     logger.warning("⚠️  Scheduled auto-commit completed with warnings")
             else:
                 logger.info("ℹ️  No changes to commit - skipping scheduled auto-commit")
+                
+                # Publish no changes event
+                if publish_file_change_event:
+                    try:
+                        import asyncio
+                        asyncio.create_task(
+                            publish_file_change_event(
+                                file_path="scheduled_commit_skipped",
+                                change_type="scheduled_commit_skipped",
+                                project_id=str(self.project_path.name),
+                                commit_data={"reason": "no_changes"}
+                            )
+                        )
+                    except Exception as e:
+                        logger.warning(f"Failed to publish scheduled commit skipped event: {e}")
             
             # Schedule the next commit
             self._schedule_next_commit()
             
         except Exception as e:
             logger.error(f"Error during scheduled auto-commit: {e}")
+            
+            # Publish error event
+            if publish_file_change_event:
+                try:
+                    import asyncio
+                    asyncio.create_task(
+                        publish_file_change_event(
+                            file_path="scheduled_commit_error",
+                            change_type="scheduled_commit_error",
+                            project_id=str(self.project_path.name),
+                            commit_data={"error": str(e)}
+                        )
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to publish scheduled commit error event: {e}")
+            
             # Continue scheduling even if this commit fails
             self._schedule_next_commit()
     
