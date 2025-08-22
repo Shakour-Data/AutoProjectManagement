@@ -370,3 +370,95 @@ canvas {
 
 /* Animation for updates */
 @keyframes highlight {
+    0% { background-color: rgba(37, 99, 235, 0.1); }
+    100% { background-color: transparent; }
+}
+
+.highlight {
+    animation: highlight 1s ease-in-out;
+}
+
+/* Auto-commit Status */
+.auto-commit-status {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    padding: 1rem;
+    border-left: 4px solid;
+    z-index: 1001;
+    max-width: 350px;
+    transition: all 0.3s ease;
+}
+
+.auto-commit-status.in-progress {
+    border-left-color: var(--info-color);
+    background: linear-gradient(90deg, #eff6ff 0%, white 100%);
+}
+
+.auto-commit-status.success {
+    border-left-color: var(--success-color);
+    background: linear-gradient(90deg, #ecfdf5 0%, white 100%);
+}
+
+.auto-commit-status.warning {
+    border-left-color: var(--warning-color);
+    background: linear-gradient(90deg, #fffbeb 0%, white 100%);
+}
+
+.auto-commit-status.error {
+    border-left-color: var(--danger-color);
+    background: linear-gradient(90deg, #fef2f2 0%, white 100%);
+}
+
+.auto-commit-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.auto-commit-message {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.auto-commit-time {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+/* Connection Status with Animation */
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.connection-status.connected {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+}
+
+.connection-status.disconnected {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+}
+
+.connection-status.reconnecting {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
