@@ -108,10 +108,10 @@ class ConnectionManager:
 # Global connection manager
 manager = ConnectionManager()
 
-@router.get("/overview", response_model=DashboardOverview)
-async def get_dashboard_overview(
-    project_id: str = Query(..., description="Project ID for dashboard overview")
-) -> DashboardOverview:
+# Utility functions (to be implemented in separate modules)
+def calculate_health_score(status_data: Dict[str, Any]) -> float:
+    """Calculate project health score based on multiple factors."""
+    # Placeholder implementation - will be implemented in business logic
     """
     Get comprehensive dashboard overview for a project.
     
