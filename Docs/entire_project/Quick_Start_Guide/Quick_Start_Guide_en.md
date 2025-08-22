@@ -442,3 +442,110 @@ curl -X POST http://localhost:8000/api/v1/dashboard/layout \
   -H "Content-Type: application/json" \
   -d '{
     "layout": "custom",
+    "widgets": ["health", "progress", "risks", "team"],
+    "refresh_rate": 5000
+  }'
+```
+
+### Web Dashboard Access
+
+After starting the dashboard server, you can access it through your browser:
+
+```bash
+# Default dashboard address
+http://localhost:3000/dashboard
+
+# Or use built-in command
+autoproject dashboard --open
+```
+
+Web Dashboard Features:
+- ✅ Live updates every 3 seconds
+- ✅ Interactive and clickable charts
+- ✅ Advanced filters by date, task, members
+- ✅ Custom view save and share capability
+- ✅ Visual alerts and push notifications
+- ✅ Dark and light theme support
+
+---
+
+## 🧠 Understanding the System
+
+### System Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "AutoProjectManagement Core"
+        A[CLI Interface] --> B[AutoRunner Engine]
+        C[API Server] --> B
+        B --> D[Project Management System]
+        
+        D --> E[9 Core Modules]
+        E --> F[Communication Risk]
+        E --> G[Data Processing]
+        E --> H[Planning & Estimation]
+        E --> I[Progress Reporting]
+        E --> J[Quality Management]
+        E --> K[Resource Management]
+        E --> L[Task Workflow]
+        E --> M[Utility Modules]
+        
+        F --> N[Git Services]
+        G --> O[JSON Storage]
+        H --> P[ML Algorithms]
+        I --> Q[Report Generator]
+        J --> R[Auto Commit]
+        K --> S[Resource Optimizer]
+        L --> T[Workflow Engine]
+        
+        %% Add dashboard components
+        Q --> U[Dashboard Engine]
+        U --> V[Real-time Dashboard]
+        U --> W[Visual Reports]
+        U --> X[Alerts & Notifications]
+    end
+    
+    subgraph "External Integrations"
+        N --> Y[GitHub API]
+        R --> Z[Git Repository]
+        Q --> AA[Markdown Reports]
+        V --> AB[Web Browser]
+        V --> AC[Mobile App]
+    end
+    
+    subgraph "Dashboard Presentation"
+        V --> AD[📊 Project Health]
+        V --> AE[📈 Task Progress]
+        V --> AF[⚠️ Risk Assessment]
+        V --> AG[👥 Team Performance]
+        V --> AH[🔧 Quality Metrics]
+    end
+```
+
+### Dashboard Architecture
+
+```mermaid
+graph LR
+    subgraph "Data Layer"
+        A[JSON Storage] --> B[Real-time Data Processing]
+        B --> C[Metrics & KPI Calculation]
+    end
+    
+    subgraph "Business Logic Layer"
+        C --> D[Data Visualization Engine]
+        D --> E[Dashboard Widget Generation]
+        E --> F[Smart Alert System]
+    end
+    
+    subgraph "Presentation Layer"
+        F --> G[Dashboard API]
+        G --> H[Real-time Web Service]
+        H --> I[Interactive Web Interface]
+        H --> J[PDF/Excel Reports]
+        H --> K[Third-party Tool Integration]
+    end
+    
+    subgraph "Dashboard Features"
+        I --> L[Live Updates]
+        I --> M[Advanced Filters & Search]
+        I --> N[Layout Customization]
