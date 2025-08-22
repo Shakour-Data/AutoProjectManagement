@@ -171,6 +171,45 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             if self.should_monitor_file(event.dest_path):
                 self._handle_file_change(event.dest_path, 'moved_to')
     
+    def _handle_file_change(self, file_path: str, change_type: str) -> None:
+        """
+        Handle a file change event with debouncing.
+        
+        Args:
+            file_path: Path to the changed file
+            change_type: Type of change (created, modified, deleted, etc.)
+        """
+        with self.lock:
+            self.pending_changes.add((file_path, change_type))
+            
+            # Publish file change event to real-time service
+            if publish_file_change_event:
+                try:
+                    # Get relative path for better display
+                    rel_path = os.path.relpath(file_path, self.project_path)
+                    
+                    # Publish event asynchronously
+                    import asyncio
+                    asyncio.create_task(
+                        publish_file_change_event(
+                            file_path=rel_path,
+                            change_type=change_type,
+                            project_id=str(self.project_path.name)
+                        )
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to publish file change event: {e}")
+            
+            # Cancel any existing timer
+            if self.debounce_timer is not None:
+                self.debounce_timer.cancel()
+            
+            # Set a new timer
+            self.debounce_timer = Timer(
+                self.debounce_seconds,
+                self._execute_auto_commit
+            )
+            self.debounce_timer.start()
     
     def _execute_auto_commit(self) -> None:
         """Execute the auto-commit process for pending changes."""
