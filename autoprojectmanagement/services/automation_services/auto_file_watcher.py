@@ -228,8 +228,38 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
                 rel_path = os.path.relpath(file_path, self.project_path)
                 logger.info(f"  {change_type}: {rel_path}")
             
+            # Publish auto-commit start event
+            if publish_file_change_event:
+                try:
+                    import asyncio
+                    asyncio.create_task(
+                        publish_file_change_event(
+                            file_path="auto_commit_start",
+                            change_type="auto_commit_start",
+                            project_id=str(self.project_path.name),
+                            commit_data={"changes_count": len(changes)}
+                        )
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to publish auto-commit start event: {e}")
+            
             # Execute auto-commit
             success = self.auto_commit.run_complete_workflow_guaranteed()
+            
+            # Publish auto-commit result event
+            if publish_file_change_event:
+                try:
+                    import asyncio
+                    asyncio.create_task(
+                        publish_file_change_event(
+                            file_path="auto_commit_result",
+                            change_type="auto_commit_result",
+                            project_id=str(self.project_path.name),
+                            commit_data={"success": success, "changes_count": len(changes)}
+                        )
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to publish auto-commit result event: {e}")
             
             if success:
                 logger.info("✅ Auto-commit completed successfully")
