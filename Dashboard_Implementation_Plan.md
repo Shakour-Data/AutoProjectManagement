@@ -68,7 +68,7 @@ This report analyzes the implementation status of dashboard functionality based 
 ## 🔄 Partially Implemented Activities
 
 #### 1.1 Web Server Setup
-- [~] Implement WebSocket/SSE for real-time updates (WebSocket implemented but SSE not implemented)
+- [x] Implement WebSocket/SSE for real-time updates (WebSocket and SSE fully implemented)
 
 #### 1.2 Frontend Foundation
 - [~] Set up JavaScript framework (Vanilla JS implemented, not Vue.js/React)
