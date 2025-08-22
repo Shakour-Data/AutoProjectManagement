@@ -135,6 +135,25 @@ class WebSocketConnectionManager:
         if connection_id not in self.active_connections:
             return
         
+        connection = self.active_connections[connection_id]
+        
+        # Parse event types
+        event_types = subscription_request.get('event_types', [])
+        for event_type_str in event_types:
+            try:
+                event_type = EventType(event_type_str)
+                event_service.subscribe(connection_id, event_type)
+            except ValueError:
+                logger.warning(f"Invalid event type: {event_type_str}")
+        
+        # Set project filter
+        project_id = subscription_request.get('project_id')
+        event_service.set_project_filter(connection_id, project_id)
+        
+        logger.debug(f"Connection {connection_id} subscriptions updated: {event_types}, project: {project_id}")
+
+# Global connection manager
+websocket_manager = WebSocketConnectionManager()
 
 # Utility functions (to be implemented in separate modules)
 def calculate_health_score(status_data: Dict[str, Any]) -> float:
