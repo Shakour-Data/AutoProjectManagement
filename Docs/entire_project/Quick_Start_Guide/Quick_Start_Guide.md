@@ -2718,3 +2718,4 @@ graph TB
 ```json
 {
   "alerts": {
+    "enabled": true,
