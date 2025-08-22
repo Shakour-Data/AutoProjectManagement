@@ -186,3 +186,142 @@ class RealTimeDashboard {
 
   // WebSocket connection
   connectWebSocket() {
+    this.socket = new WebSocket(`ws://${window.location.host}/api/v1/dashboard/ws`);
+    
+    this.socket.onopen = () => {
+      this.subscribeToEvents(['file_change', 'auto_commit', 'progress_update']);
+    };
+    
+    this.socket.onmessage = (event) => {
+      this.handleEvent(JSON.parse(event.data));
+    };
+    
+    this.socket.onclose = () => {
+      console.log('WebSocket disconnected, reconnecting...');
+      setTimeout(() => this.connectWebSocket(), 5000);
+    };
+  }
+
+  // SSE connection (fallback)
+  connectSSE() {
+    const eventTypes = Array.from(this.subscriptions).join(',');
+    this.eventSource = new EventSource(
+      `/api/v1/sse/events?event_types=${eventTypes}`
+    );
+    
+    this.eventSource.onmessage = (event) => {
+      this.handleEvent(JSON.parse(event.data));
+    };
+  }
+
+  subscribeToEvents(eventTypes) {
+    eventTypes.forEach(type => this.subscriptions.add(type));
+    
+    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+      this.socket.send(JSON.stringify({
+        type: 'subscribe',
+        event_types: Array.from(this.subscriptions),
+        project_id: this.projectId
+      }));
+    }
+  }
+
+  handleEvent(event) {
+    switch(event.type) {
+      case 'file_change':
+        this.updateFileChangeCounter(event.data);
+        break;
+      case 'auto_commit':
+        this.showCommitNotification(event.data);
+        break;
+      case 'progress_update':
+        this.updateProgressBar(event.data);
+        break;
+      case 'risk_alert':
+        this.showRiskAlert(event.data);
+        break;
+    }
+  }
+}
+```
+
+## Monitoring and Statistics
+
+### WebSocket Statistics
+```
+GET /api/v1/dashboard/ws/stats
+```
+
+Response:
+```json
+{
+  "websocket_connections": 5,
+  "total_connections": 8,
+  "subscription_counts": {
+    "file_change": 5,
+    "auto_commit": 3,
+    "progress_update": 2
+  },
+  "message_queue_size": 0
+}
+```
+
+### SSE Statistics
+```
+GET /api/v1/sse/stats
+```
+
+## Error Handling
+
+### WebSocket Errors
+- Automatic reconnection with exponential backoff
+- Fallback to SSE if WebSocket fails
+
+### SSE Errors
+- Built-in automatic reconnection
+- Last-Event-ID support for missed events
+
+## Performance Considerations
+
+1. **Connection Limits**: Monitor active connections
+2. **Message Size**: Keep events under 1KB when possible
+3. **Subscription Management**: Clients should only subscribe to needed events
+4. **Heartbeat**: 30-second intervals for connection health
+
+## Security
+
+- CORS configured for cross-origin requests
+- No sensitive data in events
+- Project ID filtering for event scoping
+- Connection timeouts and cleanup
+
+## Testing
+
+Use the provided test script:
+```bash
+python test_realtime_implementation.py
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Connection refused**: Ensure server is running on port 8000
+2. **CORS errors**: Check CORS configuration in app.py
+3. **Event not received**: Verify subscription and project ID
+4. **Memory leaks**: Monitor connection counts and implement cleanup
+
+### Debug Mode
+
+Enable debug logging:
+```python
+logging.basicConfig(level=logging.DEBUG)
+```
+
+## Future Enhancements
+
+1. **Authentication**: JWT-based connection authentication
+2. **Rate limiting**: Prevent abuse of event publishing
+3. **Message persistence**: Store events for disconnected clients
+4. **Cluster support**: Distributed event broadcasting
+5. **Metrics export**: Prometheus metrics for monitoring
