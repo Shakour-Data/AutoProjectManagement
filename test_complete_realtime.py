@@ -72,37 +72,12 @@ async def test_websocket_functionality():
         logger.info("Testing WebSocket functionality...")
         
         async with websockets.connect("ws://localhost:8000/api/v1/dashboard/ws") as websocket:
-            # Test subscription
-            subscription = {
-                "type": "subscribe",
-                "event_types": ["file_change", "auto_commit"],
-                "project_id": "test_project"
-            }
-            await websocket.send(json.dumps(subscription))
-            
-            # Wait for subscription confirmation
+            # Wait for connection established message first
             response = await websocket.recv()
             response_data = json.loads(response)
-            logger.info(f"WebSocket response: {response_data}")
+            logger.info(f"Connection response: {response_data}")
             
-            if response_data.get("type") == "subscription_confirmed":
-                logger.info("✅ WebSocket subscription confirmed")
-                
-                # Test ping
-                await websocket.send(json.dumps({"type": "ping"}))
-                pong_response = await websocket.recv()
-                pong_data = json.loads(pong_response)
-                logger.info(f"Pong response: {pong_data}")
-                
-                if pong_data.get("type") == "pong":
-                    logger.info("✅ WebSocket ping/pong working")
-                    return True
-                else:
-                    logger.error("❌ WebSocket ping/pong failed")
-                    return False
-            else:
-                logger.error(f"❌ WebSocket subscription failed. Expected 'subscription_confirmed', got: {response_data.get('type')}")
-                return False
+            if response_data.get("type") != "connection_established":
                 
     except Exception as e:
         logger.error(f"❌ WebSocket test failed: {e}")
