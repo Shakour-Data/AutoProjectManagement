@@ -80,18 +80,6 @@ class DashboardAlert(BaseModel):
     """Model for dashboard alerts."""
     id: str = Field(..., description="Alert identifier")
     type: str = Field(..., description="Alert type (risk, progress, quality, team)")
-    severity: str = Field(..., description="Severity (info, warning, error, critical)")
-    message: str = Field(..., description="Alert message")
-    timestamp: datetime = Field(..., description="Alert timestamp")
-    project_id: str = Field(..., description="Affected project ID")
-    resolved: bool = Field(False, description="Whether alert is resolved")
-
-class DashboardLayout(BaseModel):
-    """Model for dashboard layout configuration."""
-    layout_type: str = Field(..., description="Layout type (standard, minimal, custom)")
-    widgets: List[str] = Field(..., description="List of enabled widgets")
-    refresh_rate: int = Field(3000, description="Refresh rate in milliseconds")
-    theme: str = Field("light", description="Theme (light, dark)")
 
 class WebSocketSubscriptionRequest(BaseModel):
     """Model for WebSocket subscription requests."""
