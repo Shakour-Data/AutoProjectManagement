@@ -29,6 +29,14 @@ logger = logging.getLogger(__name__)
 try:
     from autoprojectmanagement.api.services import ProjectService
     from autoprojectmanagement.main_modules.progress_reporting.progress_report import ProgressReport
+    from autoprojectmanagement.main_modules.progress_reporting.dashboards_reports import DashboardReports
+except ImportError:
+    # Handle import for development
+    import sys
+    sys.path.append(str(Path(__file__).resolve().parents[2]))
+    from autoprojectmanagement.api.services import ProjectService
+    from autoprojectmanagement.main_modules.progress_reporting.progress_report import ProgressReport
+    from autoprojectmanagement.main_modules.progress_reporting.dashboards_reports import DashboardReports
 
 # Create router
 router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
