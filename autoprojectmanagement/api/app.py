@@ -49,8 +49,8 @@ from datetime import datetime
 
 try:
     from fastapi import FastAPI, HTTPException, Query, Path as APIPath
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+    from fastapi.middleware.cors import CORSMiddleware
+    from fastapi.responses import JSONResponse
     from pydantic import BaseModel, Field
 except ImportError:
     # Fallback for development environment
