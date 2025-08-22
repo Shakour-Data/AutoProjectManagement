@@ -296,7 +296,11 @@ class EventService:
             "total_connections": total_connections,
             "subscription_counts": subscription_counts,
             "message_queue_size": self.message_queue.qsize(),
-            "uptime_seconds": time.time() - getattr(self, '_start_time', time.time())
+            "recent_events_count": len(self.recent_events),
+            "uptime_seconds": time.time() - self._start_time,
+            "active_connections": [
+                conn.get_connection_info() for conn in self.connections.values()
+            ]
         }
     
     def register_event_handler(self, event_type: EventType, handler: Callable):
