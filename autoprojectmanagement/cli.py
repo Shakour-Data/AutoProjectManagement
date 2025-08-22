@@ -392,34 +392,7 @@ def update_task_status(project_id: str, task_id: str, new_status: str) -> None:
 
 @main.command()
 @click.option('--list', '-l', is_flag=True, help='List all available commands')
-@click.option('--help', '-h', is_flag=True, help='Show this help message')
-def help_command(list_commands: bool, help_flag: bool) -> None:
-    """
-    Show help information for the CLI.
-    
-    This command provides detailed help information about available commands
-    and their usage.
-    
-    Args:
-        list_commands: List all available commands
-        help_flag: Show help message
-    
-    Examples:
-        autoprojectmanagement help
-        autoprojectmanagement help --list
-    
-    Returns:
-        None
-    """
-    if list_commands:
-        click.echo("Available commands:")
-        click.echo("  init              - Initialize new project management system")
-        click.echo("  create-project    - Create new project")
-        click.echo("  status            - Show project status")
-        click.echo("  add-task          - Add new task to project")
-        click.echo("  report            - Generate project reports")
-        click.echo("  update-task-status - Update task status")
-        click.echo("  help              - Show help information")
+@click.option('--help', '-h', isflag=True, help='Show this help message')
 
 
 if __name__ == "__main__":
