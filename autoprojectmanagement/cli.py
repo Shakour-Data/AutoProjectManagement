@@ -404,9 +404,6 @@ def report(
         f"📊 Generating {report_type} report for project {project_id}"
     )
     
-    # TODO: Implement report generation functionality
-    click.echo(f"📊 Generating {report_type} report for project {project_id}")
-    
     # Generate report based on report type
     project_id_int = int(project_id)
     project = system.get_project(project_id_int)
