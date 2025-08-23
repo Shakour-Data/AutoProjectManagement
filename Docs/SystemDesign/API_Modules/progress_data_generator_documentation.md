@@ -81,3 +81,59 @@ ProgressDataGenerator(
 **Default Configuration:**
 - `db_progress_json_path = 'docs/project_management/task_progress.json'`
 - `workflow_definition_path = 'docs/db_json/workflow_definition.json'`
+- `commit_task_id_pattern = r'\b\d+\.\d+\b'` (matches WBS-style task IDs)
+- `commit_weight = 0.6`
+- `workflow_weight = 0.4`
+
+#### Response Format
+
+**Generated Progress Data:**
+```json
+{
+  "1.1": 75.0,
+  "1.2": 50.0,
+  "2.1": 100.0,
+  "2.2": 25.0
+}
+```
+
+**Commit Data Structure:**
+```json
+[
+  {
+    "hash": "abc123def456",
+    "message": "Implement feature X for task 1.1",
+    "files": ["src/feature_x.py", "tests/test_feature_x.py"]
+  }
+]
+```
+
+**Workflow Definition Structure:**
+```json
+[
+  {
+    "step_id": "step-1",
+    "name": "Requirements Analysis",
+    "weight": 0.2
+  },
+  {
+    "step_id": "step-2", 
+    "name": "Implementation",
+    "weight": 0.6
+  }
+]
+```
+
+#### Example Usage
+
+**Basic Progress Generation:**
+```python
+from autoprojectmanagement.main_modules.data_collection_processing.progress_data_generator import ProgressDataGenerator
+
+# Initialize generator
+generator = ProgressDataGenerator()
+
+# Generate progress data
+generator.generate_progress()
+
+# Or use standalone function
