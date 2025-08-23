@@ -1,0 +1,9 @@
+watchdog>=2.1.0
+psutil>=5.8.0
+python-daemon>=2.3.0
+schedule>=1.1.0
+plyer>=2.1.0
+rich>=10.0.0
+click>=8.0.0
+fastapi>=0.68.0
+uvicorn>=0.15.0

@@ -1,19 +1,20 @@
-# AutoProjectManagement System - Complete Documentation
+# AutoProjectManagement System - API-First Project Management
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://github.com/your-username/AutoProjectManagement/wiki)
-[![Tests](https://img.shields.io/badge/tests-85%25-green.svg)](tests/README.md)
+[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](Docs/SystemDesign/)
+[![API Status](https://img.shields.io/badge/API-v1.0.0-blue.svg)](Docs/SystemDesign/Glossary/API_Reference.md)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-green.svg)](https://fastapi.tiangolo.com/)
 
 ## 📋 Table of Contents
 - [🎯 System Overview](#-system-overview)
 - [🏗️ Architecture & Design](#️-architecture--design)
-- [🧩 Core Modules](#-core-modules)
-- [📊 Data Management](#-data-management)
-- [🚀 Installation & Setup](#-installation--setup)
-- [📖 Usage Guide](#-usage-guide)
-- [🔧 Configuration](#-configuration)
+- [📁 File Structure](#-file-structure)
+- [🚀 Quick Start](#-quick-start)
+- [📖 API Usage Guide](#-api-usage-guide)
+- [🔌 Real-time Dashboard](#-real-time-dashboard)
 - [🧪 Testing](#-testing)
+- [📚 Documentation](#-documentation)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 
@@ -21,26 +22,25 @@
 
 ## 🎯 System Overview
 
-**AutoProjectManagement** is a comprehensive, Python-based automated project management system that provides continuous, intelligent project oversight through intelligent automation, GitHub-native workflows, and JSON-driven configurations.
+**AutoProjectManagement** is a comprehensive API-first automated project management system built with FastAPI. It provides real-time project oversight through RESTful APIs, WebSocket connections, and intelligent automation.
 
 ### Key Features
-- **100% Automated Project Management**: Zero-touch project oversight
-- **Real-time Risk Assessment**: Proactive issue identification and mitigation
-- **Intelligent Resource Allocation**: Optimal task distribution and scheduling
-- **Continuous Progress Tracking**: Live project health monitoring
-- **GitHub-Native Integration**: Deep integration with GitHub Actions and APIs
-- **Automatic Wiki Documentation**: Auto-sync Docs/ to GitHub Wiki
+- **RESTful API Integration**: Comprehensive API endpoints for project management
+- **Real-time Dashboard**: Live project health monitoring with WebSocket support
+- **Automated Progress Tracking**: Intelligent task and resource management
 - **JSON-Driven Configuration**: All settings via JSON files
-- **CLI-Based Interface**: No web frontend required
+- **WebSocket Support**: Real-time updates and notifications
+- **Dashboard Visualization**: Comprehensive dashboard with multiple widget types
+- **Event-Driven Architecture**: Real-time event system for instant updates
 
 ### System Statistics
 | Metric | Value |
 |--------|--------|
-| **Total Modules** | 9 Core + 15 Sub-modules |
-| **Lines of Code** | ~15,000+ |
-| **Test Coverage** | 85%+ |
-| **API Endpoints** | 25+ |
-| **Configuration Options** | 50+ |
+| **API Endpoints** | 20+ REST endpoints |
+| **WebSocket Events** | 7+ real-time event types |
+| **Dashboard Widgets** | 6+ available widget types |
+| **Response Formats** | JSON, Markdown, Table |
+| **Real-time Features** | WebSocket, Server-Sent Events |
 
 ---
 
@@ -51,220 +51,93 @@
 ```mermaid
 graph TB
     subgraph "AutoProjectManagement System"
-        CLI[CLI Interface] --> ARE[AutoRunner Engine]
-        API[API Gateway] --> ARE
-        ARE --> PMS[Project Management System]
+        API[FastAPI Server] --> PM[Project Management]
+        API --> DB[Dashboard Services]
+        API --> WS[WebSocket Gateway]
         
-        PMS --> CRM[Communication Risk Module]
-        PMS --> DCP[Data Collection & Processing]
-        PMS --> PE[Planning & Estimation]
-        PMS --> PR[Progress Reporting]
-        PMS --> QCM[Quality Commit Management]
-        PMS --> RM[Resource Management]
-        PMS --> TWM[Task Workflow Management]
-        PMS --> UM[Utility Modules]
+        PM --> CRM[Communication Risk Module]
+        PM --> DCP[Data Collection & Processing]
+        PM --> PE[Planning & Estimation]
+        PM --> PR[Progress Reporting]
+        PM --> QCM[Quality Commit Management]
+        PM --> RM[Resource Management]
+        PM --> TWM[Task Workflow Management]
         
-        CRM --> GH[GitHub Integration]
-        DCP --> JSON[(JSON Database)]
-        PE --> ML[ML Algorithms]
-        PR --> REP[Report Generator]
-        QCM --> GIT[Git Services]
-        RM --> TS[Task Scheduler]
-        TWM --> WE[Workflow Engine]
-        UM --> UTIL[Helper Utilities]
+        DB --> OV[Dashboard Overview]
+        DB --> MT[Metrics & Analytics]
+        DB --> AL[Alert System]
+        DB --> LY[Layout Management]
+        
+        WS --> RT[Real-time Updates]
+        WS --> EV[Event System]
+        WS --> HB[Heartbeat Management]
     end
+    
+    Client[API Client] --> API
+    Dashboard[Dashboard UI] --> DB
+    Dashboard --> WS
 ```
 
-### Data Flow Architecture
+### API Architecture
 
 ```mermaid
 graph LR
-    A[Raw Input Files] --> B[File Monitor]
-    B --> C[Change Detection]
-    C --> D[Impact Analysis]
-    D --> E[Risk Calculator]
-    E --> F[Progress Updater]
-    F --> G[Report Generator]
-    G --> H[Storage & Git]
+    A[HTTP Client] --> B[FastAPI Gateway]
+    B --> C[API Router]
+    C --> D[Project Endpoints]
+    C --> E[Dashboard Endpoints]
+    C --> F[System Endpoints]
     
-    I[User Actions] --> J[CLI Parser]
-    J --> K[Command Processor]
-    K --> L[System State]
-    L --> M[Response Generator]
-    M --> N[User Interface]
+    G[WebSocket Client] --> H[WebSocket Router]
+    H --> I[Event Service]
+    I --> J[Real-time Updates]
+    
+    D --> K[Project Service]
+    E --> L[Dashboard Service]
+    F --> M[System Service]
+    
+    K --> N[Business Logic]
+    L --> O[Analytics Engine]
+    M --> P[Health Monitoring]
 ```
 
-### Component Interaction Sequence
+### Real-time Data Flow
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant CLI
-    participant ARE
-    participant PMS
-    participant Modules
-    participant Services
-    participant Storage
+    participant Client
+    participant API
+    participant Service
+    participant EventService
+    participant WebSocket
     
-    User->>CLI: Start project management
-    CLI->>ARE: Initialize with project path
-    ARE->>PMS: Initialize system
-    PMS->>Storage: Load existing data
-    Storage-->>PMS: Return project data
+    Client->>API: HTTP Request
+    API->>Service: Process Request
+    Service->>EventService: Generate Event
+    EventService->>WebSocket: Broadcast Update
+    WebSocket->>Client: Real-time Notification
     
-    loop Continuous Monitoring
-        ARE->>Services: Check file changes
-        Services->>Modules: Analyze changes
-        Modules->>PMS: Update project status
-        PMS->>Storage: Save updates
-    end
+    Note over Client,WebSocket: Continuous WebSocket Connection
+    Client->>WebSocket: Subscribe to Events
+    WebSocket->>EventService: Register Subscription
+    EventService->>WebSocket: Push Updates
+    WebSocket->>Client: Deliver Events
 ```
 
 ---
 
-## 🧩 Core Modules
-
-### 1. Project Management System (PMS)
-**Location**: `autoprojectmanagement/main_modules/project_management_system.py`
-
-The central orchestrator managing all project operations.
-
-#### Key Classes:
-| Class | Purpose | Key Methods |
-|-------|---------|-------------|
-| `ProjectManagementSystem` | Main controller | `initialize_system()`, `add_project()`, `update_task()` |
-| `Project` | Project data structure | `create()`, `update()`, `delete()` |
-| `Task` | Task management | `assign()`, `complete()`, `update_progress()` |
-
-### 2. Communication Risk Module
-**Purpose**: Identify and mitigate communication risks
-
-#### Risk Categories:
-| Risk Type | Detection Method | Mitigation Strategy |
-|-----------|------------------|---------------------|
-| **Code Conflicts** | Git merge frequency | Automated conflict resolution |
-| **Knowledge Silos** | Commit distribution | Knowledge sharing alerts |
-| **Communication Gaps** | Issue response time | Meeting scheduler |
-| **Quality Issues** | Test failure rates | Automated testing |
-
-### 3. Data Collection & Processing Module
-**Purpose**: Collect and process project data from multiple sources
-
-#### Data Sources:
-- File system changes
-- Git commit history
-- GitHub issues and PRs
-- User interactions
-- System metrics
-
-### 4. Planning & Estimation Module
-**Purpose**: Intelligent task planning and effort estimation
-
-#### Estimation Techniques:
-- **Historical Analysis**: Based on past project data
-- **Machine Learning**: Predictive models for task complexity
-- **Team Velocity**: Sprint-based estimation
-- **Risk Adjustment**: Risk-adjusted estimates
-
-### 5. Progress Reporting Module
-**Purpose**: Generate comprehensive progress reports
-
-#### Report Types:
-| Report Type | Frequency | Format | Content |
-|-------------|-----------|--------|---------|
-| **Daily** | Every 24h | Markdown | Task progress, risks |
-| **Weekly** | Every 7 days | PDF/HTML | Comprehensive summary |
-| **Monthly** | Every 30 days | PDF/HTML | Strategic overview |
-| **Custom** | On-demand | JSON/Markdown | Specific metrics |
-
----
-
-## 📊 Data Management
-
-### Storage Architecture
-
-```mermaid
-graph TB
-    subgraph "Storage Layers"
-        A[JSON Files] --> B[In-Memory Cache]
-        B --> C[Processing Engine]
-        C --> D[Analytics]
-        D --> E[Reports]
-        
-        F[Git Repository] --> G[Version Control]
-        G --> H[History Tracking]
-        
-        I[Configuration] --> J[System Settings]
-        J --> K[Runtime Behavior]
-    end
-```
-
-### File Organization Structure
-```
-.auto_project/
-├── config/
-│   ├── auto_config.json
-│   └── module_configs/
-├── data/
-│   ├── projects.json
-│   ├── tasks.json
-│   └── analytics.json
-├── logs/
-│   ├── auto_runner.log
-│   └── error.log
-├── reports/
-│   ├── daily/
-│   ├── weekly/
-│   └── monthly/
-└── backups/
-    ├── daily/
-    └── weekly/
-```
-
-### JSON Configuration Schema
-```json
-{
-  "project": {
-    "id": "unique_identifier",
-    "name": "Project Name",
-    "description": "Project description",
-    "start_date": "2024-01-01",
-    "end_date": "2024-12-31",
-    "status": "active|paused|completed",
-    "priority": "high|medium|low",
-    "team_members": ["member1", "member2"],
-    "milestones": [
-      {
-        "id": "milestone_1",
-        "name": "Phase 1 Complete",
-        "target_date": "2024-06-01",
-        "status": "pending"
-      }
-    ]
-  }
-}
-```
-
----
-
-## 🚀 Installation & Setup
+## 🚀 Quick Start
 
 ### Prerequisites
 - Python 3.8 or higher
-- Git installed and configured
-- GitHub account with repository access
+- FastAPI and required dependencies
 
-### Installation Methods
+### Installation
 
-#### Method 1: PyPI Installation (Recommended)
-```bash
-pip install autoprojectmanagement
-```
-
-#### Method 2: From Source
+#### Method 1: From Source
 ```bash
 # Clone repository
-git clone https://github.com/your-username/AutoProjectManagement.git
+git clone https://github.com/AutoProjectManagement/AutoProjectManagement.git
 cd AutoProjectManagement
 
 # Create virtual environment
@@ -273,177 +146,206 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
-
-# Install package
-pip install -e .
 ```
 
-#### Method 3: Docker
+#### Method 2: Using pip
 ```bash
-# Build Docker image
-docker build -t autoprojectmanagement .
-
-# Run container
-docker run -v $(pwd)/my_project:/app/project autoprojectmanagement
+pip install fastapi uvicorn python-multipart
 ```
 
-### Initial Configuration
+### Starting the API Server
+
 ```bash
-# Initialize new project
-autoproject init
-
-# Configure GitHub integration
-autoproject config --github-token YOUR_TOKEN
-
-# Set up project
-autoproject setup --project-name "MyProject"
+# Start the development server
+uvicorn autoprojectmanagement.api.app:app --host 0.0.0.0 --port 8000 --reload
 ```
+
+### Accessing API Documentation
+
+Once the server is running, access the interactive API documentation:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
+- **OpenAPI Schema**: http://localhost:8000/openapi.json
 
 ---
 
-## 📖 Usage Guide
+## 📖 API Usage Guide
 
-### Basic Commands
+### Base URL
+All API endpoints are prefixed with:
+```
+http://localhost:8000/api/v1
+```
+
+### Authentication
+Include the API key in requests:
+```bash
+curl -H "X-API-Key: development-key" http://localhost:8000/api/v1/health
+```
+
+### Core API Endpoints
+
+#### System Endpoints
+```bash
+# Health check
+curl http://localhost:8000/api/v1/health
+
+# System information
+curl http://localhost:8000/api/v1/system/info
+
+# Root endpoint
+curl http://localhost:8000/
+```
 
 #### Project Management
 ```bash
-# Initialize new project
-autoproject init --name "MyProject"
+# List projects
+curl http://localhost:8000/api/v1/projects?limit=10
 
-# Add new task
-autoproject task add --title "Implement feature X" --priority high --assignee "developer"
+# Create project
+curl -X POST http://localhost:8000/api/v1/projects \
+  -H "Content-Type: application/json" \
+  -d '{"name": "My Project", "description": "Project description"}'
 
-# View project status
-autoproject status
-
-# Generate progress report
-autoproject report generate --type weekly
-
-# Sync with GitHub
-autoproject github sync
+# Get project status
+curl http://localhost:8000/api/v1/projects/{project_id}/status
 ```
 
-#### Wiki Synchronization
+#### Dashboard Endpoints
 ```bash
-# Sync documentation to GitHub Wiki
-autoproject wiki sync --repo-owner your-username --repo-name your-repo
+# Dashboard overview
+curl http://localhost:8000/api/v1/dashboard/overview?project_id=project-001
 
-# Preview changes (dry run)
-autoproject wiki sync --dry-run
+# Dashboard metrics
+curl http://localhost:8000/api/v1/dashboard/metrics?project_id=project-001
 
-# Force full sync
-autoproject wiki sync --force
+# Dashboard alerts
+curl http://localhost:8000/api/v1/dashboard/alerts?project_id=project-001
 ```
 
-### Configuration Files
+### Response Formats
+The API supports multiple response formats:
+```bash
+# JSON (default)
+curl http://localhost:8000/api/v1/projects/project-001/status
 
-#### Main Configuration (`auto_config.json`)
-```json
-{
-  "system": {
-    "check_interval": 300,
-    "auto_commit_threshold": 5,
-    "report_interval": 86400
-  },
-  "github": {
-    "token": "your_github_token",
-    "repo_owner": "your-username",
-    "repo_name": "your-repo"
-  },
-  "notifications": {
-    "slack_webhook": "https://hooks.slack.com/...",
-    "email_enabled": true
-  }
-}
+# Markdown
+curl http://localhost:8000/api/v1/projects/project-001/status?format=markdown
+
+# Table format
+curl http://localhost:8000/api/v1/projects/project-001/status?format=table
 ```
 
-#### Project Configuration (`project.json`)
-```json
-{
-  "project": {
-    "name": "MyProject",
-    "description": "Project description",
-    "start_date": "2024-01-01",
-    "end_date": "2024-12-31",
-    "team_members": ["developer1", "developer2"]
-  },
-  "tasks": [],
-  "milestones": []
-}
-```
+### Python Client Example
 
-### Advanced Usage
-
-#### Custom Module Development
 ```python
-from autoprojectmanagement.main_modules import BaseModule
+import requests
 
-class CustomModule(BaseModule):
-    def __init__(self, config):
-        super().__init__(config)
-        
-    def process(self, data):
-        # Custom processing logic
-        return processed_data
-```
+class AutoProjectManagementClient:
+    def __init__(self, base_url="http://localhost:8000", api_key="development-key"):
+        self.base_url = base_url
+        self.api_key = api_key
+        self.headers = {"X-API-Key": api_key}
+    
+    def get_project_status(self, project_id, format="json"):
+        url = f"{self.base_url}/api/v1/projects/{project_id}/status?format={format}"
+        response = requests.get(url, headers=self.headers)
+        response.raise_for_status()
+        return response.json()
+    
+    def create_project(self, name, description=None):
+        url = f"{self.base_url}/api/v1/projects"
+        data = {"name": name, "description": description}
+        response = requests.post(url, headers=self.headers, json=data)
+        response.raise_for_status()
+        return response.json()
 
-#### API Integration
-```python
-from autoprojectmanagement.services import GitHubIntegration
-
-github = GitHubIntegration(token="your_token")
-github.create_issue(
-    repo="your-repo",
-    title="New Feature Request",
-    body="Detailed description",
-    labels=["enhancement"]
-)
+# Usage
+client = AutoProjectManagementClient()
+status = client.get_project_status("project-001")
+print(status)
 ```
 
 ---
 
-## 🔧 Configuration
+## 🔌 Real-time Dashboard
 
-### Environment Variables
-```bash
-# GitHub API token
-export GITHUB_TOKEN="your_github_token"
+### WebSocket Integration
 
-# Slack webhook URL
-export SLACK_WEBHOOK="https://hooks.slack.com/..."
+The system provides real-time updates through WebSocket connections:
 
-# Database path
-export AUTO_PROJECT_PATH="/path/to/project"
+```javascript
+// JavaScript WebSocket client example
+const socket = new WebSocket('ws://localhost:8000/api/v1/dashboard/ws');
+
+socket.onopen = () => {
+    console.log('Connected to AutoProjectManagement WebSocket');
+    
+    // Subscribe to events
+    socket.send(JSON.stringify({
+        type: 'subscribe',
+        event_types: ['progress_update', 'risk_alert', 'dashboard_update'],
+        project_id: 'project-001'
+    }));
+};
+
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    console.log('Real-time update:', data);
+    
+    // Handle different event types
+    switch(data.type) {
+        case 'progress_update':
+            updateProgress(data.data);
+            break;
+        case 'risk_alert':
+            showAlert(data.data);
+            break;
+        case 'dashboard_update':
+            refreshDashboard(data.data);
+            break;
+    }
+};
+
+socket.onclose = () => {
+    console.log('WebSocket connection closed');
+};
 ```
 
-### Configuration CLI
+### Available Event Types
+
+| Event Type | Description | Data Format |
+|------------|-------------|-------------|
+| `progress_update` | Task progress updates | Progress metrics |
+| `risk_alert` | Risk assessment alerts | Alert details |
+| `dashboard_update` | Dashboard data refresh | Complete dashboard data |
+| `health_check` | System health updates | Health metrics |
+| `quality_metric` | Quality assurance updates | Quality metrics |
+| `team_performance` | Team performance updates | Performance data |
+| `system_status` | System status changes | Status information |
+
+### Dashboard Layout Management
+
 ```bash
-# Interactive configuration wizard
-autoproject config --interactive
+# Save custom layout
+curl -X POST http://localhost:8000/api/v1/dashboard/layout \
+  -H "Content-Type: application/json" \
+  -d '{
+    "layout_type": "custom",
+    "widgets": [
+      {"widget_id": "health", "position": 0, "enabled": true},
+      {"widget_id": "progress", "position": 1, "enabled": true},
+      {"widget_id": "alerts", "position": 2, "enabled": true}
+    ],
+    "refresh_rate": 5000,
+    "theme": "dark"
+  }'
 
-# Set specific configuration
-autoproject config set --key github.token --value "your_token"
-autoproject config set --key system.check_interval --value 600
+# Get available layouts
+curl http://localhost:8000/api/v1/dashboard/layouts
 
-# View current configuration
-autoproject config show
-```
-
-### Module Configuration
-Each module can be configured independently:
-
-```json
-{
-  "communication_risk": {
-    "enabled": true,
-    "risk_threshold": 0.7,
-    "notification_channels": ["slack", "email"]
-  },
-  "planning_estimation": {
-    "ml_enabled": true,
-    "historical_data_days": 30
-  }
-}
+# Get specific layout
+curl http://localhost:8000/api/v1/dashboard/layout?layout_type=custom
 ```
 
 ---
@@ -451,81 +353,120 @@ Each module can be configured independently:
 ## 🧪 Testing
 
 ### Running Tests
+
 ```bash
 # Install test dependencies
-pip install -r requirements-dev.txt
+pip install pytest pytest-asyncio httpx
 
 # Run all tests
 pytest tests/
 
-# Run specific test category
-pytest tests/code_tests/UnitTests/
-
 # Run with coverage
 pytest --cov=autoprojectmanagement tests/
 
-# Run integration tests
-pytest tests/code_tests/IntegrationTests/
+# Run specific test module
+pytest tests/test_api.py -v
 ```
 
 ### Test Structure
+
 ```
 tests/
-├── code_tests/
-│   ├── 01_UnitTests/
-│   ├── 02_IntegrationTests/
-│   ├── 03_SystemTests/
-│   ├── 04_PerformanceTests/
-│   └── 05_SecurityTests/
-├── conftest.py
-├── pytest.ini
-└── README.md
+├── test_api.py              # API endpoint tests
+├── test_dashboard.py        # Dashboard functionality tests
+├── test_websocket.py        # WebSocket connection tests
+├── test_services.py         # Service layer tests
+└── conftest.py             # Test configuration
 ```
 
-### Writing Tests
+### Example Test
+
 ```python
 import pytest
-from autoprojectmanagement.main_modules import ProjectManagementSystem
+from fastapi.testclient import TestClient
+from autoprojectmanagement.api.app import app
+
+client = TestClient(app)
+
+def test_health_check():
+    response = client.get("/api/v1/health")
+    assert response.status_code == 200
+    assert response.json()["status"] == "healthy"
 
 def test_project_creation():
-    pms = ProjectManagementSystem()
-    project = pms.create_project("Test Project")
-    assert project.name == "Test Project"
-    assert project.status == "active"
+    project_data = {"name": "Test Project", "description": "Test description"}
+    response = client.post("/api/v1/projects", json=project_data)
+    assert response.status_code == 200
+    assert "project" in response.json()
 ```
+
+---
+
+## 📚 Documentation
+
+### Comprehensive Documentation
+
+- **API Reference**: [Docs/SystemDesign/Glossary/API_Reference.md](Docs/SystemDesign/Glossary/API_Reference.md)
+- **Usage Instructions**: [Docs/SystemDesign/Usage_Instructions.md](Docs/SystemDesign/Usage_Instructions.md)
+- **System Design**: [Docs/SystemDesign/](Docs/SystemDesign/)
+- **Developer Guide**: [Docs/SystemDesign/Guides/Developer_Guidelines.md](Docs/SystemDesign/Guides/Developer_Guidelines.md)
+
+### Interactive Documentation
+
+Access the live interactive documentation when the server is running:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
+
+### Code Examples
+
+All documentation includes practical code examples for:
+- Python API clients
+- JavaScript/TypeScript integration
+- WebSocket real-time updates
+- Dashboard customization
 
 ---
 
 ## 🤝 Contributing
 
 ### Development Setup
+
 ```bash
-# Fork repository
-git clone https://github.com/your-username/AutoProjectManagement.git
+# Fork and clone the repository
+git clone https://github.com/AutoProjectManagement/AutoProjectManagement.git
 cd AutoProjectManagement
 
-# Install development dependencies
+# Set up development environment
+python -m venv venv
+source venv/bin/activate
 pip install -r requirements-dev.txt
 
-# Install pre-commit hooks
-pre-commit install
-
-# Run tests
+# Run tests to verify setup
 pytest tests/
 ```
 
 ### Contribution Guidelines
+
 1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
-3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
 5. **Open** a Pull Request
 
 ### Code Standards
+
 - Follow PEP 8 style guidelines
-- Add comprehensive docstrings
+- Add comprehensive docstrings to all functions and classes
 - Include unit tests for new features
-- Update documentation for changes
+- Update documentation for any changes
+- Use type hints throughout the codebase
+
+### Testing Requirements
+
+- All new features must include comprehensive tests
+- Maintain test coverage above 80%
+- Include both unit tests and integration tests
+- Test WebSocket functionality thoroughly
 
 ---
 
@@ -537,20 +478,26 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-### Documentation
-- **Full Documentation**: [GitHub Wiki](https://github.com/your-username/AutoProjectManagement/wiki)
-- **API Reference**: [API Documentation](Docs/entire_project/API_Reference.md)
-- **Troubleshooting**: [Troubleshooting Guide](Docs/entire_project/Troubleshooting_Guide.md)
+### Documentation Resources
 
-### Community
-- **GitHub Issues**: [Report bugs](https://github.com/your-username/AutoProjectManagement/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/AutoProjectManagement/discussions)
-- **Discord**: [Join our Discord](https://discord.gg/autoprojectmanagement)
+- **API Reference**: Complete endpoint documentation
+- **Usage Guide**: Practical implementation examples
+- **Troubleshooting**: Common issues and solutions
+- **Best Practices**: Recommended implementation patterns
 
-### Contact
-- **Email**: team@autoprojectmanagement.com
-- **Twitter**: [@AutoProjectMgmt](https://twitter.com/AutoProjectMgmt)
+### Community Support
+
+- **GitHub Issues**: [Report bugs and request features](https://github.com/AutoProjectManagement/AutoProjectManagement/issues)
+- **GitHub Discussions**: [Community discussions and Q&A](https://github.com/AutoProjectManagement/AutoProjectManagement/discussions)
+- **Documentation**: Comprehensive guides and examples
+
+### Getting Help
+
+1. Check the [API Documentation](http://localhost:8000/docs) first
+2. Review the [Usage Instructions](Docs/SystemDesign/Usage_Instructions.md)
+3. Search [GitHub Issues](https://github.com/AutoProjectManagement/AutoProjectManagement/issues) for similar problems
+4. Create a new issue if your problem isn't documented
 
 ---
 
-*This README is automatically synchronized with the GitHub Wiki. Last updated: 2025-08-14*
+*This README is maintained as part of the AutoProjectManagement system. Last updated: 2025-08-14*

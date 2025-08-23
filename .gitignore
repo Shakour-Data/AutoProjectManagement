@@ -144,3 +144,34 @@ important
 *.key
 secrets/
 credentials/
+
+
+# Auto Project Management - Generated patterns
+# Auto Project Management
+.auto_project/logs/
+.auto_project/backups/
+.auto_project/data/cache/
+*.pid
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

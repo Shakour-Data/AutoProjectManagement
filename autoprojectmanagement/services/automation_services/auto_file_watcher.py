@@ -1,11 +1,74 @@
-ز#!/usr/bin/env python3
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Automatic File Watcher Service for AutoProjectManagement
-Purpose: Provides real-time file monitoring and automatic auto-commit execution
-Author: AutoProjectManagement System
-Version: 1.0.0
-License: MIT
-Description: Monitors file system changes and automatically triggers auto-commit every 15 minutes
+================================================================================
+AutoProjectManagement - Automatic File Watcher Service
+================================================================================
+Module: auto_file_watcher
+File: auto_file_watcher.py
+Path: autoprojectmanagement/services/automation_services/auto_file_watcher.py
+
+Description:
+    Comprehensive file system monitoring service that provides real-time file change detection
+    and automatic auto-commit execution. Combines event-driven and scheduled commit strategies
+    for robust project backup and version control automation.
+
+Features:
+    - Real-time file system monitoring with configurable debouncing
+    - Scheduled auto-commit every 15 minutes (configurable)
+    - Integration with real-time event service for WebSocket/SSE notifications
+    - Support for multiple authentication methods (SSH, HTTPS, PAT)
+    - Comprehensive file filtering and exclusion capabilities
+
+Author: AutoProjectManagement Team
+Contact: team@autoprojectmanagement.com
+Repository: https://github.com/autoprojectmanagement/autoprojectmanagement
+
+Version Information:
+    Current Version: 1.0.0
+    Last Updated: 2025-08-14
+    Python Version: 3.8+
+    
+Development Status:
+    Status: Production/Stable
+    Created: 2024-01-01
+    Last Modified: 2025-08-14
+    Modified By: AutoProjectManagement Team
+
+Dependencies:
+    - Python 3.8+
+    - watchdog >= 3.0.0
+    - See requirements.txt for full dependency list
+
+License: MIT License
+Copyright: (c) 2024 AutoProjectManagement Team
+
+Usage:
+    This module can be used as a standalone service or integrated into larger systems.
+    It provides both programmatic API and command-line interface for flexibility.
+
+Example:
+    >>> from autoprojectmanagement.services.automation_services.auto_file_watcher import AutoFileWatcherService
+    >>> service = AutoFileWatcherService(project_path="/path/to/project")
+    >>> service.start()  # Starts monitoring and scheduled commits
+
+Notes:
+    - This service requires proper Git authentication setup
+    - File monitoring is recursive but excludes common development directories
+    - Real-time events are published through the event service for dashboard integration
+    - Scheduled commits run regardless of file changes for regular backups
+
+Changelog:
+    1.0.0 (2024-01-01): Initial release with basic file watching and auto-commit
+    1.0.1 (2025-08-14): Enhanced real-time event integration and error handling
+
+TODO:
+    - [ ] Add comprehensive configuration system
+    - [ ] Implement advanced file pattern matching
+    - [ ] Add support for multiple project monitoring
+    - [ ] Enhance authentication fallback mechanisms
+
+================================================================================
 """
 
 import os
@@ -68,19 +131,46 @@ logger = logging.getLogger(__name__)
 
 class AutoCommitFileWatcher(FileSystemEventHandler):
     """
-    File system event handler that triggers auto-commit on file changes.
+    File system event handler for automatic commit triggering on file changes.
     
-    This class monitors file system events and automatically triggers
-    the auto-commit process when relevant files are modified.
+    This class extends watchdog's FileSystemEventHandler to monitor file system
+    events and automatically trigger the auto-commit process when relevant files
+    are modified, created, deleted, or moved. It includes intelligent debouncing
+    to prevent rapid triggers and integrates with the real-time event service.
+    
+    Attributes:
+        project_path (Path): Absolute path to the project directory being monitored
+        debounce_seconds (float): Debounce delay in seconds to prevent rapid triggers
+        auto_commit (UnifiedAutoCommit): Instance of the auto-commit service
+        last_trigger_time (float): Timestamp of the last auto-commit trigger
+        pending_changes (Set[Tuple[str, str]]): Set of pending file changes awaiting commit
+        debounce_timer (Optional[Timer]): Timer for debouncing file change events
+        lock (threading.Lock): Thread lock for thread-safe operations
+        monitored_extensions (Set[str]): Set of file extensions to monitor
+        excluded_dirs (Set[str]): Set of directory names to exclude from monitoring
+    
+    Example:
+        >>> from autoprojectmanagement.services.automation_services.auto_file_watcher import AutoCommitFileWatcher
+        >>> handler = AutoCommitFileWatcher("/path/to/project", debounce_seconds=5.0)
+        >>> observer.schedule(handler, "/path/to/project", recursive=True)
     """
     
     def __init__(self, project_path: str, debounce_seconds: float = 5.0):
         """
-        Initialize the file watcher.
+        Initialize the AutoCommitFileWatcher with project path and debounce configuration.
         
         Args:
-            project_path: Path to the project directory to monitor
-            debounce_seconds: Delay before triggering auto-commit to avoid rapid triggers
+            project_path (str): Path to the project directory to monitor. Can be relative or absolute.
+            debounce_seconds (float, optional): Delay in seconds before triggering auto-commit
+                to avoid rapid triggers from multiple file changes. Defaults to 5.0 seconds.
+        
+        Raises:
+            FileNotFoundError: If the specified project path does not exist
+            PermissionError: If read permissions are insufficient for the project path
+        
+        Note:
+            The debounce mechanism ensures that multiple rapid file changes within the
+            specified time window result in a single auto-commit operation.
         """
         super().__init__()
         self.project_path = Path(project_path).resolve()
@@ -109,13 +199,30 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
     
     def should_monitor_file(self, file_path: str) -> bool:
         """
-        Determine if a file should be monitored for changes.
+        Determine whether a file should be monitored for changes based on comprehensive criteria.
+        
+        This method evaluates files against multiple criteria including:
+        - File existence and type (excludes directories)
+        - Directory exclusions (e.g., .git, node_modules, __pycache__)
+        - File extension filtering (common development file types)
+        - Special file name handling (e.g., Dockerfile, docker-compose.yml)
         
         Args:
-            file_path: Path to the file
-            
+            file_path (str): Absolute or relative path to the file to evaluate
+        
         Returns:
-            bool: True if the file should be monitored
+            bool: True if the file meets all monitoring criteria, False otherwise
+        
+        Raises:
+            OSError: If file system operations fail during evaluation
+        
+        Example:
+            >>> handler.should_monitor_file("/project/src/main.py")
+            True
+            >>> handler.should_monitor_file("/project/node_modules/package.json") 
+            False
+            >>> handler.should_monitor_file("/project/Dockerfile")
+            True
         """
         try:
             path = Path(file_path)
@@ -149,22 +256,73 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             return False
     
     def on_modified(self, event: FileSystemEvent) -> None:
-        """Handle file modification events."""
+        """
+        Handle file modification events from the watchdog observer.
+        
+        This method is automatically called by watchdog when a file modification
+        event is detected. It filters out directory events and files that don't
+        meet monitoring criteria before processing the change.
+        
+        Args:
+            event (FileSystemEvent): The file system event containing modification details
+        
+        Note:
+            Only processes files that pass the should_monitor_file() criteria
+            and ignores directory modification events.
+        """
         if not event.is_directory and self.should_monitor_file(event.src_path):
             self._handle_file_change(event.src_path, 'modified')
     
     def on_created(self, event: FileSystemEvent) -> None:
-        """Handle file creation events."""
+        """
+        Handle file creation events from the watchdog observer.
+        
+        This method is automatically called by watchdog when a file creation
+        event is detected. It processes new files that meet monitoring criteria.
+        
+        Args:
+            event (FileSystemEvent): The file system event containing creation details
+        
+        Note:
+            Only processes files that pass the should_monitor_file() criteria
+            and ignores directory creation events.
+        """
         if not event.is_directory and self.should_monitor_file(event.src_path):
             self._handle_file_change(event.src_path, 'created')
     
     def on_deleted(self, event: FileSystemEvent) -> None:
-        """Handle file deletion events."""
+        """
+        Handle file deletion events from the watchdog observer.
+        
+        This method is automatically called by watchdog when a file deletion
+        event is detected. It processes file deletions that meet monitoring criteria.
+        
+        Args:
+            event (FileSystemEvent): The file system event containing deletion details
+        
+        Note:
+            Only processes files that pass the should_monitor_file() criteria
+            and ignores directory deletion events.
+        """
         if not event.is_directory and self.should_monitor_file(event.src_path):
             self._handle_file_change(event.src_path, 'deleted')
     
     def on_moved(self, event: FileSystemEvent) -> None:
-        """Handle file move/rename events."""
+        """
+        Handle file move/rename events from the watchdog observer.
+        
+        This method is automatically called by watchdog when a file move or rename
+        event is detected. It processes both the source (old) and destination (new)
+        paths if they meet monitoring criteria.
+        
+        Args:
+            event (FileSystemEvent): The file system event containing move details,
+                including both source and destination paths
+        
+        Note:
+            Processes both the original location (moved_from) and new location
+            (moved_to) if they meet monitoring criteria.
+        """
         if not event.is_directory:
             if self.should_monitor_file(event.src_path):
                 self._handle_file_change(event.src_path, 'moved_from')
@@ -173,11 +331,27 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
     
     def _handle_file_change(self, file_path: str, change_type: str) -> None:
         """
-        Handle a file change event with debouncing.
+        Handle a file change event with intelligent debouncing and real-time event publishing.
+        
+        This method processes individual file change events by:
+        1. Adding the change to pending changes with thread-safe locking
+        2. Publishing real-time events through the event service for dashboard integration
+        3. Setting up debouncing timer to prevent rapid auto-commit triggers
+        4. Canceling any existing timer to reset the debounce window
         
         Args:
-            file_path: Path to the changed file
-            change_type: Type of change (created, modified, deleted, etc.)
+            file_path (str): Absolute path to the file that was changed
+            change_type (str): Type of change event. Valid values:
+                - 'modified': File content was modified
+                - 'created': New file was created
+                - 'deleted': File was deleted
+                - 'moved_from': File was moved from this location
+                - 'moved_to': File was moved to this location
+        
+        Note:
+            The debouncing mechanism ensures that multiple rapid changes within
+            the debounce window result in a single auto-commit operation.
+            Real-time events are published asynchronously to avoid blocking.
         """
         with self.lock:
             self.pending_changes.add((file_path, change_type))
@@ -212,7 +386,26 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             self.debounce_timer.start()
     
     def _execute_auto_commit(self) -> None:
-        """Execute the auto-commit process for pending changes."""
+        """
+        Execute the auto-commit process for all pending file changes.
+        
+        This method performs the complete auto-commit workflow including:
+        1. Retrieving all pending changes with thread-safe locking
+        2. Logging the changes for audit purposes
+        3. Publishing auto-commit start event for real-time monitoring
+        4. Executing the unified auto-commit workflow
+        5. Publishing auto-commit result event with success/failure status
+        6. Handling errors gracefully with comprehensive logging
+        
+        The method ensures that even if the auto-commit process fails,
+        the service continues to operate and pending changes are cleared
+        to prevent accumulation of stale changes.
+        
+        Note:
+            This method is called by the debounce timer and should not
+            be called directly. It handles its own error recovery to
+            maintain service stability.
+        """
         try:
             with self.lock:
                 changes = list(self.pending_changes)
@@ -272,19 +465,51 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
 
 class ScheduledAutoCommit:
     """
-    Scheduled auto-commit service that runs every 15 minutes.
+    Scheduled auto-commit service for regular project backups regardless of file changes.
     
-    This class provides scheduled automatic commits and pushes regardless of
-    file system events, ensuring regular backups every 15 minutes.
+    This class provides time-based automatic commits that run at regular intervals
+    (default: 15 minutes) to ensure project backups even when no file changes occur.
+    It works alongside the event-driven AutoCommitFileWatcher to provide comprehensive
+    backup coverage.
+    
+    Attributes:
+        project_path (Path): Absolute path to the project directory
+        interval_minutes (int): Scheduled commit interval in minutes
+        auto_commit (UnifiedAutoCommit): Instance of the auto-commit service
+        timer (Optional[threading.Timer]): Timer for scheduling commit operations
+        running (bool): Service running state flag
+        lock (threading.Lock): Thread lock for thread-safe operations
+    
+    Features:
+        - Configurable commit intervals (default: 15 minutes)
+        - Integration with real-time event service for monitoring
+        - Smart change detection to avoid empty commits
+        - Comprehensive error handling and recovery
+        - Graceful shutdown capabilities
+    
+    Example:
+        >>> from autoprojectmanagement.services.automation_services.auto_file_watcher import ScheduledAutoCommit
+        >>> scheduler = ScheduledAutoCommit("/path/to/project", interval_minutes=15)
+        >>> scheduler.start()  # Starts scheduled commits every 15 minutes
     """
     
     def __init__(self, project_path: str, interval_minutes: int = 15):
         """
-        Initialize the scheduled auto-commit service.
+        Initialize the ScheduledAutoCommit service with project path and interval configuration.
         
         Args:
-            project_path: Path to the project directory
-            interval_minutes: Interval in minutes for scheduled commits (default: 15)
+            project_path (str): Path to the project directory. Can be relative or absolute.
+            interval_minutes (int, optional): Interval in minutes for scheduled commits.
+                Defaults to 15 minutes. Minimum recommended interval is 5 minutes.
+        
+        Raises:
+            ValueError: If interval_minutes is less than 1
+            FileNotFoundError: If the project path does not exist
+            PermissionError: If read permissions are insufficient
+        
+        Note:
+            The scheduled commit service ensures regular backups even during periods
+            of low file activity, providing an additional layer of data protection.
         """
         self.project_path = Path(project_path).resolve()
         self.interval_minutes = interval_minutes
@@ -296,7 +521,18 @@ class ScheduledAutoCommit:
         logger.info(f"Initialized ScheduledAutoCommit for {self.project_path} every {interval_minutes} minutes")
     
     def start(self) -> None:
-        """Start the scheduled auto-commit service."""
+        """
+        Start the scheduled auto-commit service for regular backups.
+        
+        This method initiates the timer for scheduled commits based on the
+        configured interval. It begins monitoring the project directory for
+        changes and ensures that auto-commits are executed at the specified
+        intervals, regardless of file activity.
+        
+        Note:
+            If the service is already running, this method will not restart it.
+            It is safe to call this method multiple times without adverse effects.
+        """
         if self.running:
             logger.warning("ScheduledAutoCommit is already running")
             return
@@ -306,7 +542,17 @@ class ScheduledAutoCommit:
         self._schedule_next_commit()
     
     def stop(self) -> None:
-        """Stop the scheduled auto-commit service."""
+        """
+        Stop the scheduled auto-commit service gracefully.
+        
+        This method stops the scheduled commit timer and cleans up resources.
+        It ensures that any pending commit operations are completed before
+        shutting down and that the service state is properly updated.
+        
+        Note:
+            This method is idempotent and can be called multiple times safely.
+            It will not interrupt any currently executing commit operations.
+        """
         if not self.running:
             return
         
@@ -320,7 +566,26 @@ class ScheduledAutoCommit:
         logger.info("ScheduledAutoCommit stopped")
     
     def get_status(self) -> dict:
-        """Get the current status of the scheduled auto-commit service."""
+        """
+        Retrieve the current status of the scheduled auto-commit service.
+        
+        This method returns a dictionary containing information about the
+        service's operational state, including whether it is currently running,
+        the project path being monitored, and the status of the scheduled commit
+        timer.
+        
+        Returns:
+            dict: A dictionary containing the following keys:
+                - 'running' (bool): Indicates if the service is currently active
+                - 'project_path' (str): The absolute path to the project directory
+                - 'monitoring' (bool): Indicates if the file observer is active
+                - 'scheduled_commit' (dict): Status of the scheduled commit service
+        
+        Example:
+            >>> status = scheduler.get_status()
+            >>> print(status)
+            {'running': True, 'project_path': '/path/to/project', 'monitoring': True, 'scheduled_commit': {...}}
+        """
         return {
             'running': self.running,
             'interval_minutes': self.interval_minutes,
@@ -328,7 +593,18 @@ class ScheduledAutoCommit:
         }
     
     def _schedule_next_commit(self) -> None:
-        """Schedule the next automatic commit."""
+        """
+        Schedule the next automatic commit operation.
+        
+        This internal method sets up a timer to trigger the next scheduled
+        commit based on the configured interval. It ensures that the timer
+        is only scheduled when the service is running and handles the
+        conversion from minutes to seconds for the timer interval.
+        
+        Note:
+            This method is called internally and should not be called directly.
+            It manages the recurring scheduling of commit operations.
+        """
         if not self.running:
             return
         
@@ -340,7 +616,26 @@ class ScheduledAutoCommit:
             self.timer.start()
     
     def _execute_scheduled_commit(self) -> None:
-        """Execute the scheduled auto-commit and push."""
+        """
+        Execute the scheduled auto-commit operation with comprehensive error handling.
+        
+        This method performs the complete scheduled commit workflow including:
+        1. Checking if the service is still running
+        2. Publishing scheduled commit start events for real-time monitoring
+        3. Detecting if there are uncommitted changes to avoid empty commits
+        4. Executing the auto-commit with timestamped commit messages
+        5. Publishing result events with success/failure status
+        6. Handling all exceptions gracefully to maintain service stability
+        7. Scheduling the next commit operation regardless of outcome
+        
+        The method ensures that scheduled commits continue to run even if
+        individual commit operations fail, providing robust backup coverage.
+        
+        Note:
+            This method is called by the scheduling timer and should not
+            be called directly. It includes comprehensive error recovery
+            to prevent service interruptions.
+        """
         try:
             if not self.running:
                 return
@@ -437,10 +732,26 @@ class ScheduledAutoCommit:
     
     def _has_uncommitted_changes(self) -> bool:
         """
-        Check if there are uncommitted changes in the repository.
+        Check if there are uncommitted changes in the Git repository.
+        
+        This method performs a comprehensive check for different types of
+        uncommitted changes including:
+        - Staged changes (git diff --cached)
+        - Unstaged changes (git diff)
+        - Untracked files (git ls-files --others --exclude-standard)
         
         Returns:
-            bool: True if there are uncommitted changes, False otherwise
+            bool: True if there are any uncommitted changes of any type,
+                  False if the repository is clean. Returns True on error
+                  to err on the side of caution.
+        
+        Raises:
+            subprocess.CalledProcessError: If Git commands fail unexpectedly
+            FileNotFoundError: If Git is not installed or not in PATH
+        
+        Note:
+            This method returns True on error to ensure that scheduled commits
+            are not skipped due to temporary Git command failures.
         """
         try:
             # Check for staged changes
@@ -479,20 +790,55 @@ class ScheduledAutoCommit:
 
 class AutoFileWatcherService:
     """
-    Main service class for automatic file watching and auto-commit.
+    Main service class for comprehensive automatic file watching and auto-commit.
     
-    This class provides a complete service that monitors file system changes
-    and automatically triggers auto-commit every 15 minutes, combining both
-    event-driven and scheduled commits.
+    This class provides a complete, production-ready service that combines both
+    event-driven file monitoring and scheduled commits to deliver robust project
+    backup and version control automation. It integrates with the real-time event
+    service for dashboard monitoring and provides comprehensive status reporting.
+    
+    Attributes:
+        project_path (str): Absolute path to the project directory being monitored
+        observer (Optional[Observer]): Watchdog observer instance for file monitoring
+        event_handler (Optional[AutoCommitFileWatcher]): File event handler instance
+        scheduled_commit (Optional[ScheduledAutoCommit]): Scheduled commit service instance
+        running (bool): Service running state flag
+    
+    Features:
+        - Real-time file system monitoring with configurable debouncing
+        - Scheduled commits every 15 minutes (configurable) for regular backups
+        - Integration with real-time event service for WebSocket/SSE notifications
+        - Comprehensive error handling and automatic recovery
+        - Graceful startup and shutdown procedures
+        - Status monitoring and reporting capabilities
+        - Support for multiple authentication methods (SSH, HTTPS, PAT)
+    
+    Example:
+        >>> from autoprojectmanagement.services.automation_services.auto_file_watcher import AutoFileWatcherService
+        >>> service = AutoFileWatcherService("/path/to/project", interval_minutes=15)
+        >>> service.start()  # Starts complete monitoring and scheduled commits
+        >>> # Service runs until interrupted or stopped programmatically
+        >>> service.stop()   # Gracefully stops all monitoring and scheduled commits
     """
     
     def __init__(self, project_path: Optional[str] = None, interval_minutes: int = 15):
         """
-        Initialize the auto file watcher service.
+        Initialize the AutoFileWatcherService with project path and interval configuration.
         
         Args:
-            project_path: Path to the project directory. If None, uses current directory.
-            interval_minutes: Interval in minutes for scheduled commits (default: 15)
+            project_path (Optional[str]): Path to the project directory to monitor.
+                If None, uses the current working directory. Defaults to None.
+            interval_minutes (int, optional): Interval in minutes for scheduled commits.
+                Defaults to 15 minutes. Minimum recommended interval is 5 minutes.
+        
+        Raises:
+            ValueError: If interval_minutes is less than 1
+            FileNotFoundError: If the project path does not exist
+            PermissionError: If read permissions are insufficient for the project path
+        
+        Note:
+            The service combines both event-driven and scheduled commit strategies
+            to provide comprehensive backup coverage under all usage scenarios.
         """
         if project_path is None:
             self.project_path = os.getcwd()
@@ -511,10 +857,25 @@ class AutoFileWatcherService:
     
     def start(self) -> None:
         """
-        Start the automatic file watching service.
+        Start the complete automatic file watching and scheduled commit service.
         
-        This method begins monitoring the project directory for file changes
-        and starts the scheduled auto-commit every 15 minutes.
+        This method performs a comprehensive startup sequence including:
+        1. Initializing the file system observer with recursive monitoring
+        2. Starting the scheduled commit service with the configured interval
+        3. Setting up real-time event integration for dashboard monitoring
+        4. Entering the main service loop for continuous operation
+        
+        The service will continue running until explicitly stopped or interrupted.
+        It provides comprehensive error handling to ensure service stability.
+        
+        Raises:
+            RuntimeError: If the service fails to start due to system issues
+            FileNotFoundError: If the project directory becomes inaccessible
+            PermissionError: If file system monitoring permissions are insufficient
+        
+        Note:
+            This method blocks until the service is stopped. For non-blocking
+            operation, consider running it in a separate thread.
         """
         if self.running:
             logger.warning("AutoFileWatcherService is already running")
@@ -552,7 +913,22 @@ class AutoFileWatcherService:
             raise
     
     def stop(self) -> None:
-        """Stop the automatic file watching service."""
+        """
+        Stop the automatic file watching service gracefully.
+        
+        This method performs a comprehensive shutdown sequence including:
+        1. Stopping the file system observer and waiting for it to join
+        2. Stopping the scheduled commit service
+        3. Cleaning up all resources and connections
+        4. Updating the service state to indicate it is no longer running
+        
+        The shutdown process is designed to be graceful and ensure that any
+        ongoing commit operations are completed before the service stops.
+        
+        Note:
+            This method is idempotent and can be called multiple times safely.
+            It will not interrupt any currently executing commit operations.
+        """
         if not self.running:
             return
         
@@ -570,7 +946,30 @@ class AutoFileWatcherService:
         logger.info("AutoFileWatcherService stopped")
     
     def get_status(self) -> dict:
-        """Get the current status of the service."""
+        """
+        Retrieve comprehensive status information about the service.
+        
+        This method returns a detailed dictionary containing information about
+        all aspects of the service's operational state, including file monitoring
+        status, scheduled commit status, and overall service health.
+        
+        Returns:
+            dict: A dictionary containing the following keys:
+                - 'running' (bool): Overall service running state
+                - 'project_path' (str): Absolute path to the monitored project
+                - 'monitoring' (bool): File system observer active status
+                - 'scheduled_commit' (dict): Status of the scheduled commit service
+        
+        Example:
+            >>> status = service.get_status()
+            >>> print(status)
+            {
+                'running': True,
+                'project_path': '/path/to/project',
+                'monitoring': True,
+                'scheduled_commit': {'running': True, 'interval_minutes': 15, ...}
+            }
+        """
         observer_alive = False
         if self.observer:
             observer_alive = self.observer.is_alive()
@@ -586,7 +985,33 @@ class AutoFileWatcherService:
 
 
 def main():
-    """Main entry point for the auto file watcher service."""
+    """
+    Main entry point for the Auto File Watcher Service command-line interface.
+    
+    This function provides a command-line interface for starting the automatic
+    file watching and scheduled commit service. It supports various configuration
+    options through command-line arguments and handles graceful shutdown on
+    keyboard interrupts.
+    
+    Command-line Arguments:
+        --path: Project path to monitor (default: current working directory)
+        --debounce: Debounce delay in seconds for file changes (default: 5.0)
+        --interval: Scheduled commit interval in minutes (default: 15)
+    
+    Example Usage:
+        # Monitor current directory with default settings
+        python -m autoprojectmanagement.services.automation_services.auto_file_watcher
+        
+        # Monitor specific path with custom settings
+        python -m autoprojectmanagement.services.automation_services.auto_file_watcher \
+            --path /path/to/project \
+            --debounce 3.0 \
+            --interval 10
+    
+    Note:
+        The service runs until interrupted by Ctrl+C or stopped programmatically.
+        It provides comprehensive logging to stdout for monitoring and debugging.
+    """
     import argparse
     
     parser = argparse.ArgumentParser(

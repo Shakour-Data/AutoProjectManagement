@@ -1,0 +1,67 @@
+{
+  "auto_management": {
+    "enabled": true,
+    "auto_commit": true,
+    "auto_progress": true,
+    "auto_risk_assessment": true,
+    "auto_reporting": true,
+    "auto_backup": true,
+    "auto_notifications": true
+  },
+  "monitoring": {
+    "file_extensions": [
+      ".py",
+      ".js",
+      ".java",
+      ".cpp",
+      ".c",
+      ".h",
+      ".json",
+      ".yml",
+      ".yaml",
+      ".md",
+      ".txt",
+      ".sql"
+    ],
+    "exclude_patterns": [
+      ".git",
+      "__pycache__",
+      "node_modules",
+      ".auto_project",
+      "*.tmp",
+      "*.log"
+    ],
+    "check_interval": 300,
+    "max_file_size_mb": 10
+  },
+  "git": {
+    "auto_commit": true,
+    "commit_message_template": "Auto commit: {changes} - {timestamp}",
+    "push_on_commit": true,
+    "commit_threshold": 5,
+    "exclude_files": [
+      ".env",
+      "*.log",
+      "*.tmp"
+    ]
+  },
+  "reporting": {
+    "daily_reports": true,
+    "weekly_reports": true,
+    "report_format": "markdown",
+    "include_charts": true,
+    "output_directory": ".auto_project/reports"
+  },
+  "notifications": {
+    "desktop_notifications": true,
+    "email_notifications": false,
+    "webhook_notifications": false,
+    "notification_threshold": "medium"
+  },
+  "backup": {
+    "enabled": true,
+    "backup_interval_hours": 24,
+    "retention_days": 30,
+    "backup_directory": ".auto_project/backups"
+  }
+}

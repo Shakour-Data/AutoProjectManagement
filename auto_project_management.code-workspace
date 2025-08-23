@@ -1,0 +1,89 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.postCommitCommand": "push",
+    "extensions.autoUpdate": true,
+    "python.defaultInterpreterPath": "./venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+      79,
+      120
+    ],
+    "files.exclude": {
+      "**/.git": true,
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/.auto_project/logs": true,
+      "**/.auto_project/backups": true
+    }
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Auto Project Management",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/start_auto_management.sh",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}"
+        }
+      },
+      {
+        "name": "Debug Auto Runner",
+        "type": "python",
+        "request": "launch",
+        "module": "autoprojectmanagement.auto_runner",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}",
+        "args": [
+          "--path",
+          "${workspaceFolder}",
+          "--verbose"
+        ]
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Start Auto Management",
+        "type": "shell",
+        "command": "./start_auto_management.sh",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false
+        }
+      },
+      {
+        "label": "Stop Auto Management",
+        "type": "shell",
+        "command": "./stop_auto_management.sh",
+        "group": "build"
+      },
+      {
+        "label": "Check Status",
+        "type": "shell",
+        "command": "./status_auto_management.sh",
+        "group": "test"
+      }
+    ]
+  }
+}
