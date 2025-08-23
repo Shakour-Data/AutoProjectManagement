@@ -405,8 +405,38 @@ def report(
     )
     
     # TODO: Implement report generation functionality
-    click.echo("❌ Report generation functionality not implemented yet")
-    sys.exit(1)
+    click.echo(f"📊 Generating {report_type} report for project {project_id}")
+    
+    # Generate report based on report type
+    project_id_int = int(project_id)
+    project = system.get_project(project_id_int)
+    
+    if not project:
+        click.echo(f"❌ Project with ID {project_id} not found", err=True)
+        sys.exit(1)
+    
+    if report_type == "summary":
+        click.echo(f"Summary report for project: {project['name']}")
+        click.echo(f"ID: {project['id']}")
+        click.echo(f"Description: {project.get('description', 'N/A')}")
+        click.echo(f"Template: {project.get('template', 'N/A')}")
+        click.echo(f"Created At: {project.get('created_at', 'N/A')}")
+        
+    elif report_type == "detailed":
+        click.echo(f"Detailed report for project: {project['name']}")
+        tasks = system.list_tasks_in_project(project_id_int)
+        for task in tasks:
+            click.echo(f"- Task ID: {task['id']}, Title: {task['title']}, Status: {task['status']}")
+    
+    elif report_type == "gantt":
+        click.echo("Generating Gantt chart... (functionality not implemented yet)")
+    
+    elif report_type == "burndown":
+        click.echo("Generating Burndown chart... (functionality not implemented yet)")
+    
+    else:
+        click.echo("❌ Invalid report type specified.", err=True)
+        sys.exit(1)
 
 
 @main.command()
