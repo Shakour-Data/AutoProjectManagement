@@ -221,3 +221,41 @@ Where:
 | Level | Usage | Example |
 |-------|-------|---------|
 | `INFO` | Successful operations | "Loaded input: communication_plan from path" |
+| `WARNING` | Non-critical issues | "File not found: path" |
+| `ERROR` | Critical failures | "Invalid JSON in path: error" |
+
+### Common Error Scenarios
+1. **File Not Found**: Warning logged, empty data structure returned
+2. **Invalid JSON**: Error logged, exception raised
+3. **Missing Required Fields**: Added to validation issues list
+4. **Analysis Failure**: Error logged, failure status in output
+
+## Usage Examples
+
+### Basic Usage
+```python
+from autoprojectmanagement.main_modules.communication_risk.communication_management import CommunicationManagement
+
+# Initialize with default paths
+manager = CommunicationManagement()
+manager.run()
+
+# Access analysis results
+results = manager.output
+print(f"Effectiveness Score: {results['summary']['effectiveness_score']}")
+```
+
+### Custom Paths
+```python
+manager = CommunicationManagement(
+    communication_plan_path='custom/plan.json',
+    communication_logs_path='custom/logs.json', 
+    output_path='custom/output.json'
+)
+manager.run()
+```
+
+## Performance Considerations
+
+- **File I/O**: The module performs multiple file read/write operations
+- **Memory Usage**: JSON data is loaded into memory for processing
