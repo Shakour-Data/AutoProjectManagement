@@ -269,3 +269,35 @@ print(f"Project risk score: {summary['project_risk_score']}")
 
 ### Standalone Function Usage
 ```python
+from autoprojectmanagement.main_modules.communication_risk.risk_management import identify_risks, assess_risk_impact
+
+# Backward compatibility usage
+project_data = {
+    'tasks': [
+        {'id': 'T1', 'name': 'Task 1', 'risk': 'high'},
+        {'id': 'T2', 'name': 'Task 2', 'risk': 'medium'}
+    ]
+}
+risks = identify_risks(project_data)
+
+# Risk impact assessment
+risk = {'level': 'high', 'probability': 0.8}
+impact = assess_risk_impact(risk)
+print(f"Risk impact: {impact}")
+```
+
+## Error Handling
+
+### Common Error Scenarios
+| Error Type | Description | Resolution |
+|------------|-------------|------------|
+| `GitHub API Error` | API access issues | Check authentication, network connectivity |
+| `Invalid Label Format` | Malformed activity/WBS labels | Follow label naming conventions |
+| `Missing Required Fields` | Incomplete risk data | Ensure all required fields are present |
+| `Probability Out of Range` | Invalid probability value | Ensure probability between 0.0 and 1.0 |
+
+### Validation Rules
+| Validation | Rule | Error Message |
+|------------|------|---------------|
+| Project Data | Must be dictionary | "project_data must be a dictionary" |
+| Tasks List | Must be list | "tasks must be a list" |
