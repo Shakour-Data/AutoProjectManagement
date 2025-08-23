@@ -219,10 +219,16 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 
 ### Documentation Quality Standards:
 - [ ] All documentation must include three levels of detail
-- [ ] Each module must have UML/architecture diagrams
+- [ ] Each module must have UML/architecture diagrams structured to three levels
+- [ ] Each module must have BPMN diagrams structured to three levels
+- [ ] Each module must have DFD diagrams structured to three levels
 - [ ] All APIs must have complete reference tables
+- [ ] Include detailed explanations of all calculations and algorithms used
+- [ ] Include mathematical formulas and computational methods
 - [ ] Include practical examples for all functionality
 - [ ] Ensure consistency across all documentation
+- [ ] Document all decision-making algorithms and business rules
+- [ ] Include performance characteristics and complexity analysis
 
 ### Update README.md:
 - [x] Update README.md with new file structure and current capabilities
