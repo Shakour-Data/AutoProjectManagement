@@ -4,7 +4,7 @@ import subprocess
 import logging
 import json
 from autoprojectmanagement.main_modules.setup_initialization import initialize_git_repo, create_virtualenv, install_dependencies, create_requirements_file, ensure_gitignore_excludes_venv
-from .github_project_manager import GitHubProjectManager
+from autoprojectmanagement.services.integration_services.github_project_manager import GitHubProjectManager
 
 logger = logging.getLogger("cli_commands")
 logging.basicConfig(level=logging.INFO)
