@@ -244,3 +244,66 @@ Where base_impact = RISK_LEVELS[risk_level]
 - Uses GitHub labels for risk categorization
 - Respects GitHub API rate limits
 
+**With Project Management:**
+- Integrates with project data structures
+- Provides risk-aware project insights
+- Supports risk mitigation strategies
+
+**With Documentation:**
+- Risk summaries for documentation
+- Integration with reporting systems
+- Support for risk dashboards
+
+#### Best Practices
+
+**Labeling Guidelines:**
+- Use consistent label naming conventions
+- Follow semantic versioning for WBS codes
+- Use meaningful activity names
+- Maintain proper label colors for visual identification
+
+**Risk Management:**
+- Regular risk identification cycles
+- Proactive risk mitigation planning
+- Continuous risk monitoring
+- Comprehensive risk documentation
+
+**API Usage:**
+- Implement proper error handling
+- Use exponential backoff for rate limits
+- Cache results when appropriate
+- Monitor API usage metrics
+
+#### Use Cases
+
+**Project Risk Assessment:**
+- Regular risk identification from GitHub issues
+- Comprehensive risk scoring and categorization
+- Activity-based risk analysis
+
+**Release Planning:**
+- Risk-aware release decisions
+- Mitigation planning for high-risk items
+- Priority-based risk addressing
+
+**Team Communication:**
+- Risk visibility across teams
+- Clear risk categorization and ownership
+- Actionable risk recommendations
+
+#### Security Considerations
+
+**GitHub Token Security:**
+- Never hardcode tokens in source code
+- Use environment variables or secure storage
+- Implement token rotation policies
+- Monitor token usage and permissions
+
+**Data Privacy:**
+- Handle sensitive risk information appropriately
+- Follow organizational data protection policies
+- Implement access controls for risk data
+
+---
+
+*This documentation follows the API Documentation Template standards. Last updated: 2025-08-14*
