@@ -230,9 +230,20 @@ def status(project_id: str, format: str) -> None:
     """
     click.echo(f"📊 Project {project_id} status:")
     
-    # TODO: Implement project status functionality
-    click.echo("❌ Project status functionality not implemented yet")
-    sys.exit(1)
+    try:
+        project_id_int = int(project_id)
+        project = system.get_project(project_id_int)
+        
+        if not project:
+            click.echo(f"❌ Project with ID {project_id} not found", err=True)
+            sys.exit(1)
+        
+        if format == "json":
+            import json
+            click.echo(json.dumps(project, indent=2))
+        elif format == "markdown":
+            click.echo(f"# Project Status: {project['name']}")
+            click.echo(f"- **ID**: {project['id']}")
 
 
 @main.command()
