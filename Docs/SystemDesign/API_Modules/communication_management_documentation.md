@@ -74,3 +74,4 @@ The communication effectiveness score is calculated using the following mathemat
 ```
 Effectiveness Score = min(Actual Communications / Expected Minimum, 1.0)
 
+Where:
