@@ -5,7 +5,9 @@ Demo script to demonstrate the persistence functionality of the Project Manageme
 
 import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+# Add the parent directory to the path to import the module
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from autoprojectmanagement.main_modules.project_management_system import ProjectManagementSystem
 
