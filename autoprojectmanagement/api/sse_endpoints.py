@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-path: autoprojectmanagement/api/sse_endpoints_complete.py
+path: autoprojectmanagement/api/sse_endpoints.py
 File: sse_endpoints_complete.py
 Purpose: Complete Server-Sent Events (SSE) endpoints for real-time updates
 Author: AutoProjectManagement Team
