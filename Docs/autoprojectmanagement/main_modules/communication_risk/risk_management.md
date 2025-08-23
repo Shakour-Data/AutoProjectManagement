@@ -195,3 +195,77 @@ The system uses GitHub issue labels for automatic risk categorization:
 | `risk` | Risk Identification | `risk` | Marks issue as a risk |
 | `activity:<name>` | Activity Association | `activity:authentication` | Associates risk with specific activity |
 | `wbs:<code>` | WBS Association | `wbs:1.2.3` | Associates risk with WBS element |
+| `importance:<score>` | Importance Scoring | `importance:0.8` | Sets activity importance (0.0-1.0) |
+| `priority:<score>` | Priority Scoring | `priority:0.9` | Sets activity priority (0.0-1.0) |
+
+### Risk Level Definitions
+| Level | Value | Description | Impact |
+|-------|-------|-------------|--------|
+| `low` | 1 | Minor impact, easily manageable | Minimal project impact |
+| `medium` | 3 | Moderate impact, requires attention | Some schedule/cost impact |
+| `high` | 5 | Major impact, urgent attention required | Significant project impact |
+
+## Data Flow Diagram
+
+```mermaid
+flowchart TD
+    A[GitHub Issues] --> B[GitHubIntegration]
+    B --> C[RiskManagement.identify_risks]
+    C --> D[Filter Risk Issues]
+    D --> E[Label Processing]
+    E --> F[Activity Categorization]
+    E --> G[WBS Categorization]
+    E --> H[Score Extraction]
+    F --> I[Activity Risks]
+    G --> J[WBS Risks]
+    H --> K[Importance/Priority Scores]
+    I --> L[Risk Summary]
+    J --> L
+    K --> L
+    L --> M[Project Risk Score]
+```
+
+## Risk Scoring System
+
+### Project Risk Score Calculation
+The overall project risk score is calculated using the formula:
+
+```
+project_risk_score = Σ(risks_count × importance × priority)
+```
+
+Where:
+- `risks_count`: Number of risks per activity
+- `importance`: Importance score for the activity (0.0-1.0)
+- `priority`: Priority score for the activity (0.0-1.0)
+
+### Individual Risk Impact Calculation
+```
+risk_impact = base_impact × probability
+```
+
+Where:
+- `base_impact`: 1 (low), 3 (medium), or 5 (high)
+- `probability`: Likelihood of risk occurrence (0.0-1.0)
+
+## Usage Examples
+
+### Basic Risk Management
+```python
+from autoprojectmanagement.services.integration_services.github_integration import GitHubIntegration
+from autoprojectmanagement.main_modules.communication_risk.risk_management import RiskManagement
+
+# Initialize with GitHub integration
+github = GitHubIntegration("your-org", "your-repo", "your-token")
+risk_manager = RiskManagement(github)
+
+# Identify and analyze risks
+risks = risk_manager.identify_risks()
+summary = risk_manager.get_risk_summary()
+
+print(f"Total risks: {summary['total_risks']}")
+print(f"Project risk score: {summary['project_risk_score']}")
+```
+
+### Standalone Function Usage
+```python
