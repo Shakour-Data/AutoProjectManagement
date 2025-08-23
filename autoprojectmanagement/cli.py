@@ -204,14 +204,9 @@ def status(project_id: str, format: str) -> None:
     """
     click.echo(f"📊 Project {project_id} status:")
     
-    cli_commands = CLICommands()
-    status_data = cli_commands.get_project_status(project_id, format)
-    
-    if status_data:
-        click.echo(status_data)
-    else:
-        click.echo(f"❌ Project {project_id} not found", err=True)
-        sys.exit(1)
+    # TODO: Implement project status functionality
+    click.echo("❌ Project status functionality not implemented yet")
+    sys.exit(1)
 
 
 @main.command()
