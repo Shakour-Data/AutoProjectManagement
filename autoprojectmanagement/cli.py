@@ -126,9 +126,13 @@ def init(config: Optional[str], verbose: bool) -> None:
     
     # Initialize the system
     system = ProjectManagementSystem()
-    system.initialize_system()
+    success = system.initialize_system()
     
-    click.echo("✅ AutoProjectManagement initialized successfully!")
+    if success:
+        click.echo("✅ AutoProjectManagement initialized successfully!")
+    else:
+        click.echo("❌ Failed to initialize AutoProjectManagement", err=True)
+        sys.exit(1)
 
 
 @main.command()
