@@ -321,9 +321,42 @@ def add_task(
     """
     click.echo(f"📝 Adding task '{task_name}' to project {project_id}")
     
-    # TODO: Implement task addition functionality
-    click.echo("❌ Task addition functionality not implemented yet")
-    sys.exit(1)
+    try:
+        project_id_int = int(project_id)
+        
+        # Check if project exists
+        project = system.get_project(project_id_int)
+        if not project:
+            click.echo(f"❌ Project with ID {project_id} not found", err=True)
+            sys.exit(1)
+        
+        # Create task dictionary
+        task = {
+            "id": len(system.tasks.get(project_id_int, {})) + 1,
+            "title": task_name,
+            "priority": priority,
+            "description": description or "",
+            "assignee": assignee or "Unassigned",
+            "status": "todo",
+            "created_at": time.strftime("%Y-%m-%d %H:%M:%S")
+        }
+        
+        # Add optional fields if provided
+        if due_date:
+            task["due_date"] = due_date
+        
+        # Add task to project
+        success = system.add_task_to_project(project_id_int, task)
+        
+        if success:
+            click.echo(f"✅ Task '{task_name}' added successfully to project {project_id} with ID: {task['id']}")
+        else:
+            click.echo("❌ Failed to add task to project", err=True)
+            sys.exit(1)
+            
+    except ValueError:
+        click.echo(f"❌ Invalid project ID: {project_id}. Must be a number.", err=True)
+        sys.exit(1)
 
 
 @main.command()
