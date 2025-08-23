@@ -84,7 +84,7 @@ except ImportError:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
     from autoprojectmanagement.api.services import ProjectService
     from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
-    from autoprojectmanagement.api.sse_endpoints_complete import router as sse_router
+    from autoprojectmanagement.api.sse_endpoints import router as sse_router
 
 # Pydantic models for request/response validation
 class ProjectStatus(BaseModel):
