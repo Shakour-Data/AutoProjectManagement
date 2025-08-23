@@ -26,6 +26,27 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] **github_actions_automation.py**: Analyze both and merge
 - [ ] **input_handler.py**: Analyze both and merge
 - [ ] **progress_report.py**: Analyze both and merge
+- [ ] **quality_management.py**: Analyze both and merge
+- [ ] **reporting.py**: Analyze both and merge
+- [ ] **resource_allocation_manager.py**: Analyze both and merge
+- [ ] **resource_leveling.py**: Analyze both and merge
+- [ ] **resource_management.py**: Analyze both and merge
+- [ ] **scheduler.py**: Analyze both and merge
+- [ ] **scope_management.py**: Analyze both and merge
+- [ ] **task_executor.py**: Analyze both and merge
+- [ ] **task_management_integration.py**: Analyze both and merge
+- [ ] **task_management.py**: Analyze both and merge
+- [ ] **wbs_aggregator.py**: Analyze both and merge
+- [ ] **wbs_merger.py**: Analyze both and merge
+- [ ] **wbs_parser.py**: Analyze both and merge
+- [ ] **workflow_data_collector.py**: Analyze both and merge
+
+### Strategy for Each Merge:
+1. Compare both versions
+2. Keep the more comprehensive implementation
+3. Merge any unique functionality
+4. Update imports and references
+5. Remove the redundant file
 
 ### Remove Backup Files:
 - [ ] Remove `project_management_system.py.backup`
