@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
 Unified AutoCommit Service for AutoProjectManagement
-Purpose: Merged enhanced auto-commit with robust authentication and git push error handling
+Purpose: Unified version combining enhanced authentication, guaranteed push execution, and project management integration
 Author: AutoProjectManagement System
-Version: 4.2.0
+Version: 5.0.0
 License: MIT
-Description: Unified version combining enhanced authentication from auto_commit_enhanced.py 
-           with project management integration, plus comprehensive git push error handling
-           NOW WITH GUARANTEED AUTOMATIC PUSH - LOCAL CHANGES TAKE PRIORITY
+Description: Unified version combining the best features from both auto_commit implementations
+           - Enhanced authentication and guaranteed push from automation_services version
+           - Project management integration and WBS features from services version
+           NOW WITH COMPLETE PROJECT MANAGEMENT INTEGRATION AND GUARANTEED PUSH
 """
 
 import os
@@ -17,14 +18,16 @@ from collections import defaultdict
 import sys
 import json
 import re
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Any
 import logging
 
+# Add the project root to Python path to handle imports
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 # Import the Git configuration manager
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from git_config_manager import configure_git_automatically
+from .git_config_manager import configure_git_automatically
 
 # Configure logging
 logging.basicConfig(
@@ -34,8 +37,48 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def format_commit_message(message):
+    """
+    Format a commit message by cleaning and normalizing it.
+    
+    Args:
+        message (str): The raw commit message
+        
+    Returns:
+        str: The formatted commit message
+    """
+    if message is None:
+        raise TypeError("Commit message cannot be None")
+    
+    if not isinstance(message, str):
+        raise TypeError("Commit message must be a string")
+    
+    # Remove leading and trailing whitespace
+    message = message.strip()
+    
+    # Replace multiple consecutive whitespace characters with single spaces
+    message = re.sub(r'\s+', ' ', message)
+    
+    # Remove control characters except for spaces and tabs
+    message = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]', '', message)
+    
+    # Remove literal escape sequences like \n, \t, \r (but not other backslashes)
+    # Use word boundaries to avoid partial matches
+    message = re.sub(r'\\n(?=\s|$)', ' ', message)  # newline followed by space or end of string
+    message = re.sub(r'\\t(?=\s|$)', ' ', message)  # tab followed by space or end of string
+    message = re.sub(r'\\r(?=\s|$)', ' ', message)  # carriage return followed by space or end of string
+    # Remove extra spaces that may have been created
+    message = re.sub(r'\s+', ' ', message).strip()
+    
+    # Limit message length to 255 characters
+    if len(message) > 255:
+        message = message[:255]
+    
+    return message
+
+
 class UnifiedAutoCommit:
-    """Unified automated git commit service with enhanced authentication and guaranteed push execution."""
+    """Unified automated git commit service with enhanced authentication, guaranteed push execution, and project management integration."""
     
     def __init__(self) -> None:
         """Initialize the UnifiedAutoCommit service."""
@@ -388,27 +431,6 @@ class UnifiedAutoCommit:
         print("🔧 TROUBLESHOOTING GUIDE")
         print("="*60)
         print("Authentication issues detected. Here are solutions:")
-        print()
-        print("1. PERSONAL ACCESS TOKEN (Recommended):")
-        print("   - Go to: https://github.com/settings/tokens")
-        print("   - Create token with 'repo' scope")
-        print("   - Run: ./fix_git_auth.sh")
-        print()
-        print("2. SSH KEY SETUP:")
-        print("   - Add your SSH key to GitHub:")
-        print("   - Visit: https://github.com/settings/keys")
-        print("   - Add this key:")
-        try:
-            with open(os.path.expanduser("~/.ssh/id_ed25519.pub")) as f:
-                print(f"   {f.read().strip()}")
-        except:
-            print("   (SSH key not found)")
-        print()
-        print("3. MANUAL SETUP:")
-        print("   - Check current remote: git remote -v")
-        print("   - Switch to HTTPS: git remote set-url origin https://github.com/Shakour-Data/AutoProjectManagement.git")
-        print("   - Or switch to SSH: git remote set-url origin git@github.com:Shakour-Data/AutoProjectManagement.git")
-        print("="*60)
 
 
 if __name__ == "__main__":
