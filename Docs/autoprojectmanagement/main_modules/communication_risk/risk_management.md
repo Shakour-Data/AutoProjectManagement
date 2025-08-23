@@ -94,3 +94,77 @@ def identify_risks(self) -> List[Dict[str, Any]]
       {"name": "activity:authentication", "color": "7057ff"},
       {"name": "importance:0.8", "color": "ffffff"}
     ],
+    "created_at": "2025-08-14T10:30:00Z",
+    "html_url": "https://github.com/owner/repo/issues/123"
+  }
+]
+```
+
+#### get_risk_summary Method
+```python
+def get_risk_summary(self) -> Dict[str, Any]
+```
+
+**Purpose:** Generates a comprehensive summary of all identified risks.
+
+**Summary Structure:**
+```json
+{
+  "total_risks": 15,
+  "project_risk_score": 42.5,
+  "activity_risks": {
+    "authentication": 3,
+    "database": 5,
+    "ui": 2
+  },
+  "wbs_risks": {
+    "1.1": 2,
+    "1.2": 3,
+    "2.1": 4
+  },
+  "risks": [
+    {
+      "id": 123,
+      "title": "Security vulnerability",
+      "created_at": "2025-08-14T10:30:00Z",
+      "url": "https://github.com/owner/repo/issues/123"
+    }
+  ]
+}
+```
+
+### Standalone Functions
+
+#### identify_risks Function
+```python
+def identify_risks(project_data: Dict[str, Any]) -> List[Dict[str, Any]]
+```
+
+**Purpose:** Backward compatibility function for risk identification from project data.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `project_data` | `Dict[str, Any]` | Yes | Project data containing tasks |
+
+**Returns:** `List[Dict[str, Any]]` - List of identified risks
+
+#### assess_risk_impact Function
+```python
+def assess_risk_impact(risk: Dict[str, Any]) -> float
+```
+
+**Purpose:** Calculates quantitative risk impact score.
+
+**Risk Impact Formula:**
+```
+impact = base_impact × probability
+```
+Where:
+- `base_impact`: RISK_LEVELS[risk_level] (1 for low, 3 for medium, 5 for high)
+- `probability`: Risk occurrence probability (0.0 to 1.0)
+
+**Parameters:**
+| Parameter | Type | Required | Description | Validation |
+|-----------|------|----------|-------------|------------|
+| `risk` | `Dict[str, Any]` | Yes | Risk dictionary | Must contain 'level' and 'probability' |
