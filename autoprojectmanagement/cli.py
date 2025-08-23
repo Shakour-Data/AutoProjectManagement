@@ -57,7 +57,7 @@ from pathlib import Path
 
 import click
 
-from .main_modules.project_management_system import ProjectManagementSystem
+from .main_modules.project_management_system import project_management_system as system
 # Removed CLICommands import as it does not exist
 from autoprojectmanagement.cli_dashboard import dashboard_cli
 
@@ -66,9 +66,6 @@ from autoprojectmanagement.cli_dashboard import dashboard_cli
 LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 logger = logging.getLogger(__name__)
-
-# Global system instance
-system = ProjectManagementSystem()
 
 
 @click.group()
