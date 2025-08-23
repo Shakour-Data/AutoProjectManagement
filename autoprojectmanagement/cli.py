@@ -244,6 +244,32 @@ def status(project_id: str, format: str) -> None:
         elif format == "markdown":
             click.echo(f"# Project Status: {project['name']}")
             click.echo(f"- **ID**: {project['id']}")
+            click.echo(f"- **Name**: {project['name']}")
+            if project.get('description'):
+                click.echo(f"- **Description**: {project['description']}")
+            if project.get('template'):
+                click.echo(f"- **Template**: {project['template']}")
+            if project.get('created_at'):
+                click.echo(f"- **Created At**: {project['created_at']}")
+            
+            # Get tasks for this project
+            tasks = system.list_tasks_in_project(project_id_int)
+            click.echo(f"- **Total Tasks**: {len(tasks)}")
+            
+        else:  # table format
+            from tabulate import tabulate
+            project_data = [
+                ["ID", project['id']],
+                ["Name", project['name']],
+                ["Description", project.get('description', 'N/A')],
+                ["Template", project.get('template', 'N/A')],
+                ["Created At", project.get('created_at', 'N/A')]
+            ]
+            click.echo(tabulate(project_data, tablefmt="grid"))
+            
+    except ValueError:
+        click.echo(f"❌ Invalid project ID: {project_id}. Must be a number.", err=True)
+        sys.exit(1)
 
 
 @main.command()
