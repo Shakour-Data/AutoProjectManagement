@@ -10,7 +10,7 @@
 ### Wiki Git Operations  
 - [x] Remove `services/wiki_services/wiki_git_operations.py`
 - [x] Check for any imports of the removed file
-- [ ] Update imports in `services/wiki_services/wiki_sync_service.py` to use `automation_services.wiki_git_operations`
+- [x] Update imports in `services/wiki_services/wiki_sync_service.py` to use `automation_services.wiki_git_operations`
 
 ### Backup Manager
 - [x] Remove `services/backup_manager.py`
