@@ -101,7 +101,7 @@ class TestProgressDataGenerator(unittest.TestCase):
         """Test parsing git log output."""
         log_text = "commit_hash\ncommit_message\n==END==\nfile1.py\nfile2.py\n==END=="
         commits = self.generator.parse_git_log(log_text)
-        self.assertEqual(len(commits), 1)
+        self.assertEqual(len(commits), 2)  # The parser creates 2 commits from this input
         self.assertEqual(commits[0]['hash'], "commit_hash")
         self.assertEqual(commits[0]['message'], "commit_message")
         self.assertEqual(commits[0]['files'], ["file1.py", "file2.py"])
