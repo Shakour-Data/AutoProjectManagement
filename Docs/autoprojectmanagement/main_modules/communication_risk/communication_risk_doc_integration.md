@@ -97,3 +97,43 @@ def run_all(self) -> Dict[str, Any]
     "summary_text": "Risk analysis summary"
   },
   "changelog": {
+    "version": "1.0.0",
+    "changes": [],
+    "contributors": []
+  },
+  "release_notes": {
+    "version": "latest",
+    "features": [],
+    "bug_fixes": [],
+    "breaking_changes": []
+  }
+}
+```
+
+## Data Flow Diagram
+
+```mermaid
+flowchart TD
+    A[GitHub Repository] --> B[GitHubIntegration]
+    B --> C[CommunicationRiskDocIntegration]
+    C --> D[RiskManagement]
+    C --> E[DocumentationAutomation]
+    
+    D --> F[Risk Analysis Results]
+    E --> G[Changelog Data]
+    E --> H[Release Notes Data]
+    
+    F --> I[Combined Results]
+    G --> I
+    H --> I
+    
+    I --> J[Output Dictionary]
+```
+
+## Integration Points
+
+### GitHub Integration
+| Feature | Description | API Endpoints Used |
+|---------|-------------|-------------------|
+| Repository Access | Read repository information | `/repos/{owner}/{repo}` |
+| Commit History | Access Git commit history | `/repos/{owner}/{repo}/commits` |
