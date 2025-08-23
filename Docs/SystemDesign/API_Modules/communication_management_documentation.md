@@ -8,3 +8,17 @@
 
 #### Class: BaseManagement
 
+**Description:** Base management class for handling file-based operations. Provides common functionality for loading JSON inputs, processing data, and saving outputs.
+
+**Methods:**
+
+**`__init__(input_paths: Dict[str, str], output_path: str)`**
+- **Parameters:**
+  - `input_paths`: Dictionary mapping input names to file paths
+  - `output_path`: Path where output will be saved
+- **Raises:** `ValueError` if input_paths or output_path are invalid
+
+**`load_json(path: str) -> Optional[Dict[str, Any]]`**
+- **Parameters:**
+  - `path`: Path to the JSON file
+- **Returns:** Dictionary containing the JSON data, or None if file doesn't exist
