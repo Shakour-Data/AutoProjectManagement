@@ -66,12 +66,16 @@ import json
 import logging
 from typing import Dict, List, Any, Optional, Union
 from datetime import datetime
+from pathlib import Path
 
 # Constants
 DEFAULT_PROJECT_FIELDS = {"id", "name"}
 REQUIRED_TASK_FIELDS = {"id", "title"}
 MAX_PROJECT_NAME_LENGTH = 100
 MAX_TASK_TITLE_LENGTH = 200
+DEFAULT_DATA_DIR = Path(".auto_project_data")
+PROJECTS_FILE = DEFAULT_DATA_DIR / "projects.json"
+TASKS_FILE = DEFAULT_DATA_DIR / "tasks.json"
 
 # Configure logging
 logger = logging.getLogger(__name__)
