@@ -131,3 +131,74 @@ try:
     
     # Process results
     for risk in results['risks']['identified_risks']:
+        print(f"Risk: {risk['description']} - Severity: {risk['severity']}")
+        
+except Exception as e:
+    print(f"Integration failed: {e}")
+    # Handle specific error types
+```
+
+#### Authentication
+
+**GitHub Token Requirements:**
+- Required for private repositories
+- Optional for public repositories (subject to lower rate limits)
+- Should have appropriate permissions for:
+  - Reading repository contents
+  - Accessing issues and pull requests
+  - Reading commit history
+
+**Token Setup:**
+```bash
+# Set token as environment variable
+export GITHUB_TOKEN="your_personal_access_token"
+
+# Or pass directly to constructor
+integration = CommunicationRiskDocIntegration("org", "repo", "your_token")
+```
+
+#### Rate Limits
+
+**GitHub API Limits:**
+- Unauthenticated: 60 requests per hour
+- Authenticated: 5000 requests per hour
+- Best Practice: Use token for higher limits and better reliability
+
+**Optimization Tips:**
+- Cache results when possible
+- Batch requests when appropriate
+- Handle rate limit errors gracefully
+- Implement retry logic with exponential backoff
+
+#### Error Handling
+
+**Common Errors:**
+- `GitHub API rate limit exceeded`
+- `Repository not found or access denied`
+- `Invalid GitHub token`
+- `Network connectivity issues`
+
+**Error Recovery:**
+- Automatic retry for transient errors
+- Graceful degradation for partial failures
+- Comprehensive error logging
+- User-friendly error messages
+
+#### Performance Considerations
+
+**Optimization Strategies:**
+- Parallel processing for independent operations
+- Caching of frequently accessed data
+- Efficient pagination for large repositories
+- Minimal API calls through smart batching
+
+**Memory Usage:**
+- Efficient data structures for risk analysis
+- Stream processing for large datasets
+- Proper resource cleanup
+
+#### Integration Points
+
+**With Risk Management:**
+- Leverages existing risk identification capabilities
+- Enhances risk analysis with GitHub context
