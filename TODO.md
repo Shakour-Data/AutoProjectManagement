@@ -98,7 +98,11 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] **Complete System Design Documentation** according to Docs/SystemDesign/ structure:
   - [ ] **Diagrams**: Create/update BPMN, DFD, UML diagrams based on current implementation
   - [x] **Glossary**: Update API Reference and Glossary with current endpoints and terminology
-  - [ ] **Guides**: Create comprehensive developer, user, and maintenance guides
+- [ ] **Guides**: Create comprehensive developer, user, and maintenance guides, including:
+  - [ ] Detailed explanations of calculations and algorithms used in the system
+  - [ ] UML diagrams structured to three levels
+  - [ ] BPMN diagrams structured to three levels
+  - [ ] DFD diagrams structured to three levels
   - [ ] **Project Planning**: Update all planning documents with current implementation details
   - [ ] **Reports**: Update dashboard and scenario documentation
   - [x] **Usage Instructions**: Update with current system capabilities
