@@ -510,3 +510,222 @@ All endpoints are prefixed with:
     },
     "message_queue_size": 0,
     "uptime_seconds": 7200,
+    "timestamp": "2025-08-14T10:30:00.000Z"
+  }
+  ```
+
+### SSE Test Event
+- **Method:** POST
+- **Path:** /api/v1/sse/test-event
+- **Description:** Send a test event to all SSE subscribers (for development/testing)
+- **Parameters:**
+  - `event_type` (query, string, required): Event type for test
+  - `project_id` (query, string, optional): Project ID for test
+- **Response:** Test event confirmation
+- **Example Response:**
+  ```json
+  {
+    "message": "Test dashboard_update event published",
+    "project_id": "project-001",
+    "timestamp": "2025-08-14T10:30:00.000Z",
+    "event_id": "event-67890"
+  }
+  ```
+
+### SSE Connections List
+- **Method:** GET
+- **Path:** /api/v1/sse/connections
+- **Description:** List all active SSE connections with details
+- **Parameters:** None
+- **Response:** List of active SSE connections
+- **Example Response:**
+  ```json
+  {
+    "connections": [
+      {
+        "connection_id": "conn-12345",
+        "connected_at": "2025-08-14T10:00:00.000Z",
+        "last_activity": "2025-08-14T10:30:00.000Z",
+        "subscriptions": ["dashboard_update", "progress_update"],
+        "project_filter": "project-001"
+      }
+    ]
+  }
+  ```
+
+---
+
+## Data Models
+
+### Project Models
+
+#### ProjectStatus
+- `project_id`: string (Unique project identifier)
+- `total_tasks`: int (Total number of tasks)
+- `completed_tasks`: int (Number of completed tasks)
+- `progress_percentage`: float (Progress percentage)
+- `summary`: string (Project summary)
+- `last_updated`: datetime (Last update timestamp)
+- `source_file`: string (Path to task database file)
+
+#### ProjectCreate
+- `name`: string (Project name, 1-100 characters)
+- `description`: string (Project description, optional, max 500 characters)
+- `template`: string (Project template, optional)
+
+#### ProjectUpdate
+- `name`: string (Project name, optional, 1-100 characters)
+- `description`: string (Project description, optional, max 500 characters)
+- `status`: string (Project status, optional)
+
+### Dashboard Models
+
+#### DashboardOverview
+- `project_id`: string (Unique project identifier)
+- `total_tasks`: int (Total number of tasks)
+- `completed_tasks`: int (Number of completed tasks)
+- `progress_percentage`: float (Progress percentage)
+- `health_score`: float (Project health score 0-100)
+- `risk_level`: string (Risk level: low, medium, high, critical)
+- `last_updated`: datetime (Last update timestamp)
+- `team_performance`: float (Team performance score)
+- `quality_metrics`: Dict[str, float] (Quality metrics)
+
+#### DashboardMetrics
+- `timestamp`: datetime (Metrics timestamp)
+- `metrics`: Dict[str, Any] (Comprehensive metrics data)
+- `trends`: Dict[str, List[float]] (Historical trends)
+
+#### DashboardAlert
+- `id`: string (Alert identifier)
+- `type`: string (Alert type: risk, progress, quality, team)
+- `severity`: string (Severity: info, warning, error, critical)
+- `message`: string (Alert message)
+- `timestamp`: datetime (Alert timestamp)
+- `project_id`: string (Affected project ID)
+- `resolved`: bool (Whether alert is resolved)
+
+#### DashboardLayout
+- `layout_type`: string (Layout type: standard, minimal, custom)
+- `widgets`: List[WidgetPosition] (List of widget positions)
+- `refresh_rate`: int (Refresh rate in milliseconds, 1000-60000)
+- `theme`: string (Theme: light, dark)
+- `created_at`: datetime (Creation timestamp)
+- `updated_at`: datetime (Last update timestamp)
+
+#### WidgetPosition
+- `widget_id`: string (Widget identifier)
+- `position`: int (Position in layout, 0-based)
+- `enabled`: bool (Whether widget is enabled)
+- `settings`: Dict[str, Any] (Widget-specific settings)
+
+### SSE Models
+
+#### SSESubscriptionRequest
+- `event_types`: List[str] (Event types to subscribe to)
+- `project_id`: string (Project ID filter, optional)
+- `last_event_id`: string (Last received event ID for reconnection, optional)
+
+### Error Models
+
+#### ErrorResponse
+- `error`: string (Error message)
+- `detail`: string (Error details, optional)
+- `timestamp`: datetime (Error timestamp)
+
+---
+
+## Available Widgets
+
+The dashboard supports the following widgets:
+- `health`: Project health monitoring
+- `progress`: Progress tracking and visualization
+- `risks`: Risk assessment and management
+- `team`: Team performance metrics
+- `quality`: Quality assurance metrics
+- `alerts`: Real-time alert notifications
+
+---
+
+## Event Types for Real-time Communication
+
+Both WebSocket and SSE support subscription to these event types:
+- `system_status`: System health and status updates
+- `dashboard_update`: Dashboard data refresh events
+- `health_check`: Health monitoring events
+- `progress_update`: Task progress updates
+- `risk_alert`: Risk assessment alerts
+- `quality_metric`: Quality metric updates
+- `team_performance`: Team performance updates
+
+---
+
+## Error Handling
+
+### Common HTTP Status Codes
+- `200 OK`: Request successful
+- `201 Created`: Resource created successfully
+- `400 Bad Request`: Invalid request parameters
+- `404 Not Found`: Resource not found
+- `500 Internal Server Error`: Server-side error
+
+### Error Response Format
+All error responses follow the same format:
+```json
+{
+  "error": "Error message describing what went wrong",
+  "detail": "Additional error details (optional)",
+  "timestamp": "2025-08-14T10:30:00.000Z"
+}
+```
+
+### Common Error Scenarios
+1. **Project Not Found**: When requesting status for a non-existent project
+2. **Invalid Format**: When requesting an unsupported response format
+3. **Database Error**: When unable to read task database files
+4. **Subscription Error**: When subscribing to invalid event types
+5. **Connection Error**: When WebSocket/SSE connection fails
+
+---
+
+## Rate Limiting and Quotas
+
+- **API Rate Limit**: 100 requests per minute per IP address
+- **WebSocket Connections**: Maximum 50 concurrent connections
+- **SSE Connections**: Maximum 100 concurrent connections
+- **Event History**: Last 1000 events stored for reconnection
+
+---
+
+## Authentication and Security
+
+- **API Key**: Required for all endpoints (configured via environment variables)
+- **CORS**: Enabled for all origins in development, configurable for production
+- **HTTPS**: Required for production deployments
+- **Data Validation**: All input data validated using Pydantic models
+
+---
+
+## Versioning
+
+The API follows semantic versioning:
+- **Major version**: Breaking changes
+- **Minor version**: New features (backward compatible)
+- **Patch version**: Bug fixes (backward compatible)
+
+Current API version: **v1**
+
+---
+
+## Response Formats
+
+The API supports multiple response formats:
+- **JSON**: Default format for all endpoints
+- **Markdown**: Available for status endpoints
+- **Table**: Available for status endpoints (experimental)
+
+---
+
+This concludes the API Reference Document for AutoProjectManagement system.
+
+*Documentation last verified against implementation: 2025-08-14*
