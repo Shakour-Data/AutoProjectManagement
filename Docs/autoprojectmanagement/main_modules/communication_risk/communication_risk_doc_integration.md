@@ -78,3 +78,22 @@ def run_all(self) -> Dict[str, Any]
 **Workflow Process:**
 1. **Risk Identification**: Uses RiskManagement to identify project risks
 2. **Risk Summary**: Generates comprehensive risk summary report
+3. **Changelog Generation**: Creates automated changelog from Git history
+4. **Release Notes**: Generates release notes for the latest version
+
+**Returns:** `Dict[str, Any]` - Comprehensive results containing:
+```json
+{
+  "risks": {
+    "identified_risks": [],
+    "risk_categories": [],
+    "severity_levels": {}
+  },
+  "risk_summary": {
+    "total_risks": 0,
+    "high_priority": 0,
+    "medium_priority": 0,
+    "low_priority": 0,
+    "summary_text": "Risk analysis summary"
+  },
+  "changelog": {
