@@ -201,3 +201,121 @@ combined_score = (commit_score * commit_weight) + (workflow_score * workflow_wei
 
 **Exception Types:**
 - `TypeError` for invalid input data types
+- `RuntimeError` for file loading failures
+- `subprocess.CalledProcessError` for Git command failures
+
+#### Dependencies
+
+**Internal Dependencies:**
+- Standard library modules: subprocess, json, os, re, logging, collections, typing
+- No external package dependencies
+
+**External Dependencies:**
+- Python 3.8+
+- Git command line tool
+- Valid Git repository
+- Workflow definition JSON files
+
+#### Performance Considerations
+
+**Git Operations:**
+- Efficient git log command execution
+- Parsing optimization for large commit histories
+- Memory-efficient commit data structures
+
+**File I/O:**
+- Efficient JSON file operations
+- Proper error handling for file access
+- Directory creation when needed
+
+**Pattern Matching:**
+- Optimized regex pattern compilation
+- Efficient task ID extraction
+- Scalable pattern matching
+
+#### Integration Points
+
+**With Git Repositories:**
+- Integrates with Git version control
+- Analyzes commit history for progress tracking
+- Supports various Git repository structures
+
+**With Workflow Systems:**
+- Integrates with workflow definition files
+- Supports customizable workflow steps
+- Extensible for different workflow types
+
+**With Progress Reporting:**
+- Provides progress data for reporting systems
+- Integrates with dashboard systems
+- Supports real-time progress updates
+
+**With Task Management:**
+- Maps commits to specific tasks
+- Supports various task ID formats
+- Integrates with task tracking systems
+
+#### Best Practices
+
+**Git Repository Management:**
+- Use meaningful commit messages with task IDs
+- Maintain consistent task ID patterns
+- Regular repository maintenance
+
+**Workflow Definition:**
+- Use structured workflow definitions
+- Maintain consistent step weighting
+- Regular workflow updates
+
+**Progress Calculation:**
+- Regular progress generation cycles
+- Monitor calculation accuracy
+- Adjust weights based on project needs
+
+**Error Handling:**
+- Implement comprehensive error logging
+- Graceful degradation for failures
+- Regular system health checks
+
+#### Use Cases
+
+**Automated Progress Tracking:**
+- Regular progress updates from Git history
+- Automated progress reporting
+- Real-time progress monitoring
+
+**Project Health Monitoring:**
+- Task completion tracking
+- Team productivity analysis
+- Project timeline forecasting
+
+**Integration with CI/CD:**
+- Automated progress updates in pipelines
+- Build status integration
+- Deployment progress tracking
+
+**Reporting and Analytics:**
+- Progress trend analysis
+- Team performance metrics
+- Project health dashboards
+
+#### Security Considerations
+
+**Repository Access:**
+- Secure Git repository access
+- Proper authentication for private repos
+- Access control for sensitive repositories
+
+**Data Privacy:**
+- Handle sensitive commit data appropriately
+- Protect progress data files
+- Implement data encryption if needed
+
+**File Permissions:**
+- Set appropriate file permissions
+- Protect configuration files
+- Regular security audits
+
+---
+
+*This documentation follows the API Documentation Template standards. Last updated: 2025-08-14*
