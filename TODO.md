@@ -3,14 +3,14 @@
 ## Phase 1: File Consolidation
 
 ### JSON Data Linker
-- [ ] Remove `services/configuration_cli/json_data_linker.py`
-- [ ] Check for any imports of the removed file
-- [ ] Update imports if necessary
+- [x] Remove `services/configuration_cli/json_data_linker.py`
+- [x] Check for any imports of the removed file
+- [x] Update imports if necessary
 
 ### Wiki Git Operations  
-- [ ] Remove `services/wiki_services/wiki_git_operations.py`
-- [ ] Check for any imports of the removed file
-- [ ] Update imports if necessary
+- [x] Remove `services/wiki_services/wiki_git_operations.py`
+- [x] Check for any imports of the removed file
+- [x] Update imports if necessary
 
 ### Backup Manager
 - [x] Remove `services/backup_manager.py`
