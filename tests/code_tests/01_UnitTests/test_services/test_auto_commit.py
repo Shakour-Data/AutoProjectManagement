@@ -70,9 +70,9 @@ import subprocess
 import json
 from datetime import datetime
 
-from autoprojectmanagement.services.auto_commit import (
+from autoprojectmanagement.services.automation_services.auto_commit import (
     format_commit_message,
-    AutoCommit
+    UnifiedAutoCommit as AutoCommit
 )
 
 
