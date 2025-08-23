@@ -89,3 +89,45 @@ CommunicationRiskDocIntegration(repo_owner: str, repo_name: str, token: str = No
     ]
   },
   "changelog": "## Changelog\n\n### v1.2.0 (2025-08-14)\n- Added risk analysis integration\n- Improved documentation automation\n- Fixed communication issues",
+  "release_notes": "## Release Notes v1.2.0\n\n### New Features\n- Integrated risk management with documentation\n- Automated changelog generation\n\n### Improvements\n- Enhanced communication risk analysis\n- Better GitHub integration"
+}
+```
+
+**Error Response:**
+```json
+{
+  "error": "GitHub API rate limit exceeded",
+  "details": "API rate limit exceeded for user. Please try again later.",
+  "retry_after": 3600
+}
+```
+
+#### Example Usage
+
+**Basic Usage:**
+```python
+from autoprojectmanagement.main_modules.communication_risk.communication_risk_doc_integration import CommunicationRiskDocIntegration
+
+# Initialize integration
+integration = CommunicationRiskDocIntegration(
+    repo_owner="your-organization",
+    repo_name="project-management",
+    token="your_github_token"  # Optional for public repos
+)
+
+# Run complete integration
+results = integration.run_all()
+
+# Access results
+print(f"Total risks identified: {results['risk_summary']['total_risks']}")
+print(f"Changelog: {results['changelog']}")
+```
+
+**With Error Handling:**
+```python
+try:
+    integration = CommunicationRiskDocIntegration("org", "repo")
+    results = integration.run_all()
+    
+    # Process results
+    for risk in results['risks']['identified_risks']:
