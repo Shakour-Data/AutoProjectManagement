@@ -137,3 +137,29 @@ generator = ProgressDataGenerator()
 generator.generate_progress()
 
 # Or use standalone function
+input_data = {"tasks": [{"id": "1.1", "status": "in_progress"}]}
+progress_data = generate_progress_data(input_data)
+print(f"Progress data: {progress_data}")
+```
+
+**Custom Configuration:**
+```python
+# Custom configuration
+generator = ProgressDataGenerator(
+    db_progress_json_path='custom/progress.json',
+    workflow_definition_path='custom/workflow.json',
+    commit_task_id_pattern=r'TASK-\d+',
+    commit_weight=0.7,
+    workflow_weight=0.3
+)
+
+# Generate with custom settings
+generator.generate_progress()
+```
+
+**Manual Progress Calculation:**
+```python
+# Manual progress calculation steps
+log_text = generator.run_git_log()
+if log_text:
+    commits = generator.parse_git_log(log_text)
