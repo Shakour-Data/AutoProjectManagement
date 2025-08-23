@@ -99,3 +99,27 @@ All endpoints are prefixed with:
 - **Description:** List all available projects with pagination support
 - **Parameters:**
   - `limit` (query, integer, optional, default=100): Maximum number of projects to return (1-1000)
+  - `offset` (query, integer, optional, default=0): Number of projects to skip
+  - `include_archived` (query, boolean, optional, default=false): Include archived projects
+- **Response:** 
+  ```json
+  {
+    "projects": [],
+    "count": 0,
+    "message": "Project listing not yet implemented"
+  }
+  ```
+
+#### Create Project
+- **Method:** POST
+- **Path:** /api/v1/projects
+- **Description:** Create a new project with automated management capabilities
+- **Request Body:**
+  ```json
+  {
+    "name": "New Project",
+    "description": "Project description",
+    "template": "standard"
+  }
+  ```
+- **Response:** 
