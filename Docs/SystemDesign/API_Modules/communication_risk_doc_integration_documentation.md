@@ -68,3 +68,24 @@ CommunicationRiskDocIntegration(repo_owner: str, repo_name: str, token: str = No
     ],
     "total_risks": 5,
     "high_severity_count": 2,
+    "medium_severity_count": 2,
+    "low_severity_count": 1
+  },
+  "risk_summary": {
+    "total_risks": 5,
+    "by_category": {
+      "communication": 3,
+      "technical": 1,
+      "schedule": 1
+    },
+    "by_severity": {
+      "high": 2,
+      "medium": 2,
+      "low": 1
+    },
+    "recommendations": [
+      "Improve communication frequency",
+      "Address technical debt"
+    ]
+  },
+  "changelog": "## Changelog\n\n### v1.2.0 (2025-08-14)\n- Added risk analysis integration\n- Improved documentation automation\n- Fixed communication issues",
