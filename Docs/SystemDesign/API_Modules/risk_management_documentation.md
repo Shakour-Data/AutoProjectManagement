@@ -141,3 +141,23 @@ risks = risk_manager.identify_risks()
 print(f"Identified {len(risks)} risks")
 
 # Get comprehensive summary
+summary = risk_manager.get_risk_summary()
+print(f"Project risk score: {summary['project_risk_score']}")
+```
+
+**Standalone Functions:**
+```python
+from autoprojectmanagement.main_modules.communication_risk.risk_management import (
+    identify_risks, assess_risk_impact, mitigate_risk
+)
+
+# Identify risks from project data
+project_data = {
+    'tasks': [
+        {'id': 'T1', 'name': 'Task 1', 'risk': 'high'},
+        {'id': 'T2', 'name': 'Task 2', 'risk': 'medium'}
+    ]
+}
+risks = identify_risks(project_data)
+
+# Assess risk impact
