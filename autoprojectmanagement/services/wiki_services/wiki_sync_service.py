@@ -48,9 +48,9 @@ from pathlib import Path
 from typing import List, Dict, Any
 from datetime import datetime
 
-from .wiki_git_operations import WikiGitOperations
+from ..automation_services.wiki_git_operations import WikiGitOperations
 from .wiki_page_mapper import WikiPageMapper
-from ..services.github_integration import GitHubIntegration
+from ..integration_services.github_integration import GitHubIntegration
 
 
 class WikiSyncService:
