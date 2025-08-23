@@ -100,7 +100,7 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] Verify all file paths in configuration files
 
 ## Priority Order:
-1. Remove duplicate files (highest priority - reduces confusion)
+1. Analyze and merge duplicate files (highest priority - reduces confusion)
 2. Remove backup files
 3. Standardize naming
 4. Organize remaining files
@@ -113,3 +113,4 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - Test each change incrementally
 - Use git to track changes and revert if needed
 - Document any breaking changes
+- For each merge: compare both versions, keep the better implementation, merge unique functionality
