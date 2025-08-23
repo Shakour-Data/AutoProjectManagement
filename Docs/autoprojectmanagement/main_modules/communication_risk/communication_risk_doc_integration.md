@@ -61,3 +61,20 @@ def __init__(self, repo_owner: str, repo_name: str, token: Optional[str] = None)
 |-----------|------|----------|-------------|---------|
 | `repo_owner` | `str` | Yes | GitHub repository owner/organization | - |
 | `repo_name` | `str` | Yes | GitHub repository name | - |
+| `token` | `Optional[str]` | No | GitHub personal access token | `None` |
+
+**Authentication Requirements:**
+- Public repositories: Token optional for read access
+- Private repositories: Token required for access
+- Rate limiting: Token provides higher rate limits
+
+#### run_all Method
+```python
+def run_all(self) -> Dict[str, Any]
+```
+
+**Purpose:** Executes the complete integration workflow including risk analysis and documentation generation.
+
+**Workflow Process:**
+1. **Risk Identification**: Uses RiskManagement to identify project risks
+2. **Risk Summary**: Generates comprehensive risk summary report
