@@ -123,3 +123,29 @@ All endpoints are prefixed with:
   }
   ```
 - **Response:** 
+  ```json
+  {
+    "message": "Project created successfully",
+    "project": {
+      "id": "generated_id",
+      "name": "New Project",
+      "description": "Project description",
+      "template": "standard",
+      "created_at": "2025-08-14T10:30:00.000Z",
+      "status": "active"
+    }
+  }
+  ```
+
+#### Update Project
+- **Method:** PUT
+- **Path:** /api/v1/projects/{project_id}
+- **Description:** Update an existing project
+- **Parameters:**
+  - `project_id` (path, string, required): Project identifier
+- **Request Body:**
+  ```json
+  {
+    "name": "Updated Project Name",
+    "description": "Updated description",
+    "status": "active"
