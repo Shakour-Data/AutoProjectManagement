@@ -96,6 +96,16 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 
 ### Documentation Structure Focus:
 - [ ] **Complete System Design Documentation** according to Docs/SystemDesign/ structure:
+  - [ ] **Diagrams**: Create/update BPMN, DFD, UML diagrams based on current implementation
+  - [x] **Glossary**: Update API Reference and Glossary with current endpoints and terminology
+  - [ ] **Guides**: Create comprehensive developer, user, and maintenance guides
+  - [ ] **Project Planning**: Update all planning documents with current implementation details
+  - [ ] **Reports**: Update dashboard and scenario documentation
+  - [x] **Usage Instructions**: Update with current system capabilities
+
+### API Modules Documentation:
+- [ ] `api/main.py` - Complete API documentation with endpoints
+- [ ] `api/services.py` - Service layer documentation
 
 ## Priority Order for Documentation:
 1. **API Reference Update** - Ensure API documentation matches current endpoints
