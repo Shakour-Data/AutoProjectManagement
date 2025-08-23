@@ -37,3 +37,27 @@ RiskManagement(github_integration: GitHubIntegration)
 - **Returns:** List of identified risks from project data
 - **Raises:** `TypeError` for invalid input types
 
+**`assess_risk_impact(risk: Dict[str, Any]) -> float`**
+- **Parameters:** `risk` - Dictionary containing risk level and probability
+- **Returns:** Calculated risk impact score
+- **Raises:** `TypeError`, `ValueError` for invalid inputs
+
+**`mitigate_risk(risk: Dict[str, Any]) -> bool`**
+- **Parameters:** `risk` - Dictionary containing risk information
+- **Returns:** True if mitigation successful, False otherwise
+- **Raises:** `TypeError` for invalid input
+
+#### Constants
+
+**Risk Levels:**
+```python
+RISK_LEVELS = {
+    'low': 1,
+    'medium': 3,
+    'high': 5
+}
+```
+
+**Label Prefixes:**
+- `RISK_LABEL = 'risk'`
+- `ACTIVITY_LABEL_PREFIX = 'activity:'`
