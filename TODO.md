@@ -217,7 +217,7 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] Adapt content for Persian technical audience
 - [ ] Quality check Persian translations
 
-### Documentation Quality Standards:
+## Documentation Quality Standards:
 - [ ] All documentation must include three levels of detail
 - [ ] Each module must have UML/architecture diagrams structured to three levels
 - [ ] Each module must have BPMN diagrams structured to three levels
@@ -229,6 +229,8 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] Ensure consistency across all documentation
 - [ ] Document all decision-making algorithms and business rules
 - [ ] Include performance characteristics and complexity analysis
+- [ ] Ensure no documentation is overlooked
+- [ ] Write all Python code scenarios according to Pressman's standards
 
 ### Update README.md:
 - [x] Update README.md with new file structure and current capabilities
