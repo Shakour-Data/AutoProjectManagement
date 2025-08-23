@@ -54,3 +54,19 @@ ProgressDataGenerator(
 - Calculates progress based on workflow steps completion
 - **Returns:** Dictionary mapping task IDs to workflow-based progress percentages
 
+**`combine_progress(commit_progress: Dict[str, float], workflow_progress: Dict[str, float]) -> Dict[str, float]`**
+- Combines commit-based and workflow-based progress using configured weights
+- **Parameters:**
+  - `commit_progress` - Commit-based progress data
+  - `workflow_progress` - Workflow-based progress data
+- **Returns:** Combined progress data with weighted scores
+
+**`save_progress_to_json(progress_data: Dict[str, float]) -> None`**
+- Saves progress data to JSON file
+- **Parameters:** `progress_data` - Progress data to save
+
+**`generate_progress() -> None`**
+- Executes the complete progress generation workflow
+
+#### Standalone Function
+
