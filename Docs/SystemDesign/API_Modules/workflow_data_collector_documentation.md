@@ -34,3 +34,70 @@ WorkflowDataCollector(data_dir: str = 'SystemInputs/user_inputs')
   - `priority`: Task priority
   - `progress`: Task progress percentage
 
+**`update_scrum_burndown(sprint_id: str, day: int, remaining_work: float) -> None`**
+- Updates or creates burndown chart data for a specific sprint and day
+- **Parameters:**
+  - `sprint_id`: Sprint identifier
+  - `day`: Day number in the sprint
+  - `remaining_work`: Remaining work units
+
+**`generate_scrum_report(sprint_id: str) -> List[Tuple[int, float]]`**
+- Generates a burndown report for a specific sprint
+- **Parameters:** `sprint_id` - Sprint identifier
+- **Returns:** Sorted list of (day, remaining_work) tuples
+
+**`close() -> None`**
+- Cleanup method (currently does nothing)
+
+#### File Structure
+
+**JSON Files:**
+- `scrum_sprints.json`: Sprint definitions and metadata
+- `scrum_tasks.json`: Task information and status
+- `scrum_burndown.json`: Burndown chart data
+
+#### Data Formats
+
+**Scrum Tasks Format:**
+```json
+[
+  {
+    "task_id": "task-001",
+    "sprint_id": "sprint-1",
+    "title": "Develop API endpoints",
+    "status": "in_progress",
+    "priority": "high",
+    "progress": 75.0
+  }
+]
+```
+
+**Burndown Data Format:**
+```json
+[
+  {
+    "sprint_id": "sprint-1",
+    "day": 1,
+    "remaining_work": 100.0
+  },
+  {
+    "sprint_id": "sprint-1", 
+    "day": 2,
+    "remaining_work": 85.0
+  }
+]
+```
+
+**Scrum Report Format:**
+```json
+[
+  [1, 100.0],
+  [2, 85.0],
+  [3, 70.0]
+]
+```
+
+#### Example Usage
+
+**Basic Workflow Management:**
+```python
