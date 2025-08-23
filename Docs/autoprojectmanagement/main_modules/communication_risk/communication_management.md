@@ -96,3 +96,28 @@ def save_json(self, data: Dict[str, Any], path: str) -> None
 **Purpose:** Saves data as JSON to a specified file path.
 
 **Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `data` | `Dict[str, Any]` | Yes | Dictionary to save as JSON |
+| `path` | `str` | Yes | Path where to save the file |
+
+**Error Handling:**
+- `TypeError`: If data is not JSON serializable
+- `OSError`: If there's an error writing the file
+
+### CommunicationManagement Class
+
+#### Constructor
+```python
+def __init__(self, communication_plan_path: str = DEFAULT_COMMUNICATION_PLAN_PATH,
+             communication_logs_path: str = DEFAULT_COMMUNICATION_LOGS_PATH,
+             output_path: str = DEFAULT_OUTPUT_PATH) -> None
+```
+
+**Purpose:** Initializes communication management with default or custom file paths.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `communication_plan_path` | `str` | No | `project_inputs/PM_JSON/user_inputs/communication_plan.json` | Path to communication plan |
+| `communication_logs_path` | `str` | No | `project_inputs/PM_JSON/user_inputs/communication_logs.json` | Path to communication logs |
