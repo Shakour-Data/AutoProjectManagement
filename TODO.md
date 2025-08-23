@@ -154,6 +154,31 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 #### Task & Workflow Management:
 - [ ] `task_workflow_management/do_important_tasks.py`
 - [ ] `task_workflow_management/do_urgent_tasks.py`
+- [ ] `task_workflow_management/importance_urgency_calculator.py`
+- [ ] `task_workflow_management/task_executor.py`
+- [ ] `task_workflow_management/task_management_integration.py`
+- [ ] `task_workflow_management/task_management.py`
+
+#### Utility Modules:
+- [ ] `utility_modules/feature_weights.py`
+- [ ] `utility_modules/project_views_generator.py`
+- [ ] `utility_modules/setup_automation.py`
+- [ ] `utility_modules/setup_initialization.py`
+- [ ] `utility_modules/time_management.py`
+
+#### Project Management:
+- [x] `project_management/project_management_system.py` - ✅ Completed
+
+### Services Documentation:
+#### Automation Services:
+- [x] `automation_services/auto_file_watcher.py` - ✅ Completed
+- [ ] `automation_services/auto_commit.py`
+- [ ] `automation_services/backup_manager.py`
+- [ ] `automation_services/git_config_manager.py`
+- [ ] `automation_services/wiki_git_operations.py`
+
+#### Configuration CLI:
+- [ ] `configuration_cli/cli_commands.py`
 
 ## Priority Order for Documentation:
 1. **API Reference Update** - Ensure API documentation matches current endpoints
