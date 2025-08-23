@@ -128,7 +128,6 @@ def init(config: Optional[str], verbose: bool) -> None:
         click.echo(f"Configuration file: {config or 'default'}")
     
     # Initialize the system
-    system = ProjectManagementSystem()
     success = system.initialize_system()
     
     if success:
