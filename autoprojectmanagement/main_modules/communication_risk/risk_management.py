@@ -63,7 +63,7 @@ TODO:
 
 from typing import Dict, List, Any, Optional, Union
 from collections import defaultdict
-from autoprojectmanagement.services.github_integration import GitHubIntegration
+from autoprojectmanagement.services.integration_services.github_integration import GitHubIntegration
 
 # Constants for risk management
 RISK_LABEL = 'risk'
