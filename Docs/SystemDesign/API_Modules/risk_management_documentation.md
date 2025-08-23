@@ -91,3 +91,53 @@ RISK_LEVELS = {
       "title": "Critical security vulnerability",
       "created_at": "2025-08-14T10:30:00Z",
       "url": "https://github.com/org/repo/issues/123"
+    }
+  ]
+}
+```
+
+**Risk Identification Response:**
+```json
+[
+  {
+    "id": 123,
+    "title": "Critical security vulnerability",
+    "labels": [
+      {"name": "risk", "color": "d73a4a"},
+      {"name": "activity:development", "color": "7057ff"},
+      {"name": "importance:2.5", "color": "ffffff"}
+    ],
+    "state": "open",
+    "created_at": "2025-08-14T10:30:00Z",
+    "html_url": "https://github.com/org/repo/issues/123"
+  }
+]
+```
+
+**Risk Impact Assessment:**
+```json
+{
+  "risk_level": "high",
+  "probability": 0.8,
+  "impact_score": 4.0
+}
+```
+
+#### Example Usage
+
+**GitHub Integration:**
+```python
+from autoprojectmanagement.services.integration_services.github_integration import GitHubIntegration
+from autoprojectmanagement.main_modules.communication_risk.risk_management import RiskManagement
+
+# Initialize GitHub integration
+github = GitHubIntegration("your-org", "your-repo", "your-token")
+
+# Create risk manager
+risk_manager = RiskManagement(github)
+
+# Identify risks
+risks = risk_manager.identify_risks()
+print(f"Identified {len(risks)} risks")
+
+# Get comprehensive summary
