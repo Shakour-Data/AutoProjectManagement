@@ -58,7 +58,7 @@ from pathlib import Path
 import click
 
 from .main_modules.project_management_system import ProjectManagementSystem
-from autoprojectmanagement.services.configuration_cli.cli_commands import CLICommands
+# Removed CLICommands import as it does not exist
 from autoprojectmanagement.cli_dashboard import dashboard_cli
 
 
