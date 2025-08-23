@@ -12,10 +12,13 @@ class TestProjectManagementSystem(unittest.TestCase):
 
     def tearDown(self):
         """Clean up after the test case"""
-        if os.path.exists("projects.json"):
-            os.remove("projects.json")
-        if os.path.exists("tasks.json"):
-            os.remove("tasks.json")
+        data_dir = ".auto_project_data"
+        if os.path.exists(data_dir):
+            for file in os.listdir(data_dir):
+                file_path = os.path.join(data_dir, file)
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+            os.rmdir(data_dir)
 
     def test_add_project_and_task(self):
         """Test adding a project and a task"""
