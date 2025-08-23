@@ -15,3 +15,15 @@
 ProgressDataGenerator(
     db_progress_json_path: str = 'docs/project_management/task_progress.json',
     workflow_definition_path: str = 'docs/db_json/workflow_definition.json',
+    commit_task_id_pattern: str = r'\b\d+\.\d+\b',
+    commit_weight: float = 0.6,
+    workflow_weight: float = 0.4,
+    commit_json_path: str = None
+)
+```
+
+**Parameters:**
+- `db_progress_json_path`: Path to save progress JSON file
+- `workflow_definition_path`: Path to workflow definition JSON file
+- `commit_task_id_pattern`: Regex pattern to extract task IDs from commit messages
+- `commit_weight`: Weight for commit-based progress calculation (0.0-1.0)
