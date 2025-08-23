@@ -233,6 +233,12 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] **Documentation must NOT include code examples - use descriptions, diagrams, and tables only**
 - [ ] Follow Pressman's software engineering standards for documentation
 
+## Diagram Standards:
+- [ ] **Use Mermaid.js for all diagrams** - All UML, BPMN, DFD, and architecture diagrams must be created using Mermaid syntax
+- [ ] Ensure Mermaid diagrams are properly formatted and validated
+- [ ] Include Mermaid diagram source code in documentation for easy maintenance and updates
+- [ ] Follow Mermaid best practices for diagram clarity and consistency
+
 ### Update README.md:
 - [x] Update README.md with new file structure and current capabilities
 - [x] Ensure all modules have proper docstrings reflecting current implementation
