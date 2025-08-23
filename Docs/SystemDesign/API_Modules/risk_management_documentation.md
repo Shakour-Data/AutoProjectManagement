@@ -61,3 +61,33 @@ RISK_LEVELS = {
 **Label Prefixes:**
 - `RISK_LABEL = 'risk'`
 - `ACTIVITY_LABEL_PREFIX = 'activity:'`
+- `WBS_LABEL_PREFIX = 'wbs:'`
+- `IMPORTANCE_LABEL_PREFIX = 'importance:'`
+- `PRIORITY_LABEL_PREFIX = 'priority:'`
+
+**Default Values:**
+- `DEFAULT_IMPORTANCE = 1.0`
+- `DEFAULT_PRIORITY = 1.0`
+- `DEFAULT_PROBABILITY = 0.5`
+
+#### Response Format
+
+**Risk Summary Response:**
+```json
+{
+  "total_risks": 5,
+  "project_risk_score": 12.5,
+  "activity_risks": {
+    "development": 3,
+    "testing": 2
+  },
+  "wbs_risks": {
+    "1.1": 2,
+    "1.2": 3
+  },
+  "risks": [
+    {
+      "id": 123,
+      "title": "Critical security vulnerability",
+      "created_at": "2025-08-14T10:30:00Z",
+      "url": "https://github.com/org/repo/issues/123"
