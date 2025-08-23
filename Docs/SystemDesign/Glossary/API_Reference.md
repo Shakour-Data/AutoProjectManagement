@@ -149,3 +149,4 @@ All endpoints are prefixed with:
     "name": "Updated Project Name",
     "description": "Updated description",
     "status": "active"
+  }
