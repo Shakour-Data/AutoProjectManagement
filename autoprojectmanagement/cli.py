@@ -165,21 +165,9 @@ def create_project(
     """
     click.echo(f"📁 Creating project: {project_name}")
     
-    cli_commands = CLICommands()
-    success = cli_commands.create_project(
-        project_name,
-        description,
-        template
-    )
-    
-    if success:
-        click.echo(f"✅ Project '{project_name}' created successfully!")
-    else:
-        click.echo(
-            f"❌ Failed to create project '{project_name}'",
-            err=True
-        )
-        sys.exit(1)
+    # TODO: Implement project creation functionality
+    click.echo("❌ Project creation functionality not implemented yet")
+    sys.exit(1)
 
 
 @main.command()
