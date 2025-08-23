@@ -77,7 +77,7 @@ logger = logging.getLogger(__name__)
 try:
     from autoprojectmanagement.api.services import ProjectService
     from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
-    from autoprojectmanagement.api.sse_endpoints import router as sse_router
+    from autoprojectmanagement.api.sse_endpoints_complete import router as sse_router
 except ImportError:
     # Handle import for development
     import sys
