@@ -234,6 +234,7 @@ class ProjectManagementSystem:
             self.tasks[project_id] = {}
             
         self.tasks[project_id][task_id] = task
+        self.save_tasks()
         return True
         
     def remove_task_from_project(self, project_id: int, task_id: int) -> bool:
