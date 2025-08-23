@@ -106,6 +106,21 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 ### API Modules Documentation:
 - [ ] `api/main.py` - Complete API documentation with endpoints
 - [ ] `api/services.py` - Service layer documentation
+- [ ] `api/dashboard_endpoints.py` - Dashboard API documentation
+- [ ] `api/realtime_service.py` - Real-time services documentation
+- [ ] `api/server.py` - Server configuration documentation
+- [ ] `api/sse_endpoints.py` - SSE endpoints documentation
+- [ ] `api/app.py` - Application documentation
+
+### Main Modules Documentation:
+#### Communication & Risk:
+- [ ] `communication_risk/communication_management.py`
+- [ ] `communication_risk/communication_risk_doc_integration.py`
+- [ ] `communication_risk/risk_management.py`
+
+#### Data Collection & Processing:
+- [ ] `data_collection_processing/db_data_collector.py`
+- [ ] `data_collection_processing/input_handler.py`
 
 ## Priority Order for Documentation:
 1. **API Reference Update** - Ensure API documentation matches current endpoints
