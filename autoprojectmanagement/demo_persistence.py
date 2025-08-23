@@ -26,32 +26,37 @@ def demo_persistence():
     print(f"Number of tasks: {sum(len(tasks) for tasks in pms.tasks.values())}")
     print()
     
-    # Add a new project
-    project = {
-        "id": 1,
-        "name": "Demo Project",
-        "description": "A demonstration project for persistence testing",
-        "status": "active"
-    }
-    
-    if pms.add_project(project):
-        print(f"✓ Added project: {project['name']}")
+    # Check if we already have data
+    if len(pms.projects) == 0:
+        # Add a new project only if none exist
+        project = {
+            "id": 1,
+            "name": "Demo Project",
+            "description": "A demonstration project for persistence testing",
+            "status": "active"
+        }
+        
+        if pms.add_project(project):
+            print(f"✓ Added project: {project['name']}")
+        else:
+            print(f"✗ Failed to add project: {project['name']}")
+        
+        # Add a task to the project
+        task = {
+            "id": 1,
+            "title": "Demo Task",
+            "description": "A demonstration task",
+            "status": "todo",
+            "priority": "high"
+        }
+        
+        if pms.add_task_to_project(1, task):
+            print(f"✓ Added task: {task['title']} to project {project['name']}")
+        else:
+            print(f"✗ Failed to add task: {task['title']}")
     else:
-        print(f"✗ Failed to add project: {project['name']}")
-    
-    # Add a task to the project
-    task = {
-        "id": 1,
-        "title": "Demo Task",
-        "description": "A demonstration task",
-        "status": "todo",
-        "priority": "high"
-    }
-    
-    if pms.add_task_to_project(1, task):
-        print(f"✓ Added task: {task['title']} to project {project['name']}")
-    else:
-        print(f"✗ Failed to add task: {task['title']}")
+        print("✓ Existing data loaded from storage")
+        print("  No new data added to avoid duplicates")
     
     print()
     print("Data has been saved to JSON files in the .auto_project_data directory.")
