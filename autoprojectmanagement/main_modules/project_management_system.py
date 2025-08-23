@@ -149,14 +149,6 @@ class ProjectManagementSystem:
         self.is_initialized = True
         logger.info("Project Management System initialized")
         return True
-        """Initialize the project management system"""
-        if config is not None and not isinstance(config, dict):
-            raise TypeError("Configuration must be a dictionary")
-            
-        self.projects = {}
-        self.tasks = {}
-        self.is_initialized = True
-        return True
         
     def shutdown_system(self) -> bool:
         """Shutdown the project management system"""
