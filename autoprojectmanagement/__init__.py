@@ -50,7 +50,7 @@ from typing import List, Dict, Any, Optional
 import logging
 
 # Import main system components
-from .main_modules.project_management_system import ProjectManagementSystem
+from .main_modules.project_management.project_management_system import ProjectManagementSystem
 from .auto_runner import AutoRunner
 from .cli import main as cli_main
 
