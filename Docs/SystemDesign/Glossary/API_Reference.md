@@ -55,3 +55,47 @@ All endpoints are prefixed with:
     "timestamp": "2025-08-14T10:30:00.000Z",
     "components": {
       "api": "running",
+      "database": "connected",
+      "logging": "active",
+      "data_access": "available"
+    },
+    "version": "1.0.0"
+  }
+  ```
+
+#### System Information
+- **Method:** GET
+- **Path:** /api/v1/system/info
+- **Description:** Get comprehensive system information
+- **Parameters:** None
+- **Response:** 
+  ```json
+  {
+    "system": "AutoProjectManagement",
+    "version": "1.0.0",
+    "api_version": "v1",
+    "capabilities": [
+      "project_management",
+      "task_tracking",
+      "progress_monitoring",
+      "automated_commits",
+      "risk_assessment",
+      "reporting"
+    ],
+    "supported_formats": ["json", "markdown", "table"],
+    "timestamp": "2025-08-14T10:30:00.000Z"
+  }
+  ```
+
+---
+
+## Project Management Endpoints
+
+### Project Operations
+
+#### List Projects
+- **Method:** GET
+- **Path:** /api/v1/projects
+- **Description:** List all available projects with pagination support
+- **Parameters:**
+  - `limit` (query, integer, optional, default=100): Maximum number of projects to return (1-1000)
