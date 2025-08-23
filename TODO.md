@@ -193,6 +193,43 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] `monitoring_services/status_service.py`
 
 #### Wiki Services:
+- [ ] `wiki_services/wiki_page_mapper.py`
+- [ ] `wiki_services/wiki_sync_service.py`
+
+### Core Application Files:
+- [ ] `auto_runner.py`
+- [ ] `cli_dashboard.py`
+- [ ] `cli_docker.py`
+- [ ] `cli.py`
+- [ ] `demo_persistence.py`
+- [ ] `docker_setup.py`
+- [ ] `setup_auto_environment.py`
+- [ ] `vscode_extension_status_bar.py`
+- [ ] `vscode_extension.py`
+
+### Persian Translation Phase:
+- [ ] Translate all English documentation to Persian
+- [ ] Create Persian versions of all diagrams
+- [ ] Adapt content for Persian technical audience
+- [ ] Quality check Persian translations
+
+### Documentation Quality Standards:
+- [ ] All documentation must include three levels of detail
+- [ ] Each module must have UML/architecture diagrams
+- [ ] All APIs must have complete reference tables
+- [ ] Include practical examples for all functionality
+- [ ] Ensure consistency across all documentation
+
+### Update README.md:
+- [x] Update README.md with new file structure and current capabilities
+- [x] Ensure all modules have proper docstrings reflecting current implementation
+  - [x] `project_management_system.py` - Comprehensive docstrings added for all methods and classes
+  - [x] `auto_file_watcher.py` - Professional docstrings added with encoding fix
+- [ ] Create comprehensive architecture documentation based on actual implementation
+
+### Final Cleanup:
+- [x] Remove empty directories
+- [x] Clean up __pycache__ directories
 
 ## Priority Order for Documentation:
 1. **API Reference Update** - Ensure API documentation matches current endpoints
