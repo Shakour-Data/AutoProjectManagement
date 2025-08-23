@@ -253,8 +253,12 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] Module documentation template (English)
 - [ ] Module documentation template (Persian)
 - [ ] API reference template
-- [ ] Diagram standards template
+- [ ] UML diagram template (three levels)
+- [ ] BPMN diagram template (three levels)
+- [ ] DFD diagram template (three levels)
+- [ ] Algorithm documentation template (calculations and formulas)
 - [ ] User guide template
+- [ ] Mathematical notation standards template
 
 ## Next Steps:
 1. Start with API module documentation
