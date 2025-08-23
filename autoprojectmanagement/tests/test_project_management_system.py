@@ -30,10 +30,13 @@ class TestProjectManagementSystem(unittest.TestCase):
         self.pms.load_tasks()
 
         self.assertEqual(len(self.pms.projects), 1)
-        self.assertEqual(len(self.pms.tasks[1]), 1)
+        # JSON keys are loaded as strings, so we need to convert them
+        project_id_str = str(1)
+        task_id_str = str(1)
+        self.assertEqual(len(self.pms.tasks[project_id_str]), 1)
 
-        self.assertEqual(self.pms.projects[1]['name'], "Test Project")
-        self.assertEqual(self.pms.tasks[1][1]['title'], "Test Task")
+        self.assertEqual(self.pms.projects[project_id_str]['name'], "Test Project")
+        self.assertEqual(self.pms.tasks[project_id_str][task_id_str]['title'], "Test Task")
 
 if __name__ == "__main__":
     unittest.main()
