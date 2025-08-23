@@ -4,5 +4,11 @@
     "name": "Demo Project",
     "description": "A demonstration project for persistence testing",
     "status": "active"
+  },
+  "1": {
+    "id": 1,
+    "name": "Demo Project",
+    "description": "A demonstration project for persistence testing",
+    "status": "active"
   }
 }
