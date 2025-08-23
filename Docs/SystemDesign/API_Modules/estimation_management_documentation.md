@@ -97,3 +97,70 @@ EstimationManagement(
 
 **Cost and Complexity:**
 - `DEFAULT_COST_PER_RESOURCE = 100.0`
+- `DEFAULT_COMPLEXITY_MAPPING = {"low": 1.0, "medium": 3.0, "high": 5.0, "extreme": 8.0}`
+
+**Estimation Methods:**
+- `ESTIMATION_METHODS = {'PARAMETRIC': 'parametric', 'COCOMO_II': 'cocomo_ii', 'AGILE': 'agile'}`
+
+**Configuration:**
+- `MAX_LINE_LENGTH = 79`
+- `DEFAULT_ENCODING = 'utf-8'`
+- `JSON_INDENT = 2`
+
+**Error Messages:**
+- `ERROR_INVALID_TASK = "Task must be a non-empty dictionary"`
+- `ERROR_INVALID_PROJECT = "Project must be a non-empty dictionary"`
+- `ERROR_INVALID_RESOURCES = "Resources must be a positive number"`
+
+#### Response Format
+
+**Estimation Output:**
+```json
+{
+  "summary": {
+    "total_tasks": 5,
+    "total_duration": 25.0,
+    "total_cost": 12500.0
+  },
+  "details": {
+    "task_estimates": [
+      {
+        "id": "task-001",
+        "name": "Develop API",
+        "duration": 5.0,
+        "cost": 2500.0,
+        "complexity": "high"
+      }
+    ]
+  }
+}
+```
+
+**Task Input Format:**
+```json
+{
+  "id": "task-001",
+  "name": "Develop API",
+  "complexity": "high",
+  "resources": 5
+}
+```
+
+**Project Input Format:**
+```json
+{
+  "tasks": [
+    {
+      "id": "task-001",
+      "name": "Develop API",
+      "complexity": "high",
+      "resources": 5
+    }
+  ]
+}
+```
+
+#### Example Usage
+
+**Basic Estimation:**
+```python
