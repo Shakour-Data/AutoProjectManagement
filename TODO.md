@@ -273,6 +273,9 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] Verify diagram accuracy and completeness
 - [ ] Test all practical examples and code snippets
 - [ ] Ensure cultural appropriateness for Persian translations
+- [ ] Make code changes immediately during documentation when needed
+- [ ] Conduct testing immediately after each code change
+- [ ] Implement iterative development and documentation approach
 
 ## Next Steps:
 1. Start with API module documentation
