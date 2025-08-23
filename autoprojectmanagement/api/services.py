@@ -129,17 +129,23 @@ class ProjectService:
                 "error": f"Invalid JSON in task database: {str(e)}"
             }
 
-        if not isinstance(tasks_data, list):
+        # Handle both list and dictionary formats
+        if isinstance(tasks_data, dict):
+            # Convert dictionary to list of tasks
+            tasks_list = list(tasks_data.values())
+        elif isinstance(tasks_data, list):
+            tasks_list = tasks_data
+        else:
             return {
                 "error": (
-                    "Task database format error: expected list "
+                    "Task database format error: expected list or dict "
                     f"but got {type(tasks_data).__name__}"
                 )
             }
 
-        total_tasks: int = len(tasks_data)
+        total_tasks: int = len(tasks_list)
         completed_tasks: int = sum(
-            1 for task in tasks_data 
+            1 for task in tasks_list 
             if isinstance(task, dict) and task.get('status') == 'Done'
         )
         
