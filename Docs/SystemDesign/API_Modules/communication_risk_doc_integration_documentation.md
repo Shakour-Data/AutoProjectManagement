@@ -44,3 +44,27 @@ CommunicationRiskDocIntegration(repo_owner: str, repo_name: str, token: str = No
 **Internal Dependencies:**
 - `GitHubIntegration` from `autoprojectmanagement.services.integration_services.github_integration`
 - `RiskManagement` from `autoprojectmanagement.main_modules.communication_risk.risk_management`
+- `DocumentationAutomation` from `autoprojectmanagement.services.configuration_cli.documentation_automation`
+
+**External Dependencies:**
+- Python 3.8+
+- GitHub API access
+- Required packages from requirements.txt
+
+#### Response Format
+
+**Success Response:**
+```json
+{
+  "risks": {
+    "identified_risks": [
+      {
+        "risk_id": "risk-001",
+        "category": "communication",
+        "severity": "high",
+        "description": "Lack of regular status updates",
+        "mitigation": "Implement weekly status meetings"
+      }
+    ],
+    "total_risks": 5,
+    "high_severity_count": 2,
