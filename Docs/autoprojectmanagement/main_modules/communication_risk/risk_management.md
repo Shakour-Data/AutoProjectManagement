@@ -301,3 +301,30 @@ print(f"Risk impact: {impact}")
 |------------|------|---------------|
 | Project Data | Must be dictionary | "project_data must be a dictionary" |
 | Tasks List | Must be list | "tasks must be a list" |
+| Risk Level | Must be low/medium/high | Uses default 'low' for invalid values |
+| Probability | 0.0 ≤ probability ≤ 1.0 | "probability must be between 0 and 1" |
+
+## Configuration Constants
+
+### Risk Level Values
+| Constant | Value | Description |
+|----------|-------|-------------|
+| `RISK_LEVELS['low']` | 1 | Low risk impact value |
+| `RISK_LEVELS['medium']` | 3 | Medium risk impact value |
+| `RISK_LEVELS['high']` | 5 | High risk impact value |
+
+### Default Values
+| Constant | Value | Purpose |
+|----------|-------|---------|
+| `DEFAULT_IMPORTANCE` | 1.0 | Default activity importance |
+| `DEFAULT_PRIORITY` | 1.0 | Default activity priority |
+| `DEFAULT_PROBABILITY` | 0.5 | Default risk probability |
+
+### Label Prefixes
+| Constant | Value | Purpose |
+|----------|-------|---------|
+| `ACTIVITY_LABEL_PREFIX` | `activity:` | Activity association prefix |
+| `WBS_LABEL_PREFIX` | `wbs:` | WBS association prefix |
+| `IMPORTANCE_LABEL_PREFIX` | `importance:` | Importance score prefix |
+| `PRIORITY_LABEL_PREFIX` | `priority:` | Priority score prefix |
+
