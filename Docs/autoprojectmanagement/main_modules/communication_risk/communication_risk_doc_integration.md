@@ -137,3 +137,44 @@ flowchart TD
 |---------|-------------|-------------------|
 | Repository Access | Read repository information | `/repos/{owner}/{repo}` |
 | Commit History | Access Git commit history | `/repos/{owner}/{repo}/commits` |
+| Issues & PRs | Read issues and pull requests | `/repos/{owner}/{repo}/issues` |
+| Releases | Access release information | `/repos/{owner}/{repo}/releases` |
+
+### Risk Management Integration
+| Risk Category | Description | Analysis Method |
+|---------------|-------------|----------------|
+| Code Quality | Code complexity and quality issues | Static analysis |
+| Documentation | Missing or outdated documentation | Content analysis |
+| Dependencies | Outdated or vulnerable dependencies | Dependency scanning |
+| Security | Security vulnerabilities and risks | Security scanning |
+| Performance | Performance bottlenecks and issues | Performance analysis |
+
+### Documentation Automation
+| Document Type | Description | Generation Method |
+|---------------|-------------|------------------|
+| Changelog | Automated change history | Git commit analysis |
+| Release Notes | Version release information | Git tags and commits |
+| Risk Reports | Comprehensive risk analysis | Risk data aggregation |
+| Project Documentation | Overall project documentation | Template-based generation |
+
+## Configuration Requirements
+
+### Environment Variables
+| Variable | Description | Required | Default |
+|----------|-------------|----------|---------|
+| `GITHUB_TOKEN` | GitHub personal access token | Optional | `None` |
+| `GITHUB_OWNER` | Repository owner/organization | Required | - |
+| `GITHUB_REPO` | Repository name | Required | - |
+
+### Authentication Setup
+```bash
+# Set GitHub token (recommended for production)
+export GITHUB_TOKEN=your_personal_access_token
+export GITHUB_OWNER=your_organization
+export GITHUB_REPO=your_repository
+```
+
+## Usage Examples
+
+### Basic Usage
+```python
