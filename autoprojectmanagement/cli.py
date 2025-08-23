@@ -59,6 +59,7 @@ import click
 
 from .main_modules.project_management_system import ProjectManagementSystem
 from autoprojectmanagement.services.configuration_cli.cli_commands import CLICommands
+from autoprojectmanagement.cli_dashboard import dashboard_cli
 
 
 # Configure logging for CLI
@@ -419,8 +420,12 @@ def help_command(list_commands: bool, help_flag: bool) -> None:
         click.echo("  add-task          - Add new task to project")
         click.echo("  report            - Generate project reports")
         click.echo("  update-task-status - Update task status")
+        click.echo("  dashboard         - Manage dashboard (start, stop, open, status)")
         click.echo("  help              - Show help information")
 
+
+# Add dashboard command to main CLI
+main.add_command(dashboard_cli, name="dashboard")
 
 if __name__ == "__main__":
     main()

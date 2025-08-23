@@ -3,11 +3,11 @@
 """
 path: autoprojectmanagement/api/app.py
 File: app.py
-Purpose: Flask application setup
+Purpose: FastAPI application setup
 Author: AutoProjectManagement Team
 Version: 2.0.0
 License: MIT
-Description: Flask application setup within the AutoProjectManagement system
+Description: FastAPI application setup within the AutoProjectManagement system
 """
 
 import logging
@@ -28,7 +28,7 @@ MODIFIED_DATE = "2025-08-14"
 
 # Module-level docstring
 __doc__ = """
-Flask application setup within the AutoProjectManagement system
+FastAPI application setup within the AutoProjectManagement system
 
 This module is part of the AutoProjectManagement system.
 For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
@@ -76,17 +76,15 @@ logger = logging.getLogger(__name__)
 # Import business logic
 try:
     from autoprojectmanagement.api.services import ProjectService
-    from autoprojectmanagement.services.configuration_cli.cli_commands import (
-        get_project_status as cli_get_project_status
-    )
+    from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
+    from autoprojectmanagement.api.sse_endpoints import router as sse_router
 except ImportError:
     # Handle import for development
     import sys
     sys.path.append(str(Path(__file__).resolve().parents[2]))
     from autoprojectmanagement.api.services import ProjectService
-    from autoprojectmanagement.services.configuration_cli.cli_commands import (
-        get_project_status as cli_get_project_status
-    )
+    from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
+    from autoprojectmanagement.api.sse_endpoints import router as sse_router
 
 # Pydantic models for request/response validation
 class ProjectStatus(BaseModel):
@@ -443,6 +441,12 @@ async def internal_error_handler(request, exc):
             "timestamp": datetime.now().isoformat()
         }
     )
+
+# Include dashboard endpoints
+app.include_router(dashboard_router, prefix=API_PREFIX)
+
+# Include SSE endpoints
+app.include_router(sse_router, prefix=API_PREFIX)
 
 # Additional utility endpoints
 @app.get(

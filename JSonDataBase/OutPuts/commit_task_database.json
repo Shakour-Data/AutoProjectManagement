@@ -37788,5 +37788,1229 @@
         "parent_commits": [
             "7dc7e0c22e8b6769190ca2a1008bce2e78a17df4"
         ]
+    },
+    "9910c672bcf13a94f95fbe15ab42c2cac0ec29ae": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Configuration_Guide.md",
+        "commit_message": "🗑️ remove(Docs): Deleted files updated\\n\\nChanges included (as of 2025-08-18 18:48:33):\\n- Docs/entire_project/Configuration_Guide.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/entire_project/Configuration_Guide.md b/Docs/entire_project/Configuration_Guide.md\n    deleted file mode 100644\n    index 7fa2f6e..0000000\n    --- a/Docs/entire_project/Configuration_Guide.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-18 15:18:33",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Mon Aug 18 18:48:33 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "87359dbba13fdcfdd4576fcecf85dcc1a064886b"
+        ]
+    },
+    "cbbd3dd5c9ddcc051f5f9633005543b8ae67bfb4": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Configuration_Guide/",
+        "commit_message": "📝 docs(Docs): Untracked files updated\\n\\nChanges included (as of 2025-08-18 18:48:34):\\n- Docs/entire_project/Configuration_Guide/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Configuration_Guide/Configuration_Guide.md b/Docs/entire_project/Configuration_Guide/Configuration_Guide.md\n    new file mode 100644\n    index 0000000..7fa2f6e\n    --- /dev/null\n    +++ b/Docs/entire_project/Configuration_Guide/Configuration_Guide.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-18 15:18:35",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Mon Aug 18 18:48:34 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "9910c672bcf13a94f95fbe15ab42c2cac0ec29ae"
+        ]
+    },
+    "546d5b946cc38125bb553c8e82b24ebe14c8d96f": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250818_184832.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-18 18:48:36):\\n- backups/metadata/backup_20250818_184832.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250818_184832.json b/backups/metadata/backup_20250818_184832.json\n    new file mode 100644\n    index 0000000..33ff8b9\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250818_184832.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-18 15:18:37",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Mon Aug 18 18:48:36 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "cbbd3dd5c9ddcc051f5f9633005543b8ae67bfb4"
+        ]
+    },
+    "5fcaa34f27826bcf1e8d81965129d0bc3e3ca5e1": {
+        "task_id": "root",
+        "file_path": "README.md",
+        "commit_message": "🐛 fix: Modified files updated\\n\\nChanges included (as of 2025-08-19 09:33:01):\\n- README.md: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/README.md b/README.md\n    index 1aa48ac..164e370 100644\n    --- a/README.md\n    +++ b/README.md\n    @@ -1,388 +1,556 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 06:03:03",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 09:33:01 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "961ba07ea4935b7be9d373172ab9f842c20f54c3"
+        ]
+    },
+    "d5b14383670767994e15e403fc92b140418a5c33": {
+        "task_id": "root",
+        "file_path": "README_fa.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-19 09:33:10):\\n- README_fa.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/README_fa.md b/README_fa.md\n    new file mode 100644\n    index 0000000..89f5012\n    --- /dev/null\n    +++ b/README_fa.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 06:03:12",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 09:33:10 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "5fcaa34f27826bcf1e8d81965129d0bc3e3ca5e1"
+        ]
+    },
+    "bf957b50f4fc03e05e683679e08b270c52eae7f1": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250819_093258.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-19 09:33:18):\\n- backups/metadata/backup_20250819_093258.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250819_093258.json b/backups/metadata/backup_20250819_093258.json\n    new file mode 100644\n    index 0000000..dc3978e\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250819_093258.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-19 06:03:21",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 09:33:19 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "d5b14383670767994e15e403fc92b140418a5c33"
+        ]
+    },
+    "134fa805bc5d377c3bdd293c849bb650e08d3b69": {
+        "task_id": "root",
+        "file_path": "README_fa.md",
+        "commit_message": "🐛 fix: Modified files updated\\n\\nChanges included (as of 2025-08-19 09:58:40):\\n- README_fa.md: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/README_fa.md b/README_fa.md\n    index 89f5012..fca9aec 100644\n    --- a/README_fa.md\n    +++ b/README_fa.md\n    @@ -1,3 +1,5 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 06:28:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 09:58:40 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "42a2dc1f17517e3d42fba2a6d62c1d8ff91b8919"
+        ]
+    },
+    "ffe3755eef856bc4e2dd0e484b1ab6b54961224b": {
+        "task_id": "root",
+        "file_path": "README_Per_fa.pdf",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-19 09:58:49):\\n- README_Per_fa.pdf: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/README_Per_fa.pdf b/README_Per_fa.pdf\n    new file mode 100644\n    index 0000000..3c6697c\n    --- /dev/null\n    +++ b/README_Per_fa.pdf\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 06:28:53",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 09:58:52 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "134fa805bc5d377c3bdd293c849bb650e08d3b69"
+        ]
+    },
+    "ea054760afde72b745d846a39e5bcbbdbf2d9020": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250819_095825.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-19 09:59:00):\\n- backups/metadata/backup_20250819_095825.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250819_095825.json b/backups/metadata/backup_20250819_095825.json\n    new file mode 100644\n    index 0000000..e5a9013\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250819_095825.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-19 06:29:02",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 09:59:01 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "ffe3755eef856bc4e2dd0e484b1ab6b54961224b"
+        ]
+    },
+    "aef1f3f370509d1c54a871eda3ae839cffd3130c": {
+        "task_id": "root",
+        "file_path": "README_Per_fa.pdf",
+        "commit_message": "🐛 fix: Modified files updated\\n\\nChanges included (as of 2025-08-19 10:26:15):\\n- README_Per_fa.pdf: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/README_Per_fa.pdf b/README_Per_fa.pdf\n    index 3c6697c..a509918 100644\n    --- a/README_Per_fa.pdf\n    +++ b/README_Per_fa.pdf\n    @@ -1,7 +1,7 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 06:56:21",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 10:26:19 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "cb8f5a66a35bdd3d4f7ada3f75d98cb00e1b52ff"
+        ]
+    },
+    "35c9612bf496e06b4230721f54125ff1357470e1": {
+        "task_id": "root",
+        "file_path": "README_Per.pdf",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-19 10:26:29):\\n- README_Per.pdf: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/README_Per.pdf b/README_Per.pdf\n    new file mode 100644\n    index 0000000..3a481b7\n    --- /dev/null\n    +++ b/README_Per.pdf\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 06:56:32",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 10:26:31 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "aef1f3f370509d1c54a871eda3ae839cffd3130c"
+        ]
+    },
+    "37d5e8c6d6240d42a9a9146c63fa6331e4eb9cae": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250819_102608.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-19 10:26:40):\\n- backups/metadata/backup_20250819_102608.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250819_102608.json b/backups/metadata/backup_20250819_102608.json\n    new file mode 100644\n    index 0000000..3aaea88\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250819_102608.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-19 06:56:43",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 10:26:41 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "35c9612bf496e06b4230721f54125ff1357470e1"
+        ]
+    },
+    "7e7f1f5e63e727b1e335994625f8caac92ed0f9d": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-19 12:34:08):\\n- Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md b/Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md\n    new file mode 100644\n    index 0000000..cbf7c6c\n    --- /dev/null\n    +++ b/Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 09:04:24",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 12:34:12 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "0f0a0b2e05bcc00bbfec8440fb6d2e2b2ee5c233"
+        ]
+    },
+    "9a76425a447d9359dfadb81bf084f3dc891fc2e8": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250819_123339.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-19 12:34:59):\\n- backups/metadata/backup_20250819_123339.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250819_123339.json b/backups/metadata/backup_20250819_123339.json\n    new file mode 100644\n    index 0000000..c86e8d9\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250819_123339.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-19 09:05:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Tue Aug 19 12:35:02 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "7e7f1f5e63e727b1e335994625f8caac92ed0f9d"
+        ]
+    },
+    "87e58ffe878c84079f271b7fcf0c0971453cdb32": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Configuration_Guide/Configuration_Guide.md",
+        "commit_message": "🐛 fix(Docs): Modified files updated\\n\\nChanges included (as of 2025-08-19 20:20:36):\\n- Docs/entire_project/Configuration_Guide/Configuration_Guide.md: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/Docs/entire_project/Configuration_Guide/Configuration_Guide.md b/Docs/entire_project/Configuration_Guide/Configuration_Guide.md\n    index 7fa2f6e..cbf7c6c 100644\n    --- a/Docs/entire_project/Configuration_Guide/Configuration_Guide.md\n    +++ b/Docs/entire_project/Configuration_Guide/Configuration_Guide.md\n    @@ -194,6 +194,90 @@ flowchart TD\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 16:50:37",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 20:20:36 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "613bccc6e3190dc634fce2c004c36069d54a1bf7"
+        ]
+    },
+    "a78f905c02728edc36096645338fa98e9b2b6855": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md",
+        "commit_message": "🗑️ remove(Docs): Deleted files updated\\n\\nChanges included (as of 2025-08-19 20:20:39):\\n- Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md b/Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md\n    deleted file mode 100644\n    index cbf7c6c..0000000\n    --- a/Docs/entire_project/Configuration_Guide/Configuration_Guide_updated.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 16:50:40",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 20:20:39 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "87e58ffe878c84079f271b7fcf0c0971453cdb32"
+        ]
+    },
+    "e14075c3b6d420f97c7539791b893052c947a59a": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Configuration_Guide/Configuration_Guide_fa.md",
+        "commit_message": "📝 docs(Docs): Untracked files updated\\n\\nChanges included (as of 2025-08-19 20:20:41):\\n- Docs/entire_project/Configuration_Guide/Configuration_Guide_fa.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Configuration_Guide/Configuration_Guide_fa.md b/Docs/entire_project/Configuration_Guide/Configuration_Guide_fa.md\n    new file mode 100644\n    index 0000000..15e9f2c\n    --- /dev/null\n    +++ b/Docs/entire_project/Configuration_Guide/Configuration_Guide_fa.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 16:50:42",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 20:20:41 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "a78f905c02728edc36096645338fa98e9b2b6855"
+        ]
+    },
+    "864a8822922902ee87fdbfcd2d381ae0bcfe6660": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf",
+        "commit_message": "📝 docs(Docs): Untracked files updated\\n\\nChanges included (as of 2025-08-19 20:20:43):\\n- Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf b/Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf\n    new file mode 100644\n    index 0000000..f20af5a\n    Binary files /dev/null and b/Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf differ\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 16:50:44",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 20:20:43 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "e14075c3b6d420f97c7539791b893052c947a59a"
+        ]
+    },
+    "ba4e561ee866d9bdf3e05bd1710a9a242f045470": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250819_202033.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-19 20:20:45):\\n- backups/metadata/backup_20250819_202033.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250819_202033.json b/backups/metadata/backup_20250819_202033.json\n    new file mode 100644\n    index 0000000..e529a13\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250819_202033.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-19 16:50:46",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 20:20:46 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "864a8822922902ee87fdbfcd2d381ae0bcfe6660"
+        ]
+    },
+    "e5d193e0e06823a6d0c82ab9b17e0dcdf03849c7": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Development_Environment.md",
+        "commit_message": "🗑️ remove(Docs): Deleted files updated\\n\\nChanges included (as of 2025-08-19 21:56:22):\\n- Docs/entire_project/Development_Environment.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/entire_project/Development_Environment.md b/Docs/entire_project/Development_Environment.md\n    deleted file mode 100644\n    index 0f87af9..0000000\n    --- a/Docs/entire_project/Development_Environment.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 18:26:22",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 21:56:22 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "e93631f0ceae701f644fcbb7cdd16999ff3a3ac2"
+        ]
+    },
+    "4f9bdbb05556205f068c7c0965a998bcbcad3a33": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Development_Environment/",
+        "commit_message": "📝 docs(Docs): Untracked files updated\\n\\nChanges included (as of 2025-08-19 21:56:25):\\n- Docs/entire_project/Development_Environment/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Development_Environment/Development_Environment.md b/Docs/entire_project/Development_Environment/Development_Environment.md\n    new file mode 100644\n    index 0000000..0f87af9\n    --- /dev/null\n    +++ b/Docs/entire_project/Development_Environment/Development_Environment.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 18:26:25",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 21:56:25 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "e5d193e0e06823a6d0c82ab9b17e0dcdf03849c7"
+        ]
+    },
+    "a4b4d73459654bf9bd1238df8335a6196ddac4e7": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250819_215620.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-19 21:56:28):\\n- backups/metadata/backup_20250819_215620.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250819_215620.json b/backups/metadata/backup_20250819_215620.json\n    new file mode 100644\n    index 0000000..1b8c0dd\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250819_215620.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-19 18:26:29",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 21:56:28 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "4f9bdbb05556205f068c7c0965a998bcbcad3a33"
+        ]
+    },
+    "12b250c4887b62126d2be3aef63296ba0ea2c704": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf",
+        "commit_message": "🐛 fix(Docs): Modified files updated\\n\\nChanges included (as of 2025-08-19 22:50:19):\\n- Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf b/Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf\n    index f20af5a..daf0a13 100644\n    Binary files a/Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf and b/Docs/entire_project/Configuration_Guide/Configuration_Guide_per.pdf differ\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 19:20:19",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 22:50:19 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "a4b4d73459654bf9bd1238df8335a6196ddac4e7"
+        ]
+    },
+    "08a9566b0ec8e8bb3c42602fe57450adcd6c0ec5": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Configuration_Guide/Configuration_Guide_fa_per.pdf",
+        "commit_message": "✨ feat(Docs): Added files updated\\n\\nChanges included (as of 2025-08-19 22:54:48):\\n- Docs/entire_project/Configuration_Guide/Configuration_Guide_fa_per.pdf: This file was newly added to the project and is now tracked.\\n  Summary:\\n    diff --git a/Docs/entire_project/Configuration_Guide/Configuration_Guide_fa_per.pdf b/Docs/entire_project/Configuration_Guide/Configuration_Guide_fa_per.pdf\n    new file mode 100644\n    index 0000000..a74319b\n    --- /dev/null\n    +++ b/Docs/entire_project/Configuration_Guide/Configuration_Guide_fa_per.pdf\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 19:24:50",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 22:54:49 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "12b250c4887b62126d2be3aef63296ba0ea2c704"
+        ]
+    },
+    "21bb9ead584e97db4d3ab3c077006b47dcd6046e": {
+        "task_id": "JSonDataBase",
+        "file_path": "JSonDataBase/OutPuts/commit_task_database.json",
+        "commit_message": "🐛 fix(JSonDataBase): Modified files updated\\n\\nChanges included (as of 2025-08-19 22:54:53):\\n- JSonDataBase/OutPuts/commit_task_database.json: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/JSonDataBase/OutPuts/commit_task_database.json b/JSonDataBase/OutPuts/commit_task_database.json\n    index ac7d9dc..9bfa5a7 100644\n    --- a/JSonDataBase/OutPuts/commit_task_database.json\n    +++ b/JSonDataBase/OutPuts/commit_task_database.json\n    @@ -38111,5 +38111,90 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 19:24:53",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 22:54:53 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "08a9566b0ec8e8bb3c42602fe57450adcd6c0ec5"
+        ]
+    },
+    "83d2e64e0b188d16c4521a938c939b7d388f650e": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/services/automation_services/auto_commit.py",
+        "commit_message": "🐛 fix(autoprojectmanagement): Modified files updated\\n\\nChanges included (as of 2025-08-19 22:54:56):\\n- autoprojectmanagement/services/automation_services/auto_commit.py: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/autoprojectmanagement/services/automation_services/auto_commit.py b/autoprojectmanagement/services/automation_services/auto_commit.py\n    index 550fd9f..5cb56d6 100644\n    --- a/autoprojectmanagement/services/automation_services/auto_commit.py\n    +++ b/autoprojectmanagement/services/automation_services/auto_commit.py\n    @@ -279,12 +279,26 @@ class AutoCommit:\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-19 19:24:56",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 22:54:56 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "21bb9ead584e97db4d3ab3c077006b47dcd6046e"
+        ]
+    },
+    "2dc970c61c1859ac3e9a0add338b8eb10075db77": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250819_225016.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-19 22:54:58):\\n- backups/metadata/backup_20250819_225016.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250819_225016.json b/backups/metadata/backup_20250819_225016.json\n    new file mode 100644\n    index 0000000..39dd9f0\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250819_225016.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-19 19:24:58",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 22:54:58 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "83d2e64e0b188d16c4521a938c939b7d388f650e"
+        ]
+    },
+    "941a7befff66253edce0efe77e1af1b26ca837b5": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250819_225102.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-19 22:55:00):\\n- backups/metadata/backup_20250819_225102.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250819_225102.json b/backups/metadata/backup_20250819_225102.json\n    new file mode 100644\n    index 0000000..9f6ecf2\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250819_225102.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-19 19:25:00",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 22:55:00 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "2dc970c61c1859ac3e9a0add338b8eb10075db77"
+        ]
+    },
+    "50c6b0a298f9222dfa76433e7e2479bb5f03e13a": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250819_225429.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-19 22:55:02):\\n- backups/metadata/backup_20250819_225429.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250819_225429.json b/backups/metadata/backup_20250819_225429.json\n    new file mode 100644\n    index 0000000..fcabbda\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250819_225429.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-19 19:25:03",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Tue Aug 19 22:55:03 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "941a7befff66253edce0efe77e1af1b26ca837b5"
+        ]
+    },
+    "b1b17ab7dc9291aa20c7837b7a3a11c71943fb86": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/__init__.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:03):\\n- Docs/autoprojectmanagement/main_modules/resource_management/__init__.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/__init__.md b/Docs/autoprojectmanagement/main_modules/resource_management/__init__.md\n    deleted file mode 100644\n    index 4784cad..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/__init__.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:06",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:04 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "07ae22ab18689016a68690e16973c46c6c975f1b"
+        ]
+    },
+    "c8573431437302311ffda861d78e5416905cbaa3": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:15):\\n- Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md b/Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md\n    deleted file mode 100644\n    index d6ef83e..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/resource_allocation_manager.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:18",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:16 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "b1b17ab7dc9291aa20c7837b7a3a11c71943fb86"
+        ]
+    },
+    "8ef33dc7be269b844d9ce3d78ed2deacc33e1031": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:26):\\n- Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md b/Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md\n    deleted file mode 100644\n    index 403cc38..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/resource_leveling.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:29",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:27 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "c8573431437302311ffda861d78e5416905cbaa3"
+        ]
+    },
+    "28542e4ac519b79277f4403867ba9ecb4b25de65": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:37):\\n- Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md b/Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md\n    deleted file mode 100644\n    index f082c04..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/resource_management.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:42",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:38 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "8ef33dc7be269b844d9ce3d78ed2deacc33e1031"
+        ]
+    },
+    "25d7cbd5d20c8c69490f047f2cda223ea26846ac": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:37:50):\\n- Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md b/Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md\n    deleted file mode 100644\n    index d0f8865..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/resource_management/resource_management_Module.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:07:54",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:37:51 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "28542e4ac519b79277f4403867ba9ecb4b25de65"
+        ]
+    },
+    "9da8681e3bb609c2ae8da4b7083badefa96763cd": {
+        "task_id": "root",
+        "file_path": "Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:38:02):\\n- Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md b/Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md\n    deleted file mode 100644\n    index 275574e..0000000\n    --- a/Docs/autoprojectmanagement/main_modules/task_workflow_management_Module.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:08:05",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:38:03 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "25d7cbd5d20c8c69490f047f2cda223ea26846ac"
+        ]
+    },
+    "b46cb74597fe6c9116bef34dfa6f7a1d88470c59": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 08:38:13):\\n- Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md b/Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md\n    deleted file mode 100644\n    index 96dc9bf..0000000\n    --- a/Docs/entire_project/Development_Environment/Development_Environment_fa_rtl.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:08:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:38:13 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "9da8681e3bb609c2ae8da4b7083badefa96763cd"
+        ]
+    },
+    "a612aa4a18ddaf0ca2d3745f232b6ebb247f373e": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Development_Environment/Development_Environment_fa.md",
+        "commit_message": "🐛 fix: Modified files updated\\n\\nChanges included (as of 2025-08-20 08:38:25):\\n- Docs/entire_project/Development_Environment/Development_Environment_fa.md: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/Docs/entire_project/Development_Environment/Development_Environment_fa.md b/Docs/entire_project/Development_Environment/Development_Environment_fa.md\n    index 4f04cde..96dc9bf 100644\n    --- a/Docs/entire_project/Development_Environment/Development_Environment_fa.md\n    +++ b/Docs/entire_project/Development_Environment/Development_Environment_fa.md\n    @@ -1,18 +1,20 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:08:28",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:38:25 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "b46cb74597fe6c9116bef34dfa6f7a1d88470c59"
+        ]
+    },
+    "194fd32daba981bb77188004112fa069666f509d": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250820_083637.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 08:38:42):\\n- backups/metadata/backup_20250820_083637.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250820_083637.json b/backups/metadata/backup_20250820_083637.json\n    new file mode 100644\n    index 0000000..91ea453\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250820_083637.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.033,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 05:08:49",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 08:38:44 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "a612aa4a18ddaf0ca2d3745f232b6ebb247f373e"
+        ]
+    },
+    "bee5a840d615d60a42f9099c49b8f3bf3ee9ae38": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/DFD_Diagrams.md",
+        "commit_message": "🗑️ remove: Deleted files updated\\n\\nChanges included (as of 2025-08-20 09:46:00):\\n- Docs/entire_project/DFD_Diagrams.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/entire_project/DFD_Diagrams.md b/Docs/entire_project/DFD_Diagrams.md\n    deleted file mode 100644\n    index ffefe84..0000000\n    --- a/Docs/entire_project/DFD_Diagrams.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 06:16:02",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 09:46:01 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "fa43bdf29ed57b2b96db22d07ecf2c78497852c8"
+        ]
+    },
+    "51234899fdfcec6e9291b71a962c36c82b59d7e2": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/DFD_Diagrams/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 09:46:10):\\n- Docs/entire_project/DFD_Diagrams/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/DFD_Diagrams/DFD_Diagrams.md b/Docs/entire_project/DFD_Diagrams/DFD_Diagrams.md\n    new file mode 100644\n    index 0000000..ffefe84\n    --- /dev/null\n    +++ b/Docs/entire_project/DFD_Diagrams/DFD_Diagrams.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 06:16:11",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 09:46:10 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "bee5a840d615d60a42f9099c49b8f3bf3ee9ae38"
+        ]
+    },
+    "373f422c93c61ee195ebc4d20ed8498a5aa571e1": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Development_Environment/Development_Environment_Guide_Per.pdf",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 09:46:18):\\n- Docs/entire_project/Development_Environment/Development_Environment_Guide_Per.pdf: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Development_Environment/Development_Environment_Guide_Per.pdf b/Docs/entire_project/Development_Environment/Development_Environment_Guide_Per.pdf\n    new file mode 100644\n    index 0000000..c6a11b9\n    --- /dev/null\n    +++ b/Docs/entire_project/Development_Environment/Development_Environment_Guide_Per.pdf\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 06:16:22",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 09:46:21 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "51234899fdfcec6e9291b71a962c36c82b59d7e2"
+        ]
+    },
+    "3defbf311d2143634c8293c4bde9abb14289a57a": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250820_094529.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 09:46:29):\\n- backups/metadata/backup_20250820_094529.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250820_094529.json b/backups/metadata/backup_20250820_094529.json\n    new file mode 100644\n    index 0000000..7126562\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250820_094529.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 06:16:30",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 09:46:29 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "373f422c93c61ee195ebc4d20ed8498a5aa571e1"
+        ]
+    },
+    "375cf5e4e2b027407395793bb2d0459198f98d60": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Development_Environment/Development_Environment_Guide_fa_Per.pdf",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 10:19:20):\\n- Docs/entire_project/Development_Environment/Development_Environment_Guide_fa_Per.pdf: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Development_Environment/Development_Environment_Guide_fa_Per.pdf b/Docs/entire_project/Development_Environment/Development_Environment_Guide_fa_Per.pdf\n    new file mode 100644\n    index 0000000..0b174cc\n    --- /dev/null\n    +++ b/Docs/entire_project/Development_Environment/Development_Environment_Guide_fa_Per.pdf\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 06:49:24",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 10:19:22 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "27bf7809403c75825e466934e45b9e7ed8021b55"
+        ]
+    },
+    "19609c3afb123cb509c41d6b18dd7184be510504": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250820_101818.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 10:19:30):\\n- backups/metadata/backup_20250820_101818.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250820_101818.json b/backups/metadata/backup_20250820_101818.json\n    new file mode 100644\n    index 0000000..d71b505\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250820_101818.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-20 06:49:33",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 10:19:31 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "375cf5e4e2b027407395793bb2d0459198f98d60"
+        ]
+    },
+    "1aba01fd8158c2bc22b6efc025bef0e5f44d733b": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250820_103659.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 10:38:56):\\n- backups/metadata/backup_20250820_103659.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250820_103659.json b/backups/metadata/backup_20250820_103659.json\n    new file mode 100644\n    index 0000000..45429f1\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250820_103659.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-20 07:08:58",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 10:38:56 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "36444277819488e56d79a7e63dc07f25aa7bcfbd"
+        ]
+    },
+    "59eba619923331e4f43202137a4449ab9fc73f36": {
+        "task_id": "root",
+        "file_path": ".dockerignore",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:14):\\n- .dockerignore: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/.dockerignore b/.dockerignore\n    new file mode 100644\n    index 0000000..aacd74a\n    --- /dev/null\n    +++ b/.dockerignore\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:15",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:14 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "40a27414270f7d424924e3d8b6b7746b6aba2e4e"
+        ]
+    },
+    "247b688c47c1f600a2b6f9d3ee2d6da49d3fa140": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:24):\\n- Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf b/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf\n    new file mode 100644\n    index 0000000..af70196\n    --- /dev/null\n    +++ b/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per.pdf\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:28",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:26 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "59eba619923331e4f43202137a4449ab9fc73f36"
+        ]
+    },
+    "36dc0dd2e114254ba02de6d68f36013a97651b5d": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:36):\\n- Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf b/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf\n    new file mode 100644\n    index 0000000..f858fe1\n    --- /dev/null\n    +++ b/Docs/entire_project/DFD_Diagrams/Data_Flow_Diagrams_Per_fa.pdf\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:38 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "247b688c47c1f600a2b6f9d3ee2d6da49d3fa140"
+        ]
+    },
+    "19a3e09a60fa9d227bdb9bb01c3e6eff0c9bcdf4": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:48):\\n- Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md b/Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md\n    new file mode 100644\n    index 0000000..097975e\n    --- /dev/null\n    +++ b/Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:49",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:48 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "36dc0dd2e114254ba02de6d68f36013a97651b5d"
+        ]
+    },
+    "627c44566ade41bfe644f8cacd2e1d7602293e77": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Docker_Setup/README.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:39:56):\\n- Docs/entire_project/Docker_Setup/README.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/README.md b/Docs/entire_project/Docker_Setup/README.md\n    new file mode 100644\n    index 0000000..2ae4d61\n    --- /dev/null\n    +++ b/Docs/entire_project/Docker_Setup/README.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:09:59",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:39:56 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "19a3e09a60fa9d227bdb9bb01c3e6eff0c9bcdf4"
+        ]
+    },
+    "a7ff059c8f62cf69fb661eddada011551adf7ebd": {
+        "task_id": "root",
+        "file_path": "Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:05):\\n- Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md b/Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md\n    new file mode 100644\n    index 0000000..0a5918b\n    --- /dev/null\n    +++ b/Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:07",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:05 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "627c44566ade41bfe644f8cacd2e1d7602293e77"
+        ]
+    },
+    "f721c0790c699d9cc7d9c92b1b2e2d6ceb8e4b52": {
+        "task_id": "root",
+        "file_path": "backups/metadata/backup_20250820_123545.json",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:13):\\n- backups/metadata/backup_20250820_123545.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250820_123545.json b/backups/metadata/backup_20250820_123545.json\n    new file mode 100644\n    index 0000000..7c26404\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250820_123545.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-20 09:10:16",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:14 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "a7ff059c8f62cf69fb661eddada011551adf7ebd"
+        ]
+    },
+    "c869c008051e0fcea5c4504bbab0a9f8ad938fe7": {
+        "task_id": "root",
+        "file_path": "docker-compose.dev.yml",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:23):\\n- docker-compose.dev.yml: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/docker-compose.dev.yml b/docker-compose.dev.yml\n    new file mode 100644\n    index 0000000..d4b1aa4\n    --- /dev/null\n    +++ b/docker-compose.dev.yml\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:24",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:23 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "f721c0790c699d9cc7d9c92b1b2e2d6ceb8e4b52"
+        ]
+    },
+    "fe92ec5a92d848d170b5625fccc689524d082f9b": {
+        "task_id": "root",
+        "file_path": "docker-compose.prod.yml",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:31):\\n- docker-compose.prod.yml: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/docker-compose.prod.yml b/docker-compose.prod.yml\n    new file mode 100644\n    index 0000000..0de6c99\n    --- /dev/null\n    +++ b/docker-compose.prod.yml\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:33",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:32 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "c869c008051e0fcea5c4504bbab0a9f8ad938fe7"
+        ]
+    },
+    "d2863664065df37553a0f2277437b6d4efb2ba4a": {
+        "task_id": "root",
+        "file_path": "docker-compose.yml",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:40):\\n- docker-compose.yml: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/docker-compose.yml b/docker-compose.yml\n    new file mode 100644\n    index 0000000..89f8c2a\n    --- /dev/null\n    +++ b/docker-compose.yml\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:41",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:40 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "fe92ec5a92d848d170b5625fccc689524d082f9b"
+        ]
+    },
+    "e92612fc77d12ee3fa1ed2ca69d00825441c6822": {
+        "task_id": "root",
+        "file_path": "docker/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:40:50):\\n- docker/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/docker/api/Dockerfile b/docker/api/Dockerfile\n    new file mode 100644\n    index 0000000..cecd4bf\n    --- /dev/null\n    +++ b/docker/api/Dockerfile\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:10:53",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:40:50 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "d2863664065df37553a0f2277437b6d4efb2ba4a"
+        ]
+    },
+    "9c14c735ac412922606585f2453d1170d7aa1ff9": {
+        "task_id": "root",
+        "file_path": "scripts/",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-20 12:41:01):\\n- scripts/: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/scripts/auto-docker-setup.sh b/scripts/auto-docker-setup.sh\n    new file mode 100644\n    index 0000000..e5f130f\n    --- /dev/null\n    +++ b/scripts/auto-docker-setup.sh\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.025,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 09:11:03",
+        "author": "Shakour",
+        "email": "81189779+Shakour-Data@users.noreply.github.com",
+        "date": "Wed Aug 20 12:41:02 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "e92612fc77d12ee3fa1ed2ca69d00825441c6822"
+        ]
+    },
+    "2c5ec9b0b721cf8d9c24d63aa5a3e119b5ae6c66": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md",
+        "commit_message": "🗑️ remove(Docs): Deleted files updated\\n\\nChanges included (as of 2025-08-20 20:42:07):\\n- Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md b/Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md\n    deleted file mode 100644\n    index 097975e..0000000\n    --- a/Docs/entire_project/Docker_Setup/AUTOMATED_DOCKER_SETUP.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 17:12:09",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Wed Aug 20 20:42:07 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "58f8612f03d115f98f4db4920687fad467c495ca"
+        ]
+    },
+    "43f135bda74b2550ee3668ca62db1b5f828f48ba": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md",
+        "commit_message": "🗑️ remove(Docs): Deleted files updated\\n\\nChanges included (as of 2025-08-20 20:42:11):\\n- Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md: This file was removed from the project.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md b/Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md\n    deleted file mode 100644\n    index 0a5918b..0000000\n    --- a/Docs/entire_project/Docker_Setup/UNIFIED_DOCKER_SETUP.md\n    +++ /dev/null\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 17:12:11",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Wed Aug 20 20:42:11 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "2c5ec9b0b721cf8d9c24d63aa5a3e119b5ae6c66"
+        ]
+    },
+    "6d83cc02c7c81bc0cf2f0eedca53f02a6e43c316": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Docker_Setup/Docker_Setup.md",
+        "commit_message": "🐛 fix(Docs): Modified files updated\\n\\nChanges included (as of 2025-08-20 20:42:15):\\n- Docs/entire_project/Docker_Setup/Docker_Setup.md: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/Docker_Setup.md b/Docs/entire_project/Docker_Setup/Docker_Setup.md\n    index 7a53d24..0a5918b 100644\n    --- a/Docs/entire_project/Docker_Setup/Docker_Setup.md\n    +++ b/Docs/entire_project/Docker_Setup/Docker_Setup.md\n    @@ -1,108 +1,95 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 17:12:15",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Wed Aug 20 20:42:15 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "43f135bda74b2550ee3668ca62db1b5f828f48ba"
+        ]
+    },
+    "dcf0fbfc69a824d81e58adb0d7ea1065b076e3c5": {
+        "task_id": "Docs",
+        "file_path": "Docs/entire_project/Docker_Setup/Docker_Setup_fa.md",
+        "commit_message": "📝 docs(Docs): Untracked files updated\\n\\nChanges included (as of 2025-08-20 20:42:19):\\n- Docs/entire_project/Docker_Setup/Docker_Setup_fa.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/Docs/entire_project/Docker_Setup/Docker_Setup_fa.md b/Docs/entire_project/Docker_Setup/Docker_Setup_fa.md\n    new file mode 100644\n    index 0000000..d08a008\n    --- /dev/null\n    +++ b/Docs/entire_project/Docker_Setup/Docker_Setup_fa.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 17:12:19",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Wed Aug 20 20:42:19 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "6d83cc02c7c81bc0cf2f0eedca53f02a6e43c316"
+        ]
+    },
+    "5492ac2ff48da53ab7147fa5a1851ba98a131cee": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250820_204129.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-20 20:42:21):\\n- backups/metadata/backup_20250820_204129.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250820_204129.json b/backups/metadata/backup_20250820_204129.json\n    new file mode 100644\n    index 0000000..14f2520\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250820_204129.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-20 17:12:21",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Wed Aug 20 20:42:21 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "dcf0fbfc69a824d81e58adb0d7ea1065b076e3c5"
+        ]
+    },
+    "918b0cf823da350851ab89825440d99404225f6d": {
+        "task_id": ".vscode",
+        "file_path": ".vscode/settings.json",
+        "commit_message": "🐛 fix(.vscode): Modified files updated\\n\\nChanges included (as of 2025-08-21 00:09:01):\\n- .vscode/settings.json: This file was modified with updates or fixes.\\n  Summary:\\n    diff --git a/.vscode/settings.json b/.vscode/settings.json\n    index 2e6c6fd..4e3afe5 100644\n    --- a/.vscode/settings.json\n    +++ b/.vscode/settings.json\n    @@ -1,3 +1,4 @@\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 20:39:01",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 00:09:01 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "a2e5e1c277f04c4129eef94a03464fa98c3fd3bd"
+        ]
+    },
+    "3c14de662370de50d9909fc22f221131a13a8191": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/cli_docker.py",
+        "commit_message": "📝 docs(autoprojectmanagement): Untracked files updated\\n\\nChanges included (as of 2025-08-21 00:09:03):\\n- autoprojectmanagement/cli_docker.py: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/cli_docker.py b/autoprojectmanagement/cli_docker.py\n    new file mode 100644\n    index 0000000..d658514\n    --- /dev/null\n    +++ b/autoprojectmanagement/cli_docker.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 20:39:04",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 00:09:03 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "918b0cf823da350851ab89825440d99404225f6d"
+        ]
+    },
+    "0ee478ed77d390f7182fc6909e428b8fbf1c516a": {
+        "task_id": "autoprojectmanagement",
+        "file_path": "autoprojectmanagement/docker_setup.py",
+        "commit_message": "📝 docs(autoprojectmanagement): Untracked files updated\\n\\nChanges included (as of 2025-08-21 00:09:05):\\n- autoprojectmanagement/docker_setup.py: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/autoprojectmanagement/docker_setup.py b/autoprojectmanagement/docker_setup.py\n    new file mode 100644\n    index 0000000..2d2518c\n    --- /dev/null\n    +++ b/autoprojectmanagement/docker_setup.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 20:39:05",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 00:09:05 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "3c14de662370de50d9909fc22f221131a13a8191"
+        ]
+    },
+    "0c6e03d6ad50d76c87a710da4832121e6fa8333b": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250821_000739.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-21 00:09:07):\\n- backups/metadata/backup_20250821_000739.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250821_000739.json b/backups/metadata/backup_20250821_000739.json\n    new file mode 100644\n    index 0000000..ffbd859\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250821_000739.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-20 20:39:07",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 00:09:07 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "0ee478ed77d390f7182fc6909e428b8fbf1c516a"
+        ]
+    },
+    "bfc1de65ae22e51fe4f361d17a3af2dffd7813e1": {
+        "task_id": "scripts",
+        "file_path": "scripts/one-command-docker-setup.py",
+        "commit_message": "📝 docs(scripts): Untracked files updated\\n\\nChanges included (as of 2025-08-21 00:09:09):\\n- scripts/one-command-docker-setup.py: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/scripts/one-command-docker-setup.py b/scripts/one-command-docker-setup.py\n    new file mode 100755\n    index 0000000..ab8bb3b\n    --- /dev/null\n    +++ b/scripts/one-command-docker-setup.py\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 20:39:09",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 00:09:09 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "0c6e03d6ad50d76c87a710da4832121e6fa8333b"
+        ]
+    },
+    "6a07b1c4336f7be0ae8faab0e49912bf3de40850": {
+        "task_id": "root",
+        "file_path": "GITHUB_AUTH_SETUP.md",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-21 00:19:54):\\n- GITHUB_AUTH_SETUP.md: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/GITHUB_AUTH_SETUP.md b/GITHUB_AUTH_SETUP.md\n    new file mode 100644\n    index 0000000..45b1ab8\n    --- /dev/null\n    +++ b/GITHUB_AUTH_SETUP.md\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 20:49:55",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 00:19:54 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "84ce3b543408266ed3b324d65d16f9c7be8177bb"
+        ]
+    },
+    "8bfb4ce9c34306e341eb6ff17a27649c42835a82": {
+        "task_id": "root",
+        "file_path": "setup_github_auth.sh",
+        "commit_message": "📝 docs: Untracked files updated\\n\\nChanges included (as of 2025-08-21 00:19:56):\\n- setup_github_auth.sh: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/setup_github_auth.sh b/setup_github_auth.sh\n    new file mode 100755\n    index 0000000..45db875\n    --- /dev/null\n    +++ b/setup_github_auth.sh\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 0.0,
+        "timestamp": "2025-08-20 20:49:56",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 00:19:56 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "6a07b1c4336f7be0ae8faab0e49912bf3de40850"
+        ]
+    },
+    "1e197e0bf89122b3df774a8ddf4e42b2ede0c437": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250821_001812.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-21 00:19:58):\\n- backups/metadata/backup_20250821_001812.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250821_001812.json b/backups/metadata/backup_20250821_001812.json\n    new file mode 100644\n    index 0000000..260eca1\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250821_001812.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-20 20:49:59",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 00:19:59 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "8bfb4ce9c34306e341eb6ff17a27649c42835a82"
+        ]
+    },
+    "b6d51e26c8c1a57c100282c2f754cae5301357df": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250821_005641.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-21 01:05:41):\\n- backups/metadata/backup_20250821_005641.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250821_005641.json b/backups/metadata/backup_20250821_005641.json\n    new file mode 100644\n    index 0000000..d35bc25\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250821_005641.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-20 21:35:42",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 01:05:41 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "3249c3948bd0ccf0e3936ac20fd435d3ee987d66"
+        ]
+    },
+    "bfe1abb9fcc21076eef62dfadac48fb3b80378d0": {
+        "task_id": "backups",
+        "file_path": "backups/metadata/backup_20250821_064856.json",
+        "commit_message": "📝 docs(backups): Untracked files updated\\n\\nChanges included (as of 2025-08-21 07:35:22):\\n- backups/metadata/backup_20250821_064856.json: This file is new and not yet tracked by git.\\n  Summary:\\n    diff --git a/backups/metadata/backup_20250821_064856.json b/backups/metadata/backup_20250821_064856.json\n    new file mode 100644\n    index 0000000..252820c\n    --- /dev/null\n    +++ b/backups/metadata/backup_20250821_064856.json\\n\\n\\nPlease describe the reason or issue addressed by these changes.",
+        "workflow_stage": "Implementation",
+        "progress_change": 0.05,
+        "importance_change": 1,
+        "priority_change": 1.0,
+        "timestamp": "2025-08-21 04:05:22",
+        "author": "GravityWavesOrg",
+        "email": "gravitywaves2000@gmail.com",
+        "date": "Thu Aug 21 07:35:22 2025 +0330",
+        "branch": "* Documentation",
+        "parent_commits": [
+            "3c09c1a81da99430b451c024cacd102215e15d62"
+        ]
     }
 }

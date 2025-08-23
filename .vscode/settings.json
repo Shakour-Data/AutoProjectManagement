@@ -1,3 +1,4 @@
 {
-    "gitflow.disableOnRepo": true
+    "gitflow.disableOnRepo": true,
+    "postman.settings.dotenv-detection-notification-visibility": false
 }
