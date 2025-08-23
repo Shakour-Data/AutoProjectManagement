@@ -69,7 +69,7 @@ from unittest.mock import patch, MagicMock, mock_open
 import json
 from datetime import datetime
 
-from autoprojectmanagement.services.backup_manager import BackupManager
+from autoprojectmanagement.services.automation_services.backup_manager import BackupManager
 
 
 class TestBackupManager:
