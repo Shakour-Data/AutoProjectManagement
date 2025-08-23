@@ -69,3 +69,33 @@ GanttChartData(input_dir: str = 'project_inputs/PM_JSON/user_inputs')
     {
       "id": "task-001",
       "name": "Develop API",
+      "start_date": "2025-08-15",
+      "end_date": "2025-08-20",
+      "dependencies": ["task-002"],
+      "progress": 75
+    }
+  ]
+}
+```
+
+#### Validation Rules
+
+**Task Validation:**
+- Tasks cannot be None
+- Tasks must be dictionaries
+- Required fields: id, start, end
+- Date format must be ISO format (YYYY-MM-DD)
+- Start date cannot be after end date
+- Name must be string or None
+- Progress must be numeric (0-100)
+
+**Date Validation:**
+- ISO format date strings
+- Valid date ranges
+- Proper date parsing with error handling
+
+#### Example Usage
+
+**Basic Gantt Generation:**
+```python
+from autoprojectmanagement.main_modules.planning_estimation.gantt_chart_data import (
