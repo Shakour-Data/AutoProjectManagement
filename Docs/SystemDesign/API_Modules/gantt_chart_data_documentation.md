@@ -8,3 +8,20 @@
 
 #### Class: GanttChartData
 
+**Description:** Generates Gantt chart data from task information, handling date parsing, dependency management, and progress calculation for timeline visualization.
+
+**Constructor:**
+```python
+GanttChartData(input_dir: str = 'project_inputs/PM_JSON/user_inputs')
+```
+
+**Parameters:**
+- `input_dir`: Directory path containing task JSON files (default: 'project_inputs/PM_JSON/user_inputs')
+
+#### Methods
+
+**`load_tasks() -> None`**
+- Loads tasks from detailed_wbs.json file
+- Handles file loading errors gracefully
+
+**`parse_date(date_str: Optional[str]) -> Optional[datetime.date]`**
