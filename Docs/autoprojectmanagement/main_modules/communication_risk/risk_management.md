@@ -62,3 +62,35 @@ def __init__(self, github_integration: GitHubIntegration) -> None
 
 **Internal State Initialization:**
 - `risk_issues`: List of identified risk issues
+- `project_risk_score`: Overall project risk score (0.0 initially)
+- `activity_risks`: Risks categorized by activity
+- `wbs_risks`: Risks categorized by WBS elements
+- `activity_importance`: Importance scores for activities
+- `activity_priority`: Priority scores for activities
+
+#### identify_risks Method
+```python
+def identify_risks(self) -> List[Dict[str, Any]]
+```
+
+**Purpose:** Identifies and categorizes risks from GitHub issues labeled as 'risk'.
+
+**Process Flow:**
+1. Fetch all open GitHub issues
+2. Filter issues with 'risk' label (case-insensitive)
+3. Categorize risks by activity and WBS
+4. Calculate overall project risk score
+
+**Returns:** `List[Dict[str, Any]]` - List of risk issues with complete details
+
+**Example Output:**
+```json
+[
+  {
+    "number": 123,
+    "title": "Security vulnerability in authentication",
+    "labels": [
+      {"name": "risk", "color": "d73a4a"},
+      {"name": "activity:authentication", "color": "7057ff"},
+      {"name": "importance:0.8", "color": "ffffff"}
+    ],
