@@ -178,3 +178,47 @@ export GITHUB_REPO=your_repository
 
 ### Basic Usage
 ```python
+from autoprojectmanagement.main_modules.communication_risk.communication_risk_doc_integration import CommunicationRiskDocIntegration
+
+# Initialize integration
+integration = CommunicationRiskDocIntegration(
+    repo_owner="your-organization",
+    repo_name="project-management",
+    token="your_github_token"  # Optional for public repos
+)
+
+# Run complete analysis
+results = integration.run_all()
+
+# Access results
+print("Risk Summary:", results["risk_summary"])
+print("Changelog:", results["changelog"])
+print("Release Notes:", results["release_notes"])
+```
+
+### Advanced Configuration
+```python
+# Custom integration with error handling
+try:
+    integration = CommunicationRiskDocIntegration(
+        repo_owner="company",
+        repo_name="important-project",
+        token=os.getenv("GITHUB_TOKEN")
+    )
+    
+    # Run specific components individually
+    risks = integration.risk_manager.identify_risks()
+    changelog = integration.doc_automation.generate_changelog()
+    
+except Exception as e:
+    print(f"Integration failed: {e}")
+```
+
+## Error Handling
+
+### Common Error Scenarios
+| Error Type | Description | Resolution |
+|------------|-------------|------------|
+| `GitHub API Error` | GitHub API rate limiting or access issues | Use authentication token, implement retry logic |
+| `Repository Not Found` | Invalid repository owner or name | Verify repository existence and permissions |
+| `Authentication Failure` | Invalid or expired GitHub token | Regenerate token with appropriate permissions |
