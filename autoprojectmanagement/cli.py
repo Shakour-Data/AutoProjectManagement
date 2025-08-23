@@ -258,21 +258,9 @@ def add_task(
     """
     click.echo(f"📝 Adding task '{task_name}' to project {project_id}")
     
-    cli_commands = CLICommands()
-    success = cli_commands.add_task(
-        project_id,
-        task_name,
-        priority,
-        description,
-        assignee,
-        due_date
-    )
-    
-    if success:
-        click.echo(f"✅ Task '{task_name}' added successfully!")
-    else:
-        click.echo("❌ Failed to add task", err=True)
-        sys.exit(1)
+    # TODO: Implement task addition functionality
+    click.echo("❌ Task addition functionality not implemented yet")
+    sys.exit(1)
 
 
 @main.command()
