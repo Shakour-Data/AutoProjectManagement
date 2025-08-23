@@ -13,9 +13,9 @@
 - [ ] Update imports if necessary
 
 ### Backup Manager
-- [ ] Remove `services/backup_manager.py`
-- [ ] Check for any imports of the removed file
-- [ ] Update imports if necessary
+- [x] Remove `services/backup_manager.py`
+- [x] Check for any imports of the removed file
+- [x] Update imports if necessary
 
 ### SSE Endpoints
 - [ ] Remove `api/sse_endpoints.py`
