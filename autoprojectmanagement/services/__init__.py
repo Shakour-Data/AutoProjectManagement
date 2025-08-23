@@ -43,7 +43,7 @@ __license__ = "MIT"
 from .automation_services.auto_commit import UnifiedAutoCommit as AutoCommit
 from .automation_services.backup_manager import BackupManager
 from .configuration_cli.cli_commands import *
-from .github_integration import GitHubIntegration
+from .integration_services.github_integration import GitHubIntegration
 from .integration_services.integration_manager import IntegrationManager
 
 __all__ = [
