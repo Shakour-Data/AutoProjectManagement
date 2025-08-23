@@ -23,6 +23,9 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] **do_urgent_tasks.py**: Analyze both and merge
 - [ ] **estimation_management.py**: Analyze both and merge
 - [ ] **git_progress_updater.py**: Analyze both and merge
+- [ ] **github_actions_automation.py**: Analyze both and merge
+- [ ] **input_handler.py**: Analyze both and merge
+- [ ] **progress_report.py**: Analyze both and merge
 
 ### Remove Backup Files:
 - [ ] Remove `project_management_system.py.backup`
