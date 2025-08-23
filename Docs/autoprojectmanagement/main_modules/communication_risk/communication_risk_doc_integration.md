@@ -222,3 +222,40 @@ except Exception as e:
 | `GitHub API Error` | GitHub API rate limiting or access issues | Use authentication token, implement retry logic |
 | `Repository Not Found` | Invalid repository owner or name | Verify repository existence and permissions |
 | `Authentication Failure` | Invalid or expired GitHub token | Regenerate token with appropriate permissions |
+| `Network Issues` | Connection problems to GitHub API | Check network connectivity, implement timeout |
+
+### Error Response Format
+```json
+{
+  "error": "GitHub API rate limit exceeded",
+  "detail": "API rate limit exceeded for user. Please use authentication token.",
+  "retry_after": 3600,
+  "timestamp": "2025-08-14T10:30:00.000Z"
+}
+```
+
+## Performance Considerations
+
+### API Rate Limiting
+| Scenario | Rate Limit | Mitigation Strategy |
+|----------|------------|---------------------|
+| Unauthenticated | 60 requests/hour | Use authentication token |
+| Authenticated | 5000 requests/hour | Implement request caching |
+| Enterprise | Custom limits | Contact GitHub support |
+
+### Processing Time
+| Operation | Estimated Time | Factors Affecting Performance |
+|-----------|----------------|-------------------------------|
+| Risk Analysis | 1-5 minutes | Repository size, complexity |
+| Changelog Generation | 30 seconds - 2 minutes | Commit history length |
+| Release Notes | 1-3 minutes | Number of releases, changes |
+
+## Best Practices
+
+### Security Considerations
+1. **Token Management**: Store GitHub tokens securely using environment variables
+2. **Permission Scoping**: Use tokens with minimal required permissions
+3. **Rate Limit Awareness**: Implement caching to avoid rate limiting
+4. **Error Handling**: Comprehensive error handling for network issues
+
+### Performance Optimization
