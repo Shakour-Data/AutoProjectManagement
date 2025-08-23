@@ -308,19 +308,9 @@ def report(
         f"📊 Generating {report_type} report for project {project_id}"
     )
     
-    cli_commands = CLICommands()
-    report_content = cli_commands.generate_report(project_id, report_type, format)
-    
-    if report_content:
-        if output:
-            from pathlib import Path
-            Path(output).write_text(report_content)
-            click.echo(f"✅ Report saved to {output}")
-        else:
-            click.echo(report_content)
-    else:
-        click.echo("❌ Failed to generate report", err=True)
-        sys.exit(1)
+    # TODO: Implement report generation functionality
+    click.echo("❌ Report generation functionality not implemented yet")
+    sys.exit(1)
 
 
 @main.command()
