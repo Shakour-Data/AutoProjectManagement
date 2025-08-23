@@ -42,3 +42,64 @@ InputHandler(input_dir: str = 'project_inputs/PM_JSON/user_inputs')
 
 **`process_input(input_data: Dict[str, Any]) -> Dict[str, Any]`**
 - Processes input data for use in the project management system
+- **Parameters:** `input_data` - The input data to process
+- **Returns:** The processed input data
+- **Raises:** `TypeError` if input_data is not a dictionary
+
+#### Constants
+
+**Configuration:**
+- `DEFAULT_INPUT_DIR = 'project_inputs/PM_JSON/user_inputs'`
+- `JSON_EXTENSION = '.json'`
+- `ENCODING = 'utf-8'`
+
+#### Response Format
+
+**Successful JSON Reading:**
+```json
+{
+  "tasks.json": {
+    "tasks": [
+      {
+        "id": "task-001",
+        "name": "Develop API",
+        "status": "in_progress"
+      }
+    ]
+  },
+  "resources.json": {
+    "team_members": [
+      {
+        "name": "John Doe",
+        "role": "Developer"
+      }
+    ]
+  }
+}
+```
+
+**Error Response:**
+- Returns `None` for file reading errors
+- Logs detailed error messages including:
+  - Directory not found
+  - No JSON files found
+  - JSON decode errors
+  - File read errors
+
+#### Example Usage
+
+**Basic Input Handling:**
+```python
+from autoprojectmanagement.main_modules.data_collection_processing.input_handler import InputHandler
+
+# Initialize handler
+handler = InputHandler()
+
+# Ensure directory exists
+handler.ensure_input_dir()
+
+# Read all JSON files
+data = handler.read_json_files()
+
+if data:
+    for filename, content in data.items():
