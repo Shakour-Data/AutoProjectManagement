@@ -70,3 +70,14 @@ ProgressDataGenerator(
 
 #### Standalone Function
 
+**`generate_progress_data(input_data: Dict) -> Dict[str, Any]`**
+- Generates progress data from input data and Git logs
+- **Parameters:** `input_data` - Input data dictionary containing tasks
+- **Returns:** Generated progress data with task statuses
+- **Raises:** `TypeError` for invalid input types, `RuntimeError` for file loading errors
+
+#### Constants
+
+**Default Configuration:**
+- `db_progress_json_path = 'docs/project_management/task_progress.json'`
+- `workflow_definition_path = 'docs/db_json/workflow_definition.json'`
