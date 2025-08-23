@@ -1,9 +1,9 @@
 # Organization Plan for AutoProjectManagement
 
-## Phase 1: File Consolidation
-- [ ] Remove unnecessary files as outlined in the existing TODO.md.
-- [ ] Check for any imports of the removed files and update them accordingly.
-
+## Current Issues Identified:
+1. **Duplicate files** - Many files exist both in main_modules root and subdirectories
+2. **Inconsistent naming** - Some files have "_refactored" suffix while others don't
+3. **Mixed organization** - Some modules are organized in subdirectories while others are in root
 ## Phase 2: Directory Structure Optimization
 - [ ] Create `services/core/` directory.
 - [ ] Move comprehensive implementations to the core directory.
