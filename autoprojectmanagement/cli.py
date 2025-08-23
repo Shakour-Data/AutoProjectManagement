@@ -171,9 +171,29 @@ def create_project(
     """
     click.echo(f"📁 Creating project: {project_name}")
     
-    # TODO: Implement project creation functionality
-    click.echo("❌ Project creation functionality not implemented yet")
-    sys.exit(1)
+    # Create project dictionary with basic information
+    project = {
+        "id": len(system.projects) + 1,
+        "name": project_name,
+        "description": description or "",
+        "template": template or "default",
+        "created_at": time.strftime("%Y-%m-%d %H:%M:%S")
+    }
+    
+    # Add optional fields if provided
+    if description:
+        project["description"] = description
+    if template:
+        project["template"] = template
+    
+    # Add project to system
+    success = system.add_project(project)
+    
+    if success:
+        click.echo(f"✅ Project '{project_name}' created successfully with ID: {project['id']}")
+    else:
+        click.echo("❌ Failed to create project. Project may already exist.", err=True)
+        sys.exit(1)
 
 
 @main.command()
