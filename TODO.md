@@ -130,6 +130,19 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [ ] `planning_estimation/scheduler.py`
 - [ ] `planning_estimation/scope_management.py`
 - [ ] `planning_estimation/wbs_aggregator.py`
+- [ ] `planning_estimation/wbs_merger.py`
+- [ ] `planning_estimation/wbs_parser.py`
+
+#### Progress Reporting:
+- [ ] `progress_reporting/check_progress_dashboard_update.py`
+- [ ] `progress_reporting/dashboards_reports.py`
+- [ ] `progress_reporting/progress_calculator.py`
+- [ ] `progress_reporting/progress_report.py`
+- [ ] `progress_reporting/reporting.py`
+
+#### Quality & Commit Management:
+- [ ] `quality_commit_management/commit_progress_manager.py`
+- [ ] `quality_commit_management/git_progress_updater.py`
 
 ## Priority Order for Documentation:
 1. **API Reference Update** - Ensure API documentation matches current endpoints
