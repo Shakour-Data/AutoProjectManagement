@@ -1,10 +1,8 @@
 {
   "1": {
     "id": 1,
-    "name": "Test Project"
-  },
-  "1": {
-    "id": 1,
-    "name": "Test Project"
+    "name": "Demo Project",
+    "description": "A demonstration project for persistence testing",
+    "status": "active"
   }
 }

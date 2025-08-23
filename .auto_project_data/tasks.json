@@ -2,13 +2,10 @@
   "1": {
     "1": {
       "id": 1,
-      "title": "Test Task"
-    }
-  },
-  "1": {
-    "1": {
-      "id": 1,
-      "title": "Test Task"
+      "title": "Demo Task",
+      "description": "A demonstration task",
+      "status": "todo",
+      "priority": "high"
     }
   }
 }
