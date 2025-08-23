@@ -163,3 +163,41 @@ generator.generate_progress()
 log_text = generator.run_git_log()
 if log_text:
     commits = generator.parse_git_log(log_text)
+    commit_progress = generator.map_commits_to_tasks(commits)
+    workflow_progress = generator.calculate_workflow_progress()
+    combined = generator.combine_progress(commit_progress, workflow_progress)
+    generator.save_progress_to_json(combined)
+```
+
+#### Progress Calculation Algorithm
+
+**Commit-Based Progress:**
+1. Extract task IDs from commit messages using regex pattern
+2. Count commits per task ID
+3. Normalize counts to 0-100 scale based on maximum count
+
+**Workflow-Based Progress:**
+1. Load workflow definition with step weights
+2. Track completed steps per task (TODO: implementation needed)
+3. Calculate percentage based on completed step weights
+
+**Combined Progress:**
+```
+combined_score = (commit_score * commit_weight) + (workflow_score * workflow_weight)
+```
+
+#### Error Handling
+
+**Common Errors:**
+- Git command execution failures
+- JSON file loading errors
+- Regex pattern matching failures
+- File permission issues
+
+**Error Responses:**
+- Returns None for failed operations
+- Logs detailed error messages
+- Graceful degradation for partial failures
+
+**Exception Types:**
+- `TypeError` for invalid input data types
