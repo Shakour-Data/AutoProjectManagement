@@ -328,3 +328,46 @@ print(f"Risk impact: {impact}")
 | `IMPORTANCE_LABEL_PREFIX` | `importance:` | Importance score prefix |
 | `PRIORITY_LABEL_PREFIX` | `priority:` | Priority score prefix |
 
+## Best Practices
+
+### Risk Labeling Guidelines
+1. **Consistent Naming**: Use consistent activity and WBS names across issues
+2. **Score Ranges**: Keep importance and priority scores between 0.0 and 1.0
+3. **Clear Descriptions**: Provide detailed risk descriptions in issue bodies
+4. **Regular Updates**: Update risk status as mitigation progresses
+
+### Integration Best Practices
+1. **Authentication**: Use GitHub tokens for authenticated access
+2. **Rate Limiting**: Implement caching to avoid API rate limits
+3. **Error Handling**: Comprehensive error handling for network issues
+4. **Logging**: Detailed logging for debugging and audit trails
+
+## Performance Considerations
+
+### API Usage Optimization
+| Operation | API Calls | Optimization Strategy |
+|-----------|-----------|----------------------|
+| Issue Fetching | 1 call per repository | Implement pagination for large repositories |
+| Label Processing | Local processing | No additional API calls required |
+| Risk Categorization | Local processing | Efficient dictionary operations |
+
+### Memory Management
+| Data Structure | Memory Usage | Optimization |
+|----------------|--------------|--------------|
+| `risk_issues` | O(n) issues | Stream processing for large datasets |
+| `activity_risks` | O(m) activities | Efficient dictionary storage |
+| `wbs_risks` | O(p) WBS elements | Hierarchical data structure |
+
+## Testing Scenarios
+
+### Unit Test Cases
+| Scenario | Description | Expected Result |
+|----------|-------------|-----------------|
+| Empty Repository | No issues found | Empty risk list, zero score |
+| Single Risk Issue | One risk issue | Correct categorization and scoring |
+| Multiple Activities | Risks across activities | Proper activity-based scoring |
+| Invalid Labels | Malformed labels | Graceful degradation with defaults |
+| API Failure | GitHub API unavailable | Proper error handling and logging |
+
+### Integration Testing
+```python
