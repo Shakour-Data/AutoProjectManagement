@@ -164,3 +164,43 @@ EstimationManagement(
 
 **Basic Estimation:**
 ```python
+from autoprojectmanagement.main_modules.planning_estimation.estimation_management import (
+    EstimationManagement, estimate_task_duration, estimate_task_cost
+)
+
+# Use standalone functions
+task = {"complexity": "high", "resources": 3}
+duration = estimate_task_duration(task)
+cost = estimate_task_cost(task)
+print(f"Task duration: {duration}, cost: {cost}")
+
+# Use estimation manager
+manager = EstimationManagement()
+manager.run()
+results = manager.output
+print(f"Project estimate: {results['summary']}")
+```
+
+**Custom Paths:**
+```python
+# Custom file paths
+manager = EstimationManagement(
+    detailed_wbs_path='custom/wbs.json',
+    output_path='custom/estimates.json'
+)
+manager.run()
+```
+
+**Project Estimation:**
+```python
+from autoprojectmanagement.main_modules.planning_estimation.estimation_management import (
+    estimate_project_duration, estimate_project_cost
+)
+
+project = {
+    "tasks": [
+        {"complexity": "high", "resources": 2},
+        {"complexity": "medium", "resources": 1}
+    ]
+}
+
