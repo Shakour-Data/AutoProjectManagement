@@ -161,3 +161,86 @@ project_data = {
 risks = identify_risks(project_data)
 
 # Assess risk impact
+risk = {'level': 'high', 'probability': 0.8}
+impact = assess_risk_impact(risk)
+print(f"Risk impact: {impact}")
+
+# Mitigate risk
+success = mitigate_risk({'id': 'R1', 'level': 'high'})
+print(f"Mitigation successful: {success}")
+```
+
+#### Labeling System
+
+**Risk Identification:**
+- Issues must be labeled with `risk` to be identified
+- Case-insensitive matching for risk label
+
+**Activity Categorization:**
+- Use `activity:<activity_name>` labels
+- Example: `activity:development`, `activity:testing`
+
+**WBS Categorization:**
+- Use `wbs:<wbs_code>` labels
+- Example: `wbs:1.1`, `wbs:1.2.3`
+
+**Scoring:**
+- `importance:<float>` - Activity importance score
+- `priority:<float>` - Activity priority score
+
+#### Risk Calculation
+
+**Project Risk Score:**
+```
+Σ(risks_count × importance × priority) for each activity
+```
+
+**Risk Impact:**
+```
+base_impact × probability
+Where base_impact = RISK_LEVELS[risk_level]
+```
+
+#### Error Handling
+
+**Common Errors:**
+- GitHub API rate limit exceeded
+- Invalid repository or access denied
+- Malformed label formats
+- Invalid numeric values in labels
+
+**Exception Types:**
+- `TypeError`: Invalid input types
+- `ValueError`: Invalid values or ranges
+- GitHub API specific errors
+
+#### Dependencies
+
+**Internal Dependencies:**
+- `GitHubIntegration` from integration services
+- Standard library modules: typing, collections
+
+**External Dependencies:**
+- Python 3.8+
+- GitHub API access
+- Required packages from requirements.txt
+
+#### Performance Considerations
+
+**GitHub API Usage:**
+- Efficient pagination for large repositories
+- Caching of issue data when appropriate
+- Batch processing of risk analysis
+
+**Memory Management:**
+- Efficient data structures for risk categorization
+- Minimal memory footprint for large datasets
+- Proper cleanup of temporary data
+
+#### Integration Points
+
+**With GitHub:**
+- Fetches issues from GitHub repositories
+- Uses GitHub labels for risk categorization
+- Respects GitHub API rate limits
+
