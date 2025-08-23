@@ -99,3 +99,54 @@ GanttChartData(input_dir: str = 'project_inputs/PM_JSON/user_inputs')
 **Basic Gantt Generation:**
 ```python
 from autoprojectmanagement.main_modules.planning_estimation.gantt_chart_data import (
+    GanttChartData, generate_gantt_chart
+)
+
+# Method 1: Load from file
+generator = GanttChartData()
+generator.load_tasks()
+gantt_data = generator.build_gantt_data()
+print(f"Generated {len(gantt_data)} Gantt tasks")
+
+# Method 2: Direct generation
+tasks = [
+    {
+        "id": "task-1",
+        "name": "Design Phase",
+        "start": "2025-08-15",
+        "end": "2025-08-22",
+        "progress": 50
+    }
+]
+result = generate_gantt_chart(tasks)
+print(f"Gantt chart data: {result}")
+```
+
+**Custom Input Directory:**
+```python
+# Custom input directory
+generator = GanttChartData(input_dir='custom/inputs')
+generator.load_tasks()
+data = generator.build_gantt_data()
+```
+
+**Error Handling:**
+```python
+try:
+    tasks = [{"id": "task-1", "start": "invalid-date", "end": "2025-08-22"}]
+    result = generate_gantt_chart(tasks)
+except ValueError as e:
+    print(f"Date validation error: {e}")
+except TypeError as e:
+    print(f"Type error: {e}")
+```
+
+#### Processing Logic
+
+**Date Calculation:**
+```
+end_date = start_date + timedelta(days=duration_days)
+```
+
+**Progress Conversion:**
+```
