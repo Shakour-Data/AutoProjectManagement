@@ -179,6 +179,20 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 
 #### Configuration CLI:
 - [ ] `configuration_cli/cli_commands.py`
+- [ ] `configuration_cli/config_and_token_management.py`
+- [ ] `configuration_cli/documentation_automation.py`
+
+#### Integration Services:
+- [ ] `integration_services/github_integration.py`
+- [ ] `integration_services/github_project_manager.py`
+- [ ] `integration_services/integration_manager.py`
+- [ ] `integration_services/json_data_linker.py`
+- [ ] `integration_services/vscode_extension_installer.py`
+
+#### Monitoring Services:
+- [ ] `monitoring_services/status_service.py`
+
+#### Wiki Services:
 
 ## Priority Order for Documentation:
 1. **API Reference Update** - Ensure API documentation matches current endpoints
