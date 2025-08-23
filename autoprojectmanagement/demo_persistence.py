@@ -21,3 +21,29 @@ def demo_persistence():
     pms.initialize_system()
     print("System initialized. Loading existing data...")
     print(f"Number of projects: {len(pms.projects)}")
+    print(f"Number of tasks: {sum(len(tasks) for tasks in pms.tasks.values())}")
+    print()
+    
+    # Add a new project
+    project = {
+        "id": 1,
+        "name": "Demo Project",
+        "description": "A demonstration project for persistence testing",
+        "status": "active"
+    }
+    
+    if pms.add_project(project):
+        print(f"✓ Added project: {project['name']}")
+    else:
+        print(f"✗ Failed to add project: {project['name']}")
+    
+    # Add a task to the project
+    task = {
+        "id": 1,
+        "title": "Demo Task",
+        "description": "A demonstration task",
+        "status": "todo",
+        "priority": "high"
+    }
+    
+    if pms.add_task_to_project(1, task):
