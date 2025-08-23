@@ -121,6 +121,15 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 #### Data Collection & Processing:
 - [ ] `data_collection_processing/db_data_collector.py`
 - [ ] `data_collection_processing/input_handler.py`
+- [ ] `data_collection_processing/progress_data_generator.py`
+- [ ] `data_collection_processing/workflow_data_collector.py`
+
+#### Planning & Estimation:
+- [ ] `planning_estimation/estimation_management.py`
+- [ ] `planning_estimation/gantt_chart_data.py`
+- [ ] `planning_estimation/scheduler.py`
+- [ ] `planning_estimation/scope_management.py`
+- [ ] `planning_estimation/wbs_aggregator.py`
 
 ## Priority Order for Documentation:
 1. **API Reference Update** - Ensure API documentation matches current endpoints
