@@ -40,8 +40,8 @@ __author__ = "AutoProjectManagement Team"
 __license__ = "MIT"
 
 
-from project_management.modules.main_modules.task_management import TaskManagement
-from project_management.modules.main_modules.progress_report import generate_report
+from autoprojectmanagement.main_modules.task_workflow_management.task_management import TaskManagement
+from autoprojectmanagement.main_modules.progress_reporting.progress_report import generate_report
 
 # Constants
 DEFAULT_DASHBOARD_PATH = "docs/project_management/progress_dashboard.md"

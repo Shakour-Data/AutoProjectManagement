@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import quality_management
+from autoprojectmanagement.main_modules.quality_commit_management import quality_management
 
 class TestQuality_management:
     """Test class for quality_management module"""

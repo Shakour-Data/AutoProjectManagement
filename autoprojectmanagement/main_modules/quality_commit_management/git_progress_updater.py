@@ -295,28 +295,36 @@ class GitProgressUpdater:
                     del self._cache[key]
         return None
     
-    @_secure_execute
     def _execute_git_command(self, command: List[str]) -> Tuple[str, str, int]:
         """Execute Git command with security and performance measures."""
-        try:
-            with self._timer('git_command'):
-                sanitized_command = [self._sanitize_input(arg) for arg in command]
-                
-                result = subprocess.run(
-                    sanitized_command,
-                    cwd=str(self.repo_path),
-                    capture_output=True,
-                    text=True,
-                    timeout=self.timeout,
-                    env={**os.environ, 'GIT_PAGER': 'cat'}
-                )
-                
-                return result.stdout, result.stderr, result.returncode
-                
-        except subprocess.TimeoutExpired:
-            raise GitCommandError(f"Git command timeout after {self.timeout}s")
-        except Exception as e:
-            raise GitCommandError(f"Git command failed: {str(e)}")
+        for attempt in range(self.max_retries):
+            try:
+                with self._timer('git_command'):
+                    sanitized_command = [self._sanitize_input(arg) for arg in command]
+                    
+                    result = subprocess.run(
+                        sanitized_command,
+                        cwd=str(self.repo_path),
+                        capture_output=True,
+                        text=True,
+                        timeout=self.timeout,
+                        env={**os.environ, 'GIT_PAGER': 'cat'}
+                    )
+                    
+                    return result.stdout, result.stderr, result.returncode
+                    
+            except subprocess.TimeoutExpired:
+                if attempt == self.max_retries - 1:
+                    raise GitCommandError(f"Git command timeout after {self.timeout}s")
+                logger.warning(f"Retry {attempt + 1}/{self.max_retries} for git command: timeout")
+                time.sleep(2 ** attempt)
+            except Exception as e:
+                if attempt == self.max_retries - 1:
+                    raise GitCommandError(f"Git command failed: {str(e)}")
+                logger.warning(f"Retry {attempt + 1}/{self.max_retries} for git command: {str(e)}")
+                time.sleep(2 ** attempt)
+        
+        raise GitCommandError(f"Git command failed after {self.max_retries} attempts")
     
     # ============================================================================
     # PHASE 4: TESTING & MONITORING

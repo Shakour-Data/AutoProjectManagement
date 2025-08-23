@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import setup_initialization
+from autoprojectmanagement.main_modules.utility_modules import setup_initialization
 
 class TestSetup_initialization:
     """Test class for setup_initialization module"""

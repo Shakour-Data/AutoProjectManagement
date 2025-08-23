@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import db_data_collector
+from autoprojectmanagement.main_modules.data_collection_processing import db_data_collector
 
 class TestDb_data_collector:
     """Test class for db_data_collector module"""

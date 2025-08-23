@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import risk_management
+from autoprojectmanagement.main_modules.communication_risk import risk_management
 
 class TestRisk_management:
     """Test class for risk_management module"""

@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import progress_report
+from autoprojectmanagement.main_modules.progress_reporting import progress_report
 
 class TestProgress_report:
     """Test class for progress_report module"""

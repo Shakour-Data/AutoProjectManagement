@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import importance_urgency_calculator_refactored
+from autoprojectmanagement.main_modules.task_workflow_management import importance_urgency_calculator
 
 class TestImportance_urgency_calculator_refactored:
     """Test class for importance_urgency_calculator_refactored module"""

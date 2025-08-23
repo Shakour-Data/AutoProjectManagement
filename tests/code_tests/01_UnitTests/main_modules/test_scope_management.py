@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import scope_management
+from autoprojectmanagement.main_modules.planning_estimation import scope_management
 
 class TestScope_management:
     """Test class for scope_management module"""

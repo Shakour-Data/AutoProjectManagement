@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import project_views_generator
+from autoprojectmanagement.main_modules.utility_modules import project_views_generator
 
 class TestProject_views_generator:
     """Test class for project_views_generator module"""

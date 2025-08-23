@@ -61,9 +61,9 @@ TODO:
 """
 
 
-from project_management.modules.services.github_integration import GitHubIntegration
-from project_management.modules.main_modules.risk_management import RiskManagement
-from project_management.modules.services.documentation_automation import DocumentationAutomation
+from autoprojectmanagement.services.integration_services.github_integration import GitHubIntegration
+from autoprojectmanagement.main_modules.communication_risk.risk_management import RiskManagement
+from autoprojectmanagement.services.configuration_cli.documentation_automation import DocumentationAutomation
 
 class CommunicationRiskDocIntegration:
     def __init__(self, repo_owner, repo_name, token=None):

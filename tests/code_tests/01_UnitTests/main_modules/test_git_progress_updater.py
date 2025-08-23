@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import git_progress_updater
+from autoprojectmanagement.main_modules.quality_commit_management import git_progress_updater
 
 class TestGit_progress_updater:
     """Test class for git_progress_updater module"""

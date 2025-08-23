@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import do_important_tasks
+from autoprojectmanagement.main_modules.task_workflow_management import do_important_tasks
 
 class TestDo_important_tasks:
     """Test class for do_important_tasks module"""

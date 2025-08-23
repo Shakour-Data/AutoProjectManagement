@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import github_actions_automation
+from autoprojectmanagement.main_modules.quality_commit_management import github_actions_automation
 
 class TestGithub_actions_automation:
     """Test class for github_actions_automation module"""

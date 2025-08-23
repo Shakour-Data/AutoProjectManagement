@@ -1,7 +1,7 @@
 import os
 import sys
 from typing import Dict, Any
-from .github_actions_automation import GitHubActionsAutomation
+from autoprojectmanagement.main_modules.quality_commit_management.github_actions_automation import GitHubActionsAutomation
 
 class SetupAutomation:
     def __init__(self, project_root: str = None):

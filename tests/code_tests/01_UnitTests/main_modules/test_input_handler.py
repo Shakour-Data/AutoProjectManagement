@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import input_handler
+from autoprojectmanagement.main_modules.data_collection_processing import input_handler
 
 class TestInput_handler:
     """Test class for input_handler module"""

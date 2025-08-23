@@ -49,7 +49,7 @@ Notes:
 
 Changelog:
     1.0.0 (2024-01-01): Initial release
-    1.0.1 (2025-08-14): {change_description}
+    1.0.1 (2025-08-14): Fixed syntax error and duplicate test methods
 
 TODO:
     - [ ] Add comprehensive error handling
@@ -112,134 +112,88 @@ class TestProgressIntegration(unittest.TestCase):
         self.assertEqual(gen.commit_weight, 0.7)
         self.assertEqual(gen.workflow_weight, 0.3)
     
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0.3)
+    def test_load_progress_data_empty_file(self):
+        """Test loading progress data from empty file."""
+        # Create empty progress file
+        with open(self.progress_file, 'w') as f:
+            json.dump({}, f)
+        
+        progress_data = self.generator.load_progress_data()
+        self.assertEqual(progress_data, {})
     
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0.3)
+    def test_load_progress_data_valid_file(self):
+        """Test loading progress data from valid file."""
+        test_data = {
+            "total_commits": 10,
+            "completed_tasks": 5,
+            "progress_percentage": 50.0
+        }
+        
+        with open(self.progress_file, 'w') as f:
+            json.dump(test_data, f)
+        
+        progress_data = self.generator.load_progress_data()
+        self.assertEqual(progress_data, test_data)
     
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0.3)
+    def test_load_workflow_data_empty_file(self):
+        """Test loading workflow data from empty file."""
+        # Create empty workflow file
+        with open(self.workflow_file, 'w') as f:
+            json.dump({}, f)
+        
+        workflow_data = self.generator.load_workflow_data()
+        self.assertEqual(workflow_data, {})
     
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0.3)
+    def test_load_workflow_data_valid_file(self):
+        """Test loading workflow data from valid file."""
+        test_data = {
+            "total_steps": 20,
+            "completed_steps": 10,
+            "progress_percentage": 50.0
+        }
+        
+        with open(self.workflow_file, 'w') as f:
+            json.dump(test_data, f)
+        
+        workflow_data = self.generator.load_workflow_data()
+        self.assertEqual(workflow_data, test_data)
     
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0.3)
+    def test_calculate_overall_progress(self):
+        """Test calculating overall progress."""
+        # Mock the data loading methods
+        with patch.object(self.generator, 'load_progress_data') as mock_progress, \
+             patch.object(self.generator, 'load_workflow_data') as mock_workflow:
+            
+            mock_progress.return_value = {
+                "total_commits": 10,
+                "completed_tasks": 5,
+                "progress_percentage": 50.0
+            }
+            
+            mock_workflow.return_value = {
+                "total_steps": 20,
+                "completed_steps": 10,
+                "progress_percentage": 50.0
+            }
+            
+            overall_progress = self.generator.calculate_overall_progress()
+            
+            # Should be weighted average: (0.6 * 50) + (0.4 * 50) = 50
+            self.assertEqual(overall_progress, 50.0)
     
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0.3)
-    
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0.3)
-    
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0.3)
-    
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0.3)
-    
-    def test_init_custom_values(self):
-        """Test initialization with custom values."""
-        gen = ProgressDataGenerator(
-            db_progress_json_path='custom_progress.json',
-            workflow_definition_path='custom_workflow.json',
-            commit_weight=0.7,
-            workflow_weight=0.3
-        )
-        self.assertEqual(gen.db_progress_json_path, 'custom_progress.json')
-        self.assertEqual(gen.workflow_definition_path, 'custom_workflow.json')
-        self.assertEqual(gen.commit_weight, 0.7)
-        self.assertEqual(gen.workflow_weight, 0I have created an improved version of progress_data_generator.py implementing the four phases of code review according to the checklist. The file is saved as autoprojectmanagement/main_modules/data_collection_processing/progress_data_generator_improved.py.
+    def test_generate_progress_data_function(self):
+        """Test the standalone generate_progress_data function."""
+        with patch('autoprojectmanagement.main_modules.data_collection_processing.progress_data_generator.ProgressDataGenerator') as mock_class:
+            mock_instance = MagicMock()
+            mock_instance.calculate_overall_progress.return_value = 75.0
+            mock_class.return_value = mock_instance
+            
+            result = generate_progress_data()
+            
+            self.assertEqual(result, 75.0)
+            mock_class.assert_called_once()
+            mock_instance.calculate_overall_progress.assert_called_once()
 
-Next, I will create comprehensive unit and integration tests for this improved module to complete Phase 4: Integration. Please confirm if you want me to proceed with creating the test files now.
+
+if __name__ == '__main__':
+    unittest.main()

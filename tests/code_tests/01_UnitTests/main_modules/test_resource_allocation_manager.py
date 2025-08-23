@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import resource_allocation_manager
+from autoprojectmanagement.main_modules.resource_management.resource_management import ResourceManagement
 
 class TestResource_allocation_manager:
     """Test class for resource_allocation_manager module"""

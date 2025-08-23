@@ -1,5 +1,5 @@
 from .task_management import TaskManagement
-from project_management.modules.services.github_integration import GitHubIntegration
+from autoprojectmanagement.services.integration_services.github_integration import GitHubIntegration
 
 def main():
     # Initialize Task Management and GitHub Integration

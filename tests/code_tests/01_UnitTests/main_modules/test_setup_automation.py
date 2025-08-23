@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import setup_automation
+from autoprojectmanagement.main_modules.utility_modules import setup_automation
 
 class TestSetup_automation:
     """Test class for setup_automation module"""

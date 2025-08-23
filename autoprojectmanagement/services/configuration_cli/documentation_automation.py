@@ -1,4 +1,4 @@
-from ..services.github_integration import GitHubIntegration
+from autoprojectmanagement.services.integration_services.github_integration import GitHubIntegration
 import datetime
 import logging
 

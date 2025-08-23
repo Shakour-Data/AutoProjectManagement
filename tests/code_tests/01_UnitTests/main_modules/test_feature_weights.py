@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import feature_weights
+from autoprojectmanagement.main_modules.utility_modules import feature_weights
 
 class TestFeature_weights:
     """Test class for feature_weights module"""

@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import commit_progress_manager
+from autoprojectmanagement.main_modules.quality_commit_management import commit_progress_manager
 
 class TestCommit_progress_manager:
     """Test class for commit_progress_manager module"""

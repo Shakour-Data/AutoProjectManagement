@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import check_progress_dashboard_update
+from autoprojectmanagement.main_modules.progress_reporting import check_progress_dashboard_update
 
 class TestCheck_progress_dashboard_update:
     """Test class for check_progress_dashboard_update module"""

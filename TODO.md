@@ -14,32 +14,32 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 
 - [x] **communication_management.py**: Keep `communication_risk/` version (more comprehensive)
 - [x] **communication_risk_doc_integration.py**: Keep `communication_risk/` version (better documentation)
-- [ ] **risk_management.py**: Analyze both and merge
-- [ ] **check_progress_dashboard_update.py**: Analyze both and merge
-- [ ] **commit_progress_manager.py**: Analyze both and merge
-- [ ] **dashboards_reports.py**: Analyze both and merge
-- [ ] **db_data_collector.py**: Analyze both and merge
-- [ ] **do_important_tasks.py**: Analyze both and merge
-- [ ] **do_urgent_tasks.py**: Analyze both and merge
-- [ ] **estimation_management.py**: Analyze both and merge
-- [ ] **git_progress_updater.py**: Analyze both and merge
-- [ ] **github_actions_automation.py**: Analyze both and merge
-- [ ] **input_handler.py**: Analyze both and merge
-- [ ] **progress_report.py**: Analyze both and merge
-- [ ] **quality_management.py**: Analyze both and merge
-- [ ] **reporting.py**: Analyze both and merge
-- [ ] **resource_allocation_manager.py**: Analyze both and merge
-- [ ] **resource_leveling.py**: Analyze both and merge
-- [ ] **resource_management.py**: Analyze both and merge
-- [ ] **scheduler.py**: Analyze both and merge
-- [ ] **scope_management.py**: Analyze both and merge
-- [ ] **task_executor.py**: Analyze both and merge
-- [ ] **task_management_integration.py**: Analyze both and merge
-- [ ] **task_management.py**: Analyze both and merge
-- [ ] **wbs_aggregator.py**: Analyze both and merge
-- [ ] **wbs_merger.py**: Analyze both and merge
-- [ ] **wbs_parser.py**: Analyze both and merge
-- [ ] **workflow_data_collector.py**: Analyze both and merge
+- [x] **risk_management.py**: Analyzed - kept main version, removed corrupted improved version
+- [x] **check_progress_dashboard_update.py**: Already organized in progress_reporting/ - no duplicates found
+- [x] **commit_progress_manager.py**: Already organized in quality_commit_management/ - no duplicates found
+- [x] **dashboards_reports.py**: Already organized in progress_reporting/ - no duplicates found
+- [x] **db_data_collector.py**: Already organized in data_collection_processing/ - no duplicates found
+- [x] **do_important_tasks.py**: Already organized in task_workflow_management/ - no duplicates found
+- [x] **do_urgent_tasks.py**: Already organized in task_workflow_management/ - no duplicates found
+- [x] **estimation_management.py**: Analyzed - kept improved version, removed basic version
+- [x] **git_progress_updater.py**: Already organized in quality_commit_management/ - no duplicates found
+- [x] **github_actions_automation.py**: Already organized in quality_commit_management/ - no duplicates found
+- [x] **input_handler.py**: Already organized in data_collection_processing/ - no duplicates found
+- [x] **progress_report.py**: Already organized in progress_reporting/ - no duplicates found
+- [x] **quality_management.py**: Already organized in quality_commit_management/ - no duplicates found
+- [x] **reporting.py**: Already organized in progress_reporting/ - no duplicates found
+- [x] **resource_allocation_manager.py**: Already organized in resource_management/ - no duplicates found
+- [x] **resource_leveling.py**: Already organized in resource_management/ - no duplicates found
+- [x] **resource_management.py**: Already organized in resource_management/ - no duplicates found
+- [x] **scheduler.py**: Already organized in planning_estimation/ - no duplicates found
+- [x] **scope_management.py**: Analyzed - kept improved version, removed basic version
+- [x] **task_executor.py**: Already organized in task_workflow_management/ - no duplicates found
+- [x] **task_management_integration.py**: Already organized in task_workflow_management/ - no duplicates found
+- [x] **task_management.py**: Already organized in task_workflow_management/ - no duplicates found
+- [x] **wbs_aggregator.py**: Already organized in planning_estimation/ - no duplicates found
+- [x] **wbs_merger.py**: Already organized in planning_estimation/ - no duplicates found
+- [x] **wbs_parser.py**: Already organized in planning_estimation/ - no duplicates found
+- [x] **workflow_data_collector.py**: Already organized in data_collection_processing/ - no duplicates found
 
 ### Strategy for Each Merge:
 1. Compare both versions
@@ -73,18 +73,23 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [x] Move `project_management_system.py` to `project_management/`
 
 ### Services Organization:
-- [ ] Review services structure and ensure consistent organization
-- [ ] Move core services to appropriate subdirectories
+- [x] Review services structure and ensure consistent organization
+- [x] Move core services to appropriate subdirectories:
+  - `integration_manager.py` → `integration_services/`
+  - `status_service.py` → `monitoring_services/` (new directory created)
 
 ## Phase 3: Import Updates and Testing
 
 ### Update Imports:
-- [ ] Update all import statements to reflect new file locations
-- [ ] Check for circular imports and resolve them
+- [x] Update all import statements to reflect new file locations
+  - Updated `autoprojectmanagement/services/__init__.py` to use new path for `IntegrationManager`
+- [x] Check for circular imports and resolve them
+  - No circular imports found
 
 ### Comprehensive Testing:
-- [ ] Run all tests to ensure functionality is preserved
-- [ ] Fix any broken references
+- [x] Basic import testing completed (IntegrationManager import successful)
+- [ ] Full test suite requires updates to test files (many test files have incorrect import paths and syntax errors)
+- [ ] Test files need to be updated to use correct module paths and fix syntax issues
 - [ ] Verify no functionality loss
 
 ## Phase 4: Documentation and Cleanup

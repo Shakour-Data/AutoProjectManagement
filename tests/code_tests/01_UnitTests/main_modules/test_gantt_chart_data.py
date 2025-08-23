@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import gantt_chart_data
+from autoprojectmanagement.main_modules.planning_estimation import gantt_chart_data
 
 class TestGantt_chart_data:
     """Test class for gantt_chart_data module"""

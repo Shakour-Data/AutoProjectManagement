@@ -11,7 +11,7 @@ from pathlib import Path
 # Add source to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from autoprojectmanagement\main_modules import wbs_aggregator
+from autoprojectmanagement.main_modules.planning_estimation import wbs_aggregator
 
 class TestWbs_aggregator:
     """Test class for wbs_aggregator module"""
