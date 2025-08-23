@@ -107,7 +107,48 @@ class ProjectManagementSystem:
         self.tasks: Dict[int, Dict[int, Dict[str, Any]]] = {}  # project_id -> task_id -> task
         self.is_initialized = False
         
+    def save_projects(self) -> None:
+        """Save projects to a JSON file."""
+        if not DEFAULT_DATA_DIR.exists():
+            DEFAULT_DATA_DIR.mkdir(parents=True, exist_ok=True)
+        with open(PROJECTS_FILE, 'w', encoding='utf-8') as f:
+            json.dump(self.projects, f, ensure_ascii=False, indent=2)
+            logger.info(f"Projects saved to {PROJECTS_FILE}")
+
+    def load_projects(self) -> None:
+        """Load projects from a JSON file."""
+        if PROJECTS_FILE.exists():
+            with open(PROJECTS_FILE, 'r', encoding='utf-8') as f:
+                self.projects = json.load(f)
+                logger.info(f"Projects loaded from {PROJECTS_FILE}")
+
+    def save_tasks(self) -> None:
+        """Save tasks to a JSON file."""
+        if not DEFAULT_DATA_DIR.exists():
+            DEFAULT_DATA_DIR.mkdir(parents=True, exist_ok=True)
+        with open(TASKS_FILE, 'w', encoding='utf-8') as f:
+            json.dump(self.tasks, f, ensure_ascii=False, indent=2)
+            logger.info(f"Tasks saved to {TASKS_FILE}")
+
+    def load_tasks(self) -> None:
+        """Load tasks from a JSON file."""
+        if TASKS_FILE.exists():
+            with open(TASKS_FILE, 'r', encoding='utf-8') as f:
+                self.tasks = json.load(f)
+                logger.info(f"Tasks loaded from {TASKS_FILE}")
+
     def initialize_system(self, config: Optional[Dict[str, Any]] = None) -> bool:
+        """Initialize the project management system"""
+        if config is not None and not isinstance(config, dict):
+            raise TypeError("Configuration must be a dictionary")
+            
+        self.projects = {}
+        self.tasks = {}
+        self.load_projects()
+        self.load_tasks()
+        self.is_initialized = True
+        logger.info("Project Management System initialized")
+        return True
         """Initialize the project management system"""
         if config is not None and not isinstance(config, dict):
             raise TypeError("Configuration must be a dictionary")
