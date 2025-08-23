@@ -63,3 +63,36 @@ def __init__(self, input_paths: Dict[str, str], output_path: str) -> None
 **Parameters:**
 | Parameter | Type | Required | Description | Default |
 |-----------|------|----------|-------------|---------|
+| `input_paths` | `Dict[str, str]` | Yes | Dictionary mapping input names to file paths | - |
+| `output_path` | `str` | Yes | Path where output will be saved | - |
+
+**Validation Rules:**
+- `input_paths` must be a non-empty dictionary
+- `output_path` must be a non-empty string
+
+#### load_json Method
+```python
+def load_json(self, path: str) -> Optional[Dict[str, Any]]
+```
+
+**Purpose:** Loads JSON data from a specified file path.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `path` | `str` | Yes | Path to the JSON file |
+
+**Returns:** `Optional[Dict[str, Any]]` - Dictionary containing JSON data or None if file doesn't exist
+
+**Error Handling:**
+- `json.JSONDecodeError`: If file contains invalid JSON
+- `OSError`: If there's an error reading the file
+
+#### save_json Method
+```python
+def save_json(self, data: Dict[str, Any], path: str) -> None
+```
+
+**Purpose:** Saves data as JSON to a specified file path.
+
+**Parameters:**
