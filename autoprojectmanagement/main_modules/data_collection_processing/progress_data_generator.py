@@ -14,7 +14,7 @@ class ProgressDataGenerator:
         self,
         db_progress_json_path: str = os.path.join('docs', 'project_management', 'task_progress.json'),
         workflow_definition_path: str = os.path.join('docs', 'db_json', 'workflow_definition.json'),
-        commit_task_id_pattern: str = r'\\b\\d+\\.\\d+\\b',
+        commit_task_id_pattern: str = r'\b\d+\.\d+\b',
         commit_weight: float = 0.6,
         workflow_weight: float = 0.4,
         commit_json_path: str = None,

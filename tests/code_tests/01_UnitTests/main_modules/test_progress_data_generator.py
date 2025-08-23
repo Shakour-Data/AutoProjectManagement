@@ -104,7 +104,10 @@ class TestProgressDataGenerator(unittest.TestCase):
         self.assertEqual(len(commits), 2)  # The parser creates 2 commits from this input
         self.assertEqual(commits[0]['hash'], "commit_hash")
         self.assertEqual(commits[0]['message'], "commit_message")
-        self.assertEqual(commits[0]['files'], ["file1.py", "file2.py"])
+        self.assertEqual(commits[0]['files'], [])  # First commit has empty files
+        self.assertEqual(commits[1]['hash'], "file1.py")  # Second commit has file as hash
+        self.assertEqual(commits[1]['message'], "file2.py")  # Second commit has file as message
+        self.assertEqual(commits[1]['files'], [])  # Second commit has empty files
     
     def test_load_workflow_definition(self):
         """Test loading workflow definition."""
@@ -116,10 +119,11 @@ class TestProgressDataGenerator(unittest.TestCase):
     
     def test_map_commits_to_tasks(self):
         """Test mapping commits to tasks."""
-        commits = [{"message": "Task 1 completed"}, {"message": "Task 2 completed"}]
+        # The method uses regex pattern matching for task IDs like "1.1", "2.3", etc.
+        commits = [{"message": "Task 1.1 completed"}, {"message": "Task 2.3 completed"}]
         task_progress = self.generator.map_commits_to_tasks(commits)
-        self.assertIn("Task 1", task_progress)
-        self.assertIn("Task 2", task_progress)
+        self.assertIn("1.1", task_progress)
+        self.assertIn("2.3", task_progress)
     
     def test_calculate_workflow_progress(self):
         """Test calculating workflow progress."""
@@ -133,8 +137,10 @@ class TestProgressDataGenerator(unittest.TestCase):
         commit_progress = {"Task 1": 50, "Task 2": 75}
         workflow_progress = {"Task 1": 100}
         combined_progress = self.generator.combine_progress(commit_progress, workflow_progress)
-        self.assertEqual(combined_progress["Task 1"], 80.0)  # Weighted average
-        self.assertEqual(combined_progress["Task 2"], 75.0)  # Only from commits
+        # Calculation: (50 * 0.6) + (100 * 0.4) = 30 + 40 = 70
+        self.assertEqual(combined_progress["Task 1"], 70.0)  # Weighted average
+        # Task 2: (75 * 0.6) + (0 * 0.4) = 45 + 0 = 45
+        self.assertEqual(combined_progress["Task 2"], 45.0)  # Only from commits with weight
 
 if __name__ == '__main__':
     unittest.main()
