@@ -438,9 +438,28 @@ def update_task_status(project_id: str, task_id: str, new_status: str) -> None:
     """
     click.echo(f"🔄 Updating task {task_id} status to {new_status}")
     
-    # TODO: Implement task status update functionality
-    click.echo("❌ Task status update functionality not implemented yet")
-    sys.exit(1)
+    try:
+        project_id_int = int(project_id)
+        task_id_int = int(task_id)
+        
+        # Check if project exists
+        project = system.get_project(project_id_int)
+        if not project:
+            click.echo(f"❌ Project with ID {project_id} not found", err=True)
+            sys.exit(1)
+        
+        # Update task status
+        success = system.update_task_status(project_id_int, task_id_int, new_status)
+        
+        if success:
+            click.echo(f"✅ Task {task_id} status updated successfully to '{new_status}'")
+        else:
+            click.echo(f"❌ Failed to update task {task_id} status. Task may not exist.", err=True)
+            sys.exit(1)
+            
+    except ValueError:
+        click.echo(f"❌ Invalid project ID or task ID. Both must be numbers.", err=True)
+        sys.exit(1)
 
 
 @main.command()
