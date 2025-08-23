@@ -418,6 +418,22 @@ def test_project_creation():
 - **Usage Instructions**: [Docs/SystemDesign/Usage_Instructions.md](Docs/SystemDesign/Usage_Instructions.md)
 - **System Design**: [Docs/SystemDesign/](Docs/SystemDesign/)
 - **Developer Guide**: [Docs/SystemDesign/Guides/Developer_Guidelines.md](Docs/SystemDesign/Guides/Developer_Guidelines.md)
+- **API Documentation Template**: [Docs/SystemDesign/Guides/API_Documentation_Template.md](Docs/SystemDesign/Guides/API_Documentation_Template.md)
+
+### Interactive Documentation
+
+Access the live interactive documentation when the server is running:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
+
+### Code Examples
+
+All documentation includes practical code examples for:
+- Python API clients
+- JavaScript/TypeScript integration
+- WebSocket real-time updates
+- Dashboard customization
+- Server-Sent Events (SSE) integration
 
 ---
 
