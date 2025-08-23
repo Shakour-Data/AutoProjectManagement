@@ -431,6 +431,8 @@ class UnifiedAutoCommit:
         print("🔧 TROUBLESHOOTING GUIDE")
         print("="*60)
         print("Authentication issues detected. Here are solutions:")
+        print()
+        print("1. PERSONAL ACCESS TOKEN (Recommended):")
 
 
 if __name__ == "__main__":
