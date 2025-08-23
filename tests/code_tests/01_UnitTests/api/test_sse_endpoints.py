@@ -119,13 +119,13 @@ class TestSSEConnectionManager:
         self.mock_event_service.set_project_filter = AsyncMock()
         
         result = await self.manager.handle_subscription(
-            connection_id, ["file_change", "auto_commit"], "test-project"
+            connection_id, ["file_change", "auto_commit_start"], "test-project"
         )
         
-        assert result == ["file_change", "auto_commit"]
+        assert result == ["file_change", "auto_commit_start"]
         self.mock_event_service.unsubscribe.assert_called_once_with(connection_id, EventType.FILE_CHANGE)
         self.mock_event_service.subscribe.assert_any_call(connection_id, EventType.FILE_CHANGE)
-        self.mock_event_service.subscribe.assert_any_call(connection_id, EventType.AUTO_COMMIT)
+        self.mock_event_service.subscribe.assert_any_call(connection_id, EventType.AUTO_COMMIT_START)
         self.mock_event_service.set_project_filter.assert_called_once_with(connection_id, "test-project")
 
 class TestSSEEndpoints:
