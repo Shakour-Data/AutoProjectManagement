@@ -407,23 +407,17 @@ def test_project_creation():
 ### Comprehensive Documentation
 
 - **API Reference**: [Docs/SystemDesign/Glossary/API_Reference.md](Docs/SystemDesign/Glossary/API_Reference.md)
+- **API Modules Documentation**: Complete documentation for all API modules:
+  - [Main Module](Docs/SystemDesign/API_Modules/main_documentation.md)
+  - [App Module](Docs/SystemDesign/API_Modules/app_documentation.md)
+  - [Services Module](Docs/SystemDesign/API_Modules/services.md)
+  - [Dashboard Endpoints](Docs/SystemDesign/API_Modules/dashboard_endpoints_documentation.md)
+  - [Real-time Service](Docs/SystemDesign/API_Modules/realtime_service_documentation.md)
+  - [Server Module](Docs/SystemDesign/API_Modules/server_documentation.md)
+  - [SSE Endpoints](Docs/SystemDesign/API_Modules/sse_endpoints_documentation.md)
 - **Usage Instructions**: [Docs/SystemDesign/Usage_Instructions.md](Docs/SystemDesign/Usage_Instructions.md)
 - **System Design**: [Docs/SystemDesign/](Docs/SystemDesign/)
 - **Developer Guide**: [Docs/SystemDesign/Guides/Developer_Guidelines.md](Docs/SystemDesign/Guides/Developer_Guidelines.md)
-
-### Interactive Documentation
-
-Access the live interactive documentation when the server is running:
-- **Swagger UI**: http://localhost:8000/docs
-- **ReDoc**: http://localhost:8000/redoc
-
-### Code Examples
-
-All documentation includes practical code examples for:
-- Python API clients
-- JavaScript/TypeScript integration
-- WebSocket real-time updates
-- Dashboard customization
 
 ---
 
