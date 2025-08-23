@@ -103,3 +103,35 @@ data = handler.read_json_files()
 
 if data:
     for filename, content in data.items():
+        print(f"File: {filename}, Keys: {list(content.keys())}")
+```
+
+**Custom Directory:**
+```python
+# Use custom input directory
+handler = InputHandler('custom/inputs')
+handler.set_input_dir('another/directory')  # Change directory
+data = handler.read_json_files()
+```
+
+**Standalone Functions:**
+```python
+from autoprojectmanagement.main_modules.data_collection_processing.input_handler import (
+    validate_input, process_input
+)
+
+# Validate input data
+input_data = {"field1": "value1", "field2": "value2"}
+is_valid = validate_input(input_data)
+print(f"Input valid: {is_valid}")
+
+# Process input data
+processed = process_input(input_data)
+print(f"Processed data: {processed}")
+```
+
+**Error Handling:**
+```python
+try:
+    data = handler.read_json_files()
+    if data is None:
