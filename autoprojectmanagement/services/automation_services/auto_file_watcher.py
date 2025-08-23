@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+ز#!/usr/bin/env python3
 """
 Automatic File Watcher Service for AutoProjectManagement
 Purpose: Provides real-time file monitoring and automatic auto-commit execution
