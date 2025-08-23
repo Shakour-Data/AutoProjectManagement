@@ -67,6 +67,9 @@ LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
+# Global system instance
+system = ProjectManagementSystem()
+
 
 @click.group()
 @click.version_option(version="1.0.0", prog_name="AutoProjectManagement")
