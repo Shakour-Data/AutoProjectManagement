@@ -230,6 +230,30 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 ### Final Cleanup:
 - [x] Remove empty directories
 - [x] Clean up __pycache__ directories
+- [ ] Verify all file paths in configuration files match current structure
+
+## Documentation Priority Order:
+1. **API Modules** - Most critical for integration
+2. **Core Services** - Essential for system operation  
+3. **Main Modules** - Business logic documentation
+4. **User Guides** - End-user documentation
+5. **Persian Translation** - Localization
+
+## Documentation Templates Needed:
+- [ ] Module documentation template (English)
+- [ ] Module documentation template (Persian)
+- [ ] API reference template
+- [ ] Diagram standards template
+- [ ] User guide template
+
+## Next Steps:
+1. Start with API module documentation
+2. Create documentation templates
+3. Establish documentation standards
+4. Begin systematic documentation of each module
+5. Parallel Persian translation process
+
+*Note: Each documentation task should include three levels of detail, diagrams, tables, and practical examples.*
 
 ## Priority Order for Documentation:
 1. **API Reference Update** - Ensure API documentation matches current endpoints
