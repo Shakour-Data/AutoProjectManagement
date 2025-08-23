@@ -200,3 +200,24 @@ flowchart TD
 | Field | Type | Required | Description | Validation Rules |
 |-------|------|----------|-------------|-----------------|
 | `stakeholders` | `List[Dict]` | Yes | List of project stakeholders | Must contain at least one stakeholder |
+| `communication_types` | `List[str]` | Yes | Types of communication methods | Must contain at least one type |
+| `frequency` | `Dict[str, Any]` | Yes | Communication frequency settings | Must contain valid frequency settings |
+
+### Effectiveness Calculation Formula
+
+The communication effectiveness score is calculated using the following formula:
+
+```
+effectiveness_score = min(actual_communications / expected_minimum, 1.0)
+```
+
+Where:
+- `actual_communications` = Total number of communication log entries
+- `expected_minimum` = Number of stakeholders × 2 (minimum expected communications per stakeholder)
+
+## Error Handling and Logging
+
+### Log Levels
+| Level | Usage | Example |
+|-------|-------|---------|
+| `INFO` | Successful operations | "Loaded input: communication_plan from path" |
