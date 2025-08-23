@@ -40,7 +40,7 @@ __author__ = "AutoProjectManagement Team"
 __license__ = "MIT"
 
 
-from .project_management_system import ProjectManagementSystem
+from .project_management.project_management_system import ProjectManagementSystem
 from .task_workflow_management.task_management import TaskManagement
 from .progress_reporting.progress_report import ProgressReport
 from .planning_estimation.scheduler import Scheduler

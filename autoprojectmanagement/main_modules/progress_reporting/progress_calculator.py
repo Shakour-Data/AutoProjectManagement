@@ -1,110 +1,21 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-================================================================================
-AutoProjectManagement - Automated Project Management System
-================================================================================
-Module: progress_calculator
-File: progress_calculator.py
-Path: autoprojectmanagement/main_modules/progress_reporting/progress_calculator.py
-
-Description:
-    Progress Calculator module
-
-Author: AutoProjectManagement Team
-Contact: team@autoprojectmanagement.com
-Repository: https://github.com/autoprojectmanagement/autoprojectmanagement
-
-Version Information:
-    Current Version: 1.0.0
-    Last Updated: 2025-08-14
-    Python Version: 3.8+
-    
-Development Status:
-    Status: Production/Stable
-    Created: 2024-01-01
-    Last Modified: 2025-08-14
-    Modified By: AutoProjectManagement Team
-
-Dependencies:
-    - Python 3.8+
-    - See requirements.txt for full dependency list
-
-License: MIT License
-Copyright: (c) 2024 AutoProjectManagement Team
-
-Usage:
-    This module is part of the AutoProjectManagement package.
-    Import and use as needed within the package ecosystem.
-
-Example:
-    >>> from autoprojectmanagement.main_modules.progress_reporting.progress_calculator import {main_class}
-    >>> instance = {main_class}()
-    >>> instance.run()
-
-Notes:
-    - This file follows the AutoProjectManagement coding standards
-    - All changes should be documented in the changelog below
-    - Ensure compatibility with Python 3.8+
-
-Changelog:
-    1.0.0 (2024-01-01): Initial release
-    1.0.1 (2025-08-14): {change_description}
-
-TODO:
-    - [ ] Add comprehensive error handling
-    - [ ] Implement logging throughout
-    - [ ] Add unit tests
-    - [ ] Update documentation
-
-================================================================================
-"""
-
-
 import os
 import json
 import datetime
 import logging
-from typing import List, Dict, Any, Optional, Union
+from typing import List, Dict, Any
 from collections import defaultdict
-from pathlib import Path
-
-__version__ = "1.0.0"
-__author__ = "AutoProjectManagement Team"
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 class ProgressCalculator:
-    """
-    A comprehensive progress calculator for project management tasks.
-    
-    This class calculates progress based on multiple factors including:
-    - Commit-based progress from version control
-    - Workflow step completion
-    - Dynamic importance and urgency scoring
-    - Task status and dependencies
-    """
-    
-    DEFAULT_INPUT_DIR: str = 'project_inputs/PM_JSON/user_inputs'
-    DEFAULT_WEIGHT_COMMIT: float = 0.5
-    DEFAULT_WEIGHT_WORKFLOW: float = 0.5
-    MAX_DEPENDENCIES: int = 10
-    TIME_WINDOW_DAYS: int = 7
-    URGENCY_WINDOW_DAYS: int = 3
-    
-    def __init__(self, input_dir: Optional[str] = None) -> None:
-        """
-        Initialize the ProgressCalculator.
-        
-        Args:
-            input_dir: Directory path for input JSON files. Defaults to DEFAULT_INPUT_DIR.
-        """
-        self.input_dir: str = input_dir or self.DEFAULT_INPUT_DIR
-        self.tasks: List[Dict[str, Any]] = []
-        self.workflow_steps: List[Dict[str, Any]] = []
-        self.commit_progress: Dict[str, float] = {}
-        self.importance_cache: Dict[str, float] = {}
-        self.urgency_cache: Dict[str, float] = {}
+    def __init__(self, input_dir: str = 'project_inputs/PM_JSON/user_inputs'):
+        self.input_dir = input_dir
+        self.tasks = []
+        self.workflow_steps = []
+        self.commit_progress = {}
+        self.importance_cache = {}
+        self.urgency_cache = {}
 
     def load_json_file(self, filename: str) -> Any:
         path = os.path.join(self.input_dir, filename)
