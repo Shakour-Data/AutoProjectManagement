@@ -346,7 +346,11 @@ def update_task_status(project_id: str, task_id: str, new_status: str) -> None:
     success = cli_commands.update_task_status(project_id, task_id, new_status)
     
     if success:
-        click.echo(f"✅ Task {task_id} status updated to {new_status}")
+    click.echo(f"✅ Task {task_id} status updated to {new_status}")
+    
+    # TODO: Implement task status update functionality
+    click.echo("❌ Task status update functionality not implemented yet")
+    sys.exit(1)
     else:
         click.echo("❌ Failed to update task status", err=True)
         sys.exit(1)
