@@ -150,3 +150,59 @@ end_date = start_date + timedelta(days=duration_days)
 
 **Progress Conversion:**
 ```
+progress_percentage = progress_float * 100  # Convert 0.0-1.0 to 0-100
+```
+
+**Dependency Handling:**
+- Maintains task dependency lists
+- Supports complex dependency chains
+- Handles circular dependency prevention
+
+**Subtask Processing:**
+- Recursive subtask processing
+- Parent-child relationship maintenance
+- Inherited start dates for subtasks
+
+#### Error Handling
+
+**Common Errors:**
+- Invalid date formats
+- Missing required fields
+- File not found errors
+- JSON parsing errors
+
+**Exception Types:**
+- `TypeError`: Invalid input types
+- `ValueError`: Invalid date formats or values
+- `KeyError`: Missing required fields
+- `IOError`: File operation errors
+
+**Error Responses:**
+- Returns empty lists for file errors
+- Raises specific exceptions for validation failures
+- Provides detailed error messages
+
+#### Dependencies
+
+**Internal Dependencies:**
+- Standard library modules: os, json, datetime, typing
+- No external package dependencies
+
+**External Dependencies:**
+- Python 3.8+
+- Valid task JSON files
+- Proper file system access
+
+#### Performance Considerations
+
+**File I/O:**
+- Efficient JSON file loading
+- Proper error handling for missing files
+- Memory-efficient data structures
+
+**Date Processing:**
+- Efficient date parsing and calculation
+- Optimized datetime operations
+- Minimal overhead for large task sets
+
+**Recursive Processing:**
