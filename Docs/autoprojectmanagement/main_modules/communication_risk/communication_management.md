@@ -121,3 +121,82 @@ def __init__(self, communication_plan_path: str = DEFAULT_COMMUNICATION_PLAN_PAT
 |-----------|------|----------|---------|-------------|
 | `communication_plan_path` | `str` | No | `project_inputs/PM_JSON/user_inputs/communication_plan.json` | Path to communication plan |
 | `communication_logs_path` | `str` | No | `project_inputs/PM_JSON/user_inputs/communication_logs.json` | Path to communication logs |
+| `output_path` | `str` | No | `project_inputs/PM_JSON/system_outputs/communication_management.json` | Output path |
+
+#### analyze Method
+```python
+def analyze(self) -> None
+```
+
+**Purpose:** Performs comprehensive communication analysis including plan validation, log analysis, effectiveness calculation, and recommendation generation.
+
+**Analysis Process:**
+1. **Plan Validation**: Validates communication plan structure and required fields
+2. **Log Analysis**: Analyzes communication patterns and frequency
+3. **Effectiveness Calculation**: Computes communication effectiveness score
+4. **Recommendation Generation**: Creates actionable recommendations
+
+**Output Structure:**
+```json
+{
+  "summary": {
+    "status": "completed",
+    "total_logs": 25,
+    "plan_valid": true,
+    "effectiveness_score": 0.85
+  },
+  "plan_validation": {
+    "valid": true,
+    "issues": [],
+    "stakeholder_count": 5,
+    "communication_types": 3
+  },
+  "log_analysis": {
+    "total_logs": 25,
+    "frequency_analysis": {
+      "email": 15,
+      "meeting": 8,
+      "report": 2
+    },
+    "effectiveness_trends": [],
+    "gaps": []
+  },
+  "effectiveness": {
+    "score": 0.85,
+    "metrics": {
+      "actual_communications": 25,
+      "expected_minimum": 10,
+      "plan_stakeholders": 5
+    },
+    "issues": []
+  },
+  "recommendations": [
+    "Increase meeting frequency",
+    "Improve report distribution"
+  ]
+}
+```
+
+## Data Flow Diagram
+
+```mermaid
+flowchart TD
+    A[Communication Plan JSON] --> B[load_inputs]
+    C[Communication Logs JSON] --> B
+    B --> D[analyze]
+    D --> E[Plan Validation]
+    D --> F[Log Analysis]
+    D --> G[Effectiveness Calculation]
+    D --> H[Recommendation Generation]
+    E --> I[Output JSON]
+    F --> I
+    G --> I
+    H --> I
+```
+
+## Validation Rules
+
+### Communication Plan Validation
+| Field | Type | Required | Description | Validation Rules |
+|-------|------|----------|-------------|-----------------|
+| `stakeholders` | `List[Dict]` | Yes | List of project stakeholders | Must contain at least one stakeholder |
