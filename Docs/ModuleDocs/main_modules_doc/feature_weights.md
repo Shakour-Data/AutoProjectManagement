@@ -1,11 +1,11 @@
-# Feature Weights Module
+# Feature Weights Module Documentation
 
-## Overview
-The `feature_weights` module defines predefined weights for urgency and importance features used in project management task prioritization and evaluation.
+## Level 1: Executive Overview
 
-## Constants
+### Module Purpose and Functionality
+The `feature_weights` module provides a comprehensive system for managing and calculating feature weights within the AutoProjectManagement framework. It focuses on defining weights for urgency and importance features, enabling precise prioritization and decision-making.
 
-- `URGENCY_FEATURE_WEIGHTS`
+### Business Value
   - A dictionary mapping urgency-related features to their respective weights.
   - Features include deadline proximity, next activity dependency, high delay risk, immediate decision, stakeholder pressure, and others.
 
