@@ -824,44 +824,17 @@ The system containerization follows industry best practices for security and per
 This container specification ensures secure, reliable, and performant deployment across various container orchestration platforms.
 
 #### Kubernetes Deployment
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: autoprojectmanagement
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: autoprojectmanagement
-  template:
-    metadata:
-      labels:
-        app: autoprojectmanagement
-    spec:
-      containers:
-      - name: autoprojectmanagement
-        image: autoprojectmanagement:latest
-        ports:
-        - containerPort: 8000
-        env:
-        - name: AUTO_PROJECT_HOME
-          value: "/app"
-        resources:
-          requests:
-            memory: "512Mi"
-            cpu: "250m"
-          limits:
-            memory: "1Gi"
-            cpu: "500m"
-        volumeMounts:
-        - name: data-volume
-          mountPath: /app/data
-      volumes:
-      - name: data-volume
-        persistentVolumeClaim:
-          claimName: autoproject-pvc
-```
+The system supports Kubernetes deployment with comprehensive configuration:
+
+- **Deployment Strategy**: Multi-replica deployment for high availability
+- **Resource Management**: Optimized CPU and memory resource allocation
+- **Service Discovery**: Proper labeling and selector configuration
+- **Environment Configuration**: Environment variable management for different deployment environments
+- **Storage Integration**: Persistent volume claims for data storage requirements
+- **Port Configuration**: Standardized port exposure for service accessibility
+- **Health Monitoring**: Built-in health check capabilities for container orchestration
+
+This Kubernetes deployment configuration ensures scalable, reliable, and maintainable operation in containerized environments.
 
 ### Deployment Checklist
 
