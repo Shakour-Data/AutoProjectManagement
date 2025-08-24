@@ -93,3 +93,24 @@ def update_scrum_task(self, task_id, sprint_id, title, status, priority, progres
 | `sprint_id` | `Any` | Yes | Identifier of the sprint containing the task |
 | `title` | `str` | Yes | Title or description of the task |
 | `status` | `str` | Yes | Current status of the task |
+| `priority` | `Any` | Yes | Priority level of the task |
+| `progress` | `Any` | Yes | Progress percentage or indicator |
+
+**Process:**
+1. Reads existing tasks from JSON file
+2. Removes any existing task with the same `task_id`
+3. Adds the updated task with all provided fields
+4. Writes back to file with proper formatting
+
+**Task Structure:**
+```json
+{
+  "task_id": "unique_identifier",
+  "sprint_id": "sprint_identifier",
+  "title": "Task description",
+  "status": "in_progress",
+  "priority": "high",
+  "progress": 75
+}
+```
+
