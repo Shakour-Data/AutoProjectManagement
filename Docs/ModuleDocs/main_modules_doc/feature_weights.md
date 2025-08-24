@@ -83,3 +83,20 @@ flowchart LR
 ## Level 3: Detailed Implementation
 
 ### Core Class: FeatureWeights
+The `FeatureWeights` class serves as the central coordinator for feature weight management, providing comprehensive functionality for calculating weights and supporting decision-making.
+
+### Weight Calculation Algorithm
+The weight calculation process follows a systematic approach:
+
+1. **Feature Evaluation**: Assess features based on predefined criteria
+2. **Weight Application**: Apply appropriate weights to each feature
+3. **Priority Calculation**: Determine overall priority based on weighted features
+
+### Weight Calculation Formula
+The weight calculation follows this formula:
+```
+Combined Weight = (Urgency Weight + Importance Weight) × Feature Value
+```
+
+Where:
+- **Urgency Weight**: Predefined weight for urgency features
