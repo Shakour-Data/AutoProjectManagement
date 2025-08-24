@@ -566,16 +566,15 @@ The system supports local development with a straightforward setup process:
 This local development setup enables developers to work efficiently and test changes in a controlled environment.
 
 #### 2. Docker Deployment
-```dockerfile
-FROM python:3.8-slim
+The system supports containerized deployment using Docker:
 
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+- **Base Image**: Lightweight Python slim image for optimal performance
+- **Workflow Setup**: Proper working directory configuration and dependency installation
+- **File Copying**: Efficient copying of requirements and application code
+- **Command Execution**: Proper command configuration for container startup
+- **Optimization**: Lightweight container design for efficient resource usage
 
-COPY . .
-CMD ["python", "-m", "autoprojectmanagement.cli"]
-```
+This Docker deployment approach ensures consistent environments across development, staging, and production while simplifying deployment and scaling operations.
 
 #### 3. Cloud Deployment
 ```yaml
