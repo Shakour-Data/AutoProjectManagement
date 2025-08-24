@@ -162,3 +162,20 @@ class StatusService:
                 status_data['progress'] = int(progress_match.group(1))
             
             # Extract tasks information
+            tasks_match = re.search(r'Tasks Completed:\s*(\d+)/(\d+)', content)
+            if tasks_match:
+                status_data['tasks_completed'] = int(tasks_match.group(1))
+                status_data['tasks_total'] = int(tasks_match.group(2))
+            
+            # Extract current task
+            task_match = re.search(r'Current Task:\s*(.+)', content)
+            if task_match:
+                status_data['current_task'] = task_match.group(1).strip()
+            
+            # Extract estimated completion
+            completion_match = re.search(r'Estimated Completion:\s*(.+)', content)
+            if completion_match:
+                status_data['estimated_completion'] = completion_match.group(1).strip()
+            
+            # Determine overall status
+            if status_data['progress'] == 100:
