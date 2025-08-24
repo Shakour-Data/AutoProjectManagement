@@ -234,3 +234,48 @@ def estimate_task_duration(task: Dict[str, Any]) -> float
 
 **Parameters:**
 | Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `task` | `Dict[str, Any]` | Yes | Task dictionary containing complexity |
+
+**Returns:** `float` - Estimated duration based on complexity mapping
+
+**Validation:**
+- Task must be a non-None dictionary
+- Uses 'medium' complexity as default if not specified
+
+**Raises:**
+- `TypeError`: If task is None or not a dictionary
+
+#### estimate_task_cost Function
+```python
+def estimate_task_cost(task: Dict[str, Any]) -> float
+```
+
+**Purpose:** Estimates task cost based on resources and duration.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `task` | `Dict[str, Any]` | Yes | Task dictionary containing resources |
+
+**Returns:** `float` - Estimated cost (duration × resources × cost_per_resource)
+
+**Formula:**
+```
+cost = duration × resources × DEFAULT_COST_PER_RESOURCE
+```
+
+**Validation:**
+- Task must be a non-None dictionary
+- Uses 1 resource as default if not specified
+
+**Raises:**
+- `TypeError`: If task is None or not a dictionary
+
+#### estimate_project_duration Function
+```python
+def estimate_project_duration(project: Dict[str, Any]) -> float
+```
+
+**Purpose:** Estimates project duration by summing task durations.
+
