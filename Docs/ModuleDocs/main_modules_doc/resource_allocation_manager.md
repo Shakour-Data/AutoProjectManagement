@@ -242,3 +242,29 @@ def generate_resource_utilization_report(self) -> Dict[str, Any]:
 ```json
 {
   "process_date": "ISO8601 timestamp",
+  "total_cost": 15000.0,
+  "resource_utilization": {
+    "resource_id": {
+      "resource_name": "Senior Developer",
+      "allocation_count": 3,
+      "utilization_rate": 0.75
+    }
+  },
+  "allocation_conflicts": [
+    {
+      "type": "overlap",
+      "resource_id": "resource_1",
+      "message": "Resource has overlapping allocations"
+    }
+  ],
+  "task_count": 25,
+  "resource_count": 10
+}
+```
+
+---
+
+## Usage Examples
+
+### Enterprise Deployment Pattern
+```python
