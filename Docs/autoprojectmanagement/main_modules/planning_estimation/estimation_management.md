@@ -147,3 +147,50 @@ def validate_inputs(self) -> bool
 
 **Purpose:** Validates loaded inputs before analysis.
 
+**Returns:** `bool` - True if all inputs are valid (non-empty), False otherwise
+
+**Validation:**
+- Checks that all input values in `inputs` dictionary are truthy
+- Returns False if any input is empty or None
+
+#### run Method
+```python
+def run(self) -> None
+```
+
+**Purpose:** Executes the complete management workflow.
+
+**Process Flow:**
+1. Loads all input files
+2. Validates loaded inputs
+3. Performs analysis (calls `analyze` method)
+4. Saves output to JSON file
+5. Logs completion status
+
+**Raises:**
+- `ValueError`: If inputs are invalid after validation
+
+### EstimationManagement Class
+
+#### Constructor
+```python
+def __init__(self,
+             detailed_wbs_path: str = 'project_inputs/PM_JSON/user_inputs/detailed_wbs.json',
+             output_path: str = 'project_inputs/PM_JSON/system_outputs/estimation_management.json') -> None
+```
+
+**Purpose:** Initializes estimation management with WBS data path and output path.
+
+**Parameters:**
+| Parameter | Type | Required | Description | Default |
+|-----------|------|----------|-------------|---------|
+| `detailed_wbs_path` | `str` | No | Path to detailed WBS JSON file | `project_inputs/PM_JSON/user_inputs/detailed_wbs.json` |
+| `output_path` | `str` | No | Path for estimation output | `project_inputs/PM_JSON/system_outputs/estimation_management.json` |
+
+#### analyze Method
+```python
+def analyze(self) -> None
+```
+
+**Purpose:** Performs comprehensive project estimation analysis.
+
