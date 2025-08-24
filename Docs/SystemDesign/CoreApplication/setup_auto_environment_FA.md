@@ -77,3 +77,79 @@ classDiagram
 #### ایجاد Gitignore
 **متد**: `create_gitignore() -> None`
 
+یک فایل .gitignore با الگوها برای حذف فایل‌های موقت، لاگ‌ها، پشتیبان‌ها و سایر فایل‌های غیرضروری از کنترل نسخه ایجاد می‌کند.
+
+#### نصب وابستگی‌ها
+**متد**: `install_dependencies() -> None`
+
+تمام بسته‌های Python لازم را از فایل requirements نصب می‌کند.
+
+#### راه‌اندازی محیط کامل
+**متد**: `setup_complete_environment() -> None`
+
+فرآیند راه‌اندازی کامل را هماهنگ می‌کند شامل ایجاد دایرکتوری، تولید پیکربندی، ایجاد اسکریپت و نصب وابستگی.
+
+### تابع اصلی
+**تابع**: `main() -> None`
+
+نقطه ورود اصلی برای اسکریپت راه‌اندازی، فراهم کردن رابط خط فرمان برای راه‌اندازی محیط مدیریت پروژه خودکار.
+
+## مثال‌های استفاده
+
+### راه‌اندازی پایه
+```python
+from autoprojectmanagement.setup_auto_environment import AutoEnvironmentSetup
+
+# مقداردهی اولیه AutoEnvironmentSetup
+setup = AutoEnvironmentSetup()
+
+# راه‌اندازی محیط کامل
+setup.setup_complete_environment()
+```
+
+### استفاده از خط فرمان
+```bash
+# راه‌اندازی در دایرکتوری فعلی
+python -m autoprojectmanagement.setup_auto_environment
+
+# راه‌اندازی در دایرکتوری خاص
+python -m autoprojectmanagement.setup_auto_environment --path /path/to/project
+
+# فعال کردن لاگ‌گیری تفصیلی
+python -m autoprojectmanagement.setup_auto_environment --verbose
+```
+
+## فایل‌های پیکربندی ایجاد شده
+
+### فایل پیکربندی خودکار
+واقع در `.auto_project/config/auto_config.json`، این فایل شامل تنظیمات برای موارد زیر است:
+- ویژگی‌های مدیریت خودکار
+- پیکربندی‌های نظارت
+- یکپارچه‌سازی Git
+- تنظیمات گزارش‌دهی
+- اعلان‌ها
+- پیکربندی‌های پشتیبان
+
+### فضای کاری VS Code
+واقع در `auto_project_management.code-workspace`، این فایل شامل موارد زیر است:
+- تنظیمات پوشه
+- پیکربندی‌های ویرایشگر
+- پیکربندی‌های راه‌اندازی برای دیباگ
+- تعاریف وظایف برای خودکارسازی
+
+### اسکریپت‌های شل
+- `start_auto_management.sh`: سیستم مدیریت خودکار را راه‌اندازی می‌کند
+- `stop_auto_management.sh`: سیستم مدیریت خودکار را متوقف می‌کند
+- `status_auto_management.sh`: وضعیت سیستم را نمایش می‌دهد
+
+## وابستگی‌ها
+- **os**: برای تعاملات سیستم عامل
+- **sys**: برای پارامترهای خاص سیستم
+- **json**: برای مدیریت فایل‌های JSON
+- **subprocess**: برای اجرای دستورات شل
+- **shutil**: برای عملیات فایل
+- **logging**: برای راه‌اندازی لاگ‌گیری
+- **pathlib**: برای دستکاری مسیرها
+
+## مدیریت خطا
+- لاگ‌گیری خطای جامع برای تمام عملیات
