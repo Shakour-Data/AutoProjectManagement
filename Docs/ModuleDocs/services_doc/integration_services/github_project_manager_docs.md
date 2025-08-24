@@ -112,3 +112,98 @@ flowchart TD
     
     E --> F[Validate Configuration]
     F --> G[API Request]
+    G --> H{Success?}
+    H -->|Yes| I[Create Repository]
+    H -->|No| J[Error Handling]
+    
+    I --> K[Generate Report]
+    J --> K
+    K --> L[Return Result]
+```
+
+### Supported Operations
+
+| Operation | API Endpoint | Method | Description |
+|-----------|-------------|--------|-------------|
+| Create Repository | `/user/repos` or `/orgs/{org}/repos` | POST | Create new repository |
+| List Repositories | `/users/{username}/repos` | GET | List user repositories |
+| Delete Repository | `/repos/{owner}/{repo}` | DELETE | Delete repository |
+| Get Repository | `/repos/{owner}/{repo}` | GET | Get repository details |
+
+## CLI Interface
+
+### Command Structure
+
+```mermaid
+flowchart TD
+    A[github-project] --> B[create]
+    A --> C[create-from-json]
+    A --> D[list]
+    A --> E[delete]
+    A --> F[help]
+    
+    B --> G[--name, --desc, --username, etc.]
+    C --> H[json_file --username]
+    D --> I[--username]
+    E --> J[--owner --repo]
+```
+
+### Command Reference
+
+#### create command
+```bash
+github-project create \
+  --name "project-name" \
+  --desc "Project description" \
+  --username "github-user" \
+  [--org "organization"] \
+  [--public] \
+  [--no-init] \
+  [--gitignore "template"] \
+  [--license "license-type"]
+```
+
+#### create-from-json command
+```bash
+github-project create-from-json config.json --username "github-user"
+```
+
+#### list command
+```bash
+github-project list --username "github-user"
+```
+
+#### delete command
+```bash
+github-project delete --owner "owner" --repo "repository-name"
+```
+
+### Exit Codes
+
+| Code | Meaning | Description |
+|------|---------|-------------|
+| 0 | Success | Operation completed successfully |
+| 1 | Error | Operation failed with error |
+| 2 | Usage Error | Invalid command or arguments |
+
+## JSON Configuration
+
+### Configuration Schema
+
+```json
+{
+  "project_name": "string (required)",
+  "description": "string (required)",
+  "private": "boolean (default: true)",
+  "auto_init": "boolean (default: true)",
+  "gitignore_template": "string (optional)",
+  "license_template": "string (optional)"
+}
+```
+
+### Supported Gitignore Templates
+
+| Template | Description | Use Case |
+|----------|-------------|----------|
+| `Python` | Python-specific ignores | Python projects |
+| `Node` | Node.js ignores | JavaScript/Node projects |
