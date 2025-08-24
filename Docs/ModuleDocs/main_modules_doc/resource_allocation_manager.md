@@ -195,3 +195,50 @@ def calculate_task_cost(self, allocation: Dict[str, Any]) -> float:
     - Duration in Days = (End Date - Start Date) + 1
     - Working Hours per Day = 8 (configurable)
     - Allocation Percentage = allocation_percent / 100.0
+    - Hourly Cost = resource_costs[resource_id].get('hourly_cost', 0.0)
+    
+    Args:
+        allocation: Resource allocation dictionary
+        
+    Returns:
+        Calculated cost as float
+    """
+```
+
+### Resource Utilization Analysis
+```python
+def generate_resource_utilization_report(self) -> Dict[str, Any]:
+    """
+    Generate resource utilization analysis.
+    
+    This method calculates utilization rates for each resource based on:
+    - Number of allocations per resource
+    - Resource capacity and constraints
+    - Historical utilization patterns
+    
+    Returns:
+        Dictionary containing utilization metrics for each resource
+    """
+```
+
+### Data Structures and Schemas
+
+#### Resource Costs Schema
+```json
+{
+  "resource_id": {
+    "name": "Senior Developer",
+    "resource_type": "human",
+    "hourly_cost": 75.0,
+    "daily_cost": 600.0,
+    "currency": "USD",
+    "effective_date": "2025-01-01",
+    "expiry_date": "2025-12-31"
+  }
+}
+```
+
+#### Comprehensive Report Schema
+```json
+{
+  "process_date": "ISO8601 timestamp",
