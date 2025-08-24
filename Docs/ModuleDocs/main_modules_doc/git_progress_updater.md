@@ -22,36 +22,36 @@ This module enables real-time tracking of development progress through sophistic
 ```mermaid
 graph TB
     subgraph InputLayer [Input Sources]
-- `calculate_workflow_progress(self)`
-  - Placeholder method for workflow step completion tracking.
-
-- `combine_progress(self, commit_progress, workflow_progress)`
-  - Combines commit-based and workflow-based progress into a single progress dictionary.
-
-- `update_progress(self)`
-  - Orchestrates the process: runs git log, parses commits, maps to tasks, calculates and combines progress, and returns combined progress.
-
-## Usage
-The class can be used to update task progress based on git commit history and workflow data.
-
-## Diagrams
-
-### Mermaid Class Diagram
-
-```mermaid
-classDiagram
-    class GitProgressUpdater {
-        - workflow_definition: List~Dict~
-        - task_progress: defaultdict~float~
-        + __init__(workflow_definition)
-        + run_git_log()
-        + parse_git_log(log_text)
-        + map_commits_to_tasks(commits)
-        + calculate_workflow_progress()
-        + combine_progress(commit_progress, workflow_progress)
-        + update_progress()
-    }
-```
+        A[Git Repository<br/>Local/Remote]
+        B[Progress File<br/>JSON Storage]
+        C[Configuration<br/>Parameters]
+    end
+    
+    subgraph ProcessingLayer [Processing Engine]
+        D[GitProgressUpdater<br/>Core Engine]
+        E[Security Validation<br/>Input Sanitization]
+        F[Performance Optimization<br/>Caching System]
+        G[Error Handling<br/>Retry Mechanism]
+    end
+    
+    subgraph OutputLayer [Output Destinations]
+        H[Progress Data<br/>JSON Output]
+        I[Backup Files<br/>Versioned Storage]
+        J[Metrics & Monitoring<br/>Performance Data]
+        K[Health Status<br/>System Reports]
+    end
+    
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    D --> F
+    D --> G
+    D --> H
+    D --> I
+    D --> J
+    D --> K
+    
 
 ### Mermaid Process Flowchart
 
