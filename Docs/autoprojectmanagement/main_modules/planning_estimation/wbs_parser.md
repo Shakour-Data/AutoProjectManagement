@@ -173,3 +173,68 @@ def validate_wbs_integrity(self, wbs: Dict[str, Any]) -> bool:
 
 #### get_task_hierarchy Method
 ```python
+def get_task_hierarchy(self, wbs: Dict[str, Any]) -> List[Dict[str, Any]:
+```
+
+**Purpose:** Gets a flat list of all tasks in hierarchy.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `wbs` | `Dict[str, Any]` | Yes | WBS structure |
+
+**Returns:** `List[Dict[str, Any]]` - Flat list of all tasks
+
+**Process:**
+- Recursively collects all tasks and subtasks
+- Includes level information for each task
+- Returns tasks in hierarchical order
+
+## Data Flow Diagram
+
+```mermaid
+flowchart TD
+    A[JSON WBS Data] --> B[parse_json_wbs]
+    C[Text WBS Data] --> D[parse_text_wbs]
+    B --> E[Validated WBS]
+    D --> E
+    E --> F[extract_task_details]
+    E --> G[get_task_hierarchy]
+    F --> H[Task Details]
+    G --> I[Task Hierarchy]
+```
+
+## Validation Rules
+
+### WBS Structure Validation
+| Requirement | Validation | Error Handling |
+|-------------|------------|----------------|
+| Data Type | Must be a dictionary | Raises `ValueError` |
+| Required Fields | Must contain id, name, level | Raises `ValueError` for missing fields |
+| Subtasks | Must be a list | Initializes to empty list if missing |
+
+### Text Parsing
+| Requirement | Validation | Default Behavior |
+|-------------|------------|------------------|
+| Line Format | Determines level by indentation | Assumes 2 spaces per level |
+| Task Naming | Uses stripped line content | Empty lines are skipped |
+
+## Error Handling and Logging
+
+### Common Error Scenarios
+1. **Invalid JSON Data**: Raises `ValueError` with detailed message
+2. **Missing Required Fields**: Raises `ValueError` with field information
+3. **Invalid Text Format**: Uses default values and continues processing
+
+## Usage Examples
+
+### Basic Usage with JSON
+```python
+from autoprojectmanagement.main_modules.planning_estimation.wbs_parser import WBSParser
+
+parser = WBSParser()
+wbs_data = {
+    "id": 1,
+    "name": "Project",
+    "level": 0,
+    "subtasks": [
