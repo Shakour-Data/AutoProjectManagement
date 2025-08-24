@@ -81,3 +81,15 @@ def create_scrum_workflow_tables(self) -> None
 
 #### update_scrum_task Method
 ```python
+def update_scrum_task(self, task_id, sprint_id, title, status, priority, progress) -> None
+```
+
+**Purpose:** Updates or adds a Scrum task to the tasks JSON file.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `task_id` | `Any` | Yes | Unique identifier for the task |
+| `sprint_id` | `Any` | Yes | Identifier of the sprint containing the task |
+| `title` | `str` | Yes | Title or description of the task |
+| `status` | `str` | Yes | Current status of the task |
