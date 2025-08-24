@@ -373,3 +373,29 @@ flowchart TD
 | Level | Usage | Example |
 |-------|-------|---------|
 | `INFO` | Successful operations | "Scope management completed" |
+| `WARNING` | Non-critical issues | "File not found, using empty data" |
+| `ERROR` | Critical failures | "Invalid JSON format in file" |
+
+### Common Error Scenarios
+1. **Invalid JSON Files**: Error logged, exception raised with detailed message
+2. **Missing Required Fields**: Change rejected, error added to scope status
+3. **Task Not Found**: Warning logged for remove/modify operations
+4. **File Access Issues**: Error logged, operation aborted with exception
+5. **Invalid Change Types**: Change rejected, error added to scope status
+
+## Usage Examples
+
+### Basic Usage
+```python
+from autoprojectmanagement.main_modules.planning_estimation.scope_management import ScopeManagement
+
+# Initialize with default paths
+manager = ScopeManagement()
+manager.run()
+
+# Access results
+summary = manager.get_scope_summary()
+print(f"Tasks added: {summary['total_tasks_added']}")
+print(f"Tasks removed: {summary['total_tasks_removed']}")
+```
+
