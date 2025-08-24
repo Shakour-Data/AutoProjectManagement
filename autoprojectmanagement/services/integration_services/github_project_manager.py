@@ -175,7 +175,7 @@ class GitHubProjectManager:
                 error_msg = f"HTTP {e.response.status_code}: {e.response.text}"
                 raise GitHubAPIError(error_msg)
     
-        Args:
+    def create_project(self, config: GitHubProjectConfig) -> ProjectReport:
             method: HTTP method (GET, POST, PUT, DELETE)
             endpoint: API endpoint (without base URL)
             data: Request payload for POST/PUT requests
