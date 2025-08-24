@@ -65,23 +65,23 @@ def prompt_user(question: str, default: Optional[str] = None) -> str:
     if default:
         prompt += f" [{default}]"
     prompt += ": "
-    if not github_username:
-        github_username = input("Enter your GitHub username: ")
-    
-    print(f"🚀 Creating GitHub project '{project_name}'...")
-    
-    try:
-        reports = manager.create_github_project_cli(project_name, description, github_username)
-        
-        print("\n✅ GitHub project created successfully!")
-        print(f"📊 Repository: https://github.com/{github_username}/{project_name}")
-        print(f"📋 Project Board: https://github.com/{github_username}/{project_name}/projects")
-        print(f"📝 Issues: https://github.com/{github_username}/{project_name}/issues")
-        
-        # Save detailed report
-        reports_dir = "github_reports"
-        os.makedirs(reports_dir, exist_ok=True)
-        report_file = os.path.join(reports_dir, f"{project_name}_setup_report.json")
+    response = input(prompt)
+    if not response and default is not None:
+        return default
+    return response
+
+
+def setup_project() -> None:
+    """
+    Complete project setup including Git initialization, virtual environment creation,
+    dependency installation, and directory structure preparation.
+    """
+    logger.info("🚀 Starting comprehensive project setup...")
+
+    # Remove obsolete PM_UserInputs folder if it exists
+    pm_userinputs_path = os.path.join(os.getcwd(), 'PM_UserInputs')
+    if os.path.exists(pm_userinputs_path) and os.path.isdir(pm_userinputs_path):
+        shutil.rmtree(pm_userinputs_path)
         
         with open(report_file, 'w', encoding='utf-8') as f:
             json.dump(reports, f, indent=2, default=str)
