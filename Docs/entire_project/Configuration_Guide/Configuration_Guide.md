@@ -86,15 +86,13 @@ graph TB
 ### Security Best Practices
 
 #### 1. JWT Configuration
-```json
-{
-  "security": {
-    "jwt_secret_key": "your-super-secret-key-change-this",
-    "jwt_algorithm": "HS256",
-    "jwt_expiration_minutes": 60
-  }
-}
-```
+JWT (JSON Web Token) configuration includes several security-critical settings:
+
+- **Secret Key**: A secure, unique key used for signing JWT tokens
+- **Algorithm**: The cryptographic algorithm used for token signing (typically HS256)
+- **Expiration Time**: The duration in minutes before tokens expire for security
+
+These settings ensure secure authentication and authorization within the AutoProjectManagement system.
 
 #### 2. API Key Configuration
 ```json
