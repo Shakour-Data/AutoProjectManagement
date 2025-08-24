@@ -48,54 +48,124 @@ flowchart TD
     DataStores --> DataProcessing
 ```
 
-participant Backend_API
-participant TaskDB
+## Level 2: API Gateway Data Flow
 
-User -> Frontend : Submit task data
-Frontend -> Backend_API : Send task data
-Backend_API -> TaskDB : Validate and store task
-Backend_API -> Frontend : Confirm task creation
-@enduml
+```mermaid
+flowchart TD
+    subgraph APIGateway[API Gateway]
+        HTTP[HTTP Endpoints]
+        WebSocket[WebSocket Gateway]
+        SSE[SSE Endpoints]
+        Auth[Authentication]
+        Validation[Request Validation]
+    end
+    
+    Clients[Clients] --> HTTP
+    HTTP --> Clients
+    
+    Clients --> WebSocket
+    WebSocket --> Clients
+    
+    Clients --> SSE
+    SSE --> Clients
+    
+    HTTP --> Auth
+    WebSocket --> Auth
+    SSE --> Auth
+    
+    Auth --> Validation
+    Validation --> Auth
+    
+    Validation --> CoreProcessing[Core Processing]
+    CoreProcessing --> Validation
+    
+    Validation --> DashboardServices[Dashboard Services]
+    DashboardServices --> Validation
 ```
 
-### Resource Allocation Process
+## Level 2: Core Processing Data Flow
 
-```plantuml
-@startuml
-actor User
-participant Frontend
-participant Backend_API
-participant ResourceDB
-
-User -> Frontend : Submit resource allocation
-Frontend -> Backend_API : Send allocation data
-Backend_API -> ResourceDB : Validate and update allocation
-Backend_API -> Frontend : Confirm allocation update
-@enduml
+```mermaid
+flowchart TD
+    subgraph CoreProcessing[Core Processing]
+        ProjectMgmt[Project Management]
+        TaskMgmt[Task Management]
+        ResourceMgmt[Resource Management]
+        RiskMgmt[Risk Management]
+        ProgressMgmt[Progress Management]
+    end
+    
+    API[API Gateway] --> ProjectMgmt
+    ProjectMgmt --> API
+    
+    API --> TaskMgmt
+    TaskMgmt --> API
+    
+    API --> ResourceMgmt
+    ResourceMgmt --> API
+    
+    API --> RiskMgmt
+    RiskMgmt --> API
+    
+    API --> ProgressMgmt
+    ProgressMgmt --> API
+    
+    ProjectMgmt --> DataStores[Data Stores]
+    DataStores --> ProjectMgmt
+    
+    TaskMgmt --> DataStores
+    DataStores --> TaskMgmt
+    
+    ResourceMgmt --> DataStores
+    DataStores --> ResourceMgmt
+    
+    RiskMgmt --> DataStores
+    DataStores --> RiskMgmt
+    
+    ProgressMgmt --> DataStores
+    DataStores --> ProgressMgmt
 ```
 
-### Progress Tracking Process
+## Level 2: Dashboard Services Data Flow
 
-```plantuml
-@startuml
-participant Backend_API
-participant TaskDB
-participant Reporting
-
-Backend_API -> TaskDB : Retrieve task status
-Backend_API -> Reporting : Update progress reports
-@enduml
+```mermaid
+flowchart TD
+    subgraph DashboardServices[Dashboard Services]
+        Overview[Dashboard Overview]
+        Metrics[Metrics & Analytics]
+        Alerts[Alert System]
+        Layout[Layout Management]
+        RealTime[Real-time Updates]
+    end
+    
+    API[API Gateway] --> Overview
+    Overview --> API
+    
+    API --> Metrics
+    Metrics --> API
+    
+    API --> Alerts
+    Alerts --> API
+    
+    API --> Layout
+    Layout --> API
+    
+    API --> RealTime
+    RealTime --> API
+    
+    Overview --> DataStores[Data Stores]
+    DataStores --> Overview
+    
+    Metrics --> DataStores
+    DataStores --> Metrics
+    
+    Alerts --> DataStores
+    DataStores --> Alerts
+    
+    Layout --> DataStores
+    DataStores --> Layout
+    
+    RealTime --> DataStores
+    DataStores --> RealTime
 ```
 
-### Reporting Process
-
-```plantuml
-@startuml
-participant Reporting
-participant Frontend
-
-Reporting -> Frontend : Provide reports data
-@enduml
-```
-
-(To be expanded with detailed diagrams)
