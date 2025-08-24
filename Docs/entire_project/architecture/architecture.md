@@ -106,35 +106,31 @@ graph TB
 
 #### Data Structure
 
-```python
-# Project Structure
-{
-    "id": int,
-    "name": str,
-    "description": str,
-    "created_date": str,
-    "updated_date": str,
-    "status": str,
-    "priority": str,
-    "owner": str,
-    "tags": List[str]
-}
+The system uses structured data formats for both projects and tasks:
 
-# Task Structure
-{
-    "id": int,
-    "title": str,
-    "description": str,
-    "project_id": int,
-    "status": str,
-    "priority": str,
-    "assignee": str,
-    "due_date": str,
-    "created_date": str,
-    "updated_date": str,
-    "tags": List[str]
-}
-```
+**Project Structure**:
+- **ID**: Unique numeric identifier
+- **Name**: Descriptive project title
+- **Description**: Detailed project description
+- **Dates**: Creation and update timestamps
+- **Status**: Current project state (active, completed, etc.)
+- **Priority**: Priority level classification
+- **Owner**: Project owner/manager
+- **Tags**: Categorization labels
+
+**Task Structure**:
+- **ID**: Unique numeric identifier
+- **Title**: Task description
+- **Description**: Detailed task requirements
+- **Project ID**: Reference to parent project
+- **Status**: Current task state
+- **Priority**: Task priority level
+- **Assignee**: Responsible team member
+- **Due Date**: Target completion date
+- **Dates**: Creation and update timestamps
+- **Tags**: Categorization labels
+
+These structures ensure consistent data organization and enable seamless integration across all system components.
 
 ### 2.3 API Architecture
 
