@@ -169,3 +169,20 @@ flowchart TD
     DataStores --> RealTime
 ```
 
+## Level 2: Integration Services Data Flow
+
+```mermaid
+flowchart TD
+    subgraph IntegrationServices[Integration Services]
+        GitHub[GitHub Integration]
+        VSCode[VS Code Integration]
+        Wiki[Wiki Services]
+        ExternalAPIs[External APIs]
+    end
+    
+    Core[Core Processing] --> GitHub
+    GitHub --> Core
+    
+    Core --> VSCode
+    VSCode --> Core
+    
