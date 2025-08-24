@@ -89,28 +89,28 @@ class GitHubProjectManager:
         if not self.github_token:
             raise GitHubAPIError(
                 "GitHub token is required. Set GITHUB_TOKEN environment variable "
-class GitHubAPIError(Exception):
-    """Custom exception for GitHub API related errors."""
-    pass
-
-class GitHubProjectManager:
-    """
-    A comprehensive manager for GitHub projects with CLI and programmatic interfaces.
-    
-    This class provides functionality to create GitHub projects, manage configurations,
-    and synchronize project data from JSON templates. It includes proper error handling,
-    logging, and supports both interactive and automated workflows.
-    
-    Attributes:
-        github_token (str): GitHub personal access token for authentication
-        session (requests.Session): HTTP session for API calls
-        config (Dict[str, Any]): Configuration dictionary loaded from file
+                "or pass token to constructor."
+            )
         
-    Example:
-        >>> manager = GitHubProjectManager(github_token="ghp_xxx")
-        >>> config = GitHubProjectConfig(
-        ...     project_name="my-awesome-project",
-        ...     description="A new awesome project",
+        self.session = requests.Session()
+        self.session.headers.update({
+            'Authorization': f'token {self.github_token}',
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'GitHubProjectManager/1.0.0'
+        })
+        
+        self.config = self._load_config()
+        logger.info("GitHub Project Manager initialized successfully")
+    
+    def _load_config(self) -> Dict[str, Any]:
+        """Load configuration from local config file."""
+        config_path = Path(CONFIG_FILE)
+        if config_path.exists():
+            try:
+                with open(config_path, 'r') as f:
+                    return json.load(f)
+            except (json.JSONDecodeError, IOError) as e:
+                logger.warning(f"Failed to load config file: {e}")
         ...     github_username="myusername"
         ... )
         >>> report = manager.create_project(config)
