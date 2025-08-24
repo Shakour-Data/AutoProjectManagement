@@ -238,3 +238,29 @@ wbs_data = {
     "name": "Project",
     "level": 0,
     "subtasks": [
+        {"id": 2, "name": "Task 1", "level": 1}
+    ]
+}
+parsed_wbs = parser.parse_json_wbs(wbs_data)
+```
+
+### Basic Usage with Text
+```python
+parser = WBSParser()
+text_wbs = """
+Project
+  Task 1
+    Subtask 1.1
+  Task 2
+"""
+parsed_wbs = parser.parse_text_wbs(text_wbs)
+```
+
+### Extracting Task Details
+```python
+task_details = parser.extract_task_details(parsed_wbs)
+print("Task Details:", task_details)
+```
+
+### Validating WBS Integrity
+```python
