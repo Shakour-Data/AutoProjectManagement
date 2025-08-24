@@ -260,3 +260,51 @@ from autoprojectmanagement.main_modules.planning_estimation.gantt_chart_data imp
 generator = GanttChartData()
 generator.load_tasks()
 gantt_data = generator.build_gantt_data()
+
+print(f"Generated {len(gantt_data)} Gantt chart tasks")
+```
+
+### Custom Input Directory
+```python
+generator = GanttChartData('custom/input/directory')
+generator.load_tasks()
+data = generator.build_gantt_data()
+```
+
+### Standalone Function Usage
+```python
+from autoprojectmanagement.main_modules.planning_estimation.gantt_chart_data import generate_gantt_chart
+
+tasks = [
+    {
+        'id': 'task1',
+        'start': '2025-01-01',
+        'end': '2025-01-05',
+        'name': 'Initial Task'
+    }
+]
+
+gantt_data = generate_gantt_chart(tasks)
+```
+
+### Error Handling
+```python
+try:
+    generator = GanttChartData()
+    generator.load_tasks()
+    if not generator.tasks:
+        print("No tasks loaded, using empty data")
+    data = generator.build_gantt_data()
+except Exception as e:
+    print(f"Gantt chart generation failed: {e}")
+```
+
+### Command Line Usage
+```bash
+# Run the module directly to generate Gantt data
+python -m autoprojectmanagement.main_modules.planning_estimation.gantt_chart_data
+```
+
+## Performance Considerations
+
+- **Recursive Processing**: O(n) where n is total tasks and subtasks
