@@ -79,3 +79,8 @@ classDiagram
     class Reporting {
         +__init__(detailed_wbs_path: str, resource_allocation_summary_path: str, time_management_path: str, risk_management_path: str, quality_management_path: str, output_path: str)
         +analyze() None
+        +_generate_project_summary(wbs_data: Dict[str, Any], resource_data: Dict[str, Any], time_data: Dict[str, Any]) Dict[str, Any]
+        +_analyze_resources(resource_data: Dict[str, Any]) Dict[str, Any]
+        +_analyze_timeline(time_data: Dict[str, Any]) Dict[str, Any]
+        +_assess_risks(risk_data: Dict[str, Any]) Dict[str, Any]
+        +_evaluate_quality(quality_data: Dict[str, Any]) Dict[str, Any]
