@@ -399,3 +399,14 @@ print(f"Tasks added: {summary['total_tasks_added']}")
 print(f"Tasks removed: {summary['total_tasks_removed']}")
 ```
 
+### Custom Paths
+```python
+manager = ScopeManagement(
+    detailed_wbs_path='custom/wbs.json',
+    scope_changes_path='custom/changes.json',
+    output_path='custom/output.json'
+)
+manager.run()
+```
+
+### Error Handling
