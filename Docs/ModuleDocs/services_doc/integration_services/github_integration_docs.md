@@ -416,3 +416,4 @@ with GitHubIntegration(owner, repo, token) as github:
 
 ## Performance Optimization
 
+### Connection Pooling
