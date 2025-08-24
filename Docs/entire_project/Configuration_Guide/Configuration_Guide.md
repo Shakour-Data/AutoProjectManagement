@@ -3,11 +3,13 @@
 ## GitHub Integration (Continued)
 
 #### 2. Configure Environment Variables
-```bash
-export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
-export GITHUB_USERNAME=yourusername
-export GITHUB_DEFAULT_REPO=username/repository
-```
+To configure environment variables for GitHub integration, set the following variables in your environment:
+
+- **GITHUB_TOKEN**: Your personal access token for GitHub
+- **GITHUB_USERNAME**: Your GitHub username
+- **GITHUB_DEFAULT_REPO**: The default repository to use for operations
+
+This setup allows the AutoProjectManagement system to interact with GitHub securely and efficiently.
 
 #### 3. Configuration Example
 ```json
