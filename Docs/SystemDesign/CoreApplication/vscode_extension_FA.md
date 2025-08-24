@@ -12,3 +12,22 @@ classDiagram
         -project_path: str
         -vscode_dir: str
         -logger: logging.Logger
+        +__init__(project_path: Optional[str])
+        +create_vscode_directory(): None
+        +create_tasks_configuration(): None
+        +create_launch_configuration(): None
+       极create_settings_configuration(): None
+        +create_extensions_configuration(): None
+        +create_workspace_configuration(): None
+        +create_extension_manifest(): None
+        +setup_complete_environment(): None
+    }
+```
+
+## عملکرد تفصیلی
+
+### کلاس VSCodeExtension
+
+#### مقداردهی اولیه
+**متد**: `__init__(project_path: Optional[str] = None)`
+
