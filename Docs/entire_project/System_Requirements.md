@@ -875,25 +875,6 @@ This Kubernetes deployment configuration ensures scalable, reliable, and maintai
 ### Maintenance Procedures
 
 #### System Health Check
-```bash
-#!/bin/bash
-# health_check.sh
-
-# Check system status
-systemctl status autoprojectmanagement
-
-# Check disk usage
-df -h /app/data
-
-# Check memory usage
-free -h
-
-# Check API health
-curl -f http://localhost:8000/health
-
-# Check recent logs
-tail -n 100 /var/log/autoprojectmanagement/auto_runner.log
-```
 
 #### Update Process
 1. **Preparation**: Backup current system
