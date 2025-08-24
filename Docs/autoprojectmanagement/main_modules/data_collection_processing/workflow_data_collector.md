@@ -209,3 +209,172 @@ flowchart TD
     "sprint_id": "sprint_identifier",
     "title": "Task description",
     "status": "in_progress|completed|blocked",
+    "priority": "high|medium|low",
+    "progress": 75
+  }
+]
+```
+
+### Scrum Burndown JSON Structure
+```json
+[
+  {
+    "sprint_id": "sprint_identifier",
+    "day": "day_identifier",
+    "remaining_work": 42
+  }
+]
+```
+
+### Scrum Sprints JSON Structure
+```json
+[
+  {
+    "sprint_id": "sprint_identifier",
+    "name": "Sprint Name",
+    "start_date": "2025-08-01",
+    "end_date": "2025-08-14"
+  }
+]
+```
+
+## Error Handling and Data Integrity
+
+### File Operations
+- **File Creation**: Empty arrays created for missing files
+- **Read/Write**: UTF-8 encoding ensures proper character handling
+- **Atomic Updates**: Read-modify-write pattern maintains data consistency
+
+### Data Validation
+- **Duplicate Prevention**: Existing entries removed before adding updates
+- **Type Flexibility**: Accepts various data types for IDs and values
+- **Sorting**: Reports are sorted chronologically by day
+
+## Usage Examples
+
+### Basic Initialization
+```python
+from autoprojectmanagement.main_modules.data_collection_processing.workflow_data_collector import WorkflowDataCollector
+
+# Initialize with default directory
+collector = WorkflowDataCollector()
+collector.create_scrum_workflow_tables()
+```
+
+### Task Management
+```python
+# Update a Scrum task
+collector.update_scrum_task(
+    task_id="TASK-001",
+    sprint_id="SPRINT-1",
+    title="Implement feature X",
+    status="in_progress",
+    priority="high",
+    progress=50
+)
+
+# Update another task
+collector.update_scrum_task(
+    task_id="TASK-002",
+    sprint_id="SPRINT-1",
+    title="Fix bug Y",
+    status="completed",
+    priority="medium",
+    progress=100
+)
+```
+
+### Burndown Tracking
+```python
+# Update burndown data
+collector.update_scrum_burndown(
+    sprint_id="SPRINT-1",
+    day="2025-08-01",
+    remaining_work=100
+)
+
+collector.update_scrum_burndown(
+    sprint_id="SPRINT-1",
+    day="2025-08-02",
+    remaining_work=85
+)
+```
+
+### Report Generation
+```python
+# Generate burndown report
+report = collector.generate_scrum_report("SPRINT-1")
+print("Burndown Report:")
+for day, remaining_work in report:
+    print(f"Day {day}: {remaining_work} remaining work")
+```
+
+### Custom Directory
+```python
+# Use custom data directory
+custom_collector = WorkflowDataCollector('custom/scrum/data')
+custom_collector.create_scrum_workflow_tables()
+```
+
+## Performance Considerations
+
+- **File I/O**: Multiple read/write operations per update
+- **Memory Usage**: Entire JSON files loaded into memory for updates
+- **Data Size**: Performance may degrade with very large JSON files
+- **Concurrency**: Not designed for concurrent access (file locking not implemented)
+
+## Best Practices
+
+1. **Regular Updates**: Update tasks and burndown data frequently
+2. **Data Backup**: Regularly backup JSON files to prevent data loss
+3. **File Monitoring**: Monitor file sizes and performance
+4. **Error Handling**: Implement wrapper functions for error handling
+5. **Data Validation**: Add validation logic before updates
+
+## Integration Points
+
+This module integrates with:
+- **Scrum Management Systems**: Provides data storage for Scrum workflows
+- **Reporting Tools**: Supplies data for burndown charts and progress reports
+- **Task Management**: Works with task tracking systems
+- **Data Analysis**: Provides raw data for performance analysis
+- **GitHub Integration**: Note: GitHub integration should be handled in separate modules
+
+## GitHub Integration Note
+
+As noted in the module code, GitHub integration should be handled in dedicated modules such as:
+- `src/github_integration.py`
+- Related GitHub integration modules
+
+This ensures proper synchronization of Scrum workflow stages with:
+- GitHub Issues
+- GitHub Pull Requests
+- GitHub Projects
+- Other GitHub features
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 2.0.0 | 2025-08-14 | Comprehensive Scrum data management implementation |
+| 1.0.0 | 2025-08-01 | Basic workflow data collection functionality |
+
+## Future Enhancements
+
+1. **Database Integration**: SQL database support alongside JSON files
+2. **Real-time Updates**: WebSocket or streaming updates
+3. **Advanced Reporting**: Comprehensive Scrum metrics and analytics
+4. **Data Validation**: Schema validation for JSON data
+5. **Concurrency Support**: File locking and concurrent access handling
+6. **API Endpoints**: REST API for remote data management
+7. **Data Export**: Multiple export formats (CSV, Excel, PDF)
+8. **Visualization**: Built-in chart and graph generation
+9. **Notification System**: Alerts for task updates and milestones
+10. **Integration Hooks**: Webhook support for external systems
+
+---
+
+*This documentation follows Pressman's software engineering standards and includes three levels of detail: overview, technical specifications, and implementation guidelines.*
+
+*Maintained by: AutoProjectManagement Documentation Team*
+*Last reviewed: 2025-08-14*
