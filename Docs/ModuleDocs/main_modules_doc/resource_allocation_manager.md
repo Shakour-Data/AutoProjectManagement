@@ -97,3 +97,29 @@ classDiagram
     }
     
     class ResourceAllocationManager {
+        +__init__(resource_allocation_path, detailed_wbs_path, resource_costs_path, resource_constraints_path, output_path, summary_output_path, report_output_path)
+        +load_json(path) Optional[Dict[str, Any]]
+        +save_json(data, path) None
+        +load_inputs() None
+        +find_task_by_id(task_id, node) Optional[Dict[str, Any]]
+        +calculate_task_cost(allocation) float
+        +enrich_wbs_with_resources() None
+        +summarize_costs(node) float
+        +generate_resource_utilization_report() Dict[str, Any]
+        +validate_allocations() List[Dict[str, Any]]
+        +run() None
+    }
+    
+    ResourceAllocationManager --> ResourceCost
+    ResourceAllocationManager --> ResourceAllocation
+```
+
+### Data Flow Architecture
+```mermaid
+flowchart LR
+    subgraph InputPhase [Input Processing]
+        A[Load Resource Allocations] --> B[Load Detailed WBS]
+        C[Load Resource Costs] --> D[Load Resource Constraints]
+    end
+    
+    subgraph ProcessingPhase [Resource Analysis]
