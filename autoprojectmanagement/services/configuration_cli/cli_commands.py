@@ -166,9 +166,63 @@ def create_github_project(args: argparse.Namespace) -> None:
         os.makedirs(reports_dir, exist_ok=True)
         report_file = os.path.join(reports_dir, f"{project_name}_setup_report.json")
         
-        sync_with_github(args)
-    else:
-        parser.print_help()
+        with open(report_file, 'w', encoding='utf-8') as f:
+            json.dump(reports, f, indent=2, default=str)
+        
+        logger.info(f"📄 Detailed report saved to: {report_file}")
+        
+    except Exception as e:
+        logger.error(f"❌ Failed to create GitHub project: {e}")
+        print(f"Error details: {e}")
 
-if __name__ == '__main__':
-    main()
+
+def sync_with_github(args: argparse.Namespace) -> None:
+    """
+    Sync an existing project with GitHub by creating repository and project structure
+    based on project JSON configuration.
+    
+    Args:
+        args: Command line arguments containing project JSON path and GitHub username
+    """
+    manager = GitHubProjectManager()
+    
+    project_json = args.project_json
+    github_username = args.github_username
+    
+    if not os.path.exists(project_json):
+        logger.error(f"❌ Project JSON file not found: {project_json}")
+        return
+    
+    try:
+        reports = manager.create_github_project_from_json(project_json, github_username)
+        
+        logger.info("\n✅ Project synced with GitHub successfully!")
+        logger.info("📄 Reports saved to github_reports directory")
+        
+    except Exception as e:
+        logger.error(f"❌ Failed to sync project with GitHub: {e}")
+        print(f"Error details: {e}")
+
+
+def status() -> None:
+    """
+    Display comprehensive status report of the project setup including:
+    - Git repository status
+    - Virtual environment status
+    - Dependency management status
+    - Directory structure status
+    - GitHub integration status
+    """
+    logger.info("📊 Project Management Tool Status Report")
+    logger.info("=" * 50)
+    
+    # Git repository status
+    if os.path.exists('.git'):
+        logger.info("✅ Git repository: Initialized")
+        try:
+            result = subprocess.run(['git', 'status'], capture_output=True, text=True)
+            if result.returncode == 0:
+                logger.info("   📋 Git status: Healthy")
+        except:
+            logger.info("   ⚠️  Git status: Unknown")
+    else:
