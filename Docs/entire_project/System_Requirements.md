@@ -880,6 +880,7 @@ The system provides comprehensive health monitoring capabilities:
 - **Service Status**: Verification of system service status and operational state
 - **Resource Monitoring**: Disk usage analysis and storage capacity management
 - **Memory Utilization**: Memory consumption tracking and optimization monitoring
+- **API Health Verification**: Endpoint accessibility and response validation
 
 #### Update Process
 1. **Preparation**: Backup current system
