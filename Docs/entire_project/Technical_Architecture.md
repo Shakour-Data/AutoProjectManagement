@@ -486,19 +486,15 @@ This standardized format ensures consistent client-side processing and simplifie
 
 ### Error Handling
 
-```json
-{
-  "success": false,
-  "error": {
-    "code": "TASK_NOT_FOUND",
-    "message": "Task with ID 123 not found",
-    "details": "Please check the task ID and try again"
-  },
-  "meta": {
-    "timestamp": "2025-08-14T10:30:00Z"
-  }
-}
-```
+The API implements comprehensive error handling with standardized error responses:
+
+- **Error Codes**: Consistent error codes for different types of failures
+- **Descriptive Messages**: Clear, user-friendly error messages explaining the issue
+- **Detailed Information**: Additional context and troubleshooting suggestions
+- **Timestamps**: ISO 8601 formatted timestamps for error tracking
+- **Consistent Structure**: Uniform error response format across all endpoints
+
+This error handling approach ensures that clients can reliably detect and respond to API errors while providing meaningful feedback to end users.
 
 ---
 
