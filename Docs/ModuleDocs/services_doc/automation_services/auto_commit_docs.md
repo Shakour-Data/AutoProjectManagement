@@ -278,3 +278,42 @@ success = auto_commit.commit_and_push_all_guaranteed(
 )
 
 # Manual change detection and processing
+changes = auto_commit.get_git_changes()
+grouped = auto_commit.group_and_categorize_files(changes)
+```
+
+## API Reference
+
+### Class: UnifiedAutoCommit
+
+#### Constructor
+```python
+__init__() -> None
+```
+Initializes the auto commit service with automatic Git configuration and authentication setup.
+
+#### Methods
+
+##### run_git_command
+```python
+run_git_command(args: List[str], cwd: str = None, use_https: bool = False) -> Tuple[bool, str]
+```
+Executes Git commands with memory optimization and authentication handling.
+
+**Parameters:**
+- `args`: List of Git command arguments
+- `cwd`: Working directory (optional)
+- `use_https`: Force HTTPS authentication (optional)
+
+**Returns:** Tuple of (success, output)
+
+##### get_git_changes
+```python
+get_git_changes() -> List[str]
+```
+Retrieves list of changed files from Git status.
+
+**Returns:** List of changed file paths
+
+##### stage_files  
+```python
