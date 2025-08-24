@@ -438,26 +438,13 @@ Each error includes the specific field, a descriptive message, and the error typ
 ### Validation Methods
 
 #### 1. Programmatic Validation
-```python
-from autoproject_configuration import Config
-
-config = Config()
-try:
-    config.validate()
-    print("Configuration is valid")
-except ValueError as e:
-    print(f"Configuration error: {e}")
-```
+Programmatic validation allows developers to validate configuration directly within their Python code. This method provides programmatic access to validation results and enables custom error handling and integration with application logic.
 
 #### 2. Command Line Validation
-```bash
-python -c "from autoproject_configuration import config; config.validate()"
-```
+Command line validation provides a quick way to validate configuration files from the terminal. This method is useful for testing configuration changes and verifying configuration integrity during deployment processes.
 
 #### 3. Configuration Checker Script
-```bash
-python -m autoprojectmanagement.configuration.check_config --config config.json
-```
+The configuration checker script offers a comprehensive validation tool that can be integrated into build pipelines and deployment workflows. It provides detailed validation reports and supports various configuration file formats.
 
 ---
 
