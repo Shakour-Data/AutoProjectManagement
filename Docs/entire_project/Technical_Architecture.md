@@ -672,16 +672,14 @@ These key metrics provide comprehensive visibility into system performance and h
 
 ### Alerting Rules
 
-```yaml
-alerts:
-  - name: HighErrorRate
-    condition: error_rate > 0.05
-    severity: warning
-    
-  - name: HighResponseTime
-    condition: response_time > 500ms
-    severity: critical
-```
+The system implements a robust alerting mechanism to notify stakeholders of critical issues:
+
+- **High Error Rate Alerts**: Notifications triggered when error rates exceed predefined thresholds
+- **Response Time Alerts**: Alerts for response times that exceed acceptable limits
+- **Custom Alerting**: Support for defining custom alert conditions based on specific metrics
+- **Integration with Monitoring Tools**: Seamless integration with monitoring platforms for real-time notifications
+
+This alerting framework ensures that teams are promptly informed of issues, enabling quick resolution and maintaining system reliability.
 
 ---
 
