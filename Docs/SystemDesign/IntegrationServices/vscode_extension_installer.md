@@ -45,6 +45,7 @@ flowchart TD
     C -->|All Extensions Processed| H[Complete Installation]
     H --> I[End]
 ```
+    H --> I[End]
 
 ### Architecture Diagram
 ```mermaid
