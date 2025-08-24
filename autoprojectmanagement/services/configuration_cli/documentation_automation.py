@@ -218,3 +218,167 @@ class DocumentationAutomation:
                 
                 output.append(f"\n### {type_display}\n")
                 
+                for entry in type_entries:
+                    scope_part = f"**{entry.scope}**: " if entry.scope else ""
+                    output.append(f"- {scope_part}{entry.message} ({entry.sha}) - *{entry.author}*")
+        
+        return "\n".join(output)
+    
+    def _format_changelog_json(self, entries: List[ChangelogEntry]) -> str:
+        """Format changelog entries as JSON."""
+        entries_dict = [asdict(entry) for entry in entries]
+        return json.dumps({
+            "changelog": entries_dict,
+            "generated_at": datetime.datetime.now().isoformat(),
+            "total_entries": len(entries)
+        }, indent=2)
+    
+    def _format_changelog_text(self, entries: List[ChangelogEntry]) -> str:
+        """Format changelog entries as plain text."""
+        output = ["CHANGELOG", "=========", ""]
+        
+        for entry in entries:
+            output.append(f"{entry.date}: {entry.message} ({entry.sha}) - {entry.author}")
+        
+        return "\n".join(output)
+    
+    def generate_release_notes(self, tag_name: str, previous_tag: Optional[str] = None) -> ReleaseNotes:
+        """
+        Generate comprehensive release notes for a specific tag.
+        
+        Args:
+            tag_name: The release tag name (e.g., "v1.0.0")
+            previous_tag: Optional previous tag for comparison
+            
+        Returns:
+            ReleaseNotes: Structured release notes object
+        """
+        try:
+            # Get commits for this release
+            commits = self.github.get_commits_since_tag(previous_tag) if previous_tag else self.github.get_commits()
+            
+            changes = []
+            contributors = set()
+            breaking_changes = []
+            
+            for commit in commits:
+                message = commit['commit']['message']
+                author = commit['commit']['author']['name']
+                
+                # Check for breaking changes
+                if "BREAKING CHANGE" in message or "!" in message.split(':')[0]:
+                    breaking_changes.append(message)
+                
+                commit_type, scope = self._parse_commit_message(message)
+                
+                entry = ChangelogEntry(
+                    date=commit['commit']['author']['date'][:10],
+                    message=message,
+                    sha=commit['sha'][:7],
+                    author=author,
+                    type=commit_type,
+                    scope=scope
+                )
+                changes.append(entry)
+                contributors.add(author)
+            
+            # Create summary
+            feat_count = sum(1 for entry in changes if entry.type == 'feat')
+            fix_count = sum(1 for entry in changes if entry.type == 'fix')
+            
+            summary = f"Release {tag_name} includes {feat_count} new features and {fix_count} bug fixes."
+            if breaking_changes:
+                summary += f" Includes {len(breaking_changes)} breaking changes."
+            
+            return ReleaseNotes(
+                version=tag_name,
+                release_date=datetime.datetime.now().strftime('%Y-%m-%d'),
+                changes=changes,
+                summary=summary,
+                breaking_changes=breaking_changes,
+                contributors=list(contributors)
+            )
+            
+        except Exception as e:
+            self.logger.error(f"Error generating release notes: {e}")
+            return ReleaseNotes(
+                version=tag_name,
+                release_date=datetime.datetime.now().strftime('%Y-%m-%d'),
+                changes=[],
+                summary=f"Error generating release notes: {e}"
+            )
+    
+    def save_documentation(self, content: str, filename: str, output_dir: str = "docs") -> bool:
+        """
+        Save generated documentation to file.
+        
+        Args:
+            content: Documentation content to save
+            filename: Output filename
+            output_dir: Output directory
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            os.makedirs(output_dir, exist_ok=True)
+            filepath = os.path.join(output_dir, filename)
+            
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(content)
+            
+            self.logger.info(f"✅ Documentation saved to: {filepath}")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"❌ Failed to save documentation: {e}")
+            return False
+    
+    def generate_complete_documentation(self, output_dir: str = "docs") -> Dict[str, bool]:
+        """
+        Generate complete documentation suite including changelog and release notes.
+        
+        Args:
+            output_dir: Output directory for documentation files
+            
+        Returns:
+            Dict[str, bool]: Dictionary indicating success for each documentation type
+        """
+        results = {}
+        
+        # Generate and save changelog
+        changelog = self.generate_changelog()
+        results['changelog'] = self.save_documentation(changelog, "CHANGELOG.md", output_dir)
+        
+        # Generate and save latest release notes
+        release_notes = self.generate_release_notes("Latest")
+        release_notes_content = json.dumps(asdict(release_notes), indent=2)
+        results['release_notes'] = self.save_documentation(release_notes_content, "RELEASE_NOTES.json", output_dir)
+        
+        return results
+
+
+# Usage Example
+if __name__ == "__main__":
+    # Example usage
+    repo_owner = "your_org_or_username"
+    repo_name = "ProjectManagement"
+    
+    try:
+        github = GitHubIntegration(repo_owner, repo_name)
+        doc_auto = DocumentationAutomation(github)
+        
+        # Generate changelog
+        changelog = doc_auto.generate_changelog(since_date="2024-01-01")
+        print("📋 Changelog generated successfully")
+        
+        # Generate release notes
+        release_notes = doc_auto.generate_release_notes("v1.0.0")
+        print("📄 Release notes generated successfully")
+        
+        # Save documentation
+        results = doc_auto.generate_complete_documentation()
+        print(f"💾 Documentation saved: {results}")
+        
+    except Exception as e:
+        print(f"❌ Error: {e}")
