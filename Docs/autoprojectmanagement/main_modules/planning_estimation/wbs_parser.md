@@ -34,3 +34,27 @@ graph TD
 
 | Class | Description | Inheritance |
 |-------|-------------|-------------|
+| `WBSParser` | Parses different WBS formats into structured data | - |
+
+## Detailed Method Documentation
+
+### WBSParser Class
+
+#### Constructor
+```python
+def __init__(self):
+```
+
+**Purpose:** Initializes the WBS Parser.
+
+#### parse_json_wbs Method
+```python
+def parse_json_wbs(self, data: Dict[str, Any]) -> Dict[str, Any]:
+```
+
+**Purpose:** Parses JSON format WBS data.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `data` | `Dict[str, Any]` | Yes | JSON data containing WBS structure |
