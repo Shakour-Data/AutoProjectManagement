@@ -1,27 +1,27 @@
-# Git Progress Updater Module
+# Git Progress Updater Module Documentation
 
-## Overview
-The `git_progress_updater` module provides the `GitProgressUpdater` class to analyze git commit logs and update task progress based on commit messages. It maps commits to tasks and combines commit-based progress with workflow progress.
+## Level 1: Executive Overview
 
-## Class: GitProgressUpdater
+### Module Purpose and Functionality
+The `git_progress_updater` module provides a comprehensive, enterprise-grade Git progress tracking system with four-phase implementation methodology. It serves as the central hub for monitoring Git repository activity, tracking commit-based progress, and providing actionable insights for project management.
 
-### Description
-The `GitProgressUpdater` class processes git logs to extract commit information, maps commits to task IDs using regex, calculates progress percentages, and combines this with workflow progress data.
+### Four-Phase Implementation Architecture
+1. **Phase 1**: Basic Structure & Documentation - Core functionality and class design
+2. **Phase 2**: Error Handling & Validation - Robust exception handling and input validation
+3. **Phase 3**: Performance & Security - Optimization, caching, and security measures
+4. **Phase 4**: Testing & Monitoring - Comprehensive testing framework and monitoring capabilities
 
-### Methods
+### Business Value
+This module enables real-time tracking of development progress through sophisticated Git commit analysis, providing project managers with quantitative metrics, health monitoring, and security-compliant progress tracking for enterprise environments.
 
-- `__init__(self, workflow_definition)`
-  - Initializes with a workflow definition list and sets up a task progress dictionary.
+---
 
-- `run_git_log(self)`
-  - Runs the git log command to retrieve commit hashes, messages, and changed files.
+## Level 2: Technical Architecture
 
-- `parse_git_log(self, log_text)`
-  - Parses the raw git log text into a list of commit dictionaries with hash, message, and files.
-
-- `map_commits_to_tasks(self, commits)`
-  - Extracts task IDs from commit messages using regex and calculates normalized progress percentages.
-
+### System Integration Architecture
+```mermaid
+graph TB
+    subgraph InputLayer [Input Sources]
 - `calculate_workflow_progress(self)`
   - Placeholder method for workflow step completion tracking.
 
