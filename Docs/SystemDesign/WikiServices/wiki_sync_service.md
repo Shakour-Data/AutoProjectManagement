@@ -62,12 +62,27 @@ flowchart TD
 ### Architecture Diagram
 ```mermaid
 flowchart LR
-    A[Local Docs Directory] --> B[WikiSyncService]
-    B --> C[GitHub Wiki Repo]
-    B --> D[WikiPageMapper]
-    B --> E[WikiGitOperations]
+    subgraph Input
+        A[Local Docs Directory]
+    end
+    
+    subgraph Processing
+        B[WikiSyncService]
+        D[WikiPageMapper]
+        E[WikiGitOperations]
+    end
+    
+    subgraph Output
+        C[GitHub Wiki Repo]
+    end
+    
+    A --> B
+    B --> D
+    B --> E
     D --> F[File Mapping]
     E --> G[Git Operations]
+    F --> C
+    G --> C
 ```
 
 ## Error Handling
