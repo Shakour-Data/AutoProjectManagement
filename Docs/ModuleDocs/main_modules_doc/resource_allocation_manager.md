@@ -166,3 +166,32 @@ class ResourceAllocationManager:
                  resource_costs_path: str = 'JSonDataBase/Inputs/UserInputs/resource_costs.json',
                  resource_constraints_path: Optional[str] = None,
                  output_path: str = 'JSonDataBase/OutPuts/resource_allocation_enriched.json',
+                 summary_output_path: str = 'JSonDataBase/OutPuts/resource_allocation_summary.json',
+                 report_output_path: str = 'JSonDataBase/OutPuts/resource_allocation_report.json') -> None:
+        """
+        Initialize the Resource Allocation Manager.
+        
+        Args:
+            resource_allocation_path: Path to resource allocation JSON file
+            detailed_wbs_path: Path to detailed WBS JSON file
+            resource_costs_path: Path to resource costs JSON file
+            resource_constraints_path: Optional path to resource constraints JSON file
+            output_path: Path for enriched WBS output
+            summary_output_path: Path for cost summary output
+            report_output_path: Path for comprehensive report output
+        """
+```
+
+### Cost Calculation Algorithm
+```python
+def calculate_task_cost(self, allocation: Dict[str, Any]) -> float:
+    """
+    Calculate the cost of a task based on its resource allocation.
+    
+    The calculation follows this formula:
+    Total Cost = (Duration in Days × Working Hours per Day × Allocation Percentage) × Hourly Cost
+    
+    Where:
+    - Duration in Days = (End Date - Start Date) + 1
+    - Working Hours per Day = 8 (configurable)
+    - Allocation Percentage = allocation_percent / 100.0
