@@ -67,25 +67,25 @@ Set the following environment variables for configuration:
 export API_KEY=your-api-key
 export DATABASE_URL=sqlite:///./autoprojectmanagement.db
 export LOG_LEVEL=INFO
-- The system performs:
-  - Resource allocation for lowest-level WBS activities.
-  - Duration estimation for each activity.
-  - Dependency determination.
-  - Addition of start and end milestone activities.
-  - Resource leveling.
-  - Scheduling with start and end dates.
-  - Aggregation of durations, costs, and metrics.
+export CORS_ORIGINS=http://localhost:3000,http://localhost:8000
+```
 
-## 6. Monitoring and Control
+### Configuration File
+Create a `config.json` file in the project root:
 
-- The system continuously monitors project progress:
-  - Calculates priority, importance, and scores.
-  - Manages workflow execution and activity ordering.
-  - Creates commits and updates progress percentages.
-  - Generates daily reports.
-  - Updates dashboards.
-  - Checks workflow completion.
-
+```json
+{
+  "api": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "debug": false
+  },
+  "database": {
+    "url": "sqlite:///./autoprojectmanagement.db",
+    "echo": false
+  },
+  "security": {
+    "api_key": "development-key",
 ## 7. Dashboards and Reporting
 
 - Access dashboards displaying:
