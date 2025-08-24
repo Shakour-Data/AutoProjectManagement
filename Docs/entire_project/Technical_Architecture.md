@@ -577,19 +577,15 @@ The system supports containerized deployment using Docker:
 This Docker deployment approach ensures consistent environments across development, staging, and production while simplifying deployment and scaling operations.
 
 #### 3. Cloud Deployment
-```yaml
-# docker-compose.yml
-version: '3.8'
-services:
-  apm:
-    build: .
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./data:/app/data
-    environment:
-      - APM_ENV=production
-```
+The system supports cloud deployment using Docker Compose:
+
+- **Versioning**: Specification of the Docker Compose version for compatibility
+- **Service Definition**: Definition of services and their configurations
+- **Port Mapping**: Configuration of port mappings for external access
+- **Volume Management**: Persistent data storage configuration
+- **Environment Variables**: Management of environment-specific settings
+
+This cloud deployment approach ensures scalability and ease of management in cloud environments while maintaining consistent configurations across deployments.
 
 ### Environment Configuration
 
