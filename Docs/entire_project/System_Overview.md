@@ -187,42 +187,14 @@ graph LR
 ### JSON Data Structure
 
 #### Project Configuration Schema
-```json
-{
-  "project": {
-    "id": "unique_identifier",
-    "name": "Project Name",
-    "description": "Project description",
-    "start_date": "2024-01-01",
-    "end_date": "2024-12-31",
-    "status": "active|paused|completed",
-    "priority": "high|medium|low",
-    "team_members": ["member1", "member2"],
-    "milestones": [
-      {
-        "id": "milestone_1",
-        "name": "Phase 1 Complete",
-        "target_date": "2024-06-01",
-        "status": "pending"
-      }
-    ]
-  },
-  "tasks": [
-    {
-      "id": "task_1",
-      "title": "Implement feature X",
-      "description": "Detailed task description",
-      "assignee": "developer_name",
-      "priority": "high",
-      "status": "in_progress",
-      "estimated_hours": 8,
-      "actual_hours": 0,
-      "dependencies": ["task_2"],
-      "tags": ["frontend", "urgent"]
-    }
-  ]
-}
-```
+The system uses a structured JSON format for project configuration with the following key components:
+
+- **Project Metadata**: Includes project ID, name, description, dates, status, priority level, team members, and milestones
+- **Task Definitions**: Contains detailed task information including titles, descriptions, assignees, priorities, statuses, time estimates, dependencies, and tags
+- **Milestone Tracking**: Defines project milestones with target dates and completion status
+- **Team Management**: Lists team members and their roles within the project
+
+The JSON schema ensures consistent data structure across all project configurations and enables seamless integration with various system modules.
 
 ---
 
@@ -345,15 +317,14 @@ https://localhost:8000/api/v1/
 | **Config** | `/config` | System configuration |
 
 #### API Response Format
-```json
-{
-  "status": "success|error",
-  "data": { },
-  "message": "Human-readable message",
-  "timestamp": "2024-01-01T00:00:00Z",
-  "request_id": "unique-request-id"
-}
-```
+The API follows a standardized response format that includes:
+- **Status**: Indicates success or error state
+- **Data**: Contains the actual response payload
+- **Message**: Human-readable description of the result
+- **Timestamp**: ISO 8601 formatted timestamp of the response
+- **Request ID**: Unique identifier for request tracking
+
+This consistent format ensures predictable client-side handling and simplifies error management across all API endpoints.
 
 ### WebSocket API for Real-time Updates
 - **Connection**: `ws://localhost:8000/ws`
@@ -560,11 +531,15 @@ CMD ["python", "-m", "autoprojectmanagement.auto_runner"]
 4. Check for infinite loops in custom modules
 
 ### Debug Mode
-Enable debug logging:
-```python
-import logging
-logging.basicConfig(level=logging.DEBUG)
-```
+Debug mode can be enabled to provide detailed logging information for troubleshooting purposes. When enabled, the system will output comprehensive debug information including:
+
+- Detailed process execution steps
+- System state changes and transitions
+- API request and response details
+- File system operation logs
+- Performance metrics and timing information
+
+This mode is essential for diagnosing complex issues and understanding the internal workings of the system.
 
 ### Log Analysis
 Key log locations:
