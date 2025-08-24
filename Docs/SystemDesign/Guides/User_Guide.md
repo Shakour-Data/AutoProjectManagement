@@ -197,3 +197,100 @@ curl -X POST http://localhost:8000/api/v1/dashboard/layout \
 
 ### WebSocket Integration
 ```javascript
+const socket = new WebSocket('ws://localhost:8000/api/v1/dashboard/ws');
+
+socket.onopen = () => {
+    console.log('Connected to AutoProjectManagement WebSocket');
+    
+    // Subscribe to events
+    socket.send(JSON.stringify({
+        type: 'subscribe',
+        event_types: ['progress_update', 'risk_alert', 'dashboard_update'],
+        project_id: 'project-001'
+    }));
+};
+
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    console.log('Real-time update:', data);
+};
+```
+
+### Server-Sent Events (SSE)
+```javascript
+const eventSource = new EventSource('/api/v1/sse/events?event_types=progress_update,risk_alert&project_id=project-001');
+
+eventSource.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    console.log('SSE update:', data);
+};
+
+eventSource.onerror = (error) => {
+    console.error('SSE error:', error);
+};
+```
+
+### Supported Event Types
+- `progress_update`: Task progress updates
+- `risk_alert`: Risk assessment alerts
+- `dashboard_update`: Dashboard data refresh
+- `health_check`: System health updates
+- `quality_metric`: Quality assurance updates
+- `team_performance`: Team performance updates
+- `system_status`: System status changes
+
+## Troubleshooting
+
+### Common Issues
+
+#### API Connection Issues
+- Verify the server is running: `curl http://localhost:8000/api/v1/health`
+- Check API key configuration
+- Verify CORS settings
+
+#### WebSocket Connection Issues
+- Check WebSocket URL: `ws://localhost:8000/api/v1/dashboard/ws`
+- Verify event types are valid
+- Check browser console for errors
+
+#### Data Loading Issues
+- Verify database connection
+- Check data file permissions
+- Review application logs
+
+### Logging
+Enable debug logging for troubleshooting:
+```bash
+export LOG_LEVEL=DEBUG
+uvicorn autoprojectmanagement.api.app:app --host 0.0.0.0 --port 8000 --reload
+```
+
+### Getting Help
+1. Check the [API Documentation](http://localhost:8000/docs)
+2. Review the [Troubleshooting Guide](Docs/SystemDesign/Guides/Maintenance_and_Troubleshooting_Guide.md)
+3. Search [GitHub Issues](https://github.com/AutoProjectManagement/AutoProjectManagement/issues)
+4. Create a new issue if your problem isn't documented
+
+## Best Practices
+
+### Performance Optimization
+- Use appropriate pagination for large datasets
+- Implement client-side caching
+- Use WebSocket/SSE for real-time updates
+- Optimize database queries
+
+### Security Considerations
+- Use HTTPS in production
+- Rotate API keys regularly
+- Implement rate limiting
+- Validate all input data
+
+### Monitoring and Alerting
+- Monitor system health endpoints
+- Set up alerting for critical events
+- Track performance metrics
+- Monitor error rates
+
+---
+
+*Last updated: 2025-08-14*
