@@ -9,17 +9,15 @@ The `UnifiedAutoCommit` service provides automated Git commit functionality with
 
 ## Table of Contents
 
-- [AutoCommit Service Documentation](#autocommit-service-documentation)
-  - [Overview](#overview)
-  - [Table of Contents](#table-of-contents)
-  - [Architecture Overview](#architecture-overview)
-    - [System Context Diagram](#system-context-diagram)
-    - [Component Architecture](#component-architecture)
-  - [Core Functionality](#core-functionality)
-    - [Workflow Process](#workflow-process)
-    - [Detailed Process Flow](#detailed-process-flow)
-  - [Authentication System](#authentication-system)
-    - [Authentication Flow](#authentication-flow)
+1. [Architecture Overview](#architecture-overview)
+2. [Core Functionality](#core-functionality)
+3. [Authentication System](#authentication-system)
+4. [Project Management Integration](#project-management-integration)
+5. [Error Handling & Recovery](#error-handling--recovery)
+6. [Performance Characteristics](#performance-characteristics)
+7. [Usage Examples](#usage-examples)
+8. [API Reference](#api-reference)
+9. [Troubleshooting Guide](#troubleshooting-guide)
 
 ## Architecture Overview
 
@@ -128,3 +126,76 @@ flowchart TD
     D -->|Available| E[Use HTTPS]
     D -->|Unavailable| F{Check PAT}
     F -->|Available| G[Use PAT]
+    F -->|Unavailable| H[Provide Troubleshooting]
+    
+    C --> I[Execute Git Operations]
+    E --> I
+    G --> I
+```
+
+### Authentication Methods
+
+| Method | Priority | Reliability | Setup Complexity |
+|--------|----------|-------------|------------------|
+| SSH | 1 | High | Medium |
+| HTTPS | 2 | High | Low |
+| PAT | 3 | High | High |
+
+## Project Management Integration
+
+### Data Flow Diagram
+
+```mermaid
+flowchart LR
+    A[Git Changes] --> B[AutoCommit Service]
+    B --> C[Task Identification]
+    B --> D[Progress Calculation]
+    B --> E[Database Update]
+    
+    C --> F[WBS Resources]
+    D --> G[Progress Metrics]
+    E --> H[Commit Task DB]
+    
+    F --> I[Project Management]
+    G --> I
+    H --> I
+```
+
+### Progress Calculation Algorithm
+
+```
+Progress = Σ(Stage_Weight × Commit_Count) / Total_Commits
+
+Where:
+- Stage_Weight: Predefined weight for each workflow stage
+- Commit_Count: Number of commits in the stage
+- Total_Commits: Total commits across all stages
+```
+
+#### Mathematical Formula
+
+$$ \text{Progress} = \sum_{i=1}^{n} \left( w_i \times \frac{c_i}{C} \right) $$
+
+Where:
+- $w_i$ = weight of stage $i$
+- $c_i$ = commit count in stage $i$  
+- $C$ = total commit count
+- $n$ = number of stages
+
+### Importance Calculation
+
+$$ \text{Importance} = \text{Base} + \text{Dependency Factor} + \text{Progress Factor} + \text{Delay Factor} $$
+
+Where:
+- $\text{Base} = \text{Stage Weight}$
+- $\text{Dependency Factor} = \min(\text{Dependency Count} \times 0.05, 0.3)$
+- $\text{Progress Factor} = \max(0, 1 - \text{Progress})$
+- $\text{Delay Factor} = \min(\text{Delays} \times 0.1, 0.3)$
+
+### Urgency Calculation
+
+$$ \text{Urgency} = \text{Time Factor} + \text{Delay Factor} + \text{Progress Factor} $$
+
+Where:
+- $\text{Time Factor} = \max\left(0, \min\left(1, \frac{30 - \text{Remaining Days}}{30}\right)\right)$
+- $\text{Delay Factor} = \min(\text{Delays} \times 0.1, 0.5)$
