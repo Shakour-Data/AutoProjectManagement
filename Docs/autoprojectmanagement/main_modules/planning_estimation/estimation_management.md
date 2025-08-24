@@ -45,3 +45,39 @@ graph TD
 | `inputs` | Data Storage | Loaded input data | `{}` |
 | `output` | Data Storage | Processed estimation results | `{}` |
 
+### Constants and Configuration
+
+| Constant | Value | Description |
+|----------|-------|-------------|
+| `DEFAULT_COST_PER_RESOURCE` | `100.0` | Base cost per resource unit |
+| `DEFAULT_COMPLEXITY_MAPPING` | Dictionary | Maps complexity levels to duration multipliers |
+| `MAX_LINE_LENGTH` | `79` | Maximum line length for code formatting |
+| `DEFAULT_ENCODING` | `'utf-8'` | Default file encoding |
+| `JSON_INDENT` | `2` | JSON indentation level |
+
+### Complexity Mapping
+
+| Complexity Level | Duration Multiplier | Description |
+|------------------|---------------------|-------------|
+| `low` | `1.0` | Simple, well-understood tasks |
+| `medium` | `3.0` | Standard complexity tasks |
+| `high` | `5.0` | Complex tasks requiring expertise |
+| `extreme` | `8.0` | Highly complex, uncertain tasks |
+
+## Detailed Method Documentation
+
+### BaseManagement Class
+
+#### Constructor
+```python
+def __init__(self, input_paths: Dict[str, str], output_path: str) -> None
+```
+
+**Purpose:** Initializes the base management class with input and output file paths.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `input_paths` | `Dict[str, str]` | Yes | Dictionary mapping input names to file paths |
+| `output_path` | `str` | Yes | Path where output will be saved |
+
