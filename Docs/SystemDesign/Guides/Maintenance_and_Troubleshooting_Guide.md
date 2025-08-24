@@ -23,35 +23,42 @@ This guide provides comprehensive instructions for maintaining and troubleshooti
 - **Symptoms**: WebSocket connections failing, connection timeouts.
 - **Possible Causes**: Incorrect WebSocket URL, server configuration issues.
 - **Solutions**:
+  - Verify WebSocket URL: `ws://localhost:8000/api/v1/dashboard/ws`
+  - Check server configuration for WebSocket support.
+  - Review browser console for WebSocket errors.
 
-## 2. Troubleshooting
+### Data Loading Issues
+- **Symptoms**: Data not loading, empty responses from API.
+- **Possible Causes**: Database connection issues, file permission problems.
+- **Solutions**:
+  - Verify database connection settings.
+  - Check file permissions for data files.
+  - Review application logs for database errors.
 
-### 2.1 Common Issues
+## Maintenance Procedures
 
-- **Installation Failures:** Verify Python, Node.js, npm, and Git installations.
-- **Virtual Environment Issues:** Ensure virtual environment is activated before running commands.
-- **JSON Input Errors:** Validate JSON files against standards; use the JSON File Upload Wizard for assistance.
-- **API Errors:** Check backend logs for error messages; verify API endpoint availability.
-- **Frontend Issues:** Clear browser cache; check frontend server logs.
+### Regular Maintenance Tasks
+- **Database Backup**: Regularly back up the database to prevent data loss.
+- **Log Rotation**: Implement log rotation to manage log file sizes.
+- **Security Updates**: Regularly update dependencies to address security vulnerabilities.
 
-### 2.2 Logs and Diagnostics
+### Performance Monitoring
+- Monitor system performance metrics such as response times and error rates.
+- Set up alerts for performance degradation or system failures.
+- Regularly review and optimize database queries.
 
-- Review `log.txt` for general system logs.
-- Backend API logs provide detailed error information.
-- Frontend logs available in browser developer tools.
+## Troubleshooting Steps
 
-### 2.3 Recovery
+### Step 1: Check Server Status
+```bash
+# Check if the server is running
+curl http://localhost:8000/api/v1/health
 
-- Restore from backups in case of data corruption or loss.
-- Re-run setup scripts to repair environment issues.
-- Contact support or open issues on the project repository for unresolved problems.
+# Check server logs for errors
+tail -f /var/log/autoprojectmanagement/server.log
+```
 
-## 3. Support
-
-- Refer to the comprehensive documentation in the `Docs/` directory.
-- Use GitHub Issues for reporting bugs or requesting help.
-- Engage with the development team via project communication channels.
-
----
-
-This guide helps ensure smooth operation and quick resolution of issues in the ProjectManagement system.
+### Step 2: Verify Configuration
+```bash
+# Check environment variables
+echo $API_KEY
