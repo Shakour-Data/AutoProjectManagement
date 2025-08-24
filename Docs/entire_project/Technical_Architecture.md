@@ -634,15 +634,15 @@ This cloud deployment approach ensures scalability and ease of management in clo
 
 ### Performance Monitoring
 
-```python
-# Example monitoring setup
-from prometheus_client import Counter, Histogram, Gauge
+The system includes comprehensive performance monitoring capabilities:
 
-# Metrics
-api_requests = Counter('api_requests_total', 'Total API requests')
-task_processing_time = Histogram('task_processing_seconds', 'Task processing time')
-active_tasks = Gauge('active_tasks', 'Number of active tasks')
-```
+- **Metrics Collection**: Integration with Prometheus for collecting system metrics
+- **Request Tracking**: Monitoring of API request volumes and response times
+- **Processing Metrics**: Tracking of task processing durations and performance
+- **Resource Monitoring**: Monitoring of active tasks and system resource usage
+- **Custom Metrics**: Support for custom metric definitions and collection
+
+This performance monitoring infrastructure provides valuable insights into system performance and helps identify optimization opportunities.
 
 ---
 
