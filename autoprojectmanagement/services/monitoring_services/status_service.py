@@ -208,3 +208,49 @@ class StatusService:
             return metrics
             
         except ImportError:
+            self.logger.warning("psutil not available - system metrics disabled")
+            return {}
+        except Exception as e:
+            self.logger.warning(f"Error getting system metrics: {e}")
+            return {}
+    
+    def save_status(self, status: ProjectStatus) -> bool:
+        """
+        Save status information to JSON file.
+        
+        Args:
+            status: ProjectStatus object to save
+            
+        Returns:
+            bool: True if save was successful, False otherwise
+        """
+        try:
+            os.makedirs(os.path.dirname(self.status_file), exist_ok=True)
+            
+            status_dict = asdict(status)
+            
+            with open(self.status_file, 'w', encoding='utf-8') as f:
+                json.dump(status_dict, f, indent=2, ensure_ascii=False)
+            
+            self.logger.debug(f"Status saved to: {self.status_file}")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Failed to save status: {e}")
+            return False
+    
+    def update_status_periodically(self, interval: int = 30) -> None:
+        """
+        Continuously update status at regular intervals.
+        
+        Args:
+            interval: Update interval in seconds (default: 30)
+        """
+        self.logger.info(f"Starting periodic status updates every {interval} seconds")
+        
+        try:
+            while True:
+                status = self.get_status()
+                self.save_status(status)
+                time.sleep(interval)
+                
