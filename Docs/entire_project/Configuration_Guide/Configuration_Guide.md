@@ -487,22 +487,10 @@ sequenceDiagram
 ### Configuration Backup and Restore
 
 #### Backup Configuration
-```bash
-# Backup current configuration
-cp config.json config.backup.json
-
-# Backup with timestamp
-cp config.json config.backup.$(date +%Y%m%d_%H%M%S).json
-```
+The backup configuration process involves creating copies of configuration files for safety and recovery purposes. This includes creating simple backups and timestamped backups to maintain a history of configuration changes.
 
 #### Restore Configuration
-```bash
-# Restore from backup
-cp config.backup.json config.json
-
-# Validate after restore
-python -m autoprojectmanagement.configuration validate
-```
+The restore configuration process allows users to recover previous configuration states from backup files. This includes restoring from backup files and validating the restored configuration to ensure integrity.
 
 ---
 
