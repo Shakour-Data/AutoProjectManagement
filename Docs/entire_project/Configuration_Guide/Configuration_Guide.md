@@ -172,15 +172,13 @@ File logging configuration with rotation includes:
 This configuration ensures that log files do not consume excessive disk space while retaining important log history.
 
 #### 3. JSON Structured Logging
-```json
-{
-  "logging": {
-    "level": "INFO",
-    "json_format": true,
-    "include_extra": true
-  }
-}
-```
+JSON structured logging configuration allows for logs to be formatted in JSON, which is useful for structured logging systems:
+
+- **Logging Level**: The severity level of logs (e.g., INFO, DEBUG)
+- **JSON Format**: Whether to output logs in JSON format
+- **Include Extra Fields**: Option to include additional contextual information in logs
+
+This configuration enhances log analysis and integration with log management systems.
 
 ---
 
