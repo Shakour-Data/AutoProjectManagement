@@ -12,18 +12,16 @@ To configure environment variables for GitHub integration, set the following var
 This setup allows the AutoProjectManagement system to interact with GitHub securely and efficiently.
 
 #### 3. Configuration Example
-```json
-{
-  "github": {
-    "token": "ghp_xxxxxxxxxxxxxxxxxxxx",
-    "username": "yourusername",
-    "default_repo": "username/repository",
-    "default_branch": "main",
-    "auto_sync": true,
-    "sync_interval": 300
-  }
-}
-```
+The GitHub integration configuration includes several key settings:
+
+- **Token**: Authentication token for GitHub API access
+- **Username**: GitHub username for repository operations
+- **Default Repository**: Primary repository for automated operations
+- **Default Branch**: Main branch for commit operations
+- **Auto Sync**: Automatic synchronization with GitHub
+- **Sync Interval**: Frequency of synchronization operations
+
+These settings ensure seamless integration between the AutoProjectManagement system and GitHub repositories.
 
 ---
 
