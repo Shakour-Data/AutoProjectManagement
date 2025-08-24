@@ -72,23 +72,23 @@ class GitHubProjectManager:
         github_token (str): GitHub personal access token for authentication
         session (requests.Session): HTTP session for API calls
         config (Dict[str, Any]): Configuration dictionary loaded from file
-    organization: Optional[str] = None
-    private: bool = True
-    auto_init: bool = True
-    gitignore_template: Optional[str] = None
-    license_template: Optional[str] = None
-
-@dataclass
-class ProjectReport:
-    """Report structure for project creation results."""
-    project_name: str
-    github_username: str
-    status: str
-    url: Optional[str] = None
-    error_message: Optional[str] = None
-    created_at: Optional[str] = None
-    repository_id: Optional[int] = None
-
+    """
+    
+    def __init__(self, github_token: Optional[str] = None):
+        """
+        Initialize the GitHub Project Manager.
+        
+        Args:
+            github_token: GitHub personal access token. If not provided, will attempt
+                         to load from environment variable GITHUB_TOKEN.
+                         
+        Raises:
+            GitHubAPIError: If no GitHub token is available
+        """
+        self.github_token = github_token or os.getenv('GITHUB_TOKEN')
+        if not self.github_token:
+            raise GitHubAPIError(
+                "GitHub token is required. Set GITHUB_TOKEN environment variable "
 class GitHubAPIError(Exception):
     """Custom exception for GitHub API related errors."""
     pass
