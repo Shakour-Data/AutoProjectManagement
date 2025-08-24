@@ -389,3 +389,59 @@ Loads linked WBS resources from JSON file.
 update_commit_task_database(commit_hash: str, task_id: str, file_path: str, commit_message: str, 
                           workflow_stage: Optional[str] = None, progress_change: float = 0.0, 
                           importance_change: float = 0, priority_change: float = 0,
+                          db_path: str = "JSonDataBase/OutPuts/commit_task_database.json") -> None
+```
+Updates commit task database with commit information.
+
+**Parameters:**
+- `commit_hash`: Git commit hash
+- `task_id`: Associated task ID
+- `file_path`: File path from commit
+- `commit_message`: Commit message
+- `workflow_stage`: Workflow stage (optional)
+- `progress_change`: Progress change (optional)
+- `importance_change`: Importance change (optional) 
+- `priority_change`: Priority change (optional)
+- `db_path`: Database file path
+
+##### write_commit_progress_to_json
+```python
+write_commit_progress_to_json(file_path: str = "JSonDataBase/OutPuts/commit_progress.json") -> None
+```
+Writes commit progress data to JSON file.
+
+**Parameters:**
+- `file_path`: Output file path
+
+## Troubleshooting Guide
+
+### Common Issues
+
+#### Authentication Failures
+**Symptoms:** Permission denied, authentication failed errors
+**Solutions:**
+1. Run `./fix_git_auth.sh` to configure authentication
+2. Check SSH key setup: `cat ~/.ssh/id_ed25519.pub`
+3. Verify GitHub PAT configuration
+
+#### Push Failures  
+**Symptoms:** Push rejected, non-fast-forward errors
+**Solutions:**
+1. Service automatically tries multiple push strategies
+2. Local changes are preserved regardless of push success
+3. Check network connectivity
+
+#### File Staging Issues
+**Symptoms:** Files not staged, "does not exist" errors
+**Solutions:**
+1. Verify file paths exist
+2. Check Git ignore rules
+3. Ensure proper file permissions
+
+### Debug Mode
+
+Enable debug logging by setting environment variable:
+```bash
+export LOG_LEVEL=DEBUG
+```
+
