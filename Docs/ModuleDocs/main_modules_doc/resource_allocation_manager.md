@@ -322,3 +322,46 @@ except Exception as e:
 |-----------|------------|-------------|
 | Input Loading | O(n) | Linear with number of input files |
 | Task Cost Calculation | O(m) | Linear with number of allocations |
+| Conflict Detection | O(k²) | Quadratic with number of allocations (pairwise comparison) |
+| Report Generation | O(p) | Linear with number of resources |
+
+### Space Complexity Analysis
+| Component | Complexity | Description |
+|-----------|------------|-------------|
+| Resource Storage | O(n) | Linear with number of resources |
+| Allocation Storage | O(m) | Linear with number of allocations |
+| Report Data | O(p) | Linear with number of report elements |
+
+---
+
+## Integration Points
+
+### Input Interfaces
+- **Resource Allocation JSON**: Task-resource mapping data
+- **Detailed WBS JSON**: Work breakdown structure with task details
+- **Resource Costs JSON**: Cost information for each resource
+- **Resource Constraints JSON**: Optional constraints and limitations
+
+### Output Interfaces
+- **Enriched WBS JSON**: WBS with embedded resource allocation data
+- **Cost Summary JSON**: Aggregated cost information
+- **Comprehensive Report JSON**: Detailed analysis and insights
+- **Utilization Metrics**: Resource utilization statistics
+
+### Extension Points
+- **Custom Cost Models**: Alternative cost calculation methods
+- **Advanced Conflict Resolution**: Sophisticated conflict detection algorithms
+- **Real-time Monitoring**: Integration with monitoring systems
+- **Forecasting Capabilities**: Predictive resource allocation
+
+---
+
+## Error Handling and Recovery
+
+### Error Classification System
+| Error Category | Examples | Recovery Strategy |
+|----------------|----------|-------------------|
+| Configuration Errors | Invalid file paths, missing parameters | Validation and default fallbacks |
+| Data Integrity Errors | Corrupted JSON, invalid date formats | Data sanitization and error reporting |
+| Resource Conflicts | Overlapping allocations, constraint violations | Conflict resolution and user notification |
+| System Errors | File permission issues, memory constraints | Graceful degradation and resource cleanup |
