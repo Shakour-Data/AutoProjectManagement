@@ -374,3 +374,23 @@ Loads configuration data from `config.json`.
 2. **Key Rotation**: Periodically generate new keys and re-encrypt tokens
 3. **Backup**: Secure backup of encryption keys separate from encrypted data
 4. **Access Control**: Limit access to key files to authorized processes only
+
+### Token Security
+
+1. **Least Privilege**: Use tokens with minimal required permissions
+2. **Rotation**: Regularly rotate API tokens
+3. **Monitoring**: Monitor token usage for suspicious activity
+4. **Revocation**: Have a process for immediate token revocation
+
+### Configuration Security
+
+1. **Sensitive Data**: Never store sensitive data in plain text config files
+2. **Validation**: Validate all configuration values before use
+3. **Default Values**: Use secure defaults for security-related settings
+4. **Audit Logging**: Log configuration changes for audit purposes
+
+### File Security Recommendations
+
+```bash
+# Set secure file permissions
+chmod 600 secret.key
