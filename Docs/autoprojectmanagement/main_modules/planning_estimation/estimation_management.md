@@ -81,3 +81,69 @@ def __init__(self, input_paths: Dict[str, str], output_path: str) -> None
 | `input_paths` | `Dict[str, str]` | Yes | Dictionary mapping input names to file paths |
 | `output_path` | `str` | Yes | Path where output will be saved |
 
+**Validation Rules:**
+- `input_paths` must be a non-empty dictionary
+- `output_path` must be a non-empty string
+
+**Raises:**
+- `ValueError`: If input_paths or output_path are empty
+
+#### load_json Method
+```python
+def load_json(self, path: str) -> Optional[Dict[str, Any]]
+```
+
+**Purpose:** Loads JSON data from a specified file path with comprehensive error handling.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `path` | `str` | Yes | Path to the JSON file |
+
+**Returns:** `Optional[Dict[str, Any]]` - Dictionary containing JSON data or None if file doesn't exist
+
+**Error Handling:**
+- `json.JSONDecodeError`: If file contains invalid JSON, error is logged and exception is raised
+- `Exception`: General file reading errors are caught and logged
+
+#### save_json Method
+```python
+def save_json(self, data: Dict[str, Any], path: str) -> None
+```
+
+**Purpose:** Saves data as JSON to a specified file path with proper formatting.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `data` | `Dict[str, Any]` | Yes | Dictionary to save as JSON |
+| `path` | `str` | Yes | Path where to save the file |
+
+**Features:**
+- Creates parent directories if they don't exist
+- Uses proper JSON formatting with indentation
+- Handles file writing errors gracefully
+
+**Error Handling:**
+- `IOError`: If there's an error writing the file, exception is raised
+
+#### load_inputs Method
+```python
+def load_inputs(self) -> None
+```
+
+**Purpose:** Loads all input JSON files into memory.
+
+**Process:**
+- Iterates through all input paths
+- Loads each JSON file using `load_json` method
+- Stores loaded data in `inputs` dictionary
+- Logs successful loading operations
+
+#### validate_inputs Method
+```python
+def validate_inputs(self) -> bool
+```
+
+**Purpose:** Validates loaded inputs before analysis.
+
