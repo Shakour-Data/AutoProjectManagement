@@ -118,3 +118,72 @@ classDiagram
 #### راه‌اندازی پس از نصب
 **تابع**: `post_install_setup() -> None`
 
+راه‌اندازی خودکار Docker پس از نصب بسته را اجرا می‌کند، شامل نصب Docker و راه‌اندازی محیط.
+
+## مثال‌های استفاده
+
+### راه‌اندازی پایه Docker
+```python
+from autoprojectmanagement.docker_setup import DockerSetup
+
+# مقداردهی اولیه DockerSetup
+docker_setup = DockerSetup()
+
+# بررسی نصب Docker
+if docker_setup.check_docker_installed():
+    print("Docker نصب شده است")
+else:
+    print("Docker نصب نشده است")
+
+# راه‌اندازی محیط Docker
+if docker_setup.setup_docker():
+    print("راه‌اندازی Docker تکمیل شد")
+else:
+    print("راه‌اندازی Docker ناموفق بود")
+```
+
+### مدیریت سرویس
+```python
+# شروع سرویس‌های Docker
+docker_setup.start_services("development")
+
+# توقف سرویس‌های Docker
+docker_setup.stop_services("development")
+
+# نمایش وضعیت سرویس
+docker_setup.show_status("development")
+```
+
+## نقاط یکپارچه‌سازی
+
+### فایل‌های Docker Compose
+ماژول با فایل‌های Docker Compose واقع در ریشه پروژه یکپارچه می‌شود:
+- `docker-compose.dev.yml` برای محیط توسعه
+- `docker-compose.prod.yml` برای محیط تولید
+- `docker-compose.yml` به عنوان پیش‌فرض
+
+### اسکریپت راه‌اندازی
+ماژول از اسکریپت `auto-docker-setup.sh` واقع در دایرکتوری `scripts` برای راه‌اندازی خودکار استفاده می‌کند.
+
+## مدیریت خطا
+- پیام‌های خطای واضح برای عملیات ناموفق فراهم می‌کند.
+- نصب‌های Docker از دست رفته را به صورت گرانولار مدیریت می‌کند.
+- از مکانیسم‌های جایگزین برای توزیع‌های مختلف لینوکس پشتیبانی می‌کند.
+
+## ملاحظات امنیتی
+- از فراخوانی‌های زیرفرآیند برای عملیات Docker استفاده می‌کند.
+- مجوزهای مناسب کاربر برای گروه Docker را تضمین می‌کند.
+- هیچ داده حساسی در خروجی دستور افشا نمی‌شود.
+
+## ویژگی‌های عملکرد
+- **اجرای دستور**: وابسته به عملکرد Docker و سیستم.
+- **استفاده حافظه**: ردپای حداقل برای عملیات راه‌اندازی.
+- **استفاده شبکه**: فقط عملیات محلی.
+
+## وابستگی‌ها
+- **subprocess**: برای اجرای دستورات Docker.
+- **platform**: برای تشخیص سیستم.
+- **shutil**: برای بررسی دسترسی دستورات.
+- **pathlib**: برای دستکاری مسیرها.
+
+## مثال خروجی
