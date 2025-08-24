@@ -95,14 +95,12 @@ JWT (JSON Web Token) configuration includes several security-critical settings:
 These settings ensure secure authentication and authorization within the AutoProjectManagement system.
 
 #### 2. API Key Configuration
-```json
-{
-  "security": {
-    "api_key_required": true,
-    "api_key_header": "X-API-Key"
-  }
-}
-```
+API Key configuration provides an additional layer of security for API access:
+
+- **API Key Requirement**: Whether API keys are required for authentication
+- **API Key Header**: The HTTP header used to pass API keys in requests
+
+This configuration allows for flexible security policies based on deployment requirements.
 
 #### 3. SSL/TLS Configuration
 ```json
