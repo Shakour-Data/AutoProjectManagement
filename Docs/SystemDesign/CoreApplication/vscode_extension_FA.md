@@ -61,3 +61,27 @@ classDiagram
 #### ایجاد پیکربندی تنظیمات
 **متد**: `create_settings_configuration() -> None`
 
+یک فایل `settings.json` جامع برای VS Code ایجاد می‌کند، شامل:
+- تنظیمات ذخیره خودکار
+- یکپارچه‌سازی Git
+- تنظیمات مفسر Python
+- پیکربندی‌های قالب‌بندی و لینتینگ
+
+#### ایجاد پیکربندی افزونه‌ها
+**متد**: `create_extensions_configuration() -> None`
+
+یک فایل `extensions.json` با افزونه‌های توصیه شده برای پروژه ایجاد می‌کند.
+
+#### ایجاد پیکربندی فضای کاری
+**متد**: `create_workspace_configuration() -> None`
+
+یک فایل پیکربندی فضای کاری برای VS Code ایجاد می‌کند.
+
+#### ایجاد مانیفست افزونه
+**متد**: `create_extension_manifest() -> None`
+
+یک مانیفست `package.json` برای توسعه افزونه VS Code ایجاد می‌کند.
+
+#### راه‌اندازی محیط کامل
+**متد**: `setup_complete_environment() -> None`
+
