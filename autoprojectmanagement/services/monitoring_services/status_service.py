@@ -278,3 +278,28 @@ class StatusService:
         """
         try:
             if os.path.exists(self.status_file):
+                os.remove(self.status_file)
+                self.logger.info("Status file cleared")
+            
+            # Create fresh idle status
+            idle_status = ProjectStatus(
+                status='idle',
+                progress=0,
+                last_updated=datetime.now().isoformat(),
+                tasks_completed=0,
+                tasks_total=0,
+                current_task='System ready'
+            )
+            
+            return self.save_status(idle_status)
+            
+        except Exception as e:
+            self.logger.error(f"Failed to clear status: {e}")
+            return False
+
+
+# Global instance for easy access
+status_service = StatusService()
+
+
+def get_current_status() -> ProjectStatus:
