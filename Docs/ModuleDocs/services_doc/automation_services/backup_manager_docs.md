@@ -9,20 +9,17 @@ The `BackupManager` service provides a comprehensive backup management system fo
 
 ## Table of Contents
 
-- [Backup Manager Service Documentation](#backup-manager-service-documentation)
-  - [Overview](#overview)
-  - [Table of Contents](#table-of-contents)
-  - [Architecture Overview](#architecture-overview)
-    - [System Context Diagram](#system-context-diagram)
-    - [Component Architecture](#component-architecture)
-  - [Core Functionality](#core-functionality)
-    - [Backup Process Flow](#backup-process-flow)
-    - [Detailed Backup Sequence](#detailed-backup-sequence)
-    - [Restoration Process Flow](#restoration-process-flow)
-  - [Compression \& Storage](#compression--storage)
-    - [Supported Compression Formats](#supported-compression-formats)
-    - [Storage Optimization](#storage-optimization)
-    - [Retention Policy Algorithm](#retention-policy-algorithm)
+1. [Architecture Overview](#architecture-overview)
+2. [Core Functionality](#core-functionality)
+3. [Compression & Storage](#compression--storage)
+4. [Integrity Verification](#integrity-verification)
+5. [Scheduling System](#scheduling-system)
+6. [Performance Characteristics](#performance-characteristics)
+7. [Security Considerations](#security-considerations)
+8. [Usage Examples](#usage-examples)
+9. [API Reference](#api-reference)
+10. [Testing Framework](#testing-framework)
+11. [Troubleshooting Guide](#troubleshooting-guide)
 
 ## Architecture Overview
 
@@ -168,6 +165,63 @@ The backup manager implements several storage optimization techniques:
 Retention = Current_Date - Retention_Days
 
 For each backup:
-Retention = Current_Date - Retention_Days
-
+    If backup_date < Retention:
+        Delete backup and metadata
 ```
+
+## Integrity Verification
+
+### Checksum Calculation
+
+The system uses SHA-256 cryptographic hashing for integrity verification:
+
+```python
+def calculate_checksum(files):
+    hasher = hashlib.sha256()
+    for file in sorted(files):
+        with open(file, 'rb') as f:
+            for chunk in iter(lambda: f.read(8192), b''):
+                hasher.update(chunk)
+    return hasher.hexdigest()
+```
+
+### Verification Process
+
+1. **Pre-backup**: Calculate checksum of source files
+2. **Post-backup**: Verify archive integrity
+3. **Pre-restore**: Verify archive before extraction
+4. **Post-restore**: Optional file validation
+
+### Error Detection Matrix
+
+| Error Type | Detection Method | Recovery Action |
+|------------|------------------|-----------------|
+| File Corruption | Checksum mismatch | Mark backup as corrupted |
+| Archive Damage | Archive verification | Delete corrupted archive |
+| Storage Failure | OS errors | Retry operation |
+| Network Issues | Timeout detection | Switch to local storage |
+
+## Scheduling System
+
+### Automatic Scheduling
+
+```mermaid
+flowchart TD
+    A[Scheduler Thread] --> B{Check Schedule}
+    B -->|Scheduled Time| C[Execute Backup]
+    B -->|Not Time| D[Wait 60 Seconds]
+    C --> E[Update Next Run]
+    D --> A
+    E --> A
+```
+
+### Schedule Configuration
+
+The scheduler supports:
+- Daily backups at specific times
+- Custom interval scheduling (future)
+- Multiple backup schedules (future)
+- Holiday/weekend exceptions (future)
+
+## Performance Characteristics
+
