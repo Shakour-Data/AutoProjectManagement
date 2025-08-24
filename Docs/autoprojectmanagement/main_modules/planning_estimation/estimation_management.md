@@ -279,3 +279,28 @@ def estimate_project_duration(project: Dict[str, Any]) -> float
 
 **Purpose:** Estimates project duration by summing task durations.
 
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `project` | `Dict[str, Any]` | Yes | Project dictionary containing tasks |
+
+**Returns:** `float` - Total project duration
+
+**Process:**
+- Extracts tasks list from project
+- Sums duration estimates for all tasks
+- Returns 0.0 if no tasks found
+
+**Raises:**
+- `TypeError`: If project is None or not a dictionary
+
+#### estimate_project_cost Function
+```python
+def estimate_project_cost(project: Dict[str, Any]) -> float
+```
+
+**Purpose:** Estimates project cost by summing task costs.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
