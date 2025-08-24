@@ -127,3 +127,42 @@ classDiagram
         +loadFromJson(jsonData: String) Boolean
         +saveToJson() String
         +getGlobalSetting(key: String) Any
+        +setGlobalSetting(key: String, value: Any)
+        +getComponentConfig(componentId: String) ComponentConfiguration
+        +setComponentConfig(componentId: String, config: ComponentConfiguration)
+    }
+    
+    class ComponentConfiguration {
+        -Map~String, Any~ settings
+        -List~String~ dependencies
+        +ComponentConfiguration()
+        +getSetting(key: String) Any
+        +setSetting(key: String, value: Any)
+        +hasDependency(componentId: String) Boolean
+        +addDependency(componentId: String)
+        +removeDependency(componentId: String)
+    }
+    
+    class SystemStatus {
+        -String overallState
+        -Map~String, ComponentStatus~ componentStatuses
+        -List~SystemEvent~ recentEvents
+        -SystemMetrics metrics
+        +SystemStatus()
+        +updateComponentStatus(componentId: String, status: ComponentStatus)
+        +getComponentStatus(componentId: String) ComponentStatus
+        +addEvent(event: SystemEvent)
+        +getRecentEvents(count: Int) List~SystemEvent~
+        +calculateHealthScore() Double
+    }
+    
+    class ComponentStatus {
+        -String state
+        -String lastError
+        -DateTime lastUpdate
+        -ComponentMetrics metrics
+        +ComponentStatus()
+        +setState(newState: String)
+        +setError(errorMessage: String)
+        +clearError()
+        +updateMetrics(newMetrics: ComponentMetrics)
