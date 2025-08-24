@@ -194,3 +194,14 @@ def analyze(self) -> None
 
 **Purpose:** Performs comprehensive project estimation analysis.
 
+**Process:**
+1. Extracts tasks from loaded WBS data
+2. Estimates duration for each task based on complexity
+3. Estimates cost for each task based on resources and duration
+4. Aggregates project-level totals
+5. Structures output with summary and detailed estimates
+
+**Output Structure:**
+```json
+{
+  "summary": {
