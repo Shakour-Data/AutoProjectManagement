@@ -810,19 +810,15 @@ The system uses several environment variables for configuration:
 These environment variables provide flexible configuration options while maintaining security and consistency across deployments.
 
 #### Configuration File
-```json
-{
-  "project": {
-    "name": "MyProject",
-    "description": "Project description",
-    "settings": {
-      "auto_commit": true,
-      "quality_checks": true,
-      "risk_monitoring": true
-    }
-  }
-}
-```
+The system uses a JSON-based configuration file for project settings:
+
+- **Project Metadata**: Configuration of project names, descriptions, and basic information
+- **Feature Settings**: Toggle settings for various system features like auto-commit, quality checks, and risk monitoring
+- **Structured Format**: JSON format for easy readability and machine processing
+- **Version Control**: Configuration files are designed to be version-controlled for consistency
+- **Validation**: Built-in validation for configuration file structure and content
+
+This configuration approach provides a flexible and maintainable way to manage system settings across different projects and environments.
 
 ### Appendix C: Troubleshooting
 
