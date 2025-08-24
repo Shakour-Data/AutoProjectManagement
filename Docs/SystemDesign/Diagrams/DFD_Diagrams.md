@@ -248,3 +248,105 @@ flowchart TD
     DataStores --> DataRetrieval
 ```
 
+## Level 3: Real-time Event Processing
+
+```mermaid
+flowchart TD
+    subgraph RealTimeProcessing[Real-time Event Processing]
+        EventSource[Event Sources]
+        EventQueue[Event Queue]
+        EventProcessor[Event Processor]
+        Subscribers[Subscriber Management]
+        Notification[Notification Service]
+    end
+    
+    Core[Core Processing] --> EventSource
+    EventSource --> Core
+    
+    Dashboard[Dashboard Services] --> EventSource
+    EventSource --> Dashboard
+    
+    EventSource --> EventQueue
+    EventQueue --> EventProcessor
+    EventProcessor --> Subscribers
+    Subscribers --> Notification
+    
+    Notification --> WebSocket[WebSocket Clients]
+    WebSocket --> Notification
+    
+    Notification --> SSE[SSE Clients]
+    SSE --> Notification
+    
+    Notification --> API[API Gateway]
+    API --> Notification
+    
+    EventQueue --> DataStores[Event Storage]
+    DataStores --> EventQueue
+    
+    Subscribers --> SubscriberDB[Subscriber Database]
+    SubscriberDB --> Subscribers
+```
+
+## Level 3: Data Validation Process
+
+```mermaid
+flowchart TD
+    subgraph DataValidationProcess[Data Validation Process]
+        Input[Input Data]
+        SchemaValidation[Schema Validation]
+        BusinessRules[Business Rules Validation]
+        DataIntegrity[Data Integrity Check]
+        Output[Validated Data]
+    end
+    
+    API[API Gateway] --> Input
+    Core[Core Processing] --> Input
+    External[External Sources] --> Input
+    
+    Input --> SchemaValidation
+    SchemaValidation -->|Invalid| Error[Error Handling]
+    SchemaValidation -->|Valid| BusinessRules
+    
+    BusinessRules -->|Invalid| Error
+    BusinessRules -->|Valid| DataIntegrity
+    
+    DataIntegrity -->|Invalid| Error
+    DataIntegrity -->|Valid| Output
+    
+    Output --> CoreProcessing[Core Processing]
+    Output --> DataStorage[Data Storage]
+    
+    Error --> API
+    Error --> Core
+```
+
+## Data Store Relationships
+
+```mermaid
+flowchart TD
+    subgraph DataStores[Data Stores]
+        ProjectDB[Project Database]
+        TaskDB[Task Database]
+        ResourceDB[Resource Database]
+        ConfigDB[Configuration Database]
+        EventDB[Event Database]
+        LogDB[Log Database]
+    end
+    
+    CoreProcessing[Core Processing] --> ProjectDB
+    ProjectDB --> CoreProcessing
+    
+    CoreProcessing --> TaskDB
+    TaskDB --> CoreProcessing
+    
+    CoreProcessing --> ResourceDB
+    ResourceDB --> CoreProcessing
+    
+    CoreProcessing --> ConfigDB
+    ConfigDB --> CoreProcessing
+    
+    RealTime[Real-time Services] --> EventDB
+    EventDB --> RealTime
+    
+    AllComponents[All Components] --> LogDB
+    LogDB --> AllComponents
