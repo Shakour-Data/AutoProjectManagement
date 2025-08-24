@@ -155,3 +155,45 @@ curl http://localhost:8000/api/v1/projects/project-001/status
 curl http://localhost:8000/api/v1/projects/project-001/status?format=markdown
 
 # Table format
+curl http://localhost:8000/api/v1/projects/project-001/status?format=table
+```
+
+## Dashboard Features
+
+### Overview Dashboard
+The overview dashboard provides:
+- Project health score
+- Progress tracking
+- Risk assessment
+- Team performance metrics
+- Quality metrics
+
+### Custom Layouts
+Create custom dashboard layouts:
+```bash
+curl -X POST http://localhost:8000/api/v1/dashboard/layout \
+  -H "Content-Type: application/json" \
+  -d '{
+    "layout_type": "custom",
+    "widgets": [
+      {"widget_id": "health", "position": 0, "enabled": true},
+      {"widget_id": "progress", "position": 1, "enabled": true},
+      {"widget_id": "alerts", "position": 2, "enabled": true}
+    ],
+    "refresh_rate": 5000,
+    "theme": "dark"
+  }'
+```
+
+### Available Widgets
+- `health`: Project health monitoring
+- `progress`: Progress tracking and visualization
+- `risks`: Risk assessment and management
+- `team`: Team performance metrics
+- `quality`: Quality assurance metrics
+- `alerts`: Real-time alert notifications
+
+## Real-time Updates
+
+### WebSocket Integration
+```javascript
