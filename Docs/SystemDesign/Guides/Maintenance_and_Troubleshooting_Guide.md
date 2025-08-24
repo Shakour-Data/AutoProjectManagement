@@ -1,28 +1,28 @@
 # Maintenance and Troubleshooting Guide
 
 ## Overview
+This guide provides comprehensive instructions for maintaining and troubleshooting the AutoProjectManagement system. It covers common issues, maintenance procedures, and best practices for ensuring system reliability.
 
-This guide provides instructions for maintaining the ProjectManagement system and troubleshooting common issues.
+## Table of Contents
+- [Common Issues](#common-issues)
+- [Maintenance Procedures](#maintenance-procedures)
+- [Troubleshooting Steps](#troubleshooting-steps)
+- [Best Practices](#best-practices)
 
-## 1. Maintenance
+## Common Issues
 
-### 1.1 Regular Backups
+### API Connection Issues
+- **Symptoms**: Unable to connect to API endpoints, timeout errors.
+- **Possible Causes**: Server not running, network issues, firewall restrictions.
+- **Solutions**: 
+  - Verify the server is running: `curl http://localhost:8000/api/v1/health`
+  - Check network connectivity and firewall settings.
+  - Review server logs for errors.
 
-- Regularly back up project management state files, JSON inputs, and outputs.
-- Backup locations include `project_management/PM_Backups/` and `SystemInputs/User_Completed/`.
-- Automate backups using provided scripts or scheduled tasks.
-
-### 1.2 Updates and Patches
-
-- Apply updates to dependencies via `requirements.txt` and frontend `package.json`.
-- Use the setup scripts (`setup_and_run.sh`, `setup_env.sh`) to update environments.
-- Monitor GitHub repository for new releases and patches.
-
-### 1.3 Monitoring
-
-- Monitor logs located in `log.txt` and backend service logs.
-- Use monitoring tools to track system performance and errors.
-- Check dashboards for anomalies or unexpected behavior.
+### WebSocket Connection Issues
+- **Symptoms**: WebSocket connections failing, connection timeouts.
+- **Possible Causes**: Incorrect WebSocket URL, server configuration issues.
+- **Solutions**:
 
 ## 2. Troubleshooting
 
