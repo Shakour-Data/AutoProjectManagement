@@ -1,57 +1,57 @@
+"""
+CLI Commands for AutoProjectManagement Configuration
+Purpose: Command-line interface for project setup, GitHub integration, and status checking
+Author: AutoProjectManagement System
+Version: 2.0.0
+License: MIT
+Description: Comprehensive CLI tool for project initialization, GitHub project creation, and system status monitoring
+"""
+
 import argparse
 import os
 import subprocess
 import logging
 import json
-from autoprojectmanagement.main_modules.utility_modules.setup_initialization import initialize_git_repo, create_virtualenv, install_dependencies, create_requirements_file, ensure_gitignore_excludes_venv
+import shutil
+from typing import Dict, List, Optional, Any
+
+from autoprojectmanagement.main_modules.utility_modules.setup_initialization import (
+    initialize_git_repo, 
+    create_virtualenv, 
+    install_dependencies, 
+    create_requirements_file, 
+    ensure_gitignore_excludes_venv
+)
 from autoprojectmanagement.services.integration_services.github_project_manager import GitHubProjectManager
 
+# Configure logging
 logger = logging.getLogger("cli_commands")
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
-def run_command(command):
+
+def run_command(command: List[str]) -> bool:
+    """
+    Execute a shell command with error handling.
+    
+    Args:
+        command: List of command arguments
+        
+    Returns:
+        bool: True if command executed successfully, False otherwise
+    """
     try:
         subprocess.run(command, check=True)
+        return True
     except subprocess.CalledProcessError as e:
         logger.error(f"Command {command} failed with error: {e}")
+        return False
 
-def prompt_user(question, default=None):
-    prompt = f"{question}"
-    if default:
-        prompt += f" [{default}]"
-    prompt += ": "
-    response = input(prompt)
-    if not response and default is not None:
-        return default
-    return response
 
-def setup_project():
-    import shutil
-    import os
-
-    logger.info("Starting project setup...")
-
-    # Remove PM_UserInputs folder if it exists
-    pm_userinputs_path = os.path.join(os.getcwd(), 'PM_UserInputs')
-    if os.path.exists(pm_userinputs_path) and os.path.isdir(pm_userinputs_path):
-        shutil.rmtree(pm_userinputs_path)
-        logger.info("Removed obsolete PM_UserInputs directory.")
-
-    # Initialize git repo
-    initialize_git_repo()
-
-    # Ensure .gitignore excludes venv
-    ensure_gitignore_excludes_venv()
-
-    # Create requirements.txt
-    create_requirements_file()
-
-    # Create virtual environment
-    create_virtualenv()
-
-    # Install dependencies
-    install_dependencies()
-
+def prompt_user(question: str, default: Optional[str] = None) -> str:
+    """
     logger.info("\nSetup complete.")
     logger.info("Please add your project dependencies to requirements.txt if not already done.")
     logger.info("Place your JSON input files in the 'project_inputs/PM_JSON/user_inputs' directory.")
