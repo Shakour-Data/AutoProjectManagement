@@ -304,3 +304,40 @@ def estimate_project_cost(project: Dict[str, Any]) -> float
 **Parameters:**
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
+| `project` | `Dict[str, Any]` | Yes | Project dictionary containing tasks |
+
+**Returns:** `float` - Total project cost
+
+**Process:**
+- Extracts tasks list from project
+- Sums cost estimates for all tasks
+- Returns 0.0 if no tasks found
+
+**Raises:**
+- `TypeError`: If project is None or not a dictionary
+
+## Data Flow Diagram
+
+```mermaid
+flowchart TD
+    A[Detailed WBS JSON] --> B[load_inputs]
+    B --> C[analyze]
+    C --> D[Task Extraction]
+    C --> E[Duration Estimation]
+    C --> F[Cost Estimation]
+    C --> G[Aggregation]
+    D --> H[Task Estimates]
+    E --> H
+    F --> H
+    G --> I[Project Summary]
+    H --> J[Output JSON]
+    I --> J
+```
+
+## Validation Rules
+
+### Input Validation
+| Requirement | Validation | Error Handling |
+|-------------|------------|----------------|
+| WBS Structure | Must be a dictionary | Empty output with warning |
+| Tasks List | Must be a list if present | Empty list used if missing |
