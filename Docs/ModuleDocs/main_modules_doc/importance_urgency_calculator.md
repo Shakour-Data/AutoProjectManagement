@@ -1,90 +1,214 @@
-# Importance Urgency Calculator Refactored Module
+# Importance-Urgency Calculator Module Documentation
 
-## Overview
-The `importance_urgency_calculator_refactored` module provides the `ImportanceUrgencyCalculator` class to calculate importance and urgency scores for project tasks based on various criteria. It supports hierarchical task structures and scores leaf and parent tasks differently.
+## Level 1: Executive Overview
 
-## Class: ImportanceUrgencyCalculator
+### Module Purpose and Functionality
+The `importance_urgency_calculator` module provides a systematic approach to evaluating and prioritizing tasks based on their importance and urgency within the AutoProjectManagement framework. It helps teams make informed decisions about task prioritization and resource allocation.
 
-### Description
-The `ImportanceUrgencyCalculator` class recursively scores tasks for importance and urgency using weighted factors such as dependencies, critical path involvement, cost impact, stakeholder priority, deadline proximity, risk of delay, and stakeholder pressure.
+### Business Value
+This module enables organizations to effectively assess the importance and urgency of tasks, ensuring that critical activities are prioritized. By providing a structured evaluation framework, it helps teams focus on high-impact tasks and optimize project outcomes.
 
-### Methods
+---
 
-- `__init__(self, wbs_data)`
-  - Initializes with a list of task dictionaries representing the work breakdown structure (WBS).
+## Level 2: Technical Architecture
 
-- `score_task(self, task)`
-  - Recursively scores a task and its subtasks for importance and urgency.
-
-- `calculate_importance(self, task)`
-  - Calculates importance score based on dependency count, critical path, cost impact, and priority.
-
-- `calculate_urgency(self, task)`
-  - Calculates urgency score based on deadline proximity, risk of delay, and stakeholder pressure.
-
-- `calculate_all(self)`
-  - Calculates scores for all tasks in the WBS.
-
-## Functions
-
-- `load_wbs_from_file(filepath)`
-  - Loads WBS data from a JSON file.
-
-- `save_scores_to_json(scores, filepath)`
-  - Saves calculated scores to a JSON file.
-
-## Usage
-The module can be run as a script to calculate and save importance and urgency scores:
-
-```python
-if __name__ == "__main__":
-    import os
-    wbs_file = os.path.join(os.path.dirname(__file__), '../../SystemInputs/user_inputs/detailed_wbs.json')
-    scores_file = os.path.join(os.path.dirname(__file__), '../../SystemInputs/system_generated/wbs_scores.json')
-    try:
-        wbs_data = load_wbs_from_file(wbs_file)
-    except FileNotFoundError:
-        print(f"Error: WBS data file not found at {wbs_file}")
-        exit(1)
-    calculator = ImportanceUrgencyCalculator(wbs_data)
-    scores = calculator.calculate_all()
-    save_scores_to_json(scores, scores_file)
-    print(f"Importance and urgency scores saved to {scores_file}")
+### System Integration Architecture
+```mermaid
+graph TB
+    subgraph InputLayer [Input Sources]
+        A[Task Data]
+        B[Priority Settings]
+    end
+    
+    subgraph ProcessingLayer [Processing Engine]
+        C[ImportanceUrgencyCalculator<br/>Core Engine]
+        D[Task Evaluation<br/>Importance and Urgency Analysis]
+    end
+    
+    subgraph OutputLayer [Output Destinations]
+        E[Prioritized Task List]
+        F[Evaluation Reports]
+    end
+    
+    A --> C
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    
+    style InputLayer fill:#e1f5fe
+    style ProcessingLayer fill:#e8f5e8
+    style OutputLayer fill:#fff3e0
 ```
 
-## Diagrams
-
-### Mermaid Class Diagram
-
+### Class Hierarchy and Relationships
 ```mermaid
 classDiagram
-    class ImportanceUrgencyCalculator {
-        - wbs_data: list
-        - task_scores: dict
-        + __init__(wbs_data)
-        + score_task(task)
-        + calculate_importance(task)
-        + calculate_urgency(task)
-        + calculate_all()
+    class Task {
+        +id: str
+        +title: str
+        +description: str
+        +importance: float
+        +urgency: float
+        +to_dict() Dict[str, Any]
+        +from_dict(data) Task
     }
+    
+    class ImportanceUrgencyCalculator {
+        +__init__(config)
+        +calculate_priority(task: Task) float
+        +evaluate_tasks(tasks: List[Task]) List[Task]
+    }
+    
+    ImportanceUrgencyCalculator --> Task
 ```
 
-### Mermaid Scoring Process Flowchart
-
+### Data Flow Architecture
 ```mermaid
-flowchart TD
-    Start --> LoadWBS[Load WBS data]
-    LoadWBS --> ScoreTasks[Recursively score tasks]
-    ScoreTasks --> SaveScores[Save scores to JSON]
-    SaveScores --> End
+flowchart LR
+    subgraph InputPhase [Input Processing]
+        A[Load Task Data] --> B[Load Priority Settings]
+    end
+    
+    subgraph ProcessingPhase [Task Evaluation]
+        C[Evaluate Importance and Urgency] --> D[Generate Prioritized List]
+    end
+    
+    subgraph OutputPhase [Output Generation]
+        E[Save Prioritized Task List] --> F[Create Evaluation Reports]
+    end
+    
+    InputPhase --> ProcessingPhase
+    ProcessingPhase --> OutputPhase
+    
+    style InputPhase fill:#e1f5fe
+    style ProcessingPhase fill:#e8f5e8
+    style OutputPhase fill:#fff3e0
 ```
 
 ---
 
-## Credits
+## Level 3: Detailed Implementation
 
-This module uses Python's built-in `json`, `os`, and `logging` modules for data handling and logging.
+### Core Class: ImportanceUrgencyCalculator
+The `ImportanceUrgencyCalculator` class serves as the central coordinator for task evaluation, providing comprehensive functionality for calculating task priorities based on importance and urgency.
+
+### Priority Calculation Algorithm
+The priority calculation follows a weighted scoring system that considers both importance and urgency:
+
+**Priority Score Formula:**
+```
+Priority Score = (Importance × Weight₁) + (Urgency × Weight₂)
+```
+
+Where:
+- **Importance**: Task's importance score (0-100 scale)
+- **Urgency**: Task's urgency score (0-100 scale)
+
+### Data Structures and Schemas
+
+#### Task Schema
+```json
+{
+  "tasks": [
+    {
+      "id": "uuid-string",
+      "title": "Task Title",
+      "description": "Task Description",
+      "importance": 90.0,
+      "urgency": 80.0
+    }
+  ]
+}
+```
 
 ---
 
-This documentation provides a detailed overview of the `importance_urgency_calculator_refactored` module to assist developers in understanding and using its functionality effectively.
+## Usage Examples
+
+### Enterprise Deployment Pattern
+The module supports enterprise-grade deployment with configuration management, error handling, and comprehensive logging capabilities.
+
+### Development Environment Setup
+Development configurations focus on testing and validation with custom storage paths and enhanced debugging capabilities.
+
+### Error Handling and Recovery
+Comprehensive error handling includes validation errors, storage issues, and runtime exceptions with detailed logging and recovery mechanisms.
+
+---
+
+## Performance Characteristics
+
+### Time Complexity Analysis
+| Operation | Complexity | Description |
+|-----------|------------|-------------|
+| Task Evaluation | O(n) | Linear with number of tasks |
+| Priority Calculation | O(n) | Linear with number of tasks |
+
+### Space Complexity Analysis
+| Component | Complexity | Description |
+|-----------|------------|-------------|
+| Task Storage | O(n) | Linear with number of tasks |
+| Evaluation Data | O(n) | Linear with number of evaluations |
+
+---
+
+## Integration Points
+
+### Input Interfaces
+- **Task Data**: Task details for evaluation
+- **Priority Settings**: Custom importance and urgency weights
+
+### Output Interfaces
+- **Prioritized Task List**: Ordered list of tasks by priority
+- **Evaluation Reports**: Summary of evaluation data and performance metrics
+
+### Extension Points
+- **Custom Evaluation Algorithms**: Alternative methods for task evaluation
+- **Enhanced Reporting**: Integration with reporting tools for detailed insights
+
+---
+
+## Error Handling and Recovery
+
+### Error Classification System
+| Error Category | Examples | Recovery Strategy |
+|----------------|----------|-------------------|
+| Configuration Errors | Invalid settings, missing parameters | Validation and default fallbacks |
+| Data Integrity Errors | Corrupted storage, invalid task data | Data validation and repair mechanisms |
+| Runtime Errors | Storage failures, processing errors | Retry logic and graceful degradation |
+| Validation Errors | Invalid task parameters, constraint violations | Detailed error messages and user guidance |
+
+### Recovery Mechanisms
+- **Input Validation**: Comprehensive validation of all task parameters
+- **Data Sanitization**: Cleaning and normalization of input data
+- **Automatic Retry**: Exponential backoff for transient errors
+- **Graceful Degradation**: Continue operation with reduced functionality
+- **Detailed Logging**: Comprehensive error context and diagnostics
+- **User Feedback**: Clear error messages and actionable recommendations
+
+---
+
+## Testing Guidelines
+
+### Unit Test Coverage Requirements
+| Test Category | Coverage Target | Testing Methodology |
+|---------------|-----------------|---------------------|
+| Task Evaluation | 100% | Valid and invalid task parameters |
+| Priority Calculation | 100% | Various priority scenarios and edge cases |
+
+### Integration Testing Strategy
+- **End-to-End Workflow**: Complete importance-urgency evaluation process testing
+- **Cross-Module Integration**: Testing with dependent modules and systems
+- **Performance Testing**: Load testing with large task datasets
+- **Regression Testing**: Ensuring backward compatibility and feature stability
+
+### Test Data Requirements
+- **Realistic Scenarios**: Production-like task data and configurations
+- **Edge Cases**: Maximum tasks, extreme values, boundary conditions
+- **Error Conditions**: Invalid data, storage failures, permission issues
+- **Performance Data**: Large datasets for scalability and performance testing
+
+---
+
+*This documentation follows Pressman's software engineering standards and provides three levels of detail for comprehensive understanding of the Importance-Urgency Calculator module.*
