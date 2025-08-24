@@ -349,26 +349,14 @@ This configuration provides a complete setup for managing projects with the Auto
 ### Environment Configuration Examples
 
 #### Development Configuration
-```json
-{
-  "api": {
-    "host": "127.0.0.1",
-    "port": 8000,
-    "debug": true,
-    "reload": true
-  },
-  "database": {
-    "type": "json",
-    "json_path": "dev.json"
-  },
-  "logging": {
-    "level": "DEBUG"
-  },
-  "security": {
-    "api_key_required": false
-  }
-}
-```
+Development environment configuration is optimized for debugging and rapid iteration:
+
+- **API Settings**: Localhost binding with debug mode enabled and auto-reload
+- **Database Configuration**: JSON-based storage with development-specific file paths
+- **Logging Level**: DEBUG level for detailed logging output
+- **Security Settings**: Relaxed security with API key requirement disabled
+
+This configuration provides an optimal environment for development and testing.
 
 #### Production Configuration
 ```json
