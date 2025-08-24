@@ -1,68 +1,26 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-path: autoprojectmanagement/services/github_integration.py
-File: github_integration.py
-Purpose: GitHub integration services
+GitHub Integration for AutoProjectManagement
+Purpose: Integrate with GitHub API for project management operations
 Author: AutoProjectManagement Team
 Version: 2.0.0
 License: MIT
-Description: GitHub integration services within the AutoProjectManagement system
+Description: Provides methods to interact with GitHub repositories, issues, pull requests, and project boards.
 """
 
 import logging
-from typing import Dict, Any, Optional, List, Union
 import os
-import sys
-from datetime import datetime
+import requests
+from typing import Dict, List, Optional, Any
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Constants
-CURRENT_VERSION = "2.0.0"
-PYTHON_MIN_VERSION = "3.8+"
-CREATED_DATE = "2025-08-14"
-MODIFIED_DATE = "2025-08-14"
-
-# Module-level docstring
-__doc__ = """
-GitHub integration services within the AutoProjectManagement system
-
-This module is part of the AutoProjectManagement system.
-For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
-"""
-
-# Version information
-__version__ = CURRENT_VERSION
-__author__ = "AutoProjectManagement Team"
-__license__ = "MIT"
-
-
-import logging
-import os
-from typing import Dict, List, Optional, Any, Union
-from datetime import datetime
-import requests
-from requests.exceptions import RequestException, Timeout, ConnectionError
-import time
-
-# Constants
 GITHUB_API_BASE = "https://api.github.com"
-DEFAULT_TIMEOUT = 30
-MAX_RETRIES = 3
-RETRY_DELAY = 1  # seconds
-RATE_LIMIT_BUFFER = 100  # requests buffer before rate limit
-
-# Configure logging
-logger = logging.getLogger(__name__)
-
 
 class GitHubIntegrationError(Exception):
     """Custom exception for GitHub integration errors."""
     pass
-
 
 class GitHubIntegration:
     """
@@ -91,10 +49,6 @@ class GitHubIntegration:
         Raises:
             ValueError: If owner or repo parameters are empty
             GitHubIntegrationError: If token is required but not provided
-            
-        Example:
-            >>> github = GitHubIntegration("myorg", "myrepo", "ghp_xxx")
-            >>> issues = github.get_issues()
         """
         if not owner or not owner.strip():
             raise ValueError("Repository owner cannot be empty")
@@ -127,6 +81,52 @@ class GitHubIntegration:
             headers["Authorization"] = f"token {self.token}"
         return headers
     
+    def _make_request(self, method: str, endpoint: str, params: Optional[Dict[str, Any]] = None,
+                      data: Optional[Dict[str, Any]] = None, json_data: Optional[Dict[str, Any]] = None) -> requests.Response:
+        """
+        Make authenticated request to GitHub API with retry logic.
+        
+        Args:
+            method: HTTP method (GET, POST, PUT, DELETE)
+            endpoint: API endpoint relative to base URL
+            params: Query parameters
+            data: Form data for POST/PUT requests
+            json_data: JSON data for POST/PUT requests
+            
+        Returns:
+            Response object from successful request
+            
+        Raises:
+            GitHubIntegrationError: For API errors or rate limiting
+            RequestException: For network-related errors
+        """
+        url = f"{self.api_url}/{endpoint}" if not endpoint.startswith("http") else endpoint
+        
+        for attempt in range(3):
+            try:
+                response = self.session.request(
+                    method=method,
+                    url=url,
+                    params=params,
+                    data=data,
+                    json=json_data,
+                    timeout=30
+                )
+                
+                # Handle rate limiting
+                if response.status_code == 403 and "rate limit" in response.text.lower():
+                    reset_time = int(response.headers.get("X-RateLimit-Reset", 0))
+                    wait_time = max(reset_time - int(time.time()), 60)
+                    logger.warning(f"Rate limit hit, waiting {wait_time} seconds")
+                    time.sleep(wait_time)
+                    continue
+                
+                # Handle successful response
+                if 200 <= response.status_code < 300:
+                    return response
+                
+                # Handle specific error cases
+                if response.status_code == 404:
     def _make_request(
         self, 
         method: str, 
