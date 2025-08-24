@@ -286,3 +286,30 @@ def remove_task_by_id(self, task_id: Union[str, int], node: Optional[Dict[str, A
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `task_id` | `Union[str, int]` | Yes | ID of the task to remove |
+| `node` | `Optional[Dict[str, Any]]` | No | Starting node for search (defaults to root) |
+
+**Returns:** `bool` - True if task was found and removed, False otherwise
+
+**Algorithm:**
+- Depth-first search through WBS hierarchy
+- Removes task from parent's subtasks list when found
+- Returns success status
+
+#### get_scope_summary Method
+```python
+def get_scope_summary(self) -> Dict[str, Any]
+```
+
+**Purpose:** Generates a comprehensive summary of scope management operations.
+
+**Returns:** `Dict[str, Any]` - Summary containing counts and lists of changes
+
+**Summary Structure:**
+```json
+{
+  "total_tasks_added": 3,
+  "total_tasks_removed": 1,
+  "total_tasks_modified": 2,
+  "total_errors": 0,
+  "added_tasks": ["task_101", "task_102", "task_103"],
+  "removed_tasks": ["task_201"],
