@@ -313,3 +313,63 @@ def get_scope_summary(self) -> Dict[str, Any]
   "total_errors": 0,
   "added_tasks": ["task_101", "task_102", "task_103"],
   "removed_tasks": ["task_201"],
+  "modified_tasks": ["task_301", "task_302"],
+  "errors": []
+}
+```
+
+#### run Method
+```python
+def run(self) -> None
+```
+
+**Purpose:** Executes the complete scope management workflow.
+
+**Process Flow:**
+1. Loads input files (WBS data and scope changes)
+2. Applies all scope changes with validation
+3. Saves updated WBS to output file
+4. Generates and logs comprehensive summary
+5. Prints results to console
+
+## Data Flow Diagram
+
+```mermaid
+flowchart TD
+    A[Detailed WBS JSON] --> B[load_inputs]
+    C[Scope Changes JSON] --> B
+    B --> D[apply_scope_changes]
+    D --> E[Change Validation]
+    D --> F[Change Processing]
+    D --> G[Error Handling]
+    E --> H[Updated WBS]
+    F --> H
+    G --> I[Scope Status]
+    H --> J[save_json]
+    I --> K[get_scope_summary]
+    J --> L[Output JSON]
+    K --> M[Summary Report]
+```
+
+## Validation Rules
+
+### Scope Change Validation
+| Requirement | Validation | Error Handling |
+|-------------|------------|----------------|
+| Required Keys | Must contain task_id, change_type, details | `InvalidScopeChangeError` |
+| Change Type | Must be 'add', 'remove', or 'modify' | `InvalidScopeChangeError` |
+| Details Structure | Must be dict for appropriate changes | Validation continues, error logged |
+
+### File Operations
+| Operation | Validation | Error Handling |
+|-----------|------------|----------------|
+| JSON Loading | File existence and valid JSON format | `ScopeManagementError` on failure |
+| JSON Saving | Directory creation and file writing | `ScopeManagementError` on failure |
+| Data Integrity | WBS structure maintenance | Errors logged, processing continues |
+
+## Error Handling and Logging
+
+### Log Levels
+| Level | Usage | Example |
+|-------|-------|---------|
+| `INFO` | Successful operations | "Scope management completed" |
