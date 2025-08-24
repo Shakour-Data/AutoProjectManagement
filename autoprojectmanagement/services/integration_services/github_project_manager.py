@@ -111,22 +111,22 @@ class GitHubProjectManager:
                     return json.load(f)
             except (json.JSONDecodeError, IOError) as e:
                 logger.warning(f"Failed to load config file: {e}")
-        ...     github_username="myusername"
-        ... )
-        >>> report = manager.create_project(config)
-        >>> print(f"Project created at: {report.url}")
-    """
+        return {}
     
-    def __init__(self, github_token: Optional[str] = None):
-        """
-        Initialize the GitHub Project Manager.
-        
-        Args:
-            github_token: GitHub personal access token. If not provided, will attempt
-                         to load from environment variable GITHUB_TOKEN.
-                         
-        Raises:
-            GitHubAPIError: If no GitHub token is available
+    def _save_config(self, config: Dict[str, Any]) -> None:
+        """Save configuration to local config file."""
+        try:
+            with open(CONFIG_FILE, 'w') as f:
+                json.dump(config, f, indent=2)
+            logger.info("Configuration saved successfully")
+        except IOError as e:
+            logger.error(f"Failed to save configuration: {e}")
+    
+    def _make_api_request(
+        self,
+        method: str,
+        endpoint: str,
+        data: Optional[Dict[str, Any]] = None,
         """
         self.github_token = github_token or os.getenv('GITHUB_TOKEN')
         if not self.github_token:
