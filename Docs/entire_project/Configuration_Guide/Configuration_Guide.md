@@ -103,14 +103,12 @@ API Key configuration provides an additional layer of security for API access:
 This configuration allows for flexible security policies based on deployment requirements.
 
 #### 3. SSL/TLS Configuration
-```json
-{
-  "security": {
-    "ssl_cert_path": "/certs/server.crt",
-    "ssl_key_path": "/certs/server.key"
-  }
-}
-```
+SSL/TLS configuration is essential for securing communications between clients and the server:
+
+- **SSL Certificate Path**: The file path to the SSL certificate used for secure connections
+- **SSL Key Path**: The file path to the private key associated with the SSL certificate
+
+This configuration ensures that all data transmitted over the network is encrypted and secure.
 
 ---
 
