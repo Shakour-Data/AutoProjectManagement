@@ -205,3 +205,33 @@ flowchart TD
     VariousAPIs --> ExternalAPIs
 ```
 
+## Level 2: Data Processing Data Flow
+
+```mermaid
+flowchart TD
+    subgraph DataProcessing[Data Processing]
+        DataCollection[Data Collection]
+        DataTransformation[Data Transformation]
+        DataValidation[Data Validation]
+        DataStorage[Data Storage]
+        DataRetrieval[Data Retrieval]
+    end
+    
+    Core[Core Processing] --> DataCollection
+    DataCollection --> Core
+    
+    Core --> DataTransformation
+    DataTransformation --> Core
+    
+    Core --> DataValidation
+    DataValidation --> Core
+    
+    Core --> DataStorage
+    DataStorage --> Core
+    
+    Core --> DataRetrieval
+    DataRetrieval --> Core
+    
+    DataCollection --> External[External Sources]
+    External --> DataCollection
+    
