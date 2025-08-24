@@ -811,44 +811,17 @@ graph LR
 ### Deployment Specifications
 
 #### Container Requirements
-```dockerfile
-FROM python:3.9-slim
+The system containerization follows industry best practices for security and performance:
 
-WORKDIR /app
+- **Base Image**: Optimized Python runtime with minimal dependencies
+- **System Requirements**: Essential system packages for Git operations and network connectivity
+- **Dependency Management**: Efficient Python package installation with caching optimization
+- **Security Hardening**: Non-root user execution and minimal privilege principles
+- **Health Monitoring**: Comprehensive health checks with configurable intervals and retry policies
+- **Port Configuration**: Standardized port exposure for service accessibility
+- **Execution Environment**: Proper environment variable configuration for consistent runtime behavior
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy application code
-COPY . .
-
-# Set environment variables
-ENV PYTHONPATH=/app
-ENV AUTO_PROJECT_HOME=/app
-
-# Create non-root user
-RUN useradd -m -u 1000 autoproject
-
-# Switch to non-root user
-USER autoproject
-
-# Expose port
-EXPOSE 8000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
-
-# Start application
-CMD ["python", "-m", "autoprojectmanagement.auto_runner"]
-```
+This container specification ensures secure, reliable, and performant deployment across various container orchestration platforms.
 
 #### Kubernetes Deployment
 ```yaml
