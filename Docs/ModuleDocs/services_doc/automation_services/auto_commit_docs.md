@@ -18,6 +18,8 @@ The `UnifiedAutoCommit` service provides automated Git commit functionality with
   - [Core Functionality](#core-functionality)
     - [Workflow Process](#workflow-process)
     - [Detailed Process Flow](#detailed-process-flow)
+  - [Authentication System](#authentication-system)
+    - [Authentication Flow](#authentication-flow)
 
 ## Architecture Overview
 
@@ -107,3 +109,22 @@ sequenceDiagram
     AutoCommit->>AutoCommit: generate_commit_message()
     AutoCommit->>Git: commit_files()
     Git-->>AutoCommit: commit_hash
+    AutoCommit->>GitHub: push_changes_guaranteed()
+    GitHub-->>AutoCommit: push_result
+    AutoCommit->>ProjectDB: update_commit_task_database()
+    AutoCommit->>AutoCommit: create_backup()
+    AutoCommit-->>User: workflow_result
+```
+
+## Authentication System
+
+### Authentication Flow
+
+```mermaid
+flowchart TD
+    A[Authentication Setup] --> B{Check SSH}
+    B -->|Available| C[Use SSH]
+    B -->|Unavailable| D{Check HTTPS}
+    D -->|Available| E[Use HTTPS]
+    D -->|Unavailable| F{Check PAT}
+    F -->|Available| G[Use PAT]
