@@ -235,3 +235,102 @@ Retrieves list of available widgets from API. This method:
 **Methods**: 
 - `_validate_cron_expression(cron_expr: str) -> bool`
 - `_validate_cron_field_simple(field: str, min_val: int, max_val: int) -> bool`
+- `_validate_cron_field(field: str, min_val: int, max_val: int) -> bool`
+
+Validates cron expression format and field values. These methods:
+- Support various cron expression formats (*, ranges, steps, lists)
+- Validate field values against minimum/maximum constraints
+- Handle complex cron patterns correctly
+
+#### Calculate Next Run Time
+**Method**: `_calculate_next_run(cron_expr: str) -> str`
+
+Calculates next execution time from cron expression. This method:
+- Uses croniter library for accurate calculations
+- Provides fallback for missing croniter dependency
+- Returns formatted timestamp string
+
+## CLI Commands
+
+### Command Structure
+The module provides a Click command group with the following subcommands:
+
+| Command | Description | Options |
+|---------|-------------|---------|
+| `start` | Start dashboard server | `--port`, `--host` |
+| `stop` | Stop dashboard server | - |
+| `status` | Show server status | - |
+| `open` | Open in browser | - |
+| `export` | Export data | `--format`, `--output` |
+| `info` | Show detailed info | - |
+| `create_view` | Create custom view | `--name`, `--widgets`, `--refresh-rate`, `--theme` |
+| `share_view` | Share view | `--name`, `--format` |
+| `schedule_report` | Schedule reports | `--type`, `--schedule`, `--format` |
+| `analyze` | Analyze data | `--type`, `--timeframe` |
+| `config` | Configure settings | `--setting`, `--value` |
+
+## Usage Examples
+
+### Basic Usage
+```bash
+# Start dashboard server
+autoprojectmanagement dashboard --start --port 3000
+
+# Open dashboard in browser
+autoprojectmanagement dashboard --open
+
+# Check status
+autoprojectmanagement dashboard --status
+
+# Export data
+autoprojectmanagement dashboard --export --format json
+```
+
+### Advanced Usage
+```bash
+# Create custom view
+autoprojectmanagement dashboard create-view --name "MyView" --widgets "health,progress" --refresh-rate 5000
+
+# Schedule automated reports
+autoprojectmanagement dashboard schedule-report --type overview --schedule "0 9 * * *"
+
+# Configure settings
+autoprojectmanagement dashboard config --setting refresh_rate --value 5000
+```
+
+## Error Handling
+
+The module includes comprehensive error handling for:
+- Network connectivity issues
+- API endpoint failures
+- Invalid user input
+- File system operations
+- Configuration validation errors
+
+All methods return appropriate error messages and exit codes for integration with other tools.
+
+## Dependencies
+
+- **Click**: Command-line interface creation
+- **Rich**: Terminal formatting and progress bars
+- **Requests**: HTTP API communication
+- **Croniter**: Cron expression parsing (optional)
+
+## Configuration Files
+
+- `JSonDataBase/OutPuts/dashboard_config.json`: Dashboard settings
+- `JSonDataBase/OutPuts/dashboard_schedules.json`: Report schedules
+
+## Performance Characteristics
+
+- **Startup Time**: ~2 seconds (simulated)
+- **API Response Time**: Dependent on backend performance
+- **Memory Usage**: Minimal for CLI operations
+- **Network Usage**: HTTP requests to dashboard API
+
+## Security Considerations
+
+- Uses localhost by default for security
+- No authentication required for local dashboard
+- Configuration files stored locally
+- No sensitive data exposure in CLI output
