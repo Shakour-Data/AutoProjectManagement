@@ -162,16 +162,14 @@ Basic console logging configuration includes:
 This configuration allows for easy monitoring of application behavior during development and production.
 
 #### 2. File Logging with Rotation
-```json
-{
-  "logging": {
-    "level": "DEBUG",
-    "file_path": "logs/autoproject.log",
-    "max_file_size": "10MB",
-    "backup_count": 5
-  }
-}
-```
+File logging configuration with rotation includes:
+
+- **Logging Level**: The severity level of logs (e.g., DEBUG, INFO)
+- **File Path**: The location where log files are stored
+- **Max File Size**: The maximum size of a log file before it is rotated
+- **Backup Count**: The number of backup log files to keep
+
+This configuration ensures that log files do not consume excessive disk space while retaining important log history.
 
 #### 3. JSON Structured Logging
 ```json
