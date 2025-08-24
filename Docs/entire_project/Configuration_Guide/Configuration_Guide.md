@@ -380,23 +380,13 @@ This configuration provides an optimal environment for comprehensive testing and
 
 ### Environment Detection
 
-```mermaid
-flowchart TD
-    A[Environment Detection] --> B{ENVIRONMENT variable}
-    B -->|development| C[Development Config]
-    B -->|production| D[Production Config]
-    B -->|testing| E[Testing Config]
-    B -->|default| C
-    
-    C --> F[Load dev settings]
-    D --> G[Load prod settings]
-    E --> H[Load test settings]
-    
-    style A fill:#e1f5fe
-    style C fill:#e8f5e9
-    style D fill:#ffebee
-    style E fill:#fff3e0
-```
+The environment detection mechanism identifies the current operating environment based on the `ENVIRONMENT` variable. It allows the system to load the appropriate configuration settings for development, production, or testing environments.
+
+- **Development**: Loads development-specific settings for rapid iteration and debugging.
+- **Production**: Loads production settings optimized for security and performance.
+- **Testing**: Loads testing settings for automated quality assurance.
+
+This mechanism ensures that the AutoProjectManagement system operates with the correct configuration based on the environment.
 
 ---
 
