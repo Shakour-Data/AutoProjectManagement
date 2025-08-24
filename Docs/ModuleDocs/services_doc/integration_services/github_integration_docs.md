@@ -393,3 +393,26 @@ Makes authenticated request to GitHub API with retry logic.
 
 **Raises:**
 - `GitHubIntegrationError`: For API errors or rate limiting
+- `RequestException`: For network-related errors
+
+##### _get_headers (Protected)
+```python
+_get_headers() -> Dict[str, str]
+```
+Generates headers for GitHub API requests.
+
+**Returns:** Dictionary containing request headers including authorization
+
+### Context Manager Support
+
+The class supports context manager usage for automatic resource cleanup:
+
+```python
+with GitHubIntegration(owner, repo, token) as github:
+    # Use github instance
+    issues = github.get_issues()
+# Session automatically closed here
+```
+
+## Performance Optimization
+
