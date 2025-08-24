@@ -247,3 +247,4 @@ def add_inline_comments(self, workflow_content: Dict[str, Any]) -> Dict[str, Any
 ### Phase 3: Quality Assurance Framework
 
 #### Quality Validation Matrix
+| Validation Type | Method | Purpose | Threshold |
