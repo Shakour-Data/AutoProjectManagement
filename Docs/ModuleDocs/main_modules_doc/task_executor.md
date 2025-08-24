@@ -127,3 +127,33 @@ The execution process follows a systematic approach:
       "title": "Task Title",
       "description": "Task Description",
       "status": "in_progress",
+      "progress": 50.0
+    }
+  ]
+}
+```
+
+#### Execution Report Schema
+```json
+{
+  "execution_summary": {
+    "total_tasks": 10,
+    "completed_tasks": 5,
+    "in_progress_tasks": 3,
+    "pending_tasks": 2,
+    "average_progress": 60.0
+  }
+}
+```
+
+---
+
+## Usage Examples
+
+### Enterprise Deployment Pattern
+The module supports enterprise-grade deployment with configuration management, error handling, and comprehensive logging capabilities.
+
+### Development Environment Setup
+Development configurations focus on testing and validation with custom storage paths and enhanced debugging capabilities.
+
+### Error Handling and Recovery
