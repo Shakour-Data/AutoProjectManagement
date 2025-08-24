@@ -268,3 +268,57 @@ def generate_resource_utilization_report(self) -> Dict[str, Any]:
 
 ### Enterprise Deployment Pattern
 ```python
+from autoprojectmanagement.main_modules.resource_management.resource_allocation_manager import ResourceAllocationManager
+
+# Initialize resource allocation manager
+allocation_mgr = ResourceAllocationManager()
+
+# Run comprehensive resource allocation process
+allocation_mgr.run()
+
+# Access detailed reports
+print(f"Total Project Cost: ${allocation_mgr.total_cost}")
+print(f"Resource Utilization: {allocation_mgr.resource_utilization}")
+```
+
+### Advanced Configuration
+```python
+# Custom configuration with constraints
+advanced_mgr = ResourceAllocationManager(
+    resource_allocation_path='./custom_allocations.json',
+    detailed_wbs_path='./detailed_wbs.json',
+    resource_costs_path='./resource_costs.json',
+    resource_constraints_path='./resource_constraints.json',
+    output_path='./enriched_wbs.json',
+    summary_output_path='./cost_summary.json',
+    report_output_path='./comprehensive_report.json'
+)
+
+# Execute the process
+advanced_mgr.run()
+```
+
+### Error Handling and Recovery
+```python
+try:
+    manager = ResourceAllocationManager()
+    manager.run()
+    
+except ResourceAllocationError as e:
+    print(f"Resource allocation error: {e}")
+    # Handle specific resource allocation errors
+    
+except Exception as e:
+    print(f"Unexpected error: {e}")
+    # Generic error handling with logging
+```
+
+---
+
+## Performance Characteristics
+
+### Time Complexity Analysis
+| Operation | Complexity | Description |
+|-----------|------------|-------------|
+| Input Loading | O(n) | Linear with number of input files |
+| Task Cost Calculation | O(m) | Linear with number of allocations |
