@@ -62,3 +62,51 @@ tail -f /var/log/autoprojectmanagement/server.log
 ```bash
 # Check environment variables
 echo $API_KEY
+echo $DATABASE_URL
+
+# Verify configuration file
+cat config.json
+```
+
+### Step 3: Review Logs
+```bash
+# View application logs
+tail -f /var/log/autoprojectmanagement/application.log
+
+# View error logs
+tail -f /var/log/autoprojectmanagement/error.log
+```
+
+### Step 4: Test API Endpoints
+```bash
+# Test health endpoint
+curl http://localhost:8000/api/v1/health
+
+# Test project listing
+curl http://localhost:8000/api/v1/projects
+
+# Test dashboard endpoint
+curl http://localhost:8000/api/v1/dashboard/overview?project_id=project-001
+```
+
+## Best Practices
+
+### Security Best Practices
+- Use HTTPS for all production deployments.
+- Regularly rotate API keys and secrets.
+- Implement rate limiting to prevent abuse.
+- Validate all input data to prevent injection attacks.
+
+### Performance Best Practices
+- Implement caching for frequently accessed data.
+- Optimize database queries for better performance.
+- Use efficient algorithms and data structures.
+
+### Monitoring Best Practices
+- Set up monitoring for system health and performance metrics.
+- Implement alerting for critical failures or performance issues.
+- Regularly review logs for errors and anomalies.
+
+---
+
+*Last updated: 2025-08-14*
