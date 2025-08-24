@@ -2,72 +2,93 @@
 
 ## Class Diagram
 
-The class diagram below represents the main classes and their relationships in
-the Project Management software:
+```mermaid
+classDiagram
+    class Project {
+        - id: int
+        - name: string
+        - description: string
+        - start_date: date
+        - end_date: date
+    }
+    class Task {
+        - id: int
+        - name: string
+        - description: string
+        - status: string
+        - priority: int
+        - due_date: date
+    }
+    class SubTask {
+        - id: int
+        - name: string
+        - status: string
+    }
+    class Resource {
+        - id: int
+        - name: string
+        - role: string
+    }
+    class Allocation {
+        - id: int
+        - resource_id: int
+        - task_id: int
+        - allocation_percent: int
+    }
 
+    Project "1" -- "0..*" Task : contains
+    Task "1" -- "0..*" SubTask : contains
+    Resource "1" -- "0..*" Allocation : allocated to
+    Task "1" -- "0..*" Allocation : has
 ```
-+------------------------+          +------------------------+
-|        Project         | - - - - -|        Task            |
-+------------------------+          +------------------------+
-| - id: int              |          | - id: int              |
-| - name: string         |          | - name: string         |
-| - description: string  |          | - description: string  |
-| - start_date: date     |          | - status: string       |
-| - end_date: date       |          | - priority: int        |
-+------------------------+          | - due_date: date       |
-                                    +------------------------+
-                                            - - - - -
-                                            |
-                                    +------------------------+
-                                    |      SubTask           |
-                                    +------------------------+
-                                    | - id: int              |
-                                    | - name: string         |
-                                    | - status: string       |
-                                    +------------------------+
-
-+------------------------+          +------------------------+
-|       Resource         | - - - - -|      Allocation        |
-+------------------------+          +------------------------+
-| - id: int              |          | - id: int              |
-| - name: string         |          | - resource_id: int     |
-| - role: string         |          | - task_id: int         |
-+------------------------+          | - allocation_percent: int |
-                                    +------------------------+
 
 ## Sequence Diagram
 
-The sequence diagram below illustrates the interaction for creating a new task:
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant BackendAPI
+    participant Database
 
-User - - - - > Frontend: Fill task form and submit
-Frontend - - - - > Backend API: POST /tasks
-Backend API - - - - > Database: Insert new task record
-Backend API - - - - > Frontend: Return success response
-Frontend - - - - > User: Display confirmation message
+    User ->> Frontend: Fill task form and submit
+    Frontend ->> BackendAPI: POST /tasks
+    BackendAPI ->> Database: Insert new task record
+    BackendAPI ->> Frontend: Return success response
+    Frontend ->> User: Display confirmation message
+```
 
 ## Component Diagram
 
-The component diagram shows the main components and their interactions:
-
-[Frontend] - - - - <--> [Backend API] - - - - <--> [Database]
-[Installer GUI] - - - - --> [Environment Setup Scripts]
-[Backend API] - - - - --> [Services Layer] - - - - --> [Repositories Layer]
+```mermaid
+graph TD
+    Frontend --> BackendAPI
+    BackendAPI --> Database
+    InstallerGUI --> EnvironmentSetupScripts
+    BackendAPI --> ServicesLayer
+    ServicesLayer --> RepositoriesLayer
+```
 
 ## Additional UML Diagrams
 
 ### Activity Diagram for Task Creation
 
-User - - - - > Fill task form - - - - > Submit - - - - > Backend API - - - - > Validate - - - - > Store in Database - - - - > Return Response - - - - > User Confirmation
+```mermaid
+graph TD
+    User --> FillTaskForm
+    FillTaskForm --> Submit
+    Submit --> BackendAPI
+    BackendAPI --> Validate
+    Validate --> StoreInDatabase
+    StoreInDatabase --> ReturnResponse
+    ReturnResponse --> UserConfirmation
+```
 
 ### State Diagram for Task Status
 
-States: New - - - - > In Progress - - - - > Completed - - - - > Archived
-
-Transitions:
-- New to In Progress: When work starts
-- In Progress to Completed: When task is done
-- Completed to Archived: When task is archived
-
-(To be expanded with detailed diagrams)
-```
-
+```mermaid
+stateDiagram-v2
+    [*] --> New
+    New --> InProgress: When work starts
+    InProgress --> Completed: When task is done
+    Completed --> Archived: When task is archived
