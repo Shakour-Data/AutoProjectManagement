@@ -201,3 +201,46 @@ flowchart TD
 | `end_date` | `str` | End date in ISO format | Calculated from start + duration |
 | `dependencies` | `List[str]` | List of dependent task IDs | Optional, list of valid task IDs |
 | `progress` | `int` | Progress percentage (0-100) | Optional, defaults to 0 |
+
+### Date Calculation Logic
+```
+end_date = start_date + datetime.timedelta(days=duration_days)
+```
+
+Where:
+- `duration_days` is extracted from task['duration_days'] or task['duration'] or defaults to 1
+- If no start_date specified, inherits from parent task or uses current date
+
+### Progress Conversion
+- Float progress (0.0-1.0) is converted to percentage (0-100)
+- Integer progress is used as-is
+- Defaults to 0 if not specified
+
+## Validation Rules
+
+### Input Validation
+| Requirement | Validation | Error Handling |
+|-------------|------------|----------------|
+| Tasks List | Must be a list | TypeError raised |
+| Task Structure | Must be dictionary | TypeError raised |
+| Required Fields | Must have id, start, end | KeyError raised |
+| Date Format | Must be ISO format | ValueError raised |
+| Date Logic | Start ≤ End | ValueError raised |
+
+### Data Processing
+| Requirement | Validation | Default Behavior |
+|-------------|------------|------------------|
+| Missing Start Date | Inherit from parent or use today | Current date used |
+| Missing Duration | Default to 1 day | 1 day duration used |
+| Missing Progress | Default to 0% | 0 progress used |
+| Invalid Dates | Use fallback dates | Current date used |
+
+## Error Handling and Logging
+
+### Log Levels
+| Level | Usage | Example |
+|-------|-------|---------|
+| `INFO` | Successful operations | (Console output for file operations) |
+| `ERROR` | Critical failures | "Error loading tasks for Gantt chart: {e}" |
+
+### Common Error Scenarios
