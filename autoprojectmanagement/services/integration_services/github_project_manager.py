@@ -176,49 +176,6 @@ class GitHubProjectManager:
                 raise GitHubAPIError(error_msg)
     
     def create_project(self, config: GitHubProjectConfig) -> ProjectReport:
-            method: HTTP method (GET, POST, PUT, DELETE)
-            endpoint: API endpoint (without base URL)
-            data: Request payload for POST/PUT requests
-            params: Query parameters
-            
-        Returns:
-            Dict containing the API response
-            
-        Raises:
-            GitHubAPIError: For API-related errors
-        """
-        url = f"{GITHUB_API_BASE_URL}/{endpoint.lstrip('/')}"
-        
-        for attempt in range(MAX_RETRIES):
-            try:
-                response = self.session.request(
-                    method=method,
-                    url=url,
-                    json=data,
-                    params=params,
-                    timeout=DEFAULT_TIMEOUT
-                )
-                
-                if response.status_code == 401:
-                    raise GitHubAPIError("Invalid GitHub token")
-                elif response.status_code == 403:
-                    raise GitHubAPIError("Insufficient permissions or rate limit exceeded")
-                elif response.status_code == 404:
-                    raise GitHubAPIError("Resource not found")
-                
-                response.raise_for_status()
-                return response.json() if response.content else {}
-                
-            except (ConnectionError, Timeout) as e:
-                if attempt == MAX_RETRIES - 1:
-                    raise GitHubAPIError(f"Network error after {MAX_RETRIES} attempts: {e}")
-                logger.warning(f"Retry attempt {attempt + 1} for {url}")
-                
-            except HTTPError as e:
-                error_msg = f"HTTP {e.response.status_code}: {e.response.text}"
-                raise GitHubAPIError(error_msg)
-    
-    def create_project(self, config: GitHubProjectConfig) -> ProjectReport:
         """
         Create a new GitHub repository project.
         
