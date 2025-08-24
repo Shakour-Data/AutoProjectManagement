@@ -224,16 +224,14 @@ flowchart TD
 ### JSON Storage Configuration Examples
 
 #### 1. Basic JSON Storage
-```json
-{
-  "database": {
-    "type": "json",
-    "json_path": "autoproject.json",
-    "data_directory": "JSonDataBase",
-    "backup_enabled": true
-  }
-}
-```
+Basic JSON storage configuration includes:
+
+- **Storage Type**: Specifies that JSON is the storage mechanism
+- **JSON Path**: The main configuration file path
+- **Data Directory**: The directory for storing JSON data files
+- **Backup Enabled**: Whether automatic backups are enabled
+
+This configuration provides a simple and effective way to manage project data using JSON files.
 
 #### 2. Custom Directory Structure
 ```json
