@@ -55,12 +55,28 @@ classDiagram
 ### Data Flow Diagram
 ```mermaid
 flowchart TD
-    A[Markdown File Path] --> B[WikiPageMapper]
-    B --> C[Character Replacement]
-    C --> D[Formatting Rules]
-    D --> E[Wiki Page Name]
-    B --> F[Directory Structure]
-    F --> G[Wiki Structure Mapping]
+    subgraph Input
+        A[Markdown File Path]
+    end
+    
+    subgraph Processing
+        B[WikiPageMapper]
+        C[Character Replacement]
+        D[Formatting Rules]
+        F[Directory Structure Analysis]
+    end
+    
+    subgraph Output
+        E[Wiki Page Name]
+        G[Wiki Structure Mapping]
+    end
+    
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    B --> F
+    F --> G
 ```
 
 ## Directory Structure Mapping
