@@ -141,3 +141,106 @@ flowchart TD
 ### Error Scenarios
 1. **Function Errors**: Errors in scheduled functions are handled by the function itself
 2. **Thread Interruption**: The thread can be interrupted without affecting main program
+3. **Schedule Library Errors**: Handled by the underlying schedule library
+
+## Usage Examples
+
+### Basic Usage
+```python
+from autoprojectmanagement.main_modules.planning_estimation.scheduler import Scheduler
+
+# Create scheduler instance
+scheduler = Scheduler()
+
+# Schedule functions
+scheduler.schedule_hourly(update_dashboards)
+scheduler.schedule_daily(update_reports)
+
+# Start the scheduler
+scheduler.start()
+
+# Main program continues running
+print("Scheduler started in background")
+```
+
+### Integration with Other Modules
+```python
+from autoprojectmanagement.main_modules.progress_reporting.dashboards_reports import update_dashboards
+from autoprojectmanagement.main_modules.progress_reporting.reporting import update_reports
+from autoprojectmanagement.main_modules.planning_estimation.scheduler import Scheduler
+
+scheduler = Scheduler()
+scheduler.schedule_hourly(update_dashboards)
+scheduler.schedule_daily(update_reports)
+scheduler.start()
+
+# Keep main program running
+while True:
+    time.sleep(10)
+```
+
+### Custom Scheduling
+```python
+# You can also use the schedule library directly for more control
+import schedule
+import time
+
+def custom_task():
+    print("Custom task running")
+
+# Schedule every 30 minutes
+schedule.every(30).minutes.do(custom_task)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+```
+
+## Performance Considerations
+
+- **Background Thread**: Minimal CPU usage when no jobs are pending
+- **Memory Usage**: Low memory footprint for job storage
+- **Execution Overhead**: Scheduled functions run in the main thread context
+- **Scalability**: Suitable for moderate numbers of scheduled jobs
+
+## Best Practices
+
+1. **Error Handling**: Implement robust error handling in scheduled functions
+2. **Resource Management**: Ensure scheduled functions manage resources properly
+3. **Logging**: Add logging to track scheduler activity and function execution
+4. **Testing**: Test scheduled functions independently before scheduling
+5. **Monitoring**: Monitor scheduler thread status in production
+
+## Integration Points
+
+This module integrates with:
+- **Dashboard Services**: For hourly dashboard updates
+- **Reporting Modules**: For daily report generation
+- **Monitoring Systems**: For periodic status checks
+- **Data Processing**: For scheduled data processing tasks
+- **Notification Systems**: For timed notifications and alerts
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 2.0.0 | 2025-08-14 | Comprehensive implementation with background threading |
+| 1.0.0 | 2025-08-01 | Basic scheduling functionality |
+
+## Future Enhancements
+
+1. **Configurable Intervals**: Support for custom scheduling intervals
+2. **Multiple Time Zones**: Support for scheduling in different time zones
+3. **Job Management**: APIs for adding, removing, and listing jobs dynamically
+4. **Persistent Scheduling**: Save and load job schedules across restarts
+5. **Health Monitoring**: Monitor scheduled job execution and health
+6. **Distributed Scheduling**: Support for distributed job execution
+7. **Web Interface**: Web-based interface for managing scheduled jobs
+8. **Advanced Triggers**: Support for cron-like expressions and complex triggers
+
+---
+
+*This documentation follows Pressman's software engineering standards and includes three levels of detail: overview, technical specifications, and implementation guidelines.*
+
+*Maintained by: AutoProjectManagement Documentation Team*
+*Last reviewed: 2025-08-14*
