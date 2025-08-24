@@ -261,3 +261,9 @@ sequenceDiagram
     Manager->>Manager: Generate report
     Manager-->>CLI: ProjectReport
 ```
+
+### Response Handling
+
+```python
+# Successful response structure
+{
