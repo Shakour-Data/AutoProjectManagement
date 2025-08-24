@@ -441,3 +441,53 @@ BackupMetadata(
 Metadata information for backup archives.
 
 **Fields:**
+- `backup_id`: Unique backup identifier
+- `timestamp`: ISO format timestamp
+- `source_paths`: Source paths backed up
+- `total_files`: Number of files backed up
+- `total_size_bytes`: Total size in bytes
+- `checksum`: SHA-256 checksum of files
+- `compression_type`: Compression format used
+- `status`: Backup status (pending, in_progress, completed, failed, corrupted)
+- `duration_seconds`: Backup duration in seconds
+- `error_message`: Error message if failed (optional)
+
+### Enumerations
+
+#### BackupStatus
+```python
+class BackupStatus(Enum):
+    PENDING = "pending"
+    IN_PROGRESS = "in_progress"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    CORRUPTED = "corrupted"
+```
+Enumeration of backup operation statuses.
+
+#### CompressionType
+```python
+class CompressionType(Enum):
+    ZIP = "zip"
+    TAR = "tar"
+    TAR_GZ = "tar.gz"
+    TAR_BZ2 = "tar.bz2"
+```
+Supported compression formats for backup archives.
+
+## Testing Framework
+
+### Unit Test Structure
+
+```mermaid
+flowchart TD
+    A[Test Setup] --> B[Create Temporary Directories]
+    B --> C[Initialize BackupManager]
+    C --> D[Execute Test Cases]
+    D --> E[Verify Results]
+    E --> F[Cleanup Resources]
+    F --> G[Test Complete]
+```
+
+### Test Coverage
+
