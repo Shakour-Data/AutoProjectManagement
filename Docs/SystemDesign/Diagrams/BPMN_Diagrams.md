@@ -19,67 +19,67 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-|Monitoring & Control|
-:Track Progress;
-:Identify & Manage Risks;
-:Adjust Plans;
-|Reporting|
-:Generate Reports;
-:Distribute to Stakeholders;
-|Project Closure|
-:Complete Deliverables;
-:Obtain Acceptance;
-:Archive Documents;
-stop
-@enduml
+    StartTask([Start Task Creation]) --> InputTaskDetails[Input Task Details]
+    InputTaskDetails --> ValidateTask[Validate Task Data]
+    ValidateTask -->|Invalid| ShowError[Show Error Message]
+    ShowError --> InputTaskDetails
+    
+    ValidateTask -->|Valid| SaveTask[Save Task to Database]
+    SaveTask --> NotifyTeam[Notify Team Members]
+    NotifyTeam --> EndTask([End Task Creation])
 ```
 
-## Detailed BPMN Processes
+## Resource Allocation Process
 
-### Project Initiation
-
-```plantuml
-@startuml
-start
-:Identify Stakeholders;
-:Define Goals & Scope;
-:Obtain Approvals;
-stop
-@enduml
+```mermaid
+flowchart TD
+    StartAllocation([Start Allocation]) --> SelectResource[Select Resource]
+    SelectResource --> CheckAvailability[Check Availability]
+    CheckAvailability -->|Not Available| SelectAlternative[Select Alternative Resource]
+    SelectAlternative --> CheckAvailability
+    
+    CheckAvailability -->|Available| AllocateResource[Allocate Resource]
+    AllocateResource --> UpdateSchedule[Update Project Schedule]
+    UpdateSchedule --> EndAllocation([End Allocation])
 ```
 
-### Task Planning
+## Progress Monitoring Process
 
-```plantuml
-@startuml
-start
-:Decompose Project;
-:Assign Resources & Deadlines;
-:Review & Approve Plan;
-stop
-@enduml
+```mermaid
+flowchart TD
+    StartMonitoring([Start Monitoring]) --> CollectData[Collect Progress Data]
+    CollectData --> AnalyzeProgress[Analyze Progress]
+    AnalyzeProgress -->|On Track| ContinueMonitoring[Continue Monitoring]
+    AnalyzeProgress -->|Behind Schedule| AdjustSchedule[Adjust Schedule]
+    AnalyzeProgress -->|Ahead of Schedule| OptimizeResources[Optimize Resources]
+    
+    AdjustSchedule --> UpdatePlan[Update Project Plan]
+    OptimizeResources --> UpdatePlan
+    UpdatePlan --> ContinueMonitoring
+    ContinueMonitoring -->|Project Complete| EndMonitoring([End Monitoring])
+    ContinueMonitoring -->|Project Ongoing| CollectData
 ```
 
-### Task Execution
+## Risk Management Process
 
-```plantuml
-@startuml
-start
-:Perform Tasks;
-:Update Status;
-:Communicate Progress;
-stop
-@enduml
+```mermaid
+flowchart TD
+    StartRisk([Start Risk Management]) --> IdentifyRisks[Identify Risks]
+    IdentifyRisks --> AssessRisks[Assess Risks]
+    AssessRisks --> PlanMitigation[Plan Mitigation Strategies]
+    PlanMitigation --> ImplementMitigation[Implement Mitigation]
+    ImplementMitigation --> MonitorRisks[Monitor Risks]
+    MonitorRisks -->|Risk Resolved| EndRisk([End Risk Management])
+    MonitorRisks -->|New Risk Identified| IdentifyRisks
 ```
 
-### Monitoring and Controlling
+## Reporting Process
 
-```plantuml
-@startuml
-start
-:Track Progress;
-:Identify & Manage Risks;
-:Adjust Plans;
+```mermaid
+flowchart TD
+    StartReport([Start Reporting]) --> GatherData[Gather Project Data]
+    GatherData --> GenerateReport[Generate Report]
+    GenerateReport --> ReviewReport[Review Report]
 stop
 @enduml
 ```
