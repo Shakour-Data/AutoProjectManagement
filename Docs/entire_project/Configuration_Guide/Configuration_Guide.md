@@ -154,14 +154,12 @@ flowchart TD
 ### Logging Configuration Examples
 
 #### 1. Basic Console Logging
-```json
-{
-  "logging": {
-    "level": "INFO",
-    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  }
-}
-```
+Basic console logging configuration includes:
+
+- **Logging Level**: The severity level of logs (e.g., DEBUG, INFO, WARNING, ERROR)
+- **Log Format**: The format string for log messages, which can include timestamps, log levels, and messages
+
+This configuration allows for easy monitoring of application behavior during development and production.
 
 #### 2. File Logging with Rotation
 ```json
