@@ -800,16 +800,14 @@ graph LR
 ### Appendix B: Configuration Examples
 
 #### Environment Variables
-```bash
-# Required
-export APM_GITHUB_TOKEN="your_github_token"
-export APM_PROJECT_PATH="/path/to/project"
+The system uses several environment variables for configuration:
 
-# Optional
-export APM_LOG_LEVEL="INFO"
-export APM_CACHE_SIZE="1000"
-export APM_BACKUP_INTERVAL="3600"
-```
+- **Required Variables**: Essential configuration parameters including GitHub authentication tokens and project paths
+- **Optional Variables**: Additional settings for logging levels, cache sizes, and backup intervals
+- **Security Considerations**: Secure handling of sensitive information like API tokens
+- **Environment-Specific Configuration**: Support for different configurations across development, staging, and production environments
+
+These environment variables provide flexible configuration options while maintaining security and consistency across deployments.
 
 #### Configuration File
 ```json
