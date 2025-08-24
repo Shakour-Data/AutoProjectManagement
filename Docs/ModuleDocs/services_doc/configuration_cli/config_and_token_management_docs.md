@@ -345,3 +345,32 @@ Decrypts and returns the token from `token.enc`.
 ```python
 save_config(config_data: dict) -> None
 ```
+Saves configuration data to `config.json`.
+
+**Parameters:**
+- `config_data`: Dictionary of configuration settings
+
+**Raises:**
+- `IOError`: If config file cannot be written
+- `TypeError`: If config_data is not serializable to JSON
+
+#### load_config
+```python
+load_config() -> dict
+```
+Loads configuration data from `config.json`.
+
+**Returns:** Dictionary of configuration settings, empty dict if file doesn't exist
+
+**Raises:**
+- `JSONDecodeError`: If config file contains invalid JSON
+- `IOError`: If config file cannot be read
+
+## Security Best Practices
+
+### Key Management
+
+1. **Key Storage**: Keep `secret.key` file secure with strict permissions
+2. **Key Rotation**: Periodically generate new keys and re-encrypt tokens
+3. **Backup**: Secure backup of encryption keys separate from encrypted data
+4. **Access Control**: Limit access to key files to authorized processes only
