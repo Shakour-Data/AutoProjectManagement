@@ -199,3 +199,49 @@ $$ \text{Urgency} = \text{Time Factor} + \text{Delay Factor} + \text{Progress Fa
 Where:
 - $\text{Time Factor} = \max\left(0, \min\left(1, \frac{30 - \text{Remaining Days}}{30}\right)\right)$
 - $\text{Delay Factor} = \min(\text{Delays} \times 0.1, 0.5)$
+- $\text{Progress Factor} = \max(0, 1 - \text{Progress})$
+
+## Error Handling & Recovery
+
+### Error Recovery Strategy
+
+```mermaid
+flowchart TD
+    A[Operation Failure] --> B{Identify Error Type}
+    B --> C[Authentication Error]
+    B --> D[Network Error]
+    B --> E[Repository Error]
+    
+    C --> F[Switch Auth Method]
+    D --> G[Retry Operation]
+    E --> H[Provide Troubleshooting]
+    
+    F --> I[Continue Workflow]
+    G --> I
+    H --> J[Log Error Continue]
+```
+
+### Push Guarantee Mechanism
+
+The guaranteed push system implements a multi-strategy approach:
+
+1. **Force Push with Lease** - Safest force push method
+2. **Regular Push** - Standard push operation  
+3. **Push with Upstream** - Establish tracking if needed
+4. **Force Push** - Last resort, local changes take priority
+5. **HTTPS Fallback** - Alternative authentication method
+
+## Performance Characteristics
+
+### Time Complexity
+
+| Operation | Best Case | Worst Case | Average Case |
+|-----------|-----------|------------|--------------|
+| Change Detection | O(1) | O(n) | O(n) |
+| File Grouping | O(n) | O(n log n) | O(n) |
+| Authentication Check | O(1) | O(1) | O(1) |
+| Push Operation | O(1) | O(n) | O(1) |
+
+### Space Complexity
+
+- **Memory**: O(n) where n is number of changed files
