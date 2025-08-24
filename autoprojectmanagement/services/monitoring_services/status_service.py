@@ -179,3 +179,32 @@ class StatusService:
             
             # Determine overall status
             if status_data['progress'] == 100:
+                status_data['status'] = 'complete'
+            elif status_data['progress'] > 0:
+                status_data['status'] = 'running'
+            else:
+                status_data['status'] = 'idle'
+                
+        except Exception as e:
+            self.logger.warning(f"Error parsing progress report: {e}")
+        
+        return status_data
+    
+    def _get_system_metrics(self) -> Dict[str, float]:
+        """
+        Get system resource usage metrics.
+        
+        Returns:
+            Dict containing memory and CPU usage percentages
+        """
+        try:
+            import psutil
+            
+            metrics = {
+                'memory_usage': psutil.virtual_memory().percent,
+                'cpu_usage': psutil.cpu_percent(interval=1)
+            }
+            
+            return metrics
+            
+        except ImportError:
