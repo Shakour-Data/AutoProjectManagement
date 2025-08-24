@@ -314,16 +314,14 @@ Complete development environment setup including all development dependencies, e
 
 ### 6.2 Configuration Setup
 
-```bash
-# Initialize system
-apm init
+The system provides a comprehensive configuration setup process:
 
-# Configure GitHub integration
-apm config set github.token YOUR_GITHUB_TOKEN
+- **System Initialization**: Initialize the system with default settings and directory structure
+- **GitHub Integration**: Configure GitHub API token for repository synchronization
+- **Data Directory**: Set custom data storage locations for project information
+- **Environment Configuration**: Manage various environment-specific settings
 
-# Set data directory
-apm config set data.path ./my_project_data
-```
+This setup process ensures the system is properly configured for both development and production environments.
 
 ## 7. Performance & Scalability
 
