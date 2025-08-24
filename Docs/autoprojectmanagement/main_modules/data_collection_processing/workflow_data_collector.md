@@ -188,3 +188,24 @@ def close(self) -> None
 flowchart TD
     A[Task Updates] --> B[update_scrum_task]
     B --> C[scrum_tasks.json]
+    D[Burndown Updates] --> E[update_scrum_burndown]
+    E --> F[scrum_burndown.json]
+    G[Report Requests] --> H[generate_scrum_report]
+    F --> H
+    H --> I[Sorted Burndown Report]
+    J[Initialization] --> K[create_scrum_workflow_tables]
+    K --> C
+    K --> F
+    K --> L[scrum_sprints.json]
+```
+
+## Data Structures
+
+### Scrum Tasks JSON Structure
+```json
+[
+  {
+    "task_id": "unique_identifier",
+    "sprint_id": "sprint_identifier",
+    "title": "Task description",
+    "status": "in_progress|completed|blocked",
