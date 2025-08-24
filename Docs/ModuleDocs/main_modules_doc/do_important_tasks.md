@@ -181,3 +181,33 @@ The priority calculation follows a weighted scoring system that considers multip
 
 **Priority Score Formula:**
 ```
+Priority Score = (Strategic Value × Weight₁) + (Urgency × Weight₂) + (Effort Factor × Weight₃) + (Dependency Factor × Weight₄)
+```
+
+Where:
+- **Strategic Value**: Task's strategic importance (0-100 scale)
+- **Urgency**: Based on deadline proximity and time sensitivity
+- **Effort Factor**: Inverse relationship with estimated hours (lower effort = higher priority)
+- **Dependency Factor**: Impact of task dependencies on overall priority
+
+### Scheduling Optimization
+The scheduling system creates optimal task sequences by:
+1. Filtering pending tasks
+2. Sorting by calculated priority scores
+3. Creating sequential schedules based on estimated durations
+4. Checking for deadline conflicts and resource constraints
+
+### Data Structures and Schemas
+
+#### Task Storage Schema
+```json
+{
+  "tasks": [
+    {
+      "id": "uuid-string",
+      "title": "Task Title",
+      "description": "Task Description",
+      "priority": 1,
+      "estimated_hours": 8.0,
+      "strategic_value": 95.0,
+      "dependencies": ["task-id-1", "task-id-2"],
