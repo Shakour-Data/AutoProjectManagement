@@ -832,13 +832,15 @@ This configuration approach provides a flexible and maintainable way to manage s
 | **JSON Parse Error** | Validate JSON format |
 
 #### Debug Mode
-```bash
-# Enable debug logging
-export APM_LOG_LEVEL=DEBUG
+The system provides comprehensive debugging capabilities:
 
-# Run with verbose output
-apm --verbose command
-```
+- **Log Level Control**: Environment variable-based control of logging verbosity
+- **Verbose Output**: Command-line options for detailed output during execution
+- **Debug Information**: Enhanced logging with detailed context and troubleshooting information
+- **Performance Tracing**: Ability to trace performance bottlenecks and identify issues
+- **Integration with Development Tools**: Seamless integration with development and debugging tools
+
+These debugging features help developers quickly identify and resolve issues during development and troubleshooting.
 
 ### Appendix D: Performance Tuning
 
