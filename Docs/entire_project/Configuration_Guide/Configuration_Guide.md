@@ -426,27 +426,14 @@ flowchart TD
 
 ### Validation Error Examples
 
-```json
-{
-  "errors": [
-    {
-      "field": "github.token",
-      "message": "GitHub token is required when GitHub integration is enabled",
-      "type": "missing_required"
-    },
-    {
-      "field": "security.jwt_secret_key",
-      "message": "JWT secret key must be changed from default value",
-      "type": "security_risk"
-    },
-    {
-      "field": "api.port",
-      "message": "Port must be between 1 and 65535",
-      "type": "invalid_value"
-    }
-  ]
-}
-```
+The validation system provides detailed error information when configuration issues are detected. Common validation errors include:
+
+- **Missing Required Fields**: Essential configuration parameters that are not provided
+- **Security Risks**: Configuration settings that pose security vulnerabilities
+- **Invalid Values**: Values that are outside acceptable ranges or formats
+- **Type Mismatches**: Incorrect data types for configuration parameters
+
+Each error includes the specific field, a descriptive message, and the error type to help users quickly identify and resolve configuration issues.
 
 ### Validation Methods
 
