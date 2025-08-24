@@ -186,3 +186,22 @@ flowchart TD
     Core --> VSCode
     VSCode --> Core
     
+    Core --> Wiki
+    Wiki --> Core
+    
+    Core --> ExternalAPIs
+    ExternalAPIs --> Core
+    
+    GitHub --> External[GitHub API]
+    External --> GitHub
+    
+    VSCode --> VSCodeExt[VS Code Extensions]
+    VSCodeExt --> VSCode
+    
+    Wiki --> GitHubWiki[GitHub Wiki]
+    GitHubWiki --> Wiki
+    
+    ExternalAPIs --> VariousAPIs[Various External APIs]
+    VariousAPIs --> ExternalAPIs
+```
+
