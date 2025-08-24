@@ -314,24 +314,22 @@ classDiagram
 
 ### Project Configuration Example
 
-```json
-{
-  "project": {
-    "base_path": "/path/to/project",
-    "data_path": "JSonDataBase",
-    "output_path": "JSonDataBase/OutPuts",
-    "backup_path": "project_management/PM_Backups",
-    "max_file_size": 10485760,
-    "allowed_extensions": [".py", ".js", ".json", ".md"],
-    "max_workers": 8,
-    "timeout_seconds": 300,
-    "enable_auto_commit": true,
-    "enable_risk_analysis": true,
-    "enable_progress_tracking": true,
-    "enable_github_integration": true
-  }
-}
-```
+The project configuration includes comprehensive settings for managing project operations:
+
+- **Base Path**: The root directory path for the project
+- **Data Path**: Directory for storing JSON data files
+- **Output Path**: Directory for output JSON files
+- **Backup Path**: Directory for backup files
+- **Max File Size**: Maximum file size limit for JSON files
+- **Allowed Extensions**: List of file extensions that can be processed
+- **Max Workers**: Maximum number of concurrent worker threads
+- **Timeout Seconds**: Operation timeout duration in seconds
+- **Auto Commit**: Enable automatic commit functionality
+- **Risk Analysis**: Enable risk analysis features
+- **Progress Tracking**: Enable progress tracking capabilities
+- **GitHub Integration**: Enable GitHub integration features
+
+This configuration provides a complete setup for managing projects with the AutoProjectManagement system.
 
 ---
 
