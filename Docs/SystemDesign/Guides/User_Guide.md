@@ -86,33 +86,72 @@ Create a `config.json` file in the project root:
   },
   "security": {
     "api_key": "development-key",
-## 7. Dashboards and Reporting
+    "cors_origins": ["http://localhost:3000", "http://localhost:8000"]
+  }
+}
+```
 
-- Access dashboards displaying:
-  - Progress reports.
-  - Priority and urgency visualizations.
-  - Cost management summaries.
-  - Resource allocation details.
-  - Risk management insights.
-- Reports are updated dynamically and support filtering and sorting.
+## API Usage
 
-## 8. User Interaction Flow Summary
+### Base URL
+All API endpoints are prefixed with:
+```
+http://localhost:8000/api/v1
+```
 
-1. Launch frontend → Setup Wizard starts.
-2. Complete project initialization.
-3. Upload required JSON inputs.
-4. Complete project planning inputs.
-5. System performs calculations and scheduling.
-6. Access dashboards and reports.
-7. Use monitoring and control features during project execution.
+### Authentication
+Include the API key in requests:
+```bash
+curl -H "X-API-Key: development-key" http://localhost:8000/api/v1/health
+```
 
-## 9. Support and Troubleshooting
+### Core API Endpoints
 
-- Ensure all JSON inputs comply with standards.
-- Use the interactive setup wizard for guidance.
-- Check logs for errors.
-- Contact support via project repository issues.
+#### System Endpoints
+```bash
+# Health check
+curl http://localhost:8000/api/v1/health
 
----
- 
-This guide helps users effectively interact with the ProjectManagement system through its intuitive frontend and automated backend processes.
+# System information
+curl http://localhost:8000/api/v1/system/info
+
+# Root endpoint
+curl http://localhost:8000/
+```
+
+#### Project Management
+```bash
+# List projects
+curl http://localhost:8000/api/v1/projects?limit=10
+
+# Create project
+curl -X POST http://localhost:8000/api/v1/projects \
+  -H "Content-Type: application/json" \
+  -d '{"name": "My Project", "description": "Project description"}'
+
+# Get project status
+curl http://localhost:8000/api/v1/projects/project-001/status
+```
+
+#### Dashboard Endpoints
+```bash
+# Dashboard overview
+curl http://localhost:8000/api/v1/dashboard/overview?project_id=project-001
+
+# Dashboard metrics
+curl http://localhost:8000/api/v1/dashboard/metrics?project_id=project-001
+
+# Dashboard alerts
+curl http://localhost:8000/api/v1/dashboard/alerts?project_id=project-001
+```
+
+### Response Formats
+The API supports multiple response formats:
+```bash
+# JSON (default)
+curl http://localhost:8000/api/v1/projects/project-001/status
+
+# Markdown
+curl http://localhost:8000/api/v1/projects/project-001/status?format=markdown
+
+# Table format
