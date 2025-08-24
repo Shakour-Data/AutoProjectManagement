@@ -303,3 +303,41 @@ status_service = StatusService()
 
 
 def get_current_status() -> ProjectStatus:
+    """
+    Get current project status using the global status service instance.
+    
+    Returns:
+        ProjectStatus: Current project status information
+    """
+    return status_service.get_status()
+
+
+def save_current_status() -> bool:
+    """
+    Save current project status to JSON file.
+    
+    Returns:
+        bool: True if save was successful, False otherwise
+    """
+    status = get_current_status()
+    return status_service.save_status(status)
+
+
+# Example usage and testing
+if __name__ == "__main__":
+    # Configure logging for standalone usage
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+    
+    # Create status service instance
+    service = StatusService()
+    
+    try:
+        # Get and display current status
+        current_status = service.get_status()
+        print("📊 Current Project Status:")
+        print(f"   Status: {current_status.status}")
+        print(f"   Progress: {current_status.progress}%")
+        print(f"   Tasks: {current_status.tasks_completed}/{current_status.tasks_total}")
