@@ -463,29 +463,10 @@ The configuration checker script offers a comprehensive validation tool that can
 ### Configuration Management Tools
 
 #### 1. Configuration CLI
-```bash
-# Validate configuration
-python -m autoprojectmanagement.configuration validate --config config.json
-
-# Show current configuration
-python -m autoprojectmanagement.configuration show
-
-# Reload configuration
-python -m autoprojectmanagement.configuration reload
-
-# Generate sample configuration
-python -m autoprojectmanagement.configuration generate --env development
-```
+The Configuration CLI provides a comprehensive set of commands for managing system configuration. It includes functionality for validation, display, reloading, and generating sample configurations for different environments.
 
 #### 2. Configuration Management Script
-```python
-from autoprojectmanagement.configuration.manager import ConfigManager
-
-manager = ConfigManager()
-manager.load_config('config.json')
-manager.validate_config()
-manager.apply_config()
-```
+The configuration management script offers programmatic access to configuration operations, including loading configuration files, validating settings, and applying configuration changes across the system.
 
 ### Configuration Hot-Reload
 
