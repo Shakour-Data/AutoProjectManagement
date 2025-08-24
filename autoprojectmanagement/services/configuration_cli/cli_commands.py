@@ -226,3 +226,55 @@ def status() -> None:
         except:
             logger.info("   ⚠️  Git status: Unknown")
     else:
+        logger.info("❌ Git repository: Not found")
+    
+    # Virtual environment status
+    if os.path.exists('venv'):
+        logger.info("✅ Virtual environment: Exists")
+        # Check if venv is active
+        if 'VIRTUAL_ENV' in os.environ:
+            logger.info("   🔄 Virtual environment: Active")
+        else:
+            logger.info("   ⚠️  Virtual environment: Inactive")
+    else:
+        logger.info("❌ Virtual environment: Not found")
+    
+    # Requirements file status
+    if os.path.exists('requirements.txt'):
+        logger.info("✅ requirements.txt: Exists")
+        try:
+            with open('requirements.txt', 'r') as f:
+                lines = f.readlines()
+                dep_count = len([line for line in lines if line.strip() and not line.startswith('#')])
+                logger.info(f"   📦 Dependencies listed: {dep_count}")
+        except:
+            logger.info("   ⚠️  requirements.txt: Unreadable")
+    else:
+        logger.info("❌ requirements.txt: Not found")
+    
+    # Directory structure status
+    required_dirs = [
+        'project_inputs/PM_JSON/user_inputs',
+        'github_reports',
+        'backups',
+        'JSonDataBase/Inputs',
+        'JSonDataBase/OutPuts'
+    ]
+    
+    for directory in required_dirs:
+        if os.path.exists(directory):
+            logger.info(f"✅ Directory: {directory} - Exists")
+        else:
+            logger.info(f"❌ Directory: {directory} - Missing")
+    
+    # GitHub reports status
+    if os.path.exists('github_reports'):
+        report_files = [f for f in os.listdir('github_reports') if f.endswith('.json')]
+        logger.info(f"📄 GitHub reports: {len(report_files)} found")
+    
+    logger.info("=" * 50)
+    logger.info("Status check completed")
+
+
+def main() -> None:
+    """
