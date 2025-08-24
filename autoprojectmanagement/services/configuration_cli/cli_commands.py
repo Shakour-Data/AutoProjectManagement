@@ -82,21 +82,21 @@ def setup_project() -> None:
     pm_userinputs_path = os.path.join(os.getcwd(), 'PM_UserInputs')
     if os.path.exists(pm_userinputs_path) and os.path.isdir(pm_userinputs_path):
         shutil.rmtree(pm_userinputs_path)
-        
-        with open(report_file, 'w', encoding='utf-8') as f:
-            json.dump(reports, f, indent=2, default=str)
-        
-        print(f"\n📄 Detailed report saved to: {report_file}")
-        
-    except Exception as e:
-        logger.error(f"Failed to create GitHub project: {e}")
-        print(f"❌ Error: {e}")
+        logger.info("✅ Removed obsolete PM_UserInputs directory")
 
-def sync_with_github(args):
-    """Sync existing project with GitHub"""
-    manager = GitHubProjectManager()
-    
-    project_json = args.project_json
+    # Initialize git repository
+    if initialize_git_repo():
+        logger.info("✅ Git repository initialized")
+    else:
+        logger.warning("⚠️  Git repository initialization may have issues")
+
+    # Ensure .gitignore excludes venv
+    if ensure_gitignore_excludes_venv():
+        logger.info("✅ .gitignore configured to exclude virtual environment")
+    else:
+        logger.warning("⚠️  .gitignore configuration may have issues")
+
+    # Create requirements.txt
     github_username = args.github_username
     
     if not os.path.exists(project_json):
