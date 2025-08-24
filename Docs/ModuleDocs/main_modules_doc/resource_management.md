@@ -133,3 +133,4 @@ def analyze(self) -> None:
 ```python
 def generate_recommendations(self) -> List[str]:
     """
+    Generate recommendations for optimizing resource allocation.
