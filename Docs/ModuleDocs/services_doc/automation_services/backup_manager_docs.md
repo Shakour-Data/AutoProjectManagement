@@ -398,6 +398,46 @@ Schedules automatic daily backups at specified time.
 **Parameters:**
 - `schedule_time`: Time in 24-hour format (HH:MM)
 
-### Class: BackupConfig
+### Data Classes
 
-#### Constructor
+#### BackupConfig
+```python
+BackupConfig(
+    source_paths: List[str],
+    backup_location: str,
+    retention_days: int = 30,
+    compression_type: CompressionType = CompressionType.ZIP,
+    max_file_size_mb: int = 100,
+    exclude_patterns: List[str] = None,
+    include_hidden: bool = False
+)
+```
+Configuration settings for backup operations.
+
+**Fields:**
+- `source_paths`: List of source paths to backup
+- `backup_location`: Destination for backup archives
+- `retention_days`: Days to keep backups (default: 30)
+- `compression_type`: Compression format (default: ZIP)
+- `max_file_size_mb`: Maximum file size in MB (default: 100)
+- `exclude_patterns`: Patterns to exclude from backup
+- `include_hidden`: Include hidden files (default: False)
+
+#### BackupMetadata
+```python
+BackupMetadata(
+    backup_id: str,
+    timestamp: str,
+    source_paths: List[str],
+    total_files: int,
+    total_size_bytes: int,
+    checksum: str,
+    compression_type: str,
+    status: str,
+    duration_seconds: float,
+    error_message: Optional[str] = None
+)
+```
+Metadata information for backup archives.
+
+**Fields:**
