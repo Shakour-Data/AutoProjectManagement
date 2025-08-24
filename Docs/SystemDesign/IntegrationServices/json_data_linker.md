@@ -49,10 +49,24 @@ classDiagram
 ### DFD Diagram
 ```mermaid
 flowchart TD
-    A[JSON Files] --> B[JSONDataLinker]
-    B --> C[Linked Files]
-    B --> D[Relationships]
-    B --> E[Backups]
+    subgraph Input
+        A[JSON Files]
+    end
+    
+    subgraph Processing
+        B[JSONDataLinker]
+    end
+    
+    subgraph Output
+        C[Linked Files]
+        D[Relationships]
+        E[Backups]
+    end
+    
+    A --> B
+    B --> C
+    B --> D
+    B --> E
 ```
 
 ## Error Handling
