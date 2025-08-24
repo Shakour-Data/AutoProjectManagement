@@ -180,3 +180,139 @@ Provides help information and command listing. This command:
 **Parameters**:
 - `list_commands`: List all available commands
 - `help_flag`: Show help message
+
+**Usage**:
+```bash
+autoprojectmanagement help
+autoprojectmanagement help --list
+```
+
+## Integration Points
+
+### Project Management System Integration
+The CLI integrates with the core project management system through:
+- `project_management_system.initialize_system()` for initialization
+- `project_management_system.add_project()` for project creation
+- `project_management_system.get_project()` for status retrieval
+- `project_management_system.add_task_to_project()` for task management
+- `project_management_system.update_task_status()` for status updates
+
+### Dashboard Integration
+The CLI includes dashboard functionality through:
+- Import of `dashboard_cli` from `cli_dashboard`
+- Integration as a subcommand group
+- Seamless transition between project management and dashboard commands
+
+## Configuration System
+
+### Configuration Sources
+The CLI supports configuration through multiple sources:
+1. **Environment Variables**: `AUTO_*` prefixed variables
+2. **Configuration Files**: `.auto_project/config/cli_config.json`
+3. **Command Line Arguments**: Direct parameter passing
+4. **Default Values**: Built-in sensible defaults
+
+### Configuration Hierarchy
+Configuration is loaded in this priority order:
+1. Command line arguments
+2. Environment variables  
+3. Configuration files
+4. Default values
+
+## Error Handling
+
+### Validation Errors
+- Invalid project IDs are caught and handled
+- Task parameter validation ensures data integrity
+- Format validation prevents malformed requests
+- Type checking for all input parameters
+
+### System Errors
+- Project not found errors
+- Task management failures
+- System initialization errors
+- File operation errors
+
+### User Feedback
+- Clear error messages with suggestions
+- Appropriate exit codes for script integration
+- Verbose mode for debugging information
+- Color-coded output for success/warning/error states
+
+## Usage Examples
+
+### Basic Project Workflow
+```bash
+# Initialize system
+autoprojectmanagement init
+
+# Create project
+autoprojectmanagement create-project "My Web App"
+
+# Add tasks
+autoprojectmanagement add-task 1 --task-name "Setup database" --priority high
+autoprojectmanagement add-task 1 --task-name "Create API endpoints" --priority medium
+
+# Check status
+autoprojectmanagement status 1
+
+# Update task status
+autoprojectmanagement update-task-status 1 1 --new-status in_progress
+
+# Generate report
+autoprojectmanagement report 1 --type summary
+```
+
+### Advanced Usage
+```bash
+# Custom configuration
+autoprojectmanagement init --config custom_config.json --verbose
+
+# Multiple projects
+autoprojectmanagement create-project "Frontend" --template react
+autoprojectmanagement create-project "Backend" --template python
+
+# Detailed reporting
+autoprojectmanagement report 2 --type detailed --format markdown --output backend_report.md
+
+# Integrated dashboard usage
+autoprojectmanagement dashboard --start
+autoprojectmanagement dashboard --open
+```
+
+## Performance Characteristics
+
+- **Command Execution**: Sub-second response for most operations
+- **Memory Usage**: Minimal footprint for CLI operations
+- **Network Usage**: Local operations only (no external calls)
+- **Scalability**: Handles hundreds of projects and tasks efficiently
+
+## Security Considerations
+
+- No sensitive data exposure in command output
+- Local file operations only
+- Input validation prevents injection attacks
+- No external network calls in core commands
+- Configuration files stored with appropriate permissions
+
+## Extension Points
+
+### Adding New Commands
+New commands can be added by:
+1. Creating new Click command functions
+2. Registering with the main command group
+3. Integrating with appropriate backend systems
+4. Adding help documentation
+
+### Custom Output Formats
+Support for additional output formats can be added by:
+1. Extending the format parameter choices
+2. Implementing new output formatting functions
+3. Adding format-specific validation
+
+### Integration with External Systems
+The CLI can be extended to integrate with:
+- Version control systems
+- CI/CD pipelines
+- Project management tools
+- Monitoring systems
