@@ -341,3 +341,18 @@ flowchart TD
 |-------------|------------|----------------|
 | WBS Structure | Must be a dictionary | Empty output with warning |
 | Tasks List | Must be a list if present | Empty list used if missing |
+| Task Complexity | Must be valid complexity level | 'medium' used as default |
+| Task Resources | Must be numeric if present | 1 used as default |
+
+### Estimation Validation
+| Requirement | Validation | Error Handling |
+|-------------|------------|----------------|
+| Duration Calculation | Uses complexity mapping | Default mapping for unknown levels |
+| Cost Calculation | Resources × Duration × Base Cost | Handles missing values gracefully |
+| Project Aggregation | Sums all valid estimates | Skips invalid tasks |
+
+## Error Handling and Logging
+
+### Log Levels
+| Level | Usage | Example |
+|-------|-------|---------|
