@@ -71,3 +71,86 @@ The `setup_auto_environment.py` module automates the setup of the AutoProjectMan
 - Configuration validation
 
 ### 8. VS Code Extension Status Bar
+The `vscode_extension_status_bar.py` module provides status bar functionality for VS Code extensions.
+
+**Key Features:**
+- Real-time status display
+- Extension integration
+- User interface elements
+- Status updates and notifications
+
+### 9. VS Code Extension
+The `vscode_extension.py` module provides the main VS Code extension functionality.
+
+**Key Features:**
+- VS Code integration
+- Extension lifecycle management
+- User interface components
+- Editor integration
+
+## Architecture
+### System Orchestration
+```mermaid
+flowchart TD
+    A[Auto Runner] --> B[Project Monitoring]
+    B --> C[Progress Tracking]
+    C --> D[Risk Assessment]
+    D --> E[Automatic Commits]
+    E --> F[Reporting]
+```
+
+### Command Line Interface
+```mermaid
+flowchart LR
+    A[Main CLI] --> B[CLI Dashboard]
+    B --> C[User Interaction]
+    C --> D[Docker Management]
+    D --> E[System Configuration]
+```
+
+## Usage
+### Auto Runner Usage
+```python
+from autoprojectmanagement.auto_runner import AutoRunner
+
+runner = AutoRunner('/path/to/project')
+runner.start()
+```
+
+### CLI Usage
+```bash
+python -m autoprojectmanagement.cli --help
+```
+
+## Error Handling
+Core Application modules include comprehensive error handling for:
+- File system access issues
+- Network connectivity problems
+- Configuration errors
+- External tool integration failures
+
+## Configuration
+Modules can be configured through:
+- Environment variables
+- Configuration files
+- Command line arguments
+- Programmatic settings
+
+## Benefits
+- **Automation**: Reduces manual intervention in project management
+- **Integration**: Works seamlessly with various tools and platforms
+- **Reliability**: Provides consistent performance and error handling
+- **Scalability**: Supports growing project needs and complexity
+
+## Integration
+Core Application modules integrate with:
+- Git version control system
+- Docker container platform
+- VS Code development environment
+- External APIs and services
+
+## Conclusion
+Core Application modules form the foundation of the AutoProjectManagement system, providing essential functionality for automated project management, command-line interaction, and system integration.
+
+---
+*Last updated: 2025-08-14*
