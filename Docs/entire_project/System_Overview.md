@@ -578,20 +578,14 @@ Key log locations:
 5. **Monitor**: Check `.auto_project/reports/` for updates
 
 ### First Project Setup
-```bash
-# Create new project
-mkdir my_project && cd my_project
-git init
+The first project setup process involves several key steps:
 
-# Initialize auto management
-autoproject init
+1. **Project Creation**: Setting up a new project directory and initializing version control
+2. **System Initialization**: Configuring the automated project management system for the new project
+3. **Monitoring Setup**: Starting the continuous monitoring service in daemon mode
+4. **Progress Monitoring**: Checking project status and progress through the system interface
 
-# Start monitoring
-autoproject start --daemon
-
-# View progress
-autoproject status
-```
+This streamlined setup process ensures that new projects can be quickly onboarded and begin benefiting from automated project management features immediately.
 
 ---
 
