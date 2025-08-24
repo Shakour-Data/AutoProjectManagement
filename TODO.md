@@ -183,6 +183,18 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 
 #### Configuration CLI:
 - [x] `configuration_cli/cli_commands.py` - ✅ Completed
+- [ ] `configuration_cli/config_and_token_management.py`
+- [x] `configuration_cli/documentation_automation.py` - ✅ Completed
+
+#### Integration Services:
+- [x] `integration_services/github_integration.py` - ✅ Completed
+- [x] `integration_services/github_project_manager.py` - ✅ Completed
+- [ ] `integration_services/integration_manager.py`
+- [ ] `integration_services/json_data_linker.py`
+- [ ] `integration_services/vscode_extension_installer.py`
+
+#### Monitoring Services:
+- [x] `monitoring_services/status_service.py` - ✅ Completed
 
 #### Wiki Services:
 - [ ] `wiki_services/wiki_page_mapper.py`
