@@ -114,3 +114,47 @@ def update_scrum_task(self, task_id, sprint_id, title, status, priority, progres
 }
 ```
 
+#### update_scrum_burndown Method
+```python
+def update_scrum_burndown(self, sprint_id, day, remaining_work) -> None
+```
+
+**Purpose:** Updates burndown chart data for a specific sprint and day.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `sprint_id` | `Any` | Yes | Identifier of the sprint |
+| `day` | `Any` | Yes | Day identifier or number |
+| `remaining_work` | `Any` | Yes | Amount of remaining work |
+
+**Process:**
+1. Reads existing burndown data from JSON file
+2. Removes any existing entry for the same `sprint_id` and `day`
+3. Adds the updated burndown entry
+4. Writes back to file with proper formatting
+
+**Burndown Structure:**
+```json
+{
+  "sprint_id": "sprint_identifier",
+  "day": "day_1",
+  "remaining_work": 42
+}
+```
+
+#### generate_scrum_report Method
+```python
+def generate_scrum_report(self, sprint_id) -> List[Tuple[Any, Any]]
+```
+
+**Purpose:** Generates a Scrum burndown report for a specific sprint.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `sprint_id` | `Any` | Yes | Identifier of the sprint to report on |
+
+**Returns:** `List[Tuple[Any, Any]]` - Sorted list of (day, remaining_work) tuples
+
+**Process:**
