@@ -381,18 +381,14 @@ This setup process ensures the system is properly configured for both developmen
 
 ### 9.2 Monitoring Setup
 
-```python
-# Configure logging
-import logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('autoprojectmanagement.log'),
-        logging.StreamHandler()
-    ]
-)
-```
+The system implements comprehensive logging and monitoring capabilities:
+
+- **Log Level Configuration**: Configurable logging levels from DEBUG to CRITICAL
+- **Structured Log Format**: Standardized log format with timestamps, component names, and severity levels
+- **Multiple Output Handlers**: Support for both file-based logging and console output
+- **Log Rotation**: Automatic log file management to prevent excessive disk usage
+
+This monitoring setup provides detailed visibility into system operations and facilitates effective troubleshooting and performance analysis.
 
 ## 10. Future Roadmap
 
