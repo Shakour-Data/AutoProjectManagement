@@ -202,14 +202,14 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 
 ### Core Application Files:
 - [x] `auto_runner.py` - ✅ Comprehensive documentation created with three levels of detail
-- [ ] `cli_dashboard.py`
-- [ ] `cli_docker.py`
-- [ ] `cli.py`
-- [ ] `demo_persistence.py`
-- [ ] `docker_setup.py`
-- [ ] `setup_auto_environment.py`
-- [ ] `vscode_extension_status_bar.py`
-- [ ] `vscode_extension.py`
+- [x] `cli_dashboard.py` - ✅ Comprehensive documentation created with diagrams and tables
+- [x] `cli_docker.py` - ✅ Comprehensive documentation created with diagrams and tables
+- [x] `cli.py` - ✅ Comprehensive documentation created with diagrams and tables
+- [x] `demo_persistence.py` - ✅ Comprehensive documentation created with diagrams and tables
+- [x] `docker_setup.py` - ✅ Comprehensive documentation created with diagrams and tables
+- [x] `setup_auto_environment.py` - ✅ Comprehensive documentation created with diagrams and tables
+- [x] `vscode_extension_status_bar.py` - ✅ Comprehensive documentation created with diagrams and tables
+- [x] `vscode_extension.py` - ✅ Comprehensive documentation created with diagrams and tables
 
 ### Persian Translation Phase:
 - [ ] Translate all English documentation to Persian
