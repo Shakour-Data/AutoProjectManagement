@@ -304,24 +304,13 @@ These testing capabilities ensure code quality, prevent regressions, and maintai
 ### 6.1 Installation Methods
 
 #### Method 1: pip install
-```bash
-pip install autoprojectmanagement
-```
+Install the package directly from the Python Package Index using the standard pip installation process.
 
 #### Method 2: From source
-```bash
-git clone https://github.com/autoprojectmanagement/autoprojectmanagement.git
-cd autoprojectmanagement
-pip install -e .
-```
+Clone the repository from GitHub and install the package in development mode for local modifications and contributions.
 
 #### Method 3: Development setup
-```bash
-git clone https://github.com/autoprojectmanagement/autoprojectmanagement.git
-cd autoprojectmanagement
-pip install -r requirements-dev.txt
-python setup.py develop
-```
+Complete development environment setup including all development dependencies, enabling full testing and development capabilities.
 
 ### 6.2 Configuration Setup
 
