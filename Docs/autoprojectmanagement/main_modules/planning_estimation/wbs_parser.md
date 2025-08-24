@@ -173,7 +173,7 @@ def validate_wbs_integrity(self, wbs: Dict[str, Any]) -> bool:
 
 #### get_task_hierarchy Method
 ```python
-def get_task_hierarchy(self, wbs: Dict[str, Any]) -> List[Dict[str, Any]:
+def get_task_hierarchy(self, wbs: Dict[str, Any]) -> List[Dict[str, Any]]:
 ```
 
 **Purpose:** Gets a flat list of all tasks in hierarchy.
