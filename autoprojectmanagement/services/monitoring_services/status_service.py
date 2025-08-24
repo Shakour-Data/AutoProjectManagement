@@ -110,3 +110,55 @@ class StatusService:
                     cpu_usage=system_metrics.get('cpu_usage')
                 )
                 
+                self.logger.info(f"Status retrieved: {status.status}, Progress: {status.progress}%")
+                return status
+                
+            else:
+                # No progress file found - return default status
+                return ProjectStatus(
+                    status='idle',
+                    progress=0,
+                    last_updated=datetime.now().isoformat(),
+                    tasks_completed=0,
+                    tasks_total=0,
+                    current_task='Waiting for tasks...'
+                )
+                
+        except Exception as e:
+            self.logger.error(f"Error retrieving status: {e}")
+            return ProjectStatus(
+                status='error',
+                progress=0,
+                last_updated=datetime.now().isoformat(),
+                tasks_completed=0,
+                tasks_total=0,
+                error=str(e)
+            )
+    
+    def _parse_progress_report(self, content: str) -> Dict[str, Any]:
+        """
+        Parse progress report content to extract status information.
+        
+        Args:
+            content: Progress report content as string
+            
+        Returns:
+            Dict containing parsed status information
+        """
+        status_data = {
+            'status': 'running',
+            'progress': 0,
+            'tasks_completed': 0,
+            'tasks_total': 0,
+            'current_task': None,
+            'estimated_completion': None
+        }
+        
+        try:
+            # Extract progress percentage
+            import re
+            progress_match = re.search(r'Overall Progress:\s*(\d+)%', content)
+            if progress_match:
+                status_data['progress'] = int(progress_match.group(1))
+            
+            # Extract tasks information
