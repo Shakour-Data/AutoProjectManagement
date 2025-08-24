@@ -394,3 +394,110 @@ Loads configuration data from `config.json`.
 ```bash
 # Set secure file permissions
 chmod 600 secret.key
+chmod 600 token.enc
+chmod 644 config.json
+
+# Verify file ownership
+chown root:root secret.key token.enc
+
+# Regular security audits
+ls -la config.json token.enc secret.key
+```
+
+## Troubleshooting Guide
+
+### Common Issues
+
+#### Missing Key File
+**Symptoms:** `FileNotFoundError` for `secret.key`
+**Solutions:**
+1. Run `generate_key()` to create a new key
+2. Check file permissions and ownership
+3. Verify working directory
+
+#### Decryption Failures
+**Symptoms:** `InvalidToken` errors during decryption
+**Solutions:**
+1. Verify key file hasn't been modified
+2. Check for file corruption
+3. Re-encrypt token with current key
+
+#### Permission Errors
+**Symptoms:** Permission denied errors accessing files
+**Solutions:**
+1. Check file permissions: `ls -la`
+2. Verify user has read/write access
+3. Run as appropriate user
+
+#### Configuration Issues
+**Symptoms:** Missing or invalid configuration values
+**Solutions:**
+1. Verify `config.json` contains required fields
+2. Check JSON syntax validity
+3. Set default values for missing configuration
+
+### Debug Mode
+
+For troubleshooting, enable debug output:
+
+```python
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
+from autoprojectmanagement.services.configuration_cli.config_and_token_management import (
+    load_config, decrypt_token
+)
+
+try:
+    config = load_config()
+    token = decrypt_token()
+    print(f"Config: {config}")
+    print(f"Token available: {token is not None}")
+except Exception as e:
+    print(f"Error: {e}")
+```
+
+### Recovery Procedures
+
+#### Key Loss Recovery
+If encryption key is lost:
+1. Generate new key: `generate_key()`
+2. Re-encrypt all tokens with new key
+3. Update any systems using old encrypted data
+
+#### Token Rotation
+To rotate a compromised token:
+1. Revoke old token at source (GitHub, etc.)
+2. Encrypt new token: `encrypt_token(new_token)`
+3. Verify new token works correctly
+
+## Compliance & Standards
+
+### Security Standards Compliance
+- **NIST SP 800-57**: Key management best practices
+- **OWASP**: Secure storage recommendations
+- **PCI DSS**: Encryption requirements for sensitive data
+- **GDPR**: Data protection and encryption requirements
+
+### Cryptographic Standards
+- **AES-128**: NIST-approved encryption algorithm
+- **HMAC-SHA256**: FIPS-approved authentication
+- **PKCS7**: Standard padding scheme
+- **Base64**: Standard encoding format
+
+## Version History
+
+- **v1.0.0**: Initial implementation with Fernet encryption
+- **v0.5.0**: Basic configuration management without encryption
+- **v0.1.0**: Proof of concept
+
+## Related Documentation
+
+- [GitHub Integration Service](../integration_services/github_integration_docs.md)
+- [CLI Commands Documentation](./cli_commands_docs.md)
+- [Security Best Practices](../../SystemDesign/Guides/security_best_practices.md)
+- [Encryption Standards](../../SystemDesign/Guides/encryption_standards.md)
+
+---
+*Documentation maintained by AutoProjectManagement Team*
+*Last reviewed: 2025-08-14*
