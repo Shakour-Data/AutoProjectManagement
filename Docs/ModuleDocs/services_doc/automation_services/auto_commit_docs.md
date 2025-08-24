@@ -317,3 +317,37 @@ Retrieves list of changed files from Git status.
 
 ##### stage_files  
 ```python
+stage_files(files: List[str]) -> bool
+```
+Stages specified files for commit.
+
+**Parameters:**
+- `files`: List of file paths to stage
+
+**Returns:** Success status
+
+##### commit_files
+```python
+commit_files(message: str) -> bool
+```
+Commits staged files with provided message.
+
+**Parameters:**
+- `message`: Commit message
+
+**Returns:** Success status
+
+##### push_changes_guaranteed
+```python
+push_changes_guaranteed(remote: str = "origin", branch: str = "main") -> bool
+```
+Executes guaranteed push with multiple fallback strategies.
+
+**Parameters:**
+- `remote`: Remote repository name
+- `branch`: Branch name
+
+**Returns:** Success status
+
+##### commit_and_push_all_guaranteed
+```python
