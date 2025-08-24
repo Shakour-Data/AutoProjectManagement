@@ -278,3 +278,44 @@ def status() -> None:
 
 def main() -> None:
     """
+    Main entry point for the CLI application.
+    Parses command line arguments and executes appropriate commands.
+    """
+    parser = argparse.ArgumentParser(
+        description="AutoProjectManagement Configuration CLI",
+        epilog="Use 'python -m autoprojectmanagement.services.configuration_cli.cli_commands <command> --help' for command-specific help"
+    )
+    
+    subparsers = parser.add_subparsers(dest='command', help='Available commands')
+    
+    # Setup command
+    setup_parser = subparsers.add_parser('setup', help='Setup the complete project environment')
+    setup_parser.set_defaults(func=setup_project)
+    
+    # Status command
+    status_parser = subparsers.add_parser('status', help='Check comprehensive project status')
+    status_parser.set_defaults(func=status)
+    
+    # Create GitHub project command
+    github_parser = subparsers.add_parser('create-github', help='Create GitHub project with full integration')
+    github_parser.add_argument('project_name', help='Name of the GitHub project')
+    github_parser.add_argument('--description', help='Project description')
+    github_parser.add_argument('--github-username', help='GitHub username (optional)')
+    github_parser.set_defaults(func=create_github_project)
+    
+    # Sync with GitHub command
+    sync_parser = subparsers.add_parser('sync-github', help='Sync existing project with GitHub')
+    sync_parser.add_argument('project_json', help='Path to project JSON file')
+    sync_parser.add_argument('github_username', help='GitHub username')
+    sync_parser.set_defaults(func=sync_with_github)
+    
+    args = parser.parse_args()
+    
+    if hasattr(args, 'func'):
+        args.func(args)
+    else:
+        parser.print_help()
+
+
+if __name__ == '__main__':
+    main()
