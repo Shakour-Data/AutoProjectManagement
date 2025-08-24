@@ -12,39 +12,6 @@ import json
 import logging
 import os
 import sys
-import os
-import sys
-from datetime import datetime
-
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-# Constants
-CURRENT_VERSION = "2.0.0"
-PYTHON_MIN_VERSION = "3.8+"
-CREATED_DATE = "2025-08-14"
-MODIFIED_DATE = "2025-08-14"
-
-# Module-level docstring
-__doc__ = """
-GitHub project management within the AutoProjectManagement system
-
-This module is part of the AutoProjectManagement system.
-For more information, visit: https://github.com/autoprojectmanagement/autoprojectmanagement
-"""
-
-# Version information
-__version__ = CURRENT_VERSION
-__author__ = "AutoProjectManagement Team"
-__license__ = "MIT"
-
-
-import argparse
-import json
-import logging
-import os
-import sys
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
 from pathlib import Path
@@ -72,6 +39,39 @@ class GitHubProjectConfig:
     description: str
     github_username: str
     github_token: Optional[str] = None
+    organization: Optional[str] = None
+    private: bool = True
+    auto_init: bool = True
+    gitignore_template: Optional[str] = None
+    license_template: Optional[str] = None
+
+@dataclass
+class ProjectReport:
+    """Report structure for project creation results."""
+    project_name: str
+    github_username: str
+    status: str
+    url: Optional[str] = None
+    error_message: Optional[str] = None
+    created_at: Optional[str] = None
+    repository_id: Optional[int] = None
+
+class GitHubAPIError(Exception):
+    """Custom exception for GitHub API related errors."""
+    pass
+
+class GitHubProjectManager:
+    """
+    A comprehensive manager for GitHub projects with CLI and programmatic interfaces.
+    
+    This class provides functionality to create GitHub projects, manage configurations,
+    and synchronize project data from JSON templates. It includes proper error handling,
+    logging, and supports both interactive and automated workflows.
+    
+    Attributes:
+        github_token (str): GitHub personal access token for authentication
+        session (requests.Session): HTTP session for API calls
+        config (Dict[str, Any]): Configuration dictionary loaded from file
     organization: Optional[str] = None
     private: bool = True
     auto_init: bool = True
