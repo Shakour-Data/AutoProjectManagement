@@ -158,3 +158,33 @@ def generate_scrum_report(self, sprint_id) -> List[Tuple[Any, Any]]
 **Returns:** `List[Tuple[Any, Any]]` - Sorted list of (day, remaining_work) tuples
 
 **Process:**
+1. Reads burndown data from JSON file
+2. Filters entries for the specified `sprint_id`
+3. Extracts day and remaining_work values
+4. Sorts by day for chronological order
+
+**Report Format:**
+```python
+[
+  ("day_1", 100),
+  ("day_2", 85),
+  ("day_3", 70),
+  # ... sorted by day
+]
+```
+
+#### close Method
+```python
+def close(self) -> None
+```
+
+**Purpose:** Cleanup method for resource management (currently no-op).
+
+**Note:** Placeholder method for future resource cleanup needs.
+
+## Data Flow Diagram
+
+```mermaid
+flowchart TD
+    A[Task Updates] --> B[update_scrum_task]
+    B --> C[scrum_tasks.json]
