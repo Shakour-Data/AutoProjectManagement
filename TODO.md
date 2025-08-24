@@ -197,8 +197,8 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [x] `monitoring_services/status_service.py` - ✅ Completed
 
 #### Wiki Services:
-- [ ] `wiki_services/wiki_page_mapper.py`
-- [ ] `wiki_services/wiki_sync_service.py`
+- [x] `wiki_services/wiki_page_mapper.py` - ✅ Comprehensive documentation created with three levels of detail
+- [x] `wiki_services/wiki_sync_service.py` - ✅ Comprehensive documentation created with three levels of detail
 
 ### Core Application Files:
 - [ ] `auto_runner.py`
