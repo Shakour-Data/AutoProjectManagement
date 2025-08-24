@@ -216,3 +216,4 @@ class DocumentationAutomation:
                     'chore': '🔧 Chores'
                 }.get(commit_type, '📦 Changes')
                 
+                output.append(f"\n### {type_display}\n")
