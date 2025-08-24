@@ -1,16 +1,16 @@
-# Data Flow Diagrams (DFD)
+# DFD (Data Flow Diagrams)
 
-## Level 0 DFD
+## Level 0: Context Diagram
 
-The Level 0 DFD provides a high-level overview of the Project Management system, showing the main processes and data flows:
-
-```plantuml
-@startuml
-rectangle "User" as User
-rectangle "Frontend" as Frontend
-rectangle "Backend API" as Backend
-rectangle "Database" as Database
-rectangle "Reports & Dashboards" as Reports
+```mermaid
+flowchart TD
+    External[External Systems<br/>GitHub, VS Code] --> AutoProjectManagement[AutoProjectManagement System]
+    AutoProjectManagement --> External
+    
+    Users[Users<br/>Developers, Managers] --> AutoProjectManagement
+    AutoProjectManagement --> Users
+    
+    DataStores[Data Stores<br/>JSON Databases, Files] --> AutoProjectManagement
 
 User -> Frontend : Interacts
 Frontend -> Backend : Sends requests
