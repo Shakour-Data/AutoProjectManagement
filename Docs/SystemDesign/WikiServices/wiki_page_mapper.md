@@ -64,3 +64,45 @@ flowchart TD
 ```
 
 ## Directory Structure Mapping
+The `get_directory_structure` method analyzes the documentation directory and creates a mapping of directories to their corresponding wiki pages, enabling organized wiki navigation.
+
+## Error Handling
+The module includes error handling for:
+- File path validation
+- Character encoding issues
+- Directory traversal errors
+
+## Usage
+### Basic Usage
+```python
+from pathlib import Path
+from autoprojectmanagement.services.wiki_services.wiki_page_mapper import WikiPageMapper
+
+mapper = WikiPageMapper()
+docs_root = Path("/path/to/Docs")
+file_path = Path("/path/to/Docs/SystemDesign/Architectural_Design.md")
+
+wiki_page = mapper.map_file_to_wiki_page(file_path, docs_root)
+# Result: "System-Design/Architectural-Design"
+```
+
+### Directory Structure Analysis
+```python
+structure = mapper.get_directory_structure(docs_root)
+# Returns dictionary mapping directories to wiki pages
+```
+
+## Integration with Wiki Sync
+The WikiPageMapper is designed to work seamlessly with the `WikiSyncService` to provide automated wiki synchronization from the documentation directory.
+
+## Benefits
+- **Consistency**: Ensures uniform wiki page naming
+- **Automation**: Enables automatic wiki synchronization
+- **Organization**: Maintains directory structure in wiki navigation
+- **Compatibility**: Follows GitHub wiki naming conventions
+
+## Conclusion
+The Wiki Page Mapper is an essential component for automated documentation management, providing reliable file-to-wiki page mapping that maintains organizational structure and follows GitHub wiki standards.
+
+---
+*Last updated: 2025-08-14*
