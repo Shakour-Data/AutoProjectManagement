@@ -62,24 +62,26 @@ class StatusService:
             project_path: Path to the project directory (defaults to current directory)
         """
         self.project_path = project_path or os.getcwd()
-                'status': 'error',
-                'error': str(e),
-                'last_updated': datetime.now().isoformat()
-            }
+        self.status_file = os.path.join(self.project_path, 'JSonDataBase', 'OutPuts', 'status.json')
+        
+        # Configure logging
+        self.logger = logging.getLogger(__name__)
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        )
+        
+        self.logger.info(f"Status Service initialized for project: {self.project_path}")
     
-    def save_status(self, status):
-        """Save status to JSON file"""
-        os.makedirs(os.path.dirname(self.status_file), exist_ok=True)
-        with open(self.status_file, 'w') as f:
-            json.dump(status, f, indent=2)
-    
-    def update_status_periodically(self):
-        """Update status every 30 seconds"""
-        while True:
-            status = self.get_status()
-            self.save_status(status)
-            time.sleep(30)
-
-if __name__ == "__main__":
-    service = StatusService()
-    service.update_status_periodically()
+    def get_status(self) -> ProjectStatus:
+        """
+        Get comprehensive current project status.
+        
+        Returns:
+            ProjectStatus: Complete status information including progress, tasks, and system metrics
+            
+        Raises:
+            Exception: If status retrieval fails
+        """
+        try:
+            # Read from progress report
