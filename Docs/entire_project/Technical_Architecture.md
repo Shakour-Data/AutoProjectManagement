@@ -346,17 +346,16 @@ This class architecture ensures effective risk management capabilities with prop
 - Automated testing
 
 **Key Classes:**
-```python
-class QualityManagement:
-    def check_code_quality(self, commit_hash: str) -> QualityReport:
-        """Check code quality for a commit"""
-        
-    def review_commit(self, commit: Commit) -> ReviewResult:
-        """Review a commit"""
-        
-    def generate_quality_report(self) -> QualityReport:
-        """Generate comprehensive quality report"""
-```
+The Quality Management System includes comprehensive class structures for ensuring code quality and review processes:
+
+- **QualityManagement**: Core class responsible for code quality checks, commit reviews, and quality reporting
+- **Quality Data Structures**: Typed dictionaries for quality metrics and review results
+- **Code Analysis**: Methods for analyzing code quality and identifying potential issues
+- **Review Processes**: Comprehensive commit review workflows and approval mechanisms
+- **Reporting Capabilities**: Automated quality report generation with detailed metrics
+- **Error Handling**: Robust exception handling for all quality management operations
+
+This class architecture ensures effective quality management capabilities with proper data validation and error handling.
 
 ---
 
