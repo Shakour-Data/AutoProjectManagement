@@ -1,28 +1,28 @@
-# Commit Progress Manager Module
+# Commit Progress Manager Module Documentation
 
-## Overview
-The `commit_progress_manager` module provides the `CommitProgressManager` class to track and manage commit progress per task. It loads commit task data, calculates commit counts and progress percentages, and saves the progress data.
+## Level 1: Executive Overview
 
-## Class: CommitProgressManager
+### Module Purpose and Functionality
+The `commit_progress_manager` module provides comprehensive commit progress tracking and management capabilities within the AutoProjectManagement system. It serves as the central component for analyzing commit-task relationships, calculating progress metrics, and generating actionable insights for project monitoring.
 
-### Description
-The `CommitProgressManager` class manages commit progress tracking by reading commit task database JSON, generating progress metrics, and saving the results.
+### Key Responsibilities
+- **Data Loading**: Loads commit task database from JSON storage
+- **Progress Calculation**: Computes commit-based progress metrics per task
+- **Data Persistence**: Saves progress data for dashboard consumption
+- **Summary Generation**: Provides statistical overview of commit activity
 
-### Methods
+### Business Value
+This module enables real-time tracking of development progress through commit analysis, providing project managers with quantitative metrics to assess task completion rates and identify potential bottlenecks in the development workflow.
 
-- `__init__(self, commit_task_db_path, commit_progress_path)`
-  - Initializes paths and internal data structures.
+---
 
-- `load_commit_task_db(self)`
-  - Loads commit task database JSON from file.
+## Level 2: Technical Architecture
 
-- `generate_commit_progress(self)`
-  - Calculates commit counts, last commit dates, and progress percentages per task.
-
-- `save_commit_progress(self)`
-  - Saves the generated commit progress data to JSON file.
-
-- `run(self)`
+### System Integration
+```mermaid
+graph TD
+    A[Commit Task Database<br/>JSON Input] --> B[CommitProgressManager]
+    B --> C[Progress Metrics<br/>Calculation]
   - Runs the full process: load, generate, save, and print status.
 
 ## Usage
