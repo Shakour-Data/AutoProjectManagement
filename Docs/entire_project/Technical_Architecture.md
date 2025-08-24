@@ -480,6 +480,8 @@ The API follows a standardized response format for all endpoints:
 - **Data Payload**: Structured data containing the requested information
 - **Metadata**: Additional information including timestamps and version details
 - **Error Handling**: Consistent error response structure for failed operations
+- **Versioning**: API version information for compatibility management
+
 
 ### Error Handling
 
