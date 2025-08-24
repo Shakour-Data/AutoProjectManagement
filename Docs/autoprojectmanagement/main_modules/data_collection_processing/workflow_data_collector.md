@@ -38,3 +38,8 @@ graph TD
 |-----------|------|---------|
 | `data_dir` | Configuration | Directory path for JSON file storage |
 | `scrum_sprints_file` | Configuration | Path to Scrum sprints JSON file |
+| `scrum_tasks_file` | Configuration | Path to Scrum tasks JSON file |
+| `scrum_burndown_file` | Configuration | Path to Scrum burndown JSON file |
+
+## Detailed Method Documentation
+
