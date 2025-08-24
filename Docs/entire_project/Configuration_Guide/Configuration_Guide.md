@@ -234,19 +234,16 @@ Basic JSON storage configuration includes:
 This configuration provides a simple and effective way to manage project data using JSON files.
 
 #### 2. Custom Directory Structure
-```json
-{
-  "database": {
-    "type": "json",
-    "json_path": "config/project_data.json",
-    "data_directory": "project_data",
-    "inputs_path": "project_data/inputs",
-    "outputs_path": "project_data/outputs",
-    "backup_enabled": true,
-    "backup_count": 10
-  }
-}
-```
+Custom directory structure configuration allows for flexible organization of JSON data:
+
+- **Storage Type**: JSON-based storage system
+- **JSON Path**: Custom path for the main configuration file
+- **Data Directory**: Custom directory for data storage
+- **Inputs Path**: Directory for input JSON files
+- **Outputs Path**: Directory for output JSON files
+- **Backup Settings**: Backup configuration including count and enablement
+
+This configuration provides flexibility in organizing project data according to specific requirements.
 
 #### 3. Production JSON Storage
 ```json
