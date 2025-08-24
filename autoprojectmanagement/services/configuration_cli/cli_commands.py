@@ -52,19 +52,19 @@ def run_command(command: List[str]) -> bool:
 
 def prompt_user(question: str, default: Optional[str] = None) -> str:
     """
-    logger.info("\nSetup complete.")
-    logger.info("Please add your project dependencies to requirements.txt if not already done.")
-    logger.info("Place your JSON input files in the 'project_inputs/PM_JSON/user_inputs' directory.")
-    logger.info("You can then proceed with other commands.")
-
-def create_github_project(args):
-    """Create a new GitHub project with full integration"""
-    manager = GitHubProjectManager()
+    Prompt user for input with optional default value.
     
-    project_name = args.project_name
-    description = args.description or ""
-    github_username = args.github_username
-    
+    Args:
+        question: The question to ask the user
+        default: Optional default value
+        
+    Returns:
+        str: User input or default value
+    """
+    prompt = f"{question}"
+    if default:
+        prompt += f" [{default}]"
+    prompt += ": "
     if not github_username:
         github_username = input("Enter your GitHub username: ")
     
