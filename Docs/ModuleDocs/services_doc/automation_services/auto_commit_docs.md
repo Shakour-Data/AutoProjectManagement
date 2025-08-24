@@ -9,15 +9,15 @@ The `UnifiedAutoCommit` service provides automated Git commit functionality with
 
 ## Table of Contents
 
-1. [Architecture Overview](#architecture-overview)
-2. [Core Functionality](#core-functionality)
-3. [Authentication System](#authentication-system)
-4. [Project Management Integration](#project-management-integration)
-5. [Error Handling & Recovery](#error-handling--recovery)
-6. [Performance Characteristics](#performance-characteristics)
-7. [Usage Examples](#usage-examples)
-8. [API Reference](#api-reference)
-9. [Troubleshooting Guide](#troubleshooting-guide)
+- [AutoCommit Service Documentation](#autocommit-service-documentation)
+  - [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [Architecture Overview](#architecture-overview)
+    - [System Context Diagram](#system-context-diagram)
+    - [Component Architecture](#component-architecture)
+  - [Core Functionality](#core-functionality)
+    - [Workflow Process](#workflow-process)
+    - [Detailed Process Flow](#detailed-process-flow)
 
 ## Architecture Overview
 
@@ -60,3 +60,50 @@ classDiagram
         +commit_and_push_all_guaranteed(remote, branch)
         +run_complete_workflow_guaranteed(remote, branch)
         +load_linked_wbs_resources(filepath)
+        +update_commit_task_database(commit_hash, task_id, file_path, commit_message, workflow_stage, progress_change, importance_change, priority_change, db_path)
+        +write_commit_progress_to_json(file_path)
+    }
+    
+    class GitConfigManager {
+        +configure_git_automatically()
+    }
+    
+    UnifiedAutoCommit --> GitConfigManager : uses
+    UnifiedAutoCommit --> "Git Commands" : executes
+    UnifiedAutoCommit --> "JSON Database" : interacts with
+```
+
+## Core Functionality
+
+### Workflow Process
+
+```mermaid
+flowchart LR
+    A[Detect Changes] --> B[Group & Categorize]
+    B --> C[Stage Files]
+    C --> D[Generate Commit Message]
+    D --> E[Commit Changes]
+    E --> F[Push Guaranteed]
+    F --> G[Update Project Management]
+    G --> H[Create Backup]
+```
+
+### Detailed Process Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant AutoCommit
+    participant Git
+    participant GitHub
+    participant ProjectDB
+    
+    User->>AutoCommit: run_complete_workflow_guaranteed()
+    AutoCommit->>Git: get_git_changes()
+    Git-->>AutoCommit: list of changes
+    AutoCommit->>AutoCommit: group_and_categorize_files()
+    AutoCommit->>Git: stage_files()
+    Git-->>AutoCommit: success/failure
+    AutoCommit->>AutoCommit: generate_commit_message()
+    AutoCommit->>Git: commit_files()
+    Git-->>AutoCommit: commit_hash
