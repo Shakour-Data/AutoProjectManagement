@@ -254,3 +254,27 @@ class StatusService:
                 self.save_status(status)
                 time.sleep(interval)
                 
+        except KeyboardInterrupt:
+            self.logger.info("Periodic status updates stopped")
+        except Exception as e:
+            self.logger.error(f"Error in periodic status updates: {e}")
+    
+    def get_status_json(self) -> str:
+        """
+        Get current status as JSON string.
+        
+        Returns:
+            str: JSON formatted status information
+        """
+        status = self.get_status()
+        return json.dumps(asdict(status), indent=2, ensure_ascii=False)
+    
+    def clear_status(self) -> bool:
+        """
+        Clear the status file and reset to idle state.
+        
+        Returns:
+            bool: True if cleared successfully, False otherwise
+        """
+        try:
+            if os.path.exists(self.status_file):
