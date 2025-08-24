@@ -267,3 +267,25 @@ flowchart TD
 | `share_view` | اشتراک‌گذاری نمای | `--name`, `--format` |
 | `schedule_report` | زمان‌بندی گزارش‌ها | `--type`, `--schedule`, `--format` |
 | `analyze` | تحلیل داده | `--type`, `--timeframe` |
+| `config` | پیکربندی تنظیمات | `--setting`, `--value` |
+
+## مثال‌های استفاده
+
+### استفاده پایه
+```bash
+# راه‌اندازی سرور داشبورد
+autoprojectmanagement dashboard --start --port 3000
+
+# باز کردن داشبورد در مرورگر
+autoprojectmanagement dashboard --open
+
+# بررسی وضعیت
+autoprojectmanagement dashboard --status
+
+# صادرات داده
+autoprojectmanagement dashboard --export --format json
+```
+
+### استفاده پیشرفته
+```bash
+# ایجاد نمای سفارشی
