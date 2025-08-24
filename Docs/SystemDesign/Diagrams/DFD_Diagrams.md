@@ -11,43 +11,43 @@ flowchart TD
     AutoProjectManagement --> Users
     
     DataStores[Data Stores<br/>JSON Databases, Files] --> AutoProjectManagement
-
-User -> Frontend : Interacts
-Frontend -> Backend : Sends requests
-Backend -> Database : Queries/Updates
-Database -> Backend : Returns data
-Backend -> Reports : Generates reports
-Reports -> User : Displays reports
-@enduml
+    AutoProjectManagement --> DataStores
 ```
 
-## Level 1 DFD
+## Level 1: System Overview
 
-The Level 1 DFD breaks down the Backend processes:
-
-```plantuml
-@startuml
-rectangle "Task Management" as TaskMgmt
-rectangle "Resource Allocation" as ResourceAlloc
-rectangle "Progress Tracking" as ProgressTrack
-rectangle "Reporting" as Reporting
-
-TaskMgmt --> ResourceAlloc
-ResourceAlloc --> ProgressTrack
-ProgressTrack --> Reporting
-@enduml
+```mermaid
+flowchart TD
+    subgraph AutoProjectManagement[AutoProjectManagement System]
+        API[API Gateway]
+        Core[Core Processing]
+        Dashboard[Dashboard Services]
+        Integration[Integration Services]
+        DataProcessing[Data Processing]
+    end
+    
+    External[External Systems] --> API
+    API --> External
+    
+    Users[Users] --> Dashboard
+    Dashboard --> Users
+    
+    API --> Core
+    Core --> API
+    
+    Core --> Dashboard
+    Dashboard --> Core
+    
+    Core --> Integration
+    Integration --> Core
+    
+    Core --> DataProcessing
+    DataProcessing --> Core
+    
+    DataProcessing --> DataStores[Data Stores]
+    DataStores --> DataProcessing
 ```
 
-(Data stores: Project Database, Task Database, Resource Database)
-
-## Detailed DFDs
-
-### Task Management Process
-
-```plantuml
-@startuml
-actor User
-participant Frontend
 participant Backend_API
 participant TaskDB
 
