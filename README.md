@@ -54,6 +54,126 @@ graph TB
         API[FastAPI Server] --> PM[Project Management]
         API --> DB[Dashboard Services]
         API --> WS[WebSocket Gateway]
+        API --> SSE[SSE Gateway]
+        
+        PM --> CRM[Communication Risk Module]
+        PM --> DCP[Data Collection & Processing]
+        PM --> PE[Planning & Estimation]
+        PM --> PR[Progress Reporting]
+        PM --> QCM[Quality Commit Management]
+        PM --> RM[Resource Management]
+        PM --> TWM[Task Workflow Management]
+        
+        DB --> OV[Dashboard Overview]
+        DB --> MT[Metrics & Analytics]
+        DB --> AL[Alert System]
+        DB --> LY[Layout Management]
+        DB --> RT[Real-time Updates]
+        
+        WS --> EV[Event System]
+        WS --> HB[Heartbeat Management]
+        WS --> SM[Subscription Management]
+        
+        SSE --> ES[Event Streaming]
+        SSE --> CM[Connection Management]
+    end
+    
+    Client[API Client] --> API
+    Dashboard[Dashboard UI] --> DB
+    Dashboard --> WS
+    Dashboard --> SSE
+    
+    GitHub[GitHub Integration] --> PM
+    VSCode[VS Code Integration] --> PM
+    
+    DataStores[Data Stores] --> PM
+    PM --> DataStores
+```
+
+### API Architecture
+
+```mermaid
+graph LR
+    A[HTTP Client] --> B[FastAPI Gateway]
+    B --> C[API Router]
+    C --> D[Project Endpoints]
+    C --> E[Dashboard Endpoints]
+    C --> F[System Endpoints]
+    C --> G[SSE Endpoints]
+    
+    H[WebSocket Client] --> I[WebSocket Router]
+    I --> J[Event Service]
+    J --> K[Real-time Updates]
+    
+    D --> L[Project Service]
+    E --> M[Dashboard Service]
+    F --> N[System Service]
+    G --> O[SSE Service]
+    
+    L --> P[Business Logic]
+    M --> Q[Analytics Engine]
+    N --> R[Health Monitoring]
+    O --> S[Event Streaming]
+    
+    P --> T[Data Access Layer]
+    Q --> T
+    R --> T
+    S --> T
+    
+    T --> U[Data Stores]
+    U --> T
+```
+
+### Real-time Data Flow
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant API
+    participant Service
+    participant EventService
+    participant WebSocket
+    participant SSE
+    
+    Client->>API: HTTP Request
+    API->>Service: Process Request
+    Service->>EventService: Generate Event
+    EventService->>WebSocket: Broadcast Update
+    EventService->>SSE: Stream Update
+    WebSocket->>Client: Real-time Notification
+    SSE->>Client: Server-Sent Event
+    
+    Note over Client,WebSocket: Continuous WebSocket Connection
+    Note over Client,SSE: Persistent SSE Connection
+    Client->>WebSocket: Subscribe to Events
+    Client->>SSE: Subscribe to Events
+    WebSocket->>EventService: Register Subscription
+    SSE->>EventService: Register Subscription
+    EventService->>WebSocket: Push Updates
+    EventService->>SSE: Push Updates
+    WebSocket->>Client: Deliver Events
+    SSE->>Client: Deliver Events
+```
+
+### Data Flow Diagrams
+
+The system includes comprehensive Data Flow Diagrams (DFD) showing:
+- **Level 0**: Context diagram showing external interactions
+- **Level 1**: System overview with major components
+- **Level 2**: Detailed component interactions
+- **Level 3**: Process-level data flows
+
+See [DFD Diagrams](Docs/SystemDesign/Diagrams/DFD_Diagrams.md) for complete details.
+
+### UML Diagrams
+
+Comprehensive UML diagrams including:
+- **Class Diagrams**: System structure and relationships
+- **Sequence Diagrams**: Interaction flows
+- **Component Diagrams**: System composition
+- **Activity Diagrams**: Process flows
+- **State Diagrams**: State transitions
+
 
 ---
 
