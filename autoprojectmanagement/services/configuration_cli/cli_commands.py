@@ -97,25 +97,25 @@ def setup_project() -> None:
         logger.warning("⚠️  .gitignore configuration may have issues")
 
     # Create requirements.txt
-    github_username = args.github_username
-    
-    if not os.path.exists(project_json):
-        logger.error(f"Project JSON file not found: {project_json}")
-        return
-    
-    try:
-        reports = manager.create_github_project_from_json(project_json, github_username)
-        
-        print("\n✅ Project synced with GitHub successfully!")
-        print(f"📄 Reports saved to github_reports directory")
-        
-    except Exception as e:
-        logger.error(f"Failed to sync project with GitHub: {e}")
-        print(f"❌ Error: {e}")
+    if create_requirements_file():
+        logger.info("✅ requirements.txt file created")
+    else:
+        logger.warning("⚠️  requirements.txt creation may have issues")
 
-def status():
-    logger.info("Project Management Tool Status:")
-    if os.path.exists('.git'):
+    # Create virtual environment
+    if create_virtualenv():
+        logger.info("✅ Virtual environment created")
+    else:
+        logger.warning("⚠️  Virtual environment creation may have issues")
+
+    # Install dependencies
+    if install_dependencies():
+        logger.info("✅ Dependencies installed")
+    else:
+        logger.warning("⚠️  Dependency installation may have issues")
+
+    # Create necessary directories
+    required_dirs = [
         logger.info("- Git repository initialized.")
     else:
         logger.info("- Git repository not found.")
