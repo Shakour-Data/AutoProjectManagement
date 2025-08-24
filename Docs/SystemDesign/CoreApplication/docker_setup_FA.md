@@ -31,3 +31,32 @@ classDiagram
 #### مقداردهی اولیه
 **متد**: `__init__(project_root: Optional[str] = None)`
 
+کلاس DockerSetup را با دایرکتوری ریشه پروژه و مسیر اسکریپت مقداردهی اولیه می‌کند.
+
+**پارامترها**:
+- `project_root`: مسیر اختیاری به دایرکتوری ریشه پروژه.
+
+#### بررسی نصب Docker
+**متد**: `check_docker_installed() -> bool`
+
+بررسی می‌کند که آیا Docker روی سیستم نصب و در دسترس است.
+
+**برمی‌گرداند**: بولین نشان‌دهنده نصب Docker.
+
+#### بررسی Docker Compose
+**متد**: `check_docker_compose() -> bool`
+
+بررسی می‌کند که آیا Docker Compose روی سیستم در دسترس است.
+
+**برمی‌گرداند**: بولین نشان‌دهنده در دسترس بودن Docker Compose.
+
+#### تشخیص محیط
+**متد**: `detect_environment() -> str`
+
+به طور خودکار محیط مناسب (توسعه یا تولید) را بر اساس شاخه Git فعلی تشخیص می‌دهد.
+
+**برمی‌گرداند**: رشته محیط ("development" یا "production").
+
+#### راه‌اندازی Docker
+**متد**: `setup_docker(environment: Optional[str] = None, auto: bool = True) -> bool`
+
