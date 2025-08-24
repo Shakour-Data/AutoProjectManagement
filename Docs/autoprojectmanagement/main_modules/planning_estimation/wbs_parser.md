@@ -264,3 +264,38 @@ print("Task Details:", task_details)
 
 ### Validating WBS Integrity
 ```python
+is_valid = parser.validate_wbs_integrity(parsed_wbs)
+print("WBS is valid:", is_valid)
+```
+
+### Getting Task Hierarchy
+```python
+hierarchy = parser.get_task_hierarchy(parsed_wbs)
+print("Task Hierarchy:", hierarchy)
+```
+
+## Performance Considerations
+
+- **Recursive Processing**: Validation and hierarchy extraction are recursive operations
+- **Text Parsing**: Line-by-line processing for text format WBS
+- **Memory Usage**: Entire WBS structure loaded into memory for processing
+
+## Best Practices
+
+1. **Validation First**: Validate WBS structure before further processing
+2. **Consistent Formatting**: Use consistent indentation for text format WBS
+3. **Error Handling**: Implement proper error handling for parsing operations
+4. **Data Integrity**: Regularly validate WBS integrity to ensure consistency
+
+## Integration Points
+
+This module integrates with:
+- **WBS Management**: Parses WBS data from various sources
+- **Project Planning**: Provides structured WBS data for planning
+- **Reporting**: Supplies task details and hierarchy for reporting
+- **Data Analysis**: Enables analysis of WBS structure and task relationships
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
