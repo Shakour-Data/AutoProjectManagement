@@ -561,20 +561,14 @@ erDiagram
 | `/api/v1/projects/{id}/tasks` | POST | Create task | `{"title": "...", ...}` | `{"id": 1, ...}` |
 
 #### WebSocket API
-```json
-{
-  "event": "task_updated",
-  "data": {
-    "project_id": 1,
-    "task_id": 5,
-    "changes": {
-      "status": "completed",
-      "progress": 100
-    },
-    "timestamp": "2025-08-14T10:30:00Z"
-  }
-}
-```
+The WebSocket API provides real-time event notifications for system updates:
+
+- **Event Types**: Task updates, project changes, progress notifications, and system alerts
+- **Data Structure**: Comprehensive event data including project and task identifiers, change details, and timestamps
+- **Real-time Delivery**: Instant notification delivery for time-sensitive updates
+- **Event History**: Complete event history with ISO 8601 timestamp formatting
+
+This real-time communication channel enables immediate updates and enhances user experience with live project monitoring capabilities.
 
 ### CLI Interface
 
