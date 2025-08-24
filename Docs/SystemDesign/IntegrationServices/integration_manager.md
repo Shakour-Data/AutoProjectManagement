@@ -36,13 +36,20 @@ classDiagram
 
 ### BPMN Diagram
 ```mermaid
-bpmn
-    bpmn:process
-        bpmn:startEvent Start
-        bpmn:task Task1
-        bpmn:task Task2
-        bpmn:endEvent End
-        Start --> Task1 --> Task2 --> End
+flowchart TD
+    A[Start Integration] --> B[Initialize Configuration]
+    B --> C[Load Module Execution Order]
+    C --> D[Execute Modules Sequentially]
+    D --> E{Module Success?}
+    E -->|Yes| F[Continue to Next Module]
+    E -->|No| G[Handle Error]
+    F --> D
+    G --> H{Continue on Error?}
+    H -->|Yes| F
+    H -->|No| I[Stop Execution]
+    I --> J[Generate Report]
+    F -->|All Modules Processed| J
+    J --> K[End Integration]
 ```
 
 ## Error Handling
