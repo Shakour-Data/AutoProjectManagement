@@ -1,17 +1,17 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-path: autoprojectmanagement/services/configuration_cli/github_project_manager.py
-File: github_project_manager.py
-Purpose: GitHub project management
+GitHub Project Manager for AutoProjectManagement
+Purpose: Manage GitHub projects with CLI and programmatic interfaces
 Author: AutoProjectManagement Team
 Version: 2.0.0
 License: MIT
-Description: GitHub project management within the AutoProjectManagement system
+Description: Provides functionality to create GitHub projects, manage configurations, and synchronize project data from JSON templates.
 """
 
+import argparse
+import json
 import logging
-from typing import Dict, Any, Optional, List, Union
+import os
+import sys
 import os
 import sys
 from datetime import datetime
