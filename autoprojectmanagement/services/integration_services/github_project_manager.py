@@ -127,54 +127,54 @@ class GitHubProjectManager:
         method: str,
         endpoint: str,
         data: Optional[Dict[str, Any]] = None,
-        """
-        self.github_token = github_token or os.getenv('GITHUB_TOKEN')
-        if not self.github_token:
-            raise GitHubAPIError(
-                "GitHub token is required. Set GITHUB_TOKEN environment variable "
-                "or pass token to constructor."
-            )
-        
-        self.session = requests.Session()
-        self.session.headers.update({
-            'Authorization': f'token {self.github_token}',
-            'Accept': 'application/vnd.github.v3+json',
-            'User-Agent': 'GitHubProjectManager/1.0.0'
-        })
-        
-        self.config = self._load_config()
-        logger.info("GitHub Project Manager initialized successfully")
-    
-    def _load_config(self) -> Dict[str, Any]:
-        """Load configuration from local config file."""
-        config_path = Path(CONFIG_FILE)
-        if config_path.exists():
-            try:
-                with open(config_path, 'r') as f:
-                    return json.load(f)
-            except (json.JSONDecodeError, IOError) as e:
-                logger.warning(f"Failed to load config file: {e}")
-        return {}
-    
-    def _save_config(self, config: Dict[str, Any]) -> None:
-        """Save configuration to local config file."""
-        try:
-            with open(CONFIG_FILE, 'w') as f:
-                json.dump(config, f, indent=2)
-            logger.info("Configuration saved successfully")
-        except IOError as e:
-            logger.error(f"Failed to save configuration: {e}")
-    
-    def _make_api_request(
-        self,
-        method: str,
-        endpoint: str,
-        data: Optional[Dict[str, Any]] = None,
         params: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         """
         Make authenticated API request to GitHub.
         
+        Args:
+            method: HTTP method (GET, POST, PUT, DELETE)
+            endpoint: API endpoint (without base URL)
+            data: Request payload for POST/PUT requests
+            params: Query parameters
+            
+        Returns:
+            Dict containing the API response
+            
+        Raises:
+            GitHubAPIError: For API-related errors
+        """
+        url = f"{GITHUB_API_BASE_URL}/{endpoint.lstrip('/')}"
+        
+        for attempt in range(MAX_RETRIES):
+            try:
+                response = self.session.request(
+                    method=method,
+                    url=url,
+                    json=data,
+                    params=params,
+                    timeout=DEFAULT_TIMEOUT
+                )
+                
+                if response.status_code == 401:
+                    raise GitHubAPIError("Invalid GitHub token")
+                elif response.status_code == 403:
+                    raise GitHubAPIError("Insufficient permissions or rate limit exceeded")
+                elif response.status_code == 404:
+                    raise GitHubAPIError("Resource not found")
+                
+                response.raise_for_status()
+                return response.json() if response.content else {}
+                
+            except (ConnectionError, Timeout) as e:
+                if attempt == MAX_RETRIES - 1:
+                    raise GitHubAPIError(f"Network error after {MAX_RETRIES} attempts: {e}")
+                logger.warning(f"Retry attempt {attempt + 1} for {url}")
+                
+            except HTTPError as e:
+                error_msg = f"HTTP {e.response.status_code}: {e.response.text}"
+                raise GitHubAPIError(error_msg)
+    
         Args:
             method: HTTP method (GET, POST, PUT, DELETE)
             endpoint: API endpoint (without base URL)
