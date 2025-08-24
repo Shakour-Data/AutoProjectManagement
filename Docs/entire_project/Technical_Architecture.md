@@ -555,17 +555,15 @@ graph TD
 ### Deployment Options
 
 #### 1. Local Development
-```bash
-# Clone repository
-git clone https://github.com/autoprojectmanagement/autoprojectmanagement.git
-cd autoprojectmanagement
+The system supports local development with a straightforward setup process:
 
-# Install dependencies
-pip install -r requirements.txt
+- **Repository Cloning**: Clone the project repository from the official source
+- **Dependency Installation**: Install all required Python dependencies using pip
+- **Local Execution**: Run the system locally using the command-line interface
+- **Development Environment**: Full development environment with debugging capabilities
+- **Hot Reload**: Automatic reloading during development for rapid iteration
 
-# Run locally
-python -m autoprojectmanagement.cli
-```
+This local development setup enables developers to work efficiently and test changes in a controlled environment.
 
 #### 2. Docker Deployment
 ```dockerfile
