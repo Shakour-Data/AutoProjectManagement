@@ -245,3 +245,36 @@ The guaranteed push system implements a multi-strategy approach:
 ### Space Complexity
 
 - **Memory**: O(n) where n is number of changed files
+- **Storage**: O(1) for operations, O(n) for backups
+
+## Usage Examples
+
+### Basic Usage
+
+```python
+from autoprojectmanagement.services.automation_services.auto_commit import UnifiedAutoCommit
+
+# Initialize the service
+auto_commit = UnifiedAutoCommit()
+
+# Run complete workflow
+success = auto_commit.run_complete_workflow_guaranteed()
+
+if success:
+    print("Workflow completed successfully")
+else:
+    print("Workflow completed with warnings")
+```
+
+### Custom Configuration
+
+```python
+auto_commit = UnifiedAutoCommit()
+
+# Custom remote and branch
+success = auto_commit.commit_and_push_all_guaranteed(
+    remote="origin", 
+    branch="development"
+)
+
+# Manual change detection and processing
