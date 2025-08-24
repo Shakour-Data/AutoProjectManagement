@@ -1,6 +1,6 @@
 # Maintenance and Troubleshooting Guide
 
-*Last updated: 2025-07-27*
+## Overview
 
 This guide provides instructions for maintaining the ProjectManagement system and troubleshooting common issues.
 
