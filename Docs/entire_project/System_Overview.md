@@ -414,17 +414,14 @@ graph TB
 ### Deployment Options
 
 #### 1. Local Development
-```bash
-# Clone repository
-git clone https://github.com/autoprojectmanagement/autoprojectmanagement.git
-cd autoprojectmanagement
+Local development setup involves cloning the repository, installing dependencies, and running the system with appropriate configuration. The setup process includes:
 
-# Install dependencies
-pip install -r requirements.txt
+- **Repository Cloning**: Downloading the latest source code from the version control system
+- **Dependency Installation**: Installing all required Python packages and libraries
+- **System Configuration**: Setting up project paths and environment variables
+- **Execution**: Starting the AutoRunner engine with the specified project directory
 
-# Run system
-python -m autoprojectmanagement.auto_runner --path ./my_project
-```
+This setup is ideal for development, testing, and debugging purposes.
 
 #### 2. Docker Deployment
 ```dockerfile
