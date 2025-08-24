@@ -457,3 +457,5 @@ with GitHubIntegration(...) as github:
 **Symptoms:** 403 Forbidden with "rate limit" message
 **Solutions:**
 1. Wait for rate limit reset (automatic in service)
+2. Use authenticated requests for higher limits
+3. Implement request caching
