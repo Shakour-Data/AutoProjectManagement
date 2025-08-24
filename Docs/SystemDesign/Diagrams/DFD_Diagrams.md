@@ -235,3 +235,16 @@ flowchart TD
     DataCollection --> External[External Sources]
     External --> DataCollection
     
+    DataTransformation --> DataStores[Data Stores]
+    DataStores --> DataTransformation
+    
+    DataValidation --> DataStores
+    DataStores --> DataValidation
+    
+    DataStorage --> DataStores
+    DataStores --> DataStorage
+    
+    DataRetrieval --> DataStores
+    DataStores --> DataRetrieval
+```
+
