@@ -178,6 +178,12 @@ For each duplicate pair, analyze both versions and keep the more comprehensive o
 - [x] `automation_services/auto_file_watcher.py` - ✅ Completed
 - [x] `automation_services/auto_commit.py` - ✅ Comprehensive documentation created
 - [x] `automation_services/backup_manager.py` - ✅ Comprehensive documentation created
+- [x] `automation_services/git_config_manager.py` - ✅ Comprehensive documentation created
+- [x] `automation_services/wiki_git_operations.py` - ✅ Completed
+
+#### Configuration CLI:
+- [x] `configuration_cli/cli_commands.py` - ✅ Completed
+- [x] `configuration_cli/config_and_token_management.py` - ✅ Comprehensive documentation created
 
 #### Wiki Services:
 - [ ] `wiki_services/wiki_page_mapper.py`
