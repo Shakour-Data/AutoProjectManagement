@@ -84,3 +84,16 @@ classDiagram
         +_analyze_timeline(time_data: Dict[str, Any]) Dict[str, Any]
         +_assess_risks(risk_data: Dict[str, Any]) Dict[str, Any]
         +_evaluate_quality(quality_data: Dict[str, Any]) Dict[str, Any]
+        +_generate_integration_report(wbs_data: Dict[str, Any], resource_data: Dict[str, Any], time_data: Dict[str, Any], risk_data: Dict[str, Any], quality_data: Dict[str, Any]) Dict[str, Any]
+        +_calculate_completion(wbs_data: Dict[str, Any]) float
+        +_perform_consistency_checks(*data_sources) Dict[str, Any]
+        +_generate_recommendations(*data_sources) list
+    }
+    
+    BaseManagement <|-- Reporting : inheritance
+```
+
+### Data Flow Diagram
+
+```mermaid
+flowchart TD
