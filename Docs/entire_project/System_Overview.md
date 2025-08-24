@@ -424,14 +424,14 @@ Local development setup involves cloning the repository, installing dependencies
 This setup is ideal for development, testing, and debugging purposes.
 
 #### 2. Docker Deployment
-```dockerfile
-FROM python:3.9-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["python", "-m", "autoprojectmanagement.auto_runner"]
-```
+Docker deployment provides containerized execution environment for the system. The deployment process includes:
+
+- **Base Image Selection**: Using optimized Python runtime images
+- **Dependency Management**: Installing required packages in the container
+- **Application Packaging**: Copying source code and configuration files
+- **Execution Command**: Defining the startup command for the container
+
+This approach ensures consistent runtime environments across different deployment platforms and simplifies dependency management.
 
 #### 3. Cloud Deployment
 - **AWS ECS**: Containerized deployment
