@@ -878,6 +878,7 @@ This Kubernetes deployment configuration ensures scalable, reliable, and maintai
 The system provides comprehensive health monitoring capabilities:
 
 - **Service Status**: Verification of system service status and operational state
+- **Resource Monitoring**: Disk usage analysis and storage capacity management
 
 #### Update Process
 1. **Preparation**: Backup current system
