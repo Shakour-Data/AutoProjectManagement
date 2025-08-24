@@ -474,22 +474,10 @@ https://api.autoprojectmanagement.com/api/v1/
 
 ### API Response Format
 
-```json
-{
-  "success": true,
-  "data": {
-    "id": 123,
-    "title": "Implement new feature",
-    "status": "in_progress",
-    "priority": 90,
-    "deadline": "2025-08-20"
-  },
-  "meta": {
-    "timestamp": "2025-08-14T10:30:00Z",
-    "version": "1.0.0"
-  }
-}
-```
+The API follows a standardized response format for all endpoints:
+
+- **Success Indicator**: Boolean flag indicating operation success
+- **Data Payload**: Structured data containing the requested information
 
 ### Error Handling
 
