@@ -20,3 +20,25 @@ classDiagram
         +show_dashboard_info(): None
         +create_custom_view(layout_name, widgets, refresh_rate, theme): bool
         +share_dashboard_view(layout_name, output_format): bool
+        +schedule_report(report_type, schedule_expr, output_format): bool
+        +analyze_dashboard_data(analysis_type, timeframe): bool
+        +configure_dashboard(setting_name, setting_value): bool
+        +get_available_widgets(): List[str]
+        -_validate_cron_expression(cron_expr): bool
+        -_validate_cron_field_simple(field, min_val, max_val): bool
+        -_validate_cron_field(field, min_val, max_val): bool
+        -_calculate_next_run(cron_expr): str
+    }
+```
+
+### Command Structure
+```mermaid
+flowchart TD
+    A[dashboard_cli command group] --> B[start]
+    A --> C[stop]
+    A --> D[status]
+    A --> E[open]
+    A --> F[export]
+    A --> G[info]
+    A --> H[create_view]
+    A --> I[share_view]
