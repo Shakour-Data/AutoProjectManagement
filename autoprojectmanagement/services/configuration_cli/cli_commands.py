@@ -116,56 +116,56 @@ def setup_project() -> None:
 
     # Create necessary directories
     required_dirs = [
-        logger.info("- Git repository initialized.")
-    else:
-        logger.info("- Git repository not found.")
-    if os.path.exists('venv'):
-        logger.info("- Virtual environment exists.")
-    else:
-        logger.info("- Virtual environment not found.")
-    if os.path.exists('requirements.txt'):
-        logger.info("- requirements.txt file exists.")
-    else:
-        logger.info("- requirements.txt file not found.")
-    if os.path.exists('project_inputs/PM_JSON/user_inputs'):
-        logger.info("- project_inputs/PM_JSON/user_inputs directory exists.")
-    else:
-        logger.info("- project_inputs/PM_JSON/user_inputs directory not found.")
-    if os.path.exists('github_reports'):
-        logger.info("- GitHub reports directory exists.")
-    else:
-        logger.info("- GitHub reports directory not found.")
+        'project_inputs/PM_JSON/user_inputs',
+        'github_reports',
+        'backups',
+        'JSonDataBase/Inputs',
+        'JSonDataBase/OutPuts'
+    ]
+    
+    for directory in required_dirs:
+        os.makedirs(directory, exist_ok=True)
+        logger.info(f"✅ Created directory: {directory}")
 
-def main():
-    parser = argparse.ArgumentParser(description="Project Management Tool CLI")
-    subparsers = parser.add_subparsers(dest='command', help='Available commands')
-    
-    # Setup command
-    setup_parser = subparsers.add_parser('setup', help='Setup the project environment')
-    
-    # Status command
-    status_parser = subparsers.add_parser('status', help='Check project status')
-    
-    # Create GitHub project command
-    github_parser = subparsers.add_parser('create-github', help='Create GitHub project with full integration')
-    github_parser.add_argument('project_name', help='Name of the GitHub project')
-    github_parser.add_argument('--description', help='Project description')
-    github_parser.add_argument('--github-username', help='GitHub username (optional)')
-    
-    # Sync with GitHub command
-    sync_parser = subparsers.add_parser('sync-github', help='Sync existing project with GitHub')
-    sync_parser.add_argument('project_json', help='Path to project JSON file')
-    sync_parser.add_argument('github_username', help='GitHub username')
-    
-    args = parser.parse_args()
+    logger.info("\n🎉 Project setup completed successfully!")
+    logger.info("📋 Next steps:")
+    logger.info("   - Add your project dependencies to requirements.txt")
+    logger.info("   - Place JSON input files in 'project_inputs/PM_JSON/user_inputs'")
+    logger.info("   - Run 'status' command to verify setup")
 
-    if args.command == 'setup':
-        setup_project()
-    elif args.command == 'status':
-        status()
-    elif args.command == 'create-github':
-        create_github_project(args)
-    elif args.command == 'sync-github':
+
+def create_github_project(args: argparse.Namespace) -> None:
+    """
+    Create a new GitHub project with full integration including repository,
+    project board, issues, and documentation.
+    
+    Args:
+        args: Command line arguments containing project details
+    """
+    manager = GitHubProjectManager()
+    
+    project_name = args.project_name
+    description = args.description or ""
+    github_username = args.github_username
+    
+    if not github_username:
+        github_username = prompt_user("Enter your GitHub username")
+    
+    logger.info(f"🚀 Creating GitHub project '{project_name}'...")
+    
+    try:
+        reports = manager.create_github_project_cli(project_name, description, github_username)
+        
+        logger.info("\n✅ GitHub project created successfully!")
+        logger.info(f"📊 Repository: https://github.com/{github_username}/{project_name}")
+        logger.info(f"📋 Project Board: https://github.com/{github_username}/{project_name}/projects")
+        logger.info(f"📝 Issues: https://github.com/{github_username}/{project_name}/issues")
+        
+        # Save detailed report
+        reports_dir = "github_reports"
+        os.makedirs(reports_dir, exist_ok=True)
+        report_file = os.path.join(reports_dir, f"{project_name}_setup_report.json")
+        
         sync_with_github(args)
     else:
         parser.print_help()
