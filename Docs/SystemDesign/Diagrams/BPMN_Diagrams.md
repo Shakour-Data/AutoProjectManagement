@@ -80,31 +80,38 @@ flowchart TD
     StartReport([Start Reporting]) --> GatherData[Gather Project Data]
     GatherData --> GenerateReport[Generate Report]
     GenerateReport --> ReviewReport[Review Report]
-stop
-@enduml
+    ReviewReport -->|Needs Revision| ReviseReport[Revise Report]
+    ReviseReport --> GenerateReport
+    
+    ReviewReport -->|Approved| DistributeReport[Distribute Report]
+    DistributeReport --> ArchiveReport[Archive Report]
+    ArchiveReport --> EndReport([End Reporting])
 ```
 
-### Reporting
+## Integration with External Systems
 
-```plantuml
-@startuml
-start
-:Generate Reports;
-:Distribute to Stakeholders;
-stop
-@enduml
+```mermaid
+flowchart TD
+    StartIntegration([Start Integration]) --> ConnectGitHub[Connect to GitHub]
+    ConnectGitHub --> SyncData[Sync Project Data]
+    SyncData --> UpdateLocal[Update Local Database]
+    UpdateLocal --> ValidateData[Validate Data Integrity]
+    ValidateData -->|Invalid| HandleError[Handle Data Error]
+    HandleError --> SyncData
+    
+    ValidateData -->|Valid| EndIntegration([End Integration])
 ```
 
-### Project Closure
+## Real-time Dashboard Updates
 
-```plantuml
-@startuml
-start
-:Complete Deliverables;
-:Obtain Acceptance;
-:Archive Documents;
-stop
-@enduml
-```
-
-(To be expanded with detailed BPMN diagrams)
+```mermaid
+flowchart TD
+    StartDashboard([Start Dashboard Update]) --> PollData[Poll Data Sources]
+    PollData --> ProcessData[Process Real-time Data]
+    ProcessData --> UpdateUI[Update Dashboard UI]
+    UpdateUI --> CheckChanges[Check for Changes]
+    CheckChanges -->|Changes Detected| NotifyUsers[Notify Users]
+    CheckChanges -->|No Changes| Wait[Wait for Next Poll]
+    
+    NotifyUsers --> Wait
+    Wait --> PollData
