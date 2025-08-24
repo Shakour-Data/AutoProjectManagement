@@ -225,3 +225,20 @@ The scheduler supports:
 
 ## Performance Characteristics
 
+### Time Complexity Analysis
+
+| Operation | Best Case | Worst Case | Average Case |
+|-----------|-----------|------------|--------------|
+| File Collection | O(n) | O(n log n) | O(n) |
+| Checksum Calculation | O(n) | O(n) | O(n) |
+| Archive Creation | O(n) | O(n log n) | O(n) |
+| Integrity Verification | O(1) | O(n) | O(1) |
+
+### Space Complexity
+
+- **Memory**: O(n) for file lists and metadata
+- **Storage**: O(n) for backup archives
+- **Temporary**: O(1) for operations
+
+### Performance Optimization
+
