@@ -369,26 +369,14 @@ Production environment configuration is optimized for security, performance, and
 This configuration ensures robust and secure operation in production environments.
 
 #### Testing Configuration
-```json
-{
-  "api": {
-    "host": "127.0.0.1",
-    "port": 8001,
-    "debug": true,
-    "reload": true
-  },
-  "database": {
-    "type": "json",
-    "json_path": ":memory:"
-  },
-  "logging": {
-    "level": "DEBUG"
-  },
-  "project": {
-    "enable_github_integration": false
-  }
-}
-```
+Testing environment configuration is optimized for automated testing and quality assurance:
+
+- **API Settings**: Localhost binding with debug mode enabled for test debugging
+- **Database Configuration**: JSON-based storage with in-memory or test-specific file paths
+- **Logging Level**: DEBUG level for detailed test output and diagnostics
+- **Project Settings**: GitHub integration typically disabled for isolated testing
+
+This configuration provides an optimal environment for comprehensive testing and quality assurance.
 
 ### Environment Detection
 
