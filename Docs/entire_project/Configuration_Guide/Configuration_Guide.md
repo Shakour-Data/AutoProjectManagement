@@ -246,18 +246,16 @@ Custom directory structure configuration allows for flexible organization of JSO
 This configuration provides flexibility in organizing project data according to specific requirements.
 
 #### 3. Production JSON Storage
-```json
-{
-  "database": {
-    "type": "json",
-    "json_path": "/opt/autoproject/data/main.json",
-    "data_directory": "/opt/autoproject/data",
-    "backup_enabled": true,
-    "backup_count": 20,
-    "max_file_size": 52428800
-  }
-}
-```
+Production JSON storage configuration is designed for deployment environments:
+
+- **Storage Type**: Specifies that JSON is the storage mechanism
+- **JSON Path**: The main configuration file path for production
+- **Data Directory**: The directory for storing production JSON data files
+- **Backup Enabled**: Whether automatic backups are enabled
+- **Backup Count**: The number of backup files to keep
+- **Max File Size**: The maximum size of a JSON file before it is rotated
+
+This configuration ensures efficient data management in production environments.
 
 ---
 
