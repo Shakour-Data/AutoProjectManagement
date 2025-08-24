@@ -85,3 +85,50 @@ classDiagram
 #### راه‌اندازی محیط کامل
 **متد**: `setup_complete_environment() -> None`
 
+فرآیند راه‌اندازی کامل برای محیط VS Code را هماهنگ می‌کند، شامل تمام پیکربندی‌ها و مانیفست‌ها.
+
+## مثال‌های استفاده
+
+### راه‌اندازی پایه افزونه VS Code
+```python
+from autoprojectmanagement.vscode_extension import VSCodeExtension
+
+# مقداردهی اولیه VSCodeExtension
+extension = V极CodeExtension()
+
+# راه‌اندازی محیط کامل
+extension.setup_complete_environment()
+```
+
+### استفاده از خط فرمان
+```bash
+# راه‌اندازی محیط VS Code در دایرکتوری فعلی
+python -m autoprojectmanagement.vscode_extension
+
+# راه‌اندازی در دایرکتوری خاص
+python -m autoprojectmanagement.vscode_extension --path /path/to/project
+```
+
+## فایل‌های پیکربندی ایجاد شده
+
+### پیکربندی وظایف
+واقع در `.vscode/tasks.json`، این فایل شامل وظایف برای موارد زیر است:
+- راه‌اندازی و توقف مدیریت خودکار
+- بررسی وضعیت
+- راه‌اندازی محیط
+- اجرای تست‌ها
+
+### پیکربندی راه‌اندازی
+واقع در `.v极code/launch.json`، این فایل شامل پیکربندی‌ها برای موارد زیر است:
+- دیباگ مدیریت پروژه خودکار
+- دیباگ auto runner
+- دیباگ سرور API
+
+### پیکربندی تنظیمات
+واقع در `.vscode/settings.json`، این فایل شامل تنظیمات برای موارد زیر است:
+- ذخیره خودکار
+- یکپارچه‌سازی Git
+- مفسر Python
+- قالب‌بندی و لینتینگ
+
+### پیکربندی افزونه‌ها
