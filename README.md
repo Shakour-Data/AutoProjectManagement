@@ -174,6 +174,19 @@ Comprehensive UML diagrams including:
 - **Activity Diagrams**: Process flows
 - **State Diagrams**: State transitions
 
+See [UML Diagrams](Docs/SystemDesign/Diagrams/UML_Diagrams.md) for complete details.
+
+### BPMN Diagrams
+
+Business Process Model and Notation diagrams showing:
+- **Project Management Process**: End-to-end project workflow
+- **Task Creation Process**: Task lifecycle management
+- **Resource Allocation**: Resource management workflow
+- **Progress Monitoring**: Real-time monitoring processes
+- **Risk Management**: Risk identification and mitigation
+- **Reporting Process**: Automated reporting workflows
+
+See [BPMN Diagrams](Docs/SystemDesign/Diagrams/BPMN_Diagrams.md) for complete details.
 
 ---
 
