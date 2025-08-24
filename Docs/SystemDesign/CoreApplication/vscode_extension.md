@@ -89,3 +89,105 @@ Orchestrates the complete setup process for the VS Code environment, including a
 
 ## Usage Examples
 
+### Basic VS Code Extension Setup
+```python
+from autoprojectmanagement.vscode_extension import VSCodeExtension
+
+# Initialize VSCodeExtension
+extension = VSCodeExtension()
+
+# Setup complete environment
+extension.setup_complete_environment()
+```
+
+### Command Line Usage
+```bash
+# Setup VS Code environment in current directory
+python -m autoprojectmanagement.vscode_extension
+
+# Setup in specific directory
+python -m autoprojectmanagement.vscode_extension --path /path/to/project
+```
+
+## Configuration Files Created
+
+### Tasks Configuration
+Located at `.vscode/tasks.json`, this file includes tasks for:
+- Starting and stopping auto management
+- Checking status
+- Setting up environment
+- Running tests
+
+### Launch Configuration
+Located at `.vscode/launch.json`, this file includes configurations for:
+- Debugging auto project management
+- Debugging auto runner
+- Debugging API server
+
+### Settings Configuration
+Located at `.vscode/settings.json`, this file includes settings for:
+- Auto-save
+- Git integration
+- Python interpreter
+- Formatting and linting
+
+### Extensions Configuration
+Located at `.vscode/extensions.json`, this file recommends extensions for:
+- Python development
+- Git integration
+- Docker support
+- Remote development
+
+### Workspace Configuration
+Located at `auto_project_management.code-workspace`, this file includes:
+- Folder settings
+- Workspace-specific configurations
+
+### Extension Manifest
+Located at `package.json`, this file includes:
+- Extension metadata
+- Command definitions
+- Configuration properties
+- Scripts and dependencies
+
+## Integration Points
+
+### VS Code Integration
+The module integrates with VS Code through:
+- Workspace configurations
+- Task definitions
+- Debugging setups
+- Extension development
+
+### Project Management Integration
+The extension integrates with the AutoProjectManagement system to provide:
+- Automated task management
+- Real-time status updates
+- Configuration management
+
+## Error Handling
+- Provides clear error messages for failed operations.
+- Handles missing files or directories gracefully.
+- Validates project path existence.
+
+## Security Considerations
+- No sensitive data exposure in configuration files.
+- Local file operations only.
+- Proper file permissions for scripts.
+
+## Performance Characteristics
+- **Setup Time**: Dependent on project size and system performance.
+- **Memory Usage**: Minimal footprint for setup operations.
+- **Disk Usage**: Creates necessary directories and files.
+
+## Example Output
+When the VS Code environment is set up, the following output is expected:
+```
+VS Code environment setup completed successfully
+```
+
+## Extension Points
+- **Custom Tasks**: Additional tasks can be added to the tasks configuration.
+- **Additional Launch Configurations**: New debugging configurations can be created.
+- **Workspace Customization**: The workspace can be modified for specific needs.
+- **Extension Development**: The extension manifest can be extended with new features.
