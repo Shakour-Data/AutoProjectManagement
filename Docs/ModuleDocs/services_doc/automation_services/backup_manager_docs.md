@@ -271,3 +271,45 @@ The scheduler supports:
 from autoprojectmanagement.services.automation_services.backup_manager import BackupManager, BackupConfig, CompressionType
 
 # Configure backup settings
+config = BackupConfig(
+    source_paths=["./src", "./config"],
+    backup_location="./backups",
+    retention_days=30,
+    compression_type=CompressionType.ZIP,
+    exclude_patterns=[".git", "__pycache__", "*.pyc", "node_modules"]
+)
+
+# Create backup manager
+manager = BackupManager(config)
+
+# Create immediate backup
+metadata = manager.create_backup()
+print(f"Backup created: {metadata.backup_id}")
+```
+
+### Advanced Usage
+
+```python
+# Custom backup ID
+metadata = manager.create_backup("custom_backup_001")
+
+# Restore specific backup
+success = manager.restore_backup("backup_20250101_120000", "./restore_location")
+
+# List all backups
+backups = manager.list_backups()
+for backup in backups:
+    print(f"{backup.backup_id}: {backup.total_files} files")
+
+# Schedule automatic backups
+manager.schedule_automatic_backup("02:00")  # 2:00 AM daily
+```
+
+### Integration with Project Management
+
+```python
+# Integrate with project workflow
+def project_backup_hook():
+    try:
+        manager = BackupManager(get_backup_config())
+        metadata = manager.create_backup()
