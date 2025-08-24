@@ -86,3 +86,44 @@ classDiagram
     }
     
     class BaseComponent {
+        <<abstract>>
+        #String componentId
+        #String componentType
+        #ComponentConfiguration config
+        #ComponentStatus status
+        +BaseComponent(id: String, type: String)
+        +initialize(config: ComponentConfiguration) Boolean
+        +process(inputData: Any) ProcessingResult
+        +validateInput(input: Any) ValidationResult
+        +getMetrics() ComponentMetrics
+        +updateStatus(newStatus: ComponentStatus)
+    }
+    
+    class ConcreteComponentA {
+        -SpecializedConfigA specialConfig
+        -List~ProcessingStep~ processingSteps
+        +ConcreteComponentA(id: String)
+        +initialize(config: ComponentConfiguration) Boolean
+        +process(inputData: InputDataA) ProcessingResultA
+        +applyTransformation(data: Any) TransformedData
+        +validateConstraints(data: Any) ConstraintValidation
+    }
+    
+    class ConcreteComponentB {
+        -SpecializedConfigB specialConfig
+        -Cache cache
+        +ConcreteComponentB(id: String)
+        +initialize(config: ComponentConfiguration) Boolean
+        +process(inputData: InputDataB) ProcessingResultB
+        +cacheData(key: String, data: Any)
+        +getCachedData(key: String) Any
+        +clearCache()
+    }
+    
+    class SystemConfiguration {
+        -Map~String, Any~ globalSettings
+        -Map~String, ComponentConfiguration~ componentConfigs
+        +SystemConfiguration()
+        +loadFromJson(jsonData: String) Boolean
+        +saveToJson() String
+        +getGlobalSetting(key: String) Any
