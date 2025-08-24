@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-path: autoprojectmanagement/main_modules/planning_estimation/scope_management_improved.py
-File: scope_management_improved.py
+path: autoprojectmanagement/main_modules/planning_estimation/scope_management.py
+File: scope_management.py
 Purpose: Enhanced scope management
 Author: AutoProjectManagement Team
 Version: 2.0.0
