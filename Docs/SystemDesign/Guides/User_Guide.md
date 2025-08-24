@@ -1,72 +1,72 @@
-# User Guide for ProjectManagement System
+# User Guide
 
-*Last updated: 2025-07-27*
+## Overview
+This guide provides comprehensive instructions for using the AutoProjectManagement system. It covers installation, configuration, and usage of all system features.
 
-This guide provides instructions for end users on how to use the ProjectManagement system, including frontend and backend features, setup, and workflows.
+## Table of Contents
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [API Usage](#api-usage)
+- [Dashboard Features](#dashboard-features)
+- [Real-time Updates](#real-time-updates)
+- [Troubleshooting](#troubleshooting)
 
-```mermaid
-flowchart TD
-    A[Launch Frontend] --> B[Setup Wizard]
-    B --> C[Complete Project Initialization]
-    C --> D[Upload JSON Inputs]
-    D --> E[Complete Project Planning Inputs]
-    E --> F[System Calculations and Scheduling]
-    F --> G[Access Dashboards and Reports]
-    G --> H[Monitoring and Control Features]
+## Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package manager)
+- Git (for source installation)
+
+### Installation Methods
+
+#### Method 1: From Source
+```bash
+# Clone the repository
+git clone https://github.com/AutoProjectManagement/AutoProjectManagement.git
+cd AutoProjectManagement
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-## 1. Getting Started
+#### Method 2: Using Docker
+```bash
+# Build the Docker image
+docker build -t autoprojectmanagement .
 
-### 1.1 System Requirements
+# Run the container
+docker run -p 8000:8000 autoprojectmanagement
+```
 
-- Supported operating systems with Python 3.7+ installed.
-- Node.js and npm installed for frontend dependencies.
-- Git installed for version control.
+#### Method 3: Using pip
+```bash
+pip install fastapi uvicorn python-multipart
+```
 
-### 1.2 Launching the Application
-
-- Run the setup and run script to start the system:
+### Starting the Server
 
 ```bash
-./setup_and_run.sh
+# Start the development server
+uvicorn autoprojectmanagement.api.app:app --host 0.0.0.0 --port 8000 --reload
+
+# Start production server
+uvicorn autoprojectmanagement.api.app:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 
-- This will start the backend API server and the React frontend.
-- The web interface will open automatically at:
+## Configuration
 
-```
-http://localhost:3000
-```
+### Environment Variables
+Set the following environment variables for configuration:
 
-## 2. Setup Wizard
-
-- Upon first launch, the Setup Wizard guides you through initial project setup:
-  - Git repository initialization.
-  - Creation or update of `.gitignore`.
-  - Creation of `requirements.txt`.
-  - Python virtual environment creation.
-  - Installation of dependencies.
-- The wizard provides real-time status updates and error handling.
-
-## 3. JSON File Upload Wizard
-
-- After setup, the JSON File Upload Wizard assists in uploading required JSON input files.
-- Upload files one by one, matching expected filenames and locations.
-- The system validates filenames and JSON correctness.
-- Upload progress and error feedback are provided.
-- After all files are uploaded, proceed to project planning.
-
-## 4. Project Planning Inputs
-
-- Define the following inputs via frontend forms:
-  - Work Breakdown Structure (WBS) levels.
-  - Human resources.
-  - Resource allocations.
-  - Project start date.
-- Inputs are saved through backend APIs and validated against standards.
-
-## 5. Calculations and Scheduling
-
+```bash
+export API_KEY=your-api-key
+export DATABASE_URL=sqlite:///./autoprojectmanagement.db
+export LOG_LEVEL=INFO
 - The system performs:
   - Resource allocation for lowest-level WBS activities.
   - Duration estimation for each activity.
