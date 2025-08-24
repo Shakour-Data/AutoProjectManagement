@@ -270,3 +270,129 @@ def get_collected_data(self, data_type: str) -> Optional[Dict[str, Any]]
 **Parameters:**
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
+| `data_type` | `str` | Yes | Type of data to retrieve ('tasks', 'resource_allocation', 'progress_metrics', 'feature_weights') |
+
+**Returns:** `Optional[Dict[str, Any]]` - The collected data or None if file doesn't exist
+
+**Supported Data Types:**
+- `tasks`: Task collection data
+- `resource_allocation`: Resource usage summary
+- `progress_metrics`: Progress percentage data
+- `feature_weights`: Urgency and importance weights
+
+## Data Flow Diagram
+
+```mermaid
+flowchart TD
+    A[Task Objects] --> B[collect_and_store_tasks]
+    A --> C[collect_resource_allocation]
+    A --> D[collect_progress_metrics]
+    E[Feature Weights] --> F[insert_feature_weights]
+    B --> G[Tasks JSON]
+    C --> H[Resource Allocation JSON]
+    D --> I[Progress Metrics JSON]
+    F --> J[Feature Weights JSON]
+    G --> K[get_collected_data]
+    H --> K
+    I --> K
+    J --> K
+    K --> L[Analysis & Reporting]
+```
+
+## Validation Rules
+
+### Task Validation
+| Requirement | Validation | Error Handling |
+|-------------|------------|----------------|
+| List Type | Must be a Python list | Error logged, returns False |
+| Empty List | Allowed but warned | Warning logged, returns True |
+| Task Objects | Must have `__dict__` attribute | Error logged for invalid tasks |
+
+### Weight Validation
+| Requirement | Validation | Error Handling |
+|-------------|------------|----------------|
+| Dictionary Type | Must be Python dictionaries | Error logged, returns False |
+| Weight Values | Must be numbers between 0-1 | Error logged for invalid values |
+| Key Types | Must be strings | Error logged for invalid keys |
+
+### File Operations
+| Operation | Validation | Error Handling |
+|-----------|------------|----------------|
+| Directory Creation | Parent directories created if needed | OSError raised on failure |
+| JSON Writing | Proper encoding and formatting | IOError/JSONError logged |
+| JSON Reading | File existence checked | Returns None if file missing |
+
+## Error Handling and Logging
+
+### Log Levels
+| Level | Usage | Example |
+|-------|-------|---------|
+| `INFO` | Successful operations | "Successfully wrote data to path" |
+| `DEBUG` | Detailed operations | "Directory ensured: path" |
+| `WARNING` | Non-critical issues | "Empty tasks list provided" |
+| `ERROR` | Critical failures | "Failed to write to path: error" |
+
+### Common Error Scenarios
+1. **Directory Creation Failure**: OSError raised, operation aborted
+2. **Invalid Task Structure**: Error logged, returns False
+3. **File Write Errors**: Detailed error logging, returns False
+4. **Invalid Data Type**: Error logged for get_collected_data
+5. **JSON Serialization Errors**: Exception caught and logged
+
+## Usage Examples
+
+### Basic Usage
+```python
+from autoprojectmanagement.main_modules.data_collection_processing.db_data_collector import DBDataCollector
+
+# Initialize with default directory
+collector = DBDataCollector()
+
+# Collect and store tasks
+tasks = [task1, task2, task3]
+success = collector.collect_and_store_tasks(tasks)
+
+if success:
+    print("Tasks successfully stored")
+```
+
+### Resource Allocation Analysis
+```python
+collector = DBDataCollector('custom/data/directory')
+
+# Analyze resource allocation
+resource_success = collector.collect_resource_allocation(tasks)
+
+if resource_success:
+    allocation_data = collector.get_collected_data('resource_allocation')
+    print(f"Resource allocation: {allocation_data}")
+```
+
+### Feature Weights Management
+```python
+# Insert predefined weights
+urgency_weights = {'deadline': 0.4, 'priority': 0.6}
+importance_weights = {'impact': 0.5, 'effort': 0.5}
+
+success = collector.insert_feature_weights(urgency_weights, importance_weights)
+
+if success:
+    weights = collector.get_collected_data('feature_weights')
+    print(f"Feature weights stored: {weights}")
+```
+
+### Context Manager Usage
+```python
+# Using context manager for automatic cleanup
+with DBDataCollector() as collector:
+    collector.collect_and_store_tasks(tasks)
+    collector.collect_progress_metrics(tasks)
+    
+    # Data is automatically available
+    progress_data = collector.get_collected_data('progress_metrics')
+    print(f"Progress data: {progress_data}")
+```
+
+## Performance Considerations
+
+- **File I/O**: Multiple JSON read/write operations per collection
