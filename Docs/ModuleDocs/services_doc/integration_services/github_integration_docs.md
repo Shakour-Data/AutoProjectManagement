@@ -417,3 +417,43 @@ with GitHubIntegration(owner, repo, token) as github:
 ## Performance Optimization
 
 ### Connection Pooling
+
+The service uses `requests.Session` for connection pooling:
+
+```python
+# Session maintains persistent connections
+session = requests.Session()
+session.headers.update(headers)
+```
+
+### Request Optimization
+
+1. **Timeout Management**: 30-second timeout for all requests
+2. **Retry Strategy**: 3 retries for transient errors
+3. **Connection Reuse**: Persistent connections for multiple requests
+4. **Header Caching**: Pre-computed headers for efficiency
+
+### Memory Management
+
+```python
+# Context manager ensures proper cleanup
+with GitHubIntegration(...) as github:
+    # Resources automatically managed
+    pass
+```
+
+## Troubleshooting Guide
+
+### Common Issues
+
+#### Authentication Failures
+**Symptoms:** 401 Unauthorized errors
+**Solutions:**
+1. Verify token validity and permissions
+2. Check token format (should start with `ghp_`)
+3. Ensure token has required repository access
+
+#### Rate Limiting
+**Symptoms:** 403 Forbidden with "rate limit" message
+**Solutions:**
+1. Wait for rate limit reset (automatic in service)
