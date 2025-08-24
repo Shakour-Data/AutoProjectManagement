@@ -205,3 +205,32 @@ def analyze(self) -> None
 ```json
 {
   "summary": {
+    "total_tasks": 15,
+    "total_duration": 42.5,
+    "total_cost": 4250.0
+  },
+  "details": {
+    "task_estimates": [
+      {
+        "id": "task_001",
+        "name": "Design Phase",
+        "duration": 5.0,
+        "cost": 500.0,
+        "complexity": "high"
+      }
+    ]
+  }
+}
+```
+
+### Utility Functions
+
+#### estimate_task_duration Function
+```python
+def estimate_task_duration(task: Dict[str, Any]) -> float
+```
+
+**Purpose:** Estimates task duration based on complexity level.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
