@@ -41,3 +41,64 @@ The `AutoRunner` class manages all automatic project management activities, incl
 classDiagram
     class AutoRunner {
         +str project_path
+        +bool running
+        +logging.Logger logger
+        +Dict[str, Any] config
+        +__init__(project_path: Optional[str])
+        +start() 
+        +stop() 
+        +get_status() 
+    }
+```
+
+### BPMN Diagram
+```mermaid
+flowchart TD
+    A[Start Auto Runner] --> B[Initialize Configuration]
+    B --> C[Create Required Directories]
+    C --> D[Start Monitoring Loop]
+    D --> E{File Changes Detected?}
+    E -->|Yes| F[Generate Progress Report]
+    E -->|No| D
+    F --> G[Perform Risk Assessment]
+    G --> D
+```
+
+## Error Handling
+The AutoRunner includes error handling for:
+- File system access issues
+- Network connectivity problems
+- Configuration errors
+- Logging failures
+
+## Configuration
+The system uses environment variables and configuration files to manage settings:
+- **AUTO_CHECK_INTERVAL**: How often to check for changes (default: 300s)
+- **AUTO_COMMIT_THRESHOLD**: Minimum changes for auto-commit (default: 5)
+- **AUTO_REPORT_INTERVAL**: How often to generate reports (default: 3600s)
+
+## Usage
+### Command Line Usage
+```bash
+python -m autoprojectmanagement.auto_runner --path /path/to/project
+```
+
+### Programmatic Usage
+```python
+from autoprojectmanagement.auto_runner import AutoRunner
+
+runner = AutoRunner('/path/to/project')
+runner.start()
+```
+
+## Benefits
+- **Automation**: Reduces manual intervention in project management
+- **Efficiency**: Streamlines project monitoring and reporting
+- **Integration**: Works seamlessly with Git for version control
+- **Reliability**: Provides consistent project management without user input
+
+## Conclusion
+The Auto Runner is a critical component of the AutoProjectManagement system, enabling automated project management activities that enhance productivity and ensure project success.
+
+---
+*Last updated: 2025-08-14*
