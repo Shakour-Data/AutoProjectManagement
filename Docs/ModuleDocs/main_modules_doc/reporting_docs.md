@@ -210,3 +210,15 @@ high_risk_ratio = (high_priority_risks ÷ total_risks) × 100
 | DEFAULT_TIME_MANAGEMENT_PATH | str | project_inputs/PM_JSON/system_outputs/time_management.json | Time data path |
 | DEFAULT_RISK_MANAGEMENT_PATH | str | project_inputs/PM_JSON/system_outputs/risk_management.json | Risk data path |
 | DEFAULT_QUALITY_MANAGEMENT_PATH | str | project_inputs/PM_JSON/system_outputs/quality_management.json | Quality data path |
+| DEFAULT_OUTPUT_PATH | str | project_inputs/PM_JSON/system_outputs/project_reports.json | Output report path |
+| JSON_INDENT | int | 2 | JSON formatting indentation |
+| ENCODING | str | utf-8 | File encoding standard |
+
+### Performance Characteristics
+
+**Time Complexity**:
+- Data loading: O(n) where n is total file size across all sources
+- Analysis: O(m) where m is complexity of cross-domain integration
+- Memory usage: Linear with combined data size
+
+**Space Complexity**:
