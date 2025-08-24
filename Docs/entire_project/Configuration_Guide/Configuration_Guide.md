@@ -359,29 +359,14 @@ Development environment configuration is optimized for debugging and rapid itera
 This configuration provides an optimal environment for development and testing.
 
 #### Production Configuration
-```json
-{
-  "api": {
-    "host": "0.0.0.0",
-    "port": 8080,
-    "debug": false,
-    "reload": false
-  },
-  "database": {
-    "type": "json",
-    "json_path": "prod.json"
-  },
-  "logging": {
-    "level": "INFO",
-    "file_path": "/var/log/autoproject.log"
-  },
-  "security": {
-    "api_key_required": true,
-    "ssl_cert_path": "/certs/server.crt",
-    "ssl_key_path": "/certs/server.key"
-  }
-}
-```
+Production environment configuration is optimized for security, performance, and reliability:
+
+- **API Settings**: Network-wide binding with debug mode disabled and optimized performance
+- **Database Configuration**: JSON-based storage with production-specific file paths
+- **Logging Level**: INFO level with file-based logging for production monitoring
+- **Security Settings**: Enhanced security with API key requirement and SSL/TLS encryption
+
+This configuration ensures robust and secure operation in production environments.
 
 #### Testing Configuration
 ```json
