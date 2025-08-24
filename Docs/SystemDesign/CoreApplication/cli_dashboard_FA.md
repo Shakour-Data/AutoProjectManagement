@@ -289,3 +289,21 @@ autoprojectmanagement dashboard --export --format json
 ### استفاده پیشرفته
 ```bash
 # ایجاد نمای سفارشی
+autoprojectmanagement dashboard create-view --name "MyView" --widgets "health,progress" --refresh-rate 5000
+
+# زمان‌بندی گزارش‌های خودکار
+autoprojectmanagement dashboard schedule-report --type overview --schedule "0 9 * * *"
+
+# پیکربندی تنظیمات
+autoprojectmanagement dashboard config --setting refresh_rate --value 5000
+```
+
+## مدیریت خطا
+
+ماژول شامل مدیریت خطای جامع برای موارد زیر است:
+- مشکلات اتصال شبکه
+- شکست‌های نقطه پایانی API
+- ورودی کاربر نامعتبر
+- عملیات سیستم فایل
+- خطاهای اعتبارسنجی پیکربندی
+
