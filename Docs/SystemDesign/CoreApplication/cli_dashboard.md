@@ -160,3 +160,78 @@ Creates custom dashboard views with specific configurations. This method:
 - Saves configuration via API
 - Handles both programmatic and interactive usage
 
+**Parameters**:
+- `layout_name`: Name for the custom layout
+- `widgets`: List of widget IDs to include
+- `refresh_rate`: Refresh rate in milliseconds
+- `theme`: Theme name ("light" or "dark")
+
+**Returns**: Boolean indicating success
+
+### Automated Reporting
+
+#### Schedule Automated Reports
+**Method**: `schedule_report(report_type: str, schedule_expr: str, output_format: str = "markdown") -> bool`
+
+Schedules automated dashboard reports using cron expressions. This method:
+- Validates cron expression format
+- Calculates next run time
+- Saves schedule configuration to JSON file
+- Supports multiple report types and formats
+- Uses croniter library for scheduling calculations
+
+**Parameters**:
+- `report_type`: Type of report ("overview", "metrics", "health", "performance")
+- `schedule_expr`: Cron expression for scheduling
+- `output_format`: Output format ("markdown", "json")
+
+**Returns**: Boolean indicating success
+
+#### Analyze Dashboard Data
+**Method**: `analyze_dashboard_data(analysis_type: str = "overview", timeframe: str = "24h") -> bool`
+
+Performs data analysis and generates insights reports. This method:
+- Fetches data from appropriate API endpoints
+- Generates comprehensive analysis reports
+- Supports multiple analysis types and timeframes
+- Creates timestamped report files
+
+**Parameters**:
+- `analysis_type`: Type of analysis ("overview", "metrics", "health", "performance")
+- `timeframe`: Analysis timeframe (e.g., "24h")
+
+**Returns**: Boolean indicating success
+
+### Configuration Management
+
+#### Configure Dashboard Settings
+**Method**: `configure_dashboard(setting_name: Optional[str] = None, setting_value: Optional[str] = None) -> bool`
+
+Manages dashboard configuration settings. This method:
+- Supports interactive configuration if no parameters provided
+- Validates setting values against constraints
+- Saves configuration to JSON file
+- Handles various setting types (boolean, integer, string with choices)
+
+**Parameters**:
+- `setting_name`: Setting to configure
+- `setting_value`: Value to set
+
+**Returns**: Boolean indicating success
+
+### Utility Methods
+
+#### Get Available Widgets
+**Method**: `get_available_widgets() -> List[str]`
+
+Retrieves list of available widgets from API. This method:
+- Fetches widget list from dashboard API
+- Provides fallback list if API unavailable
+- Returns list of widget identifiers
+
+**Returns**: List of available widget names
+
+#### Cron Expression Validation
+**Methods**: 
+- `_validate_cron_expression(cron_expr: str) -> bool`
+- `_validate_cron_field_simple(field: str, min_val: int, max_val: int) -> bool`
