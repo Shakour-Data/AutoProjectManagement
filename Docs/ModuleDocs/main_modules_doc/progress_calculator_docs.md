@@ -208,3 +208,75 @@ normalized_time = min(1, time_remaining ÷ (3 × 24 × 3600))
 time_factor = 1 - normalized_time
 ```
 
+##### `calculate_score(importance: float, urgency: float, weight_importance: float, weight_urgency: float) → float`
+**Purpose**: Calculate combined priority score.
+
+**Mathematical Model**:
+```
+score = (importance × weight_importance) + (urgency × weight_urgency)
+```
+
+Default weights: importance = 0.6, urgency = 0.4
+
+##### `calculate_progress(data: Dict) → float`
+**Purpose**: Standalone function for basic progress calculation.
+
+**Algorithm**:
+```
+progress = (tasks_completed ÷ total_tasks) × 100
+```
+
+**Error Handling**:
+- Validates input types and values
+- Handles division by zero
+- Ensures mathematical validity
+
+### Configuration Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| Default input directory | str | 'project_inputs/PM_JSON/user_inputs' | Base directory for input files |
+| Commit progress weight | float | 0.5 | Weight for commit-based progress |
+| Workflow progress weight | float | 0.5 | Weight for workflow-based progress |
+| Importance weights | tuple | (0.5, 0.3, 0.2) | Weights for time, dependency, priority factors |
+| Urgency weights | tuple | (0.6, 0.3, 0.1) | Weights for time, status, resource factors |
+| Score weights | tuple | (0.6, 0.4) | Weights for importance and urgency in scoring |
+
+### Performance Characteristics
+
+**Time Complexity**:
+- Individual progress calculations: O(1) to O(n)
+- Task enrichment: O(n × m) where n is tasks, m is workflow steps
+- Memory usage: Linear with data size plus caching overhead
+
+**Space Complexity**:
+- Primary: O(n + m) for data storage
+- Secondary: O(n) for caching calculated values
+
+### Integration Points
+
+**Dependencies**:
+- Standard Python libraries: `os`, `json`, `datetime`, `logging`, `collections`
+- Expected JSON file formats for input data
+
+**Input Requirements**:
+- `detailed_wbs.json`: Task definitions with IDs, deadlines, priorities
+- `workflow_definition.json`: Workflow steps with task associations
+- `commit_progress.json`: Commit-based progress percentages
+
+### Usage Examples
+
+**Basic Usage**:
+```python
+from autoprojectmanagement.main_modules.progress_reporting.progress_calculator import ProgressCalculator
+
+# Initialize calculator
+calculator = ProgressCalculator()
+
+# Load input data
+calculator.load_inputs()
+
+# Calculate and enrich tasks
+calculator.enrich_tasks_with_progress()
+
+# Get enriched tasks with calculated metrics
