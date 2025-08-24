@@ -166,3 +166,38 @@ The module integrates with Docker Compose files located in the project root:
 The module uses the `auto-docker-setup.sh` script located in the `scripts` directory for automated setup.
 
 ## Error Handling
+- Provides clear error messages for failed operations.
+- Handles missing Docker installations gracefully.
+- Supports fallback mechanisms for different Linux distributions.
+
+## Security Considerations
+- Uses subprocess calls for Docker operations.
+- Ensures proper user permissions for Docker group.
+- No sensitive data exposure in command output.
+
+## Performance Characteristics
+- **Command Execution**: Dependent on Docker and system performance.
+- **Memory Usage**: Minimal footprint for setup operations.
+- **Network Usage**: Local operations only.
+
+## Dependencies
+- **subprocess**: For running Docker commands.
+- **platform**: For system detection.
+- **shutil**: For command availability checks.
+- **pathlib**: For path manipulations.
+
+## Example Output
+When running the post-installation setup, the following output is expected:
+```
+============================================================
+AutoProjectManagement Docker Setup
+============================================================
+✓ Docker is already installed
+
+Setting up Docker environment...
+✓ Docker environment setup completed!
+
+Your AutoProjectManagement system is now running!
+Access URLs:
+  - API: http://localhost:8000
+  - Monitor: http://localhost:8080
