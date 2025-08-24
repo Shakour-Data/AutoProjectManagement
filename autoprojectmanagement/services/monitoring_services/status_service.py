@@ -1,67 +1,67 @@
-#!/usr/bin/env python3
 """
-Status service for AutoProjectManagement
-Provides real-time status updates for VS Code extension and web interface
+Status Service for AutoProjectManagement
+Purpose: Provide real-time status updates for VS Code extension and web interface
+Author: AutoProjectManagement System
+Version: 2.0.0
+License: MIT
+Description: Comprehensive status monitoring service with JSON output, progress tracking, and error handling
 """
 
 import os
 import json
 import time
+import logging
 from datetime import datetime
 from pathlib import Path
+from typing import Dict, Any, Optional
+from dataclasses import dataclass, asdict
+
+
+@dataclass
+class ProjectStatus:
+    """Data class representing project status information."""
+    status: str  # running, complete, idle, error
+    progress: int  # 0-100 percentage
+    last_updated: str  # ISO format timestamp
+    tasks_completed: int
+    tasks_total: int
+    error: Optional[str] = None
+    current_task: Optional[str] = None
+    estimated_completion: Optional[str] = None
+    memory_usage: Optional[float] = None
+    cpu_usage: Optional[float] = None
+
 
 class StatusService:
-    """Service to manage and provide project status"""
+    """
+    Service to manage and provide comprehensive project status monitoring.
     
-    def __init__(self, project_path=None):
-        self.project_path = project_path or os.getcwd()
-        self.status_file = os.path.join(self.project_path, 'JSonDataBase', 'OutPuts', 'status.json')
+    This service provides real-time status updates, progress tracking, and system
+    monitoring for the AutoProjectManagement system. It supports both VS Code
+    extension integration and web interface status display.
+    
+    Features:
+    - Real-time status monitoring
+    - Progress percentage calculation
+    - Error tracking and reporting
+    - System resource monitoring
+    - JSON status file generation
+    - Periodic status updates
+    
+    Attributes:
+        project_path (str): Path to the project directory
+        status_file (str): Path to the status JSON output file
+        logger (logging.Logger): Logger instance for operation tracking
+    """
+    
+    def __init__(self, project_path: Optional[str] = None):
+        """
+        Initialize the Status Service.
         
-    def get_status(self):
-        """Get current project status"""
-        try:
-            # Read from progress report
-            progress_file = os.path.join(self.project_path, 'JSonDataBase', 'OutPuts', 'progress_report.md')
-            
-            if os.path.exists(progress_file):
-                with open(progress_file, 'r') as f:
-                    content = f.read()
-                
-                # Parse status
-                status = {
-                    'status': 'running',
-                    'progress': 0,
-                    'last_updated': datetime.now().isoformat(),
-                    'tasks_completed': 0,
-                    'tasks_total': 0
-                }
-                
-                # Extract progress
-                for line in content.split('\n'):
-                    if 'Overall Progress:' in line:
-                        import re
-                        match = re.search(r'(\d+)%', line)
-                        if match:
-                            status['progress'] = int(match.group(1))
-                    elif 'Tasks Completed:' in line:
-                        import re
-                        match = re.search(r'(\d+)/(\d+)', line)
-                        if match:
-                            status['tasks_completed'] = int(match.group(1))
-                            status['tasks_total'] = int(match.group(2))
-                
-                # Determine status
-                if status['progress'] == 100:
-                    status['status'] = 'complete'
-                elif status['progress'] > 0:
-                    status['status'] = 'running'
-                else:
-                    status['status'] = 'idle'
-                
-                return status
-                
-        except Exception as e:
-            return {
+        Args:
+            project_path: Path to the project directory (defaults to current directory)
+        """
+        self.project_path = project_path or os.getcwd()
                 'status': 'error',
                 'error': str(e),
                 'last_updated': datetime.now().isoformat()
