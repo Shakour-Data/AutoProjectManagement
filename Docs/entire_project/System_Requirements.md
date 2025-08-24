@@ -454,55 +454,27 @@ sequenceDiagram
 ### Data Models
 
 #### Project Schema
-```json
-{
-  "project": {
-    "id": "integer (unique)",
-    "name": "string (max 100 chars)",
-    "description": "string (optional)",
-    "status": "enum [active, paused, completed, archived]",
-    "priority": "enum [high, medium, low]",
-    "start_date": "ISO 8601 datetime",
-    "end_date": "ISO 8601 datetime",
-    "team_members": ["string"],
-    "milestones": [
-      {
-        "id": "string",
-        "name": "string",
-        "target_date": "ISO 8601 datetime",
-        "status": "enum [pending, in_progress, completed]"
-      }
-    ],
-    "metadata": {
-      "created_at": "ISO 8601 datetime",
-      "updated_at": "ISO 8601 datetime",
-      "version": "string"
-    }
-  }
-}
-```
+The project data structure includes comprehensive metadata for project management:
+
+- **Identification**: Unique numeric identifier and descriptive name
+- **Classification**: Status, priority levels, and categorization
+- **Timeline**: Start and end dates with ISO 8601 datetime formatting
+- **Team Management**: List of team members and their roles
+- **Milestone Tracking**: Project milestones with target dates and completion status
+- **Metadata**: Creation and update timestamps with version tracking
 
 #### Task Schema
-```json
-{
-  "task": {
-    "id": "integer (unique within project)",
-    "title": "string (max 200 chars)",
-    "description": "string (optional)",
-    "assignee": "string (team member name)",
-    "priority": "enum [critical, high, medium, low]",
-    "status": "enum [todo, in_progress, review, completed, blocked]",
-    "estimated_hours": "float (0.5 increments)",
-    "actual_hours": "float (0.5 increments)",
-    "progress": "integer (0-100)",
-    "dependencies": ["integer (task IDs)"],
-    "tags": ["string"],
-    "due_date": "ISO 8601 datetime",
-    "created_at": "ISO 8601 datetime",
-    "updated_at": "ISO 8601 datetime"
-  }
-}
-```
+The task data structure provides detailed task management capabilities:
+
+- **Task Identification**: Unique identifier within project context
+- **Descriptive Information**: Title, description, and detailed requirements
+- **Assignment & Tracking**: Assignee information and progress monitoring
+- **Priority & Status**: Multiple priority levels and comprehensive status tracking
+- **Time Management**: Estimated and actual hours with progress percentage
+- **Dependencies & Relationships**: Task dependencies and categorization tags
+- **Timeline Management**: Due dates with creation and update timestamps
+
+These structured data formats ensure consistent data organization and enable seamless integration across all system components.
 
 ### Data Storage Structure
 
