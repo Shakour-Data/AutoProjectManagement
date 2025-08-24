@@ -60,3 +60,22 @@ classDiagram
 #### راه‌اندازی Docker
 **متد**: `setup_docker(environment: Optional[str] = None, auto: bool = True) -> bool`
 
+محیط Docker را به صورت خودکار با اجرای اسکریپت راه‌اندازی می‌کند.
+
+**پارامترها**:
+- `environment`: محیط اختیاری برای راه‌اندازی.
+- `auto`: تشخیص خودکار محیط در صورت عدم مشخص شدن.
+
+**برمی‌گرداند**: بولین نشان‌دهنده موفقیت.
+
+#### دریافت فایل Compose
+**متد**: `get_compose_file(environment: str) -> str`
+
+فایل Docker Compose مناسب برای محیط داده شده را برمی‌گرداند.
+
+**پارامترها**:
+- `environment`: رشته محیط.
+
+**برمی‌گرداند**: مسیر به فایل Docker Compose.
+
+#### شروع سرویس‌ها
