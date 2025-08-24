@@ -23,53 +23,55 @@ This module enables real-time tracking of development progress through commit an
 graph TD
     A[Commit Task Database<br/>JSON Input] --> B[CommitProgressManager]
     B --> C[Progress Metrics<br/>Calculation]
-  - Runs the full process: load, generate, save, and print status.
-
-## Usage
-The module can be run as a script to update commit progress data:
-
-```python
-if __name__ == "__main__":
-    manager = CommitProgressManager()
-    manager.run()
+    C --> D[Progress Data<br/>JSON Output]
+    D --> E[Dashboard<br/>Visualization]
+    B --> F[Progress Summary<br/>Statistics]
+    
+    style A fill:#e1f5fe
+    style D fill:#f3e5f5
+    style E fill:#e8f5e8
 ```
 
-## Diagrams
-
-### Mermaid Class Diagram
-
+### Class Structure
 ```mermaid
 classDiagram
     class CommitProgressManager {
         - commit_task_db_path: str
         - commit_progress_path: str
-        - commit_task_db: dict
-        - commit_progress: dict
+        - commit_task_db: Dict[str, Dict[str, Any]]
+        - commit_progress: Dict[str, Dict[str, Any]]
         + __init__(commit_task_db_path, commit_progress_path)
         + load_commit_task_db()
         + generate_commit_progress()
-        + save_commit_progress()
-        + run()
+        + save_commit_progress() bool
+        + get_progress_summary() Dict[str, Any]
+        + run() bool
     }
 ```
 
-### Mermaid Commit Progress Flowchart
-
+### Data Flow Architecture
 ```mermaid
-flowchart TD
-    Start --> LoadDB[Load commit task database JSON]
-    LoadDB --> GenerateProgress[Generate commit progress per task]
-    GenerateProgress --> SaveProgress[Save commit progress JSON]
-    SaveProgress --> PrintStatus[Print completion message]
-    PrintStatus --> End
-```
-
----
-
-## Credits
-
-This module uses Python's built-in `json` and `datetime` modules for data handling and processing.
-
----
-
-This documentation provides a detailed overview of the `commit_progress_manager` module to assist developers in understanding and using its functionality effectively.
+flowchart LR
+    subgraph InputLayer [Input Data Layer]
+        CTDB[Commit Task Database<br/>JSON File]
+    end
+    
+    subgraph ProcessingLayer [Processing Layer]
+        LDB[Load Database]
+        CALC[Calculate Progress]
+        SAVE[Save Results]
+    end
+    
+    subgraph OutputLayer [Output Data Layer]
+        CP[Commit Progress<br/>JSON File]
+        SUM[Progress Summary<br/>Statistics]
+    end
+    
+    CTDB --> LDB
+    LDB --> CALC
+    CALC --> SAVE
+    SAVE --> CP
+    CALC --> SUM
+    
+    style InputLayer fill:#f3e5f5
+    style ProcessingLayer fill:#e8f5e8
