@@ -244,3 +244,19 @@ Where:
 | `ERROR` | Critical failures | "Error loading tasks for Gantt chart: {e}" |
 
 ### Common Error Scenarios
+1. **File Not Found**: Error logged, empty tasks list returned
+2. **Invalid JSON**: Error logged, empty tasks list returned
+3. **Missing Required Fields**: Exception raised with detailed message
+4. **Invalid Date Formats**: Exception raised or fallback used
+5. **Type Errors**: Exception raised with type information
+
+## Usage Examples
+
+### Basic Usage
+```python
+from autoprojectmanagement.main_modules.planning_estimation.gantt_chart_data import GanttChartData
+
+# Initialize with default directory
+generator = GanttChartData()
+generator.load_tasks()
+gantt_data = generator.build_gantt_data()
