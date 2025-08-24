@@ -280,3 +280,22 @@ calculator.load_inputs()
 calculator.enrich_tasks_with_progress()
 
 # Get enriched tasks with calculated metrics
+enriched_tasks = calculator.get_enriched_tasks()
+```
+
+**Standalone Progress Calculation**:
+```python
+from autoprojectmanagement.main_modules.progress_reporting.progress_calculator import calculate_progress
+
+data = {
+    'tasks_completed': 25,
+    'total_tasks': 100
+}
+progress = calculate_progress(data)  # Returns 25.0
+```
+
+### Error Scenarios and Handling
+
+| Scenario | Detection Method | Recovery Strategy |
+|----------|------------------|------------------|
+| Missing input files | File loading errors | Continue with empty data, log warnings |
