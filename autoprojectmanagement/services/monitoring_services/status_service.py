@@ -341,3 +341,13 @@ if __name__ == "__main__":
         print(f"   Status: {current_status.status}")
         print(f"   Progress: {current_status.progress}%")
         print(f"   Tasks: {current_status.tasks_completed}/{current_status.tasks_total}")
+        print(f"   Current Task: {current_status.current_task}")
+        
+        # Save status to file
+        if service.save_status(current_status):
+            print(f"✅ Status saved to: {service.status_file}")
+        else:
+            print("❌ Failed to save status")
+            
+    except Exception as e:
+        print(f"❌ Error: {e}")
