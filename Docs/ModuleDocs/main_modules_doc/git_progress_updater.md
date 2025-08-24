@@ -52,26 +52,56 @@ graph TB
     D --> J
     D --> K
     
-
-### Mermaid Process Flowchart
-
-```mermaid
-flowchart TD
-    Start --> RunGitLog[Run git log command]
-    RunGitLog --> ParseLog[Parse git log output]
-    ParseLog --> MapTasks[Map commits to tasks]
-    MapTasks --> CalcWorkflow[Calculate workflow progress]
-    CalcWorkflow --> CombineProgress[Combine commit and workflow progress]
-    CombineProgress --> ReturnProgress[Return combined progress]
-    ReturnProgress --> End
+    style InputLayer fill:#e1f5fe
+    style ProcessingLayer fill:#e8f5e8
+    style OutputLayer fill:#fff3e0
 ```
 
----
-
-## Credits
-
-This module uses Python's `subprocess`, `re`, and `collections` modules to interact with git and process commit data.
-
----
-
-This documentation provides a detailed overview of the `git_progress_updater` module to assist developers in understanding and using its functionality effectively.
+### Class Hierarchy and Relationships
+```mermaid
+classDiagram
+    class GitProgressError {
+        <<Exception>>
+        +__init__(message)
+    }
+    
+    class GitCommandError {
+        <<Exception>>
+    }
+    
+    class ValidationError {
+        <<Exception>>
+    }
+    
+    class ProgressFileError {
+        <<Exception>>
+    }
+    
+    class SecurityError {
+        <<Exception>>
+    }
+    
+    class ProgressStatus {
+        <<Enum>>
+        PENDING
+        IN_PROGRESS
+        COMPLETED
+        FAILED
+    }
+    
+    class CommitInfo {
+        <<DataClass>>
+        +hash: str
+        +message: str
+        +author: str
+        +email: str
+        +timestamp: int
+        +branch: str
+        +files: List[str]
+    }
+    
+    class ProgressMetrics {
+        <<DataClass>>
+        +total_commits: int
+        +completed_tasks: int
+        +total_tasks: int
