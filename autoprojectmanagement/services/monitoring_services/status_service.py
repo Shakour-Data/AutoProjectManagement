@@ -85,3 +85,28 @@ class StatusService:
         """
         try:
             # Read from progress report
+            progress_file = os.path.join(self.project_path, 'JSonDataBase', 'OutPuts', 'progress_report.md')
+            
+            if os.path.exists(progress_file):
+                with open(progress_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                # Parse status information
+                status_data = self._parse_progress_report(content)
+                
+                # Get system metrics
+                system_metrics = self._get_system_metrics()
+                
+                # Create comprehensive status object
+                status = ProjectStatus(
+                    status=status_data['status'],
+                    progress=status_data['progress'],
+                    last_updated=datetime.now().isoformat(),
+                    tasks_completed=status_data['tasks_completed'],
+                    tasks_total=status_data['tasks_total'],
+                    current_task=status_data.get('current_task'),
+                    estimated_completion=status_data.get('estimated_completion'),
+                    memory_usage=system_metrics.get('memory_usage'),
+                    cpu_usage=system_metrics.get('cpu_usage')
+                )
+                
