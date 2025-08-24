@@ -1,24 +1,24 @@
 # BPMN Diagrams
 
-## Project Management Workflow
+## Project Management Process
 
-The BPMN diagram below illustrates the main business processes in the Project Management system:
+```mermaid
+flowchart TD
+    Start([Start]) --> CreateProject[Create Project]
+    CreateProject --> DefineTasks[Define Tasks]
+    DefineTasks --> AllocateResources[Allocate Resources]
+    AllocateResources --> MonitorProgress[Monitor Progress]
+    MonitorProgress --> GenerateReports[Generate Reports]
+    GenerateReports --> End([End])
+    
+    MonitorProgress -->|Issue Detected| ResolveIssues[Resolve Issues]
+    ResolveIssues --> MonitorProgress
+```
 
-```plantuml
-@startuml
-|Project Initiation|
-start
-:Identify Stakeholders;
-:Define Goals & Scope;
-:Obtain Approvals;
-|Task Planning|
-:Decompose Project;
-:Assign Resources & Deadlines;
-:Review & Approve Plan;
-|Task Execution|
-:Perform Tasks;
-:Update Status;
-:Communicate Progress;
+## Task Creation Process
+
+```mermaid
+flowchart TD
 |Monitoring & Control|
 :Track Progress;
 :Identify & Manage Risks;
