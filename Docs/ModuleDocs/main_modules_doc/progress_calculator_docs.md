@@ -335,3 +335,22 @@ progress = calculate_progress(data)  # Returns 25.0
 
 - Validates all numerical inputs to prevent mathematical errors
 - Handles date/time parsing safely
+- Implements proper error handling to avoid information leakage
+- Follows defensive programming practices
+
+### Scientific Foundations
+
+The algorithms in this module are based on established project management principles:
+
+1. **Earned Value Management (EVM)**: Progress calculation methodology
+2. **Weighted Scoring Models**: For priority and urgency calculations
+3. **Time Value of Work**: Deadline proximity affects importance/urgency
+4. **Resource Constraint Theory**: Resource availability impacts urgency
+
+The mathematical models ensure that:
+- Calculations are numerically stable and bounded
+- Weights sum to 1.0 for proper normalization
+- Results are consistent and reproducible
+- Edge cases are handled gracefully
+
+This module represents the analytical core of the AutoProjectManagement system, providing scientifically-grounded metrics that drive intelligent project decision-making and prioritization.
