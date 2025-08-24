@@ -123,3 +123,46 @@ flowchart LR
     end
     
     subgraph ProcessingPhase [Resource Analysis]
+        E[Calculate Task Costs] --> F[Enrich WBS with Resources]
+        G[Validate Allocations] --> H[Generate Utilization Report]
+        I[Summarize Costs] --> J[Generate Comprehensive Report]
+    end
+    
+    subgraph OutputPhase [Output Generation]
+        K[Save Enriched WBS] --> L[Save Cost Summary]
+        M[Save Comprehensive Report] --> N[Return Utilization Analysis]
+    end
+    
+    InputPhase --> ProcessingPhase
+    ProcessingPhase --> OutputPhase
+    
+    style InputPhase fill:#e1f5fe
+    style ProcessingPhase fill:#e8f5e8
+    style OutputPhase fill:#fff3e0
+```
+
+---
+
+## Level 3: Detailed Implementation
+
+### Core Class: ResourceAllocationManager
+```python
+class ResourceAllocationManager:
+    """
+    Enhanced resource allocation manager with comprehensive cost tracking,
+    resource optimization, and detailed reporting capabilities.
+    
+    This class provides functionality for:
+    - Loading and validating resource allocation data
+    - Calculating detailed costs for resource allocations
+    - Optimizing resource utilization
+    - Generating comprehensive reports
+    - Managing resource conflicts and constraints
+    """
+    
+    def __init__(self,
+                 resource_allocation_path: str = 'JSonDataBase/Inputs/UserInputs/task_resource_allocation.json',
+                 detailed_wbs_path: str = 'JSonDataBase/Inputs/UserInputs/detailed_wbs.json',
+                 resource_costs_path: str = 'JSonDataBase/Inputs/UserInputs/resource_costs.json',
+                 resource_constraints_path: Optional[str] = None,
+                 output_path: str = 'JSonDataBase/OutPuts/resource_allocation_enriched.json',
