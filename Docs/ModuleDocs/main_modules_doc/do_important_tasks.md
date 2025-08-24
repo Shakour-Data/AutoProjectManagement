@@ -24,34 +24,104 @@ graph TB
     subgraph ProcessingLayer [Processing Engine]
         D[ImportantTaskManager<br/>Core Engine]
         E[Task Prioritization<br/>Strategic Value Analysis]
-```mermaid
-flowchart TD
-    Start --> CreateTM[Create TaskManagement instance]
-    CreateTM --> DefineTasks[Define 15 important task titles]
-    DefineTasks --> ParseTasks[Parse titles into tasks]
-    ParseTasks --> CompleteTasks[Mark tasks as completed]
-    CompleteTasks --> PrintSummary[Print summary of completed tasks]
-    PrintSummary --> End
+        F[Scheduling Optimization<br/>Timeline Management]
+        G[Insights Generation<br/>Analytics Engine]
+    end
+    
+    subgraph OutputLayer [Output Destinations]
+        H[Prioritized Task List]
+        I[Optimized Schedule]
+        J[Strategic Insights]
+        K[Performance Reports]
+    end
+    
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    D --> F
+    D --> G
+    E --> H
+    F --> I
+    G --> J
+    G --> K
+    
+    style InputLayer fill:#e1f5fe
+    style ProcessingLayer fill:#e8f5e8
+    style OutputLayer fill:#fff3e0
 ```
 
-### Mermaid Task Completion Sequence Diagram
-
+### Class Hierarchy and Relationships
 ```mermaid
-sequenceDiagram
-    participant User
-    participant TaskManagement
-    User->>TaskManagement: parse_creative_input(title)
-    TaskManagement-->>User: task object
-    User->>TaskManagement: mark_task_completed(task.id)
-    TaskManagement-->>User: confirmation
-```
-
----
-
-## Credits
-
-This module depends on the `TaskManagement` class for task parsing and status management.
-
----
-
-This documentation provides a detailed overview of the `do_important_tasks` module to assist developers in understanding and using its functionality effectively.
+classDiagram
+    class TaskStatus {
+        <<enumeration>>
+        PENDING
+        IN_PROGRESS
+        COMPLETED
+        DEFERRED
+        CANCELLED
+    }
+    
+    class TaskCategory {
+        <<enumeration>>
+        STRATEGIC
+        OPERATIONAL
+        TACTICAL
+        DEVELOPMENT
+        RESEARCH
+    }
+    
+    class ImportantTask {
+        +id: str
+        +title: str
+        +description: str
+        +priority: int
+        +estimated_hours: float
+        +strategic_value: float
+        +dependencies: List[str]
+        +deadline: Optional[datetime]
+        +created_at: datetime
+        +updated_at: datetime
+        +status: TaskStatus
+        +category: TaskCategory
+        +tags: List[str]
+        +notes: List[str]
+        +completion_percentage: float
+        +to_dict() Dict[str, Any]
+        +from_dict(data) ImportantTask
+    }
+    
+    class TaskStorageInterface {
+        <<abstract>>
+        +save_task(task) bool
+        +load_tasks() List[ImportantTask]
+        +delete_task(task_id) bool
+        +update_task(task) bool
+    }
+    
+    class JsonTaskStorage {
+        +__init__(file_path)
+        +save_task(task) bool
+        +load_tasks() List[ImportantTask]
+        +delete_task(task_id) bool
+        +update_task(task) bool
+        +_save_all_tasks(tasks) bool
+    }
+    
+    class TaskPrioritizer {
+        +__init__(config)
+        +calculate_priority_score(task) float
+        +_calculate_urgency_score(task) float
+        +sort_tasks_by_priority(tasks) List[ImportantTask]
+    }
+    
+    class TaskScheduler {
+        +__init__(config)
+        +create_schedule(tasks) Dict[str, Any]
+        +check_deadline_conflicts(tasks) List[Dict[str, Any]]
+    }
+    
+    class ImportantTaskManager {
+        +__init__(config_path)
+        +initialize() bool
