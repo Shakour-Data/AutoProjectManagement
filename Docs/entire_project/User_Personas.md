@@ -264,15 +264,14 @@ journey
 ```
 
 #### CLI Usage Patterns
-```bash
-# Typical daily commands
-autoprojectmanagement status --project-id 12345
-autoprojectmanagement add-task --project-id 12345 --task-name "Fix login bug" --priority high
-autoprojectmanagement update-task-status 12345 67890 --new-status done
+Developers interact with the system through a comprehensive command-line interface:
 
-# Git integration
-python -m autoprojectmanagement.services.automation_services.auto_commit
-```
+- **Status Checking**: Commands to check project status and current progress
+- **Task Management**: Commands to add, update, and manage tasks with priority levels
+- **Git Integration**: Commands for automated commit operations and version control
+- **Configuration**: Commands for system setup and environment configuration
+
+This CLI interface provides developers with powerful tools for managing their workflow and integrating with the automated project management system.
 
 #### Technical Integration Points
 - **AutoCommit Service**: Direct usage of `auto_commit.py` for automated commits
