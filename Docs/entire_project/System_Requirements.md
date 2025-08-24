@@ -573,23 +573,16 @@ This real-time communication channel enables immediate updates and enhances user
 ### CLI Interface
 
 #### Command Structure
-```bash
-autoproject [command] [options]
+The CLI interface provides a comprehensive set of commands for system management:
 
-Commands:
-  init              Initialize new project
-  start             Start monitoring
-  stop              Stop monitoring
-  status            Show system status
-  add-project       Create new project
-  update-project    Update project details
-  remove-project    Delete project
-  add-task          Create new task
-  update-task       Update task details
-  generate-report   Create progress report
-  backup            Create system backup
-  restore           Restore from backup
-```
+- **System Initialization**: Initialize new projects and system configuration
+- **Monitoring Control**: Start, stop, and check system monitoring status
+- **Project Management**: Create, update, and delete projects with detailed options
+- **Task Operations**: Add, update, and manage tasks within projects
+- **Reporting Functions**: Generate various types of progress and status reports
+- **Backup & Recovery**: Create system backups and restore from previous states
+
+This command-line interface enables efficient system administration and project management through intuitive command syntax and comprehensive option support.
 
 ### Configuration Interface
 
