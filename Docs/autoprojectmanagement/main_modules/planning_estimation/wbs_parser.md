@@ -58,3 +58,118 @@ def parse_json_wbs(self, data: Dict[str, Any]) -> Dict[str, Any]:
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `data` | `Dict[str, Any]` | Yes | JSON data containing WBS structure |
+
+**Returns:** `Dict[str, Any]` - Parsed WBS structure
+
+**Process:**
+- Validates the WBS structure using `_validate_wbs_structure`
+- Ensures required fields are present
+- Normalizes the structure for consistency
+
+#### parse_text_wbs Method
+```python
+def parse_text_wbs(self, text: str) -> Dict[str, Any]:
+```
+
+**Purpose:** Parses text format WBS data.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `text` | `str` | Yes | Text containing WBS structure |
+
+**Returns:** `Dict[str, Any]` - Parsed WBS structure
+
+**Process:**
+- Splits text into lines and processes each line
+- Determines task levels based on indentation
+- Builds hierarchical WBS structure
+
+#### _validate_wbs_structure Method
+```python
+def _validate_wbs_structure(self, data: Dict[str, Any]) -> Dict[str, Any]:
+```
+
+**Purpose:** Validates and normalizes WBS structure.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `data` | `Dict[str, Any]` | Yes | WBS data to validate |
+
+**Returns:** `Dict[str, Any]` - Validated WBS structure
+
+**Validation Rules:**
+- Data must be a dictionary
+- Required fields: `id`, `name`, `level`
+- Ensures `subtasks` is a list
+- Recursively validates all subtasks
+
+**Raises:**
+- `ValueError`: If data is not a dictionary or missing required fields
+
+#### _parse_text_lines Method
+```python
+def _parse_text_lines(self, lines: List[str]) -> Dict[str, Any]:
+```
+
+**Purpose:** Parses text lines into WBS structure.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `lines` | `List[str]` | Yes | List of text lines |
+
+**Returns:** `Dict[str, Any]` - Parsed WBS structure
+
+**Process:**
+- Creates root task with default values
+- Processes each line to determine task level and name
+- Builds hierarchical structure using a stack
+
+#### extract_task_details Method
+```python
+def extract_task_details(self, task: Dict[str, Any]) -> Dict[str, Any]:
+```
+
+**Purpose:** Extracts detailed information from a task.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `task` | `Dict[str, Any]` | Yes | Task dictionary |
+
+**Returns:** `Dict[str, Any]` - Detailed task information
+
+**Extracted Fields:**
+- `id`: Task identifier
+- `name`: Task name
+- `level`: Task level in hierarchy
+- `description`: Task description
+- `deadline`: Task deadline
+- `assigned_to`: List of assignees
+- `dependencies`: List of task dependencies
+- `status`: Task status
+- `priority`: Task priority
+- `subtasks_count`: Number of subtasks
+
+#### validate_wbs_integrity Method
+```python
+def validate_wbs_integrity(self, wbs: Dict[str, Any]) -> bool:
+```
+
+**Purpose:** Validates WBS structure integrity.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `wbs` | `Dict[str, Any]` | Yes | WBS structure to validate |
+
+**Returns:** `bool` - True if valid, False otherwise
+
+**Process:**
+- Uses `_validate_wbs_structure` for validation
+- Returns True if validation succeeds, False if it fails
+
+#### get_task_hierarchy Method
+```python
