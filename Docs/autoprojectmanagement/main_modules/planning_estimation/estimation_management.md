@@ -397,3 +397,46 @@ manager.run()
 from autoprojectmanagement.main_modules.planning_estimation.estimation_management import estimate_task_duration, estimate_task_cost
 
 task = {'complexity': 'high', 'resources': 2}
+duration = estimate_task_duration(task)  # Returns 5.0
+cost = estimate_task_cost(task)  # Returns 1000.0
+```
+
+### Error Handling
+```python
+try:
+    manager = EstimationManagement()
+    manager.run()
+except Exception as e:
+    print(f"Estimation failed: {e}")
+    # Handle error appropriately
+```
+
+## Performance Considerations
+
+- **Complexity Mapping**: Constant time O(1) for task estimation
+- **Project Aggregation**: Linear time O(n) where n is number of tasks
+- **File I/O**: JSON loading and saving operations
+- **Memory Usage**: Entire WBS loaded into memory for processing
+
+## Best Practices
+
+1. **Regular Updates**: Keep WBS data current for accurate estimations
+2. **Complexity Calibration**: Adjust complexity mapping based on historical data
+3. **Resource Cost Adjustment**: Update DEFAULT_COST_PER_RESOURCE for accurate costing
+4. **Validation**: Validate WBS structure before estimation
+5. **Error Monitoring**: Monitor logs for estimation issues
+
+## Integration Points
+
+This module integrates with:
+- **WBS Management**: Uses detailed WBS data from aggregator modules
+- **Cost Management**: Provides cost estimates for budgeting
+- **Scheduling**: Supplies duration estimates for project scheduling
+- **Reporting**: Generates estimation data for project reports
+- **Dashboard Services**: Displays estimation metrics
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 2.0.0 | 2025-08-14 | Comprehensive implementation with full estimation capabilities |
