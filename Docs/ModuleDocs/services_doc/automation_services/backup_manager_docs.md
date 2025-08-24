@@ -313,3 +313,91 @@ def project_backup_hook():
     try:
         manager = BackupManager(get_backup_config())
         metadata = manager.create_backup()
+        update_project_status(f"Backup completed: {metadata.backup_id}")
+        return True
+    except Exception as e:
+        log_error(f"Backup failed: {str(e)}")
+        return False
+```
+
+## API Reference
+
+### Class: BackupManager
+
+#### Constructor
+```python
+__init__(config: BackupConfig) -> None
+```
+Initializes the backup manager with configuration.
+
+**Parameters:**
+- `config`: BackupConfig instance with backup settings
+
+**Raises:**
+- `ValueError`: If configuration is invalid
+- `FileNotFoundError`: If source paths don't exist
+
+#### Methods
+
+##### create_backup
+```python
+create_backup(backup_id: Optional[str] = None) -> BackupMetadata
+```
+Creates a new backup of specified source paths.
+
+**Parameters:**
+- `backup_id`: Optional custom backup identifier
+
+**Returns:** BackupMetadata object with backup details
+
+**Raises:**
+- `RuntimeError`: If backup creation fails
+- `OSError`: If file operations fail
+
+##### restore_backup
+```python
+restore_backup(backup_id: str, restore_path: Optional[str] = None) -> bool
+```
+Restores files from a specific backup.
+
+**Parameters:**
+- `backup_id`: Identifier of the backup to restore
+- `restore_path`: Optional custom restore location
+
+**Returns:** True if restoration was successful
+
+**Raises:**
+- `FileNotFoundError`: If backup doesn't exist
+- `RuntimeError`: If restoration fails
+
+##### list_backups
+```python
+list_backups() -> List[BackupMetadata]
+```
+Lists all available backups with their metadata.
+
+**Returns:** List of BackupMetadata objects
+
+##### get_backup_status
+```python
+get_backup_status(backup_id: str) -> Optional[BackupMetadata]
+```
+Gets detailed status information for a specific backup.
+
+**Parameters:**
+- `backup_id`: Identifier of the backup to check
+
+**Returns:** BackupMetadata if found, None otherwise
+
+##### schedule_automatic_backup
+```python
+schedule_automatic_backup(schedule_time: str = "02:00") -> None
+```
+Schedules automatic daily backups at specified time.
+
+**Parameters:**
+- `schedule_time`: Time in 24-hour format (HH:MM)
+
+### Class: BackupConfig
+
+#### Constructor
