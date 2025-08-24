@@ -207,3 +207,57 @@ github-project delete --owner "owner" --repo "repository-name"
 |----------|-------------|----------|
 | `Python` | Python-specific ignores | Python projects |
 | `Node` | Node.js ignores | JavaScript/Node projects |
+| `Java` | Java ignores | Java projects |
+| `C++` | C++ ignores | C++ projects |
+| `Go` | Go ignores | Go projects |
+
+### Supported License Templates
+
+| License | Description | Use Case |
+|---------|-------------|----------|
+| `MIT` | MIT License | Permissive open source |
+| `Apache-2.0` | Apache 2.0 | Enterprise open source |
+| `GPL-3.0` | GPL v3 | Copyleft license |
+| `BSD-3-Clause` | BSD 3-Clause | Permissive license |
+
+### Example JSON Configuration
+
+```json
+{
+  "project_name": "awesome-project",
+  "description": "An awesome project with automated setup",
+  "private": false,
+  "auto_init": true,
+  "gitignore_template": "Python",
+  "license_template": "MIT"
+}
+```
+
+## API Integration
+
+### GitHub API Endpoints
+
+| Endpoint | Purpose | Authentication | Rate Limit |
+|----------|---------|----------------|------------|
+| `POST /user/repos` | Create user repository | Token required | 5000/hr |
+| `POST /orgs/{org}/repos` | Create org repository | Token + permissions | 5000/hr |
+| `GET /users/{user}/repos` | List user repositories | Optional | 60/hr (unauth) |
+| `DELETE /repos/{owner}/{repo}` | Delete repository | Token + permissions | 5000/hr |
+
+### Request Flow
+
+```mermaid
+sequenceDiagram
+    participant CLI
+    participant Manager
+    participant GitHubAPI
+    participant Config
+    
+    CLI->>Manager: create_project(config)
+    Manager->>Config: Validate config
+    Config-->>Manager: Validated config
+    Manager->>GitHubAPI: POST /repos
+    GitHubAPI-->>Manager: Response data
+    Manager->>Manager: Generate report
+    Manager-->>CLI: ProjectReport
+```
