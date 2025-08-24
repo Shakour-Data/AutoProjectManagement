@@ -290,19 +290,14 @@ sequenceDiagram
 
 ### 5.2 Test Commands
 
-```bash
-# Run all tests
-pytest tests/
+The system provides comprehensive testing capabilities through the pytest framework:
 
-# Run specific test category
-pytest tests/code_tests/01_UnitTests/
+- **Complete Test Suite**: Execute all tests across the entire codebase
+- **Targeted Testing**: Run specific test categories including unit tests, integration tests, and system tests
+- **Coverage Analysis**: Generate code coverage reports to identify untested areas
+- **API Testing**: Specialized testing for REST API endpoints and functionality
 
-# Run with coverage
-pytest --cov=autoprojectmanagement tests/
-
-# Run API tests only
-pytest tests/api/
-```
+These testing capabilities ensure code quality, prevent regressions, and maintain system reliability throughout the development lifecycle.
 
 ## 6. Deployment & Installation
 
