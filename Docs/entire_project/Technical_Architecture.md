@@ -660,25 +660,15 @@ This performance monitoring infrastructure provides valuable insights into syste
 
 ### Key Metrics
 
-```yaml
-# Monitoring configuration
-metrics:
-  - name: api_requests_total
-    type: counter
-    description: Total API requests
-    
-  - name: task_processing_duration
-    type: histogram
-    description: Task processing time
-    
-  - name: active_projects
-    type: gauge
-    description: Number of active projects
-    
-  - name: error_rate
-    type: counter
-    description: Error rate
-```
+The monitoring system tracks several key performance indicators:
+
+- **API Request Metrics**: Total API request counts and volume tracking
+- **Processing Duration**: Task processing time measurements and performance analysis
+- **Project Activity**: Monitoring of active projects and their resource utilization
+- **Error Rate Tracking**: Error frequency and severity monitoring
+- **Custom Metric Support**: Flexible metric definition for specific monitoring needs
+
+These key metrics provide comprehensive visibility into system performance and help ensure optimal operation across all environments.
 
 ### Alerting Rules
 
