@@ -587,30 +587,14 @@ This command-line interface enables efficient system administration and project 
 ### Configuration Interface
 
 #### Configuration File Structure
-```yaml
-# auto_config.yml
-system:
-  check_interval: 300  # seconds
-  commit_threshold: 5  # changes
-  report_interval: 86400  # seconds
-  
-monitoring:
-  enabled: true
-  file_extensions: [".py", ".js", ".md", ".json"]
-  exclude_paths: ["node_modules", ".git", "__pycache__"]
-  
-notifications:
-  email: "team@company.com"
-  slack_webhook: "https://hooks.slack.com/..."
-  
-integrations:
-  github:
-    enabled: true
-    token: "${GITHUB_TOKEN}"
-  vscode:
-    enabled: true
-    port: 8080
-```
+The system uses a comprehensive YAML-based configuration format with the following sections:
+
+- **System Settings**: Core system parameters including check intervals, commit thresholds, and report frequencies
+- **Monitoring Configuration**: File monitoring settings with included extensions and excluded directories
+- **Notification Settings**: Email and messaging platform integration for alerts and updates
+- **Integration Options**: External service integrations including GitHub API tokens and development environment settings
+
+This flexible configuration system allows for environment-specific customization and ensures consistent system behavior across different deployment scenarios.
 
 ---
 
