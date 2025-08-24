@@ -356,3 +356,44 @@ flowchart TD
 ### Log Levels
 | Level | Usage | Example |
 |-------|-------|---------|
+| `INFO` | Successful operations | "Estimation completed successfully" |
+| `WARNING` | Non-critical issues | "Using default complexity: medium" |
+| `ERROR` | Critical failures | "Invalid JSON in WBS file" |
+
+### Common Error Scenarios
+1. **Invalid JSON Files**: Error logged, exception raised
+2. **Missing WBS Data**: Warning logged, empty results returned
+3. **Invalid Task Structure**: Task skipped, warning logged
+4. **File Write Errors**: Error logged, exception raised
+5. **Missing Complexity**: Default complexity used, warning logged
+
+## Usage Examples
+
+### Basic Usage
+```python
+from autoprojectmanagement.main_modules.planning_estimation.estimation_management import EstimationManagement
+
+# Initialize with default paths
+manager = EstimationManagement()
+manager.run()
+
+# Access results
+results = manager.output
+print(f"Total cost: ${results['summary']['total_cost']:,.2f}")
+```
+
+### Custom Configuration
+```python
+manager = EstimationManagement(
+    detailed_wbs_path='custom/wbs.json',
+    output_path='custom/estimations.json'
+)
+manager.run()
+```
+
+### Programmatic Usage
+```python
+# Use utility functions directly
+from autoprojectmanagement.main_modules.planning_estimation.estimation_management import estimate_task_duration, estimate_task_cost
+
+task = {'complexity': 'high', 'resources': 2}
