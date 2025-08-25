@@ -906,43 +906,32 @@ class DashboardCLI:
     def _calculate_next_run(self, cron_expr: str) -> str:
         """Calculate next run time from cron expression."""
         try:
-            # Try to import croniter if available
-            try:
-                from croniter import croniter
-                from datetime import datetime
-                
-                base_time = datetime.now()
-                iter = croniter(cron_expr, base_time)
-                next_time = iter.get_next(datetime)
-                return next_time.strftime("%Y-%m-%d %H:%M:%S")
-            except ImportError:
-                # Fallback implementation if croniter is not installed
-                # This provides a basic approximation without external dependencies
-                from datetime import datetime, timedelta
-                
-                # Simple approximation: assume daily at the specified time
-                # This is a basic fallback and not a full cron parser
-                now = datetime.now()
-                
-                # Parse the cron expression (minute hour * * *)
-                parts = cron_expr.split()
-                if len(parts) >= 2:
-                    try:
-                        minute = int(parts[0]) if parts[0] != '*' else 0
-                        hour = int(parts[1]) if parts[1] != '*' else 9  # Default to 9 AM
+            # Fallback implementation without external dependencies
+            # This provides a basic approximation and not a full cron parser
+            from datetime import datetime, timedelta
+            
+            # Simple approximation: assume daily at the specified time
+            now = datetime.now()
+            
+            # Parse the cron expression (minute hour * * *)
+            parts = cron_expr.split()
+            if len(parts) >= 2:
+                try:
+                    minute = int(parts[0]) if parts[0] != '*' else 0
+                    hour = int(parts[1]) if parts[1] != '*' else 9  # Default to 9 AM
+                    
+                    # Calculate next run time
+                    next_run = datetime(now.year, now.month, now.day, hour, minute)
+                    if next_run <= now:
+                        next_run += timedelta(days=1)
                         
-                        # Calculate next run time
-                        next_run = datetime(now.year, now.month, now.day, hour, minute)
-                        if next_run <= now:
-                            next_run += timedelta(days=1)
-                            
-                        return next_run.strftime("%Y-%m-%d %H:%M:%S")
-                    except (ValueError, IndexError):
-                        pass
-                
-                # Generic fallback if parsing fails
-                next_run = now + timedelta(days=1)
-                return next_run.strftime("%Y-%m-%d 09:00:00")  # Default to next day at 9 AM
+                    return next_run.strftime("%Y-%m-%d %H:%M:%S")
+                except (ValueError, IndexError):
+                    pass
+            
+            # Generic fallback if parsing fails
+            next_run = now + timedelta(days=1)
+            return next_run.strftime("%Y-%m-%d 09:00:00")  # Default to next day at 9 AM
                 
         except Exception:
             return "Unknown (schedule timing)"
