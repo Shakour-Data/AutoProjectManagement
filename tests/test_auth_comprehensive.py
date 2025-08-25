@@ -117,3 +117,15 @@ class TestAuthService:
         
         # Try login with wrong password
         wrong_login = UserLoginRequest(
+            email="test@example.com",
+            password="WrongPassword123!"
+        )
+        
+        success, message, auth_data = self.auth_service.login_user(wrong_login)
+        
+        assert success is False
+        assert "invalid" in message.lower()
+        assert auth_data is None
+    
+    def test_login_user_nonexistent_email(self):
+        """Test login with non-existent email."""
