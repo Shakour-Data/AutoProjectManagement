@@ -62,3 +62,24 @@ class ErrorContext:
         """Convert context to dictionary."""
         return {
             "request_id": self.request_id,
+            "user_id": self.user_id,
+            "endpoint": self.endpoint,
+            "method": self.method,
+            "parameters": self.parameters
+        }
+
+class CustomError(Exception):
+    """Base custom error class with enhanced functionality."""
+    
+    def __init__(self, 
+                 message: str,
+                 code: str,
+                 severity: ErrorSeverity = ErrorSeverity.ERROR,
+                 category: ErrorCategory = ErrorCategory.UNKNOWN,
+                 details: Optional[Dict[str, Any]] = None,
+                 context: Optional[ErrorContext] = None):
+        super().__init__(message)
+        self.message = message
+        self.code = code
+        self.severity = severity
+        self.category = category
