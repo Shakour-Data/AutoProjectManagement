@@ -478,6 +478,30 @@ def get_project_status(
             return {
                 "format": "markdown",
                 "content": f"# Project {project_id} Status\n\n{json.dumps(status_data, indent=2)}"
+            }
+        elif format == "table":
+            return {
+                "format": "table",
+                "data": status_data
+            }
+            
+    except HTTPException as e:
+        # Re-raise HTTP exceptions to use the enhanced handler
+        raise e
+    except ValidationError as e:
+        # Log and re-raise validation errors
+        e.log()
+        raise HTTPException(
+            status_code=400,
+            detail=str(e.message)
+        )
+    except Exception as e:
+        # Handle all other exceptions
+        error_handler.handle_error(e, context)
+        raise HTTPException(
+            status_code=500,
+            detail="Internal server error while retrieving project status"
+        )
 
 @app.get(
     f"{API_PREFIX}/projects",
