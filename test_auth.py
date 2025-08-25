@@ -110,3 +110,55 @@ def test_auth_system():
     print(f"   Total Users: {stats['total_users']}")
     print(f"   Total Sessions: {stats['total_sessions']}")
     print(f"   Storage Directory: {stats['storage_directory']}")
+    
+    print("\n" + "=" * 50)
+    print("🎉 All authentication tests passed successfully!")
+    print("The authentication system is working correctly.")
+    
+    return True
+
+def cleanup_test_data():
+    """Clean up test data from storage."""
+    print("\n🧹 Cleaning up test data...")
+    
+    # Find and remove test user
+    test_user = auth_service.get_user_by_email("test@example.com")
+    if test_user:
+        # Remove user from storage
+        if test_user.user_id in user_storage_service.user_storage.users:
+            del user_storage_service.user_storage.users[test_user.user_id]
+        
+        # Remove any sessions for this user
+        sessions_to_remove = [
+            session_id for session_id, session in user_storage_service.user_storage.sessions.items()
+            if session.user_id == test_user.user_id
+        ]
+        
+        for session_id in sessions_to_remove:
+            del user_storage_service.user_storage.sessions[session_id]
+        
+        user_storage_service.save_data()
+        print("✅ Test data cleaned up successfully")
+    else:
+        print("ℹ️ No test data found to clean up")
+
+if __name__ == "__main__":
+    try:
+        success = test_auth_system()
+        
+        if success:
+            # Ask if user wants to clean up test data
+            cleanup = input("\nDo you want to clean up test data? (y/N): ").lower().strip()
+            if cleanup == 'y':
+                cleanup_test_data()
+            else:
+                print("Test data preserved for further testing")
+        else:
+            print("\n❌ Authentication tests failed")
+            sys.exit(1)
+            
+    except Exception as e:
+        print(f"\n💥 Error during testing: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
