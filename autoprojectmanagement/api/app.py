@@ -108,33 +108,26 @@ except ImportError:
     from autoprojectmanagement.api.sse_endpoints import router as sse_router
     from autoprojectmanagement.api.auth_endpoints import router as auth_router
 
-# Pydantic models for request/response validation
+# Enhanced Pydantic models with comprehensive validation
 class ProjectStatus(BaseModel):
     """Model for project status response."""
-    project_id: str = Field(..., description="Unique project identifier")
-    total_tasks: int = Field(..., description="Total number of tasks")
-    completed_tasks: int = Field(..., description="Number of completed tasks")
-    progress_percentage: float = Field(..., description="Progress percentage")
-    summary: str = Field(..., description="Project summary")
+    project_id: str = Field(..., description="Unique project identifier", min_length=1, max_length=50)
+    total_tasks: int = Field(..., description="Total number of tasks", ge=0)
+    completed_tasks: int = Field(..., description="Number of completed tasks", ge=0)
+    progress_percentage: float = Field(..., description="Progress percentage", ge=0, le=100)
+    summary: str = Field(..., description="Project summary", min_length=1, max_length=1000)
     last_updated: Optional[datetime] = Field(None, description="Last update timestamp")
 
+    @validator('completed_tasks')
+    def validate_completed_tasks(cls, v, values):
+        """Validate that completed tasks don't exceed total tasks."""
+        if 'total_tasks' in values and v > values['total_tasks']:
+            raise ValueError('Completed tasks cannot exceed total tasks')
+        return v
+
 class ProjectCreate(BaseModel):
-    """Model for creating new projects."""
+    """Model for creating new projects with enhanced validation."""
     name: str = Field(..., min_length=1, max_length=100, description="Project name")
-    description: Optional[str] = Field(None, max_length=500, description="Project description")
-    template: Optional[str] = Field(None, description="Project template")
-
-class ProjectUpdate(BaseModel):
-    """Model for updating projects."""
-    name: Optional[str] = Field(None, min_length=1, max_length=100)
-    description: Optional[str] = Field(None, max_length=500)
-    status: Optional[str] = Field(None, description="Project status")
-
-class ErrorResponse(BaseModel):
-    """Model for error responses."""
-    error: str = Field(..., description="Error message")
-    detail: Optional[str] = Field(None, description="Error details")
-    timestamp: datetime = Field(..., description="Error timestamp")
 
 # Initialize services
 project_service = ProjectService()
