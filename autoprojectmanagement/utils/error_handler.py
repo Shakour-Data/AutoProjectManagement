@@ -83,3 +83,30 @@ class CustomError(Exception):
         self.code = code
         self.severity = severity
         self.category = category
+        self.details = details or {}
+        self.context = context
+        self.timestamp = datetime.now()
+        self.stack_trace = traceback.format_exc()
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert error to dictionary for serialization."""
+        return {
+            "error": {
+                "code": self.code,
+                "message": self.message,
+                "severity": self.severity.value,
+                "category": self.category.value,
+                "timestamp": self.timestamp.isoformat(),
+                "details": self.details,
+                "context": self.context.to_dict() if self.context else None
+            }
+        }
+    
+    def log(self) -> None:
+        """Log the error with appropriate severity."""
+        log_message = f"{self.code}: {self.message}"
+        if self.context:
+            log_message += f" | Context: {json.dumps(self.context.to_dict())}"
+        
+        if self.severity == ErrorSeverity.DEBUG:
+            logger.debug(log_message, exc_info=True)
