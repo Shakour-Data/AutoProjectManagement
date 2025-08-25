@@ -512,7 +512,7 @@ class ProjectManagementSystem:
         """
         if project_id is None:
             return None
-        return self.projects.get(project_id)
+        return self.projects.get(str(project_id))
         
     def list_projects(self) -> List[Dict[str, Any]]:
         """
