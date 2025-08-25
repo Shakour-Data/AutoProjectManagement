@@ -40,3 +40,40 @@ def test_auth_service():
         password="SecurePass123!"
     )
     
+    success, message, auth_data = auth_service.login_user(login_data)
+    
+    if success:
+        print(f"✅ Login successful: {message}")
+        print(f"   Access Token: {auth_data['access_token'][:30]}...")
+        print(f"   User: {auth_data['user']['first_name']} {auth_data['user']['last_name']}")
+    else:
+        print(f"❌ Login failed: {message}")
+        return False
+    
+    # Test 3: Token Validation
+    print("\n3. Testing Token Validation...")
+    token = auth_data['access_token']
+    payload = auth_service.validate_token(token)
+    
+    if payload:
+        print(f"✅ Token validation successful")
+        print(f"   User ID: {payload.get('sub')}")
+        print(f"   Email: {payload.get('email')}")
+    else:
+        print(f"❌ Token validation failed")
+        return False
+    
+    print("\n" + "=" * 50)
+    print("🎉 Authentication service tests passed successfully!")
+    return True
+
+if __name__ == "__main__":
+    try:
+        success = test_auth_service()
+        if not success:
+            sys.exit(1)
+    except Exception as e:
+        print(f"💥 Error during testing: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
