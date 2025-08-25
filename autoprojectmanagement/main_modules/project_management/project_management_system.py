@@ -589,10 +589,10 @@ class ProjectManagementSystem:
             raise KeyError("Task must contain 'id' field")
             
         task_id = task['id']
-        if project_id not in self.tasks:
-            self.tasks[project_id] = {}
+        if project_id_str not in self.tasks:
+            self.tasks[project_id_str] = {}
             
-        self.tasks[project_id][task_id] = task
+        self.tasks[project_id_str][task_id] = task
         self.save_tasks()
         return True
         
