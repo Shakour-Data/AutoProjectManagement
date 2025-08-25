@@ -71,3 +71,10 @@ class TestAuthService:
     def test_register_user_duplicate_email(self):
         """Test registration with duplicate email."""
         # Register first user
+        self.auth_service.register_user(self.test_user_data)
+        
+        # Try to register again with same email
+        success, message, user_profile = self.auth_service.register_user(self.test_user_data)
+        
+        assert success is False
+        assert "already exists" in message
