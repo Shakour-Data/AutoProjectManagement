@@ -203,3 +203,5 @@ async def login_user(
     summary="User logout",
     description="Invalidate user session"
 )
+async def logout_user(
+    request: Request,
