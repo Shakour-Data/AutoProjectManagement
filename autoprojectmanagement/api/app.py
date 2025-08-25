@@ -346,36 +346,36 @@ def read_root() -> Dict[str, Any]:
 @app.get(
     f"{API_PREFIX}/health",
     tags=["System"],
-    response_model=Dict[str, Any]
+    response_model=Dict[str, Any],
+    responses={
+        200: {"description": "System health status"},
+        500: {"description": "Internal server error", "model": ErrorResponse}
+    }
 )
-def health_check() -> Dict[str, Any]:
+def health_check(request: Request) -> Dict[str, Any]:
     """
-    Comprehensive health check endpoint.
+    Comprehensive health check endpoint with detailed error handling.
     
     Returns:
         Dict containing system health status and component availability.
+        
+    Raises:
+        HTTPException: If critical system components are unavailable
     """
-    health_status = {
-        "status": "healthy",
-        "timestamp": datetime.now().isoformat(),
-        "components": {
-            "api": "running",
-            "database": "connected",
-            "logging": "active"
-        },
-        "version": "1.0.0"
-    }
+    context = ErrorContext(
+        endpoint=str(request.url),
+        method=request.method,
+        parameters={}
+    )
     
     try:
-        # Check if we can access project data
-        project_list = project_service.get_project_list()
-        health_status["components"]["data_access"] = "available"
-    except Exception as e:
-        logger.error(f"Health check failed: {e}")
-        health_status["components"]["data_access"] = "error"
-        health_status["status"] = "degraded"
-    
-    return health_status
+        health_status = {
+            "status": "healthy",
+            "timestamp": datetime.now().isoformat(),
+            "components": {
+                "api": "running",
+                "database": "connected",
+                "logging": "active",
 
 @app.get(
     f"{API_PREFIX}/projects/{{project_id}}/status",
