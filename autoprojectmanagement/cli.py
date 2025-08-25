@@ -136,61 +136,6 @@ def init(config: Optional[str], verbose: bool) -> None:
 
 @main.command()
 @click.argument('project_name')
-@click.option('--description', '-d', help='Project description')
-@click.option('--template', '-t', help='Project template to use')
-def create_project(
-    project_name: str,
-    description: Optional[str],
-    template: Optional[str]
-) -> None:
-    """
-    Create a new project with automated management capabilities.
-    
-    This command creates a new project with all necessary structure and
-    configurations for automated project management.
-    
-    Args:
-        project_name: Name of the project to create
-        description: Optional project description
-        template: Optional template to use for project structure
-    
-    Examples:
-        autoprojectmanagement create-project "Web Application"
-        autoprojectmanagement create-project "API Service" --description "RESTful API for mobile app"
-        autoprojectmanagement create-project "Data Pipeline" --template python
-    
-    Returns:
-        None
-    
-    Raises:
-        ValueError: If project name is invalid
-        OSError: If unable to create project directory
-    """
-    click.echo(f"📁 Creating project: {project_name}")
-    
-    # Create project dictionary with basic information
-    project = {
-        "id": len(system.projects) + 1,
-        "name": project_name,
-        "description": description or "",
-        "template": template or "default",
-        "created_at": time.strftime("%Y-%m-%d %H:%M:%S")
-    }
-    
-    # Add optional fields if provided
-    if description:
-        project["description"] = description
-    if template:
-        project["template"] = template
-    
-    # Add project to system
-    success = system.add_project(project)
-    
-    if success:
-        click.echo(f"✅ Project '{project_name}' created successfully with ID: {project['id']}")
-    else:
-        click.echo("❌ Failed to create project. Project may already exist.", err=True)
-        sys.exit(1)
 
 
 @main.command()
