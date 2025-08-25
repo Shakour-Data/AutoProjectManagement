@@ -267,3 +267,77 @@ class ErrorHandler:
     def validate_input(self, 
                       data: Any,
                       validation_rules: Dict[str, Any],
+                      context: Optional[ErrorContext] = None) -> bool:
+        """
+        Validate input data against specified rules.
+        
+        Args:
+            data: Data to validate
+            validation_rules: Validation rules dictionary
+            context: Error context
+            
+        Returns:
+            True if valid, raises ValidationError otherwise
+        """
+        # Basic validation implementation
+        # This can be extended with more complex validation logic
+        
+        if not data:
+            raise ValidationError(
+                message="Input data is required",
+                context=context
+            )
+        
+        # Check required fields
+        required_fields = validation_rules.get("required", [])
+        if isinstance(data, dict):
+            for field in required_fields:
+                if field not in data or data[field] is None:
+                    raise ValidationError(
+                        message=f"Required field '{field}' is missing",
+                        field=field,
+                        context=context
+                    )
+        
+        # Type validation
+        type_rules = validation_rules.get("types", {})
+        if isinstance(data, dict):
+            for field, expected_type in type_rules.items():
+                if field in data and not isinstance(data[field], expected_type):
+                    raise ValidationError(
+                        message=f"Field '{field}' must be of type {expected_type.__name__}",
+                        field=field,
+                        value=data[field],
+                        context=context
+                    )
+        
+        return True
+    
+    def get_error_log(self, 
+                     limit: int = 100,
+                     severity: Optional[ErrorSeverity] = None,
+                     category: Optional[ErrorCategory] = None) -> List[Dict[str, Any]]:
+        """
+        Get filtered error log entries.
+        
+        Args:
+            limit: Maximum number of entries to return
+            severity: Filter by severity level
+            category: Filter by category
+            
+        Returns:
+            List of error log entries
+        """
+        filtered_log = self.error_log
+        
+        if severity:
+            filtered_log = [entry for entry in filtered_log 
+                          if entry["error"]["error"]["severity"] == severity.value]
+        
+        if category:
+            filtered_log = [entry for entry in filtered_log 
+                          if entry["error"]["error"]["category"] == category.value]
+        
+        return filtered_log[-limit:]
+    
+    def clear_error_log(self) -> None:
