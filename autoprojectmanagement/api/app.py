@@ -97,6 +97,10 @@ except ImportError:
             self.kwargs = kwargs
 
 # Import business logic
+try:
+    from autoprojectmanagement.api.services import ProjectService
+    from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
+    from autoprojectmanagement.api.sse_endpoints import router as sse_router
     from autoprojectmanagement.api.auth_endpoints import router as auth_router
 except ImportError:
     # Handle import for development
@@ -122,10 +126,6 @@ class ProjectStatus(BaseModel):
         """Validate that completed tasks don't exceed total tasks."""
         if 'total_tasks' in values and v > values['total_tasks']:
             raise ValueError('Completed tasks cannot exceed total tasks')
-        return v
-
-class ProjectCreate(BaseModel):
-    """Model for creating new projects with enhanced validation."""
     name: str = Field(..., min_length=1, max_length=100, description="Project name")
     description: Optional[str] = Field(None, max_length=500, description="Project description")
     template: Optional[str] = Field(None, description="Project template")
