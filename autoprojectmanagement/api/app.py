@@ -15,9 +15,39 @@ from typing import Dict, Any, Optional, List, Union
 import os
 import sys
 from datetime import datetime
+import json
+from pathlib import Path
+import traceback
+
+# Import error handling system
+try:
+    from autoprojectmanagement.utils.error_handler import (
+        error_handler, ErrorContext, CustomError, ValidationError,
+        AuthenticationError, AuthorizationError, DatabaseError,
+        ErrorSeverity, ErrorCategory, create_user_friendly_message
+    )
+except ImportError:
+    # Fallback implementation for development
+    class ErrorContext:
+        def __init__(self, **kwargs):
+            pass
+        def to_dict(self):
+            return {}
+    
+    class CustomError(Exception):
+        pass
+    
+    error_handler = None
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('api.log'),
+        logging.StreamHandler()
+    ]
+)
 logger = logging.getLogger(__name__)
 
 # Constants
@@ -36,42 +66,6 @@ For more information, visit: https://github.com/autoprojectmanagement/autoprojec
 
 # Version information
 __version__ = CURRENT_VERSION
-__author__ = "AutoProjectManagement Team"
-__license__ = "MIT"
-
-
-import json
-import logging
-import os
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
-from datetime import datetime
-
-try:
-    from fastapi import FastAPI, HTTPException, Query, Path as APIPath
-    from fastapi.middleware.cors import CORSMiddleware
-    from fastapi.responses import JSONResponse
-    from pydantic import BaseModel, Field
-except ImportError:
-    # Fallback for development environment
-    class FastAPI:
-        def __init__(self, *args, **kwargs):
-            pass
-    
-    class HTTPException(Exception):
-        def __init__(self, status_code, detail):
-            self.status_code = status_code
-            self.detail = detail
-    
-    class BaseModel:
-        pass
-    
-    class Field:
-        pass
-
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # Import business logic
 try:
