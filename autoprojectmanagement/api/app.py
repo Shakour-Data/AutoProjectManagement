@@ -87,8 +87,7 @@ except ImportError:
             self.status_code = status_code
             self.detail = detail
     
-    class BaseModel:
-        pass
+=======
     
 =======
 =======
