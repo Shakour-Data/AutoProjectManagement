@@ -128,6 +128,28 @@ class ProjectStatus(BaseModel):
 class ProjectCreate(BaseModel):
     """Model for creating new projects with enhanced validation."""
     name: str = Field(..., min_length=1, max_length=100, description="Project name")
+    description: Optional[str] = Field(None, max_length=500, description="Project description")
+    template: Optional[str] = Field(None, description="Project template")
+
+    @validator('name')
+    def validate_name(cls, v):
+        """Validate project name format."""
+        if not v.strip():
+            raise ValueError('Project name cannot be empty or whitespace only')
+        if len(v.strip()) < 2:
+            raise ValueError('Project name must be at least 2 characters long')
+        return v.strip()
+
+class ProjectUpdate(BaseModel):
+    """Model for updating projects with enhanced validation."""
+    name: Optional[str] = Field(None, min_length=1, max_length=100)
+    description: Optional[str] = Field(None, max_length=500)
+    status: Optional[str] = Field(None, description="Project status")
+
+    @validator('status')
+    def validate_status(cls, v):
+        """Validate project status."""
+        if v and v not in ['active', 'paused', 'completed', 'archived']:
 
 # Initialize services
 project_service = ProjectService()
