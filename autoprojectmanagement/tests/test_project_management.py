@@ -36,10 +36,10 @@ class TestProjectManagementSystem(unittest.TestCase):
         self.assertEqual(project["name"], "Updated Project")
 
     def test_add_task_to_project(self):
-        project_data = {"id": "5", "name": "Project with Tasks"}
+        project_data = {"id": 5, "name": "Project with Tasks"}
         self.pms.add_project(project_data)
         task_data = {"id": 101, "title": "New Task"}
-        result = self.pms.add_task_to_project("5", task_data)
+        result = self.pms.add_task_to_project(5, task_data)
         self.assertTrue(result)
 
     def test_remove_task_from_project(self):
