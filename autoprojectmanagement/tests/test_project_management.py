@@ -13,9 +13,9 @@ class TestProjectManagementSystem(unittest.TestCase):
         self.assertIn("1", self.pms.projects)
 
     def test_get_project(self):
-        project_data = {"id": "2", "name": "Another Project"}
+        project_data = {"id": 2, "name": "Another Project"}
         self.pms.add_project(project_data)
-        project = self.pms.get_project("2")
+        project = self.pms.get_project(2)
         self.assertIsNotNone(project)
         self.assertEqual(project["name"], "Another Project")
 
