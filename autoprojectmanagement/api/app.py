@@ -77,7 +77,7 @@ try:
     from pydantic import BaseModel, Field, validator
     from pydantic.error_wrappers import ErrorWrapper
 except ImportError:
-    # Fallback for development environment
+# Fallback for development environment
     class FastAPI:
         def __init__(self, *args, **kwargs):
             pass
@@ -91,7 +91,11 @@ except ImportError:
         pass
     
     class Field:
-        pass
+        def __init__(self, default=..., description=None, **kwargs):
+            self.default = default
+            self.description = description
+            self.kwargs = kwargs
+=======
 
 # Import business logic
 try:
