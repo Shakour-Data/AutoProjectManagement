@@ -282,13 +282,15 @@ def status(project_id: str, format: str) -> None:
 @click.option('--description', '-d', help='Task description')
 @click.option('--assignee', '-a', help='Task assignee')
 @click.option('--due-date', help='Task due date (YYYY-MM-DD)')
+@click.option('--verbose', '-v', is_flag=True, help='Show detailed output')
 def add_task(
     project_id: str,
     task_name: str,
     priority: str,
     description: Optional[str],
     assignee: Optional[str],
-    due_date: Optional[str]
+    due_date: Optional[str],
+    verbose: bool
 ) -> None:
     """
     Add a new task to an existing project.
@@ -303,6 +305,7 @@ def add_task(
         description: Optional task description
         assignee: Optional task assignee
         due_date: Optional due date in YYYY-MM-DD format
+        verbose: Show detailed output
     
     Examples:
         autoprojectmanagement add-task 12345 --task-name "Implement feature" --priority high
@@ -316,16 +319,26 @@ def add_task(
         ValueError: If task parameters are invalid
         OSError: If unable to add task to project
     """
-    click.echo(f"📝 Adding task '{task_name}' to project {project_id}")
-    
     try:
+        click.echo(f"📝 Adding task '{task_name}' to project {project_id}")
+        
         project_id_int = int(project_id)
         
         # Check if project exists
         project = system.get_project(project_id_int)
         if not project:
-            click.echo(f"❌ Project with ID {project_id} not found", err=True)
+            click.echo(f"❌ Error: Project with ID {project_id} not found", err=True)
+            click.echo("💡 Use 'autoprojectmanagement create-project' to create a new project first")
             sys.exit(1)
+        
+        # Validate due date format if provided
+        if due_date:
+            try:
+                from datetime import datetime
+                datetime.strptime(due_date, '%Y-%m-%d')
+            except ValueError:
+                click.echo(f"❌ Error: Invalid due date format '{due_date}'. Use YYYY-MM-DD format.", err=True)
+                sys.exit(1)
         
         # Create task dictionary
         task = {
@@ -342,17 +355,39 @@ def add_task(
         if due_date:
             task["due_date"] = due_date
         
+        if verbose:
+            click.echo(f"📋 Task details:")
+            click.echo(f"  - Name: {task_name}")
+            click.echo(f"  - Priority: {priority}")
+            if description:
+                click.echo(f"  - Description: {description}")
+            if assignee:
+                click.echo(f"  - Assignee: {assignee}")
+            if due_date:
+                click.echo(f"  - Due Date: {due_date}")
+        
         # Add task to project
         success = system.add_task_to_project(project_id_int, task)
         
         if success:
-            click.echo(f"✅ Task '{task_name}' added successfully to project {project_id} with ID: {task['id']}")
+            click.echo(f"✅ Success: Task '{task_name}' added to project {project_id} with ID: {task['id']}")
+            click.echo(f"📊 Task status: todo")
+            if verbose:
+                click.echo(f"📁 Project: {project['name']}")
         else:
-            click.echo("❌ Failed to add task to project", err=True)
+            click.echo("❌ Error: Failed to add task to project", err=True)
+            click.echo("💡 Check if the project exists and try again")
             sys.exit(1)
             
     except ValueError:
-        click.echo(f"❌ Invalid project ID: {project_id}. Must be a number.", err=True)
+        click.echo(f"❌ Error: Invalid project ID '{project_id}'. Must be a valid number.", err=True)
+        click.echo("💡 Use 'autoprojectmanagement status' to list available projects")
+        sys.exit(1)
+    except Exception as e:
+        click.echo(f"❌ Unexpected error: {str(e)}", err=True)
+        if verbose:
+            import traceback
+            click.echo(f"🔧 Debug info: {traceback.format_exc()}")
         sys.exit(1)
 
 
@@ -437,7 +472,8 @@ def report(
 @click.argument('project_id')
 @click.argument('task_id')
 @click.option('--new-status', type=click.Choice(['todo', 'in_progress', 'done', 'blocked']), required=True)
-def update_task_status(project_id: str, task_id: str, new_status: str) -> None:
+@click.option('--verbose', '-v', is_flag=True, help='Show detailed output')
+def update_task_status(project_id: str, task_id: str, new_status: str, verbose: bool) -> None:
     """
     Update the status of an existing task.
     
@@ -448,6 +484,7 @@ def update_task_status(project_id: str, task_id: str, new_status: str) -> None:
         project_id: ID of the project containing the task
         task_id: ID of the task to update
         new_status: New status (todo, in_progress, done, blocked)
+        verbose: Show detailed output
     
     Examples:
         autoprojectmanagement update-task-status 12345 67890 --new-status done
@@ -460,29 +497,53 @@ def update_task_status(project_id: str, task_id: str, new_status: str) -> None:
         ValueError: If status is invalid
         OSError: If unable to update task
     """
-    click.echo(f"🔄 Updating task {task_id} status to {new_status}")
-    
     try:
+        click.echo(f"🔄 Updating task {task_id} status to '{new_status}'")
+        
         project_id_int = int(project_id)
         task_id_int = int(task_id)
         
         # Check if project exists
         project = system.get_project(project_id_int)
         if not project:
-            click.echo(f"❌ Project with ID {project_id} not found", err=True)
+            click.echo(f"❌ Error: Project with ID {project_id} not found", err=True)
+            click.echo("💡 Use 'autoprojectmanagement status' to list available projects")
             sys.exit(1)
+        
+        # Get current task status for comparison
+        current_status = None
+        tasks = system.list_tasks_in_project(project_id_int)
+        for task in tasks:
+            if task['id'] == task_id_int:
+                current_status = task.get('status', 'unknown')
+                break
+        
+        if verbose:
+            click.echo(f"📋 Current status: {current_status or 'unknown'}")
+            click.echo(f"📋 New status: {new_status}")
+            click.echo(f"📁 Project: {project['name']}")
         
         # Update task status
         success = system.update_task_status(project_id_int, task_id_int, new_status)
         
         if success:
-            click.echo(f"✅ Task {task_id} status updated successfully to '{new_status}'")
+            click.echo(f"✅ Success: Task {task_id} status updated to '{new_status}'")
+            if current_status and current_status != new_status:
+                click.echo(f"📊 Status changed: {current_status} → {new_status}")
         else:
-            click.echo(f"❌ Failed to update task {task_id} status. Task may not exist.", err=True)
+            click.echo(f"❌ Error: Failed to update task {task_id} status", err=True)
+            click.echo("💡 Check if the task exists in the specified project")
             sys.exit(1)
             
     except ValueError:
-        click.echo(f"❌ Invalid project ID or task ID. Both must be numbers.", err=True)
+        click.echo(f"❌ Error: Invalid project ID '{project_id}' or task ID '{task_id}'. Both must be valid numbers.", err=True)
+        click.echo("💡 Use 'autoprojectmanagement status <project_id>' to list tasks in a project")
+        sys.exit(1)
+    except Exception as e:
+        click.echo(f"❌ Unexpected error: {str(e)}", err=True)
+        if verbose:
+            import traceback
+            click.echo(f"🔧 Debug info: {traceback.format_exc()}")
         sys.exit(1)
 
 
@@ -508,7 +569,7 @@ def help_command(list_commands: bool, help_flag: bool) -> None:
         None
     """
     if list_commands:
-        click.echo("Available commands:")
+        click.echo("📋 Available commands:")
         click.echo("  init              - Initialize new project management system")
         click.echo("  create-project    - Create new project")
         click.echo("  status            - Show project status")
@@ -517,6 +578,24 @@ def help_command(list_commands: bool, help_flag: bool) -> None:
         click.echo("  update-task-status - Update task status")
         click.echo("  dashboard         - Manage dashboard (start, stop, open, status)")
         click.echo("  help              - Show help information")
+        click.echo("\n💡 Tip: Use 'autoprojectmanagement <command> --help' for detailed command help")
+    else:
+        click.echo("AutoProjectManagement CLI - Automated Project Management System")
+        click.echo("\nUsage: autoprojectmanagement [OPTIONS] COMMAND [ARGS]...")
+        click.echo("\nOptions:")
+        click.echo("  --help     Show this message and exit.")
+        click.echo("  --version  Show the version and exit.")
+        click.echo("\nCommands:")
+        click.echo("  init              Initialize new project management system")
+        click.echo("  create-project    Create new project")
+        click.echo("  status            Show project status")
+        click.echo("  add-task          Add new task to project")
+        click.echo("  report            Generate project reports")
+        click.echo("  update-task-status Update task status")
+        click.echo("  dashboard         Manage dashboard operations")
+        click.echo("  help              Show help information")
+        click.echo("\n📚 Documentation: https://github.com/AutoProjectManagement/AutoProjectManagement")
+        click.echo("🐛 Report issues: https://github.com/AutoProjectManagement/AutoProjectManagement/issues")
 
 
 # Add dashboard command to main CLI

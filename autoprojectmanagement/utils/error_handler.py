@@ -410,8 +410,10 @@ def create_user_friendly_message(error: CustomError) -> str:
         "AUTHENTICATION_ERROR": "Please check your credentials and try again.",
         "AUTHORIZATION_ERROR": "You don't have permission to perform this action.",
         "DATABASE_ERROR": "A database error occurred. Please try again later.",
+        "NETWORK_ERROR": "Network issues detected. Please check your connection.",
+        "EXTERNAL_SERVICE_ERROR": "An error occurred while communicating with an external service.",
         "GENERIC_EXCEPTION": "An unexpected error occurred. Please try again."
     }
     
     base_message = base_messages.get(error.code, base_messages["GENERIC_EXCEPTION"])
-    return f"{error.message} {base_message}"
+    return f"{error.message} {base_message} Please refer to the documentation or contact support for further assistance."

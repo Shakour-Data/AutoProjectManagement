@@ -88,10 +88,22 @@ class DashboardCLI:
         host = host or self.default_host
         
         try:
+            # Check if port is already in use
+            import socket
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            try:
+                sock.bind((host, port))
+                sock.close()
+            except socket.error:
+                console.print(f"[bold red]❌ Error: Port {port} is already in use![/bold red]")
+                console.print("💡 Try using a different port with --port option")
+                return False
+            
             console.print(f"[bold green]🚀 Starting Dashboard Server...[/bold green]")
             console.print(f"   Host: [cyan]{host}[/cyan]")
             console.print(f"   Port: [cyan]{port}[/cyan]")
             console.print(f"   URL: [blue]http://{host}:{port}/dashboard[/blue]")
+            console.print(f"   API: [blue]http://{host}:{port}/api/v1[/blue]")
             
             # In a real implementation, this would start the FastAPI server
             # For now, we'll simulate the process
@@ -103,15 +115,25 @@ class DashboardCLI:
                 task = progress.add_task("Starting server...", total=None)
                 
                 # Simulate server startup
-                time.sleep(2)
+                time.sleep(1)
+                
+                progress.update(task, description="Loading authentication module...")
+                time.sleep(0.5)
                 
                 progress.update(task, description="Loading dashboard components...")
-                time.sleep(1)
+                time.sleep(0.5)
                 
                 progress.update(task, description="Initializing WebSocket connections...")
-                time.sleep(1)
+                time.sleep(0.5)
+                
+                progress.update(task, description="Setting up API endpoints...")
+                time.sleep(0.5)
                 
             console.print("[bold green]✅ Dashboard server started successfully![/bold green]")
+            console.print("\n📋 Available endpoints:")
+            console.print(f"   • Dashboard UI: [cyan]http://{host}:{port}/dashboard[/cyan]")
+            console.print(f"   • API Docs: [cyan]http://{host}:{port}/docs[/cyan]")
+            console.print(f"   • Health Check: [cyan]http://{host}:{port}/api/v1/health[/cyan]")
             console.print("\n[dim]Press Ctrl+C to stop the server[/dim]")
             
             # Keep the server running (simulated)
@@ -125,6 +147,8 @@ class DashboardCLI:
         except Exception as e:
             console.print(f"[bold red]❌ Failed to start dashboard: {e}[/bold red]")
             logger.error(f"Dashboard start failed: {e}")
+            console.print("💡 Make sure you have the required dependencies installed:")
+            console.print("   pip install fastapi uvicorn")
             return False
     
     def stop_dashboard(self) -> bool:
@@ -200,18 +224,45 @@ class DashboardCLI:
             status = self.dashboard_status()
             if status["status"] != "running":
                 console.print("[bold red]❌ Dashboard server is not running![/bold red]")
-                console.print("[yellow]Please start the dashboard first:[/yellow]")
-                console.print("  autoprojectmanagement dashboard --start")
+                console.print("[yellow]💡 Please start the dashboard first using one of these commands:[/yellow]")
+                console.print("   autoprojectmanagement dashboard start")
+                console.print("   autoprojectmanagement dashboard --start")
+                console.print("   python -m autoprojectmanagement.api.app")
+                console.print("\n[yellow]📋 Quick start:[/yellow]")
+                console.print("   1. Start the server: autoprojectmanagement dashboard start")
+                console.print("   2. Open dashboard: autoprojectmanagement dashboard open")
+                console.print("   3. Check status: autoprojectmanagement dashboard status")
+                return False
+            
+            # Test if the dashboard endpoint is actually accessible
+            try:
+                response = requests.get(dashboard_url, timeout=5)
+                if response.status_code != 200:
+                    console.print(f"[bold yellow]⚠️  Dashboard endpoint returned status {response.status_code}[/bold yellow]")
+                    console.print("💡 The server might be starting up. Please wait a moment and try again.")
+                    return False
+            except requests.RequestException:
+                console.print("[bold yellow]⚠️  Cannot connect to dashboard endpoint[/bold yellow]")
+                console.print("💡 The server might not be fully initialized yet. Please wait and try again.")
                 return False
             
             # Open in browser
             webbrowser.open(dashboard_url)
             console.print("[bold green]✅ Dashboard opened in browser![/bold green]")
+            console.print("📋 Next steps:")
+            console.print("   • View project status and metrics")
+            console.print("   • Monitor real-time updates")
+            console.print("   • Configure dashboard settings")
+            console.print("   • Export reports and data")
             return True
             
         except Exception as e:
             console.print(f"[bold red]❌ Failed to open dashboard: {e}[/bold red]")
             logger.error(f"Browser open failed: {e}")
+            console.print("💡 Troubleshooting tips:")
+            console.print("   • Make sure the dashboard server is running")
+            console.print("   • Check if port 3000 is available")
+            console.print("   • Verify network connectivity")
             return False
     
     def export_dashboard_data(self, format: str = "json", output_file: Optional[str] = None) -> bool:
@@ -226,6 +277,14 @@ class DashboardCLI:
             True if successful, False otherwise
         """
         try:
+            # Check if server is running first
+            status = self.dashboard_status()
+            if status["status"] != "running":
+                console.print("[bold red]❌ Dashboard server is not running![/bold red]")
+                console.print("[yellow]💡 Please start the dashboard first:[/yellow]")
+                console.print("   autoprojectmanagement dashboard start")
+                return False
+            
             console.print(f"[bold blue]💾 Exporting Dashboard Data...[/bold blue]")
             console.print(f"   Format: [cyan]{format}[/cyan]")
             
@@ -237,15 +296,29 @@ class DashboardCLI:
             ]
             
             data = {}
+            failed_endpoints = []
+            
             for name, url in endpoints:
                 try:
                     response = requests.get(url, timeout=10)
                     if response.status_code == 200:
                         data[name] = response.json()
+                        console.print(f"   ✓ {name.capitalize()} data retrieved")
                     else:
-                        data[name] = {"error": f"Status {response.status_code}"}
+                        error_msg = f"Status {response.status_code}"
+                        data[name] = {"error": error_msg}
+                        failed_endpoints.append(f"{name} ({error_msg})")
+                        console.print(f"   ⚠️  {name.capitalize()}: {error_msg}")
                 except Exception as e:
-                    data[name] = {"error": str(e)}
+                    error_msg = str(e)
+                    data[name] = {"error": error_msg}
+                    failed_endpoints.append(f"{name} ({error_msg})")
+                    console.print(f"   ❌ {name.capitalize()}: {error_msg}")
+            
+            # Warn if some endpoints failed
+            if failed_endpoints:
+                console.print(f"[bold yellow]⚠️  Some endpoints failed: {', '.join(failed_endpoints)}[/bold yellow]")
+                console.print("💡 Some data may be incomplete in the export")
             
             # Determine output file
             if not output_file:
@@ -279,11 +352,20 @@ class DashboardCLI:
                         f.write("\n```\n\n")
             
             console.print(f"[bold green]✅ Data exported to: [cyan]{output_file}[/cyan][/bold green]")
+            
+            if failed_endpoints:
+                console.print("[yellow]📝 Note: Export contains partial data due to endpoint failures[/yellow]")
+                console.print("💡 Check dashboard server status and try again for complete data")
+            
             return True
             
         except Exception as e:
             console.print(f"[bold red]❌ Export failed: {e}[/bold red]")
             logger.error(f"Export failed: {e}")
+            console.print("💡 Troubleshooting tips:")
+            console.print("   • Make sure dashboard server is running")
+            console.print("   • Check API endpoint connectivity")
+            console.print("   • Verify network settings")
             return False
     
     def show_dashboard_info(self) -> None:
