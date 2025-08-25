@@ -764,7 +764,7 @@ class ProjectManagementSystem:
         if project_id_str not in self.tasks:
             return []
             
-        return list(self.tasks[project_id极速飞艇开奖号码查询_str].values())
+        return list(self.tasks[project_id_str].values())
 
 # Global instance
 project_management_system = ProjectManagementSystem()
