@@ -201,6 +201,95 @@ app.add_middleware(
 
 # API versioning
 API_VERSION = "v1"
+API_PREFIX = f"/api/{API_VERSION}"
+
+# Enhanced error handling middleware
+@app.middleware("http")
+async def error_handling_middleware(request: Request, call_next):
+    """Global error handling middleware."""
+    try:
+        response = await call_next(request)
+        return response
+    except Exception as exc:
+        # Create error context
+        context = ErrorContext(
+            request_id=request.headers.get('x-request-id'),
+            endpoint=str(request.url),
+            method=request.method,
+            parameters={
+                "path_params": dict(request.path_params),
+                "query_params": dict(request.query_params),
+                "headers": dict(request.headers)
+            }
+        )
+        
+        # Handle the error
+        error_info = error_handler.handle_error(exc, context)
+        
+        # Return appropriate response
+        return JSONResponse(
+            status_code=500 if not isinstance(exc, HTTPException) else exc.status_code,
+            content=error_info
+        )
+
+# Enhanced exception handlers
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    """Handle validation errors with detailed information."""
+    context = ErrorContext(
+        endpoint=str(request.url),
+        method=request.method,
+        parameters={
+            "path_params": dict(request.path_params),
+            "query_params": dict(request.query_params)
+        }
+    )
+    
+    errors = []
+    for error in exc.errors():
+        errors.append({
+            "field": " -> ".join(str(loc) for loc in error["loc"]),
+            "message": error["msg"],
+            "type": error["type"]
+        })
+    
+    error_response = ValidationError(
+        message="Input validation failed",
+        field="multiple",
+        details={"validation_errors": errors},
+        context=context
+    )
+    
+    error_response.log()
+    
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={
+            "errors": errors,
+            "timestamp": datetime.now().isoformat(),
+            "message": "Validation error: Please check your input data"
+        }
+    )
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    """Handle HTTP exceptions with enhanced error information."""
+    context = ErrorContext(
+        endpoint=str(request.url),
+        method=request.method,
+        parameters={
+            "path_params": dict(request.path_params),
+            "query_params": dict(request.query_params)
+        }
+    )
+    
+    # Convert HTTPException to custom error
+    custom_error = CustomError(
+        message=str(exc.detail),
+        code=f"HTTP_{exc.status_code}",
+        severity=ErrorSeverity.ERROR,
+        category=ErrorCategory.BUSINESS_LOGIC,
+        context=context
     """
     Root endpoint providing system information and API overview.
     
