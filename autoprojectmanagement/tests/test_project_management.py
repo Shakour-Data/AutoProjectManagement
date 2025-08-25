@@ -20,9 +20,9 @@ class TestProjectManagementSystem(unittest.TestCase):
         self.assertEqual(project["name"], "Another Project")
 
     def test_remove_project(self):
-        project_data = {"id": "3", "name": "Project to Remove"}
+        project_data = {"id": 3, "name": "Project to Remove"}
         self.pms.add_project(project_data)
-        result = self.pms.remove_project("3")
+        result = self.pms.remove_project(3)
         self.assertTrue(result)
         self.assertNotIn("3", self.pms.projects)
 
