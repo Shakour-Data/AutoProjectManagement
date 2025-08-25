@@ -341,3 +341,77 @@ class ErrorHandler:
         return filtered_log[-limit:]
     
     def clear_error_log(self) -> None:
+        """Clear the error log."""
+        self.error_log.clear()
+
+# Global error handler instance
+error_handler = ErrorHandler()
+
+def error_handler_decorator(func: Callable) -> Callable:
+    """
+    Decorator to automatically handle errors in functions.
+    
+    Args:
+        func: Function to decorate
+        
+    Returns:
+        Decorated function with error handling
+    """
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            # Get calling context
+            frame = inspect.currentframe().f_back
+            context_info = {
+                "function": func.__name__,
+                "module": func.__module__,
+                "args": args,
+                "kwargs": kwargs
+            }
+            
+            context = ErrorContext(
+                endpoint=f"{func.__module__}.{func.__name__}",
+                method="function_call",
+                parameters=context_info
+            )
+            
+            return error_handler.handle_error(e, context)
+    
+    return wrapper
+
+# Utility functions for common error scenarios
+def create_validation_error(field: str, 
+                          message: str, 
+                          value: Any = None,
+                          context: Optional[ErrorContext] = None) -> ValidationError:
+    """Create a validation error for a specific field."""
+    return ValidationError(
+        message=message,
+        field=field,
+        value=value,
+        context=context
+    )
+
+def create_database_error(operation: str,
+                        message: str,
+                        context: Optional[ErrorContext] = None) -> DatabaseError:
+    """Create a database operation error."""
+    return DatabaseError(
+        message=message,
+        operation=operation,
+        context=context
+    )
+
+def create_user_friendly_message(error: CustomError) -> str:
+    """Create user-friendly error message from custom error."""
+    base_messages = {
+        "VALIDATION_ERROR": "Please check your input and try again.",
+        "AUTHENTICATION_ERROR": "Please check your credentials and try again.",
+        "AUTHORIZATION_ERROR": "You don't have permission to perform this action.",
+        "DATABASE_ERROR": "A database error occurred. Please try again later.",
+        "GENERIC_EXCEPTION": "An unexpected error occurred. Please try again."
+    }
+    
+    base_message = base_messages.get(error.code, base_messages["GENERIC_EXCEPTION"])
+    return f"{error.message} {base_message}"
