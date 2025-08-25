@@ -177,3 +177,29 @@ async def login_user(
                 error_code = ErrorCodes.ACCOUNT_NOT_VERIFIED
             elif "attempts" in message.lower():
                 status_code = status.HTTP_429_TOO_MANY_REQUESTS
+                error_code = ErrorCodes.RATE_LIMITED
+            
+            raise HTTPException(
+                status_code=status_code,
+                detail=message
+            )
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Login error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Login failed: {str(e)}"
+        )
+
+@router.post(
+    "/logout",
+    response_model=LogoutResponse,
+    responses={
+        400: {"model": ErrorResponse},
+        500: {"model": ErrorResponse}
+    },
+    summary="User logout",
+    description="Invalidate user session"
+)
