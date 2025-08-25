@@ -201,10 +201,6 @@ app.add_middleware(
 
 # API versioning
 API_VERSION = "v1"
-API_PREFIX = f"/api/{API_VERSION}"
-
-@app.get("/", tags=["System"])
-def read_root() -> Dict[str, Any]:
     """
     Root endpoint providing system information and API overview.
     
