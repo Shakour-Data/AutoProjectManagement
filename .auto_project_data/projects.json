@@ -1,35 +1,26 @@
 {
   "1": {
     "id": 1,
-    "name": "Test Project",
-    "description": "A test project for CLI improvements",
-    "template": "default",
-    "created_at": "2025-08-25 20:13:50"
+    "name": "Test Project"
+  },
+  "5": {
+    "id": 5,
+    "name": "Project with Tasks"
   },
   "2": {
     "id": 2,
-    "name": "New Test Project",
-    "description": "A new test project for validation",
-    "template": "default",
-    "created_at": "2025-08-25 20:25:35"
+    "name": "Another Project"
   },
   "3": {
     "id": 3,
-    "name": "Another Test Project",
-    "description": "Another test project for validation",
-    "template": "default",
-    "created_at": "2025-08-25 20:38:33"
-  },
-  "5": {
-    "id": "5",
-    "name": "Project with Tasks"
+    "name": "Project to Remove"
   },
   "6": {
     "id": "6",
     "name": "Project with Task Removal"
   },
   "4": {
-    "id": "4",
+    "id": 4,
     "name": "Project to Update"
   }
 }
