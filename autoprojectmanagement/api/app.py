@@ -409,14 +409,21 @@ def health_check(request: Request) -> Dict[str, Any]:
 @app.get(
     f"{API_PREFIX}/projects/{{project_id}}/status",
     tags=["Projects"],
-    response_model=Dict[str, Any]
+    response_model=Dict[str, Any],
+    responses={
+        200: {"description": "Project status retrieved successfully"},
+        404: {"description": "Project not found", "model": ErrorResponse},
+        400: {"description": "Invalid format requested", "model": ErrorResponse},
+        500: {"description": "Internal server error", "model": ErrorResponse}
+    }
 )
 def get_project_status(
-    project_id: str = APIPath(..., description="Unique project identifier"),
+    request: Request,
+    project_id: str = APIPath(..., description="Unique project identifier", min_length=1, max_length=50),
     format: str = Query("json", description="Response format: json, markdown, or table")
 ) -> Dict[str, Any]:
     """
-    Get comprehensive status of a specific project.
+    Get comprehensive status of a specific project with enhanced error handling.
     
     Args:
         project_id: Unique identifier for the project
@@ -426,9 +433,36 @@ def get_project_status(
         Dict containing detailed project status information
         
     Raises:
-        HTTPException: If project is not found
+        HTTPException: If project is not found or invalid format requested
     """
+    context = ErrorContext(
+        endpoint=str(request.url),
+        method=request.method,
+        parameters={
+            "project_id": project_id,
+            "format": format
+        }
+    )
+    
     try:
+        # Validate format parameter
+        if format not in ["json", "markdown", "table"]:
+            raise ValidationError(
+                message=f"Unsupported format: {format}",
+                field="format",
+                value=format,
+                context=context
+            )
+        
+        # Validate project ID format
+        if not project_id.strip() or len(project_id.strip()) < 1:
+            raise ValidationError(
+                message="Project ID cannot be empty",
+                field="project_id",
+                value=project_id,
+                context=context
+            )
+        
         status_data = project_service.get_status(project_id)
         
         if not status_data:
@@ -444,26 +478,6 @@ def get_project_status(
             return {
                 "format": "markdown",
                 "content": f"# Project {project_id} Status\n\n{json.dumps(status_data, indent=2)}"
-            }
-        elif format == "table":
-            return {
-                "format": "table",
-                "data": status_data
-            }
-        else:
-            raise HTTPException(
-                status_code=400,
-                detail=f"Unsupported format: {format}"
-            )
-            
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Error retrieving project status: {e}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Internal server error: {str(e)}"
-        )
 
 @app.get(
     f"{API_PREFIX}/projects",
