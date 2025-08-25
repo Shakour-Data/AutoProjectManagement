@@ -576,7 +576,8 @@ class ProjectManagementSystem:
         if project_id is None or not isinstance(project_id, int):
             return False
             
-        if project_id not in self.projects:
+        project_id_str = str(project_id)
+        if project_id_str not in self.projects:
             return False
             
         if not isinstance(task, dict):
