@@ -173,6 +173,10 @@ class ValidationErrorResponse(BaseModel):
 
 # Initialize services
 project_service = ProjectService()
+
+# Create FastAPI application with comprehensive configuration
+app: FastAPI = FastAPI(
+    title="AutoProjectManagement API",
     description="Comprehensive REST API for automated project management system",
     version="1.0.0",
     docs_url="/docs",
@@ -226,10 +230,6 @@ async def error_handling_middleware(request: Request, call_next):
         error_info = error_handler.handle_error(exc, context)
         
         # Return appropriate response
-        return JSONResponse(
-            status_code=500 if not isinstance(exc, HTTPException) else exc.status_code,
-            content=error_info
-        )
 
 # Enhanced exception handlers
 @app.exception_handler(RequestValidationError)
