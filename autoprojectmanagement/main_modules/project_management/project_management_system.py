@@ -680,14 +680,16 @@ class ProjectManagementSystem:
         if 'id' not in task:
             raise KeyError("Task must contain 'id' field")
             
-        if project_id not in self.projects:
+        project_id_str = str(project_id)
+        if project_id_str not in self.projects:
             return False
             
         task_id = task['id']
-        if project_id not in self.tasks or task_id not in self.tasks[project_id]:
+        if project_id_str not in self.tasks or task_id not in self.tasks[project_id_str]:
             return False
             
-        self.tasks[project_id][task_id] = task
+        self.tasks[project_id_str][task_id] = task
+        self.save_tasks()
         return True
         
     def get_task_from_project(self, project_id: int, task_id: int) -> Optional[Dict[str, Any]]:
