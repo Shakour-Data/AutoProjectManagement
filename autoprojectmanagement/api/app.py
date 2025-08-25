@@ -230,6 +230,10 @@ async def error_handling_middleware(request: Request, call_next):
         error_info = error_handler.handle_error(exc, context)
         
         # Return appropriate response
+        return JSONResponse(
+            status_code=500 if not isinstance(exc, HTTPException) else exc.status_code,
+            content=error_info
+        )
 
 # Enhanced exception handlers
 @app.exception_handler(RequestValidationError)
@@ -313,7 +317,7 @@ async def generic_exception_handler(request: Request, exc: Exception):
     error_info = error_handler.handle_error(exc, context)
     
     return JSONResponse(
-        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        status_code=status.HTTP_500_INternal_SERVER_ERROR,
         content=error_info
     )
 
@@ -617,77 +621,4 @@ def update_project(
         }
         
     except Exception as e:
-        logger.error(f"Error updating project: {e}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error updating project: {str(e)}"
-        )
-
-@app.delete(
-    f"{API_PREFIX}/projects/{{project_id}}",
-    tags=["Projects"],
-    response_model=Dict[str, Any]
-)
-def delete_project(project_id: str = APIPath(..., description="Project ID to delete")) -> Dict[str, Any]:
-    """
-    Delete a project.
-    
-    Args:
-        project_id: Project identifier
-        
-    Returns:
-        Dict containing deletion confirmation
-    """
-    try:
-        # Implementation would integrate with core business logic
-        return {
-            "message": f"Project {project_id} deleted successfully",
-            "project_id": project_id
-        }
-        
-    except Exception as e:
-        logger.error(f"Error deleting project: {e}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error deleting project: {str(e)}"
-        )
-
-
-# Include dashboard endpoints
-app.include_router(dashboard_router, prefix=API_PREFIX)
-
-# Include SSE endpoints
-app.include_router(sse_router, prefix=API_PREFIX)
-
-# Include authentication endpoints
-app.include_router(auth_router, prefix=API_PREFIX)
-
-# Additional utility endpoints
-@app.get(
-    f"{API_PREFIX}/system/info",
-    tags=["System"],
-    response_model=Dict[str, Any]
-)
-def system_info() -> Dict[str, Any]:
-    """
-    Get comprehensive system information.
-    
-    Returns:
-        Dict containing system configuration and capabilities
-    """
-    return {
-        "system": "AutoProjectManagement",
-        "version": "1.0.0",
-        "api_version": API_VERSION,
-        "capabilities": [
-            "project_management",
-            "task_tracking",
-            "progress_monitoring",
-            "automated_commits",
-            "risk_assessment",
-            "reporting",
-            "user_authentication"
-        ],
-        "supported_formats": ["json", "markdown", "table"],
-        "timestamp": datetime.now().isoformat()
-    }
+        logger.error(f"Error updating project: {
