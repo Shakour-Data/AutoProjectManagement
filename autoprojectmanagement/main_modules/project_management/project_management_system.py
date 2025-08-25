@@ -439,8 +439,8 @@ class ProjectManagementSystem:
             return False
             
         del self.projects[project_id_str]
-        if project_id in self.tasks:
-            del self.tasks[project_id]
+        if project_id_str in self.tasks:
+            del self.tasks[project_id_str]
         return True
         
     def update_project(self, project: Dict[str, Any]) -> bool:
