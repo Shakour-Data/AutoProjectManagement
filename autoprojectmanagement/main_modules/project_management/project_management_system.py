@@ -724,10 +724,11 @@ class ProjectManagementSystem:
         if project_id is None or task_id is None:
             return None
             
-        if project_id not in self.tasks:
+        project_id_str = str(project_id)
+        if project_id_str not in self.tasks:
             return None
             
-        return self.tasks[project_id].get(task_id)
+        return self.tasks[project_id_str].get(task_id)
         
     def list_tasks_in_project(self, project_id: int) -> List[Dict[str, Any]]:
         """
