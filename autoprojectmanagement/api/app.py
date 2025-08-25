@@ -66,6 +66,32 @@ For more information, visit: https://github.com/autoprojectmanagement/autoprojec
 
 # Version information
 __version__ = CURRENT_VERSION
+__author__ = "AutoProjectManagement Team"
+__license__ = "MIT"
+
+try:
+    from fastapi import FastAPI, HTTPException, Query, Path as APIPath, Request, status
+    from fastapi.middleware.cors import CORSMiddleware
+    from fastapi.responses import JSONResponse
+    from fastapi.exceptions import RequestValidationError
+    from pydantic import BaseModel, Field, validator
+    from pydantic.error_wrappers import ErrorWrapper
+except ImportError:
+    # Fallback for development environment
+    class FastAPI:
+        def __init__(self, *args, **kwargs):
+            pass
+    
+    class HTTPException(Exception):
+        def __init__(self, status_code, detail):
+            self.status_code = status_code
+            self.detail = detail
+    
+    class BaseModel:
+        pass
+    
+    class Field:
+        pass
 
 # Import business logic
 try:
