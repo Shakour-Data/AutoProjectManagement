@@ -5,5 +5,12 @@
     "description": "A test project for CLI improvements",
     "template": "default",
     "created_at": "2025-08-25 20:13:50"
+  },
+  "2": {
+    "id": 2,
+    "name": "New Test Project",
+    "description": "A new test project for validation",
+    "template": "default",
+    "created_at": "2025-08-25 20:25:35"
   }
 }
