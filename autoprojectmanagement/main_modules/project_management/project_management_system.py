@@ -401,7 +401,7 @@ class ProjectManagementSystem:
             return False
             
         self.projects[project_id_str] = project
-        self.tasks[project_id] = {}
+        self.tasks[project_id_str] = {}
         self.save_projects()
         self.save_tasks()
         return True
