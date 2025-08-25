@@ -480,10 +480,11 @@ class ProjectManagementSystem:
             raise KeyError("Project must contain 'id' field")
             
         project_id = project['id']
-        if project_id not in self.projects:
+        project_id_str = str(project_id)
+        if project_id_str not in self.projects:
             return False
             
-        self.projects[project_id] = project
+        self.projects[project_id_str] = project
         return True
         
     def get_project(self, project_id: int) -> Optional[Dict[str, Any]]:
