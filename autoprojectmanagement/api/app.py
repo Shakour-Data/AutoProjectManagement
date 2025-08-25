@@ -77,7 +77,7 @@ try:
     from pydantic import BaseModel, Field, validator
     from pydantic.error_wrappers import ErrorWrapper
 except ImportError:
-# Fallback for development environment
+    # Fallback for development environment
     class FastAPI:
         def __init__(self, *args, **kwargs):
             pass
@@ -87,16 +87,16 @@ except ImportError:
             self.status_code = status_code
             self.detail = detail
     
-=======
+    class BaseModel:
+        pass
     
-=======
-=======
+    class Field:
+        def __init__(self, default=..., description=None, **kwargs):
+            self.default = default
+            self.description = description
+            self.kwargs = kwargs
 
 # Import business logic
-try:
-    from autoprojectmanagement.api.services import ProjectService
-    from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
-    from autoprojectmanagement.api.sse_endpoints import router as sse_router
     from autoprojectmanagement.api.auth_endpoints import router as auth_router
 except ImportError:
     # Handle import for development
