@@ -150,6 +150,23 @@ class ProjectUpdate(BaseModel):
     def validate_status(cls, v):
         """Validate project status."""
         if v and v not in ['active', 'paused', 'completed', 'archived']:
+            raise ValueError('Status must be one of: active, paused, completed, archived')
+        return v
+
+class ErrorResponse(BaseModel):
+    """Enhanced model for error responses."""
+    error: str = Field(..., description="Error message")
+    code: str = Field(..., description="Error code")
+    detail: Optional[str] = Field(None, description="Error details")
+    timestamp: datetime = Field(..., description="Error timestamp")
+    severity: str = Field(..., description="Error severity level")
+    category: str = Field(..., description="Error category")
+    context: Optional[Dict[str, Any]] = Field(None, description="Error context")
+
+class ValidationErrorResponse(BaseModel):
+    """Model for validation error responses."""
+    errors: List[Dict[str, Any]] = Field(..., description="List of validation errors")
+    timestamp: datetime = Field(..., description="Error timestamp")
 
 # Initialize services
 project_service = ProjectService()
