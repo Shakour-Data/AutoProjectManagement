@@ -7,7 +7,7 @@ class TestProjectManagementSystem(unittest.TestCase):
         self.pms.initialize_system()
 
     def test_add_project(self):
-        project_data = {"id": "1", "name": "Test Project"}
+        project_data = {"id": 1, "name": "Test Project"}
         result = self.pms.add_project(project_data)
         self.assertTrue(result)
         self.assertIn("1", self.pms.projects)
