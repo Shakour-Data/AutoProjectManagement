@@ -621,4 +621,77 @@ def update_project(
         }
         
     except Exception as e:
-        logger.error(f"Error updating project: {
+        logger.error(f"Error updating project: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error updating project: {str(e)}"
+        )
+
+@app.delete(
+    f"{API_PREFIX}/projects/{{project_id}}",
+    tags=["Projects"],
+    response_model=Dict[str, Any]
+)
+def delete_project(project_id: str = APIPath(..., description="Project ID to delete")) -> Dict[str, Any]:
+    """
+    Delete a project.
+    
+    Args:
+        project_id: Project identifier
+        
+    Returns:
+        Dict containing deletion confirmation
+    """
+    try:
+        # Implementation would integrate with core business logic
+        return {
+            "message": f"Project {project_id} deleted successfully",
+            "project_id": project_id
+        }
+        
+    except Exception as e:
+        logger.error(f"Error deleting project: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error deleting project: {str(e)}"
+        )
+
+
+# Include dashboard endpoints
+app.include_router(dashboard_router, prefix=API_PREFIX)
+
+# Include SSE endpoints
+app.include_router(sse_router, prefix=API_PREFIX)
+
+# Include authentication endpoints
+app.include_router(auth_router, prefix=API_PREFIX)
+
+# Additional utility endpoints
+@app.get(
+    f"{API_PREFIX}/system/info",
+    tags=["System"],
+    response_model=Dict[str, Any]
+)
+def system_info() -> Dict[str, Any]:
+    """
+    Get comprehensive system information.
+    
+    Returns:
+        Dict containing system configuration and capabilities
+    """
+    return {
+        "system": "AutoProjectManagement",
+        "version": "1.0.0",
+        "api_version": API_VERSION,
+        "capabilities": [
+            "project_management",
+            "task_tracking",
+            "progress_monitoring",
+            "automated_commits",
+            "risk_assessment",
+            "reporting",
+            "user_authentication"
+        ],
+        "supported_formats": ["json", "markdown", "table"],
+        "timestamp": datetime.now().isoformat()
+    }
