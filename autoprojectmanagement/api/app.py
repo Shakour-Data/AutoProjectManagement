@@ -90,11 +90,7 @@ except ImportError:
     class BaseModel:
         pass
     
-    class Field:
-        def __init__(self, default=..., description=None, **kwargs):
-            self.default = default
-            self.description = description
-            self.kwargs = kwargs
+=======
 =======
 
 # Import business logic
