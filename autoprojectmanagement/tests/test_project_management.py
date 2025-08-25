@@ -27,12 +27,12 @@ class TestProjectManagementSystem(unittest.TestCase):
         self.assertNotIn("3", self.pms.projects)
 
     def test_update_project(self):
-        project_data = {"id": "4", "name": "Project to Update"}
+        project_data = {"id": 4, "name": "Project to Update"}
         self.pms.add_project(project_data)
-        updated_data = {"id": "4", "name": "Updated Project"}
+        updated_data = {"id": 4, "name": "Updated Project"}
         result = self.pms.update_project(updated_data)
         self.assertTrue(result)
-        project = self.pms.get_project("4")
+        project = self.pms.get_project(4)
         self.assertEqual(project["name"], "Updated Project")
 
     def test_add_task_to_project(self):
