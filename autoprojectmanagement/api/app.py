@@ -126,6 +126,10 @@ class ProjectStatus(BaseModel):
         """Validate that completed tasks don't exceed total tasks."""
         if 'total_tasks' in values and v > values['total_tasks']:
             raise ValueError('Completed tasks cannot exceed total tasks')
+        return v
+
+class ProjectCreate(BaseModel):
+    """Model for creating new projects with enhanced validation."""
     name: str = Field(..., min_length=1, max_length=100, description="Project name")
     description: Optional[str] = Field(None, max_length=500, description="Project description")
     template: Optional[str] = Field(None, description="Project template")
@@ -144,10 +148,6 @@ class ProjectUpdate(BaseModel):
     name: Optional[str] = Field(None, min_length=1, max_length=100)
     description: Optional[str] = Field(None, max_length=500)
     status: Optional[str] = Field(None, description="Project status")
-
-    @validator('status')
-    def validate_status(cls, v):
-        """Validate project status."""
         if v and v not in ['active', 'paused', 'completed', 'archived']:
             raise ValueError('Status must be one of: active, paused, completed, archived')
         return v
