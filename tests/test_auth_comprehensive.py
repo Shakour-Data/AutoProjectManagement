@@ -129,3 +129,5 @@ class TestAuthService:
     
     def test_login_user_nonexistent_email(self):
         """Test login with non-existent email."""
+        nonexistent_login = UserLoginRequest(
+            email="nonexistent@example.com",
