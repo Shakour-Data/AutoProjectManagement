@@ -1,0 +1,9 @@
+{
+  "1": {
+    "id": 1,
+    "name": "Test Project",
+    "description": "A test project for CLI improvements",
+    "template": "default",
+    "created_at": "2025-08-25 20:13:50"
+  }
+}
