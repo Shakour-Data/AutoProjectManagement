@@ -78,3 +78,42 @@ class TestAuthService:
         
         assert success is False
         assert "already exists" in message
+        assert user_profile is None
+    
+    def test_register_user_weak_password(self):
+        """Test registration with weak password."""
+        weak_user_data = UserRegisterRequest(
+            email="weak@example.com",
+            password="weak",
+            first_name="Weak",
+            last_name="Password"
+        )
+        
+        success, message, user_profile = self.auth_service.register_user(weak_user_data)
+        
+        assert success is False
+        assert "weak" in message.lower()
+        assert user_profile is None
+    
+    def test_login_user_success(self):
+        """Test successful user login."""
+        # First register user
+        self.auth_service.register_user(self.test_user_data)
+        
+        # Then login
+        success, message, auth_data = self.auth_service.login_user(self.test_login_data)
+        
+        assert success is True
+        assert "successful" in message
+        assert auth_data is not None
+        assert "access_token" in auth_data
+        assert "refresh_token" in auth_data
+        assert auth_data["user"]["email"] == self.test_user_data.email
+    
+    def test_login_user_invalid_credentials(self):
+        """Test login with invalid credentials."""
+        # Register user first
+        self.auth_service.register_user(self.test_user_data)
+        
+        # Try login with wrong password
+        wrong_login = UserLoginRequest(
