@@ -376,6 +376,35 @@ def health_check(request: Request) -> Dict[str, Any]:
                 "api": "running",
                 "database": "connected",
                 "logging": "active",
+                "error_handling": "active",
+                "authentication": "available"
+            },
+            "version": "1.0.0",
+            "error_handler_available": error_handler is not None
+        }
+        
+        # Check if we can access project data
+        try:
+            project_list = project_service.get_project_list()
+            health_status["components"]["data_access"] = "available"
+        except Exception as e:
+            health_status["components"]["data_access"] = "degraded"
+            health_status["status"] = "degraded"
+            health_status["data_access_error"] = str(e)
+        
+        # Check error handler status
+        if error_handler:
+            error_count = len(error_handler.get_error_log(limit=10))
+            health_status["recent_errors"] = error_count
+        
+        return health_status
+        
+    except Exception as e:
+        error_handler.handle_error(e, context)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Health check failed due to internal error"
+        )
 
 @app.get(
     f"{API_PREFIX}/projects/{{project_id}}/status",
