@@ -450,6 +450,9 @@ app.include_router(dashboard_router, prefix=API_PREFIX)
 # Include SSE endpoints
 app.include_router(sse_router, prefix=API_PREFIX)
 
+# Include authentication endpoints
+app.include_router(auth_router, prefix=API_PREFIX)
+
 # Additional utility endpoints
 @app.get(
     f"{API_PREFIX}/system/info",
@@ -473,7 +476,8 @@ def system_info() -> Dict[str, Any]:
             "progress_monitoring",
             "automated_commits",
             "risk_assessment",
-            "reporting"
+            "reporting",
+            "user_authentication"
         ],
         "supported_formats": ["json", "markdown", "table"],
         "timestamp": datetime.now().isoformat()
