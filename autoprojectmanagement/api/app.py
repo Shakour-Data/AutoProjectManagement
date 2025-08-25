@@ -290,6 +290,36 @@ async def http_exception_handler(request: Request, exc: HTTPException):
         severity=ErrorSeverity.ERROR,
         category=ErrorCategory.BUSINESS_LOGIC,
         context=context
+    )
+    
+    custom_error.log()
+    
+    return JSONResponse(
+        status_code=exc.status_code,
+        content=custom_error.to_dict()
+    )
+
+@app.exception_handler(Exception)
+async def generic_exception_handler(request: Request, exc: Exception):
+    """Handle all uncaught exceptions."""
+    context = ErrorContext(
+        endpoint=str(request.url),
+        method=request.method,
+        parameters={
+            "path_params": dict(request.path_params),
+            "query_params": dict(request.query_params)
+        }
+    )
+    
+    error_info = error_handler.handle_error(exc, context)
+    
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content=error_info
+    )
+
+@app.get("/", tags=["System"])
+def read_root() -> Dict[str, Any]:
     """
     Root endpoint providing system information and API overview.
     
