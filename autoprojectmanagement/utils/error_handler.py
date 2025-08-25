@@ -110,3 +110,29 @@ class CustomError(Exception):
         
         if self.severity == ErrorSeverity.DEBUG:
             logger.debug(log_message, exc_info=True)
+        elif self.severity == ErrorSeverity.INFO:
+            logger.info(log_message)
+        elif self.severity == ErrorSeverity.WARNING:
+            logger.warning(log_message, exc_info=True)
+        elif self.severity == ErrorSeverity.ERROR:
+            logger.error(log_message, exc_info=True)
+        elif self.severity == ErrorSeverity.CRITICAL:
+            logger.critical(log_message, exc_info=True)
+
+class ValidationError(CustomError):
+    """Error for validation failures."""
+    
+    def __init__(self, 
+                 message: str,
+                 field: Optional[str] = None,
+                 value: Optional[Any] = None,
+                 context: Optional[ErrorContext] = None):
+        details = {}
+        if field:
+            details["field"] = field
+        if value is not None:
+            details["value"] = value
+        
+        super().__init__(
+            message=message,
+            code="VALIDATION_ERROR",
