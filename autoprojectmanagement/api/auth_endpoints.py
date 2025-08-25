@@ -117,3 +117,63 @@ async def register_user(
     except Exception as e:
         logger.error(f"Registration error: {e}")
         raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Registration failed: {str(e)}"
+        )
+
+@router.post(
+    "/login",
+    response_model=LoginSuccessResponse,
+    responses={
+        400: {"model": LoginErrorResponse},
+        401: {"model": LoginErrorResponse},
+        429: {"model": LoginErrorResponse},
+        500: {"model": ErrorResponse}
+    },
+    summary="User login",
+    description="Authenticate user and create session"
+)
+async def login_user(
+    request: Request,
+    login_data: UserLoginRequest
+):
+    """
+    Authenticate user and create session.
+    
+    Validates user credentials and returns JWT tokens.
+    Includes rate limiting to prevent brute force attacks.
+    
+    Args:
+        login_data: User login credentials
+        
+    Returns:
+        Authentication tokens and user information
+        
+    Raises:
+        HTTPException: If authentication fails
+    """
+    try:
+        # Get user agent and IP address for session tracking
+        user_agent = request.headers.get("User-Agent")
+        ip_address = request.client.host if request.client else None
+        
+        success, message, auth_data = auth_service.login_user(
+            login_data, user_agent, ip_address
+        )
+        
+        if success:
+            return LoginSuccessResponse(
+                success=True,
+                message=message,
+                data=auth_data
+            )
+        else:
+            # Determine appropriate status code
+            status_code = status.HTTP_401_UNAUTHORIZED
+            error_code = ErrorCodes.INVALID_CREDENTIALS
+            
+            if "verify" in message.lower():
+                status_code = status.HTTP_403_FORBIDDEN
+                error_code = ErrorCodes.ACCOUNT_NOT_VERIFIED
+            elif "attempts" in message.lower():
+                status_code = status.HTTP_429_TOO_MANY_REQUESTS
