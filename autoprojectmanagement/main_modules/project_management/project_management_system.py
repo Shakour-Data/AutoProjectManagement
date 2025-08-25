@@ -434,10 +434,11 @@ class ProjectManagementSystem:
         if project_id is None:
             return False
             
-        if project_id not in self.projects:
+        project_id_str = str(project_id)
+        if project_id_str not in self.projects:
             return False
             
-        del self.projects[project_id]
+        del self.projects[project_id_str]
         if project_id in self.tasks:
             del self.tasks[project_id]
         return True
