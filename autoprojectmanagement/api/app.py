@@ -148,6 +148,10 @@ class ProjectUpdate(BaseModel):
     name: Optional[str] = Field(None, min_length=1, max_length=100)
     description: Optional[str] = Field(None, max_length=500)
     status: Optional[str] = Field(None, description="Project status")
+
+    @validator('status')
+    def validate_status(cls, v):
+        """Validate project status."""
         if v and v not in ['active', 'paused', 'completed', 'archived']:
             raise ValueError('Status must be one of: active, paused, completed, archived')
         return v
@@ -169,10 +173,6 @@ class ValidationErrorResponse(BaseModel):
 
 # Initialize services
 project_service = ProjectService()
-
-# Create FastAPI application with comprehensive configuration
-app: FastAPI = FastAPI(
-    title="AutoProjectManagement API",
     description="Comprehensive REST API for automated project management system",
     version="1.0.0",
     docs_url="/docs",
