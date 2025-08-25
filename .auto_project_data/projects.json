@@ -19,5 +19,17 @@
     "description": "Another test project for validation",
     "template": "default",
     "created_at": "2025-08-25 20:38:33"
+  },
+  "5": {
+    "id": "5",
+    "name": "Project with Tasks"
+  },
+  "6": {
+    "id": "6",
+    "name": "Project with Task Removal"
+  },
+  "4": {
+    "id": "4",
+    "name": "Project to Update"
   }
 }
