@@ -327,6 +327,11 @@ def add_task(
     try:
         click.echo(f"📝 Adding task '{task_name}' to project {project_id}")
         
+        # Ensure system is initialized
+        if not system.is_initialized:
+            click.echo("💡 Initializing system...")
+            system.initialize_system()
+        
         project_id_int = int(project_id)
         
         # Check if project exists
