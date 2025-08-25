@@ -33,3 +33,27 @@ def test_auth_system():
     # Test data
     test_user = UserRegisterRequest(
         email="test@example.com",
+        password="SecurePass123!",
+        first_name="Test",
+        last_name="User"
+    )
+    
+    # Test 1: User Registration
+    print("\n1. Testing User Registration...")
+    success, message, user_profile = auth_service.register_user(test_user)
+    
+    if success:
+        print(f"✅ Registration successful: {message}")
+        print(f"   User ID: {user_profile.user_id}")
+        print(f"   Email: {user_profile.email}")
+    else:
+        print(f"❌ Registration failed: {message}")
+        return False
+    
+    # Test 2: User Login
+    print("\n2. Testing User Login...")
+    login_data = UserLoginRequest(
+        email="test@example.com",
+        password="SecurePass123!"
+    )
+    
