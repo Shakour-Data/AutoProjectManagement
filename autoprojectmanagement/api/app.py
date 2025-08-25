@@ -653,30 +653,6 @@ def delete_project(project_id: str = APIPath(..., description="Project ID to del
             detail=f"Error deleting project: {str(e)}"
         )
 
-@app.exception_handler(404)
-async def not_found_handler(request, exc):
-    """Custom 404 handler."""
-    return JSONResponse(
-        status_code=404,
-        content={
-            "error": "Not Found",
-            "detail": str(exc.detail),
-            "timestamp": datetime.now().isoformat()
-        }
-    )
-
-@app.exception_handler(500)
-async def internal_error_handler(request, exc):
-    """Custom 500 handler."""
-    logger.error(f"Internal server error: {exc}")
-    return JSONResponse(
-        status_code=500,
-        content={
-            "error": "Internal Server Error",
-            "detail": "An unexpected error occurred",
-            "timestamp": datetime.now().isoformat()
-        }
-    )
 
 # Include dashboard endpoints
 app.include_router(dashboard_router, prefix=API_PREFIX)
