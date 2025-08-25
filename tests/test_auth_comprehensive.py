@@ -131,3 +131,4 @@ class TestAuthService:
         """Test login with non-existent email."""
         nonexistent_login = UserLoginRequest(
             email="nonexistent@example.com",
+            password="SomePassword123!"
