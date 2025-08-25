@@ -78,6 +78,7 @@ try:
     from autoprojectmanagement.api.services import ProjectService
     from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
     from autoprojectmanagement.api.sse_endpoints import router as sse_router
+    from autoprojectmanagement.api.auth_endpoints import router as auth_router
 except ImportError:
     # Handle import for development
     import sys
@@ -85,6 +86,7 @@ except ImportError:
     from autoprojectmanagement.api.services import ProjectService
     from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
     from autoprojectmanagement.api.sse_endpoints import router as sse_router
+    from autoprojectmanagement.api.auth_endpoints import router as auth_router
 
 # Pydantic models for request/response validation
 class ProjectStatus(BaseModel):
