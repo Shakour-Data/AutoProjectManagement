@@ -396,10 +396,11 @@ class ProjectManagementSystem:
             raise KeyError("Project must contain 'id' and 'name' fields")
             
         project_id = project['id']
-        if project_id in self.projects:
+        project_id_str = str(project_id)
+        if project_id_str in self.projects:
             return False
             
-        self.projects[project_id] = project
+        self.projects[project_id_str] = project
         self.tasks[project_id] = {}
         self.save_projects()
         self.save_tasks()
