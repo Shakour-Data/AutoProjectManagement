@@ -627,13 +627,15 @@ class ProjectManagementSystem:
         if project_id is None or task_id is None:
             return False
             
-        if project_id not in self.tasks:
+        project_id_str = str(project_id)
+        if project_id_str not in self.tasks:
             return False
             
-        if task_id not in self.tasks[project_id]:
+        if task_id not in self.tasks[project_id_str]:
             return False
             
-        del self.tasks[project_id][task_id]
+        del self.tasks[project_id_str][task_id]
+        self.save_tasks()
         return True
         
     def update_task_in_project(self, project_id: int, task: Dict[str, Any]) -> bool:
