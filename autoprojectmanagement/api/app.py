@@ -75,8 +75,9 @@ try:
     from fastapi.responses import JSONResponse
     from fastapi.exceptions import RequestValidationError
     from pydantic import BaseModel, Field, validator
-    from pydantic.error_wrappers import ErrorWrapper
-except ImportError:
+    print("FastAPI imported successfully")
+except ImportError as e:
+    print(f"FastAPI import failed: {e}")
     # Fallback for development environment
     class FastAPI:
         def __init__(self, *args, **kwargs):

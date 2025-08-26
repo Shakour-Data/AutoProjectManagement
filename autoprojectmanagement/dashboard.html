@@ -3,36 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
     <link rel="stylesheet" href="dashboard.css">
-    <title>Dashboard</title>
+    <title>Project Management Dashboard</title>
 </head>
 <body>
+    <!-- Mobile Navigation Toggle -->
+    <div class="mobile-nav-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
     <header>
-        <h1>Project Management Dashboard</h1>
+        <div class="header-content">
+            <h1>Project Management Dashboard</h1>
+            <nav class="desktop-nav">
+                <button id="refresh-btn" class="nav-btn">🔄 Refresh</button>
+                <button id="settings-btn" class="nav-btn">⚙️ Settings</button>
+                <button id="help-btn" class="nav-btn">❓ Help</button>
+            </nav>
+        </div>
     </header>
+
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-content">
+            <button id="mobile-refresh-btn" class="mobile-nav-btn">🔄 Refresh</button>
+            <button id="mobile-settings-btn" class="mobile-nav-btn">⚙️ Settings</button>
+            <button id="mobile-help-btn" class="mobile-nav-btn">❓ Help</button>
+            <button id="mobile-logout-btn" class="mobile-nav-btn">🚪 Logout</button>
+        </div>
+    </nav>
+
     <main>
-        <section id="overview">
-            <h2>Overview</h2>
-            <div id="overview-content">
-                <!-- Overview content will be dynamically loaded here -->
-            </div>
-        </section>
-        <section id="metrics">
-            <h2>Metrics</h2>
-            <div id="metrics-content">
-                <!-- Metrics content will be dynamically loaded here -->
-            </div>
-        </section>
-        <section id="alerts">
-            <h2>Alerts</h2>
-            <div id="alerts-content">
-                <!-- Alerts content will be dynamically loaded here -->
-            </div>
-        </section>
+        <div class="dashboard-grid">
+            <section id="overview" class="dashboard-card">
+                <div class="card-header">
+                    <h2>Overview</h2>
+                    <span class="last-updated" id="overview-last-updated"></span>
+                </div>
+                <div id="overview-content" class="card-content">
+                    <!-- Overview content will be dynamically loaded here -->
+                </div>
+            </section>
+
+            <section id="metrics" class="dashboard-card">
+                <div class="card-header">
+                    <h2>Metrics</h2>
+                    <span class="last-updated" id="metrics-last-updated"></span>
+                </div>
+                <div id="metrics-content" class="card-content">
+                    <!-- Metrics content will be dynamically loaded here -->
+                </div>
+            </section>
+
+            <section id="alerts" class="dashboard-card">
+                <div class="card-header">
+                    <h2>Alerts</h2>
+                    <span class="alert-badge" id="alert-count">0</span>
+                </div>
+                <div id="alerts-content" class="card-content">
+                    <!-- Alerts content will be dynamically loaded here -->
+                </div>
+            </section>
+
+            <section id="health" class="dashboard-card">
+                <div class="card-header">
+                    <h2>System Health</h2>
+                    <span class="health-status" id="health-status">🟢</span>
+                </div>
+                <div id="health-content" class="card-content">
+                    <!-- Health content will be dynamically loaded here -->
+                </div>
+            </section>
+        </div>
     </main>
+
+    <!-- Connection Status Indicator -->
+    <div class="connection-status" id="connection-status">
+        <span class="status-indicator"></span>
+        <span class="status-text">Connected</span>
+    </div>
+
     <footer>
-        <p>&copy; 2023 Project Management Tool</p>
+        <div class="footer-content">
+            <p>&copy; 2024 Project Management Tool</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+        </div>
     </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Loading dashboard data...</p>
+    </div>
+
     <script src="dashboard.js"></script>
 </body>
 </html>
