@@ -393,7 +393,6 @@ def read_root() -> Dict[str, Any]:
 )
 def health_check(request: Request极 -> Dict[str, Any]:
     """
-    """
     Comprehensive health check endpoint with detailed error handling.
     
     Returns:
@@ -414,6 +413,7 @@ def health_check(request: Request极 -> Dict[str, Any]:
             "timestamp": datetime.now().isoformat(),
             "components": {
                 "api": "running",
+                "database": "connected",
                 "database": "connected",
                 "logging": "active",
                 "error_handling": "active",
