@@ -329,7 +329,7 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             if self.should_monitor_file(event.dest_path):
                 self._handle_file_change(event.dest_path, 'moved_to')
     
-    def _handle_file_change(self, file_path: str, change_type: str) -> None:
+    async def _handle_file_change(self, file_path: str, change_type: str) -> None:
         """
         Handle a file change event with intelligent debouncing and real-time event publishing.
         
