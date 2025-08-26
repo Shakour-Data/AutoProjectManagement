@@ -1,6 +1,37 @@
-# Unit Test Development Tasks
+# Unit Test Development Tasks and Guidelines
 
-This file contains unit test development tasks for AutoProjectManagement project files. Each task should include 20 tests covering various scenarios.
+This file contains unit test development tasks for AutoProjectManagement project files and comprehensive testing guidelines. Each task should include 20 tests covering various scenarios.
+
+## Testing Standards and Best Practices
+
+### Test Structure Pattern (20 Tests per Module)
+Each Python module should have **20 comprehensive tests** organized into 4 categories:
+
+1. **Functionality Tests (5 tests)** - Test core functionality and normal operation
+2. **Edge Case Tests (5 tests)** - Test boundary conditions and unusual scenarios  
+3. **Error Handling Tests (5 tests)** - Test error conditions and exception handling
+4. **Integration Tests (5 tests)** - Test integration with other modules and systems
+
+### Test-Run-Fix Cycle
+The development process must follow this iterative cycle until **no errors and no warnings**:
+
+1. **Write Tests** - Implement comprehensive test coverage
+2. **Run Tests** - Execute tests and capture results
+3. **Analyze Results** - Identify failures, errors, and warnings
+4. **Fix Issues** - Address problems in either test code or main code
+5. **Repeat** - Continue cycle until all tests pass without warnings
+
+### Unit Testing Guidelines
+
+#### Naming Conventions
+- Test files: `test_<module_name>.py` in corresponding test directories
+- Test classes: `Test<ClassName>` (PascalCase)
+- Test methods: `test_<functionality_description>` (snake_case)
+- Use descriptive names that explain what is being tested
+
+#### Test Organization
+- Use pytest fixtures for setup/teardown
+- Group related tests into classes
 
 ## API Files
 
