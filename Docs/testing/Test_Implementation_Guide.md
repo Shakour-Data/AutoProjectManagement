@@ -392,3 +392,37 @@ def test_integration_with_cache_system(self, test_instance):
         # First call - should set cache
         result1 = test_instance.get_cached_data("key")
         
+        # Second call - should get from cache
+        mock_cache_get.return_value = "cached_value"
+        result2 = test_instance.get_cached_data("key")
+        
+        assert result1 == result2
+        mock_cache_set.assert_called_once()
+        assert mock_cache_get.call_count == 2
+```
+
+## Mocking Strategies
+
+### Basic Mocking
+```python
+@patch('module.Class.method')
+def test_with_mock(self, mock_method):
+    mock_method.return_value = "mocked_result"
+    # test code
+```
+
+### Async Mocking
+```python
+@patch('module.AsyncClass.method', new_callable=AsyncMock)
+def test_async_method(self, mock_method):
+    mock_method.return_value = "async_result"
+    # test code
+```
+
+### Complex Mocking
+```python
+def test_complex_scenario(self):
+    with patch('module.Class1.method1') as mock1, \
+         patch('module.Class2.method2') as mock2, \
+         patch('module.Class3.method3', new_callable=AsyncMock) as mock3:
+        
