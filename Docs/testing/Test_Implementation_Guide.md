@@ -382,3 +382,13 @@ def test_integration_with_logging_system(self, test_instance, caplog):
     assert "INFO" in caplog.text
 
 def test_integration_with_cache_system(self, test_instance):
+    """Test integration with caching system"""
+    with patch('cache.set') as mock_cache_set, \
+         patch('cache.get') as mock_cache_get:
+        
+        mock_cache_get.return_value = None  # Cache miss first time
+        mock_cache_set.return_value = True
+        
+        # First call - should set cache
+        result1 = test_instance.get_cached_data("key")
+        
