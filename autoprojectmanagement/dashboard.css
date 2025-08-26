@@ -388,6 +388,17 @@ footer {
     }
     
     .header-content {
+        padding: 0 1.5rem;
+    }
+    
+    header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .card-header h2 {
+        font-size: 1.25rem;
+    }
+}
 
 /* Touch-friendly enhancements */
 @media (hover: none) and (pointer: coarse) {
