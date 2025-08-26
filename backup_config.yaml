@@ -1,0 +1,183 @@
+# AutoProjectManagement Backup Configuration
+# Production Backup Settings
+
+version: '1.0'
+description: Backup configuration for AutoProjectManagement production environment
+
+## Backup Settings
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM (cron format)
+  retention_days: 30      # Keep backups for 30 days
+  backup_dir: "/var/backups/autoprojectmanagement"
+  include_database: true
+  include_files: true
+  include_logs: false
+  compression: "gzip"     # Options: none, gzip, bzip2
+  encryption:
+    enabled: false
+    key_path: "/etc/autoprojectmanagement/backup_key.pem"
+
+## Database Configuration
+database:
+  host: "localhost"
+  port: 5432
+  name: "autoprojectmanagement"
+  user: "postgres"
+  password: "${DB_PASSWORD}"  # Set via environment variable
+
+## Storage Configuration
+storage:
+  local:
+    enabled: true
+    path: "/var/backups/autoprojectmanagement"
+  
+  s3:
+    enabled: false
+    bucket: "autoprojectmanagement-backups"
+    region: "us-east-1"
+    access_key: "${AWS_ACCESS_KEY_ID}"
+    secret_key: "${AWS_SECRET_ACCESS_KEY}"
+    s3_path: "backups/production/"
+  
+  gcs:
+    enabled: false
+    bucket: "autoprojectmanagement-backups"
+    credentials_path: "/etc/autoprojectmanagement/gcs-credentials.json"
+    gcs_path: "backups/production/"
+
+## Notification Settings
+notifications:
+  email:
+    enabled: false
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    username: "backup-bot@autoprojectmanagement.com"
+    password: "${SMTP_PASSWORD}"
+    to_address: "devops@autoprojectmanagement.com"
+    on_success: true
+    on_failure: true
+  
+  slack:
+    enabled: false
+    webhook_url: "${SLACK_WEBHOOK_URL}"
+    channel: "#backup-notifications"
+    on_success: true
+    on_failure: true
+
+## Files and Directories to Backup
+backup_paths:
+  database: true
+  config_files:
+    - "/etc/autoprojectmanagement/"
+    - "/opt/autoprojectmanagement/config/"
+  application_files:
+    - "/var/lib/autoprojectmanagement/"
+    - "/opt/autoprojectmanagement/data/"
+  log_files:
+    - "/var/log/autoprojectmanagement/app.log"
+    - "/var/log/autoprojectmanagement/error.log"
+    - "/var/log/autoprojectmanagement/access.log"
+
+## Backup Schedule Details
+schedule_details:
+  full_backup:
+    frequency: "weekly"   # Weekly full backup
+    day: "sunday"         # On Sunday
+    time: "02:00"         # At 2 AM
+  
+  incremental_backup:
+    frequency: "daily"    # Daily incremental
+    time: "02:00"         # At 2 AM
+  
+  retention:
+    full_backups: 4       # Keep 4 weekly full backups
+    incremental_backups: 7 # Keep 7 daily incremental backups
+
+## Performance Settings
+performance:
+  max_parallel_backups: 2
+  compression_level: 6    # 1-9, 6 is good balance
+  bandwidth_limit: 0      # 0 = unlimited, or specify in MB/s
+  timeout_hours: 24       # Maximum time for backup to complete
+
+## Security Settings
+security:
+  encrypt_backups: false
+  encryption_algorithm: "AES256"
+  key_rotation_days: 90
+  backup_permissions: 0o600
+  exclude_sensitive_data: true
+  
+  exclude_patterns:
+    - "*.tmp"
+    - "*.log"
+    - "*.cache"
+    - "/tmp/*"
+    - "/var/tmp/*"
+
+## Monitoring and Validation
+monitoring:
+  validate_backups: true
+  checksum_verification: true
+  test_restore: false     # Periodically test restore from backup
+  test_frequency: "monthly"
+  monitor_disk_space: true
+  min_free_space_gb: 10
+  alert_on_low_space: true
+
+## Environment Variables (for Docker/container deployment)
+environment:
+  - DB_PASSWORD: "Database password"
+  - AWS_ACCESS_KEY_ID: "AWS access key for S3"
+  - AWS_SECRET_ACCESS_KEY: "AWS secret key for S3"
+  - SMTP_PASSWORD: "SMTP password for email notifications"
+  - SLACK_WEBHOOK_URL: "Slack webhook URL"
+
+## Setup Instructions
+setup:
+  1. Copy this file to /etc/autoprojectmanagement/backup_config.yaml
+  2. Set appropriate file permissions: chmod 600 /etc/autoprojectmanagement/backup_config.yaml
+  3. Set required environment variables
+  4. Install required dependencies:
+     - PostgreSQL client tools (pg_dump, pg_restore)
+     - AWS CLI (for S3 backups)
+     - Google Cloud SDK (for GCS backups)
+  5. Test the backup system: python3 backup_system.py --test
+
+## Cron Job Example
+cron_example: |
+  # Daily backup at 2 AM
+  0 2 * * * /usr/bin/python3 /opt/autoprojectmanagement/backup_system.py >> /var/log/autoprojectmanagement/backup.log 2>&1
+
+  # Weekly full backup on Sunday at 2 AM
+  0 2 * * 0 /usr/bin/python3 /opt/autoprojectmanagement/backup_system.py --full >> /var/log/autoprojectmanagement/backup.log 2>&1
+
+## Restore Instructions
+restore_instructions: |
+  To restore from a backup:
+  1. Identify the backup file to restore from
+  2. Run the restore script: ./restore_<backup_filename>.sh
+  3. Or manually:
+     - For database: pg_restore -h localhost -U postgres -d autoprojectmanagement <backup_file.sql>
+     - For files: tar -xzf <backup_file.tar.gz> -C /
+
+## Version History
+version_history:
+  - version: "1.0"
+    date: "2024-01-01"
+    changes: "Initial backup configuration"
+  
+  - version: "1.1"
+    date: "2024-01-01"
+    changes: "Added S3 and GCS storage options"
+  
+  - version: "1.2"
+    date: "2024-01-01"
+    changes: "Enhanced security and monitoring settings"
+
+## Support
+support:
+  contact: "devops@autoprojectmanagement.com"
+  documentation: "https://docs.autoprojectmanagement.com/backup"
+  emergency: "oncall+backup@autoprojectmanagement.com"
