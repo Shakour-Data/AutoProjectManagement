@@ -325,9 +325,9 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
         """
         if not event.is_directory:
             if self.should_monitor_file(event.src_path):
-                self._handle_file_change(event.src_path, 'moved_from')
+                await self._handle_file_change(event.src_path, 'moved_from')
             if self.should_monitor_file(event.dest_path):
-                self._handle_file_change(event.dest_path, 'moved_to')
+                await self._handle_file_change(event.dest_path, 'moved_to')
     
     async def _handle_file_change(self, file_path: str, change_type: str) -> None:
         """
