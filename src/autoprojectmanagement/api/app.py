@@ -608,6 +608,83 @@ def create_project(project: ProjectCreate) -> Dict[str, Any]:
         HTTPException: If project creation fails
     """
     try:
+        # Validate project data
+        if not project.name or len(project.name) < 2:
+            raise HTTPException(
+                status_code=422,
+                detail="Project name must be at least 2 characters long"
+            )
+        
+        # Implementation would integrate with core business logic
+        project_data = {
+            "id": "generated_id",  # Would be generated
+            "name": project.name,
+            "description": project.description,
+            "template": project.template,
+            "created_at": datetime.now().isoformat(),
+            "status": "active"
+        }
+        
+        return {
+            "message": "Project created successfully",
+            "project": project_data
+        }
+        
+    except Exception as e:
+        logger.error(f"Error creating project: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error creating project: {str(e)}"
+        )
+
+def update_project(
+    project_id: str = APIPath(..., description="Project ID to update"),
+    project: ProjectUpdate = ...
+) -> Dict[str, Any]:
+    """
+    Update an existing project.
+    
+    Args:
+        project_id: Project identifier
+        project: Update data
+        
+    Returns:
+        Dict containing updated project information
+    """
+    try:
+        # Validate project data
+        if project.name and len(project.name) < 2:
+            raise HTTPException(
+                status_code=422,
+                detail="Project name must be at least 2 characters long"
+            )
+        
+        # Implementation would integrate with core business logic
+        return {
+            "message": f"Project {project_id} updated successfully",
+            "project_id": project_id,
+            "updated_fields": project.dict(exclude_unset=True)
+        }
+        
+    except Exception as e:
+        logger.error(f"Error updating project: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error updating project: {str(e)}"
+        )
+    """
+    Create a new project with automated management capabilities.
+    
+    Args:
+        project: Project creation data
+        
+    Returns:
+        Dict containing created project information
+        
+    Raises:
+        HTTPException: If project creation fails
+    """
+    try:
         # Implementation would integrate with core business logic
         project_data = {
             "id": "generated_id",  # Would be generated
