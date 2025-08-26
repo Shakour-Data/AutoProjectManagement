@@ -193,3 +193,24 @@ class TestAutoCommitFileWatcher:
         
         for i in range(5):
             with open(test_file, "w") as f:
+                f.write(f"content {i}")
+            
+            from watchdog.events import FileModifiedEvent
+            event = FileModifiedEvent(test_file)
+            watcher.on_modified(event)
+        
+        # Should only have one pending change (debounced)
+        assert len(watcher.pending_changes) == 1
+    
+    def test_excluded_directories_ignored(self, temp_project_dir, mock_auto_commit, mock_realtime_service):
+        """Test that files in excluded directories are ignored."""
+        watcher = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Create file in excluded directory
+        node_modules_dir = os.path.join(temp_project_dir, "node_modules")
+        os.makedirs(node_modules_dir, exist_ok=True)
+        excluded_file = os.path.join(node_modules_dir, "package.json")
+        
+        with open(excluded_file, "w") as f:
+            f.write("{}")
+        
