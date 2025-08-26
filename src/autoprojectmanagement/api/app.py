@@ -215,9 +215,9 @@ project_service = ProjectService()
 app: FastAPI = FastAPI(
     title="AutoProjectManagement API",
     description="Comprehensive REST API for automated project management system",
-    version="1.0.0",
+    version="1.0.极",
     docs_url="/docs",
-    redoc_url="/redoc",
+    redoc极"/redoc",
     openapi_url="/openapi.json",
     contact={
         "name": "AutoProjectManagement Team",
