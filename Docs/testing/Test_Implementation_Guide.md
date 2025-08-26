@@ -447,3 +447,36 @@ def test_data():
 @pytest.fixture
 def user_factory():
     def create_user(name="test", age=25):
+        return User(name=name, age=age)
+    return create_user
+```
+
+### Temporary Resources
+```python
+@pytest.fixture
+def temp_file():
+    with tempfile.NamedTemporaryFile(delete=False) as f:
+        f.write(b"test content")
+        yield f.name
+    os.unlink(f.name)
+```
+
+## Best Practices
+
+### Test Naming
+- Use descriptive test names
+- Follow pattern: `test_<what>_<scenario>_<expected>`
+- Include docstrings explaining the test scenario
+
+### Test Organization
+- Group related tests in classes
+- Use fixtures for setup/teardown
+- Keep tests independent and isolated
+
+### Assertion Patterns
+- Use specific assertions (`assert x == y`)
+- Avoid generic `assert True`
+- Use context managers for expected exceptions
+
+### Performance Considerations
+- Keep tests fast (
