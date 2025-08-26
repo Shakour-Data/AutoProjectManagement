@@ -104,3 +104,177 @@ alert_rules:
           labels:
             severity: critical
             environment: production
+          annotations:
+            summary: "High response time detected"
+            description: "Average response time is above 500ms for 5 minutes"
+
+        # High error rate alert
+        - alert: HighErrorRate
+          expr: rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.05
+          for: 5m
+          labels:
+            severity: critical
+            environment: production
+          annotations:
+            summary: "High error rate detected"
+            description: "Error rate is above 5% for 5 minutes"
+
+        # Database connection issues
+        - alert: DatabaseConnectionIssues
+          expr: pg_up == 0
+          for: 2m
+          labels:
+            severity: critical
+            environment: production
+          annotations:
+            summary: "Database connection lost"
+            description: "Database is not responding for 2 minutes"
+
+        # High CPU usage
+        - alert: HighCPUUsage
+          expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+          for: 10m
+          labels:
+            severity: warning
+            environment: production
+          annotations:
+            summary: "High CPU usage"
+            description: "CPU usage is above 80% for 10 minutes"
+
+        # High memory usage
+        - alert: HighMemoryUsage
+          expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
+          for: 10m
+          labels:
+            severity: warning
+            environment: production
+          annotations:
+            summary: "High memory usage"
+            description: "Memory usage is above 85% for 10 minutes"
+
+        # Disk space running out
+        - alert: LowDiskSpace
+          expr: node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} * 100 < 10
+          for: 5m
+          labels:
+            severity: warning
+            environment: production
+          annotations:
+            summary: "Low disk space"
+            description: "Disk space is below 10%"
+
+## Grafana Dashboards
+grafana:
+  dashboards:
+    - name: "Application Overview"
+      description: "Overview of application performance and health"
+      panels:
+        - title: "Request Rate"
+          type: "graph"
+          query: "rate(http_requests_total[5m])"
+          
+        - title: "Response Time"
+          type: "graph"
+          query: "rate(http_request_duration_seconds_sum[5m]) / rate(http_request_duration_seconds_count[5m])"
+          
+        - title: "Error Rate"
+          type: "graph"
+          query: "rate(http_requests_total{status=~'5..'}[5m]) / rate(http_requests_total[5m])"
+          
+        - title: "Database Connections"
+          type: "graph"
+          query: "pg_stat_activity_count"
+
+    - name: "System Metrics"
+      description: "System-level metrics and resource usage"
+      panels:
+        - title: "CPU Usage"
+          type: "graph"
+          query: "100 - (avg by(instance) (rate(node_cpu_seconds_total{mode='idle'}[5m])) * 100)"
+          
+        - title: "Memory Usage"
+          type: "graph"
+          query: "(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100"
+          
+        - title: "Disk Usage"
+          type: "graph"
+          query: "(node_filesystem_size_bytes{mountpoint='/'} - node_filesystem_avail_bytes{mountpoint='/'}) / node_filesystem_size_bytes{mountpoint='/'} * 100"
+
+## Docker Compose for Monitoring Stack
+docker_compose_monitoring: |
+  version: '3.8'
+  services:
+    prometheus:
+      image: prom/prometheus:latest
+      ports:
+        - "9090:9090"
+      volumes:
+        - ./prometheus.yml:/etc/prometheus/prometheus.yml
+        - prometheus_data:/prometheus
+      command:
+        - '--config.file=/etc/prometheus/prometheus.yml'
+        - '--storage.tsdb.path=/prometheus'
+        - '--web.console.libraries=/etc/prometheus/console_libraries'
+        - '--web.console.templates=/etc/prometheus/console_templates'
+        - '--storage.tsdb.retention.time=30d'
+
+    grafana:
+      image: grafana/grafana:latest
+      ports:
+        - "3000:3000"
+      volumes:
+        - grafana_data:/var/lib/grafana
+        - ./grafana/provisioning:/etc/grafana/provisioning
+      environment:
+        - GF_SECURITY_ADMIN_PASSWORD=admin
+      depends_on:
+        - prometheus
+
+    node-exporter:
+      image: prom/node-exporter:latest
+      ports:
+        - "9100:9100"
+
+    alertmanager:
+      image: prom/alertmanager:latest
+      ports:
+        - "9093:9093"
+      volumes:
+        - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+
+  volumes:
+    prometheus_data:
+    grafana_data:
+
+## Setup Instructions
+setup_instructions:
+  - Install Docker and Docker Compose
+  - Clone this repository
+  - Copy this configuration to appropriate files:
+    - prometheus.yml
+    - alertmanager.yml
+  - Set environment variables for sensitive data
+  - Run: docker-compose -f docker-compose-monitoring.yml up -d
+  - Access:
+    - Prometheus: http://localhost:9090
+    - Grafana: http://localhost:3000 (admin/admin)
+    - Alertmanager: http://localhost:9093
+
+## Environment Variables
+environment_variables:
+  - SMTP_PASSWORD: "SMTP server password for email alerts"
+  - SLACK_WEBHOOK_URL: "Slack incoming webhook URL"
+  - PAGERDUTY_SERVICE_KEY: "PagerDuty service integration key"
+
+## Maintenance
+maintenance:
+  - Regularly check Prometheus storage retention
+  - Monitor alertmanager configuration
+  - Update Grafana dashboards as needed
+  - Review and tune alert thresholds
+  - Backup configuration files
+
+## Version History
+- v1.0: Initial monitoring configuration
+- v1.1: Added alert rules and Grafana dashboards
+- v1.2: Enhanced documentation and setup instructions
