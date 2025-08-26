@@ -305,7 +305,7 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             and ignores directory deletion events.
         """
         if not event.is_directory and self.should_monitor_file(event.src_path):
-            self._handle_file_change(event.src_path, 'deleted')
+            await self._handle_file_change(event.src_path, 'deleted')
     
     async def on_moved(self, event: FileSystemEvent) -> None:
         """
