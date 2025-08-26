@@ -361,6 +361,29 @@ class BackupSystem:
 
 set -e
 
+echo "Starting restoration from backup: {backup_path}"
+
+# Extract backup if compressed
+if [[ "{backup_path}" == *.gz ]]; then
+    echo "Decompressing backup..."
+    gunzip -c "{backup_path}" > "{backup_path[:-3]}"
+    backup_path="{backup_path[:-3]}"
+fi
+
+# Restore database
+if [[ "{backup_path}" == *.sql ]]; then
+    echo "Restoring database..."
+    pg_restore -h localhost -U postgres -d autoprojectmanagement "{backup_path}"
+fi
+
+# Restore files
+if [[ "{backup_path}" == *.tar.gz ]]; then
+    echo "Restoring files..."
+    tar -xzf "{backup_path}" -C /
+fi
+
+echo "Restoration completed successfully"
+"""
         
         script_path = f"{os.path.dirname(backup_path)}/restore_{os.path.basename(backup_path)}.sh"
         with open(script_path, 'w') as f:
