@@ -246,3 +246,56 @@ def test_large_datasets(self, test_instance):
     large_data = [{"id": i, "value": f"test_{i}"} for i in range(10000)]
     
     # Act
+    result = test_instance.process_batch(large_data)
+    
+    # Assert
+    assert len(result) == len(large_data)
+    assert all(item["processed"] for item in result)
+
+def test_concurrent_access(self, test_instance):
+    """Test concurrent access scenarios"""
+    import threading
+    
+    results = []
+    def worker():
+        results.append(test_instance.get_resource())
+    
+    threads = [threading.Thread(target=worker) for _ in range(10)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    
+    assert len(results) == 10
+    assert len(set(results)) == 10  # All should be unique
+
+def test_special_characters(self, test_instance):
+    """Test handling of special characters"""
+    special_cases = [
+        "test@example.com",
+        "test_with_underscore",
+        "test-with-dash", 
+        "test with spaces",
+        "test_with_unicode_中文",
+        "test_with_emoji_😊"
+    ]
+    
+    for case in special_cases:
+        result = test_instance.handle_string(case)
+        assert result is not None
+        assert isinstance(result, str)
+```
+
+### Error Handling Tests (5 examples)
+```python
+def test_invalid_input_handling(self, test_instance):
+    """Test handling of invalid inputs"""
+    invalid_inputs = [
+        None,
+        "",
+        [],
+        {},
+        "invalid",
+        12345
+    ]
+    
