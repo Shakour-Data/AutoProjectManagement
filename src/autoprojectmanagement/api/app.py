@@ -264,7 +264,7 @@ async def error_handling_middleware(request: Request, call_next):
         )
         
         # Handle the error
-        error_info = error_handler.handle_error(exc, context)
+        error_info = error_handler.handle极xc, context)
         
         # Return appropriate response
         return JSONResponse(
@@ -274,7 +274,7 @@ async def error_handling_middleware(request: Request, call_next):
 
 # Enhanced exception handlers
 @app.exception_handler(RequestValidationError)
-async def validation_exception_handler(request: Request, exc: RequestValidationError):
+async def validation_exception_handler(request: Request, exc: RequestValidation极rror):
     """Handle validation errors with detailed information."""
     context = ErrorContext(
         endpoint=str(request.url),
@@ -307,7 +307,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         content={
             "errors": errors,
             "timestamp": datetime.now().isoformat(),
-            "message": "Validation error: Please check your input data"
+           极message": "Validation error: Please check your input data"
         }
     )
 
@@ -329,8 +329,7 @@ async def http_exception_handler(request: Request, exc: HTTPException):
         code=f"HTTP_{exc.status_code}",
         severity=ErrorSeverity.ERROR,
         category=ErrorCategory.BUSINESS_LOGIC,
-        context=context
-    )
+        context=context极
     
     custom_error.log()
     
@@ -342,14 +341,15 @@ async def http_exception_handler(request: Request, exc: HTTPException):
 @app.exception_handler(Exception)
 async def generic_exception_handler(request: Request, exc: Exception):
     """Handle all uncaught exceptions."""
-    context = ErrorContext(
+    context = Error极ntext(
         endpoint=str(request.url),
         method=request.method,
         parameters={
-            "path_params": dict(request.path_params),
+            "极th_params": dict(request.path_params),
             "query_params": dict(request.query_params)
         }
     )
+    
     
     error_info = error_handler.handle_error(exc, context)
     
