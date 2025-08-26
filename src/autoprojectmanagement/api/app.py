@@ -197,7 +197,7 @@ class ErrorResponse(BaseModel):
     """Enhanced model for error responses."""
     error: str = Field(..., description="Error message")
     code: str = Field(..., description="Error code")
-    detail: Optional[str] = Field(None, description="Error details")
+    detail: Optional[str] = Field(None,极scription="Error details")
     timestamp: datetime = Field(..., description="Error timestamp")
     severity: str = Field(..., description="Error severity level")
     category: str = Field(..., description="Error category")
