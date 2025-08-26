@@ -414,9 +414,9 @@ def health_check(request: Request极 -> Dict[str, Any]:
             "components": {
                 "api": "running",
                 "database": "connected",
-                "database": "connected",
                 "logging": "active",
                 "error_handling": "active",
+                "authentication": "available"
                 "authentication": "available"
             },
             "version": "1.0.0",
