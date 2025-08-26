@@ -299,3 +299,51 @@ def test_invalid_input_handling(self, test_instance):
         12345
     ]
     
+    for invalid_input in invalid_inputs:
+        with pytest.raises((ValueError, TypeError)):
+            test_instance.process(invalid_input)
+
+def test_external_dependency_failure(self, test_instance):
+    """Test handling of external dependency failures"""
+    with patch('external.dependency') as mock_dep:
+        mock_dep.side_effect = ConnectionError("Connection failed")
+        
+        with pytest.raises(ConnectionError):
+            test_instance.use_external_dependency()
+
+def test_resource_cleanup_on_error(self, test_instance):
+    """Test that resources are cleaned up properly on error"""
+    initial_resources = test_instance.get_resource_count()
+    
+    with pytest.raises(RuntimeError):
+        test_instance.operation_that_fails()
+    
+    # Resources should be cleaned up even after failure
+    assert test_instance.get_resource_count() == initial_resources
+
+def test_graceful_degradation(self, test_instance):
+    """Test graceful degradation when features are unavailable"""
+    with patch('optional.feature', None):  # Feature not available
+        result = test_instance.fallback_operation()
+        
+        assert result is not None
+        assert "fallback" in result
+
+def test_error_logging(self, test_instance, caplog):
+    """Test that errors are properly logged"""
+    with pytest.raises(ValueError):
+        test_instance.operation_that_fails()
+    
+    assert "ERROR" in caplog.text
+    assert "operation_that_fails" in caplog.text
+```
+
+### Integration Tests (5 examples)
+```python
+def test_integration_with_database(self, test_instance):
+    """Test integration with database layer"""
+    with patch('database.connection') as mock_db:
+        mock_db.query.return_value = [{"id": 1, "name": "test"}]
+        
+        result = test_instance.get_from_database(1)
+        
