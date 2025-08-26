@@ -205,3 +205,4 @@ class TestEdgeCases:
         
         # Create a file with no read permissions
         test_file = os.path.join(temp_project_dir, 'no_access.py')
+        with open(test_file, 'w') as f:
