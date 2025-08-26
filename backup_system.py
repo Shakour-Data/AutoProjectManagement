@@ -16,10 +16,21 @@ import tarfile
 import gzip
 from pathlib import Path
 from typing import Dict, List, Optional
-import boto3
-from botocore.exceptions import ClientError
-import psycopg2
-from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+
+# Optional imports for cloud storage and database backup
+try:
+    import boto3
+    from botocore.exceptions import ClientError
+except ImportError:
+    boto3 = None
+    ClientError = None
+
+try:
+    import psycopg2
+    from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+except ImportError:
+    psycopg2 = None
+    ISOLATION_LEVEL_AUTOCOMMIT = None
 
 # Configure logging
 logging.basicConfig(
