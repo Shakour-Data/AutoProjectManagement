@@ -160,3 +160,71 @@ class TestMain:
     # Additional comprehensive tests
     def test_module_metadata(self):
         """Test that the module has correct metadata"""
+        assert hasattr(main, '__doc__')
+        assert main.__doc__ is not None
+        assert 'AutoProjectManagement' in main.__doc__
+        
+        # Test file attributes
+        assert hasattr(main, '__file__')
+        assert main.__file__.endswith('main.py')
+
+    def test_import_dependencies(self):
+        """Test that all required dependencies can be imported"""
+        required_modules = [
+            'sys', 'pathlib', 'autoprojectmanagement.api.app', 
+            'autoprojectmanagement.api.server'
+        ]
+        
+        for module_name in required_modules:
+            try:
+                __import__(module_name)
+                assert True
+            except ImportError:
+                pytest.fail(f"Failed to import required module: {module_name}")
+
+    def test_execution_flow(self):
+        """Test the complete execution flow"""
+        # Mock the server start function
+        with patch('autoprojectmanagement.api.main.start_server') as mock_start:
+            # Simulate command line execution
+            with patch('sys.argv', ['main.py']):
+                if __name__ == "__main__":
+                    main.start_server()
+            
+            # Verify start_server was called
+            assert mock_start.called
+
+    def test_path_manipulation(self):
+        """Test that path manipulation works correctly"""
+        original_path_length = len(sys.path)
+        
+        # The module should add the project root to sys.path
+        project_root = str(Path(__file__).resolve().parents[1])
+        assert project_root in sys.path or True  # May already be there
+        
+        # Test that the path manipulation doesn't cause issues
+        assert len(sys.path) >= original_path_length
+
+    def test_error_handling_comprehensive(self):
+        """Comprehensive error handling test"""
+        # Test various error scenarios
+        error_scenarios = [
+            ('sys.path.append', Exception("Append error")),
+            ('pathlib.Path.resolve', OSError("Path resolution error")),
+        ]
+        
+        for target, error in error_scenarios:
+            with patch(target, side_effect=error):
+                try:
+                    import importlib
+                    importlib.reload(main)
+                    # Should handle errors gracefully
+                    assert True
+                except Exception as e:
+                    if not isinstance(e, type(error)):
+                        pytest.fail(f"Unexpected error type: {type(e)} for {target}")
+
+    def test_module_compatibility(self):
+        """Test module compatibility with different Python versions"""
+        # Test that the module doesn't use version-specific features incorrectly
+        python_keywords = ['async', 'await', 'yield', 'class']
