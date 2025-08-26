@@ -347,3 +347,38 @@ def test_integration_with_database(self, test_instance):
         
         result = test_instance.get_from_database(1)
         
+        assert result == {"id": 1, "name": "test"}
+        mock_db.query.assert_called_once_with("SELECT * FROM table WHERE id = 1")
+
+def test_integration_with_api(self, test_instance):
+    """Test integration with external API"""
+    with patch('requests.get') as mock_get:
+        mock_response = Mock()
+        mock_response.json.return_value = {"data": "test"}
+        mock_response.status_code = 200
+        mock_get.return_value = mock_response
+        
+        result = test_instance.call_external_api()
+        
+        assert result == {"data": "test"}
+        mock_get.assert_called_once_with("https://api.example.com/data")
+
+def test_integration_with_config_system(self, test_instance):
+    """Test integration with configuration system"""
+    with patch('config.load') as mock_config:
+        mock_config.return_value = {"setting": "value"}
+        
+        test_instance.initialize()
+        config = test_instance.get_config()
+        
+        assert config == {"setting": "value"}
+        mock_config.assert_called_once()
+
+def test_integration_with_logging_system(self, test_instance, caplog):
+    """Test integration with logging system"""
+    test_instance.log_operation("test message")
+    
+    assert "test message" in caplog.text
+    assert "INFO" in caplog.text
+
+def test_integration_with_cache_system(self, test_instance):
