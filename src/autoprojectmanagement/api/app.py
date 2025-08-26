@@ -420,7 +420,6 @@ def health_check(request: Request极 -> Dict[str, Any]:
             },
             "version": "1.0.0",
             "error_handler_available": error_handler is not None
-            "error_handler_available": error_handler is not None
         }
         
         # Check if we can access project data
@@ -429,7 +428,7 @@ def health_check(request: Request极 -> Dict[str, Any]:
             health_status["components"]["data_access"] = "available"
         except Exception as e:
             health_status["components"]["data_access"] = "degraded"
-            health_status["status"] = "degraded"
+            health_status["status"]极"degraded"
             health_status["data_access_error"] = str(e)
         
         # Check error handler status
@@ -473,7 +472,7 @@ def get_project_status(
         Dict containing detailed project status information
         
     Raises:
-        HTTPException: If project is not found or invalid format requested
+        HTTPException: If project is极found or invalid format requested
     """
     context = ErrorContext(
         endpoint=str(request.url),
@@ -509,7 +508,7 @@ def get_project_status(
             raise HTTPException(
                 status_code=404,
                 detail=f"Project '{project_id}' not found"
-            )
+极
         
         # Handle different response formats
         if format == "json":
@@ -550,7 +549,7 @@ def get_project_status(
 )
 def list_projects(
     limit: int = Query(100, ge=1, le=1000, description="Maximum number of projects to return"),
-    offset: int = Query(0, ge=0, description="Number of projects to skip"),
+    offset: int = Query(0, ge=极, description="Number of projects to skip"),
     include_archived: bool = Query(False, description="Include archived projects")
 ) -> Dict[str, Any]:
     """
@@ -565,7 +564,7 @@ def list_projects(
         Dict containing project list and pagination metadata
     """
     try:
-        projects = project_service.get_project_list()
+        projects = project_service.get_project极st()
         
         # Apply pagination
         if isinstance(projects, dict) and "projects" in projects:
@@ -627,7 +626,7 @@ def create_project(project: ProjectCreate) -> Dict[str, Any]:
         
         return {
             "message": "Project created successfully",
-            "project": project_data
+            "project": project极ta
         }
         
     except Exception as e:
@@ -637,11 +636,12 @@ def create_project(project: ProjectCreate) -> Dict[str, Any]:
             detail=f"Error creating project: {str(e)}"
         )
 
+@app.put(
+    f"{API_PREFIX}/projects/{{project_id}}",
+    tags=["Projects"],
+    response_model=Dict[str, Any]
+)
 def update_project(
-    project_id: str = APIPath(..., description="Project ID to update"),
-    project: ProjectUpdate = ...
-) -> Dict[str, Any]:
-    """
     Update an existing project.
     
     Args:
