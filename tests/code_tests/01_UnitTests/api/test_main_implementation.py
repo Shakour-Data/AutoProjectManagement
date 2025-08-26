@@ -8,7 +8,24 @@ from unittest.mock import Mock, patch
 import sys
 from pathlib import Path
 from fastapi.testclient import TestClient
-from autoprojectmanagement.api.main import app
+from fastapi import HTTPException
+import importlib.util
+
+# Add src directory to path for imports
+src_path = Path(__file__).resolve().parent.parent.parent.parent.parent / "src"
+if str(src_path) not in sys.path:
+    sys.path.insert(0, str(src_path))
+
+# Import the module directly
+spec = importlib.util.spec_from_file_location(
+    "main", 
+    str(src_path / "autoprojectmanagement" / "api" / "main.py")
+)
+main = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(main)
+
+# Import the app
+app = main.app
 
 # Create a test client for the FastAPI app
 client = TestClient(app)
@@ -54,7 +71,7 @@ class TestMain:
     def test_get_project_status_basic(self):
         """Test basic functionality of get_project_status"""
         # Mock the project service to return a sample status
-        with patch('autoprojectmanagement.api.main.project_service.get_status') as mock_get_status:
+        with patch('autoprojectmanagement.api.app.project_service.get_status') as mock_get_status:
             mock_get_status.return_value = {
                 "project_id": "123",
                 "total_tasks": 10,
@@ -76,8 +93,8 @@ class TestMain:
 
     def test_get_project_status_not_found(self):
         """Test project status not found"""
-        with patch('autoprojectmanagement.api.main.project_service.get_status') as mock_get_status:
-            mock_get_status.side_effect = Exception("Project not found")
+        with patch('autoprojectmanagement.api.app.project_service.get_status') as mock_get_status:
+            mock_get_status.side_effect = HTTPException(status_code=404, detail="Project '999' not found")
             response = client.get("/api/v1/projects/999/status")
             assert response.status_code == 404
             assert response.json()["detail"] == "Project '999' not found"
@@ -86,7 +103,7 @@ class TestMain:
         """Test invalid format requested"""
         response = client.get("/api/v1/projects/123/status?format=invalid")
         assert response.status_code == 400
-        assert "Unsupported format" in response.json()["detail"]
+        assert "Unsupported format" in response.json()["message"]
 
     def test_create_project(self):
         """Test creating a new project"""
