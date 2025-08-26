@@ -418,7 +418,7 @@ def health_check(request: Request极 -> Dict[str, Any]:
                 "error_handling": "active",
                 "authentication": "available"
             },
-            },
+            "version": "1.0.0",
             "version": "1.0.0",
             "error_handler_available": error_handler is not None
         }
