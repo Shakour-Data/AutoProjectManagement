@@ -176,3 +176,118 @@ class TestEdgeCases:
     def temp_project_dir(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             yield temp_dir
+    
+    @pytest.fixture
+    def mock_auto_commit(self):
+        with patch('autoprojectmanagement.services.automation_services.auto_commit.UnifiedAutoCommit') as mock:
+            mock_instance = Mock()
+            mock_instance.run_complete_workflow_guaranteed.return_value = True
+            mock.return_value = mock_instance
+            yield mock_instance
+    
+    def test_rapid_file_changes_debouncing(self, temp_project_dir, mock_auto_commit):
+        """Test that rapid file changes are debounced properly"""
+        handler = AutoCommitFileWatcher(temp_project_dir, debounce_seconds=1.0)
+        
+        test_file = os.path.join(temp_project_dir, 'test.py')
+        
+        # Create multiple rapid changes
+        for i in range(5):
+            with open(test_file, 'w') as f:
+                f.write(f"content {i}")
+            
+            mock_event = Mock()
+            mock_event.is_directory = False
+            mock_event.src_path = test_file
+            
+            handler.on_modified(mock_event)
+        
+        # Wait for debounce timer
+        time.sleep(1.1)
+        
+        # Should only trigger auto-commit once due to debouncing
+        assert mock_auto_commit.run_complete_workflow_guaranteed.call_count == 1
+    
+    def test_permission_denied_scenario(self, temp_project_dir, mock_auto_commit):
+        """Test behavior when file access is denied"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Create a file with no read permissions
+        test_file = os.path.join(temp_project_dir, 'no_access.py')
+        with open(test_file, 'w') as f:
+            f.write("test content")
+        
+        # Remove read permissions
+        os.chmod(test_file, 0o000)
+        
+        try:
+            result = handler.should_monitor_file(test_file)
+            # Should return False due to permission error
+            assert result == False
+        finally:
+            # Restore permissions for cleanup
+            os.chmod(test_file, 0o644)
+    
+    def test_nonexistent_file_handling(self, temp_project_dir, mock_auto_commit):
+        """Test handling of non-existent files"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        nonexistent_file = os.path.join(temp_project_dir, 'nonexistent.py')
+        result = handler.should_monitor_file(nonexistent_file)
+        
+        assert result == False
+    
+    def test_directory_events_ignored(self, temp_project_dir, mock_auto_commit):
+        """Test that directory events are ignored"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Create a directory
+        test_dir = os.path.join(temp_project_dir, 'test_dir')
+        os.makedirs(test_dir)
+        
+        # Simulate directory event
+        mock_event = Mock()
+        mock_event.is_directory = True
+        mock_event.src_path = test_dir
+        
+        handler.on_modified(mock_event)
+        
+        # Should not trigger auto-commit for directories
+        assert not mock_auto_commit.run_complete_workflow_guaranteed.called
+    
+    def test_file_extensions_boundary_cases(self, temp_project_dir, mock_auto_commit):
+        """Test boundary cases for file extensions"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Test files with unusual extensions
+        test_cases = [
+            ('test.PY', True),      # Uppercase extension
+            ('test.', False),       # No extension after dot
+            ('test', False),        # No extension
+            ('.hidden', False),     # Hidden file without extension
+        ]
+        
+        for filename, expected in test_cases:
+            file_path = os.path.join(temp_project_dir, filename)
+            with open(file_path, 'w') as f:
+                f.write("test content")
+            
+            result = handler.should_monitor_file(file_path)
+            assert result == expected
+
+
+class TestErrorHandling:
+    """Test error handling scenarios"""
+    
+    @pytest.fixture
+    def temp_project_dir(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            yield temp_dir
+    
+    def test_realtime_service_import_failure(self, temp_project_dir):
+        """Test behavior when realtime service import fails"""
+        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.publish_file_change_event', None):
+            # Should not crash when realtime service is not available
+            handler = AutoCommitFileWatcher(temp_project_dir)
+            
+            test_file = os.path.join(temp_project_dir, 'test.py')
