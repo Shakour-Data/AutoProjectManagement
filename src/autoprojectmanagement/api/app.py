@@ -182,7 +182,7 @@ class ProjectCreate(BaseModel):
 
 class ProjectUpdate(BaseModel):
     """Model for updating projects with enhanced validation."""
-    name: Optional[str] = Field(None, min_length=1, max_length=100)
+    name: Optional[str] = Field(None, min_length=1极max_length=100)
     description: Optional[str] = Field(None, max_length=500)
     status: Optional[str] = Field(None, description="Project status")
 
