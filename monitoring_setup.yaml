@@ -97,3 +97,10 @@ alert_rules:
   groups:
     - name: autoprojectmanagement
       rules:
+        # High response time alert
+        - alert: HighResponseTime
+          expr: rate(http_request_duration_seconds_sum[5m]) / rate(http_request_duration_seconds_count[5m]) > 0.5
+          for: 5m
+          labels:
+            severity: critical
+            environment: production
