@@ -32,6 +32,78 @@ The development process must follow this iterative cycle until **no errors and n
 #### Test Organization
 - Use pytest fixtures for setup/teardown
 - Group related tests into classes
+- Use appropriate pytest markers (@pytest.mark.unit, @pytest.mark.integration, etc.)
+- Include comprehensive docstrings explaining test purpose
+
+#### Assertion Best Practices
+- Use specific assertions (assertEqual, assertTrue, assertRaises, etc.)
+- Include meaningful error messages
+- Test both positive and negative scenarios
+- Verify edge cases and boundary conditions
+
+#### Mocking and Patching
+- Use unittest.mock for external dependencies
+- Mock only what's necessary for isolation
+- Verify mock interactions when appropriate
+- Use patch context managers for clean mocking
+
+#### Error Handling in Tests
+- Test both expected and unexpected errors
+- Verify proper exception types and messages
+- Test error recovery and fallback mechanisms
+- Ensure tests don't mask actual errors
+
+### Code Quality Requirements
+
+#### Test Coverage
+- Aim for 100% code coverage for each module
+- Cover all public methods and functions
+- Include error branches and exception handling
+- Test edge cases and boundary conditions
+
+#### Documentation
+- Each test must have a descriptive docstring
+- Include test category in docstring (Functionality, Edge Case, etc.)
+- Document assumptions and test scenarios
+- Include examples of input/output when relevant
+
+#### Maintainability
+- Tests should be independent and isolated
+- Avoid test interdependencies
+- Use setup/teardown for resource management
+- Keep tests focused and single-purpose
+
+### Execution and Validation
+
+#### Running Tests
+```bash
+# Run all tests
+pytest tests/ -v
+
+# Run specific test file
+pytest tests/code_tests/01_UnitTests/api/test_main_implementation.py -v
+
+# Run with coverage
+pytest tests/ --cov=src/autoprojectmanagement --cov-report=html
+
+# Run without warnings
+pytest tests/ -p no:warnings
+```
+
+#### Validation Criteria
+- ✅ All tests pass (no failures)
+- ✅ No errors during test execution  
+- ✅ No warnings (deprecation, resource, etc.)
+- ✅ Code coverage meets targets
+- ✅ Tests are fast and reliable
+
+#### Common Issues to Address
+- Missing imports or dependencies
+- Incorrect mock setups
+- Race conditions in async tests
+- Resource leaks
+- Flaky tests
+- Deprecated API usage
 
 ## API Files
 
