@@ -341,3 +341,4 @@ class TestErrorHandling:
         """Test error handling in timer callbacks"""
         with patch('autoprojectmanagement.services.automation_services.auto_commit.UnifiedAutoCommit') as mock_commit:
             mock_instance = Mock()
+            mock_instance.run_complete_workflow_guaranteed.side_effect = Exception("Test error")
