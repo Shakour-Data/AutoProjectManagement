@@ -226,3 +226,257 @@ class TestEdgeCases:
         nonexistent_file = os.path.join(temp_project_dir, 'nonexistent.py')
         result = handler.should_monitor_file(nonexistent_file)
         
+        assert result == False
+    
+    def test_directory_events_ignored(self, temp_project_dir, mock_auto_commit):
+        """Test that directory events are ignored"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Create a directory
+        test_dir = os.path.join(temp_project_dir, 'test_dir')
+        os.makedirs(test_dir)
+        
+        # Simulate directory event
+        mock_event = Mock()
+        mock_event.is_directory = True
+        mock_event.src_path = test_dir
+        
+        handler.on_modified(mock_event)
+        
+        # Should not trigger auto-commit for directories
+        assert not mock_auto_commit.run_complete_workflow_guaranteed.called
+    
+    def test_file_extensions_boundary_cases(self, temp_project_dir, mock_auto_commit):
+        """Test boundary cases for file extensions"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Test files with unusual extensions
+        test_cases = [
+            ('test.PY', True),      # Uppercase extension
+            ('test.', False),       # No extension after dot
+            ('test', False),        # No extension
+            ('.hidden', False),     # Hidden file without extension
+        ]
+        
+        for filename, expected in test_cases:
+            file_path = os.path.join(temp_project_dir, filename)
+            with open(file_path, 'w') as f:
+                f.write("test content")
+            
+            result = handler.should_monitor_file(file_path)
+            assert result == expected
+
+
+class TestErrorHandling:
+    """Test error handling scenarios"""
+    
+    @pytest.fixture
+    def temp_project_dir(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            yield temp_dir
+    
+    def test_realtime_service_import_failure(self, temp_project_dir):
+        """Test behavior when realtime service import fails"""
+        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.publish_file_change_event', None):
+            # Should not crash when realtime service is not available
+            handler = AutoCommitFileWatcher(temp_project_dir)
+            
+            test_file = os.path.join(temp_project_dir, 'test.py')
+            with open(test_file, 'w') as f:
+                f.write("test content")
+            
+            mock_event = Mock()
+            mock_event.is_directory = False
+            mock_event.src_path = test_file
+            
+            # Should handle gracefully without realtime service
+            handler.on_modified(mock_event)
+    
+    def test_auto_commit_failure_handling(self, temp_project_dir, mock_auto_commit):
+        """Test error handling when auto-commit fails"""
+        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.UnifiedAutoCommit') as mock_commit:
+            mock_instance = Mock()
+            mock_instance.run_complete_workflow_guaranteed.return_value = False
+            mock_commit.return_value = mock_instance
+            
+            handler = AutoCommitFileWatcher(temp_project_dir, debounce_seconds=0.1)
+            
+            test_file = os.path.join(temp_project_dir, 'test.py')
+            with open(test_file, 'w') as f:
+                f.write("test content")
+            
+            mock_event = Mock()
+            mock_event.is_directory = False
+            mock_event.src_path = test_file
+            
+            handler.on_modified(mock_event)
+            
+            # Wait for debounce timer
+            time.sleep(0.2)
+            
+            # Should handle auto-commit failure gracefully
+            assert mock_instance.run_complete_workflow_guaranteed.called
+    
+    def test_file_system_error_handling(self, temp_project_dir):
+        """Test error handling for file system operations"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Test with invalid file path that causes OS error
+        invalid_path = "/invalid/path/that/does/not/exist"
+        result = handler.should_monitor_file(invalid_path)
+        
+        # Should return False and not crash
+        assert result == False
+    
+    def test_timer_callback_error_handling(self, temp_project_dir):
+        """Test error handling in timer callbacks"""
+        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.UnifiedAutoCommit') as mock_commit:
+            mock_instance = Mock()
+            mock_instance.run_complete_workflow_guaranteed.side_effect = Exception("Test error")
+            mock_commit.return_value = mock_instance
+            
+            handler = AutoCommitFileWatcher(temp_project_dir, debounce_seconds=0.1)
+            
+            test_file = os.path.join(temp_project_dir, 'test.py')
+            with open(test_file, 'w') as f:
+                f.write("test content")
+            
+            mock_event = Mock()
+            mock_event.is_directory = False
+            mock_event.src_path = test_file
+            
+            handler.on_modified(mock_event)
+            
+            # Wait for debounce timer - should not crash despite error
+            time.sleep(0.2)
+            
+            # Should have attempted auto-commit despite error
+            assert mock_instance.run_complete_workflow_guaranteed.called
+    
+    def test_invalid_project_path_handling(self):
+        """Test error handling for invalid project paths"""
+        with pytest.raises(FileNotFoundError):
+            AutoCommitFileWatcher("/invalid/path/that/does/not/exist")
+
+
+class TestIntegration:
+    """Test integration scenarios"""
+    
+    @pytest.fixture
+    def temp_project_dir(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            # Initialize git repo for testing
+            subprocess.run(['git', 'init'], cwd=temp_dir, capture_output=True)
+            subprocess.run(['git', 'config', 'user.email', 'test@example.com'], cwd=temp_dir, capture_output=True)
+            subprocess.run(['git', 'config', 'user.name', 'Test User'], cwd=temp_dir, capture_output=True)
+            yield temp_dir
+    
+    @pytest.fixture
+    def mock_auto_commit(self):
+        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.UnifiedAutoCommit') as mock:
+            mock_instance = Mock()
+            mock_instance.run_complete_workflow_guaranteed.return_value = True
+            mock.return_value = mock_instance
+            yield mock_instance
+    
+    @pytest.fixture
+    def mock_realtime_service(self):
+        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.publish_file_change_event') as mock:
+            async_mock = AsyncMock()
+            mock.return_value = async_mock
+            yield async_mock
+    
+    def test_integration_with_auto_commit_service(self, temp_project_dir, mock_auto_commit, mock_realtime_service):
+        """Test integration with UnifiedAutoCommit service"""
+        handler = AutoCommitFileWatcher(temp_project_dir, debounce_seconds=0.1)
+        
+        test_file = os.path.join(temp_project_dir, 'test.py')
+        with open(test_file, 'w') as f:
+            f.write("test content")
+        
+        mock_event = Mock()
+        mock_event.is_directory = False
+        mock_event.src_path = test_file
+        
+        handler.on_modified(mock_event)
+        
+        # Wait for debounce timer
+        time.sleep(0.2)
+        
+        # Verify integration with auto-commit service
+        assert mock_auto_commit.run_complete_workflow_guaranteed.called
+    
+    def test_realtime_event_publishing(self, temp_project_dir, mock_auto_commit, mock_realtime_service):
+        """Test integration with real-time event service"""
+        handler = AutoCommitFileWatcher(temp_project_dir, debounce_seconds=0.1)
+        
+        test_file = os.path.join(temp_project_dir, 'test.py')
+        with open(test_file, 'w') as f:
+            f.write("test content")
+        
+        mock_event = Mock()
+        mock_event.is_directory = False
+        mock_event.src_path = test_file
+        
+        handler.on_modified(mock_event)
+        
+        # Verify real-time event was published
+        assert mock_realtime_service.called
+    
+    def test_scheduled_commit_integration(self, temp_project_dir):
+        """Test integration of scheduled commit with file system"""
+        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.UnifiedAutoCommit') as mock_commit:
+            mock_instance = Mock()
+            mock_instance.run_complete_workflow_guaranteed.return_value = True
+            mock_commit.return_value = mock_instance
+            
+            scheduler = ScheduledAutoCommit(temp_project_dir, interval_minutes=0.1)
+            
+            # Create a file change
+            test_file = os.path.join(temp_project_dir, 'test.py')
+            with open(test_file, 'w') as f:
+                f.write("test content")
+            
+            # Manually trigger scheduled commit (simulating timer)
+            scheduler._execute_scheduled_commit()
+            
+            # Verify auto-commit was called
+            assert mock_instance.run_complete_workflow_guaranteed.called
+    
+    def test_git_change_detection_integration(self, temp_project_dir):
+        """Test integration with Git change detection"""
+        scheduler = ScheduledAutoCommit(temp_project_dir)
+        
+        # Initially should have no changes
+        has_changes = scheduler._has_uncommitted_changes()
+        assert has_changes == False
+        
+        # Create a file - should detect changes
+        test_file = os.path.join(temp_project_dir, 'test.py')
+        with open(test_file, 'w') as f:
+            f.write("test content")
+        
+        has_changes = scheduler._has_uncommitted_changes()
+        assert has_changes == True
+    
+    def test_service_lifecycle_integration(self, temp_project_dir):
+        """Test complete service lifecycle integration"""
+        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.Observer') as mock_observer:
+            mock_observer_instance = Mock()
+            mock_observer.return_value = mock_observer_instance
+            
+            service = AutoFileWatcherService(temp_project_dir, interval_minutes=0.1)
+            
+            # Test start
+            service.start()
+            assert service.running == True
+            assert mock_observer_instance.start.called
+            
+            # Test stop
+            service.stop()
+            assert service.running == False
+            assert mock_observer_instance.stop.called
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])
