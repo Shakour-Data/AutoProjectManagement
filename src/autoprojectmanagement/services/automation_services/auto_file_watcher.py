@@ -290,7 +290,7 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
         if not event.is_directory and self.should_monitor_file(event.src_path):
             self._handle_file_change(event.src_path, 'created')
     
-    def on_deleted(self, event: FileSystemEvent) -> None:
+    async def on_deleted(self, event: FileSystemEvent) -> None:
         """
         Handle file deletion events from the watchdog observer.
         
