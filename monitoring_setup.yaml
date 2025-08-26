@@ -69,3 +69,11 @@ alertmanager:
           title: '{{ .CommonAnnotations.summary }}'
           text: |-
             {{ range .Alerts }}
+              *Alert:* {{ .Annotations.summary }}
+              *Description:* {{ .Annotations.description }}
+              *Severity:* {{ .Labels.severity }}
+              *Instance:* {{ .Labels.instance }}
+            {{ end }}
+
+    - name: 'pagerduty-critical'
+      pagerduty_configs:
