@@ -67,7 +67,7 @@ class TestAutoCommitFileWatcher:
     @pytest.fixture
     def mock_auto_commit(self):
         """Mock the UnifiedAutoCommit class"""
-        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.UnifiedAutoCommit') as mock:
+        with patch('autoprojectmanagement.services.automation_services.auto_commit.UnifiedAutoCommit') as mock:
             mock_instance = Mock()
             mock_instance.run_complete_workflow_guaranteed.return_value = True
             mock.return_value = mock_instance
