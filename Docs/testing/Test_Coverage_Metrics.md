@@ -18,3 +18,23 @@ This document defines the comprehensive test coverage requirements and quality m
 
 ### Test Category Distribution
 
+Each module must have tests distributed across these categories:
+
+```yaml
+test_distribution:
+  functionality: 5 tests    # 25%
+  edge_cases: 5 tests       # 25%  
+  error_handling: 5 tests   # 25%
+  integration: 5 tests      # 25%
+  total: 20 tests           # 100%
+```
+
+## Quality Metrics
+
+### Test Quality Scorecard
+
+| Metric | Weight | Target | Description |
+|--------|--------|--------|-------------|
+| Test Coverage | 30% | 80%+ | Code coverage percentage |
+| Test Count | 20% | 20+ | Number of tests per module |
+| Test Distribution | 15% | Balanced | Even distribution across categories |
