@@ -33,17 +33,26 @@ from unittest.mock import Mock, patch, MagicMock, AsyncMock
 import asyncio
 import threading
 import time
+import subprocess
 
-# Add project root to path for imports
-project_root = Path(__file__).resolve().parent.parent.parent.parent.parent
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
+# Add src directory to path for imports
+src_path = Path(__file__).resolve().parent.parent.parent.parent.parent / "src"
+if str(src_path) not in sys.path:
+    sys.path.insert(0, str(src_path))
 
-from src.autoprojectmanagement.services.automation_services.auto_file_watcher import (
-    AutoCommitFileWatcher,
-    ScheduledAutoCommit,
-    AutoFileWatcherService
+# Import the module directly
+import importlib.util
+spec = importlib.util.spec_from_file_location(
+    "auto_file_watcher", 
+    str(src_path / "autoprojectmanagement" / "services" / "automation_services" / "auto_file_watcher.py")
 )
+auto_file_watcher = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(auto_file_watcher)
+
+# Import classes directly
+AutoCommitFileWatcher = auto_file_watcher.AutoCommitFileWatcher
+ScheduledAutoCommit = auto_file_watcher.ScheduledAutoCommit
+AutoFileWatcherService = auto_file_watcher.AutoFileWatcherService
 
 
 class TestAutoCommitFileWatcher:
