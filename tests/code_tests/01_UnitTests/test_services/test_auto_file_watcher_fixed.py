@@ -79,3 +79,37 @@ class TestAutoCommitFileWatcher:
         with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.publish_file_change_event') as mock:
             yield mock
     
+    def test_should_monitor_file_valid_extension(self, temp_project_dir, mock_auto_commit):
+        """Test that files with valid extensions are monitored"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Create test files with valid extensions
+        test_files = [
+            "test.py", "script.js", "style.css", "data.json", "readme.md"
+        ]
+        
+        for filename in test_files:
+            file_path = os.path.join(temp_project_dir, filename)
+            with open(file_path, 'w') as f:
+                f.write("test content")
+            
+            assert handler.should_monitor_file(file_path) == True
+    
+    def test_should_monitor_file_excluded_directories(self, temp_project_dir, mock_auto_commit):
+        """Test that files in excluded directories are not monitored"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Create excluded directories
+        excluded_dirs = ['.git', 'node_modules', '__pycache__']
+        for dir_name in excluded_dirs:
+            dir_path = os.path.join(temp_project_dir, dir_name)
+            os.makedirs(dir_path)
+            
+            # Create file in excluded directory
+            file_path = os.path.join(dir_path, 'test.py')
+            with open(file_path, 'w') as f:
+                f.write("test content")
+            
+            assert handler.should_monitor_file(file_path) == False
+    
+    def test_should_monitor_file_special_files(self, temp_project_dir, mock_auto_commit):
