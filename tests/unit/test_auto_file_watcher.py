@@ -214,3 +214,43 @@ class TestAutoCommitFileWatcher:
         with open(excluded_file, "w") as f:
             f.write("{}")
         
+        # Trigger event - should be ignored
+        from watchdog.events import FileCreatedEvent
+        event = FileCreatedEvent(excluded_file)
+        watcher.on_created(event)
+        
+        # Should have no pending changes
+        assert len(watcher.pending_changes) == 0
+    
+    def test_special_files_monitoring(self, temp_project_dir, mock_auto_commit, mock_realtime_service):
+        """Test that special files (Dockerfile, docker-compose.yml) are monitored."""
+        watcher = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Test Dockerfile
+        dockerfile = os.path.join(temp_project_dir, "Dockerfile")
+        with open(dockerfile, "w") as f:
+            f.write("FROM python:3.8")
+        assert watcher.should_monitor_file(dockerfile) is True
+        
+        # Test docker-compose.yml
+        compose_file = os.path.join(temp_project_dir, "docker-compose.yml")
+        with open(compose_file, "w") as f:
+            f.write("version: '3'")
+        assert watcher.should_monitor_file(compose_file) is True
+    
+    def test_permission_error_handling_edge_case(self, temp_project_dir, mock_auto_commit, mock_realtime_service):
+        """Test edge case with permission errors during file checking."""
+        watcher = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Mock os.path.exists to raise PermissionError
+        with patch('os.path.exists', side_effect=PermissionError("Permission denied")):
+            result = watcher.should_monitor_file("/some/protected/file")
+            assert result is False
+    
+    def test_boundary_file_extensions(self, temp_project_dir, mock_auto_commit, mock_realtime_service):
+        """Test boundary conditions for file extension filtering."""
+        watcher = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Test various extensions
+        test_cases = [
+            ("test.py", True),      # Python file
