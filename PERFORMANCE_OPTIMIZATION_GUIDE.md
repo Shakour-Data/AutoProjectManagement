@@ -4,12 +4,13 @@
 This guide provides comprehensive performance optimization strategies for the AutoProjectManagement system, covering both development and production environments.
 
 ## Table of Contents
-- [AutoProjectManagement Performance Optimization Guide](#autoprojectmanagement-performance-optimization-guide)
-  - [Overview](#overview)
-  - [Table of Contents](#table-of-contents)
-  - [Database Optimization](#database-optimization)
-    - [Indexing Strategy](#indexing-strategy)
-    - [Query Optimization](#query-optimization)
+1. [Database Optimization](#database-optimization)
+2. [Code Performance](#code-performance)
+3. [Frontend Optimization](#frontend-optimization)
+4. [Caching Strategies](#caching-strategies)
+5. [Monitoring & Alerting](#monitoring--alerting)
+6. [Production Deployment](#production-deployment)
+7. [Testing Strategies](#testing-strategies)
 
 ## Database Optimization
 
@@ -27,4 +28,14 @@ CREATE INDEX idx_files_project_id ON files(project_id);
 - Avoid N+1 queries by using eager loading
 - Implement pagination for large datasets
 - Use database-specific optimizations (PostgreSQL vs MySQL)
+
+### Connection Pooling
+```python
+# Configure database connection pooling
+DATABASE_POOL_SIZE = 20
+DATABASE_MAX_OVERFLOW = 10
+DATABASE_POOL_RECYCLE = 3600
+```
+
+## Code Performance
 
