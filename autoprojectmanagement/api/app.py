@@ -94,6 +94,29 @@ except ImportError:
             def decorator(func):
                 return func
             return decorator
+        
+        def get(self, *args, **kwargs):
+            def decorator(func):
+                return func
+            return decorator
+        
+        def post(self, *args, **kwargs):
+            def decorator(func):
+                return func
+            return decorator
+        
+        def put(self, *args, **kwargs):
+            def decorator(func):
+                return func
+            return decorator
+        
+        def delete(self, *args, **kwargs):
+            def decorator(func):
+                return func
+            return decorator
+        
+        def include_router(self, *args, **kwargs):
+            pass
     
     class HTTPException(Exception):
         def __init__(self, status_code, detail):
