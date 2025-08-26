@@ -420,7 +420,7 @@ pytest tests/ -p no:warnings
 
 ### Completed Modules
 - ✅ `src/autoprojectmanagement/api/main.py` - 8/20 tests
-- ✅ `src极projectmanagement/services/automation_services/auto_file_watcher.py` - 20+/20 tests
+- ✅ `src/autoprojectmanagement/services/automation_services/auto_file_watcher.py` - 20+/20 tests
 
 ### In Progress Modules
 - None currently
