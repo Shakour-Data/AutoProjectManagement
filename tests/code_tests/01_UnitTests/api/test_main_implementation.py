@@ -97,13 +97,13 @@ class TestMain:
             mock_get_status.side_effect = HTTPException(status_code=404, detail="Project '999' not found")
             response = client.get("/api/v1/projects/999/status")
             assert response.status_code == 404
-            assert response.json()["detail"] == "Project '999' not found"
+            assert response.json()["error"]["message"] == "Project '999' not found"
 
     def test_get_project_status_invalid_format(self):
         """Test invalid format requested"""
         response = client.get("/api/v1/projects/123/status?format=invalid")
         assert response.status_code == 400
-        assert "Unsupported format" in response.json()["detail"]
+        assert "Unsupported format" in response.json()["error"]["message"]
 
     def test_create_project(self):
         """Test creating a new project"""
