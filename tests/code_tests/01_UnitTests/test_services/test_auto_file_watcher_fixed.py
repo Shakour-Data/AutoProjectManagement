@@ -113,3 +113,66 @@ class TestAutoCommitFileWatcher:
             assert handler.should_monitor_file(file_path) == False
     
     def test_should_monitor_file_special_files(self, temp_project_dir, mock_auto_commit):
+        """Test that special files (Dockerfile, docker-compose.yml) are monitored"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        special_files = ['Dockerfile', 'docker-compose.yml', 'docker-compose.yaml']
+        for filename in special_files:
+            file_path = os.path.join(temp_project_dir, filename)
+            with open(file_path, 'w') as f:
+                f.write("test content")
+            
+            assert handler.should_monitor_file(file_path) == True
+    
+    def test_file_modification_detection(self, temp_project_dir, mock_auto_commit, mock_realtime_service):
+        """Test that file modifications are detected and processed"""
+        handler = AutoCommitFileWatcher(temp_project_dir, debounce_seconds=0.1)
+        
+        # Create a test file
+        test_file = os.path.join(temp_project_dir, 'test.py')
+        with open(test_file, 'w') as f:
+            f.write("initial content")
+        
+        # Simulate file modification event
+        mock_event = Mock()
+        mock_event.is_directory = False
+        mock_event.src_path = test_file
+        
+        handler.on_modified(mock_event)
+        
+        # Wait for debounce timer
+        time.sleep(0.2)
+        
+        # Verify auto-commit was called
+        assert mock_auto_commit.run_complete_workflow_guaranteed.called
+    
+    def test_file_creation_detection(self, temp_project_dir, mock_auto_commit, mock_realtime_service):
+        """Test that file creations are detected and processed"""
+        handler = AutoCommitFileWatcher(temp_project_dir, debounce_seconds=0.1)
+        
+        # Create a test file
+        test_file = os.path.join(temp_project_dir, 'new_file.py')
+        with open(test_file, 'w') as f:
+            f.write("new content")
+        
+        # Simulate file creation event
+        mock_event = Mock()
+        mock_event.is_directory = False
+        mock_event.src_path = test_file
+        
+        handler.on_created(mock_event)
+        
+        # Wait for debounce timer
+        time.sleep(0.2)
+        
+        # Verify auto-commit was called
+        assert mock_auto_commit.run_complete_workflow_guaranteed.called
+
+
+class TestEdgeCases:
+    """Test edge cases for AutoCommitFileWatcher"""
+    
+    @pytest.fixture
+    def temp_project_dir(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            yield temp_dir
