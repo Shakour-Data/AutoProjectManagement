@@ -251,3 +251,5 @@ class TestEdgeCases:
         handler = AutoCommitFileWatcher(temp_project_dir)
         
         # Test files with unusual extensions
+        test_cases = [
+            ('test.PY', True),      # Uppercase extension
