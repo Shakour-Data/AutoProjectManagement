@@ -255,7 +255,7 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             logger.warning(f"Error checking file {file_path}: {e}")
             return False
     
-    def on_modified(self, event: FileSystemEvent) -> None:
+    async def on_modified(self, event: FileSystemEvent) -> None:
         """
         Handle file modification events from the watchdog observer.
         
