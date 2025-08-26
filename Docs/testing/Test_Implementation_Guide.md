@@ -426,3 +426,24 @@ def test_complex_scenario(self):
          patch('module.Class2.method2') as mock2, \
          patch('module.Class3.method3', new_callable=AsyncMock) as mock3:
         
+        mock1.return_value = "result1"
+        mock2.return_value = "result2" 
+        mock3.return_value = "async_result"
+        
+        # test code
+```
+
+## Fixture Patterns
+
+### Basic Fixture
+```python
+@pytest.fixture
+def test_data():
+    return {"key": "value", "number": 42}
+```
+
+### Factory Fixture
+```python
+@pytest.fixture
+def user_factory():
+    def create_user(name="test", age=25):
