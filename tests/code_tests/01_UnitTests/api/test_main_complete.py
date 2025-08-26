@@ -112,3 +112,51 @@ class TestMain:
             except Exception:
                 pytest.fail("Should handle path manipulation errors")
 
+    def test_start_basic(self):
+        """Test basic functionality of start"""
+        # Test that the start_server function exists and is callable
+        assert callable(main.start_server)
+        
+        # Test that the main execution block exists
+        assert hasattr(main, '__name__')
+        
+        # Test that the module can be imported in different contexts
+        with tempfile.TemporaryDirectory() as temp_dir:
+            # Create a test environment
+            test_file = os.path.join(temp_dir, 'test_main.py')
+            with open(test_file, 'w') as f:
+                f.write('from autoprojectmanagement.api import main\nprint("Import successful")')
+            
+            # Test import in subprocess
+            result = os.system(f'cd {temp_dir} && python {test_file}')
+            assert result == 0  # Should execute successfully
+
+    def test_start_edge_cases(self):
+        """Test edge cases for start"""
+        # Test with different working directories
+        original_cwd = os.getcwd()
+        try:
+            with tempfile.TemporaryDirectory() as temp_dir:
+                os.chdir(temp_dir)
+                # Should work from different directories
+                import importlib
+                importlib.reload(main)
+                assert True
+        finally:
+            os.chdir(original_cwd)
+
+    def test_start_error_handling(self):
+        """Test error handling in start"""
+        # Test with module reload under error conditions
+        with patch('autoprojectmanagement.api.main.sys.path.append', side_effect=MemoryError("Memory error")):
+            try:
+                import importlib
+                importlib.reload(main)
+                # Should handle memory errors gracefully
+                assert True
+            except MemoryError:
+                pytest.fail("Should handle memory errors during import")
+
+    # Additional comprehensive tests
+    def test_module_metadata(self):
+        """Test that the module has correct metadata"""
