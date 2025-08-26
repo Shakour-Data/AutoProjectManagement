@@ -302,3 +302,41 @@ def calculate_branch_coverage():
     total_branches = 200
     covered_branches = 180
     coverage = (covered_branches / total_branches) * 100
+    return coverage  # 90%
+```
+
+#### Function Coverage
+```python
+def calculate_function_coverage():
+    total_functions = 150
+    covered_functions = 140
+    coverage = (covered_functions / total_functions) * 100
+    return coverage  # 93.33%
+```
+
+### Quality Score Calculation
+```python
+def calculate_quality_score(module):
+    scores = {
+        'coverage': min(module.coverage / 100, 1.0),
+        'test_count': min(module.test_count / 20, 1.0),
+        'distribution': calculate_distribution_score(module.test_distribution),
+        'documentation': calculate_documentation_score(module.documentation),
+        'performance': calculate_performance_score(module.performance),
+        'reliability': module.reliability / 100
+    }
+    
+    weights = {
+        'coverage': 0.3,
+        'test_count': 0.2,
+        'distribution': 0.15,
+        'documentation': 0.1,
+        'performance': 0.1,
+        'reliability': 0.15
+    }
+    
+    quality_score = sum(scores[metric] * weights[metric] for metric in scores)
+    return quality_score * 100  # Convert to percentage
+```
+
+This comprehensive test coverage and quality metrics framework ensures that all modules maintain high testing standards and continuously improve in quality.
