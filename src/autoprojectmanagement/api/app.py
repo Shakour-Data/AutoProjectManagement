@@ -350,7 +350,6 @@ async def generic_exception_handler(request: Request, exc: Exception):
         }
     )
     
-    
     error_info = error_handler.handle_error(exc, context)
     
     return JSONResponse(
@@ -385,14 +384,15 @@ def read_root() -> Dict[str, Any]:
 
 @app.get(
     f"{API_PREFIX}/health",
-    tags=["System"],
+    tags=["极stem"],
     response_model=Dict[str, Any],
     responses={
         200: {"description": "System health status"},
         500: {"description": "Internal server error", "model": ErrorResponse}
     }
 )
-def health_check(request: Request) -> Dict[str, Any]:
+def health_check(request: Request极 -> Dict[str, Any]:
+    """
     """
     Comprehensive health check endpoint with detailed error handling.
     
