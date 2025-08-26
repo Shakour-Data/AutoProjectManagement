@@ -380,125 +380,14 @@ footer {
     50% { opacity: 0.5; }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
     .dashboard-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.25rem;
     }
     
     .header-content {
-        padding: 0 1.5rem;
-    }
-    
-    header h1 {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .mobile-nav-toggle {
-        display: flex;
-    }
-    
-    .desktop-nav {
-        display: none;
-    }
-    
-    .header-content {
-        padding: 0 1rem;
-        justify-content: center;
-    }
-    
-    header h1 {
-        font-size: 1.3rem;
-    }
-    
-    main {
-        padding: 1rem;
-    }
-    
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .card-header {
-        padding: 1rem;
-    }
-    
-    .card-header h2 {
-        font-size: 1.2rem;
-    }
-    
-    .card-content {
-        padding: 1rem;
-        min-height: 120px;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        padding: 0 1rem;
-    }
-    
-    .footer-links {
-        justify-content: center;
-    }
-    
-    .connection-status {
-        bottom: 0.5rem;
-        right: 0.5rem;
-        padding: 0.5rem 0.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .mobile-nav-toggle {
-        top: 0.5rem;
-        left: 0.5rem;
-        width: 40px;
-        height: 40px;
-    }
-    
-    header {
-        padding: 0.75rem 0;
-    }
-    
-    header h1 {
-        font-size: 1.1rem;
-    }
-    
-    main {
-        padding: 0.75rem;
-    }
-    
-    .dashboard-card {
-        border-radius: 10px;
-    }
-    
-    .card-header {
-        padding: 0.75rem;
-    }
-    
-    .card-header h2 {
-        font-size: 1.1rem;
-    }
-    
-    .card-content {
-        padding: 0.75rem;
-        min-height: 100px;
-    }
-    
-    .footer-content {
-        padding: 0 0.75rem;
-    }
-    
-    .footer-links {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-}
 
 /* Touch-friendly enhancements */
 @media (hover: none) and (pointer: coarse) {
