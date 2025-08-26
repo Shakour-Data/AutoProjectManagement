@@ -400,6 +400,7 @@ footer {
     }
 }
 
+
 /* Touch-friendly enhancements */
 @media (hover: none) and (pointer: coarse) {
     .dashboard-card:hover {
