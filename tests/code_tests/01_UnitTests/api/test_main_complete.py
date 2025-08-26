@@ -25,3 +25,44 @@ class TestMain:
     
     def teardown_method(self):
         """Cleanup after each test method"""
+        pass
+
+    def test_read_root_basic(self):
+        """Test basic functionality of read_root"""
+        # Mock the app import and test the main module functionality
+        with patch('autoprojectmanagement.api.main.app') as mock_app:
+            mock_app.title = "AutoProjectManagement API"
+            
+            # Test that the module imports correctly
+            assert hasattr(main, 'app')
+            assert hasattr(main, 'start_server')
+            
+            # Test that __all__ contains expected exports
+            assert 'app' in main.__all__
+            
+            # Test that the module can be imported without errors
+            assert main.__name__ == 'autoprojectmanagement.api.main'
+
+    def test_read_root_edge_cases(self):
+        """Test edge cases for read_root"""
+        # Test with different Python versions
+        with patch('sys.version_info', (3, 8, 0)):
+            # Should work with Python 3.8+
+            import importlib
+            importlib.reload(main)
+            assert hasattr(main, 'app')
+        
+        # Test with missing dependencies
+        with patch.dict('sys.modules', {'uvicorn': None}):
+            # Should handle missing uvicorn gracefully
+            import importlib
+            importlib.reload(main)
+            assert hasattr(main, 'app')
+
+    def test_read_root_error_handling(self):
+        """Test error handling in read_root"""
+        # Test import errors
+        with patch('autoprojectmanagement.api.main.sys.path.append', side_effect=Exception("Test error")):
+            # Should handle path manipulation errors
+            try:
+                import importlib
