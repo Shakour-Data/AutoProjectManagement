@@ -19,7 +19,6 @@ spec = importlib.util.spec_from_file_location(
     str(src_path / "autoprojectmanagement" / "api" / "main.py")
 )
 main = importlib.util.module_from_spec(spec)
-spec极速赛车开奖直播历史记录
 spec.loader.exec_module(main)
 
 # Import the app
@@ -34,7 +33,10 @@ response = client.get("/api/v1/projects/123/status?format=invalid")
 print(f"Status: {response.status_code}")
 print(f"Headers: {dict(response.headers)}")
 print(f"Content: {response.text}")
-print(f"JSON: {response.json()}")
+try:
+    print(f"JSON: {response.json()}")
+except Exception as e:
+    print(f"JSON parsing error: {e}")
 print()
 
 # Test not found
@@ -48,4 +50,7 @@ with patch('autoprojectmanagement.api.app.project_service.get_status') as mock_g
     print(f"Status: {response.status_code}")
     print(f"Headers: {dict(response.headers)}")
     print(f"Content: {response.text}")
-    print(f"JSON: {response.json()}")
+    try:
+        print(f"JSON: {response.json()}")
+    except Exception as e:
+        print(f"JSON parsing error: {e}")
