@@ -206,3 +206,23 @@ class TestEdgeCases:
         # Create a file with no read permissions
         test_file = os.path.join(temp_project_dir, 'no_access.py')
         with open(test_file, 'w') as f:
+            f.write("test content")
+        
+        # Remove read permissions
+        os.chmod(test_file, 0o000)
+        
+        try:
+            result = handler.should_monitor_file(test_file)
+            # Should return False due to permission error
+            assert result == False
+        finally:
+            # Restore permissions for cleanup
+            os.chmod(test_file, 0o644)
+    
+    def test_nonexistent_file_handling(self, temp_project_dir, mock_auto_commit):
+        """Test handling of non-existent files"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        nonexistent_file = os.path.join(temp_project_dir, 'nonexistent.py')
+        result = handler.should_monitor_file(nonexistent_file)
+        
