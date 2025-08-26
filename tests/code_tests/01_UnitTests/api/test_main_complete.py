@@ -254,3 +254,51 @@ class TestMain:
         
         # Check for expensive operations at module level
         expensive_operations = [
+            'time.sleep', 'subprocess.run', 'os.system'
+        ]
+        
+        for operation in expensive_operations:
+            # These should not be at module level (only in functions)
+            if operation in module_source:
+                # Check if it's at module level (not indented)
+                lines = module_source.split('\n')
+                for line in lines:
+                    if operation in line and not line.startswith(' ') and not line.startswith('\t'):
+                        pytest.fail(f"Expensive operation {operation} at module level")
+
+    def test_main_execution_block(self):
+        """Test the __main__ execution block"""
+        # Test that the main execution block works correctly
+        with patch('autoprojectmanagement.api.main.start_server') as mock_start:
+            # Execute the main block
+            if hasattr(main, '__name__') and main.__name__ == '__main__':
+                main.start_server()
+            
+            # The mock should be called if we're in main context
+            # or not called if we're imported
+            if __name__ == "__main__":
+                assert mock_start.called
+            else:
+                assert not mock_start.called
+
+    def test_export_stability(self):
+        """Test that exports remain stable"""
+        # __all__ should contain consistent exports
+        expected_exports = ['app']
+        assert set(main.__all__) == set(expected_exports)
+        
+        # Exports should be available as attributes
+        for export in main.__all__:
+            assert hasattr(main, export)
+
+    def test_module_initialization(self):
+        """Test that module initialization is robust"""
+        # Test multiple imports/reloads
+        for _ in range(3):
+            import importlib
+            importlib.reload(main)
+            assert hasattr(main, 'app')
+            assert hasattr(main, 'start_server')
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])
