@@ -642,6 +642,10 @@ def create_project(project: ProjectCreate) -> Dict[str, Any]:
     response_model=Dict[str, Any]
 )
 def update_project(
+    project_id: str = APIPath(..., description="Project ID to update"),
+    project: ProjectUpdate = ...
+) -> Dict[str, Any]:
+    """
     Update an existing project.
     
     Args:
@@ -670,81 +674,13 @@ def update_project(
         logger.error(f"Error updating project: {e}")
         raise HTTPException(
             status_code=500,
-            detail=f"Error updating project: {str(e)}"
-        )
-    """
-    Create a new project with automated management capabilities.
-    
-    Args:
-        project: Project creation data
-        
-    Returns:
-        Dict containing created project information
-        
-    Raises:
-        HTTPException: If project creation fails
-    """
-    try:
-        # Implementation would integrate with core business logic
-        project_data = {
-            "id": "generated_id",  # Would be generated
-            "name": project.name,
-            "description": project.description,
-            "template": project.template,
-            "created_at": datetime.now().isoformat(),
-            "status": "active"
-        }
-        
-        return {
-            "message": "Project created successfully",
-            "project": project_data
-        }
-        
-    except Exception as e:
-        logger.error(f"Error creating project: {e}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error creating project: {str(e)}"
-        )
-
-@app.put(
-    f"{API_PREFIX}/projects/{{project_id}}",
-    tags=["Projects"],
-    response_model=Dict[str, Any]
-)
-def update_project(
-    project_id: str = APIPath(..., description="Project ID to update"),
-    project: ProjectUpdate = ...
-) -> Dict[str, Any]:
-    """
-    Update an existing project.
-    
-    Args:
-        project_id: Project identifier
-        project: Update data
-        
-    Returns:
-        Dict containing updated project information
-    """
-    try:
-        # Implementation would integrate with core business logic
-        return {
-            "message": f"Project {project_id} updated successfully",
-            "project_id": project_id,
-            "updated_fields": project.dict(exclude_unset=True)
-        }
-        
-    except Exception as e:
-        logger.error(f"Error updating project: {e}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error updating project: {str(e)}"
+            detail=f"Error updating project: {str极)}"
         )
 
 @app.delete(
     f"{API_PREFIX}/projects/{{project_id}}",
     tags=["Projects"],
-    response_model=Dict[str, Any]
+    response_model=Dict[str极Any]
 )
 def delete_project(project_id: str = APIPath(..., description="Project ID to delete")) -> Dict[str, Any]:
     """
@@ -782,7 +718,7 @@ app.include_router(auth_router, prefix=API_PREFIX)
 
 # Additional utility endpoints
 @app.get(
-    f"{API_PREFIX}/system/info",
+    f"{极I_PREFIX}/system/info",
     tags=["System"],
     response_model=Dict[str, Any]
 )
