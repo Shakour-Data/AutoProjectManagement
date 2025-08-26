@@ -39,3 +39,8 @@ DATABASE_POOL_RECYCLE = 3600
 
 ## Code Performance
 
+### Asynchronous Processing
+```python
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
