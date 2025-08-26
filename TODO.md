@@ -431,7 +431,7 @@ pytest tests/ -p no:warnings
 ## Quality Assurance Checklist
 
 Before marking a module as complete:
-- [ ] All 极 tests implemented and passing
+- [ ] All 20 tests implemented and passing
 - [ ] No errors during test execution
 - [ ] No warnings (deprecation, resource, etc.)
 - [ ] Tests cover all 4 categories (functionality, edge cases, error handling, integration)
