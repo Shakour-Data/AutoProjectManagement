@@ -81,6 +81,9 @@ except ImportError:
     class FastAPI:
         def __init__(self, *args, **kwargs):
             pass
+        
+        def add_middleware(self, *args, **kwargs):
+            pass
     
     class HTTPException(Exception):
         def __init__(self, status_code, detail):
