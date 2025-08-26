@@ -16,3 +16,66 @@ Test Categories:
     1. File Watching Functionality Tests (5 tests)
     2. Edge Case Tests (5 tests) 
     3. Error Handling Tests (5 tests)
+    4. Integration Tests (5 tests)
+
+Author: AutoProjectManagement Team
+Version: 1.0.0
+================================================================================
+"""
+
+import os
+import sys
+import pytest
+import tempfile
+import shutil
+from pathlib import Path
+from unittest.mock import Mock, patch, MagicMock, AsyncMock
+import asyncio
+import threading
+import time
+import subprocess
+
+# Add src directory to path for imports
+src_path = Path(__file__).resolve().parent.parent.parent.parent.parent / "src"
+if str(src_path) not in sys.path:
+    sys.path.insert(0, str(src_path))
+
+# Import the module directly
+import importlib.util
+spec = importlib.util.spec_from_file_location(
+    "auto_file_watcher", 
+    str(src_path / "autoprojectmanagement" / "services" / "automation_services" / "auto_file_watcher.py")
+)
+auto_file_watcher = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(auto_file_watcher)
+
+# Import classes directly
+AutoCommitFileWatcher = auto_file_watcher.AutoCommitFileWatcher
+ScheduledAutoCommit = auto_file_watcher.ScheduledAutoCommit
+AutoFileWatcherService = auto_file_watcher.AutoFileWatcherService
+
+
+class TestAutoCommitFileWatcher:
+    """Test class for AutoCommitFileWatcher functionality"""
+    
+    @pytest.fixture
+    def temp_project_dir(self):
+        """Create a temporary project directory for testing"""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            yield temp_dir
+    
+    @pytest.fixture
+    def mock_auto_commit(self):
+        """Mock the UnifiedAutoCommit class"""
+        with patch('autoprojectmanagement.services.automation_services.auto_commit.UnifiedAutoCommit') as mock:
+            mock_instance = Mock()
+            mock_instance.run_complete_workflow_guaranteed.return_value = True
+            mock.return_value = mock_instance
+            yield mock_instance
+    
+    @pytest.fixture
+    def mock_realtime_service(self):
+        """Mock the realtime service"""
+        with patch('autoprojectmanagement.services.automation_services.auto_file_watcher.publish_file_change_event') as mock:
+            yield mock
+    
