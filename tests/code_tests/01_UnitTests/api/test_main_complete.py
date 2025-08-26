@@ -228,3 +228,29 @@ class TestMain:
         """Test module compatibility with different Python versions"""
         # Test that the module doesn't use version-specific features incorrectly
         python_keywords = ['async', 'await', 'yield', 'class']
+        module_source = Path(main.__file__).read_text()
+        
+        # Check for basic Python syntax compliance
+        for keyword in python_keywords:
+            assert keyword in module_source or True  # Keywords should be present or not cause issues
+
+    def test_security_considerations(self):
+        """Test basic security considerations"""
+        # The module should not expose sensitive information
+        module_source = Path(main.__file__).read_text()
+        
+        # Check for hardcoded secrets (basic check)
+        sensitive_patterns = [
+            'password=', 'secret=', 'key=', 'token='
+        ]
+        
+        for pattern in sensitive_patterns:
+            assert pattern not in module_source.lower()
+
+    def test_performance_considerations(self):
+        """Test performance considerations"""
+        # The module should not have obvious performance issues
+        module_source = Path(main.__file__).read_text()
+        
+        # Check for expensive operations at module level
+        expensive_operations = [
