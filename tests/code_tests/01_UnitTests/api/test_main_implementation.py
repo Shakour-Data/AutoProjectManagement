@@ -130,5 +130,36 @@ class TestMain:
         assert response.status_code == 200
         assert response.json()["message"] == "Project 123 deleted successfully"
 
+    def test_create_project_invalid_data(self):
+        """Test creating a project with invalid data"""
+        response = client.post("/api/v1/projects", json={})
+        assert response.status_code == 422  # Unprocessable Entity
+
+    def test_update_project_not_found(self):
+        """Test updating a non-existent project"""
+        response = client.put("/api/v1/projects/999", json={
+            "name": "Updated Project",
+            "description": "Updated description"
+        })
+        assert response.status_code == 404
+        assert response.json()["error"]["message"] == "Project '999' not found"
+
+    def test_delete_project_not_found(self):
+        """Test deleting a non-existent project"""
+        response = client.delete("/api/v1/projects/999")
+        assert response.status_code == 404
+        assert response.json()["error"]["message"] == "Project '999' not found"
+
+    def test_get_all_projects(self):
+        """Test retrieving all projects"""
+        response = client.get("/api/v1/projects")
+        assert response.status_code == 200
+        assert isinstance(response.json(), list)  # Expecting a list of projects
+
+    def test_get_project_status_with_invalid_id(self):
+        """Test getting project status with invalid ID"""
+        response = client.get("/api/v1/projects/invalid_id/status")
+        assert response.status_code == 400  # Bad Request
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
