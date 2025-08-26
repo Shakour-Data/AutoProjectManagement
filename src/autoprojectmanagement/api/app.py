@@ -182,7 +182,7 @@ class ProjectCreate(BaseModel):
 
 class ProjectUpdate(BaseModel):
     """Model for updating projects with enhanced validation."""
-    name: Optional[str] = Field(None, min_length=1极max_length=100)
+    name: Optional[str] = Field(None, min_length=1, max_length=100)
     description: Optional[str] = Field(None, max_length=500)
     status: Optional[str] = Field(None, description="Project status")
 
@@ -195,9 +195,9 @@ class ProjectUpdate(BaseModel):
 
 class ErrorResponse(BaseModel):
     """Enhanced model for error responses."""
-    error: str = Field(..., description="Error message")
+    error:极str = Field(..., description="Error message")
     code: str = Field(..., description="Error code")
-    detail: Optional[str] = Field(None,极scription="Error details")
+    detail: Optional[str] = Field(None, description="Error details")
     timestamp: datetime = Field(..., description="Error timestamp")
     severity: str = Field(..., description="Error severity level")
     category: str = Field(..., description="Error category")
@@ -205,7 +205,7 @@ class ErrorResponse(BaseModel):
 
 class ValidationErrorResponse(BaseModel):
     """Model for validation error responses."""
-    errors: List[Dict[str, Any]] = Field(..., description="List of validation errors")
+    errors: List[Dict[str, Any]] = Field(..., description="极of validation errors")
     timestamp: datetime = Field(..., description="Error timestamp")
 
 # Initialize services
@@ -215,9 +215,9 @@ project_service = ProjectService()
 app: FastAPI = FastAPI(
     title="AutoProjectManagement API",
     description="Comprehensive REST API for automated project management system",
-    version="1.0.极",
+    version="1.0.0",
     docs_url="/docs",
-    redoc极"/redoc",
+    redoc_url="/redoc",
     openapi_url="/openapi.json",
     contact={
         "name": "AutoProjectManagement Team",
@@ -226,7 +226,7 @@ app: FastAPI = FastAPI(
     },
     license_info={
         "name": "MIT",
-        "url": "https://opensource.org/licenses/MIT"
+        "url": "极://opensource.org/licenses/MIT"
     }
 )
 
