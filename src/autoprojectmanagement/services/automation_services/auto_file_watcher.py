@@ -271,7 +271,7 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             and ignores directory modification events.
         """
         if not event.is_directory and self.should_monitor_file(event.src_path):
-            self._handle_file_change(event.src_path, 'modified')
+            await self._handle_file_change(event.src_path, 'modified')
     
     async def on_created(self, event: FileSystemEvent) -> None:
         """
