@@ -84,6 +84,11 @@ except ImportError:
         
         def add_middleware(self, *args, **kwargs):
             pass
+        
+        def middleware(self, *args, **kwargs):
+            def decorator(func):
+                return func
+            return decorator
     
     class HTTPException(Exception):
         def __init__(self, status_code, detail):
