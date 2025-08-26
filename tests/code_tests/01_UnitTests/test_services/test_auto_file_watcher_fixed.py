@@ -291,3 +291,53 @@ class TestErrorHandling:
             handler = AutoCommitFileWatcher(temp_project_dir)
             
             test_file = os.path.join(temp_project_dir, 'test.py')
+            with open(test_file, 'w') as f:
+                f.write("test content")
+            
+            mock_event = Mock()
+            mock_event.is_directory = False
+            mock_event.src_path = test_file
+            
+            # Should handle gracefully without realtime service
+            handler.on_modified(mock_event)
+    
+    def test_auto_commit_failure_handling(self, temp_project_dir):
+        """Test error handling when auto-commit fails"""
+        with patch('autoprojectmanagement.services.automation_services.auto_commit.UnifiedAutoCommit') as mock_commit:
+            mock_instance = Mock()
+            mock_instance.run_complete_workflow_guaranteed.return_value = False
+            mock_commit.return_value = mock_instance
+            
+            handler = AutoCommitFileWatcher(temp_project_dir, debounce_seconds=0.1)
+            
+            test_file = os.path.join(temp_project_dir, 'test.py')
+            with open(test_file, 'w') as f:
+                f.write("test content")
+            
+            mock_event = Mock()
+            mock_event.is_directory = False
+            mock_event.src_path = test_file
+            
+            handler.on_modified(mock_event)
+            
+            # Wait for debounce timer
+            time.sleep(0.2)
+            
+            # Should handle auto-commit failure gracefully
+            assert mock_instance.run_complete_workflow_guaranteed.called
+    
+    def test_file_system_error_handling(self, temp_project_dir):
+        """Test error handling for file system operations"""
+        handler = AutoCommitFileWatcher(temp_project_dir)
+        
+        # Test with invalid file path that causes OS error
+        invalid_path = "/invalid/path/that/does/not/exist"
+        result = handler.should_monitor_file(invalid_path)
+        
+        # Should return False and not crash
+        assert result == False
+    
+    def test_timer_callback_error_handling(self, temp_project_dir):
+        """Test error handling in timer callbacks"""
+        with patch('autoprojectmanagement.services.automation_services.auto_commit.UnifiedAutoCommit') as mock_commit:
+            mock_instance = Mock()
