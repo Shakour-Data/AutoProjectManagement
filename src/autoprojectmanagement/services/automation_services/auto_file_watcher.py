@@ -365,7 +365,7 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
                     # Publish event asynchronously
                     import asyncio
                     asyncio.create_task(
-                        publish_file_change_event(
+                        await publish_file_change_event(
                             file_path=rel_path,
                             change_type=change_type,
                             project_id=str(self.project_path.name)
