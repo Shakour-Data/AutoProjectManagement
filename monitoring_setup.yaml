@@ -1,0 +1,33 @@
+# AutoProjectManagement Monitoring Configuration
+# Production Monitoring and Alerting Setup
+
+version: '1.0'
+description: Production monitoring configuration for AutoProjectManagement
+
+## Prometheus Configuration
+prometheus:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    environment: production
+    application: autoprojectmanagement
+
+  scrape_configs:
+    - job_name: 'autoprojectmanagement'
+      static_configs:
+        - targets: ['localhost:8000']
+          labels:
+            instance: 'autoprojectmanagement-app'
+            service: 'web-application'
+
+    - job_name: 'node-exporter'
+      static_configs:
+        - targets: ['localhost:9100']
+          labels:
+            instance: 'server-monitoring'
+            service: 'system-metrics'
+
+    - job_name: 'postgres-exporter'
+      static_configs:
+        - targets: ['localhost:9187']
+          labels:
