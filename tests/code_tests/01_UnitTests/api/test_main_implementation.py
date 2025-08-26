@@ -103,7 +103,7 @@ class TestMain:
         """Test invalid format requested"""
         response = client.get("/api/v1/projects/123/status?format=invalid")
         assert response.status_code == 400
-        assert "Unsupported format" in response.json()["message"]
+        assert "Unsupported format" in response.json()["detail"]
 
     def test_create_project(self):
         """Test creating a new project"""
