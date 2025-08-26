@@ -351,36 +351,16 @@ class BackupSystem:
     
     def create_restore_script(self, backup_path: str):
         """Create a restoration script for a specific backup"""
+        backup_basename = os.path.basename(backup_path)
+        current_time = datetime.datetime.now()
+        
         script_content = f"""#!/bin/bash
 # AutoProjectManagement Restore Script
-# Backup: {os.path.basename(backup_path)}
-# Created: {datetime.datetime.now()}
+# Backup: {backup_basename}
+# Created: {current_time}
 
 set -e
 
-echo "Starting restoration from backup: {backup_path}"
-
-# Extract backup if compressed
-if [[ "{backup_path}" == *.gz ]]; then
-    echo "Decompressing backup..."
-    gunzip -c "{backup_path}" > "{backup_path%.gz}"
-    backup_path="{backup_path%.gz}"
-fi
-
-# Restore database
-if [[ "{backup_path}" == *.sql ]]; then
-    echo "Restoring database..."
-    pg_restore -h localhost -U postgres -d autoprojectmanagement "{backup_path}"
-fi
-
-# Restore files
-if [[ "{backup_path}" == *.tar.gz ]]; then
-    echo "Restoring files..."
-    tar -xzf "{backup_path}" -C /
-fi
-
-echo "Restoration completed successfully"
-"""
         
         script_path = f"{os.path.dirname(backup_path)}/restore_{os.path.basename(backup_path)}.sh"
         with open(script_path, 'w') as f:
