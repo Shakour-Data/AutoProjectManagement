@@ -77,3 +77,23 @@ alertmanager:
 
     - name: 'pagerduty-critical'
       pagerduty_configs:
+        - service_key: '${PAGERDUTY_SERVICE_KEY}'
+          description: '{{ .CommonAnnotations.summary }}'
+          details:
+            severity: '{{ .Labels.severity }}'
+            instance: '{{ .Labels.instance }}'
+
+    - name: 'email-notifications'
+      email_configs:
+        - to: 'devops@autoprojectmanagement.com'
+          from: 'alerts@autoprojectmanagement.com'
+          smarthost: 'smtp.gmail.com:587'
+          auth_username: 'alert-user'
+          auth_password: '${SMTP_PASSWORD}'
+          require_tls: true
+
+## Alert Rules
+alert_rules:
+  groups:
+    - name: autoprojectmanagement
+      rules:
