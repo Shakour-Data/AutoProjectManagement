@@ -1093,7 +1093,9 @@ class TestPasswordResetRequest:
         valid_emails = [
             "test.user+tag@example.com",
             "user.name@sub.domain.co.uk",
-            "first.last@example.io"
+            "first.last@example.io",
+            "email@domain-one.com",
+            "123456@example.com"
         ]
         
         for email in valid_emails:
@@ -1109,7 +1111,9 @@ class TestPasswordResetRequest:
         invalid_emails = [
             "invalid-email",
             "user@",
-            "@example.com"
+            "@example.com",
+            "user@.com",
+            "user@example..com"
         ]
         
         for email in invalid_emails:
@@ -1137,6 +1141,98 @@ class TestPasswordResetRequest:
         
         request_json = request.json()
         assert "user@example.com" in request_json
+
+    def test_integration_with_auth_examples(self):
+        """Test integration with auth examples."""
+        example_data = AuthExamples.PASSWORD_RESET_REQUEST
+        request = PasswordResetRequest(**example_data)
+        assert request.email == "user@example.com"
+
+class TestAuthConfigResponse:
+    """Comprehensive tests for AuthConfigResponse model."""
+    
+    # Functionality Tests
+    def test_auth_config_response_creation(self):
+        """Test auth config response creation."""
+        data = {
+            "password_min_length": 8,
+            "password_requirements": {
+                "uppercase": True,
+                "lowercase": True,
+                "numbers": True,
+                "special_characters": True
+            },
+            "session_timeout_minutes": 30,
+            "max_login_attempts": 5,
+            "lockout_minutes": 15
+        }
+        
+        response = AuthConfigResponse(**data)
+        assert response.password_min_length == 8
+        assert response.password_requirements["uppercase"] is True
+        assert response.session_timeout_minutes == 30
+
+    # Edge Case Tests
+    def test_auth_config_edge_cases(self):
+        """Test auth config response edge cases."""
+        edge_cases = [
+            {
+                "password_min_length": 0,  # Invalid minimum length
+                "password_requirements": {},
+                "session_timeout_minutes": 0,
+                "max_login_attempts": 0,
+                "lockout_minutes": 0
+            },
+            {
+                "password_min_length": 100,  # Excessive minimum length
+                "password_requirements": {
+                    "uppercase": True,
+                    "lowercase": True,
+                    "numbers": True,
+                    "special_characters": True
+                },
+                "session_timeout_minutes": 1440,  # 24 hours
+                "max_login_attempts": 100,
+                "lockout_minutes": 60
+            }
+        ]
+        
+        for data in edge_cases:
+            response = AuthConfigResponse(**data)
+            assert response.password_min_length == data["password_min_length"]
+
+    # Error Handling Tests
+    def test_missing_required_fields_auth_config(self):
+        """Test missing required fields in auth config response."""
+        with pytest.raises(Exception):
+            AuthConfigResponse(
+                password_min_length=8,
+                password_requirements={},
+                session_timeout_minutes=30
+                # Missing max_login_attempts and lockout_minutes
+            )
+
+    # Integration Tests
+    def test_auth_config_serialization(self):
+        """Test auth config response serialization."""
+        data = {
+            "password_min_length": 8,
+            "password_requirements": {
+                "uppercase": True,
+                "lowercase": True,
+                "numbers": True,
+                "special_characters": True
+            },
+            "session_timeout_minutes": 30,
+            "max_login_attempts": 5,
+            "lockout_minutes": 15
+        }
+        
+        response = AuthConfigResponse(**data)
+        response_dict = response.dict()
+        
+        assert response_dict["password_min_length"] == 8
+        assert "password_requirements" in response_dict
 
 class TestPasswordResetConfirmRequest:
     """Comprehensive tests for PasswordResetConfirmRequest model."""
@@ -1705,6 +1801,363 @@ class TestPasswordChangeRequest:
         request_json = request.json()
         assert "CurrentPass123!" not in request_json
         assert "NewSecurePass123!" not in request_json
+
+class TestErrorResponse:
+    """Comprehensive tests for ErrorResponse model."""
+    
+    # Functionality Tests
+    def test_error_response_creation(self):
+        """Test error response creation."""
+        data = {
+            "success": False,
+            "error": "Authentication failed",
+            "detail": "Invalid credentials provided",
+            "error_code": "auth_invalid_credentials"
+        }
+        
+        response = ErrorResponse(**data)
+        assert response.success is False
+        assert response.error == "Authentication failed"
+        assert response.detail == "Invalid credentials provided"
+        assert response.error_code == "auth_invalid_credentials"
+
+    def test_default_success_value_error_response(self):
+        """Test default success value for error response."""
+        data = {
+            "error": "Authentication failed",
+            "detail": "Invalid credentials"
+            # success should default to False
+        }
+        
+        response = ErrorResponse(**data)
+        assert response.success is False
+        assert response.error == "Authentication failed"
+
+    # Edge Case Tests
+    def test_error_response_edge_cases(self):
+        """Test error response edge cases."""
+        edge_cases = [
+            {
+                "error": "",  # Empty error message
+                "detail": "",
+                "error_code": ""
+            },
+            {
+                "error": "A" * 1000,  # Very long error message
+                "detail": "A" * 1000,
+                "error_code": "very_long_error_code_that_exceeds_normal_length"
+            }
+        ]
+        
+        for data in edge_cases:
+            response = ErrorResponse(**data)
+            assert response.success is False
+
+    # Error Handling Tests
+    def test_missing_required_fields_error_response(self):
+        """Test missing required fields in error response."""
+        # Missing error field
+        with pytest.raises(Exception):
+            ErrorResponse(
+                success=False,
+                detail="Some detail",
+                error_code="test_code"
+            )
+
+    # Integration Tests
+    def test_error_response_serialization(self):
+        """Test error response serialization."""
+        data = {
+            "success": False,
+            "error": "Authentication failed",
+            "detail": "Invalid credentials provided",
+            "error_code": "auth_invalid_credentials"
+        }
+        
+        response = ErrorResponse(**data)
+        response_dict = response.dict()
+        
+        assert response_dict["success"] is False
+        assert response_dict["error"] == "Authentication failed"
+        assert "error_code" in response_dict
+
+class TestSuccessResponse:
+    """Comprehensive tests for SuccessResponse model."""
+    
+    # Functionality Tests
+    def test_success_response_creation(self):
+        """Test success response creation."""
+        data = {
+            "success": True,
+            "message": "Operation completed successfully",
+            "data": {"user_id": "123", "status": "active"}
+        }
+        
+        response = SuccessResponse(**data)
+        assert response.success is True
+        assert response.message == "Operation completed successfully"
+        assert response.data["user_id"] == "123"
+
+    def test_default_success_value_success_response(self):
+        """Test default success value for success response."""
+        data = {
+            "message": "Operation completed successfully"
+            # success should default to True
+        }
+        
+        response = SuccessResponse(**data)
+        assert response.success is True
+        assert response.message == "Operation completed successfully"
+
+    def test_optional_data_field(self):
+        """Test optional data field behavior."""
+        data = {
+            "message": "Operation completed successfully"
+            # data is optional
+        }
+        
+        response = SuccessResponse(**data)
+        assert response.data is None
+
+    # Edge Case Tests
+    def test_success_response_edge_cases(self):
+        """Test success response edge cases."""
+        edge_cases = [
+            {
+                "message": "",  # Empty message
+                "data": {}
+            },
+            {
+                "message": "A" * 1000,  # Very long message
+                "data": {"key": "value" * 100}
+            }
+        ]
+        
+        for data in edge_cases:
+            response = SuccessResponse(**data)
+            assert response.success is True
+
+    # Error Handling Tests
+    def test_missing_required_fields_success_response(self):
+        """Test missing required fields in success response."""
+        # Missing message field
+        with pytest.raises(Exception):
+            SuccessResponse(
+                success=True,
+                data={"result": "ok"}
+            )
+
+    # Integration Tests
+    def test_success_response_serialization(self):
+        """Test success response serialization."""
+        data = {
+            "success": True,
+            "message": "Operation completed successfully",
+            "data": {"user_id": "123", "status": "active"}
+        }
+        
+        response = SuccessResponse(**data)
+        response_dict = response.dict()
+        
+        assert response_dict["success"] is True
+        assert response_dict["message"] == "Operation completed successfully"
+        assert "data" in response_dict
+
+class TestValidationErrorDetail:
+    """Comprehensive tests for ValidationErrorDetail model."""
+    
+    # Functionality Tests
+    def test_validation_error_detail_creation(self):
+        """Test validation error detail creation."""
+        data = {
+            "field": "email",
+            "message": "Invalid email format",
+            "value": "invalid-email"
+        }
+        
+        error_detail = ValidationErrorDetail(**data)
+        assert error_detail.field == "email"
+        assert error_detail.message == "Invalid email format"
+        assert error_detail.value == "invalid-email"
+
+    def test_optional_value_field(self):
+        """Test optional value field behavior."""
+        data = {
+            "field": "email",
+            "message": "Invalid email format"
+            # value is optional
+        }
+        
+        error_detail = ValidationErrorDetail(**data)
+        assert error_detail.value is None
+
+    # Edge Case Tests
+    def test_validation_error_detail_edge_cases(self):
+        """Test validation error detail edge cases."""
+        edge_cases = [
+            {
+                "field": "",
+                "message": "",
+                "value": ""
+            },
+            {
+                "field": "very_long_field_name_that_exceeds_normal_length",
+                "message": "A" * 1000,
+                "value": "A" * 1000
+            }
+        ]
+        
+        for data in edge_cases:
+            error_detail = ValidationErrorDetail(**data)
+            assert error_detail is not None
+
+    # Error Handling Tests
+    def test_missing_required_fields_validation_error_detail(self):
+        """Test missing required fields in validation error detail."""
+        # Missing field
+        with pytest.raises(Exception):
+            ValidationErrorDetail(
+                message="Invalid format",
+                value="test"
+            )
+        
+        # Missing message
+        with pytest.raises(Exception):
+            ValidationErrorDetail(
+                field="email",
+                value="test"
+            )
+
+    # Integration Tests
+    def test_validation_error_detail_serialization(self):
+        """Test validation error detail serialization."""
+        data = {
+            "field": "email",
+            "message": "Invalid email format",
+            "value": "invalid-email"
+        }
+        
+        error_detail = ValidationErrorDetail(**data)
+        error_dict = error_detail.dict()
+        
+        assert error_dict["field"] == "email"
+        assert error_dict["message"] == "Invalid email format"
+        assert "value" in error_dict
+
+class TestValidationErrorResponse:
+    """Comprehensive tests for ValidationErrorResponse model."""
+    
+    # Functionality Tests
+    def test_validation_error_response_creation(self):
+        """Test validation error response creation."""
+        error_details = [
+            ValidationErrorDetail(
+                field="email",
+                message="Invalid email format",
+                value="invalid-email"
+            ),
+            ValidationErrorDetail(
+                field="password",
+                message="Password too weak",
+                value="weakpass"
+            )
+        ]
+        
+        data = {
+            "success": False,
+            "message": "Validation failed",
+            "errors": error_details
+        }
+        
+        response = ValidationErrorResponse(**data)
+        assert response.success is False
+        assert response.message == "Validation failed"
+        assert len(response.errors) == 2
+        assert response.errors[0].field == "email"
+
+    def test_default_message_value(self):
+        """Test default message value behavior."""
+        error_details = [
+            ValidationErrorDetail(
+                field="email",
+                message="Invalid email format"
+            )
+        ]
+        
+        data = {
+            "success": False,
+            "errors": error_details
+            # message should default to "Validation failed"
+        }
+        
+        response = ValidationErrorResponse(**data)
+        assert response.message == "Validation failed"
+
+    # Edge Case Tests
+    def test_validation_error_response_edge_cases(self):
+        """Test validation error response edge cases."""
+        edge_cases = [
+            {
+                "success": False,
+                "message": "",
+                "errors": []  # Empty errors list
+            },
+            {
+                "success": False,
+                "message": "A" * 1000,
+                "errors": [
+                    ValidationErrorDetail(
+                        field="field1",
+                        message="error1"
+                    ),
+                    ValidationErrorDetail(
+                        field="field2",
+                        message="error2"
+                    )
+                ]
+            }
+        ]
+        
+        for data in edge_cases:
+            response = ValidationErrorResponse(**data)
+            assert response.success is False
+
+    # Error Handling Tests
+    def test_missing_required_fields_validation_error_response(self):
+        """Test missing required fields in validation error response."""
+        # Missing errors field
+        with pytest.raises(Exception):
+            ValidationErrorResponse(
+                success=False,
+                message="Validation failed"
+            )
+
+    # Integration Tests
+    def test_validation_error_response_serialization(self):
+        """Test validation error response serialization."""
+        error_details = [
+            ValidationErrorDetail(
+                field="email",
+                message="Invalid email format"
+            ),
+            ValidationErrorDetail(
+                field="password",
+                message="Password too weak"
+            )
+        ]
+        
+        data = {
+            "success": False,
+            "message": "Validation failed",
+            "errors": error_details
+        }
+        
+        response = ValidationErrorResponse(**data)
+        response_dict = response.dict()
+        
+        assert response_dict["success"] is False
+        assert response_dict["message"] == "Validation failed"
+        assert len(response_dict["errors"]) == 2
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
