@@ -1,0 +1,186 @@
+{
+  "quality_standards": {
+    "code_coverage": {
+      "description": "Minimum code coverage percentage required",
+      "target": 80,
+      "weight": 1.0
+    },
+    "documentation_coverage": {
+      "description": "Minimum documentation coverage percentage required",
+      "target": 85,
+      "weight": 0.8
+    },
+    "metadata": {
+      "created_at": "2024-01-01T00:00:00Z",
+      "last_updated": "2024-01-20T12:00:00Z",
+      "version": "2.1.0"
+    },
+    "pep8_compliance": {
+      "description": "Minimum PEP8 compliance percentage required",
+      "target": 90,
+      "weight": 0.7
+    },
+    "performance_metrics": {
+      "description": "Performance benchmark compliance percentage",
+      "target": 95,
+      "weight": 0.6
+    },
+    "security_scan": {
+      "description": "Security scan pass rate percentage",
+      "target": 100,
+      "weight": 1.2
+    },
+    "test_coverage": {
+      "description": "Minimum test coverage percentage required",
+      "target": 75,
+      "weight": 0.9
+    }
+  },
+  "recommendations": [
+    "Regular quality reviews recommended to maintain standards"
+  ],
+  "summary": {
+    "high_quality_tasks": 3,
+    "low_quality_tasks": 1,
+    "medium_quality_tasks": 1,
+    "overall_quality_score": 90.31790849673203,
+    "poor_quality_tasks": 0,
+    "quality_level": "HIGH",
+    "total_tasks": 5
+  },
+  "task_quality": {
+    "task_001": {
+      "level": "HIGH",
+      "metrics": {
+        "code_coverage": {
+          "actual": 85,
+          "score": 100,
+          "target": 80,
+          "weight": 1.0
+        },
+        "documentation_coverage": {
+          "actual": 90,
+          "score": 100,
+          "target": 85,
+          "weight": 0.8
+        },
+        "pep8_compliance": {
+          "actual": 95,
+          "score": 100,
+          "target": 90,
+          "weight": 0.7
+        }
+      },
+      "recommendations": [],
+      "score": 100.0
+    },
+    "task_002": {
+      "level": "HIGH",
+      "metrics": {
+        "code_coverage": {
+          "actual": 92,
+          "score": 100,
+          "target": 80,
+          "weight": 1.0
+        },
+        "documentation_coverage": {
+          "actual": 88,
+          "score": 100,
+          "target": 85,
+          "weight": 0.8
+        },
+        "pep8_compliance": {
+          "actual": 98,
+          "score": 100,
+          "target": 90,
+          "weight": 0.7
+        }
+      },
+      "recommendations": [],
+      "score": 100.0
+    },
+    "task_003": {
+      "level": "HIGH",
+      "metrics": {
+        "code_coverage": {
+          "actual": 78,
+          "score": 97.5,
+          "target": 80,
+          "weight": 1.0
+        },
+        "documentation_coverage": {
+          "actual": 82,
+          "score": 96.47058823529412,
+          "target": 85,
+          "weight": 0.8
+        },
+        "pep8_compliance": {
+          "actual": 90,
+          "score": 100.0,
+          "target": 90,
+          "weight": 0.7
+        }
+      },
+      "recommendations": [],
+      "score": 97.87058823529412
+    },
+    "task_004": {
+      "level": "MEDIUM",
+      "metrics": {
+        "code_coverage": {
+          "actual": 65,
+          "score": 81.25,
+          "target": 80,
+          "weight": 1.0
+        },
+        "documentation_coverage": {
+          "actual": 70,
+          "score": 82.35294117647058,
+          "target": 85,
+          "weight": 0.8
+        },
+        "pep8_compliance": {
+          "actual": 85,
+          "score": 94.44444444444444,
+          "target": 90,
+          "weight": 0.7
+        }
+      },
+      "recommendations": [
+        "Improve documentation_coverage: current 70.0%, target 85.0%"
+      ],
+      "score": 85.29738562091502
+    },
+    "task_005": {
+      "level": "LOW",
+      "metrics": {
+        "code_coverage": {
+          "actual": 45,
+          "score": 56.25,
+          "target": 80,
+          "weight": 1.0
+        },
+        "documentation_coverage": {
+          "actual": 60,
+          "score": 70.58823529411765,
+          "target": 85,
+          "weight": 0.8
+        },
+        "pep8_compliance": {
+          "actual": 75,
+          "score": 83.33333333333334,
+          "target": 90,
+          "weight": 0.7
+        }
+      },
+      "recommendations": [
+        "Improve code_coverage: current 45.0%, target 80.0%",
+        "Improve documentation_coverage: current 60.0%, target 85.0%",
+        "Improve pep8_compliance: current 75.0%, target 90.0%",
+        "Consider refactoring or additional testing to improve quality"
+      ],
+      "score": 68.42156862745098
+    }
+  },
+  "timestamp": "2025-08-27T17:36:27.534048"
+}

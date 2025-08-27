@@ -12,8 +12,8 @@ import tempfile
 from pathlib import Path
 from datetime import datetime
 
-# Add source to path
-sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
+# Add the src directory to the path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'src'))
 
 from autoprojectmanagement.main_modules.quality_commit_management import quality_management
 
@@ -233,4 +233,105 @@ class TestQualityManagement:
             'code_coverage': {'actual': 40, 'target': 80, 'score': 50, 'weight': 1.0},
             'documentation_coverage': {'actual': 30, 'target': 85, 'score': 35, 'weight': 1.0}
         }
+        
+        recommendations_poor = manager._generate_recommendations(poor_metrics, 'POOR')
+        assert len(recommendations_poor) > 0  # Expect recommendations for poor quality
+        
+        # Test with high quality metrics
+        high_metrics = {
+            'code_coverage': {'actual': 90, 'target': 80, 'score': 100, 'weight': 1.0},
+            'documentation_coverage': {'actual': 85, 'target': 85, 'score': 100, 'weight': 1.0}
+        }
+        
+        recommendations_high = manager._generate_recommendations(high_metrics, 'HIGH')
+        assert len(recommendations_high) == 0  # No recommendations expected for high quality
+    
+    def test_analyze_with_valid_data(self):
+        """Test analyze method with valid WBS and quality standards"""
+        manager = quality_management.QualityManagement()
+        manager.inputs = {
+            'detailed_wbs': {
+                "project_name": "Test Project",
+                "tasks": {
+                    "task_001": {
+                        "code_coverage": 85,
+                        "documentation_coverage": 90,
+                        "pep8_compliance": 95
+                    }
+                }
+            },
+            'quality_standards': {
+                'code_coverage': {'target': 80, 'weight': 1.0},
+                'documentation_coverage': {'target': 85, 'weight': 0.8},
+                'pep8_compliance': {'target': 90, 'weight': 0.7}
+            }
+        }
+        
+        manager.analyze()
+        
+        assert 'summary' in manager.output
+        assert 'task_quality' in manager.output
+        assert 'recommendations' in manager.output
+    
+    def test_analyze_with_empty_wbs(self):
+        """Test analyze method with empty WBS data"""
+        manager = quality_management.QualityManagement()
+        manager.inputs = {
+            'detailed_wbs': {},
+            'quality_standards': {}
+        }
+        
+        manager.analyze()
+        
+        assert 'error' in manager.output
+        assert manager.output['error'] == 'No WBS data available'
+    
+    def test_analyze_with_missing_quality_standards(self):
+        """Test analyze method with missing quality standards"""
+        manager = quality_management.QualityManagement()
+        manager.inputs = {
+            'detailed_wbs': {
+                "project_name": "Test Project",
+                "tasks": {
+                    "task_001": {
+                        "code_coverage": 85,
+                        "documentation_coverage": 90,
+                        "pep8_compliance": 95
+                    }
+                }
+            },
+            'quality_standards': {}
+        }
+        
+        manager.analyze()
+        
+        assert 'quality_standards' in manager.output
+        assert manager.output['quality_standards'] is not None  # Should use defaults
+    
+    def test_run_integration(self):
+        """Test the complete run method integration"""
+        manager = quality_management.QualityManagement()
+        manager.inputs = {
+            'detailed_wbs': {
+                "project_name": "Test Project",
+                "tasks": {
+                    "task_001": {
+                        "code_coverage": 85,
+                        "documentation_coverage": 90,
+                        "pep8_compliance": 95
+                    }
+                }
+            },
+            'quality_standards': {
+                'code_coverage': {'target': 80, 'weight': 1.0},
+                'documentation_coverage': {'target': 85, 'weight': 0.8},
+                'pep8_compliance': {'target': 90, 'weight': 0.7}
+            }
+        }
+        
+        manager.run()
+        
+        assert 'summary' in manager.output
+        assert 'task_quality' in manager.output
+        assert 'recommendations' in manager.output
         
