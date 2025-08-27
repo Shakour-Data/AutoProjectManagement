@@ -1,5 +1,15 @@
 import pytest
+import sys
+import os
+from pathlib import Path
 from datetime import datetime
+
+# Add source to path - calculate the correct path to src directory
+current_file = Path(__file__)
+project_root = current_file.parent.parent.parent.parent.parent
+sys.path.insert(0, str(project_root / "src"))
+print(f"Added to path: {project_root / 'src'}")
+
 from autoprojectmanagement.api.auth_models import (
     UserRegisterRequest,
     UserLoginRequest,

@@ -1,3 +1,10 @@
+==================================================
+TEST RESULTS
+==================================================
+
+Exit Code: 0
+
+STDOUT:
 ============================= test session starts =============================
 platform win32 -- Python 3.10.0, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\Behgozin\Documents\Projects\AutoProjectManagement\AutoProjectManagement\venv\Scripts\python.exe
 cachedir: .pytest_cache
@@ -17,4 +24,7 @@ tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserProfileResponse::
 tests\code_tests\01_UnitTests\api\test_auth_models.py::TestAuthTokenResponse::test_auth_token_creation PASSED [ 90%]
 tests\code_tests\01_UnitTests\api\test_auth_models.py::TestLoginSuccessResponse::test_login_success_creation PASSED [100%]
 
-============================= 10 passed in 7.38s ==============================
+============================= 10 passed in 5.67s ==============================
+
+STDERR:
+

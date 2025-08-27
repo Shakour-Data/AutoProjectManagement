@@ -1,0 +1,2 @@
+Pydantic is available
+Version: 2.9.2
