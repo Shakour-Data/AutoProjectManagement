@@ -1,0 +1,14 @@
+Added to path: C:\Users\Behgozin\src
+Traceback (most recent call last):
+  File "C:\Users\Behgozin\Documents\Projects\AutoProjectManagement\AutoProjectManagement\simple_auth_test.py", line 16, in <module>
+    from autoprojectmanagement.api.auth_models import (
+ModuleNotFoundError: No module named 'autoprojectmanagement'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Behgozin\Documents\Projects\AutoProjectManagement\AutoProjectManagement\simple_auth_test.py", line 79, in <module>
+    print(f"\u274c Import failed: {e}")
+  File "C:\Users\Behgozin\AppData\Local\Programs\Python\Python310\lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 0: character maps to <undefined>

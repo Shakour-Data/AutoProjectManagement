@@ -6,9 +6,9 @@ Simple test script for auth_models without pytest
 import sys
 from pathlib import Path
 
-# Add source to path
+# Add source to path - use the correct path to src directory
 current_file = Path(__file__)
-project_root = current_file.parent.parent.parent.parent.parent
+project_root = current_file.parent  # This file is in the root directory
 sys.path.insert(0, str(project_root / "src"))
 print(f"Added to path: {project_root / 'src'}")
 

@@ -1,0 +1,26 @@
+============================= test session starts =============================
+platform win32 -- Python 3.10.0, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\Behgozin\Documents\Projects\AutoProjectManagement\AutoProjectManagement\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Behgozin\Documents\Projects\AutoProjectManagement\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collecting ... collected 16 items
+
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserRegisterRequest::test_valid_registration PASSED [  6%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserRegisterRequest::test_invalid_email PASSED [ 12%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserRegisterRequest::test_weak_password PASSED [ 18%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserRegisterRequest::test_email_case_insensitivity PASSED [ 25%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserRegisterRequest::test_international_names PASSED [ 31%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserRegisterRequest::test_missing_email PASSED [ 37%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserRegisterRequest::test_missing_password PASSED [ 43%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserRegisterRequest::test_missing_first_name PASSED [ 50%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserRegisterRequest::test_missing_last_name PASSED [ 56%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserLoginRequest::test_valid_login PASSED [ 62%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserLoginRequest::test_invalid_login_email PASSED [ 68%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserLoginRequest::test_missing_email PASSED [ 75%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserLoginRequest::test_missing_password PASSED [ 81%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestUserProfileResponse::test_user_profile_creation PASSED [ 87%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestAuthTokenResponse::test_auth_token_creation PASSED [ 93%]
+tests\code_tests\01_UnitTests\api\test_auth_models.py::TestLoginSuccessResponse::test_login_success_creation PASSED [100%]
+
+============================= 16 passed in 4.10s ==============================

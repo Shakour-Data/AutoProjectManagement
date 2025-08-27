@@ -36,11 +36,14 @@ Each Python module should have **20 comprehensive tests** organized into 4 categ
      - ✅ 5 Pydantic model validation tests
    - **Location**: `tests/code_tests/01_UnitTests/api/test_app.py`
 
-3. **`src/autoprojectmanagement/api/auth_models.py`**
-   - 5 Pydantic model validation tests
-   - 5 edge case tests (boundary data, optional fields)
-   - 5 error handling tests (validation errors, type errors)
-   - 5 integration tests with endpoints
+3. **`src/autoprojectmanagement/api/auth_models.py`** ⚠️
+   - **Status**: PARTIALLY COMPLETED - Basic tests implemented, needs comprehensive coverage
+   - **Test scenarios**:
+     - ⚠️ 5 Pydantic model validation tests (basic tests exist)
+     - ⚠️ 5 edge case tests (boundary data, optional fields) - needs implementation
+     - ⚠️ 5 error handling tests (validation errors, type errors) - needs implementation
+     - ⚠️ 5 integration tests with endpoints - needs implementation
+   - **Location**: `tests/code_tests/01_UnitTests/api/test_auth_models.py` and `test_auth_models_fixed.py`
 
 4. **`src/autoprojectmanagement/api/services.py`**
    - 5 core API services tests
@@ -126,11 +129,14 @@ Each Python module should have **20 comprehensive tests** organized into 4 categ
     - 5 error handling tests (encryption errors, decryption errors)
     - 5 integration tests with auth service
 
-18. **`src/autoprojectmanagement/main_modules/quality_commit_management/quality_management.py`**
-    - 5 quality management functionality tests
-    - 5 edge case tests (complex quality rules, boundary conditions)
-    - 5 error handling tests (quality check errors, validation errors)
-    - 5 integration tests with commit management
+18. **`src/autoprojectmanagement/main_modules/quality_commit_management/quality_management.py`** ⚠️
+   - **Status**: AUTO-GENERATED TESTS - Test file exists but contains TODO placeholders
+   - **Test scenarios**:
+     - ⚠️ 5 quality management functionality tests - needs implementation
+     - ⚠️ 5 edge case tests (complex quality rules, boundary conditions) - needs implementation
+     - ⚠️ 5 error handling tests (quality check errors, validation errors) - needs implementation
+     - ⚠️ 5 integration tests with commit management - needs implementation
+   - **Location**: `tests/code_tests/01_UnitTests/main_modules/test_quality_management.py`
 
 19. **`src/autoprojectmanagement/main_modules/quality_commit_management/github_actions_automation.py`**
     - 5 GitHub Actions automation tests

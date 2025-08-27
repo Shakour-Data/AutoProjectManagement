@@ -73,6 +73,42 @@ class TestUserRegisterRequest:
         request = UserRegisterRequest(**data)
         assert request.first_name == "José"
 
+    def test_missing_email(self):
+        data = {
+            "password": "SecurePass123!",
+            "first_name": "John",
+            "last_name": "Doe"
+        }
+        with pytest.raises(Exception):
+            UserRegisterRequest(**data)
+
+    def test_missing_password(self):
+        data = {
+            "email": "user@example.com",
+            "first_name": "John",
+            "last_name": "Doe"
+        }
+        with pytest.raises(Exception):
+            UserRegisterRequest(**data)
+
+    def test_missing_first_name(self):
+        data = {
+            "email": "user@example.com",
+            "password": "SecurePass123!",
+            "last_name": "Doe"
+        }
+        with pytest.raises(Exception):
+            UserRegisterRequest(**data)
+
+    def test_missing_last_name(self):
+        data = {
+            "email": "user@example.com",
+            "password": "SecurePass123!",
+            "first_name": "John"
+        }
+        with pytest.raises(Exception):
+            UserRegisterRequest(**data)
+
 class TestUserLoginRequest:
     def test_valid_login(self):
         data = {
@@ -86,6 +122,20 @@ class TestUserLoginRequest:
         data = {
             "email": "invalid-email",
             "password": "SecurePass123!"
+        }
+        with pytest.raises(Exception):
+            UserLoginRequest(**data)
+
+    def test_missing_email(self):
+        data = {
+            "password": "SecurePass123!"
+        }
+        with pytest.raises(Exception):
+            UserLoginRequest(**data)
+
+    def test_missing_password(self):
+        data = {
+            "email": "user@example.com"
         }
         with pytest.raises(Exception):
             UserLoginRequest(**data)
