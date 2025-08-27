@@ -1,15 +1,15 @@
 import pytest
+import sys
+from pathlib import Path
 from datetime import datetime
+
+# Add source to path
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent / "src"))
+
 from autoprojectmanagement.api.auth_models import (
-    UserRegisterRequest,
-    UserLoginRequest,
-    UserProfileResponse,
-    AuthTokenResponse,
-    LoginSuccessResponse,
-    RegisterSuccessResponse,
-    RegisterErrorResponse,
-    ErrorCodes,
-    SuccessMessages
+    UserRegisterRequest, UserLoginRequest, UserProfileResponse,
+    AuthTokenResponse, LoginSuccessResponse, RegisterSuccessResponse,
+    ErrorCodes, SuccessMessages
 )
 
 class TestUserRegisterRequest:
@@ -152,8 +152,6 @@ class TestLoginSuccessResponse:
         
         response = LoginSuccessResponse(**data)
         assert response.success == True
-
-# Additional tests for error handling and integration can be added here.
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

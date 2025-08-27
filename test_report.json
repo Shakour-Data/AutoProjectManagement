@@ -1,0 +1,14 @@
+{
+  "project": "AutoProjectManagement",
+  "test_type": "Unit Tests",
+  "modules_tested": [
+    "task_management",
+    "resource_management",
+    "progress_calculator",
+    "auto_commit",
+    "backup_manager",
+    "github_integration"
+  ],
+  "coverage_threshold": 80,
+  "test_framework": "pytest"
+}

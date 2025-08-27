@@ -1,0 +1,22 @@
+============================= test session starts =============================
+platform win32 -- Python 3.10.0, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\Behgozin\Documents\Projects\AutoProjectManagement\AutoProjectManagement\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Behgozin\Documents\Projects\AutoProjectManagement\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+______ ERROR collecting code_tests/01_UnitTests/api/test_auth_models.py _______
+ImportError while importing test module 'C:\Users\Behgozin\Documents\Projects\AutoProjectManagement\AutoProjectManagement\tests\code_tests\01_UnitTests\api\test_auth_models.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+..\..\..\..\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests\code_tests\01_UnitTests\api\test_auth_models.py:3: in <module>
+    from autoprojectmanagement.api.auth_models import (
+E   ModuleNotFoundError: No module named 'autoprojectmanagement'
+=========================== short test summary info ===========================
+ERROR tests\code_tests\01_UnitTests\api\test_auth_models.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 3.08s ===============================
