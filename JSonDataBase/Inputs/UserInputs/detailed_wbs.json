@@ -1,0 +1,50 @@
+{
+  "project_name": "AutoProjectManagement Test Project",
+  "version": "1.0.0",
+  "tasks": {
+    "task_001": {
+      "name": "API Server Implementation",
+      "description": "Implement FastAPI server with authentication",
+      "code_coverage": 85,
+      "documentation_coverage": 90,
+      "pep8_compliance": 95,
+      "status": "completed"
+    },
+    "task_002": {
+      "name": "Authentication System",
+      "description": "Implement JWT authentication system",
+      "code_coverage": 92,
+      "documentation_coverage": 88,
+      "pep8_compliance": 98,
+      "status": "completed"
+    },
+    "task_003": {
+      "name": "Quality Management Module",
+      "description": "Implement quality analysis system",
+      "code_coverage": 78,
+      "documentation_coverage": 82,
+      "pep8_compliance": 90,
+      "status": "in_progress"
+    },
+    "task_004": {
+      "name": "Database Integration",
+      "description": "Integrate with PostgreSQL database",
+      "code_coverage": 65,
+      "documentation_coverage": 70,
+      "pep8_compliance": 85,
+      "status": "not_started"
+    },
+    "task_005": {
+      "name": "UI Dashboard",
+      "description": "Create React dashboard interface",
+      "code_coverage": 45,
+      "documentation_coverage": 60,
+      "pep8_compliance": 75,
+      "status": "not_started"
+    }
+  },
+  "metadata": {
+    "created_at": "2024-01-15T10:00:00Z",
+    "last_updated": "2024-01-20T15:30:00Z"
+  }
+}

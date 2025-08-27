@@ -1,0 +1,37 @@
+{
+  "code_coverage": {
+    "target": 80,
+    "weight": 1.0,
+    "description": "Minimum code coverage percentage required"
+  },
+  "documentation_coverage": {
+    "target": 85,
+    "weight": 0.8,
+    "description": "Minimum documentation coverage percentage required"
+  },
+  "pep8_compliance": {
+    "target": 90,
+    "weight": 0.7,
+    "description": "Minimum PEP8 compliance percentage required"
+  },
+  "test_coverage": {
+    "target": 75,
+    "weight": 0.9,
+    "description": "Minimum test coverage percentage required"
+  },
+  "security_scan": {
+    "target": 100,
+    "weight": 1.2,
+    "description": "Security scan pass rate percentage"
+  },
+  "performance_metrics": {
+    "target": 95,
+    "weight": 0.6,
+    "description": "Performance benchmark compliance percentage"
+  },
+  "metadata": {
+    "created_at": "2024-01-01T00:00:00Z",
+    "last_updated": "2024-01-20T12:00:00Z",
+    "version": "2.1.0"
+  }
+}
