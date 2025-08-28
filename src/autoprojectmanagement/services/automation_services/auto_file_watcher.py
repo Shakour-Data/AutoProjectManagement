@@ -255,7 +255,7 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             logger.warning(f"Error checking file {file_path}: {e}")
             return False
     
-    async def on_modified(self, event: FileSystemEvent) -> None:
+    def on_modified(self, event: FileSystemEvent) -> None:
         """
         Handle file modification events from the watchdog observer.
         
@@ -271,9 +271,9 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             and ignores directory modification events.
         """
         if not event.is_directory and self.should_monitor_file(event.src_path):
-            await self._handle_file_change(event.src_path, 'modified')
+            self._handle_file_change(event.src_path, 'modified')
     
-    async def on_created(self, event: FileSystemEvent) -> None:
+    def on_created(self, event: FileSystemEvent) -> None:
         """
         Handle file creation events from the watchdog observer.
         
@@ -288,14 +288,14 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             and ignores directory creation events.
         """
         if not event.is_directory and self.should_monitor_file(event.src_path):
-            await self._handle_file_change(event.src_path, 'created')
+            self._handle_file_change(event.src_path, 'created')
     
-    async def on_deleted(self, event: FileSystemEvent) -> None:
+    def on_deleted(self, event: FileSystemEvent) -> None:
         """
         Handle file deletion events from the watchdog observer.
         
         This method is automatically called by watchdog when a file deletion
-        event is detected. It processes file deletions that meet monitoring criteria.
+        event is极 detected. It processes file deletions that meet monitoring criteria.
         
         Args:
             event (FileSystemEvent): The file system event containing deletion details
@@ -305,9 +305,9 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
             and ignores directory deletion events.
         """
         if not event.is_directory and self.should_monitor_file(event.src_path):
-            await self._handle_file_change(event.src_path, 'deleted')
+            self._handle_file_change(event.src_path, 'deleted')
     
-    async def on_moved(self, event: FileSystemEvent) -> None:
+    def on_moved(self, event: FileSystemEvent) -> None:
         """
         Handle file move/rename events from the watchdog observer.
         
@@ -325,11 +325,11 @@ class AutoCommitFileWatcher(FileSystemEventHandler):
         """
         if not event.is_directory:
             if self.should_monitor_file(event.src_path):
-                await self._handle_file_change(event.src_path, 'moved_from')
+                self._handle_file_change(event.src_path, 'moved_from')
             if self.should_monitor_file(event.dest_path):
-                await self._handle_file_change(event.dest_path, 'moved_to')
+                self._handle_file_change(event.dest_path, 'moved_to')
     
-    async def _handle_file_change(self, file_path: str, change_type: str) -> None:
+    def _handle_file_change(self, file_path: str, change_type: str) -> None:
         """
         Handle a file change event with intelligent debouncing and real-time event publishing.
         
