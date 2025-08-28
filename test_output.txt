@@ -1,1 +1,22 @@
-"Testing output visibility"  
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\Shakour\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: E:\Shakour\MyProjects\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collecting ... collected 12 items
+
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerFunctionality::test_commit_progress_manager_initialization PASSED [  8%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerFunctionality::test_commit_progress_manager_initialization_custom_paths PASSED [ 16%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerFunctionality::test_commit_progress_manager_load_commit_task_db PASSED [ 25%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerFunctionality::test_commit_progress_manager_generate_commit_progress PASSED [ 33%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerFunctionality::test_commit_progress_manager_save_commit_progress PASSED [ 41%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerEdgeCases::test_commit_progress_manager_load_nonexistent_db PASSED [ 50%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerEdgeCases::test_commit_progress_manager_save_to_invalid_path PASSED [ 58%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerEdgeCases::test_commit_progress_manager_generate_progress_with_empty_db PASSED [ 66%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerEdgeCases::test_commit_progress_manager_save_empty_progress PASSED [ 75%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerEdgeCases::test_commit_progress_manager_invalid_json_format PASSED [ 83%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerIntegration::test_commit_progress_manager_complete_workflow PASSED [ 91%]
+tests\code_tests\01_UnitTests\main_modules\test_commit_progress_manager.py::TestCommitProgressManagerIntegration::test_commit_progress_manager_summary PASSED [100%]
+
+============================= 12 passed in 0.87s ==============================

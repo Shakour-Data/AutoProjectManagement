@@ -102,7 +102,8 @@ class TestCommitProgressManagerEdgeCases:
     
     def test_commit_progress_manager_save_to_invalid_path(self, sample_commit_task_db):
         """Test CommitProgressManager saving to an invalid path."""
-        manager = CommitProgressManager(sample_commit_task_db, "/invalid/path/commit_progress.json")
+        # Use a path that is invalid on Windows (trying to create a file in a protected system directory)
+        manager = CommitProgressManager(sample_commit_task_db, "C:\\Windows\\System32\\commit_progress.json")
         success = manager.save_commit_progress()
         assert success is False
     
@@ -134,9 +135,13 @@ class TestCommitProgressManagerIntegration:
     
     def test_commit_progress_manager_complete_workflow(self, temp_dir, sample_commit_task_db):
         """Test complete workflow of CommitProgressManager."""
+        # Load the actual data from the sample file
+        with open(sample_commit_task_db, 'r') as f:
+            sample_data = json.load(f)
+        
         db_path = os.path.join(temp_dir, "commit_task_db.json")
         with open(db_path, 'w') as f:
-            json.dump(sample_commit_task_db, f)
+            json.dump(sample_data, f)
         
         manager = CommitProgressManager(db_path, os.path.join(temp_dir, "commit_progress.json"))
         manager.load_commit_task_db()
@@ -155,7 +160,7 @@ class TestCommitProgressManagerIntegration:
         summary = manager.get_progress_summary()
         assert summary["total_tasks"] == 2
         assert summary["total_commits"] == 3
-        assert summary["average_progress"] == 50.0  # Assuming task1 has 2 commits and task2 has 1 commit
+        assert summary["average_progress"] == 15.0  # (20 + 10) / 2 = 15.0
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

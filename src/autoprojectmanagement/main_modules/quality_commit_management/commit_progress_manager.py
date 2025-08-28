@@ -175,7 +175,7 @@ class CommitProgressManager:
             with open(self.commit_progress_path, 'w', encoding='utf-8') as f:
                 json.dump(self.commit_progress, f, indent=2, ensure_ascii=False)
             return True
-        except (OSError, json.JSONEncodeError) as e:
+        except (OSError, json.JSONDecodeError) as e:
             print(f"Error saving commit progress: {e}")
             return False
 
