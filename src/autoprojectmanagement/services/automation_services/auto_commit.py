@@ -87,7 +87,7 @@ class UnifiedAutoCommit:
         self._setup_authentication()
         
     def _configure_git_automatically(self) -> None:
-        """Automatically configure Git to prevent RPC errors."""
+        """Automatically configure Git to prevent RPC errors and memory issues."""
         try:
             success = configure_git_automatically()
             if success:
@@ -96,6 +96,21 @@ class UnifiedAutoCommit:
                 self.logger.warning("⚠️  Git auto-configuration partially applied")
         except Exception as e:
             self.logger.warning(f"Could not auto-configure git: {e}")
+
+        # Additional git config to prevent out of memory errors during fetch/pull
+        try:
+            import subprocess
+            configs = [
+                ("pack.windowMemory", "100m"),
+                ("pack.packSizeLimit", "100m"),
+                ("core.packedGitWindowSize", "100m"),
+                ("core.packedGitLimit", "100m")
+            ]
+            for key, value in configs:
+                subprocess.run(["git", "config", "--global", key, value], check=True)
+            self.logger.info("✅ Git memory configuration applied to prevent out of memory errors")
+        except Exception as e:
+            self.logger.warning(f"Failed to apply git memory configuration: {e}")
     
     def _setup_authentication(self) -> None:
         """Setup and verify authentication methods."""
