@@ -985,6 +985,7 @@ class AutoFileWatcherService:
 
 
 def main():
+    print("Starting Auto File Watcher Service...")
     """
     Main entry point for the Auto File Watcher Service command-line interface.
     
