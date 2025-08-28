@@ -277,17 +277,32 @@ class BackupSystem:
             return False
     
     def cleanup_old_backups(self):
-        """Remove backups older than retention period"""
-        retention_days = self.config['backup']['retention_days']
+        """Remove all backups except the latest one from all backup directories"""
         backup_dir = self.config['backup']['backup_dir']
-        cutoff_time = datetime.datetime.now() - datetime.timedelta(days=retention_days)
         
-        for root, dirs, files in os.walk(backup_dir):
-            for file in files:
-                file_path = os.path.join(root, file)
-                file_time = datetime.datetime.fromtimestamp(os.path.getmtime(file_path))
+        # Clean up backups in each subdirectory
+        subdirectories = ['', 'database', 'files', 'logs']
+        
+        for subdir in subdirectories:
+            current_dir = os.path.join(backup_dir, subdir)
+            
+            if not os.path.exists(current_dir):
+                continue
                 
-                if file_time < cutoff_time:
+            # List all backup files in the current directory
+            backup_files = []
+            for file in os.listdir(current_dir):
+                file_path = os.path.join(current_dir, file)
+                if os.path.isfile(file_path):
+                    backup_files.append(file)
+            
+            # Sort files by modification time (oldest first)
+            backup_files.sort(key=lambda x: os.path.getmtime(os.path.join(current_dir, x)))
+            
+            # Keep only the latest backup in this directory
+            if len(backup_files) > 1:
+                for file in backup_files[:-1]:  # Delete all but the last one
+                    file_path = os.path.join(current_dir, file)
                     try:
                         os.remove(file_path)
                         logger.info(f"Removed old backup: {file_path}")
