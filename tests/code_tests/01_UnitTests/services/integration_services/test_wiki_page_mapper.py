@@ -1,5 +1,5 @@
 import pytest
-from src.autoprojectmanagement.services.integration_services.wiki_page_mapper import WikiPageMapper
+from src.autoprojectmanagement.services.wiki_services.wiki_page_mapper import WikiPageMapper
 
 def test_wiki_page_mapper_initialization():
     """Test initialization of WikiPageMapper"""

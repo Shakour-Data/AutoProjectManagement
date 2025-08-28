@@ -1,5 +1,5 @@
 import pytest
-from src.autoprojectmanagement.services.integration_services.wiki_sync_service import WikiSyncService
+from src.autoprojectmanagement.services.wiki_services.wiki_sync_service import WikiSyncService
 
 def test_wiki_sync_service_initialization():
     """Test initialization of WikiSyncService"""
