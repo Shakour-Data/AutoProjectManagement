@@ -132,3 +132,10 @@ class TestAuthService:
         nonexistent_login = UserLoginRequest(
             email="nonexistent@example.com",
             password="SomePassword123!"
+        )
+        
+        success, message, auth_data = self.auth_service.login_user(nonexistent_login)
+        
+        assert success is False
+        assert "not found" in message.lower()
+        assert auth_data is None

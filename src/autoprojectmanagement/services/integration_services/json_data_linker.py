@@ -434,19 +434,58 @@ def merge_json_files(file_paths: List[str], output_path: str) -> bool:
         return False
 
 
-# Example usage and testing
-if __name__ == "__main__":
-    # Example usage
-    linker = JSONDataLinker()
+def link_json_data(data1: Dict[str, Any], data2: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Link two JSON data dictionaries by combining their keys and values.
     
-    # Test linking files
-    test_files = ['test1.json', 'test2.json']
-    if linker.link_files(test_files):
-        print(f"Linked {linker.get_linked_files_count()} files")
-        relationships = linker.get_relationships()
-        print("Relationships:", relationships)
-    else:
-        print("Failed to link files")
-        errors = linker.get_validation_errors()
-        for error in errors:
-            print(f"Error: {error}")
+    Args:
+        data1: First JSON data dictionary
+        data2: Second JSON data dictionary
+        
+    Returns:
+        Combined dictionary with merged keys and values
+        
+    Example:
+        >>> data1 = {"key": "value"}
+        >>> data2 = {"key": "value2"}
+        >>> result = link_json_data(data1, data2)
+        >>> print(result)
+        {"key": ["value", "value2"]}
+    """
+    try:
+        # Validate input data
+        if not isinstance(data1, dict) or not isinstance(data2, dict):
+            raise ValueError("Both inputs must be dictionaries")
+        
+        # Create a new dictionary to store the linked data
+        linked_data = {}
+        
+        # Add all keys from data1
+        for key, value in data1.items():
+            if key in linked_data:
+                # If key already exists, convert to list if not already
+                if not isinstance(linked_data[key], list):
+                    linked_data[key] = [linked_data[key]]
+                linked_data[key].append(value)
+            else:
+                linked_data[key] = value
+        
+        # Add all keys from data2
+        for key, value in data2.items():
+            if key in linked_data:
+                # If key already exists, convert to list if not already
+                if not isinstance(linked_data[key], list):
+                    linked_data[key] = [linked_data[key]]
+                linked_data[key].append(value)
+            else:
+                linked_data[key] = value
+        
+        return linked_data
+        
+    except Exception as e:
+        logger.error(f"Error linking JSON data: {e}")
+        raise ValueError(f"Error linking JSON data: {e}")
+
+
+
+
