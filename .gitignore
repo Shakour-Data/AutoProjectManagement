@@ -175,3 +175,29 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+
+# Large PDF files
+*.pdf
+!README.pdf  # Keep README.pdf if needed
+Docs/**/*.pdf
+JSonDataBase/**/*.pdf
+data/**/*.pdf
+
+# Large binary files
+*.zip
+*.tar
+*.gz
+*.7z
+*.rar
+*.iso
+*.dmg
+*.img
+*.bin
+*.exe
+*.dll
+*.so
+*.dylib
+*.pkg
+*.msi
+*.deb
+*.rpm
