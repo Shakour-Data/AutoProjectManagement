@@ -164,8 +164,8 @@ class TestProgressReportEdgeCases:
         task_db_path = os.path.join(temp_dir, "task_db.json")
         
         progress_data = {
-            "task1": {"progress_percent": 100},
-            "task2": {"progress_percent": 100}
+            "src/module1.py": 100,
+            "src/module2.py": 100
         }
         
         task_db = {
@@ -192,8 +192,8 @@ class TestProgressReportEdgeCases:
         task_db_path = os.path.join(temp_dir, "task_db.json")
         
         progress_data = {
-            "task1": {"progress_percent": 100},
-            "task2": {"progress_percent": 0}
+            "src/module1.py": 100,
+            "src/module2.py": 0
         }
         
         task_db = {

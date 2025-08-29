@@ -124,4 +124,4 @@ tests\code_tests\01_UnitTests\test_layout_functionality.py .....         [ 89%]
 tests\code_tests\01_UnitTests\test_real_commit.py .                      [ 89%]
 tests\code_tests\01_UnitTests\test_services\test_auth_service.py .F.FF   [ 90%]
 tests\code_tests\01_UnitTests\test_services\test_auto_file_watcher.py F. [ 90%]
-.F
+.FFF
