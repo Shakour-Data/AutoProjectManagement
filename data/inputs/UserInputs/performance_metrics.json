@@ -1,0 +1,291 @@
+{
+  "version": "1.0.0",
+  "performance_metrics": {
+    "project_health_metrics": {
+      "schedule_performance": {
+        "planned_vs_actual": {
+          "enabled": true,
+          "calculation_method": "percentage_deviation",
+          "thresholds": {
+            "green": 0.1,
+            "yellow": 0.2,
+            "red": 0.3
+          }
+        },
+        "critical_path_health": {
+          "enabled": true,
+          "metrics": ["slack_time", "float_time", "critical_ratio"],
+          "alert_on_slack_reduction": true
+        },
+        "milestone_achievement": {
+          "enabled": true,
+          "track_missed_milestones": true,
+          "trend_analysis": true
+        }
+      },
+      "cost_performance": {
+        "budget_vs_actual": {
+          "enabled": true,
+          "calculation_method": "earned_value",
+          "metrics": ["cpi", "spi", "eac", "etc"]
+        },
+        "cost_variance": {
+          "enabled": true,
+          "thresholds": {
+            "favorable": -0.05,
+            "unfavorable": 0.05
+          }
+        },
+        "burn_rate": {
+          "enabled": true,
+          "period": "weekly",
+          "trend_analysis": true
+        }
+      },
+      "quality_metrics": {
+        "defect_density": {
+          "enabled": true,
+          "calculation": "defects_per_kloc",
+          "benchmarks": {
+            "excellent": 0.1,
+            "good": 0.5,
+            "poor": 1.0
+          }
+        },
+        "test_coverage": {
+          "enabled": true,
+          "types": ["unit", "integration", "e2e"],
+          "target_coverage": 0.8
+        },
+        "code_quality": {
+          "enabled": true,
+          "metrics": ["cyclomatic_complexity", "maintainability_index", "technical_debt"]
+        }
+      },
+      "resource_utilization": {
+        "team_capacity": {
+          "enabled": true,
+          "metrics": ["allocated_vs_available", "overtime_hours", "utilization_rate"]
+        },
+        "skill_matching": {
+          "enabled": true,
+          "gap_analysis": true,
+          "training_needs": true
+        },
+        "turnover_rate": {
+          "enabled": true,
+          "calculation_period": "quarterly",
+          "benchmark": 0.1
+        }
+      }
+    },
+    "process_metrics": {
+      "efficiency_metrics": {
+        "cycle_time": {
+          "enabled": true,
+          "measurements": ["requirements_to_deploy", "code_to_test", "test_to_prod"]
+        },
+        "throughput": {
+          "enabled": true,
+          "metrics": ["stories_per_sprint", "bugs_resolved", "features_delivered"]
+        },
+        "lead_time": {
+          "enabled": true,
+          "breakdown": ["analysis", "development", "testing", "deployment"]
+        }
+      },
+      "effectiveness_metrics": {
+        "first_time_right": {
+          "enabled": true,
+          "metrics": ["defect_escape_rate", "rework_percentage", "customer_satisfaction"]
+        },
+        "predictability": {
+          "enabled": true,
+          "metrics": ["forecast_accuracy", "variance_trend", "confidence_intervals"]
+        },
+        "innovation_rate": {
+          "enabled": true,
+          "metrics": ["new_features", "process_improvements", "technology_adoption"]
+        }
+      },
+      "agility_metrics": {
+        "velocity": {
+          "enabled": true,
+          "calculation": "story_points_per_sprint",
+          "trend_analysis": true
+        },
+        "adaptability": {
+          "enabled": true,
+          "metrics": ["change_success_rate", "recovery_time", "flexibility_index"]
+        },
+        "continuous_improvement": {
+          "enabled": true,
+          "metrics": ["retrospective_actions", "process_optimizations", "learning_rate"]
+        }
+      }
+    },
+    "product_metrics": {
+      "functionality": {
+        "feature_completeness": {
+          "enabled": true,
+          "calculation": "implemented_vs_planned",
+          "weighted_by_priority": true
+        },
+        "requirements_coverage": {
+          "enabled": true,
+          "traceability": true,
+          "gap_analysis": true
+        },
+        "interoperability": {
+          "enabled": true,
+          "integration_points": true,
+          "compatibility_checks": true
+        }
+      },
+      "reliability": {
+        "availability": {
+          "enabled": true,
+          "target": 0.999,
+          "downtime_tracking": true
+        },
+        "mean_time_between_failures": {
+          "enabled": true,
+          "benchmark": 720,
+          "trend_analysis": true
+        },
+        "error_rates": {
+          "enabled": true,
+          "metrics": ["application_errors", "system_errors", "user_errors"]
+        }
+      },
+      "performance": {
+        "response_times": {
+          "enabled": true,
+          "percentiles": [50, 90, 95, 99],
+          "thresholds": {
+            "acceptable": 2000,
+            "optimal": 1000
+          }
+        },
+        "throughput_capacity": {
+          "enabled": true,
+          "metrics": ["transactions_per_second", "concurrent_users", "data_throughput"]
+        },
+        "scalability": {
+          "enabled": true,
+          "load_testing": true,
+          "capacity_planning": true
+        }
+      },
+      "usability": {
+        "user_satisfaction": {
+          "enabled": true,
+          "metrics": ["nps", "csat", "ces"],
+          "feedback_channels": ["surveys", "reviews", "support_tickets"]
+        },
+        "adoption_rate": {
+          "enabled": true,
+          "metrics": ["active_users", "feature_usage", "retention_rate"]
+        },
+        "accessibility": {
+          "enabled": true,
+          "compliance": ["wcag_2.1", "section_508"],
+          "automated_testing": true
+        }
+      }
+    },
+    "business_metrics": {
+      "value_delivery": {
+        "return_on_investment": {
+          "enabled": true,
+          "calculation_period": "quarterly",
+          "break_even_analysis": true
+        },
+        "business_value": {
+          "enabled": true,
+          "metrics": ["revenue_impact", "cost_savings", "efficiency_gains"]
+        },
+        "strategic_alignment": {
+          "enabled": true,
+          "goal_achievement": true,
+          "priority_matching": true
+        }
+      },
+      "stakeholder_satisfaction": {
+        "client_satisfaction": {
+          "enabled": true,
+          "metrics": ["client_nps", "repeat_business", "referenceability"]
+        },
+        "team_satisfaction": {
+          "enabled": true,
+          "metrics": ["employee_nps", "retention_rate", "engagement_score"]
+        },
+        "management_satisfaction": {
+          "enabled": true,
+          "metrics": ["strategy_alignment", "reporting_quality", "decision_support"]
+        }
+      },
+      "market_position": {
+        "competitive_advantage": {
+          "enabled": true,
+          "metrics": ["market_share", "feature_parity", "innovation_lead"]
+        },
+        "time_to_market": {
+          "enabled": true,
+          "comparison": ["industry_benchmark", "previous_projects"]
+        },
+        "brand_impact": {
+          "enabled": true,
+          "metrics": ["brand_mentions", "media_coverage", "industry_awards"]
+        }
+      }
+    },
+    "measurement_framework": {
+      "data_collection": {
+        "automated_sources": ["version_control", "ci_cd", "monitoring_tools"],
+        "manual_inputs": ["surveys", "reviews", "assessments"],
+        "frequency": {
+          "real_time": ["performance", "availability"],
+          "daily": ["progress", "issues"],
+          "weekly": ["quality", "velocity"],
+          "monthly": ["business", "strategy"]
+        }
+      },
+      "analysis_methods": {
+        "trend_analysis": true,
+        "comparative_analysis": true,
+        "root_cause_analysis": true,
+        "predictive_analytics": true,
+        "benchmarking": true
+      },
+      "reporting": {
+        "dashboards": {
+          "executive": ["summary", "trends", "alerts"],
+          "managerial": ["detailed", "comparisons", "forecasts"],
+          "operational": ["real_time", "tasks", "issues"]
+        },
+        "alerts": {
+          "threshold_based": true,
+          "anomaly_detection": true,
+          "escalation_rules": true
+        },
+        "export_formats": ["pdf", "excel", "json", "csv"]
+      },
+      "continuous_improvement": {
+        "feedback_loops": true,
+        "metric_refinement": true,
+        "benchmark_updates": true,
+        "process_optimization": true
+      }
+    },
+    "metadata": {
+      "created_at": "2024-01-20T00:00:00Z",
+      "last_updated": "2024-01-20T00:00:00Z",
+      "metrics_version": "1.0",
+      "calibration_date": "2024-01-20",
+      "data_retention": 365,
+      "compliance": ["gdpr", "iso_27001", "sox"],
+      "review_frequency": "quarterly"
+    }
+  }
+}

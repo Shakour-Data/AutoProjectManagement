@@ -1,0 +1,214 @@
+{
+  "version": "1.0.0",
+  "risk_quantitative_models": {
+    "project_risk_categories": {
+      "schedule_risks": {
+        "description": "Risks affecting project timeline and deadlines",
+        "impact_scale": {
+          "low": 0.1,
+          "medium": 0.3,
+          "high": 0.5,
+          "critical": 0.8
+        },
+        "probability_scale": {
+          "unlikely": 0.1,
+          "possible": 0.3,
+          "likely": 0.6,
+          "very_likely": 0.9
+        }
+      },
+      "cost_risks": {
+        "description": "Risks affecting project budget and financials",
+        "impact_scale": {
+          "low": 0.05,
+          "medium": 0.15,
+          "high": 0.3,
+          "critical": 0.5
+        },
+        "probability_scale": {
+          "unlikely": 0.2,
+          "possible": 0.4,
+          "likely": 0.7,
+          "very_likely": 0.9
+        }
+      },
+      "technical_risks": {
+        "description": "Risks related to technology and implementation",
+        "impact_scale": {
+          "low": 0.2,
+          "medium": 0.4,
+          "high": 0.6,
+          "critical": 0.8
+        },
+        "probability_scale": {
+          "unlikely": 0.1,
+          "possible": 0.3,
+          "likely": 0.5,
+          "very_likely": 0.7
+        }
+      },
+      "resource_risks": {
+        "description": "Risks related to human resources and availability",
+        "impact_scale": {
+          "low": 0.1,
+          "medium": 0.25,
+          "high": 0.4,
+          "critical": 0.6
+        },
+        "probability_scale": {
+          "unlikely": 0.2,
+          "possible": 0.4,
+          "likely": 0.6,
+          "very_likely": 0.8
+        }
+      },
+      "external_risks": {
+        "description": "Risks from external factors and dependencies",
+        "impact_scale": {
+          "low": 0.15,
+          "medium": 0.3,
+          "high": 0.5,
+          "critical": 0.7
+        },
+        "probability_scale": {
+          "unlikely": 0.1,
+          "possible": 0.25,
+          "likely": 0.4,
+          "very_likely": 0.6
+        }
+      }
+    },
+    "risk_calculation_methods": {
+      "simple_risk_score": {
+        "formula": "impact × probability",
+        "description": "Basic risk score calculation",
+        "thresholds": {
+          "low": 0.1,
+          "medium": 0.3,
+          "high": 0.5,
+          "critical": 0.7
+        }
+      },
+      "weighted_risk_score": {
+        "formula": "impact × probability × category_weight",
+        "description": "Risk score weighted by category importance",
+        "category_weights": {
+          "schedule_risks": 1.2,
+          "cost_risks": 1.1,
+          "technical_risks": 1.3,
+          "resource_risks": 1.0,
+          "external_risks": 0.9
+        }
+      },
+      "expected_monetary_value": {
+        "formula": "probability × financial_impact",
+        "description": "Monetary impact expectation",
+        "currency": "USD"
+      },
+      "risk_exposure": {
+        "formula": "risk_score × task_complexity × dependency_factor",
+        "description": "Comprehensive risk exposure calculation",
+        "complexity_factors": {
+          "simple": 1.0,
+          "moderate": 1.5,
+          "complex": 2.0,
+          "very_complex": 3.0
+        },
+        "dependency_factors": {
+          "independent": 1.0,
+          "low_dependency": 1.2,
+          "medium_dependency": 1.5,
+          "high_dependency": 2.0
+        }
+      }
+    },
+    "risk_mitigation_strategies": {
+      "avoidance": {
+        "description": "Eliminate the risk by changing plans",
+        "effectiveness": 0.9,
+        "cost_factor": 1.2,
+        "time_impact": 1.3
+      },
+      "transfer": {
+        "description": "Transfer risk to third party",
+        "effectiveness": 0.7,
+        "cost_factor": 1.1,
+        "time_impact": 1.1
+      },
+      "mitigation": {
+        "description": "Reduce probability or impact",
+        "effectiveness": 0.6,
+        "cost_factor": 1.0,
+        "time_impact": 1.0
+      },
+      "acceptance": {
+        "description": "Accept the risk and prepare contingency",
+        "effectiveness": 0.3,
+        "cost_factor": 0.8,
+        "time_impact": 0.9
+      }
+    },
+    "risk_monitoring": {
+      "frequency": {
+        "high_risk": "daily",
+        "medium_risk": "weekly",
+        "low_risk": "monthly"
+      },
+      "thresholds": {
+        "alert_high_risk": 0.6,
+        "alert_medium_risk": 0.3,
+        "alert_low_risk": 0.1
+      },
+      "reporting": {
+        "dashboard_metrics": [
+          "total_risk_exposure",
+          "risk_distribution",
+          "top_risks",
+          "mitigation_progress",
+          "trend_analysis"
+        ],
+        "alert_channels": ["email", "slack", "dashboard"],
+        "report_frequency": "weekly"
+      }
+    },
+    "integration": {
+      "project_phases": {
+        "initiation": {
+          "risk_focus": ["feasibility", "stakeholder", "requirements"],
+          "assessment_frequency": "bi-weekly"
+        },
+        "planning": {
+          "risk_focus": ["schedule", "cost", "resource"],
+          "assessment_frequency": "weekly"
+        },
+        "execution": {
+          "risk_focus": ["technical", "quality", "communication"],
+          "assessment_frequency": "daily"
+        },
+        "monitoring": {
+          "risk_focus": ["performance", "compliance", "changes"],
+          "assessment_frequency": "daily"
+        },
+        "closure": {
+          "risk_focus": ["delivery", "acceptance", "lessons_learned"],
+          "assessment_frequency": "final"
+        }
+      },
+      "tool_integration": {
+        "project_management_tools": ["jira", "trello", "asana"],
+        "version_control": ["git", "svn"],
+        "communication_tools": ["slack", "teams", "email"],
+        "monitoring_tools": ["grafana", "prometheus"]
+      }
+    },
+    "metadata": {
+      "created_at": "2024-01-20T00:00:00Z",
+      "last_updated": "2024-01-20T00:00:00Z",
+      "model_version": "1.0",
+      "applicable_projects": ["software_development", "construction", "research", "product_development"],
+      "calibration_required": true,
+      "validation_status": "initial",
+      "data_sources": ["historical_data", "expert_judgment", "industry_benchmarks"]
+    }
+  }
+}
