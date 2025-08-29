@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Simple test script to verify the notification service functionality.
+Test script for Notification Service
+Purpose: Test email notification functionality and configuration
 """
 
-import sys
 import os
+import sys
 from pathlib import Path
 
-# Add the src directory to the path
+# Add the src directory to Python path
 sys.path.insert(0, str(Path(__file__).parent / 'src'))
 
 from autoprojectmanagement.services.notification_service import NotificationService
@@ -16,22 +18,33 @@ def test_notification_service():
     """Test the notification service functionality."""
     print("Testing Notification Service...")
     
-    # Initialize the service
+    # Initialize the notification service
     service = NotificationService()
     
-    # Test 1: Basic initialization
-    print("✓ Service initialized successfully")
+    print(f"Email enabled: {service.config['email']['enabled']}")
+    print(f"SMTP Server: {service.config['email']['smtp_server']}")
+    print(f"From Address: {service.config['email']['from_address']}")
     
-    # Test 2: Send scope change notification
+    # Test configuration validation
+    email_config = service.config['email']
+    if not all([email_config['smtp_server'], email_config['username'], email_config['password']]):
+        print("⚠️  Email configuration is incomplete. Please update notification_config.json")
+        print("   Required fields: smtp_server, username, password, from_address")
+        return False
+    
+    # Test template loading
+    print(f"Loaded templates: {list(service.templates.keys())}")
+    
+    # Test scope change notification
     change_data = {
-        'task_id': 'task_001',
+        'task_id': 'test_task_001',
         'change_type': 'add',
         'requester': 'test_user',
         'details': {
-            'parent_id': 'phase_1',
+            'parent_id': 'project_root',
             'task': {
                 'name': 'Test Task',
-                'id': 'task_001'
+                'id': 'test_task_001'
             }
         },
         'approval_status': {
@@ -46,57 +59,88 @@ def test_notification_service():
         'risk_level': 'low'
     }
     
-    recipients = ['test@example.com']
+    # Use test recipients from config or default
+    test_recipients = service.config.get('default_recipients', ['test@example.com'])
     
-    success = service.send_scope_change_notification(
-        change_data, impact_analysis, recipients
-    )
+    print(f"Testing with recipients: {test_recipients}")
     
-    print(f"✓ Scope change notification sent: {success}")
+    try:
+        success = service.send_scope_change_notification(
+            change_data,
+            impact_analysis,
+            test_recipients
+        )
+        
+        if success:
+            print("✅ Scope change notification test completed successfully!")
+            print("Check your email inbox for the notification.")
+        else:
+            print("❌ Scope change notification failed")
+            print("This might be due to SMTP configuration issues.")
+            
+    except Exception as e:
+        print(f"❌ Error during notification test: {e}")
+        return False
     
-    # Test 3: Send quality alert
-    quality_data = {
-        'quality_level': 'MEDIUM',
-        'quality_score': 75.5,
-        'poor_quality_tasks': 2,
-        'task_quality': {
-            'task_001': {
-                'level': 'LOW',
-                'metrics': {
-                    'code_coverage': {
-                        'score': 60,
-                        'target': 80
-                    }
-                }
-            }
-        },
-        'recommendations': [
-            "Improve code coverage for task_001",
-            "Add more documentation"
-        ]
-    }
-    
-    success = service.send_quality_alert(
-        'Test Project', quality_data, recipients
-    )
-    
-    print(f"✓ Quality alert sent: {success}")
-    
-    # Test 4: Check delivery history
+    # Test delivery history
     history = service.get_delivery_history()
-    print(f"✓ Delivery history: {len(history)} records")
+    print(f"Delivery history entries: {len(history)}")
     
-    for record in history:
-        print(f"  - {record['template']}: {record['success']}")
+    if history:
+        latest = history[-1]
+        print(f"Latest notification: {latest['subject']}")
+        print(f"Success: {latest['success']}")
     
-    print("\n✅ All notification service tests passed!")
+    return True
+
+def test_email_configuration():
+    """Test email configuration specifically."""
+    print("\nTesting Email Configuration...")
+    
+    service = NotificationService()
+    
+    # Check if email is enabled
+    if not service.config['email']['enabled']:
+        print("❌ Email notifications are disabled")
+        return False
+    
+    # Check required configuration
+    required_fields = ['smtp_server', 'username', 'password', 'from_address']
+    email_config = service.config['email']
+    
+    missing_fields = []
+    for field in required_fields:
+        if not email_config.get(field):
+            missing_fields.append(field)
+    
+    if missing_fields:
+        print(f"❌ Missing email configuration fields: {missing_fields}")
+        print("Please update notification_config.json with proper SMTP settings")
+        return False
+    
+    print("✅ Email configuration appears valid")
+    print(f"SMTP Server: {email_config['smtp_server']}:{email_config['smtp_port']}")
+    print(f"Username: {email_config['username']}")
+    print(f"From Address: {email_config['from_address']}")
+    
     return True
 
 if __name__ == "__main__":
-    try:
+    print("AutoProjectManagement Notification Service Test")
+    print("=" * 50)
+    
+    # Test configuration first
+    config_ok = test_email_configuration()
+    
+    if config_ok:
+        # Test full notification service
         test_notification_service()
-    except Exception as e:
-        print(f"❌ Test failed: {e}")
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)
+    else:
+        print("\nPlease configure your email settings in:")
+        print("data/inputs/UserInputs/notification_config.json")
+        print("\nFor Gmail, you'll need:")
+        print("- Enable 2-factor authentication")
+        print("- Generate an App Password")
+        print("- Use smtp.gmail.com:587")
+        print("- Use your full email as username")
+        print("- Use the app password (not your regular password)")

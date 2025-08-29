@@ -19,6 +19,11 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
+# Add the services directory to the path
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / 'services'))
+
+from autoprojectmanagement.services.notification_service import NotificationService
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -128,7 +133,8 @@ class ScopeManagement:
     def __init__(self,
                  detailed_wbs_path: str = DEFAULT_DETAILED_WBS_PATH,
                  scope_changes_path: str = DEFAULT_SCOPE_CHANGES_PATH,
-                 output_path: str = DEFAULT_OUTPUT_PATH) -> None:
+                 output_path: str = DEFAULT_OUTPUT_PATH,
+                 notification_service: Optional[NotificationService] = None) -> None:
         """
         Initialize the ScopeManagement instance.
         
@@ -157,6 +163,10 @@ class ScopeManagement:
         }
         self.baseline_path = Path(DEFAULT_BASELINE_PATH)
         self.baselines: Dict[str, Any] = {}
+        
+        # Initialize notification service
+        self.notification_service = notification_service or NotificationService()
+        self.notification_recipients = ['project_manager@example.com', 'team@example.com']
     
     def load_json(self, path: Path) -> Optional[Union[Dict[str, Any], List[Any]]]:
         """
@@ -697,6 +707,9 @@ class ScopeManagement:
         if impact_analysis['risk_level'] == 'low':
             approval_result['status'] = 'approved'
             approval_result['comments'].append("Automatically approved - low risk impact")
+            
+            # Send notification for auto-approved changes
+            self._send_scope_change_notification(change, impact_analysis, approval_result)
         
         # Require management approval for medium/high risk changes
         elif impact_analysis['risk_level'] in ['medium', 'high']:
@@ -710,6 +723,9 @@ class ScopeManagement:
                 approval_result['conditions'].append("Budget approval required")
             if impact_analysis['resource_impact'] > 2:
                 approval_result['conditions'].append("Resource allocation approval required")
+            
+            # Send approval request notification
+            self._send_approval_request_notification(change, impact_analysis, approval_result)
         
         return approval_result
     
@@ -737,6 +753,11 @@ class ScopeManagement:
                 if comments:
                     change['approval_status']['comments'] = comments
                 logger.info(f"Change {change_id} approved by {approver}")
+                
+                # Send approval notification
+                impact_analysis = self.analyze_scope_change_impact(change)
+                self._send_approval_notification(change, impact_analysis, approver, comments)
+                
                 return True
         
         logger.warning(f"Change {change_id} not found for approval")
@@ -765,6 +786,11 @@ class ScopeManagement:
                 change['approval_status']['timestamp'] = datetime.now().isoformat()
                 change['approval_status']['reason'] = reason
                 logger.info(f"Change {change_id} rejected by {approver}: {reason}")
+                
+                # Send rejection notification
+                impact_analysis = self.analyze_scope_change_impact(change)
+                self._send_rejection_notification(change, impact_analysis, approver, reason)
+                
                 return True
         
         logger.warning(f"Change {change_id} not found for rejection")
@@ -1219,6 +1245,123 @@ class ScopeManagement:
         except Exception as e:
             logger.error(f"Error updating GitHub issue: {e}")
             return False
+    
+    def _send_scope_change_notification(self, change: Dict[str, Any], 
+                                       impact_analysis: Dict[str, Any],
+                                       approval_result: Dict[str, Any]) -> bool:
+        """Send scope change notification."""
+        if not self.notification_service:
+            return False
+        
+        try:
+            # Add approval info to the change for notification context
+            change_with_approval = change.copy()
+            change_with_approval['approval_status'] = approval_result
+            
+            return self.notification_service.send_scope_change_notification(
+                change_with_approval, impact_analysis, self.notification_recipients
+            )
+        except Exception as e:
+            logger.error(f"Error sending scope change notification: {e}")
+            return False
+    
+    def _send_approval_request_notification(self, change: Dict[str, Any],
+                                          impact_analysis: Dict[str, Any],
+                                          approval_result: Dict[str, Any]) -> bool:
+        """Send approval request notification."""
+        if not self.notification_service:
+            return False
+        
+        try:
+            # Prepare context for approval request template
+            context = {
+                'task_id': change.get('task_id', 'unknown'),
+                'task_name': change.get('details', {}).get('task', {}).get('name', 'Unknown'),
+                'change_type': change.get('change_type', 'unknown'),
+                'requester': change.get('requester', 'System'),
+                'schedule_impact': impact_analysis.get('schedule_impact', 0),
+                'cost_impact': impact_analysis.get('cost_impact', 0),
+                'resource_impact': impact_analysis.get('resource_impact', 0),
+                'risk_level': impact_analysis.get('risk_level', 'unknown'),
+                'approval_conditions': '\n'.join(approval_result.get('conditions', []))
+            }
+            
+            return self.notification_service.send_notification(
+                'approval_required', context, self.notification_recipients
+            )
+        except Exception as e:
+            logger.error(f"Error sending approval request notification: {e}")
+            return False
+    
+    def _send_approval_notification(self, change: Dict[str, Any],
+                                  impact_analysis: Dict[str, Any],
+                                  approver: str, comments: str) -> bool:
+        """Send approval notification."""
+        if not self.notification_service:
+            return False
+        
+        try:
+            # Prepare context for approval notification
+            context = {
+                'task_id': change.get('task_id', 'unknown'),
+                'task_name': change.get('details', {}).get('task', {}).get('name', 'Unknown'),
+                'change_type': change.get('change_type', 'unknown'),
+                'requester': change.get('requester', 'System'),
+                'approver': approver,
+                'timestamp': datetime.now().isoformat(),
+                'schedule_impact': impact_analysis.get('schedule_impact', 0),
+                'cost_impact': impact_analysis.get('cost_impact', 0),
+                'resource_impact': impact_analysis.get('resource_impact', 0),
+                'risk_level': impact_analysis.get('risk_level', 'unknown'),
+                'comments': comments or "No comments provided"
+            }
+            
+            # Use custom template or modify existing one
+            return self.notification_service.send_notification(
+                'scope_change_modify', context, self.notification_recipients
+            )
+        except Exception as e:
+            logger.error(f"Error sending approval notification: {e}")
+            return False
+    
+    def _send_rejection_notification(self, change: Dict[str, Any],
+                                  impact_analysis: Dict[str, Any],
+                                  approver: str, reason: str) -> bool:
+        """Send rejection notification."""
+        if not self.notification_service:
+            return False
+        
+        try:
+            # Prepare context for rejection notification
+            context = {
+                'task_id': change.get('task_id', 'unknown'),
+                'task_name': change.get('details', {}).get('task', {}).get('name', 'Unknown'),
+                'change_type': change.get('change_type', 'unknown'),
+                'requester': change.get('requester', 'System'),
+                'approver': approver,
+                'timestamp': datetime.now().isoformat(),
+                'schedule_impact': impact_analysis.get('schedule_impact', 0),
+                'cost_impact': impact_analysis.get('cost_impact', 0),
+                'resource_impact': impact_analysis.get('resource_impact', 0),
+                'risk_level': impact_analysis.get('risk_level', 'unknown'),
+                'rejection_reason': reason
+            }
+            
+            # Use custom template or modify existing one
+            return self.notification_service.send_notification(
+                'scope_change_modify', context, self.notification_recipients
+            )
+        except Exception as e:
+            logger.error(f"Error sending rejection notification: {e}")
+            return False
+    
+    def set_notification_recipients(self, recipients: List[str]) -> None:
+        """Set notification recipients."""
+        self.notification_recipients = recipients
+    
+    def set_notification_service(self, service: NotificationService) -> None:
+        """Set custom notification service."""
+        self.notification_service = service
     
     def run(self) -> None:
         """Run the complete scope management process."""

@@ -1,0 +1,44 @@
+{
+  "email": {
+    "enabled": true,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "your-email@gmail.com",
+    "password": "your-app-password",
+    "from_address": "your-email@gmail.com",
+    "use_tls": true
+  },
+  "slack": {
+    "enabled": false,
+    "webhook_url": "https://hooks.slack.com/services/your/webhook/url",
+    "channel": "#general"
+  },
+  "teams": {
+    "enabled": false,
+    "webhook_url": "https://your-organization.webhook.office.com/webhookb2/your/webhook/url"
+  },
+  "console": {
+    "enabled": true
+  },
+  "retry_attempts": 3,
+  "retry_delay": 5,
+  "fallback_order": ["email", "slack", "teams", "console"],
+  "default_recipients": [
+    "project_manager@example.com",
+    "team_lead@example.com",
+    "quality_assurance@example.com"
+  ],
+  "high_priority_recipients": [
+    "senior_management@example.com",
+    "project_director@example.com"
+  ],
+  "notification_preferences": {
+    "scope_change_add": true,
+    "scope_change_remove": true,
+    "scope_change_modify": true,
+    "approval_required": true,
+    "quality_alert": true,
+    "baseline_created": true,
+    "baseline_restored": true
+  }
+}

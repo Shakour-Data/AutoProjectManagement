@@ -107,8 +107,15 @@ class NotificationService:
                     self.config = json.load(f)
                 logger.info(f"Loaded notification config from {self.config_path}")
             else:
-                # Use environment variables or defaults
-                self.config = self._get_default_config()
+                # Try loading from default config file path
+                default_config_path = Path('data/inputs/UserInputs/notification_config.json')
+                if default_config_path.exists():
+                    with open(default_config_path, 'r', encoding=DEFAULT_ENCODING) as f:
+                        self.config = json.load(f)
+                    logger.info(f"Loaded notification config from {default_config_path}")
+                else:
+                    # Use environment variables or defaults
+                    self.config = self._get_default_config()
         except Exception as e:
             logger.error(f"Error loading notification config: {e}")
             self.config = self._get_default_config()
@@ -239,11 +246,11 @@ class NotificationService:
         }
     
     def _get_default_config(self) -> Dict[str, Any]:
-        """Get default notification configuration."""
+        """Get default notification configuration with environment variable support."""
         return {
             "email": {
-                "enabled": False,
-                "smtp_server": os.environ.get('SMTP_SERVER', ''),
+                "enabled": True,
+                "smtp_server": os.environ.get('SMTP_SERVER', 'smtp.gmail.com'),
                 "smtp_port": int(os.environ.get('SMTP_PORT', 587)),
                 "username": os.environ.get('SMTP_USERNAME', ''),
                 "password": os.environ.get('SMTP_PASSWORD', ''),
@@ -264,7 +271,25 @@ class NotificationService:
             },
             "retry_attempts": 3,
             "retry_delay": 5,  # seconds
-            "fallback_order": ["slack", "email", "teams", "console"]
+            "fallback_order": ["email", "slack", "teams", "console"],
+            "default_recipients": [
+                "project_manager@example.com",
+                "team_lead@example.com",
+                "quality_assurance@example.com"
+            ],
+            "high_priority_recipients": [
+                "senior_management@example.com",
+                "project_director@example.com"
+            ],
+            "notification_preferences": {
+                "scope_change_add": True,
+                "scope_change_remove": True,
+                "scope_change_modify": True,
+                "approval_required": True,
+                "quality_alert": True,
+                "baseline_created": True,
+                "baseline_restored": True
+            }
         }
     
     def send_notification(self, 
@@ -592,6 +617,16 @@ class NotificationService:
 if __name__ == "__main__":
     # Example usage of the notification service
     service = NotificationService()
+    
+    # Add test email sending method
+    def test_email_send():
+        test_subject = "Test Email from AutoProjectManagement Notification Service"
+        test_body = "This is a test email to verify SMTP configuration."
+        test_recipients = [os.environ.get('TEST_EMAIL_RECIPIENT', 'test@example.com')]
+        result = service._send_email(test_subject, test_body, test_recipients, 'high')
+        print(f"Test email sent: {result}")
+    
+    test_email_send()
     
     # Example scope change notification
     change_example = {
