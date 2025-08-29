@@ -2,15 +2,20 @@
 GitHub Integration for AutoProjectManagement
 Purpose: Integrate with GitHub API for project management operations
 Author: AutoProjectManagement Team
-Version: 2.0.0
+Version: 2.1.0
 License: MIT
-Description: Provides methods to interact with GitHub repositories, issues, pull requests, and project boards.
+Description: Provides methods to interact with GitHub repositories, issues, pull requests, comments, and webhooks.
 """
 
 import logging
 import os
 import requests
-from typing import Dict, List, Optional, Any
+import time
+import json
+import hmac
+import hashlib
+from typing import Dict, List, Optional, Any, Callable
+from datetime import datetime
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -209,6 +214,216 @@ class GitHubIntegration:
         except Exception as e:
             logger.error(f"Failed to create issue: {str(e)}")
             raise GitHubIntegrationError(f"Failed to create issue: {str(e)}")
+
+    def sync_issue_status(self, issue_number: int, state: str) -> Dict[str, Any]:
+        """
+        Synchronize the status of an issue (open/closed).
+        
+        Args:
+            issue_number: The GitHub issue number
+            state: The desired state ('open' or 'closed')
+        
+        Returns:
+            Dictionary containing updated issue details
+        
+        Raises:
+            GitHubIntegrationError: If update fails
+        """
+        if state not in ['open', 'closed']:
+            raise ValueError("State must be 'open' or 'closed'")
+        
+        data = {"state": state}
+        try:
+            response = self._make_request("PATCH", f"issues/{issue_number}", json_data=data)
+            updated_issue = response.json()
+            logger.info(f"Issue #{issue_number} status updated to {state}")
+            return updated_issue
+        except Exception as e:
+            logger.error(f"Failed to update issue status: {str(e)}")
+            raise GitHubIntegrationError(f"Failed to update issue status: {str(e)}")
+
+    def get_issue_comments(self, issue_number: int) -> List[Dict[str, Any]]:
+        """
+        Retrieve comments for a specific issue.
+        
+        Args:
+            issue_number: The GitHub issue number
+        
+        Returns:
+            List of comment dictionaries
+        
+        Raises:
+            GitHubIntegrationError: If retrieval fails
+        """
+        try:
+            response = self._make_request("GET", f"issues/{issue_number}/comments")
+            comments = response.json()
+            logger.info(f"Retrieved {len(comments)} comments for issue #{issue_number}")
+            return comments
+        except Exception as e:
+            logger.error(f"Failed to get comments: {str(e)}")
+            raise GitHubIntegrationError(f"Failed to get comments: {str(e)}")
+
+    def add_issue_comment(self, issue_number: int, comment_body: str) -> Dict[str, Any]:
+        """
+        Add a comment to a specific issue.
+        
+        Args:
+            issue_number: The GitHub issue number
+            comment_body: The comment text
+        
+        Returns:
+            Dictionary containing created comment details
+        
+        Raises:
+            GitHubIntegrationError: If comment creation fails
+        """
+        if not comment_body or not comment_body.strip():
+            raise ValueError("Comment body cannot be empty")
+        
+        data = {"body": comment_body.strip()}
+        try:
+            response = self._make_request("POST", f"issues/{issue_number}/comments", json_data=data)
+            comment = response.json()
+            logger.info(f"Added comment to issue #{issue_number}")
+            return comment
+        except Exception as e:
+            logger.error(f"Failed to add comment: {str(e)}")
+            raise GitHubIntegrationError(f"Failed to add comment: {str(e)}")
+
+    def create_webhook(self, url: str, events: List[str], secret: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Create a webhook for the repository.
+        
+        Args:
+            url: The URL to receive webhook events
+            events: List of events to subscribe to
+            secret: Optional secret for webhook verification
+        
+        Returns:
+            Dictionary containing created webhook details
+        
+        Raises:
+            GitHubIntegrationError: If webhook creation fails
+        """
+        data = {
+            "config": {
+                "url": url,
+                "content_type": "json"
+            },
+            "events": events
+        }
+        
+        if secret:
+            data["config"]["secret"] = secret
+        
+        try:
+            response = self._make_request("POST", "hooks", json_data=data)
+            webhook = response.json()
+            logger.info(f"Created webhook for {len(events)} events")
+            return webhook
+        except Exception as e:
+            logger.error(f"Failed to create webhook: {str(e)}")
+            raise GitHubIntegrationError(f"Failed to create webhook: {str(e)}")
+
+    def get_webhooks(self) -> List[Dict[str, Any]]:
+        """
+        Retrieve all webhooks for the repository.
+        
+        Returns:
+            List of webhook dictionaries
+        
+        Raises:
+            GitHubIntegrationError: If retrieval fails
+        """
+        try:
+            response = self._make_request("GET", "hooks")
+            webhooks = response.json()
+            logger.info(f"Retrieved {len(webhooks)} webhooks")
+            return webhooks
+        except Exception as e:
+            logger.error(f"Failed to get webhooks: {str(e)}")
+            raise GitHubIntegrationError(f"Failed to get webhooks: {str(e)}")
+
+    def delete_webhook(self, hook_id: int) -> bool:
+        """
+        Delete a webhook from the repository.
+        
+        Args:
+            hook_id: The ID of the webhook to delete
+        
+        Returns:
+            True if deletion was successful
+        
+        Raises:
+            GitHubIntegrationError: If deletion fails
+        """
+        try:
+            response = self._make_request("DELETE", f"hooks/{hook_id}")
+            if response.status_code == 204:
+                logger.info(f"Deleted webhook #{hook_id}")
+                return True
+            else:
+                raise GitHubIntegrationError(f"Unexpected status code: {response.status_code}")
+        except Exception as e:
+            logger.error(f"Failed to delete webhook: {str(e)}")
+            raise GitHubIntegrationError(f"Failed to delete webhook: {str(e)}")
+
+    def verify_webhook_signature(self, payload: bytes, signature: str, secret: str) -> bool:
+        """
+        Verify GitHub webhook signature for security.
+        
+        Args:
+            payload: The raw request payload
+            signature: The X-Hub-Signature-256 header value
+            secret: The webhook secret
+        
+        Returns:
+            True if signature is valid, False otherwise
+        """
+        if not signature.startswith('sha256='):
+            return False
+        
+        expected_signature = signature[7:]
+        computed_signature = hmac.new(
+            secret.encode('utf-8'),
+            payload,
+            hashlib.sha256
+        ).hexdigest()
+        
+        return hmac.compare_digest(expected_signature, computed_signature)
+
+    def handle_webhook_event(self, event_type: str, payload: Dict[str, Any], 
+                           callback: Callable[[str, Dict[str, Any]], None]) -> None:
+        """
+        Process webhook events and trigger appropriate callbacks.
+        
+        Args:
+            event_type: The GitHub event type (e.g., 'issues', 'issue_comment')
+            payload: The webhook payload data
+            callback: Function to call with event data
+        
+        Raises:
+            GitHubIntegrationError: If event processing fails
+        """
+        try:
+            if event_type == 'issues':
+                action = payload.get('action')
+                issue = payload.get('issue', {})
+                logger.info(f"Received issue event: {action} for issue #{issue.get('number')}")
+                
+            elif event_type == 'issue_comment':
+                action = payload.get('action')
+                comment = payload.get('comment', {})
+                issue = payload.get('issue', {})
+                logger.info(f"Received comment event: {action} for issue #{issue.get('number')}")
+            
+            # Call the provided callback with event data
+            callback(event_type, payload)
+            
+        except Exception as e:
+            logger.error(f"Failed to process webhook event: {str(e)}")
+            raise GitHubIntegrationError(f"Failed to process webhook event: {str(e)}")
     
     def close(self) -> None:
         """Close the requests session to clean up resources."""
