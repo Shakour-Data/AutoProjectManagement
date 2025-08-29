@@ -1,1 +1,9 @@
-{}
+{
+  "efeeea16-d5ee-4ed8-9496-30e13d647e31": {
+    "token": "efeeea16-d5ee-4ed8-9496-30e13d647e31",
+    "user_id": "b808eb7c-b46a-402d-ab55-371ddf3929a1",
+    "email": "test@example.com",
+    "created_at": "2025-08-29 06:57:54.779149",
+    "expires_at": "2025-08-29 07:57:54.779156"
+  }
+}

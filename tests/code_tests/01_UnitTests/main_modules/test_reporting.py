@@ -7,6 +7,7 @@ import pytest
 import json
 import os
 import tempfile
+from pathlib import Path
 from unittest.mock import patch
 from autoprojectmanagement.main_modules.progress_reporting.progress_report import (
     ProgressReport, DEFAULT_PROGRESS_PATH, DEFAULT_TASK_DB_PATH, DEFAULT_DASHBOARD_PATH
@@ -63,7 +64,7 @@ class TestProgressReportFunctionality:
             json.dump(test_data, f)
         
         report = ProgressReport()
-        loaded_data = report.load_json(json_path)
+        loaded_data = report.load_json(Path(json_path))
         
         assert loaded_data == test_data
     

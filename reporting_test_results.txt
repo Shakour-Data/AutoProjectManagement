@@ -1,0 +1,64 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\Shakour\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: E:\Shakour\MyProjects\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collecting ... collected 16 items
+
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportFunctionality::test_progress_report_initialization PASSED [  6%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportFunctionality::test_progress_report_initialization_custom_paths PASSED [ 12%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportFunctionality::test_progress_report_load_json FAILED [ 18%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportFunctionality::test_progress_report_generate_progress_summary FAILED [ 25%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportFunctionality::test_progress_report_generate_markdown_report PASSED [ 31%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportEdgeCases::test_progress_report_empty_task_database PASSED [ 37%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportEdgeCases::test_progress_report_nonexistent_files PASSED [ 43%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportEdgeCases::test_progress_report_malformed_json PASSED [ 50%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportEdgeCases::test_progress_report_all_tasks_completed FAILED [ 56%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportEdgeCases::test_progress_report_no_tasks_in_progress FAILED [ 62%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportErrorHandling::test_progress_report_invalid_path_types FAILED [ 68%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportErrorHandling::test_progress_report_file_not_found_error PASSED [ 75%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportErrorHandling::test_progress_report_json_decode_error PASSED [ 81%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportErrorHandling::test_progress_report_permission_error PASSED [ 87%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportErrorHandling::test_progress_report_save_report_permission_error PASSED [ 93%]
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportIntegration::test_progress_report_complete_workflow PASSED [100%]
+
+================================== FAILURES ===================================
+_______ TestProgressReportFunctionality.test_progress_report_load_json ________
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py:66: in test_progress_report_load_json
+    loaded_data = report.load_json(json_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\autoprojectmanagement\main_modules\progress_reporting\progress_report.py:146: in load_json
+    if not path.exists():
+           ^^^^^^^^^^^
+E   AttributeError: 'str' object has no attribute 'exists'
+_ TestProgressReportFunctionality.test_progress_report_generate_progress_summary _
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py:85: in test_progress_report_generate_progress_summary
+    assert summary["completed_tasks"] == 1
+E   assert 0 == 1
+____ TestProgressReportEdgeCases.test_progress_report_all_tasks_completed _____
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py:185: in test_progress_report_all_tasks_completed
+    assert summary["completed_tasks"] == 2
+E   assert 0 == 2
+____ TestProgressReportEdgeCases.test_progress_report_no_tasks_in_progress ____
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py:213: in test_progress_report_no_tasks_in_progress
+    assert summary["completed_tasks"] == 1
+E   assert 0 == 1
+___ TestProgressReportErrorHandling.test_progress_report_invalid_path_types ___
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py:223: in test_progress_report_invalid_path_types
+    ProgressReport(123, "valid_path", "valid_path")
+src\autoprojectmanagement\main_modules\progress_reporting\progress_report.py:118: in __init__
+    self.progress_path = Path(progress_path) if progress_path else DEFAULT_PROGRESS_PATH
+                         ^^^^^^^^^^^^^^^^^^^
+C:\Users\Shakour\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:503: in __init__
+    super().__init__(*args)
+C:\Users\Shakour\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:132: in __init__
+    raise TypeError(
+E   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'int'
+=========================== short test summary info ===========================
+FAILED tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportFunctionality::test_progress_report_load_json
+FAILED tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportFunctionality::test_progress_report_generate_progress_summary
+FAILED tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportEdgeCases::test_progress_report_all_tasks_completed
+FAILED tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportEdgeCases::test_progress_report_no_tasks_in_progress
+FAILED tests\code_tests\01_UnitTests\main_modules\test_reporting.py::TestProgressReportErrorHandling::test_progress_report_invalid_path_types
+======================== 5 failed, 11 passed in 1.17s =========================
