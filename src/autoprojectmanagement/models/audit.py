@@ -61,6 +61,9 @@ class AuditResourceType(str, Enum):
     BACKUP = "backup"
     AUDIT = "audit"
     SYSTEM = "system"
+    ISSUE = "issue"
+    COMMENT = "comment"
+    WEBHOOK = "webhook"
 
 class AuditSeverity(str, Enum):
     """Severity levels for audit events."""

@@ -1,0 +1,22 @@
+Testing imports...
+Traceback (most recent call last):
+  File "E:\Shakour\MyProjects\AutoProjectManagement\tests\simple_test.py", line 9, in <module>
+    from autoprojectmanagement.services.integration_services.github_integration import GitHubIntegration
+  File "E:\Shakour\MyProjects\AutoProjectManagement\src\autoprojectmanagement\__init__.py", line 53, in <module>
+    from .main_modules.project_management.project_management_system import ProjectManagementSystem
+  File "E:\Shakour\MyProjects\AutoProjectManagement\src\autoprojectmanagement\main_modules\__init__.py", line 46, in <module>
+    from .planning_estimation.scheduler import Scheduler
+  File "E:\Shakour\MyProjects\AutoProjectManagement\src\autoprojectmanagement\main_modules\planning_estimation\scheduler.py", line 1, in <module>
+    import schedule
+ModuleNotFoundError: No module named 'schedule'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Shakour\MyProjects\AutoProjectManagement\tests\simple_test.py", line 12, in <module>
+    print(f"\u2717 GitHubImportError: {e}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shakour\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2717' in position 0: character maps to <undefined>

@@ -17,6 +17,16 @@ import hashlib
 from typing import Dict, List, Optional, Any, Callable
 from datetime import datetime
 
+# Import audit service for comprehensive logging
+try:
+    from ...services.audit_service import audit_service, AuditActionType, AuditResourceType, AuditSeverity, AuditStatus
+except ImportError:
+    # Handle import for development
+    import sys
+    from pathlib import Path
+    sys.path.append(str(Path(__file__).resolve().parents[2]))
+    from autoprojectmanagement.services.audit_service import audit_service, AuditActionType, AuditResourceType, AuditSeverity, AuditStatus
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -170,12 +180,42 @@ class GitHubIntegration:
         }
         
         try:
+            # Log audit entry for issue retrieval
+            audit_service.log_event(
+                action=AuditActionType.READ,
+                resource_type=AuditResourceType.ISSUE,
+                resource_id=f"{self.owner}/{self.repo}",
+                description=f"Retrieved issues with state={state}, labels={labels}",
+                details={
+                    "state": state,
+                    "labels": labels,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             response = self._make_request("GET", "issues", params=params)
             issues = response.json()
             logger.info(f"Retrieved {len(issues)} issues with state={state}")
+            
             return issues
             
         except Exception as e:
+            # Log audit entry for failed operation
+            audit_service.log_event(
+                action=AuditActionType.READ,
+                resource_type=AuditResourceType.ISSUE,
+                resource_id=f"{self.owner}/{self.repo}",
+                description=f"Failed to retrieve issues: {str(e)}",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "state": state,
+                    "labels": labels,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             logger.error(f"Failed to get issues: {str(e)}")
             raise GitHubIntegrationError(f"Failed to retrieve issues: {str(e)}")
     
@@ -206,12 +246,61 @@ class GitHubIntegration:
             data["labels"] = labels
             
         try:
+            # Log audit entry for issue creation
+            audit_service.log_event(
+                action=AuditActionType.CREATE,
+                resource_type=AuditResourceType.ISSUE,
+                resource_id=f"{self.owner}/{self.repo}/new_issue",
+                description=f"Creating new issue: {title}",
+                details={
+                    "title": title,
+                    "body_length": len(body),
+                    "labels": labels,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             response = self._make_request("POST", "issues", json_data=data)
             issue = response.json()
             logger.info(f"Created issue #{issue['number']}: {title}")
+            
+            # Log successful creation
+            audit_service.log_event(
+                action=AuditActionType.CREATE,
+                resource_type=AuditResourceType.ISSUE,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue['number']}",
+                description=f"Successfully created issue #{issue['number']}: {title}",
+                severity=AuditSeverity.INFO,
+                status=AuditStatus.SUCCESS,
+                details={
+                    "issue_number": issue['number'],
+                    "title": title,
+                    "html_url": issue.get('html_url'),
+                    "labels": labels,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             return issue
             
         except Exception as e:
+            # Log audit entry for failed operation
+            audit_service.log_event(
+                action=AuditActionType.CREATE,
+                resource_type=AuditResourceType.ISSUE,
+                resource_id=f"{self.owner}/{self.repo}/new_issue",
+                description=f"Failed to create issue: {title}",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "title": title,
+                    "body_length": len(body),
+                    "labels": labels,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             logger.error(f"Failed to create issue: {str(e)}")
             raise GitHubIntegrationError(f"Failed to create issue: {str(e)}")
 
@@ -234,11 +323,58 @@ class GitHubIntegration:
         
         data = {"state": state}
         try:
+            # Log audit entry for issue status update
+            audit_service.log_event(
+                action=AuditActionType.UPDATE,
+                resource_type=AuditResourceType.ISSUE,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue_number}",
+                description=f"Updating issue #{issue_number} status to {state}",
+                details={
+                    "issue_number": issue_number,
+                    "new_state": state,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             response = self._make_request("PATCH", f"issues/{issue_number}", json_data=data)
             updated_issue = response.json()
             logger.info(f"Issue #{issue_number} status updated to {state}")
+            
+            # Log successful update
+            audit_service.log_event(
+                action=AuditActionType.UPDATE,
+                resource_type=AuditResourceType.ISSUE,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue_number}",
+                description=f"Successfully updated issue #{issue_number} status to {state}",
+                severity=AuditSeverity.INFO,
+                status=AuditStatus.SUCCESS,
+                details={
+                    "issue_number": issue_number,
+                    "new_state": state,
+                    "repository": f"{self.owner}/{self.repo}",
+                    "html_url": updated_issue.get('html_url')
+                }
+            )
+            
             return updated_issue
+            
         except Exception as e:
+            # Log audit entry for failed operation
+            audit_service.log_event(
+                action=AuditActionType.UPDATE,
+                resource_type=AuditResourceType.ISSUE,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue_number}",
+                description=f"Failed to update issue #{issue_number} status to {state}",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "issue_number": issue_number,
+                    "new_state": state,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             logger.error(f"Failed to update issue status: {str(e)}")
             raise GitHubIntegrationError(f"Failed to update issue status: {str(e)}")
 
@@ -256,11 +392,55 @@ class GitHubIntegration:
             GitHubIntegrationError: If retrieval fails
         """
         try:
+            # Log audit entry for comment retrieval
+            audit_service.log_event(
+                action=AuditActionType.READ,
+                resource_type=AuditResourceType.COMMENT,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue_number}/comments",
+                description=f"Retrieving comments for issue #{issue_number}",
+                details={
+                    "issue_number": issue_number,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             response = self._make_request("GET", f"issues/{issue_number}/comments")
             comments = response.json()
             logger.info(f"Retrieved {len(comments)} comments for issue #{issue_number}")
+            
+            # Log successful retrieval
+            audit_service.log_event(
+                action=AuditActionType.READ,
+                resource_type=AuditResourceType.COMMENT,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue_number}/comments",
+                description=f"Successfully retrieved {len(comments)} comments for issue #{issue_number}",
+                severity=AuditSeverity.INFO,
+                status=AuditStatus.SUCCESS,
+                details={
+                    "issue_number": issue_number,
+                    "comment_count": len(comments),
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             return comments
+            
         except Exception as e:
+            # Log audit entry for failed operation
+            audit_service.log_event(
+                action=AuditActionType.READ,
+                resource_type=AuditResourceType.COMMENT,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue_number}/comments",
+                description=f"Failed to retrieve comments for issue #{issue_number}",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "issue_number": issue_number,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             logger.error(f"Failed to get comments: {str(e)}")
             raise GitHubIntegrationError(f"Failed to get comments: {str(e)}")
 
@@ -283,11 +463,58 @@ class GitHubIntegration:
         
         data = {"body": comment_body.strip()}
         try:
+            # Log audit entry for comment creation
+            audit_service.log_event(
+                action=AuditActionType.CREATE,
+                resource_type=AuditResourceType.COMMENT,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue_number}/new_comment",
+                description=f"Adding comment to issue #{issue_number}",
+                details={
+                    "issue_number": issue_number,
+                    "comment_length": len(comment_body),
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             response = self._make_request("POST", f"issues/{issue_number}/comments", json_data=data)
             comment = response.json()
             logger.info(f"Added comment to issue #{issue_number}")
+            
+            # Log successful comment creation
+            audit_service.log_event(
+                action=AuditActionType.CREATE,
+                resource_type=AuditResourceType.COMMENT,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue_number}/comments/{comment['id']}",
+                description=f"Successfully added comment to issue #{issue_number}",
+                severity=AuditSeverity.INFO,
+                status=AuditStatus.SUCCESS,
+                details={
+                    "issue_number": issue_number,
+                    "comment_id": comment['id'],
+                    "comment_length": len(comment_body),
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             return comment
+            
         except Exception as e:
+            # Log audit entry for failed operation
+            audit_service.log_event(
+                action=AuditActionType.CREATE,
+                resource_type=AuditResourceType.COMMENT,
+                resource_id=f"{self.owner}/{self.repo}/issues/{issue_number}/new_comment",
+                description=f"Failed to add comment to issue #{issue_number}",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "issue_number": issue_number,
+                    "comment_length": len(comment_body),
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             logger.error(f"Failed to add comment: {str(e)}")
             raise GitHubIntegrationError(f"Failed to add comment: {str(e)}")
 
@@ -318,11 +545,61 @@ class GitHubIntegration:
             data["config"]["secret"] = secret
         
         try:
+            # Log audit entry for webhook creation
+            audit_service.log_event(
+                action=AuditActionType.CREATE,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/new_webhook",
+                description=f"Creating webhook for {len(events)} events",
+                details={
+                    "url": url,
+                    "events_count": len(events),
+                    "has_secret": secret is not None,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             response = self._make_request("POST", "hooks", json_data=data)
             webhook = response.json()
             logger.info(f"Created webhook for {len(events)} events")
+            
+            # Log successful webhook creation
+            audit_service.log_event(
+                action=AuditActionType.CREATE,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/hooks/{webhook['id']}",
+                description=f"Successfully created webhook #{webhook['id']} for {len(events)} events",
+                severity=AuditSeverity.INFO,
+                status=AuditStatus.SUCCESS,
+                details={
+                    "webhook_id": webhook['id'],
+                    "url": url,
+                    "events_count": len(events),
+                    "has_secret": secret is not None,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             return webhook
+            
         except Exception as e:
+            # Log audit entry for failed operation
+            audit_service.log_event(
+                action=AuditActionType.CREATE,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/new_webhook",
+                description=f"Failed to create webhook",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "url": url,
+                    "events_count": len(events),
+                    "has_secret": secret is not None,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             logger.error(f"Failed to create webhook: {str(e)}")
             raise GitHubIntegrationError(f"Failed to create webhook: {str(e)}")
 
@@ -337,11 +614,52 @@ class GitHubIntegration:
             GitHubIntegrationError: If retrieval fails
         """
         try:
+            # Log audit entry for webhook retrieval
+            audit_service.log_event(
+                action=AuditActionType.READ,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/hooks",
+                description="Retrieving all webhooks",
+                details={
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             response = self._make_request("GET", "hooks")
             webhooks = response.json()
             logger.info(f"Retrieved {len(webhooks)} webhooks")
+            
+            # Log successful retrieval
+            audit_service.log_event(
+                action=AuditActionType.READ,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/hooks",
+                description=f"Successfully retrieved {len(webhooks)} webhooks",
+                severity=AuditSeverity.INFO,
+                status=AuditStatus.SUCCESS,
+                details={
+                    "webhook_count": len(webhooks),
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             return webhooks
+            
         except Exception as e:
+            # Log audit entry for failed operation
+            audit_service.log_event(
+                action=AuditActionType.READ,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/hooks",
+                description="Failed to retrieve webhooks",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             logger.error(f"Failed to get webhooks: {str(e)}")
             raise GitHubIntegrationError(f"Failed to get webhooks: {str(e)}")
 
@@ -359,13 +677,56 @@ class GitHubIntegration:
             GitHubIntegrationError: If deletion fails
         """
         try:
+            # Log audit entry for webhook deletion
+            audit_service.log_event(
+                action=AuditActionType.DELETE,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/hooks/{hook_id}",
+                description=f"Deleting webhook #{hook_id}",
+                details={
+                    "hook_id": hook_id,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             response = self._make_request("DELETE", f"hooks/{hook_id}")
             if response.status_code == 204:
                 logger.info(f"Deleted webhook #{hook_id}")
+                
+                # Log successful deletion
+                audit_service.log_event(
+                    action=AuditActionType.DELETE,
+                    resource_type=AuditResourceType.WEBHOOK,
+                    resource_id=f"{self.owner}/{self.repo}/hooks/{hook_id}",
+                    description=f"Successfully deleted webhook #{hook_id}",
+                    severity=AuditSeverity.INFO,
+                    status=AuditStatus.SUCCESS,
+                    details={
+                        "hook_id": hook_id,
+                        "repository": f"{self.owner}/{self.repo}"
+                    }
+                )
+                
                 return True
             else:
                 raise GitHubIntegrationError(f"Unexpected status code: {response.status_code}")
+                
         except Exception as e:
+            # Log audit entry for failed operation
+            audit_service.log_event(
+                action=AuditActionType.DELETE,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/hooks/{hook_id}",
+                description=f"Failed to delete webhook #{hook_id}",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "hook_id": hook_id,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             logger.error(f"Failed to delete webhook: {str(e)}")
             raise GitHubIntegrationError(f"Failed to delete webhook: {str(e)}")
 
@@ -416,11 +777,63 @@ class GitHubIntegration:
                 data["events"] = events
         
         try:
+            # Log audit entry for webhook update
+            audit_service.log_event(
+                action=AuditActionType.UPDATE,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/hooks/{hook_id}",
+                description=f"Updating webhook #{hook_id} configuration",
+                details={
+                    "hook_id": hook_id,
+                    "url_updated": url is not None,
+                    "events_updated": events is not None,
+                    "secret_updated": secret is not None,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             response = self._make_request("PATCH", f"hooks/{hook_id}", json_data=data)
             webhook = response.json()
             logger.info(f"Updated webhook #{hook_id}")
+            
+            # Log successful update
+            audit_service.log_event(
+                action=AuditActionType.UPDATE,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/hooks/{hook_id}",
+                description=f"Successfully updated webhook #{hook_id}",
+                severity=AuditSeverity.INFO,
+                status=AuditStatus.SUCCESS,
+                details={
+                    "hook_id": hook_id,
+                    "url_updated": url is not None,
+                    "events_updated": events is not None,
+                    "secret_updated": secret is not None,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             return webhook
+            
         except Exception as e:
+            # Log audit entry for failed operation
+            audit_service.log_event(
+                action=AuditActionType.UPDATE,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/hooks/{hook_id}",
+                description=f"Failed to update webhook #{hook_id}",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "hook_id": hook_id,
+                    "url_updated": url is not None,
+                    "events_updated": events is not None,
+                    "secret_updated": secret is not None,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
             logger.error(f"Failed to update webhook: {str(e)}")
             raise GitHubIntegrationError(f"Failed to update webhook: {str(e)}")
 
@@ -462,6 +875,19 @@ class GitHubIntegration:
             GitHubIntegrationError: If event processing fails
         """
         try:
+            # Log audit entry for webhook event processing
+            audit_service.log_event(
+                action=AuditActionType.PROCESS,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/webhook_events/{event_type}",
+                description=f"Processing webhook event: {event_type}",
+                details={
+                    "event_type": event_type,
+                    "repository": f"{self.owner}/{self.repo}",
+                    "payload_keys": list(payload.keys()) if payload else []
+                }
+            )
+            
             if event_type == 'issues':
                 action = payload.get('action')
                 issue = payload.get('issue', {})
@@ -518,7 +944,37 @@ class GitHubIntegration:
             # Call the provided callback with event data
             callback(event_type, payload)
             
+            # Log successful event processing
+            audit_service.log_event(
+                action=AuditActionType.PROCESS,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/webhook_events/{event_type}",
+                description=f"Successfully processed webhook event: {event_type}",
+                severity=AuditSeverity.INFO,
+                status=AuditStatus.SUCCESS,
+                details={
+                    "event_type": event_type,
+                    "repository": f"{self.owner}/{self.repo}"
+                }
+            )
+            
         except Exception as e:
+            # Log audit entry for failed event processing
+            audit_service.log_event(
+                action=AuditActionType.PROCESS,
+                resource_type=AuditResourceType.WEBHOOK,
+                resource_id=f"{self.owner}/{self.repo}/webhook_events/{event_type}",
+                description=f"Failed to process webhook event: {event_type}",
+                severity=AuditSeverity.ERROR,
+                status=AuditStatus.FAILURE,
+                error_message=str(e),
+                details={
+                    "event_type": event_type,
+                    "repository": f"{self.owner}/{self.repo}",
+                    "payload_keys": list(payload.keys()) if payload else []
+                }
+            )
+            
             logger.error(f"Failed to process webhook event: {str(e)}")
             raise GitHubIntegrationError(f"Failed to process webhook event: {str(e)}")
     
