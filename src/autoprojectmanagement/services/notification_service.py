@@ -20,6 +20,16 @@ from pathlib import Path
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+# Import audit service for comprehensive logging
+try:
+    from .audit_service import audit_service, AuditActionType, AuditResourceType, AuditSeverity
+except ImportError:
+    # Handle import for development
+    import sys
+    from pathlib import Path
+    sys.path.append(str(Path(__file__).resolve().parents[1]))
+    from autoprojectmanagement.services.audit_service import audit_service, AuditActionType, AuditResourceType, AuditSeverity
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -359,6 +369,26 @@ class NotificationService:
             success=success
         )
         
+        # Audit log for notification sent
+        try:
+            audit_service.add_entry(
+                audit_service.create_audit_entry(
+                    action=AuditActionType.NOTIFY,
+                    resource_type=AuditResourceType.NOTIFICATION,
+                    resource_id=context.get('task_id', 'unknown'),
+                    description=f"Notification sent: {template_key} to {recipients}",
+                    severity=AuditSeverity.INFO,
+                    details={
+                        "template_key": template_key,
+                        "recipients": recipients,
+                        "channels": [ch['channel'] for ch in delivery_results if ch['success']],
+                        "success": success
+                    }
+                )
+            )
+        except Exception as e:
+            logger.error(f"Failed to log audit entry for notification: {e}")
+        
         return success
     
     def _get_enabled_channels(self) -> List[str]:
@@ -536,6 +566,28 @@ class NotificationService:
             'next_steps': 'Review the change and provide feedback',
             'changes_summary': self._format_changes_summary(change_data)
         }
+        
+        # Audit log for scope change notification
+        try:
+            audit_service.add_entry(
+                audit_service.create_audit_entry(
+                    action=AuditActionType.NOTIFY,
+                    resource_type=AuditResourceType.TASK,
+                    resource_id=task_id,
+                    description=f"Scope change notification: {change_type} for task {task_id}",
+                    severity=AuditSeverity.INFO,
+                    details={
+                        "change_type": change_type,
+                        "task_id": task_id,
+                        "task_name": context['task_name'],
+                        "requester": context['requester'],
+                        "impact_analysis": impact_analysis,
+                        "recipients": recipients
+                    }
+                )
+            )
+        except Exception as e:
+            logger.error(f"Failed to log audit entry for scope change notification: {e}")
         
         # Check if approval is required
         approval_status = change_data.get('approval_status', {})

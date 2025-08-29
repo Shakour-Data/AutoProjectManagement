@@ -1,1 +1,7 @@
-  
+requests>=2.25.0
+PyGithub>=1.55
+click>=8.0.0
+colorama>=0.4.4
+python-dateutil>=2.8.0
+pytz>=2021.1
+typing-extensions>=4.0.0
