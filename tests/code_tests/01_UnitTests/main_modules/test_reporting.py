@@ -23,8 +23,8 @@ def temp_dir():
 def sample_progress_data():
     """Fixture for sample progress data."""
     return {
-        "task1": {"progress_percent": 100},
-        "task2": {"progress_percent": 50}
+        "src/module1.py": 100,
+        "src/module2.py": 50
     }
 
 @pytest.fixture
