@@ -1,0 +1,11 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\Shakour\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: E:\Shakour\MyProjects\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collecting ... collected 1 item
+
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityErrorHandling::test_password_hasher_invalid_verify_parameters PASSED [100%]
+
+============================== 1 passed in 0.76s ==============================

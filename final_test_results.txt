@@ -1,0 +1,14 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.4.1, pluggy-1.6.0
+rootdir: E:\Shakour\MyProjects\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collected 259 items / 1 error
+
+=================================== ERRORS ====================================
+____ ERROR collecting code_tests/01_UnitTests/api/test_realtime_service.py ____
+'asyncio' not found in `markers` configuration option
+=========================== short test summary info ===========================
+ERROR tests\code_tests\01_UnitTests\api\test_realtime_service.py - Failed: 'a...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 2.79s ===============================

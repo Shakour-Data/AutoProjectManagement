@@ -90,6 +90,8 @@ class PasswordHasher:
             True if password matches, False otherwise
         """
         try:
+            if plain_password is None or hashed_password is None:
+                return False
             return bcrypt.checkpw(
                 plain_password.encode('utf-8'),
                 hashed_password.encode('utf-8')
@@ -327,6 +329,7 @@ class SecurityUtils:
         Returns:
             Sanitized string
         """
+        import re
         if not input_string:
             return ""
         
@@ -335,7 +338,8 @@ class SecurityUtils:
         if len(sanitized) > max_length:
             sanitized = sanitized[:max_length]
         
-        # Remove potentially dangerous characters
+        # Remove script tags and potentially dangerous characters
+        sanitized = re.sub(r'<script.*?>.*?</script>', '', sanitized, flags=re.IGNORECASE|re.DOTALL)
         dangerous_chars = ['<', '>', '"', "'", ';', '(', ')', '&', '|', '`', '$']
         for char in dangerous_chars:
             sanitized = sanitized.replace(char, '')

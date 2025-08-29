@@ -1,0 +1,39 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\Shakour\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: E:\Shakour\MyProjects\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collecting ... collected 29 items
+
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerFunctionality::test_server_manager_initialization_defaults PASSED [  3%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerFunctionality::test_server_manager_initialization_custom_params PASSED [  6%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerFunctionality::test_server_manager_get_config PASSED [ 10%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerFunctionality::test_server_manager_health_check_running PASSED [ 13%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerFunctionality::test_server_manager_health_check_stopped PASSED [ 17%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerEdgeCases::test_server_manager_min_port_number PASSED [ 20%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerEdgeCases::test_server_manager_max_port_number PASSED [ 24%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerEdgeCases::test_server_manager_zero_workers PASSED [ 27%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerEdgeCases::test_server_manager_high_timeout PASSED [ 31%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerEdgeCases::test_server_manager_special_host_addresses PASSED [ 34%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerErrorHandling::test_server_start_without_uvicorn PASSED [ 37%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerErrorHandling::test_server_stop_when_not_running PASSED [ 41%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerErrorHandling::test_server_start_logs_configuration PASSED [ 44%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerErrorHandling::test_server_start_keyboard_interrupt PASSED [ 48%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerErrorHandling::test_server_start_general_exception PASSED [ 51%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerIntegration::test_server_integration_with_uvicorn PASSED [ 55%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerIntegration::test_server_configuration_persistence PASSED [ 58%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerIntegration::test_server_lifecycle_integration PASSED [ 62%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerIntegration::test_server_with_mock_app_integration PASSED [ 65%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestServerManagerIntegration::test_server_configuration_validation_integration PASSED [ 68%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestConfigurationLoading::test_load_configuration_defaults PASSED [ 72%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestConfigurationLoading::test_load_configuration_from_env_vars PASSED [ 75%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestConfigurationLoading::test_load_configuration_from_file PASSED [ 79%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestConfigurationLoading::test_load_configuration_file_priority PASSED [ 82%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestConfigurationLoading::test_load_configuration_invalid_file PASSED [ 86%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestSignalHandling::test_signal_handler PASSED [ 89%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestStartServerFunction::test_start_server_with_defaults PASSED [ 93%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestStartServerFunction::test_start_server_with_custom_params PASSED [ 96%]
+tests\code_tests\01_UnitTests\api\test_server.py::TestStartServerFunction::test_start_server_with_config_file PASSED [100%]
+
+============================= 29 passed in 1.63s ==============================

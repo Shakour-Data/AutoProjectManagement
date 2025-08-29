@@ -1,0 +1,24 @@
+E:\Shakour\MyProjects\AutoProjectManagement\tests\code_tests\02_IntegrationTests\test_complete_realtime.py:26: PytestCollectionWarning: cannot collect test class 'TestServer' because it has a __init__ constructor (from: code_tests/02_IntegrationTests/test_complete_realtime.py)
+  class TestServer:
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.4.1, pluggy-1.6.0
+rootdir: E:\Shakour\MyProjects\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collected 1231 items / 1 error
+
+=================================== ERRORS ====================================
+___ ERROR collecting code_tests/01_UnitTests/main_modules/test_reporting.py ___
+ImportError while importing test module 'E:\Shakour\MyProjects\AutoProjectManagement\tests\code_tests\01_UnitTests\main_modules\test_reporting.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Shakour\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\code_tests\01_UnitTests\main_modules\test_reporting.py:11: in <module>
+    from autoprojectmanagement.main_modules.progress_reporting.progress_report import (
+E   ImportError: cannot import name 'DEFAULT_DETAILED_WBS_PATH' from 'autoprojectmanagement.main_modules.progress_reporting.progress_report' (E:\Shakour\MyProjects\AutoProjectManagement\src\autoprojectmanagement\main_modules\progress_reporting\progress_report.py)
+=========================== short test summary info ===========================
+ERROR tests\code_tests\01_UnitTests\main_modules\test_reporting.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 3.52s ===============================

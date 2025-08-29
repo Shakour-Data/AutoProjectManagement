@@ -1,0 +1,16 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\Shakour\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: E:\Shakour\MyProjects\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collecting ... ERROR: found no collectors for E:\Shakour\MyProjects\AutoProjectManagement\tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityErrorHandling::test_password_hasher_invalid_verify_parameters
+
+collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_______ ERROR collecting code_tests/01_UnitTests/utils/test_security.py _______
+C:\\Users\\Shakour\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\_pytest\\python.py:498: in importtestmodule\n    mod = import_path(\nC:\\Users\\Shakour\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\nC:\\Users\\Shakour\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\importlib\\__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1387: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1360: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:935: in _load_unlocked\n    ???\nC:\\Users\\Shakour\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:186: in exec_module\n    exec(co, module.__dict__)\ntests\\code_tests\\01_UnitTests\\utils\\test_security.py:8: in <module>\n    from autoprojectmanagement.utils.security import (\nE     File "E:\\Shakour\\MyProjects\\AutoProjectManagement\\src\\autoprojectmanagement\\utils\\security.py", line 251\nE       \u6781 def create_refresh_token(\nE                                  ^\nE   IndentationError: unindent does not match any outer indentation level
+=========================== short test summary info ===========================
+ERROR tests\code_tests\01_UnitTests\utils\test_security.py
+============================== 1 error in 0.87s ===============================

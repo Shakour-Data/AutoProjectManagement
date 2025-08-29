@@ -1,0 +1,30 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\Shakour\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: E:\Shakour\MyProjects\AutoProjectManagement\tests
+configfile: pytest.ini
+plugins: anyio-4.10.0, Faker-37.6.0, cov-6.2.1, mock-3.14.1, xdist-3.8.0
+collecting ... collected 20 items
+
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityFunctionality::test_password_hasher_hash_and_verify PASSED [  5%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityFunctionality::test_token_manager_create_and_verify_access_token PASSED [ 10%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityFunctionality::test_security_utils_sanitize_input PASSED [ 15%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityFunctionality::test_security_utils_validate_email PASSED [ 20%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityFunctionality::test_password_hasher_generate_secure_password PASSED [ 25%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityEdgeCases::test_password_hasher_empty_password PASSED [ 30%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityEdgeCases::test_password_hasher_very_long_password PASSED [ 35%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityEdgeCases::test_password_hasher_verify_with_invalid_hash PASSED [ 40%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityEdgeCases::test_token_manager_expired_token PASSED [ 45%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityEdgeCases::test_security_utils_sanitize_empty_input PASSED [ 50%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityErrorHandling::test_password_hasher_invalid_verify_parameters PASSED [ 55%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityErrorHandling::test_token_manager_invalid_token PASSED [ 60%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityErrorHandling::test_token_manager_malformed_token PASSED [ 65%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityErrorHandling::test_security_utils_validate_malformed_email PASSED [ 70%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityErrorHandling::test_password_hasher_unicode_password PASSED [ 75%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityIntegration::test_password_strength_analysis PASSED [ 80%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityIntegration::test_token_manager_refresh_token PASSED [ 85%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityIntegration::test_security_utils_generate_secure_random_string PASSED [ 90%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityIntegration::test_token_manager_csrf_and_api_key_generation PASSED [ 95%]
+tests\code_tests\01_UnitTests\utils\test_security.py::TestSecurityIntegration::test_complete_security_workflow PASSED [100%]
+
+============================= 20 passed in 2.79s ==============================

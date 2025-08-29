@@ -8,10 +8,8 @@ import json
 import os
 import tempfile
 from unittest.mock import patch
-from autoprojectmanagement.main_modules.progress_reporting.reporting import (
-    ProgressReport, DEFAULT_DETAILED_WBS_PATH, DEFAULT_RESOURCE_ALLOCATION_PATH,
-    DEFAULT_TIME_MANAGEMENT_PATH, DEFAULT_RISK_MANAGEMENT_PATH,
-    DEFAULT_QUALITY_MANAGEMENT_PATH, DEFAULT_OUTPUT_PATH
+from autoprojectmanagement.main_modules.progress_reporting.progress_report import (
+    ProgressReport, DEFAULT_PROGRESS_PATH, DEFAULT_TASK_DB_PATH, DEFAULT_DASHBOARD_PATH
 )
 
 @pytest.fixture
@@ -42,8 +40,8 @@ class TestProgressReportFunctionality:
     def test_progress_report_initialization(self):
         """Test ProgressReport initialization with default parameters."""
         report = ProgressReport()
-        assert report.progress_path == DEFAULT_OUTPUT_PATH
-        assert report.task_db_path == DEFAULT_DETAILED_WBS_PATH
+        assert report.progress_path == DEFAULT_PROGRESS_PATH
+        assert report.task_db_path == DEFAULT_TASK_DB_PATH
     
     def test_progress_report_initialization_custom_paths(self, temp_dir):
         """Test ProgressReport initialization with custom paths."""

@@ -1,0 +1,21 @@
+{
+  "layout_type": "test_layout",
+  "widgets": [
+    {
+      "widget_id": "health",
+      "position": 0,
+      "enabled": true,
+      "settings": {}
+    },
+    {
+      "widget_id": "progress",
+      "position": 1,
+      "enabled": true,
+      "settings": {}
+    }
+  ],
+  "refresh_rate": 5000,
+  "theme": "dark",
+  "created_at": "2024-01-01 00:00:00",
+  "updated_at": "2025-08-29 06:57:09.628828"
+}
