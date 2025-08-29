@@ -1,0 +1,25 @@
+{
+  "id": "project_root",
+  "name": "Test Project",
+  "description": "Test project for baseline management",
+  "estimated_duration": 30,
+  "resource_cost": 5000,
+  "subtasks": [
+    {
+      "id": "task_1",
+      "name": "Task 1",
+      "description": "First task",
+      "estimated_duration": 5,
+      "resource_cost": 1000,
+      "subtasks": []
+    },
+    {
+      "id": "task_2",
+      "name": "Task 2",
+      "description": "Second task",
+      "estimated_duration": 10,
+      "resource_cost": 2000,
+      "subtasks": []
+    }
+  ]
+}

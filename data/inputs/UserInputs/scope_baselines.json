@@ -1,0 +1,1092 @@
+{
+  "initial_baseline": {
+    "name": "initial_baseline",
+    "description": "Initial project baseline",
+    "created_at": "2025-08-29T13:35:10.731176",
+    "wbs_snapshot": {
+      "id": "project_root",
+      "name": "Test Project",
+      "description": "Test project for baseline management",
+      "estimated_duration": 30,
+      "resource_cost": 5000,
+      "subtasks": [
+        {
+          "id": "task_1",
+          "name": "Task 1",
+          "description": "First task",
+          "estimated_duration": 5,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_2",
+          "name": "Task 2",
+          "description": "Second task",
+          "estimated_duration": 10,
+          "resource_cost": 2000,
+          "subtasks": []
+        }
+      ]
+    },
+    "scope_changes_snapshot": [
+      {
+        "task_id": "task_3",
+        "change_type": "add",
+        "details": {
+          "parent_id": "project_root",
+          "task": {
+            "id": "task_3",
+            "name": "Task 3",
+            "description": "Third task (added)",
+            "estimated_duration": 8,
+            "resource_cost": 1500
+          }
+        }
+      }
+    ],
+    "version": 5
+  },
+  "": {
+    "name": "",
+    "description": "Empty name test",
+    "created_at": "2025-08-29T13:23:44.392898",
+    "wbs_snapshot": {
+      "id": "project_root",
+      "name": "Comprehensive Test Project",
+      "description": "Test project for comprehensive baseline testing",
+      "estimated_duration": 100,
+      "resource_cost": 25000,
+      "complexity": "high",
+      "subtasks": [
+        {
+          "id": "phase_1",
+          "name": "Phase 1: Planning",
+          "description": "Initial planning phase",
+          "estimated_duration": 20,
+          "resource_cost": 5000,
+          "subtasks": [
+            {
+              "id": "task_1_1",
+              "name": "Requirements Gathering",
+              "description": "Gather project requirements",
+              "estimated_duration": 10,
+              "resource_cost": 2000,
+              "dependencies": []
+            },
+            {
+              "id": "task_1_2",
+              "name": "Architecture Design",
+              "description": "Design system architecture",
+              "estimated_duration": 8,
+              "resource_cost": 2500,
+              "dependencies": [
+                "task_1_1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phase_2",
+          "name": "Phase 2: Development",
+          "description": "Development phase",
+          "estimated_duration": 60,
+          "resource_cost": 15000,
+          "subtasks": [
+            {
+              "id": "task_2_1",
+              "name": "Frontend Development",
+              "description": "Develop frontend components",
+              "estimated_duration": 30,
+              "resource_cost": 8000,
+              "dependencies": [
+                "task_1_2"
+              ]
+            },
+            {
+              "id": "task_2_2",
+              "name": "Backend Development",
+              "description": "Develop backend services",
+              "estimated_duration": 25,
+              "resource_cost": 6000,
+              "dependencies": [
+                "task_1_2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "scope_changes_snapshot": [
+      {
+        "task_id": "task_1_3",
+        "change_type": "add",
+        "details": {
+          "parent_id": "phase_1",
+          "task": {
+            "id": "task_1_3",
+            "name": "Risk Assessment",
+            "description": "Assess project risks",
+            "estimated_duration": 5,
+            "resource_cost": 1000,
+            "dependencies": [
+              "task_1_1"
+            ]
+          }
+        }
+      },
+      {
+        "task_id": "task_2_1",
+        "change_type": "modify",
+        "details": {
+          "estimated_duration": 35,
+          "resource_cost": 9000,
+          "modification_complexity": "medium"
+        }
+      }
+    ],
+    "version": 2
+  },
+  "large_baseline": {
+    "name": "large_baseline",
+    "description": "Baseline for large WBS",
+    "created_at": "2025-08-29T13:29:51.472739",
+    "wbs_snapshot": {
+      "id": "large_project",
+      "name": "Large Test Project",
+      "description": "Project with many tasks for performance testing",
+      "estimated_duration": 500,
+      "resource_cost": 100000,
+      "subtasks": [
+        {
+          "id": "task_1",
+          "name": "Task 1",
+          "description": "Test task 1",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_2",
+          "name": "Task 2",
+          "description": "Test task 2",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_3",
+          "name": "Task 3",
+          "description": "Test task 3",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_4",
+          "name": "Task 4",
+          "description": "Test task 4",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_5",
+          "name": "Task 5",
+          "description": "Test task 5",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_6",
+          "name": "Task 6",
+          "description": "Test task 6",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_7",
+          "name": "Task 7",
+          "description": "Test task 7",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_8",
+          "name": "Task 8",
+          "description": "Test task 8",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_9",
+          "name": "Task 9",
+          "description": "Test task 9",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_10",
+          "name": "Task 10",
+          "description": "Test task 10",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_11",
+          "name": "Task 11",
+          "description": "Test task 11",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_12",
+          "name": "Task 12",
+          "description": "Test task 12",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_13",
+          "name": "Task 13",
+          "description": "Test task 13",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_14",
+          "name": "Task 14",
+          "description": "Test task 14",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_15",
+          "name": "Task 15",
+          "description": "Test task 15",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_16",
+          "name": "Task 16",
+          "description": "Test task 16",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_17",
+          "name": "Task 17",
+          "description": "Test task 17",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_18",
+          "name": "Task 18",
+          "description": "Test task 18",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_19",
+          "name": "Task 19",
+          "description": "Test task 19",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_20",
+          "name": "Task 20",
+          "description": "Test task 20",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_21",
+          "name": "Task 21",
+          "description": "Test task 21",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_22",
+          "name": "Task 22",
+          "description": "Test task 22",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_23",
+          "name": "Task 23",
+          "description": "Test task 23",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_24",
+          "name": "Task 24",
+          "description": "Test task 24",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_25",
+          "name": "Task 25",
+          "description": "Test task 25",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_26",
+          "name": "Task 26",
+          "description": "Test task 26",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_27",
+          "name": "Task 27",
+          "description": "Test task 27",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_28",
+          "name": "Task 28",
+          "description": "Test task 28",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_29",
+          "name": "Task 29",
+          "description": "Test task 29",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_30",
+          "name": "Task 30",
+          "description": "Test task 30",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_31",
+          "name": "Task 31",
+          "description": "Test task 31",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_32",
+          "name": "Task 32",
+          "description": "Test task 32",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_33",
+          "name": "Task 33",
+          "description": "Test task 33",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_34",
+          "name": "Task 34",
+          "description": "Test task 34",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_35",
+          "name": "Task 35",
+          "description": "Test task 35",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_36",
+          "name": "Task 36",
+          "description": "Test task 36",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_37",
+          "name": "Task 37",
+          "description": "Test task 37",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_38",
+          "name": "Task 38",
+          "description": "Test task 38",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_39",
+          "name": "Task 39",
+          "description": "Test task 39",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_40",
+          "name": "Task 40",
+          "description": "Test task 40",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_41",
+          "name": "Task 41",
+          "description": "Test task 41",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_42",
+          "name": "Task 42",
+          "description": "Test task 42",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_43",
+          "name": "Task 43",
+          "description": "Test task 43",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_44",
+          "name": "Task 44",
+          "description": "Test task 44",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_45",
+          "name": "Task 45",
+          "description": "Test task 45",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_46",
+          "name": "Task 46",
+          "description": "Test task 46",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_47",
+          "name": "Task 47",
+          "description": "Test task 47",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_48",
+          "name": "Task 48",
+          "description": "Test task 48",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_49",
+          "name": "Task 49",
+          "description": "Test task 49",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_50",
+          "name": "Task 50",
+          "description": "Test task 50",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_51",
+          "name": "Task 51",
+          "description": "Test task 51",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_52",
+          "name": "Task 52",
+          "description": "Test task 52",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_53",
+          "name": "Task 53",
+          "description": "Test task 53",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_54",
+          "name": "Task 54",
+          "description": "Test task 54",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_55",
+          "name": "Task 55",
+          "description": "Test task 55",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_56",
+          "name": "Task 56",
+          "description": "Test task 56",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_57",
+          "name": "Task 57",
+          "description": "Test task 57",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_58",
+          "name": "Task 58",
+          "description": "Test task 58",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_59",
+          "name": "Task 59",
+          "description": "Test task 59",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_60",
+          "name": "Task 60",
+          "description": "Test task 60",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_61",
+          "name": "Task 61",
+          "description": "Test task 61",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_62",
+          "name": "Task 62",
+          "description": "Test task 62",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_63",
+          "name": "Task 63",
+          "description": "Test task 63",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_64",
+          "name": "Task 64",
+          "description": "Test task 64",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_65",
+          "name": "Task 65",
+          "description": "Test task 65",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_66",
+          "name": "Task 66",
+          "description": "Test task 66",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_67",
+          "name": "Task 67",
+          "description": "Test task 67",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_68",
+          "name": "Task 68",
+          "description": "Test task 68",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_69",
+          "name": "Task 69",
+          "description": "Test task 69",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_70",
+          "name": "Task 70",
+          "description": "Test task 70",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_71",
+          "name": "Task 71",
+          "description": "Test task 71",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_72",
+          "name": "Task 72",
+          "description": "Test task 72",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_73",
+          "name": "Task 73",
+          "description": "Test task 73",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_74",
+          "name": "Task 74",
+          "description": "Test task 74",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_75",
+          "name": "Task 75",
+          "description": "Test task 75",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_76",
+          "name": "Task 76",
+          "description": "Test task 76",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_77",
+          "name": "Task 77",
+          "description": "Test task 77",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_78",
+          "name": "Task 78",
+          "description": "Test task 78",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_79",
+          "name": "Task 79",
+          "description": "Test task 79",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_80",
+          "name": "Task 80",
+          "description": "Test task 80",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_81",
+          "name": "Task 81",
+          "description": "Test task 81",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_82",
+          "name": "Task 82",
+          "description": "Test task 82",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_83",
+          "name": "Task 83",
+          "description": "Test task 83",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_84",
+          "name": "Task 84",
+          "description": "Test task 84",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_85",
+          "name": "Task 85",
+          "description": "Test task 85",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_86",
+          "name": "Task 86",
+          "description": "Test task 86",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_87",
+          "name": "Task 87",
+          "description": "Test task 87",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_88",
+          "name": "Task 88",
+          "description": "Test task 88",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_89",
+          "name": "Task 89",
+          "description": "Test task 89",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_90",
+          "name": "Task 90",
+          "description": "Test task 90",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        },
+        {
+          "id": "task_91",
+          "name": "Task 91",
+          "description": "Test task 91",
+          "estimated_duration": 1,
+          "resource_cost": 100,
+          "subtasks": []
+        },
+        {
+          "id": "task_92",
+          "name": "Task 92",
+          "description": "Test task 92",
+          "estimated_duration": 2,
+          "resource_cost": 200,
+          "subtasks": []
+        },
+        {
+          "id": "task_93",
+          "name": "Task 93",
+          "description": "Test task 93",
+          "estimated_duration": 3,
+          "resource_cost": 300,
+          "subtasks": []
+        },
+        {
+          "id": "task_94",
+          "name": "Task 94",
+          "description": "Test task 94",
+          "estimated_duration": 4,
+          "resource_cost": 400,
+          "subtasks": []
+        },
+        {
+          "id": "task_95",
+          "name": "Task 95",
+          "description": "Test task 95",
+          "estimated_duration": 5,
+          "resource_cost": 500,
+          "subtasks": []
+        },
+        {
+          "id": "task_96",
+          "name": "Task 96",
+          "description": "Test task 96",
+          "estimated_duration": 6,
+          "resource_cost": 600,
+          "subtasks": []
+        },
+        {
+          "id": "task_97",
+          "name": "Task 97",
+          "description": "Test task 97",
+          "estimated_duration": 7,
+          "resource_cost": 700,
+          "subtasks": []
+        },
+        {
+          "id": "task_98",
+          "name": "Task 98",
+          "description": "Test task 98",
+          "estimated_duration": 8,
+          "resource_cost": 800,
+          "subtasks": []
+        },
+        {
+          "id": "task_99",
+          "name": "Task 99",
+          "description": "Test task 99",
+          "estimated_duration": 9,
+          "resource_cost": 900,
+          "subtasks": []
+        },
+        {
+          "id": "task_100",
+          "name": "Task 100",
+          "description": "Test task 100",
+          "estimated_duration": 10,
+          "resource_cost": 1000,
+          "subtasks": []
+        }
+      ]
+    },
+    "scope_changes_snapshot": [
+      {
+        "task_id": "task_1_3",
+        "change_type": "add",
+        "details": {
+          "parent_id": "phase_1",
+          "task": {
+            "id": "task_1_3",
+            "name": "Risk Assessment",
+            "description": "Assess project risks",
+            "estimated_duration": 5,
+            "resource_cost": 1000,
+            "dependencies": [
+              "task_1_1"
+            ]
+          }
+        }
+      },
+      {
+        "task_id": "task_2_1",
+        "change_type": "modify",
+        "details": {
+          "estimated_duration": 35,
+          "resource_cost": 9000,
+          "modification_complexity": "medium"
+        }
+      }
+    ],
+    "version": 5
+  },
+  "comprehensive_baseline": {
+    "name": "comprehensive_baseline",
+    "description": "Comprehensive test baseline",
+    "created_at": "2025-08-29T13:29:51.501125",
+    "wbs_snapshot": {
+      "id": "project_root",
+      "name": "Comprehensive Test Project",
+      "description": "Test project for comprehensive baseline testing",
+      "estimated_duration": 100,
+      "resource_cost": 25000,
+      "complexity": "high",
+      "subtasks": [
+        {
+          "id": "phase_1",
+          "name": "Phase 1: Planning",
+          "description": "Initial planning phase",
+          "estimated_duration": 20,
+          "resource_cost": 5000,
+          "subtasks": [
+            {
+              "id": "task_1_1",
+              "name": "Requirements Gathering",
+              "description": "Gather project requirements",
+              "estimated_duration": 10,
+              "resource_cost": 2000,
+              "dependencies": []
+            },
+            {
+              "id": "task_1_2",
+              "name": "Architecture Design",
+              "description": "Design system architecture",
+              "estimated_duration": 8,
+              "resource_cost": 2500,
+              "dependencies": [
+                "task_1_1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phase_2",
+          "name": "Phase 2: Development",
+          "description": "Development phase",
+          "estimated_duration": 60,
+          "resource_cost": 15000,
+          "subtasks": [
+            {
+              "id": "task_2_1",
+              "name": "Frontend Development",
+              "description": "Develop frontend components",
+              "estimated_duration": 30,
+              "resource_cost": 8000,
+              "dependencies": [
+                "task_1_2"
+              ]
+            },
+            {
+              "id": "task_2_2",
+              "name": "Backend Development",
+              "description": "Develop backend services",
+              "estimated_duration": 25,
+              "resource_cost": 6000,
+              "dependencies": [
+                "task_1_2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "scope_changes_snapshot": [
+      {
+        "task_id": "task_1_3",
+        "change_type": "add",
+        "details": {
+          "parent_id": "phase_1",
+          "task": {
+            "id": "task_1_3",
+            "name": "Risk Assessment",
+            "description": "Assess project risks",
+            "estimated_duration": 5,
+            "resource_cost": 1000,
+            "dependencies": [
+              "task_1_1"
+            ]
+          }
+        }
+      },
+      {
+        "task_id": "task_2_1",
+        "change_type": "modify",
+        "details": {
+          "estimated_duration": 35,
+          "resource_cost": 9000,
+          "modification_complexity": "medium"
+        }
+      }
+    ],
+    "version": 5
+  }
+}

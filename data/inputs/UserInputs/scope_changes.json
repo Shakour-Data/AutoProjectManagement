@@ -1,87 +1,16 @@
-{
-  "version": "1.0.0",
-  "scope_changes": [
-    {
-      "change_id": "SC001",
-      "task_id": "task_003",
-      "change_type": "modify",
-      "requested_by": "project_manager",
-      "request_date": "2024-01-25T09:00:00Z",
-      "details": {
-        "description": "Add automated testing framework integration",
-        "estimated_effort": 8,
-        "priority": "high",
-        "reason": "Improve code quality and testing coverage",
-        "impact_analysis": {
-          "schedule_impact": 2,
-          "cost_impact": 500,
-          "resource_impact": 1,
-          "dependencies": ["task_004", "task_005"]
-        }
-      },
-      "status": "pending_approval",
-      "approval_status": {
-        "required_approvers": ["technical_lead", "product_owner"],
-        "approved_by": [],
-        "rejected_by": [],
-        "approval_comments": []
-      }
-    },
-    {
-      "change_id": "SC002",
-      "task_id": "task_005",
-      "change_type": "add",
-      "requested_by": "ui_designer",
-      "request_date": "2024-01-26T11:30:00Z",
-      "details": {
-        "parent_id": "task_005",
-        "task": {
-          "id": "task_005a",
-          "name": "Responsive Design Implementation",
-          "description": "Implement responsive design for mobile devices",
-          "estimated_duration": 12,
-          "resources_needed": ["frontend_developer"],
-          "dependencies": ["task_005"]
-        },
-        "priority": "medium",
-        "reason": "Enhance user experience on mobile devices"
-      },
-      "status": "approved",
-      "approval_status": {
-        "required_approvers": ["technical_lead"],
-        "approved_by": ["technical_lead"],
-        "approval_date": "2024-01-26T14:00:00Z",
-        "approval_comments": ["Approved for better mobile UX"]
-      }
-    },
-    {
-      "change_id": "SC003",
-      "task_id": "task_004",
-      "change_type": "remove",
-      "requested_by": "architect",
-      "request_date": "2024-01-27T15:45:00Z",
-      "details": {
-        "reason": "Database integration moved to cloud service",
-        "alternative_solution": "Use managed database service instead of PostgreSQL",
-        "cost_savings": 2000,
-        "schedule_impact": -3
-      },
-      "status": "requires_approval",
-      "approval_status": {
-        "required_approvers": ["cto", "finance_manager"],
-        "approved_by": [],
-        "rejected_by": [],
-        "approval_comments": []
+[
+  {
+    "task_id": "task_3",
+    "change_type": "add",
+    "details": {
+      "parent_id": "project_root",
+      "task": {
+        "id": "task_3",
+        "name": "Task 3",
+        "description": "Third task (added)",
+        "estimated_duration": 8,
+        "resource_cost": 1500
       }
     }
-  ],
-  "metadata": {
-    "created_at": "2024-01-20T00:00:00Z",
-    "last_updated": "2024-01-27T16:00:00Z",
-    "total_changes": 3,
-    "pending_approval": 1,
-    "approved": 1,
-    "rejected": 0,
-    "schema_version": "1.0"
   }
-}
+]

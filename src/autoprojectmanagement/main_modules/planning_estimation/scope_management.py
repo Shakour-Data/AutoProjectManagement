@@ -46,9 +46,10 @@ __author__ = "AutoProjectManagement Team"
 __license__ = "MIT"
 
 # Constants
-DEFAULT_DETAILED_WBS_PATH = 'JSonDataBase/Inputs/UserInputs/detailed_wbs.json'
-DEFAULT_SCOPE_CHANGES_PATH = 'JSonDataBase/Inputs/UserInputs/scope_changes.json'
-DEFAULT_OUTPUT_PATH = 'JSonDataBase/OutPuts/scope_management.json'
+DEFAULT_DETAILED_WBS_PATH = 'data/inputs/UserInputs/detailed_wbs.json'
+DEFAULT_SCOPE_CHANGES_PATH = 'data/inputs/UserInputs/scope_changes.json'
+DEFAULT_OUTPUT_PATH = 'data/inputs/OutPuts/scope_management.json'
+DEFAULT_BASELINE_PATH = 'data/inputs/UserInputs/scope_baselines.json'
 ENCODING = 'utf-8'
 JSON_INDENT = 2
 
@@ -154,6 +155,8 @@ class ScopeManagement:
             'modified_tasks': [],
             'errors': []
         }
+        self.baseline_path = Path(DEFAULT_BASELINE_PATH)
+        self.baselines: Dict[str, Any] = {}
     
     def load_json(self, path: Path) -> Optional[Union[Dict[str, Any], List[Any]]]:
         """
@@ -899,6 +902,266 @@ class ScopeManagement:
                 sync_results['failed_changes'].append(change.get('task_id'))
         
         return sync_results
+
+    def create_baseline(self, baseline_name: str, description: str = "") -> bool:
+        """
+        Create a new scope baseline.
+        
+        Args:
+            baseline_name: Name of the baseline
+            description: Optional description of the baseline
+            
+        Returns:
+            True if baseline created successfully, False otherwise
+        """
+        try:
+            # Validate baseline name
+            if not baseline_name or not isinstance(baseline_name, str):
+                logger.error("Baseline name cannot be empty or non-string")
+                return False
+                
+            if baseline_name.strip() == "":
+                logger.error("Baseline name cannot be empty")
+                return False
+            
+            # Load existing baselines
+            self.baselines = self.load_json(self.baseline_path) or {}
+            
+            # Create baseline snapshot
+            baseline_data = {
+                'name': baseline_name,
+                'description': description,
+                'created_at': datetime.now().isoformat(),
+                'wbs_snapshot': self.detailed_wbs.copy(),
+                'scope_changes_snapshot': self.scope_changes.copy(),
+                'version': len(self.baselines) + 1
+            }
+            
+            # Add to baselines
+            self.baselines[baseline_name] = baseline_data
+            
+            # Save baselines
+            self.save_json(self.baselines, self.baseline_path)
+            
+            logger.info(f"Created scope baseline: {baseline_name}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error creating baseline {baseline_name}: {e}")
+            return False
+
+    def restore_baseline(self, baseline_name: str) -> bool:
+        """
+        Restore a scope baseline.
+        
+        Args:
+            baseline_name: Name of the baseline to restore
+            
+        Returns:
+            True if baseline restored successfully, False otherwise
+        """
+        try:
+            # Load baselines
+            self.baselines = self.load_json(self.baseline_path) or {}
+            
+            if baseline_name not in self.baselines:
+                logger.error(f"Baseline {baseline_name} not found")
+                return False
+            
+            baseline = self.baselines[baseline_name]
+            
+            # Restore WBS and scope changes
+            self.detailed_wbs = baseline['wbs_snapshot'].copy()
+            self.scope_changes = baseline['scope_changes_snapshot'].copy()
+            
+            logger.info(f"Restored scope baseline: {baseline_name}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error restoring baseline {baseline_name}: {e}")
+            return False
+
+    def compare_with_baseline(self, baseline_name: str) -> Dict[str, Any]:
+        """
+        Compare current scope with a baseline.
+        
+        Args:
+            baseline_name: Name of the baseline to compare with
+            
+        Returns:
+            Dictionary containing comparison results
+        """
+        comparison = {
+            'baseline_name': baseline_name,
+            'differences': [],
+            'summary': {
+                'tasks_added': 0,
+                'tasks_removed': 0,
+                'tasks_modified': 0,
+                'changes_applied': 0
+            }
+        }
+        
+        try:
+            # Load baselines
+            self.baselines = self.load_json(self.baseline_path) or {}
+            
+            if baseline_name not in self.baselines:
+                logger.error(f"Baseline {baseline_name} not found")
+                return comparison
+            
+            baseline = self.baselines[baseline_name]
+            baseline_wbs = baseline['wbs_snapshot']
+            
+            # Compare WBS structures
+            differences = self._compare_wbs_structures(self.detailed_wbs, baseline_wbs)
+            comparison['differences'] = differences
+            
+            # Update summary
+            for diff in differences:
+                if diff['type'] == 'added':
+                    comparison['summary']['tasks_added'] += 1
+                elif diff['type'] == 'removed':
+                    comparison['summary']['tasks_removed'] += 1
+                elif diff['type'] == 'modified':
+                    comparison['summary']['tasks_modified'] += 1
+            
+            comparison['summary']['changes_applied'] = len(self.scope_changes)
+            
+            return comparison
+            
+        except Exception as e:
+            logger.error(f"Error comparing with baseline {baseline_name}: {e}")
+            return comparison
+
+    def _compare_wbs_structures(self, current_wbs: Dict[str, Any], baseline_wbs: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Compare two WBS structures recursively."""
+        differences = []
+        
+        def compare_nodes(current_node: Dict[str, Any], baseline_node: Dict[str, Any], path: str = ""):
+            current_id = current_node.get('id')
+            baseline_id = baseline_node.get('id')
+            
+            if current_id != baseline_id:
+                differences.append({
+                    'type': 'modified',
+                    'path': path,
+                    'field': 'id',
+                    'current_value': current_id,
+                    'baseline_value': baseline_id
+                })
+            
+            # Compare other fields
+            for field in ['name', 'description', 'estimated_duration', 'resource_cost']:
+                current_val = current_node.get(field)
+                baseline_val = baseline_node.get(field)
+                
+                if current_val != baseline_val:
+                    differences.append({
+                        'type': 'modified',
+                        'path': f"{path}.{field}" if path else field,
+                        'field': field,
+                        'current_value': current_val,
+                        'baseline_value': baseline_val
+                    })
+            
+            # Compare subtasks
+            current_subtasks = current_node.get('subtasks', [])
+            baseline_subtasks = baseline_node.get('subtasks', [])
+            
+            # Find added tasks
+            current_ids = {task.get('id') for task in current_subtasks}
+            baseline_ids = {task.get('id') for task in baseline_subtasks}
+            
+            added_ids = current_ids - baseline_ids
+            removed_ids = baseline_ids - current_ids
+            
+            for task_id in added_ids:
+                task = next((t for t in current_subtasks if t.get('id') == task_id), None)
+                if task:
+                    differences.append({
+                        'type': 'added',
+                        'path': f"{path}.subtasks" if path else 'subtasks',
+                        'task_id': task_id,
+                        'task_name': task.get('name', '')
+                    })
+            
+            for task_id in removed_ids:
+                task = next((t for t in baseline_subtasks if t.get('id') == task_id), None)
+                if task:
+                    differences.append({
+                        'type': 'removed',
+                        'path': f"{path}.subtasks" if path else 'subtasks',
+                        'task_id': task_id,
+                        'task_name': task.get('name', '')
+                    })
+            
+            # Compare common subtasks
+            common_ids = current_ids & baseline_ids
+            for task_id in common_ids:
+                current_task = next((t for t in current_subtasks if t.get('id') == task_id), None)
+                baseline_task = next((t for t in baseline_subtasks if t.get('id') == task_id), None)
+                
+                if current_task and baseline_task:
+                    new_path = f"{path}.subtasks[{task_id}]" if path else f"subtasks[{task_id}]"
+                    compare_nodes(current_task, baseline_task, new_path)
+        
+        if current_wbs and baseline_wbs:
+            compare_nodes(current_wbs, baseline_wbs, "root")
+        
+        return differences
+
+    def get_baseline_list(self) -> List[Dict[str, Any]]:
+        """
+        Get list of all available baselines.
+        
+        Returns:
+            List of baseline information
+        """
+        try:
+            self.baselines = self.load_json(self.baseline_path) or {}
+            baseline_list = []
+            
+            for name, data in self.baselines.items():
+                baseline_list.append({
+                    'name': name,
+                    'description': data.get('description', ''),
+                    'created_at': data.get('created_at', ''),
+                    'version': data.get('version', 0)
+                })
+            
+            return sorted(baseline_list, key=lambda x: x.get('created_at', ''), reverse=True)
+            
+        except Exception as e:
+            logger.error(f"Error getting baseline list: {e}")
+            return []
+
+    def delete_baseline(self, baseline_name: str) -> bool:
+        """
+        Delete a scope baseline.
+        
+        Args:
+            baseline_name: Name of the baseline to delete
+            
+        Returns:
+            True if baseline deleted successfully, False otherwise
+        """
+        try:
+            self.baselines = self.load_json(self.baseline_path) or {}
+            
+            if baseline_name not in self.baselines:
+                logger.error(f"Baseline {baseline_name} not found")
+                return False
+            
+            del self.baselines[baseline_name]
+            self.save_json(self.baselines, self.baseline_path)
+            
+            logger.info(f"Deleted scope baseline: {baseline_name}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error deleting baseline {baseline_name}: {e}")
+            return False
 
     def update_github_issue_status(self,
                                  repo_owner: str,
