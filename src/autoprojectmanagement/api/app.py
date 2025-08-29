@@ -139,6 +139,7 @@ try:
     from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
     from autoprojectmanagement.api.sse_endpoints import router as sse_router
     from autoprojectmanagement.api.auth_endpoints import router as auth_router
+    from autoprojectmanagement.api.audit_endpoints import router as audit_router
 except ImportError:
     # Handle import for development
     import sys
@@ -147,6 +148,7 @@ except ImportError:
     from autoprojectmanagement.api.dashboard_endpoints import router as dashboard_router
     from autoprojectmanagement.api.sse_endpoints import router as sse_router
     from autoprojectmanagement.api.auth_endpoints import router as auth_router
+    from autoprojectmanagement.api.audit_endpoints import router as audit_router
 
 # Enhanced Pydantic models with comprehensive validation
 class ProjectStatus(BaseModel):
@@ -717,6 +719,9 @@ app.include_router(sse_router, prefix=API_PREFIX)
 # Include authentication endpoints
 app.include_router(auth_router, prefix=API_PREFIX)
 
+# Include audit endpoints
+app.include_router(audit_router, prefix=API_PREFIX)
+
 # Additional utility endpoints
 @app.get(
     f"{API_PREFIX}/system/info",
@@ -741,7 +746,8 @@ def system_info() -> Dict[str, Any]:
             "automated_commits",
             "risk_assessment",
             "reporting",
-            "user_authentication"
+            "user_authentication",
+            "audit_trail"
         ],
         "supported_formats": ["json", "markdown", "table"],
         "timestamp": datetime.now().isoformat()
