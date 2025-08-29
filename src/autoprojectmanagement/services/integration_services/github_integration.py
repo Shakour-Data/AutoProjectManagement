@@ -348,13 +348,13 @@ class GitHubIntegration:
     def delete_webhook(self, hook_id: int) -> bool:
         """
         Delete a webhook from the repository.
-        
+
         Args:
             hook_id: The ID of the webhook to delete
-        
+
         Returns:
             True if deletion was successful
-        
+
         Raises:
             GitHubIntegrationError: If deletion fails
         """
@@ -368,6 +368,61 @@ class GitHubIntegration:
         except Exception as e:
             logger.error(f"Failed to delete webhook: {str(e)}")
             raise GitHubIntegrationError(f"Failed to delete webhook: {str(e)}")
+
+    def get_webhook_subscriptions(self) -> List[str]:
+        """
+        Get available webhook event types that can be subscribed to.
+        
+        Returns:
+            List of available webhook event types
+        """
+        return [
+            'issues', 'issue_comment', 'pull_request', 'pull_request_review',
+            'push', 'create', 'delete', 'release', 'status', 'check_run',
+            'check_suite', 'deployment', 'deployment_status', 'fork',
+            'gollum', 'label', 'member', 'milestone', 'project',
+            'project_card', 'project_column', 'public', 'repository',
+            'repository_vulnerability_alert', 'security_advisory',
+            'star', 'team_add', 'watch'
+        ]
+
+    def update_webhook(self, hook_id: int, url: Optional[str] = None, 
+                      events: Optional[List[str]] = None, secret: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Update an existing webhook configuration.
+        
+        Args:
+            hook_id: The ID of the webhook to update
+            url: New webhook URL (optional)
+            events: New list of events to subscribe to (optional)
+            secret: New webhook secret (optional)
+            
+        Returns:
+            Dictionary containing updated webhook details
+            
+        Raises:
+            GitHubIntegrationError: If update fails
+        """
+        data = {}
+        
+        if url or events or secret:
+            data["config"] = {}
+            if url:
+                data["config"]["url"] = url
+                data["config"]["content_type"] = "json"
+            if secret:
+                data["config"]["secret"] = secret
+            if events:
+                data["events"] = events
+        
+        try:
+            response = self._make_request("PATCH", f"hooks/{hook_id}", json_data=data)
+            webhook = response.json()
+            logger.info(f"Updated webhook #{hook_id}")
+            return webhook
+        except Exception as e:
+            logger.error(f"Failed to update webhook: {str(e)}")
+            raise GitHubIntegrationError(f"Failed to update webhook: {str(e)}")
 
     def verify_webhook_signature(self, payload: bytes, signature: str, secret: str) -> bool:
         """
@@ -397,12 +452,12 @@ class GitHubIntegration:
                            callback: Callable[[str, Dict[str, Any]], None]) -> None:
         """
         Process webhook events and trigger appropriate callbacks.
-        
+
         Args:
-            event_type: The GitHub event type (e.g., 'issues', 'issue_comment')
+            event_type: The GitHub event type (e.g., 'issues', 'issue_comment', 'pull_request')
             payload: The webhook payload data
             callback: Function to call with event data
-        
+
         Raises:
             GitHubIntegrationError: If event processing fails
         """
@@ -410,13 +465,55 @@ class GitHubIntegration:
             if event_type == 'issues':
                 action = payload.get('action')
                 issue = payload.get('issue', {})
-                logger.info(f"Received issue event: {action} for issue #{issue.get('number')}")
+                issue_number = issue.get('number')
+                logger.info(f"Received issue event: {action} for issue #{issue_number}")
+                
+                # Additional processing for specific issue actions
+                if action in ['opened', 'reopened']:
+                    logger.info(f"Issue #{issue_number} was {action}: {issue.get('title')}")
+                elif action == 'closed':
+                    logger.info(f"Issue #{issue_number} was closed")
+                elif action == 'labeled':
+                    labels = [label['name'] for label in issue.get('labels', [])]
+                    logger.info(f"Issue #{issue_number} labels updated: {labels}")
                 
             elif event_type == 'issue_comment':
                 action = payload.get('action')
                 comment = payload.get('comment', {})
                 issue = payload.get('issue', {})
-                logger.info(f"Received comment event: {action} for issue #{issue.get('number')}")
+                issue_number = issue.get('number')
+                logger.info(f"Received comment event: {action} for issue #{issue_number}")
+                
+                if action == 'created':
+                    logger.info(f"New comment by {comment.get('user', {}).get('login')} on issue #{issue_number}")
+                
+            elif event_type == 'pull_request':
+                action = payload.get('action')
+                pr = payload.get('pull_request', {})
+                pr_number = pr.get('number')
+                logger.info(f"Received pull request event: {action} for PR #{pr_number}")
+                
+                if action in ['opened', 'reopened']:
+                    logger.info(f"PR #{pr_number} was {action}: {pr.get('title')}")
+                elif action == 'closed':
+                    merged = pr.get('merged', False)
+                    logger.info(f"PR #{pr_number} was {'merged' if merged else 'closed'}")
+                
+            elif event_type == 'pull_request_review':
+                action = payload.get('action')
+                review = payload.get('review', {})
+                pr = payload.get('pull_request', {})
+                pr_number = pr.get('number')
+                logger.info(f"Received PR review event: {action} for PR #{pr_number}")
+                
+            elif event_type == 'status':
+                state = payload.get('state')
+                context = payload.get('context')
+                sha = payload.get('sha')
+                logger.info(f"Received status event: {state} for {context} (SHA: {sha[:7]})")
+                
+            else:
+                logger.info(f"Received {event_type} event (no specific processing)")
             
             # Call the provided callback with event data
             callback(event_type, payload)
