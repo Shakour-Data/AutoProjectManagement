@@ -1,0 +1,47 @@
+{
+  "scope_change_add": {
+    "subject": "Scope Change: Task Added - {task_id}",
+    "body": "**Scope Change Notification**\n\n**Change Type:** Add\n**Task ID:** {task_id}\n**Task Name:** {task_name}\n**Parent Task:** {parent_id}\n**Requested By:** {requester}\n**Timestamp:** {timestamp}\n\n**Impact Analysis:**\n- Schedule Impact: {schedule_impact} days\n- Cost Impact: ${cost_impact}\n- Resource Impact: {resource_impact} resources\n- Risk Level: {risk_level}\n\n**Approval Status:** {approval_status}\n**Next Steps:** {next_steps}\n\nPlease review and take appropriate action.",
+    "priority": "medium"
+  },
+  "scope_change_remove": {
+    "subject": "Scope Change: Task Removed - {task_id}",
+    "body": "**Scope Change Notification**\n\n**Change Type:** Remove\n**Task ID:** {task_id}\n**Task Name:** {task_name}\n**Requested By:** {requester}\n**Timestamp:** {timestamp}\n\n**Impact Analysis:**\n- Schedule Savings: {schedule_impact} days\n- Cost Savings: ${cost_impact}\n- Resource Savings: {resource_impact} resources\n\n**Approval Status:** {approval_status}\n**Next Steps:** {next_steps}\n\nPlease review and take appropriate action.",
+    "priority": "medium"
+  },
+  "scope_change_modify": {
+    "subject": "Scope Change: Task Modified - {task_id}",
+    "body": "**Scope Change Notification**\n\n**Change Type:** Modify\n**Task ID:** {task_id}\n**Task Name:** {task_name}\n**Requested By:** {requester}\n**Timestamp:** {timestamp}\n\n**Changes Made:**\n{changes_summary}\n\n**Impact Analysis:**\n- Schedule Impact: {schedule_impact} days\n- Cost Impact: ${cost_impact}\n- Resource Impact: {resource_impact} resources\n- Risk Level: {risk_level}\n\n**Approval Status:** {approval_status}\n**Next Steps:** {next_steps}\n\nPlease review and take appropriate action.",
+    "priority": "medium"
+  },
+  "approval_required": {
+    "subject": "APPROVAL REQUIRED: Scope Change - {task_id}",
+    "body": "**APPROVAL REQUIRED**\n\nA scope change requires your approval.\n\n**Change Details:**\n- Task ID: {task_id}\n- Change Type: {change_type}\n- Task Name: {task_name}\n- Requested By: {requester}\n\n**Impact Analysis (HIGH RISK):**\n- Schedule Impact: {schedule_impact} days\n- Cost Impact: ${cost_impact}\n- Resource Impact: {resource_impact} resources\n- Risk Level: {risk_level}\n\n**Approval Conditions:**\n{approval_conditions}\n\n**Action Required:** Please review and approve/reject this change.",
+    "priority": "high"
+  },
+  "quality_alert": {
+    "subject": "QUALITY ALERT: {project_name} - {quality_level}",
+    "body": "**Quality Alert Notification**\n\n**Project:** {project_name}\n**Quality Level:** {quality_level}\n**Overall Score:** {quality_score}%\n\n**Critical Issues:**\n{critical_issues}\n\n**Recommendations:**\n{recommendations}\n\n**Action Required:** Immediate attention needed for quality improvement.",
+    "priority": "high"
+  },
+  "risk_alert": {
+    "subject": "RISK ALERT: {project_name} - {risk_level} Risk",
+    "body": "**Risk Alert Notification**\n\n**Project:** {project_name}\n**Risk Level:** {risk_level}\n**Risk Score:** {risk_score}\n\n**Critical Risks:**\n{critical_risks}\n\n**Mitigation Recommendations:**\n{mitigation_recommendations}\n\n**Action Required:** Immediate risk mitigation needed.",
+    "priority": "high"
+  },
+  "project_status": {
+    "subject": "Project Status Update: {project_name}",
+    "body": "**Project Status Notification**\n\n**Project:** {project_name}\n**Status:** {project_status}\n**Progress:** {progress_percentage}%\n\n**Recent Achievements:**\n{recent_achievements}\n\n**Upcoming Milestones:**\n{upcoming_milestones}\n\n**Issues Requiring Attention:**\n{issues_requiring_attention}\n\nPlease review the project status and provide feedback.",
+    "priority": "medium"
+  },
+  "milestone_achieved": {
+    "subject": "MILESTONE ACHIEVED: {milestone_name} - {project_name}",
+    "body": "**Milestone Achievement Notification**\n\n**Project:** {project_name}\n**Milestone:** {milestone_name}\n**Achieved On:** {achievement_date}\n**Status:** {milestone_status}\n\n**Key Deliverables:**\n{key_deliverables}\n\n**Next Steps:**\n{next_steps}\n\nCongratulations to the team on this achievement!",
+    "priority": "low"
+  },
+  "escalation": {
+    "subject": "ESCALATION: {issue_type} - {project_name}",
+    "body": "**Escalation Notification**\n\n**Project:** {project_name}\n**Issue Type:** {issue_type}\n**Severity:** {severity_level}\n**Raised By:** {raised_by}\n**Timestamp:** {timestamp}\n\n**Issue Description:**\n{issue_description}\n\n**Impact Assessment:**\n{impact_assessment}\n\n**Required Action:**\n{required_action}\n\n**Escalation Path:**\n{escalation_path}\n\nImmediate management attention required.",
+    "priority": "critical"
+  }
+}

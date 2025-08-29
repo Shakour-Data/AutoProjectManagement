@@ -1,0 +1,14 @@
+{
+  "code_coverage": {
+    "target": 80,
+    "weight": 1.0
+  },
+  "documentation_coverage": {
+    "target": 90,
+    "weight": 1.0
+  },
+  "pep8_compliance": {
+    "target": 95,
+    "weight": 1.0
+  }
+}
