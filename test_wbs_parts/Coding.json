@@ -1,0 +1,45 @@
+{
+  "id": "WBS-Construction-1",
+  "name": "Coding",
+  "description": "Develop software modules and components.",
+  "level_0": "Software Project",
+  "level_1": "Construction and Testing",
+  "level_2": "Coding",
+  "subtasks": [
+    {
+      "id": "WBS-Construction-1.1",
+      "name": "Module Development",
+      "description": "Write code for individual software modules.",
+      "level_3": "Module Development",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-1.2",
+      "name": "Code Review",
+      "description": "Review code for quality and adherence to standards.",
+      "level_3": "Code Review",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-1.3",
+      "name": "Unit Testing",
+      "description": "Test individual modules for correctness.",
+      "level_3": "Unit Testing",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-1.4",
+      "name": "Debugging",
+      "description": "Identify and fix defects in code.",
+      "level_3": "Debugging",
+      "subtasks": []
+    },
+    {
+      "id": "WBS-Construction-1.5",
+      "name": "Documentation",
+      "description": "Document code and development processes.",
+      "level_3": "Documentation",
+      "subtasks": []
+    }
+  ]
+}

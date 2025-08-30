@@ -1,0 +1,1669 @@
+{
+  "id": "WBS-ROOT",
+  "name": "Software Project",
+  "level": 0,
+  "subtasks": [
+    {
+      "id": "WBS-Construction-1",
+      "name": "Coding",
+      "description": "Develop software modules and components.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Coding",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-1.1",
+          "name": "Module Development",
+          "description": "Write code for individual software modules.",
+          "level_3": "Module Development",
+          "subtasks": [],
+          "wbs_number": "1.1"
+        },
+        {
+          "id": "WBS-Construction-1.2",
+          "name": "Code Review",
+          "description": "Review code for quality and adherence to standards.",
+          "level_3": "Code Review",
+          "subtasks": [],
+          "wbs_number": "1.2"
+        },
+        {
+          "id": "WBS-Construction-1.3",
+          "name": "Unit Testing",
+          "description": "Test individual modules for correctness.",
+          "level_3": "Unit Testing",
+          "subtasks": [],
+          "wbs_number": "1.3"
+        },
+        {
+          "id": "WBS-Construction-1.4",
+          "name": "Debugging",
+          "description": "Identify and fix defects in code.",
+          "level_3": "Debugging",
+          "subtasks": [],
+          "wbs_number": "1.4"
+        },
+        {
+          "id": "WBS-Construction-1.5",
+          "name": "Documentation",
+          "description": "Document code and development processes.",
+          "level_3": "Documentation",
+          "subtasks": [],
+          "wbs_number": "1.5"
+        }
+      ],
+      "wbs_number": "1"
+    },
+    {
+      "id": "WBS-Construction-4.3",
+      "name": "Post Deployment Support",
+      "description": "Provide support and maintenance after deployment.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Deployment",
+      "level_3": "Post Deployment Support",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-4.3.1",
+          "name": "Monitor System Performance",
+          "description": "Continuously monitor system performance and availability.",
+          "level_4": "Monitor System Performance",
+          "subtasks": [],
+          "wbs_number": "2.1"
+        },
+        {
+          "id": "WBS-Construction-4.3.2",
+          "name": "Issue Resolution",
+          "description": "Identify and resolve post-deployment issues.",
+          "level_4": "Issue Resolution",
+          "subtasks": [],
+          "wbs_number": "2.2"
+        },
+        {
+          "id": "WBS-Construction-4.3.3",
+          "name": "User Support",
+          "description": "Provide support to end-users and stakeholders.",
+          "level_4": "User Support",
+          "subtasks": [],
+          "wbs_number": "2.3"
+        },
+        {
+          "id": "WBS-Construction-4.3.4",
+          "name": "System Updates",
+          "description": "Apply patches and updates as needed.",
+          "level_4": "System Updates",
+          "subtasks": [],
+          "wbs_number": "2.4"
+        },
+        {
+          "id": "WBS-Construction-4.3.5",
+          "name": "Documentation Updates",
+          "description": "Update documentation to reflect changes and fixes.",
+          "level_4": "Documentation Updates",
+          "subtasks": [],
+          "wbs_number": "2.5"
+        }
+      ],
+      "wbs_number": "2"
+    },
+    {
+      "id": "WBS-Construction-4.1",
+      "name": "Deployment Planning",
+      "description": "Plan deployment activities and schedule.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Deployment",
+      "level_3": "Deployment Planning",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-4.1.1",
+          "name": "Define Deployment Strategy",
+          "description": "Establish deployment approach and methods.",
+          "level_4": "Define Deployment Strategy",
+          "subtasks": [],
+          "wbs_number": "3.1"
+        },
+        {
+          "id": "WBS-Construction-4.1.2",
+          "name": "Identify Deployment Resources",
+          "description": "Determine resources required for deployment.",
+          "level_4": "Identify Deployment Resources",
+          "subtasks": [],
+          "wbs_number": "3.2"
+        },
+        {
+          "id": "WBS-Construction-4.1.3",
+          "name": "Develop Deployment Schedule",
+          "description": "Create timeline for deployment activities.",
+          "level_4": "Develop Deployment Schedule",
+          "subtasks": [],
+          "wbs_number": "3.3"
+        },
+        {
+          "id": "WBS-Construction-4.1.4",
+          "name": "Risk Assessment",
+          "description": "Identify risks related to deployment.",
+          "level_4": "Risk Assessment",
+          "subtasks": [],
+          "wbs_number": "3.4"
+        },
+        {
+          "id": "WBS-Construction-4.1.5",
+          "name": "Approval of Deployment Plan",
+          "description": "Obtain approval for deployment plan.",
+          "level_4": "Approval of Deployment Plan",
+          "subtasks": [],
+          "wbs_number": "3.5"
+        }
+      ],
+      "wbs_number": "3"
+    },
+    {
+      "id": "WBS-Construction-4.2",
+      "name": "Deployment Execution",
+      "description": "Execute deployment of the software system to production environment.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Deployment",
+      "level_3": "Deployment Execution",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-4.2.1",
+          "name": "Prepare Deployment Environment",
+          "description": "Set up production environment for deployment.",
+          "level_4": "Prepare Deployment Environment",
+          "subtasks": [],
+          "wbs_number": "4.1"
+        },
+        {
+          "id": "WBS-Construction-4.2.2",
+          "name": "Deploy Software",
+          "description": "Install and configure software in production.",
+          "level_4": "Deploy Software",
+          "subtasks": [],
+          "wbs_number": "4.2"
+        },
+        {
+          "id": "WBS-Construction-4.2.3",
+          "name": "Perform Smoke Testing",
+          "description": "Conduct initial tests to verify deployment success.",
+          "level_4": "Perform Smoke Testing",
+          "subtasks": [],
+          "wbs_number": "4.3"
+        },
+        {
+          "id": "WBS-Construction-4.2.4",
+          "name": "Monitor Deployment",
+          "description": "Monitor system performance post-deployment.",
+          "level_4": "Monitor Deployment",
+          "subtasks": [],
+          "wbs_number": "4.4"
+        },
+        {
+          "id": "WBS-Construction-4.2.5",
+          "name": "Document Deployment",
+          "description": "Record deployment activities and issues.",
+          "level_4": "Document Deployment",
+          "subtasks": [],
+          "wbs_number": "4.5"
+        }
+      ],
+      "wbs_number": "4"
+    },
+    {
+      "id": "WBS-Construction-2.1",
+      "name": "Module Integration",
+      "description": "Combine individual modules into subsystems.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Integration",
+      "level_3": "Module Integration",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-2.1.1",
+          "name": "Prepare Modules",
+          "description": "Ensure modules are ready for integration.",
+          "level_4": "Prepare Modules",
+          "subtasks": [],
+          "wbs_number": "5.1"
+        },
+        {
+          "id": "WBS-Construction-2.1.2",
+          "name": "Integrate Modules",
+          "description": "Combine modules into subsystems.",
+          "level_4": "Integrate Modules",
+          "subtasks": [],
+          "wbs_number": "5.2"
+        },
+        {
+          "id": "WBS-Construction-2.1.3",
+          "name": "Resolve Integration Issues",
+          "description": "Identify and fix integration problems.",
+          "level_4": "Resolve Integration Issues",
+          "subtasks": [],
+          "wbs_number": "5.3"
+        },
+        {
+          "id": "WBS-Construction-2.1.4",
+          "name": "Test Integrated Modules",
+          "description": "Test the integrated modules for functionality.",
+          "level_4": "Test Integrated Modules",
+          "subtasks": [],
+          "wbs_number": "5.4"
+        },
+        {
+          "id": "WBS-Construction-2.1.5",
+          "name": "Document Integration",
+          "description": "Document the integration process and results.",
+          "level_4": "Document Integration",
+          "subtasks": [],
+          "wbs_number": "5.5"
+        }
+      ],
+      "wbs_number": "5"
+    },
+    {
+      "id": "WBS-Construction-2.4",
+      "name": "Integration Documentation",
+      "description": "Document integration processes and results.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Integration",
+      "level_3": "Integration Documentation",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-2.4.1",
+          "name": "Prepare Documentation Templates",
+          "description": "Create templates for integration documentation.",
+          "level_4": "Prepare Documentation Templates",
+          "subtasks": [],
+          "wbs_number": "6.1"
+        },
+        {
+          "id": "WBS-Construction-2.4.2",
+          "name": "Document Integration Procedures",
+          "description": "Record detailed integration steps and procedures.",
+          "level_4": "Document Integration Procedures",
+          "subtasks": [],
+          "wbs_number": "6.2"
+        },
+        {
+          "id": "WBS-Construction-2.4.3",
+          "name": "Compile Test Results",
+          "description": "Include integration test results in documentation.",
+          "level_4": "Compile Test Results",
+          "subtasks": [],
+          "wbs_number": "6.3"
+        },
+        {
+          "id": "WBS-Construction-2.4.4",
+          "name": "Review Documentation",
+          "description": "Review documentation for accuracy and completeness.",
+          "level_4": "Review Documentation",
+          "subtasks": [],
+          "wbs_number": "6.4"
+        },
+        {
+          "id": "WBS-Construction-2.4.5",
+          "name": "Distribute Documentation",
+          "description": "Distribute integration documentation to stakeholders.",
+          "level_4": "Distribute Documentation",
+          "subtasks": [],
+          "wbs_number": "6.5"
+        }
+      ],
+      "wbs_number": "6"
+    },
+    {
+      "id": "WBS-Construction-2.2",
+      "name": "System Integration",
+      "description": "Integrate subsystems into the complete system.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Integration",
+      "level_3": "System Integration",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-2.2.1",
+          "name": "Prepare Subsystems",
+          "description": "Ensure subsystems are ready for integration.",
+          "level_4": "Prepare Subsystems",
+          "subtasks": [],
+          "wbs_number": "7.1"
+        },
+        {
+          "id": "WBS-Construction-2.2.2",
+          "name": "Integrate Subsystems",
+          "description": "Combine subsystems into the complete system.",
+          "level_4": "Integrate Subsystems",
+          "subtasks": [],
+          "wbs_number": "7.2"
+        },
+        {
+          "id": "WBS-Construction-2.2.3",
+          "name": "Resolve Integration Issues",
+          "description": "Identify and fix integration problems.",
+          "level_4": "Resolve Integration Issues",
+          "subtasks": [],
+          "wbs_number": "7.3"
+        },
+        {
+          "id": "WBS-Construction-2.2.4",
+          "name": "Test Integrated System",
+          "description": "Test the integrated system for functionality.",
+          "level_4": "Test Integrated System",
+          "subtasks": [],
+          "wbs_number": "7.4"
+        },
+        {
+          "id": "WBS-Construction-2.2.5",
+          "name": "Document System Integration",
+          "description": "Document the system integration process and results.",
+          "level_4": "Document System Integration",
+          "subtasks": [],
+          "wbs_number": "7.5"
+        }
+      ],
+      "wbs_number": "7"
+    },
+    {
+      "id": "WBS-Construction-2.3",
+      "name": "Integration Testing",
+      "description": "Test integrated components for correct interaction.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Integration",
+      "level_3": "Integration Testing",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-2.3.1",
+          "name": "Develop Test Plans",
+          "description": "Create test plans for integration testing.",
+          "level_4": "Develop Test Plans",
+          "subtasks": [],
+          "wbs_number": "8.1"
+        },
+        {
+          "id": "WBS-Construction-2.3.2",
+          "name": "Execute Tests",
+          "description": "Perform integration tests on components.",
+          "level_4": "Execute Tests",
+          "subtasks": [],
+          "wbs_number": "8.2"
+        },
+        {
+          "id": "WBS-Construction-2.3.3",
+          "name": "Log Defects",
+          "description": "Record defects found during testing.",
+          "level_4": "Log Defects",
+          "subtasks": [],
+          "wbs_number": "8.3"
+        },
+        {
+          "id": "WBS-Construction-2.3.4",
+          "name": "Retest Fixes",
+          "description": "Verify fixes for reported defects.",
+          "level_4": "Retest Fixes",
+          "subtasks": [],
+          "wbs_number": "8.4"
+        },
+        {
+          "id": "WBS-Construction-2.3.5",
+          "name": "Report Test Results",
+          "description": "Document outcomes of integration testing.",
+          "level_4": "Report Test Results",
+          "subtasks": [],
+          "wbs_number": "8.5"
+        }
+      ],
+      "wbs_number": "8"
+    },
+    {
+      "id": "WBS-Construction-3.4",
+      "name": "Acceptance Testing",
+      "description": "Conduct acceptance testing to validate system meets requirements.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Testing",
+      "level_3": "Acceptance Testing",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-3.4.1",
+          "name": "Develop Acceptance Criteria",
+          "description": "Define criteria for system acceptance.",
+          "level_4": "Develop Acceptance Criteria",
+          "subtasks": [],
+          "wbs_number": "9.1"
+        },
+        {
+          "id": "WBS-Construction-3.4.2",
+          "name": "Plan Acceptance Tests",
+          "description": "Create plans for acceptance testing.",
+          "level_4": "Plan Acceptance Tests",
+          "subtasks": [],
+          "wbs_number": "9.2"
+        },
+        {
+          "id": "WBS-Construction-3.4.3",
+          "name": "Execute Acceptance Tests",
+          "description": "Perform acceptance tests with stakeholders.",
+          "level_4": "Execute Acceptance Tests",
+          "subtasks": [],
+          "wbs_number": "9.3"
+        },
+        {
+          "id": "WBS-Construction-3.4.4",
+          "name": "Document Results",
+          "description": "Record outcomes of acceptance testing.",
+          "level_4": "Document Results",
+          "subtasks": [],
+          "wbs_number": "9.4"
+        },
+        {
+          "id": "WBS-Construction-3.4.5",
+          "name": "Obtain Approval",
+          "description": "Get formal approval from stakeholders.",
+          "level_4": "Obtain Approval",
+          "subtasks": [],
+          "wbs_number": "9.5"
+        }
+      ],
+      "wbs_number": "9"
+    },
+    {
+      "id": "WBS-Construction-3.1",
+      "name": "Unit Testing",
+      "description": "Test individual software modules for correctness.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Testing",
+      "level_3": "Unit Testing",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-3.1.1",
+          "name": "Develop Test Cases",
+          "description": "Create test cases for individual modules.",
+          "level_4": "Develop Test Cases",
+          "subtasks": [],
+          "wbs_number": "10.1"
+        },
+        {
+          "id": "WBS-Construction-3.1.2",
+          "name": "Execute Tests",
+          "description": "Run unit tests on modules.",
+          "level_4": "Execute Tests",
+          "subtasks": [],
+          "wbs_number": "10.2"
+        },
+        {
+          "id": "WBS-Construction-3.1.3",
+          "name": "Log Defects",
+          "description": "Record defects found during testing.",
+          "level_4": "Log Defects",
+          "subtasks": [],
+          "wbs_number": "10.3"
+        },
+        {
+          "id": "WBS-Construction-3.1.4",
+          "name": "Retest Fixes",
+          "description": "Verify fixes for reported defects.",
+          "level_4": "Retest Fixes",
+          "subtasks": [],
+          "wbs_number": "10.4"
+        },
+        {
+          "id": "WBS-Construction-3.1.5",
+          "name": "Report Test Results",
+          "description": "Document outcomes of unit testing.",
+          "level_4": "Report Test Results",
+          "subtasks": [],
+          "wbs_number": "10.5"
+        }
+      ],
+      "wbs_number": "10"
+    },
+    {
+      "id": "WBS-Construction-3.3",
+      "name": "System Testing",
+      "description": "Test the complete integrated system for compliance with requirements.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Testing",
+      "level_3": "System Testing",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-3.3.1",
+          "name": "Develop Test Plans",
+          "description": "Create test plans for system testing.",
+          "level_4": "Develop Test Plans",
+          "subtasks": [],
+          "wbs_number": "11.1"
+        },
+        {
+          "id": "WBS-Construction-3.3.2",
+          "name": "Execute Tests",
+          "description": "Perform system tests on the integrated system.",
+          "level_4": "Execute Tests",
+          "subtasks": [],
+          "wbs_number": "11.2"
+        },
+        {
+          "id": "WBS-Construction-3.3.3",
+          "name": "Log Defects",
+          "description": "Record defects found during system testing.",
+          "level_4": "Log Defects",
+          "subtasks": [],
+          "wbs_number": "11.3"
+        },
+        {
+          "id": "WBS-Construction-3.3.4",
+          "name": "Retest Fixes",
+          "description": "Verify fixes for reported defects.",
+          "level_4": "Retest Fixes",
+          "subtasks": [],
+          "wbs_number": "11.4"
+        },
+        {
+          "id": "WBS-Construction-3.3.5",
+          "name": "Report Test Results",
+          "description": "Document outcomes of system testing.",
+          "level_4": "Report Test Results",
+          "subtasks": [],
+          "wbs_number": "11.5"
+        }
+      ],
+      "wbs_number": "11"
+    },
+    {
+      "id": "WBS-Construction-3.2",
+      "name": "Integration Testing",
+      "description": "Test integrated components and subsystems.",
+      "level_0": "Software Project",
+      "level_1": "Construction and Testing",
+      "level_2": "Testing",
+      "level_3": "Integration Testing",
+      "subtasks": [
+        {
+          "id": "WBS-Construction-3.2.1",
+          "name": "Develop Test Plans",
+          "description": "Create test plans for integration testing.",
+          "level_4": "Develop Test Plans",
+          "subtasks": [],
+          "wbs_number": "12.1"
+        },
+        {
+          "id": "WBS-Construction-3.2.2",
+          "name": "Execute Tests",
+          "description": "Perform integration tests on subsystems.",
+          "level_4": "Execute Tests",
+          "subtasks": [],
+          "wbs_number": "12.2"
+        },
+        {
+          "id": "WBS-Construction-3.2.3",
+          "name": "Log Defects",
+          "description": "Record defects found during testing.",
+          "level_4": "Log Defects",
+          "subtasks": [],
+          "wbs_number": "12.3"
+        },
+        {
+          "id": "WBS-Construction-3.2.4",
+          "name": "Retest Fixes",
+          "description": "Verify fixes for reported defects.",
+          "level_4": "Retest Fixes",
+          "subtasks": [],
+          "wbs_number": "12.4"
+        },
+        {
+          "id": "WBS-Construction-3.2.5",
+          "name": "Report Test Results",
+          "description": "Document outcomes of integration testing.",
+          "level_4": "Report Test Results",
+          "subtasks": [],
+          "wbs_number": "12.5"
+        }
+      ],
+      "wbs_number": "12"
+    },
+    {
+      "id": "WBS-Modeling-1",
+      "name": "Requirements Gathering",
+      "description": "Gather and analyze software requirements from stakeholders.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Requirements Gathering",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-1.1",
+          "name": "Stakeholder Interviews",
+          "description": "Conduct interviews with stakeholders to gather requirements.",
+          "level_3": "Stakeholder Interviews",
+          "subtasks": [],
+          "wbs_number": "13.1"
+        },
+        {
+          "id": "WBS-Modeling-1.2",
+          "name": "Document Analysis",
+          "description": "Analyze existing documentation for requirements.",
+          "level_3": "Document Analysis",
+          "subtasks": [],
+          "wbs_number": "13.2"
+        },
+        {
+          "id": "WBS-Modeling-1.3",
+          "name": "Requirement Workshops",
+          "description": "Organize workshops to elicit requirements.",
+          "level_3": "Requirement Workshops",
+          "subtasks": [],
+          "wbs_number": "13.3"
+        },
+        {
+          "id": "WBS-Modeling-1.4",
+          "name": "Use Case Development",
+          "description": "Develop use cases to capture functional requirements.",
+          "level_3": "Use Case Development",
+          "subtasks": [],
+          "wbs_number": "13.4"
+        },
+        {
+          "id": "WBS-Modeling-1.5",
+          "name": "Requirement Validation",
+          "description": "Validate requirements with stakeholders.",
+          "level_3": "Requirement Validation",
+          "subtasks": [],
+          "wbs_number": "13.5"
+        }
+      ],
+      "wbs_number": "13"
+    },
+    {
+      "id": "WBS-Modeling-1.3",
+      "name": "Requirement Workshops",
+      "description": "Organize workshops to elicit requirements.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Requirements Gathering",
+      "level_3": "Requirement Workshops",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-1.3.1",
+          "name": "Plan Workshops",
+          "description": "Define objectives and agenda for workshops.",
+          "level_4": "Plan Workshops",
+          "subtasks": [],
+          "wbs_number": "14.1"
+        },
+        {
+          "id": "WBS-Modeling-1.3.2",
+          "name": "Invite Participants",
+          "description": "Identify and invite stakeholders to workshops.",
+          "level_4": "Invite Participants",
+          "subtasks": [],
+          "wbs_number": "14.2"
+        },
+        {
+          "id": "WBS-Modeling-1.3.3",
+          "name": "Conduct Workshops",
+          "description": "Facilitate workshops to gather requirements.",
+          "level_4": "Conduct Workshops",
+          "subtasks": [],
+          "wbs_number": "14.3"
+        },
+        {
+          "id": "WBS-Modeling-1.3.4",
+          "name": "Document Outcomes",
+          "description": "Record and summarize workshop results.",
+          "level_4": "Document Outcomes",
+          "subtasks": [],
+          "wbs_number": "14.4"
+        },
+        {
+          "id": "WBS-Modeling-1.3.5",
+          "name": "Review and Validate",
+          "description": "Review workshop outcomes with stakeholders.",
+          "level_4": "Review and Validate",
+          "subtasks": [],
+          "wbs_number": "14.5"
+        }
+      ],
+      "wbs_number": "14"
+    },
+    {
+      "id": "WBS-Modeling-1.1",
+      "name": "Stakeholder Interviews",
+      "description": "Conduct interviews with stakeholders to gather requirements.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Requirements Gathering",
+      "level_3": "Stakeholder Interviews",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-1.1.1",
+          "name": "Prepare Interview Questions",
+          "description": "Develop questions to guide stakeholder interviews.",
+          "level_4": "Prepare Interview Questions",
+          "subtasks": [],
+          "wbs_number": "15.1"
+        },
+        {
+          "id": "WBS-Modeling-1.1.2",
+          "name": "Schedule Interviews",
+          "description": "Arrange interview times with stakeholders.",
+          "level_4": "Schedule Interviews",
+          "subtasks": [],
+          "wbs_number": "15.2"
+        },
+        {
+          "id": "WBS-Modeling-1.1.3",
+          "name": "Conduct Interviews",
+          "description": "Perform interviews and record responses.",
+          "level_4": "Conduct Interviews",
+          "subtasks": [],
+          "wbs_number": "15.3"
+        },
+        {
+          "id": "WBS-Modeling-1.1.4",
+          "name": "Analyze Interview Data",
+          "description": "Review and analyze data collected from interviews.",
+          "level_4": "Analyze Interview Data",
+          "subtasks": [],
+          "wbs_number": "15.4"
+        },
+        {
+          "id": "WBS-Modeling-1.1.5",
+          "name": "Document Findings",
+          "description": "Document the results and insights from interviews.",
+          "level_4": "Document Findings",
+          "subtasks": [],
+          "wbs_number": "15.5"
+        }
+      ],
+      "wbs_number": "15"
+    },
+    {
+      "id": "WBS-Modeling-1.4",
+      "name": "Use Case Development",
+      "description": "Develop use cases to capture functional requirements.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Requirements Gathering",
+      "level_3": "Use Case Development",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-1.4.1",
+          "name": "Identify Actors",
+          "description": "Identify users and systems interacting with the software.",
+          "level_4": "Identify Actors",
+          "subtasks": [],
+          "wbs_number": "16.1"
+        },
+        {
+          "id": "WBS-Modeling-1.4.2",
+          "name": "Define Use Cases",
+          "description": "Describe use cases and their scenarios.",
+          "level_4": "Define Use Cases",
+          "subtasks": [],
+          "wbs_number": "16.2"
+        },
+        {
+          "id": "WBS-Modeling-1.4.3",
+          "name": "Review Use Cases",
+          "description": "Validate use cases with stakeholders.",
+          "level_4": "Review Use Cases",
+          "subtasks": [],
+          "wbs_number": "16.3"
+        },
+        {
+          "id": "WBS-Modeling-1.4.4",
+          "name": "Refine Use Cases",
+          "description": "Update use cases based on feedback.",
+          "level_4": "Refine Use Cases",
+          "subtasks": [],
+          "wbs_number": "16.4"
+        },
+        {
+          "id": "WBS-Modeling-1.4.5",
+          "name": "Document Use Cases",
+          "description": "Prepare formal use case documentation.",
+          "level_4": "Document Use Cases",
+          "subtasks": [],
+          "wbs_number": "16.5"
+        }
+      ],
+      "wbs_number": "16"
+    },
+    {
+      "id": "WBS-Modeling-1.5",
+      "name": "Requirement Validation",
+      "description": "Validate requirements with stakeholders.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Requirements Gathering",
+      "level_3": "Requirement Validation",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-1.5.1",
+          "name": "Prepare Validation Criteria",
+          "description": "Define criteria for validating requirements.",
+          "level_4": "Prepare Validation Criteria",
+          "subtasks": [],
+          "wbs_number": "17.1"
+        },
+        {
+          "id": "WBS-Modeling-1.5.2",
+          "name": "Conduct Validation Sessions",
+          "description": "Organize sessions with stakeholders to validate requirements.",
+          "level_4": "Conduct Validation Sessions",
+          "subtasks": [],
+          "wbs_number": "17.2"
+        },
+        {
+          "id": "WBS-Modeling-1.5.3",
+          "name": "Collect Feedback",
+          "description": "Gather feedback from validation sessions.",
+          "level_4": "Collect Feedback",
+          "subtasks": [],
+          "wbs_number": "17.3"
+        },
+        {
+          "id": "WBS-Modeling-1.5.4",
+          "name": "Update Requirements",
+          "description": "Revise requirements based on feedback.",
+          "level_4": "Update Requirements",
+          "subtasks": [],
+          "wbs_number": "17.4"
+        },
+        {
+          "id": "WBS-Modeling-1.5.5",
+          "name": "Approval of Requirements",
+          "description": "Obtain formal approval of requirements.",
+          "level_4": "Approval of Requirements",
+          "subtasks": [],
+          "wbs_number": "17.5"
+        }
+      ],
+      "wbs_number": "17"
+    },
+    {
+      "id": "WBS-Modeling-1.2",
+      "name": "Document Analysis",
+      "description": "Analyze existing documentation for requirements.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Requirements Gathering",
+      "level_3": "Document Analysis",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-1.2.1",
+          "name": "Collect Documents",
+          "description": "Gather all relevant documents for analysis.",
+          "level_4": "Collect Documents",
+          "subtasks": [],
+          "wbs_number": "18.1"
+        },
+        {
+          "id": "WBS-Modeling-1.2.2",
+          "name": "Review Documents",
+          "description": "Read and understand the collected documents.",
+          "level_4": "Review Documents",
+          "subtasks": [],
+          "wbs_number": "18.2"
+        },
+        {
+          "id": "WBS-Modeling-1.2.3",
+          "name": "Extract Requirements",
+          "description": "Identify requirements from the documents.",
+          "level_4": "Extract Requirements",
+          "subtasks": [],
+          "wbs_number": "18.3"
+        },
+        {
+          "id": "WBS-Modeling-1.2.4",
+          "name": "Validate Requirements",
+          "description": "Check the validity and relevance of extracted requirements.",
+          "level_4": "Validate Requirements",
+          "subtasks": [],
+          "wbs_number": "18.4"
+        },
+        {
+          "id": "WBS-Modeling-1.2.5",
+          "name": "Document Analysis Report",
+          "description": "Prepare a report summarizing the analysis findings.",
+          "level_4": "Document Analysis Report",
+          "subtasks": [],
+          "wbs_number": "18.5"
+        }
+      ],
+      "wbs_number": "18"
+    },
+    {
+      "id": "WBS-Modeling-4.2",
+      "name": "Prototype Development",
+      "description": "Develop initial prototypes based on design specifications.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Prototyping",
+      "level_3": "Prototype Development",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-4.2.1",
+          "name": "Set Up Development Environment",
+          "description": "Prepare tools and environment for prototype development.",
+          "level_4": "Set Up Development Environment",
+          "subtasks": [],
+          "wbs_number": "19.1"
+        },
+        {
+          "id": "WBS-Modeling-4.2.2",
+          "name": "Develop Prototype Features",
+          "description": "Implement key features in the prototype.",
+          "level_4": "Develop Prototype Features",
+          "subtasks": [],
+          "wbs_number": "19.2"
+        },
+        {
+          "id": "WBS-Modeling-4.2.3",
+          "name": "Integrate Components",
+          "description": "Combine prototype components into a working model.",
+          "level_4": "Integrate Components",
+          "subtasks": [],
+          "wbs_number": "19.3"
+        },
+        {
+          "id": "WBS-Modeling-4.2.4",
+          "name": "Internal Testing",
+          "description": "Test prototype internally for functionality.",
+          "level_4": "Internal Testing",
+          "subtasks": [],
+          "wbs_number": "19.4"
+        },
+        {
+          "id": "WBS-Modeling-4.2.5",
+          "name": "Document Prototype",
+          "description": "Prepare documentation for prototype development.",
+          "level_4": "Document Prototype",
+          "subtasks": [],
+          "wbs_number": "19.5"
+        }
+      ],
+      "wbs_number": "19"
+    },
+    {
+      "id": "WBS-Modeling-4.1",
+      "name": "Prototype Planning",
+      "description": "Plan prototype objectives and scope.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Prototyping",
+      "level_3": "Prototype Planning",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-4.1.1",
+          "name": "Define Objectives",
+          "description": "Set goals and objectives for the prototype.",
+          "level_4": "Define Objectives",
+          "subtasks": [],
+          "wbs_number": "20.1"
+        },
+        {
+          "id": "WBS-Modeling-4.1.2",
+          "name": "Identify Resources",
+          "description": "Determine resources needed for prototyping.",
+          "level_4": "Identify Resources",
+          "subtasks": [],
+          "wbs_number": "20.2"
+        },
+        {
+          "id": "WBS-Modeling-4.1.3",
+          "name": "Develop Schedule",
+          "description": "Create timeline for prototype development.",
+          "level_4": "Develop Schedule",
+          "subtasks": [],
+          "wbs_number": "20.3"
+        },
+        {
+          "id": "WBS-Modeling-4.1.4",
+          "name": "Risk Assessment",
+          "description": "Identify risks associated with prototyping.",
+          "level_4": "Risk Assessment",
+          "subtasks": [],
+          "wbs_number": "20.4"
+        },
+        {
+          "id": "WBS-Modeling-4.1.5",
+          "name": "Approval of Plan",
+          "description": "Obtain approval for prototype plan.",
+          "level_4": "Approval of Plan",
+          "subtasks": [],
+          "wbs_number": "20.5"
+        }
+      ],
+      "wbs_number": "20"
+    },
+    {
+      "id": "WBS-Modeling-4.3",
+      "name": "Prototype Testing",
+      "description": "Test prototypes to gather feedback and validate concepts.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Prototyping",
+      "level_3": "Prototype Testing",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-4.3.1",
+          "name": "Develop Test Cases",
+          "description": "Create test cases for prototype features.",
+          "level_4": "Develop Test Cases",
+          "subtasks": [],
+          "wbs_number": "21.1"
+        },
+        {
+          "id": "WBS-Modeling-4.3.2",
+          "name": "Conduct Testing",
+          "description": "Perform testing on prototype.",
+          "level_4": "Conduct Testing",
+          "subtasks": [],
+          "wbs_number": "21.2"
+        },
+        {
+          "id": "WBS-Modeling-4.3.3",
+          "name": "Collect Feedback",
+          "description": "Gather feedback from testers and stakeholders.",
+          "level_4": "Collect Feedback",
+          "subtasks": [],
+          "wbs_number": "21.3"
+        },
+        {
+          "id": "WBS-Modeling-4.3.4",
+          "name": "Analyze Test Results",
+          "description": "Analyze results and identify issues.",
+          "level_4": "Analyze Test Results",
+          "subtasks": [],
+          "wbs_number": "21.4"
+        },
+        {
+          "id": "WBS-Modeling-4.3.5",
+          "name": "Report Testing Outcomes",
+          "description": "Document testing outcomes and recommendations.",
+          "level_4": "Report Testing Outcomes",
+          "subtasks": [],
+          "wbs_number": "21.5"
+        }
+      ],
+      "wbs_number": "21"
+    },
+    {
+      "id": "WBS-Modeling-4.4",
+      "name": "Prototype Refinement",
+      "description": "Refine prototypes based on testing feedback.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "Prototyping",
+      "level_3": "Prototype Refinement",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-4.4.1",
+          "name": "Analyze Feedback",
+          "description": "Review feedback from prototype testing.",
+          "level_4": "Analyze Feedback",
+          "subtasks": [],
+          "wbs_number": "22.1"
+        },
+        {
+          "id": "WBS-Modeling-4.4.2",
+          "name": "Identify Improvements",
+          "description": "Determine necessary improvements and changes.",
+          "level_4": "Identify Improvements",
+          "subtasks": [],
+          "wbs_number": "22.2"
+        },
+        {
+          "id": "WBS-Modeling-4.4.3",
+          "name": "Implement Changes",
+          "description": "Apply improvements to the prototype.",
+          "level_4": "Implement Changes",
+          "subtasks": [],
+          "wbs_number": "22.3"
+        },
+        {
+          "id": "WBS-Modeling-4.4.4",
+          "name": "Re-test Prototype",
+          "description": "Test the refined prototype for issues.",
+          "level_4": "Re-test Prototype",
+          "subtasks": [],
+          "wbs_number": "22.4"
+        },
+        {
+          "id": "WBS-Modeling-4.4.5",
+          "name": "Update Documentation",
+          "description": "Document changes and updates to the prototype.",
+          "level_4": "Update Documentation",
+          "subtasks": [],
+          "wbs_number": "22.5"
+        }
+      ],
+      "wbs_number": "22"
+    },
+    {
+      "id": "WBS-Modeling-3.4",
+      "name": "Component Design",
+      "description": "Design individual software components and modules.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Design",
+      "level_3": "Component Design",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-3.4.1",
+          "name": "Identify Components",
+          "description": "Determine software components and their responsibilities.",
+          "level_4": "Identify Components",
+          "subtasks": [],
+          "wbs_number": "23.1"
+        },
+        {
+          "id": "WBS-Modeling-3.4.2",
+          "name": "Define Interfaces",
+          "description": "Specify interfaces for components.",
+          "level_4": "Define Interfaces",
+          "subtasks": [],
+          "wbs_number": "23.2"
+        },
+        {
+          "id": "WBS-Modeling-3.4.3",
+          "name": "Design Component Logic",
+          "description": "Develop internal logic and algorithms for components.",
+          "level_4": "Design Component Logic",
+          "subtasks": [],
+          "wbs_number": "23.3"
+        },
+        {
+          "id": "WBS-Modeling-3.4.4",
+          "name": "Component Testing Plan",
+          "description": "Plan testing for individual components.",
+          "level_4": "Component Testing Plan",
+          "subtasks": [],
+          "wbs_number": "23.4"
+        },
+        {
+          "id": "WBS-Modeling-3.4.5",
+          "name": "Document Component Design",
+          "description": "Prepare documentation for component design.",
+          "level_4": "Document Component Design",
+          "subtasks": [],
+          "wbs_number": "23.5"
+        }
+      ],
+      "wbs_number": "23"
+    },
+    {
+      "id": "WBS-Modeling-3.5",
+      "name": "Design Review",
+      "description": "Review design documents and validate with stakeholders.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Design",
+      "level_3": "Design Review",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-3.5.1",
+          "name": "Prepare Review Materials",
+          "description": "Compile design documents for review.",
+          "level_4": "Prepare Review Materials",
+          "subtasks": [],
+          "wbs_number": "24.1"
+        },
+        {
+          "id": "WBS-Modeling-3.5.2",
+          "name": "Conduct Review Meetings",
+          "description": "Organize meetings with stakeholders for design review.",
+          "level_4": "Conduct Review Meetings",
+          "subtasks": [],
+          "wbs_number": "24.2"
+        },
+        {
+          "id": "WBS-Modeling-3.5.3",
+          "name": "Collect Feedback",
+          "description": "Gather feedback and comments from reviewers.",
+          "level_4": "Collect Feedback",
+          "subtasks": [],
+          "wbs_number": "24.3"
+        },
+        {
+          "id": "WBS-Modeling-3.5.4",
+          "name": "Update Design Documents",
+          "description": "Revise design documents based on feedback.",
+          "level_4": "Update Design Documents",
+          "subtasks": [],
+          "wbs_number": "24.4"
+        },
+        {
+          "id": "WBS-Modeling-3.5.5",
+          "name": "Approve Design",
+          "description": "Obtain formal approval of design documents.",
+          "level_4": "Approve Design",
+          "subtasks": [],
+          "wbs_number": "24.5"
+        }
+      ],
+      "wbs_number": "24"
+    },
+    {
+      "id": "WBS-Modeling-3.2",
+      "name": "Interface Design",
+      "description": "Design user interfaces and system interfaces.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Design",
+      "level_3": "Interface Design",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-3.2.1",
+          "name": "User Interface Design",
+          "description": "Design the user interface layout and elements.",
+          "level_4": "User Interface Design",
+          "subtasks": [],
+          "wbs_number": "25.1"
+        },
+        {
+          "id": "WBS-Modeling-3.2.2",
+          "name": "System Interface Design",
+          "description": "Define interfaces between system components.",
+          "level_4": "System Interface Design",
+          "subtasks": [],
+          "wbs_number": "25.2"
+        },
+        {
+          "id": "WBS-Modeling-3.2.3",
+          "name": "Prototype Interfaces",
+          "description": "Develop interface prototypes for review.",
+          "level_4": "Prototype Interfaces",
+          "subtasks": [],
+          "wbs_number": "25.3"
+        },
+        {
+          "id": "WBS-Modeling-3.2.4",
+          "name": "Interface Testing",
+          "description": "Test interfaces for usability and functionality.",
+          "level_4": "Interface Testing",
+          "subtasks": [],
+          "wbs_number": "25.4"
+        },
+        {
+          "id": "WBS-Modeling-3.2.5",
+          "name": "Document Interfaces",
+          "description": "Prepare documentation for interfaces.",
+          "level_4": "Document Interfaces",
+          "subtasks": [],
+          "wbs_number": "25.5"
+        }
+      ],
+      "wbs_number": "25"
+    },
+    {
+      "id": "WBS-Modeling-3.1",
+      "name": "Architectural Design",
+      "description": "Define the overall system architecture and components.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Design",
+      "level_3": "Architectural Design",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-3.1.1",
+          "name": "Define System Components",
+          "description": "Identify and define major system components.",
+          "level_4": "Define System Components",
+          "subtasks": [],
+          "wbs_number": "26.1"
+        },
+        {
+          "id": "WBS-Modeling-3.1.2",
+          "name": "Establish Component Interactions",
+          "description": "Define interactions and interfaces between components.",
+          "level_4": "Establish Component Interactions",
+          "subtasks": [],
+          "wbs_number": "26.2"
+        },
+        {
+          "id": "WBS-Modeling-3.1.3",
+          "name": "Select Architectural Patterns",
+          "description": "Choose appropriate architectural styles and patterns.",
+          "level_4": "Select Architectural Patterns",
+          "subtasks": [],
+          "wbs_number": "26.3"
+        },
+        {
+          "id": "WBS-Modeling-3.1.4",
+          "name": "Document Architecture",
+          "description": "Prepare architectural design documents.",
+          "level_4": "Document Architecture",
+          "subtasks": [],
+          "wbs_number": "26.4"
+        },
+        {
+          "id": "WBS-Modeling-3.1.5",
+          "name": "Review Architecture",
+          "description": "Conduct architecture review sessions.",
+          "level_4": "Review Architecture",
+          "subtasks": [],
+          "wbs_number": "26.5"
+        }
+      ],
+      "wbs_number": "26"
+    },
+    {
+      "id": "WBS-Modeling-3.3",
+      "name": "Database Design",
+      "description": "Design the database schema and data storage solutions.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Design",
+      "level_3": "Database Design",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-3.3.1",
+          "name": "Define Data Requirements",
+          "description": "Identify data storage needs and requirements.",
+          "level_4": "Define Data Requirements",
+          "subtasks": [],
+          "wbs_number": "27.1"
+        },
+        {
+          "id": "WBS-Modeling-3.3.2",
+          "name": "Design Schema",
+          "description": "Create database schema and tables.",
+          "level_4": "Design Schema",
+          "subtasks": [],
+          "wbs_number": "27.2"
+        },
+        {
+          "id": "WBS-Modeling-3.3.3",
+          "name": "Normalize Data",
+          "description": "Apply normalization rules to database design.",
+          "level_4": "Normalize Data",
+          "subtasks": [],
+          "wbs_number": "27.3"
+        },
+        {
+          "id": "WBS-Modeling-3.3.4",
+          "name": "Define Indexes",
+          "description": "Create indexes to optimize database performance.",
+          "level_4": "Define Indexes",
+          "subtasks": [],
+          "wbs_number": "27.4"
+        },
+        {
+          "id": "WBS-Modeling-3.3.5",
+          "name": "Document Database Design",
+          "description": "Prepare documentation for database schema.",
+          "level_4": "Document Database Design",
+          "subtasks": [],
+          "wbs_number": "27.5"
+        }
+      ],
+      "wbs_number": "27"
+    },
+    {
+      "id": "WBS-Modeling-2.5",
+      "name": "System Specification Review",
+      "description": "Review and validate system specifications with stakeholders.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Analysis",
+      "level_3": "System Specification Review",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-2.5.1",
+          "name": "Prepare Review Materials",
+          "description": "Compile system specifications for review.",
+          "level_4": "Prepare Review Materials",
+          "subtasks": [],
+          "wbs_number": "28.1"
+        },
+        {
+          "id": "WBS-Modeling-2.5.2",
+          "name": "Conduct Review Meetings",
+          "description": "Organize meetings with stakeholders for review.",
+          "level_4": "Conduct Review Meetings",
+          "subtasks": [],
+          "wbs_number": "28.2"
+        },
+        {
+          "id": "WBS-Modeling-2.5.3",
+          "name": "Collect Feedback",
+          "description": "Gather feedback and comments from stakeholders.",
+          "level_4": "Collect Feedback",
+          "subtasks": [],
+          "wbs_number": "28.3"
+        },
+        {
+          "id": "WBS-Modeling-2.5.4",
+          "name": "Update Specifications",
+          "description": "Revise specifications based on feedback.",
+          "level_4": "Update Specifications",
+          "subtasks": [],
+          "wbs_number": "28.4"
+        },
+        {
+          "id": "WBS-Modeling-2.5.5",
+          "name": "Approve Specifications",
+          "description": "Obtain formal approval of system specifications.",
+          "level_4": "Approve Specifications",
+          "subtasks": [],
+          "wbs_number": "28.5"
+        }
+      ],
+      "wbs_number": "28"
+    },
+    {
+      "id": "WBS-Modeling-2.1",
+      "name": "Requirement Specification",
+      "description": "Define detailed system requirements and specifications.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Analysis",
+      "level_3": "Requirement Specification",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-2.1.1",
+          "name": "Gather Requirements",
+          "description": "Collect detailed requirements from stakeholders.",
+          "level_4": "Gather Requirements",
+          "subtasks": [],
+          "wbs_number": "29.1"
+        },
+        {
+          "id": "WBS-Modeling-2.1.2",
+          "name": "Document Requirements",
+          "description": "Document the collected requirements clearly.",
+          "level_4": "Document Requirements",
+          "subtasks": [],
+          "wbs_number": "29.2"
+        },
+        {
+          "id": "WBS-Modeling-2.1.3",
+          "name": "Review Requirements",
+          "description": "Review requirements for completeness and clarity.",
+          "level_4": "Review Requirements",
+          "subtasks": [],
+          "wbs_number": "29.3"
+        },
+        {
+          "id": "WBS-Modeling-2.1.4",
+          "name": "Approve Requirements",
+          "description": "Obtain approval from stakeholders.",
+          "level_4": "Approve Requirements",
+          "subtasks": [],
+          "wbs_number": "29.4"
+        },
+        {
+          "id": "WBS-Modeling-2.1.5",
+          "name": "Baseline Requirements",
+          "description": "Establish baseline for requirements management.",
+          "level_4": "Baseline Requirements",
+          "subtasks": [],
+          "wbs_number": "29.5"
+        }
+      ],
+      "wbs_number": "29"
+    },
+    {
+      "id": "WBS-Modeling-2.3",
+      "name": "Data Modeling",
+      "description": "Create data models to represent system data structures.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Analysis",
+      "level_3": "Data Modeling",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-2.3.1",
+          "name": "Identify Data Entities",
+          "description": "Determine key data entities and attributes.",
+          "level_4": "Identify Data Entities",
+          "subtasks": [],
+          "wbs_number": "30.1"
+        },
+        {
+          "id": "WBS-Modeling-2.3.2",
+          "name": "Define Relationships",
+          "description": "Establish relationships between data entities.",
+          "level_4": "Define Relationships",
+          "subtasks": [],
+          "wbs_number": "30.2"
+        },
+        {
+          "id": "WBS-Modeling-2.3.3",
+          "name": "Create ER Diagrams",
+          "description": "Develop entity-relationship diagrams.",
+          "level_4": "Create ER Diagrams",
+          "subtasks": [],
+          "wbs_number": "30.3"
+        },
+        {
+          "id": "WBS-Modeling-2.3.4",
+          "name": "Validate Data Model",
+          "description": "Review data model with stakeholders.",
+          "level_4": "Validate Data Model",
+          "subtasks": [],
+          "wbs_number": "30.4"
+        },
+        {
+          "id": "WBS-Modeling-2.3.5",
+          "name": "Document Data Model",
+          "description": "Prepare documentation for the data model.",
+          "level_4": "Document Data Model",
+          "subtasks": [],
+          "wbs_number": "30.5"
+        }
+      ],
+      "wbs_number": "30"
+    },
+    {
+      "id": "WBS-Modeling-2.2",
+      "name": "Feasibility Study",
+      "description": "Evaluate technical and economic feasibility of the system.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Analysis",
+      "level_3": "Feasibility Study",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-2.2.1",
+          "name": "Technical Feasibility",
+          "description": "Assess technical resources and capabilities.",
+          "level_4": "Technical Feasibility",
+          "subtasks": [],
+          "wbs_number": "31.1"
+        },
+        {
+          "id": "WBS-Modeling-2.2.2",
+          "name": "Economic Feasibility",
+          "description": "Analyze cost-benefit and financial aspects.",
+          "level_4": "Economic Feasibility",
+          "subtasks": [],
+          "wbs_number": "31.2"
+        },
+        {
+          "id": "WBS-Modeling-2.2.3",
+          "name": "Operational Feasibility",
+          "description": "Evaluate operational requirements and constraints.",
+          "level_4": "Operational Feasibility",
+          "subtasks": [],
+          "wbs_number": "31.3"
+        },
+        {
+          "id": "WBS-Modeling-2.2.4",
+          "name": "Schedule Feasibility",
+          "description": "Assess project timeline and deadlines.",
+          "level_4": "Schedule Feasibility",
+          "subtasks": [],
+          "wbs_number": "31.4"
+        },
+        {
+          "id": "WBS-Modeling-2.2.5",
+          "name": "Feasibility Report",
+          "description": "Prepare and present feasibility study report.",
+          "level_4": "Feasibility Report",
+          "subtasks": [],
+          "wbs_number": "31.5"
+        }
+      ],
+      "wbs_number": "31"
+    },
+    {
+      "id": "WBS-Modeling-2.4",
+      "name": "Process Modeling",
+      "description": "Model system processes and workflows.",
+      "level_0": "Software Project",
+      "level_1": "Modeling",
+      "level_2": "System Analysis",
+      "level_3": "Process Modeling",
+      "subtasks": [
+        {
+          "id": "WBS-Modeling-2.4.1",
+          "name": "Identify Processes",
+          "description": "Identify key system processes and workflows.",
+          "level_4": "Identify Processes",
+          "subtasks": [],
+          "wbs_number": "32.1"
+        },
+        {
+          "id": "WBS-Modeling-2.4.2",
+          "name": "Create Process Diagrams",
+          "description": "Develop flowcharts and process diagrams.",
+          "level_4": "Create Process Diagrams",
+          "subtasks": [],
+          "wbs_number": "32.2"
+        },
+        {
+          "id": "WBS-Modeling-2.4.3",
+          "name": "Validate Processes",
+          "description": "Review process models with stakeholders.",
+          "level_4": "Validate Processes",
+          "subtasks": [],
+          "wbs_number": "32.3"
+        },
+        {
+          "id": "WBS-Modeling-2.4.4",
+          "name": "Refine Process Models",
+          "description": "Update process models based on feedback.",
+          "level_4": "Refine Process Models",
+          "subtasks": [],
+          "wbs_number": "32.4"
+        },
+        {
+          "id": "WBS-Modeling-2.4.5",
+          "name": "Document Process Models",
+          "description": "Prepare documentation for process models.",
+          "level_4": "Document Process Models",
+          "subtasks": [],
+          "wbs_number": "32.5"
+        }
+      ],
+      "wbs_number": "32"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "id": "WBS-ROOT",
+  "name": "Software Project",
+  "level": 0,
+  "subtasks": [
+    {
+      "id": "WBS-Construction-1.1",
+      "name": "Module Development",
+      "description": "Write code for individual software modules.",
+      "level_3": "Module Development",
+      "subtasks": [],
+      "wbs_number": "1"
+    },
+    {
+      "id": "WBS-Construction-1.2",
+      "name": "Code Review",
+      "description": "Review code for quality and adherence to standards.",
+      "level_3": "Code Review",
+      "subtasks": [],
+      "wbs_number": "2"
+    },
+    {
+      "id": "WBS-Construction-1.3",
+      "name": "Unit Testing",
+      "description": "Test individual modules for correctness.",
+      "level_3": "Unit Testing",
+      "subtasks": [],
+      "wbs_number": "3"
+    },
+    {
+      "id": "WBS-Construction-1.4",
+      "name": "Debugging",
+      "description": "Identify and fix defects in code.",
+      "level_3": "Debugging",
+      "subtasks": [],
+      "wbs_number": "4"
+    },
+    {
+      "id": "WBS-Construction-1.5",
+      "name": "Documentation",
+      "description": "Document code and development processes.",
+      "level_3": "Documentation",
+      "subtasks": [],
+      "wbs_number": "5"
+    },
+    {
+      "id": "WBS-Modeling-1.2.1",
+      "name": "Collect Documents",
+      "description": "Gather all relevant documents for analysis.",
+      "level_4": "Collect Documents",
+      "subtasks": [],
+      "wbs_number": "6"
+    },
+    {
+      "id": "WBS-Modeling-1.2.2",
+      "name": "Review Documents",
+      "description": "Read and understand the collected documents.",
+      "level_4": "Review Documents",
+      "subtasks": [],
+      "wbs_number": "7"
+    },
+    {
+      "id": "WBS-Modeling-1.2.3",
+      "name": "Extract Requirements",
+      "description": "Identify requirements from the documents.",
+      "level_4": "Extract Requirements",
+      "subtasks": [],
+      "wbs_number": "8"
+    },
+    {
+      "id": "WBS-Modeling-1.2.4",
+      "name": "Validate Requirements",
+      "description": "Check the validity and relevance of extracted requirements.",
+      "level_4": "Validate Requirements",
+      "subtasks": [],
+      "wbs_number": "9"
+    },
+    {
+      "id": "WBS-Modeling-1.2.5",
+      "name": "Document Analysis Report",
+      "description": "Prepare a report summarizing the analysis findings.",
+      "level_4": "Document Analysis Report",
+      "subtasks": [],
+      "wbs_number": "10"
+    }
+  ]
+}
